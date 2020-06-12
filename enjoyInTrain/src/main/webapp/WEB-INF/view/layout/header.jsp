@@ -10,7 +10,7 @@
 <!-- Header -->
 		<div id="header">
 		<div class="loginForm">
-			Login | Join 
+			<a href="#">Login</a> | <a href="#">Join</a>
 		</div>
 			<div class="container">
 					
