@@ -10,7 +10,7 @@
 <!-- Header -->
 		<div id="header">
 		<div class="loginForm">
-			Login | Join 
+			Login | Join 실행대냐
 		</div>
 			<div class="container">
 					
