@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 	@RequestMapping("/main")
 	public String main() {
-		return ".layout.footer";
+		return ".main.main";
+	}
+	
+	
+	@RequestMapping("/exam")
+	public String example() {
+		return ".temp.left";
 	}
 }

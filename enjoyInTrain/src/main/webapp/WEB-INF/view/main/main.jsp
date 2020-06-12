@@ -171,7 +171,7 @@
 	<!-- /Featured -->
 	
 	<!-- Footer -->
-		<
+		
 			<div class="container">
 				<div class="row">
 					<div class="3u">
