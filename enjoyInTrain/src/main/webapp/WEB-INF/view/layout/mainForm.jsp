@@ -17,9 +17,6 @@
 
 <script type="text/javascript" src="<%=cp%>/resource/jquery/js/jquery.min.js"></script>
 
-<script type="text/javascript" src="<%=cp%>/resource/js/util-jquery.js"></script>
-<script type="text/javascript" src="<%=cp%>/resource/js/util.js"></script>
-
 </head>
 
 <body>
