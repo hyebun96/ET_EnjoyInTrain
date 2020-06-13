@@ -14,6 +14,12 @@
 <link rel="stylesheet" href="<%=cp%>/resource/css/skel-noscript.css" type="text/css" >
 <link rel="stylesheet" href="<%=cp%>/resource/css/style.css" type="text/css">
 <link rel="stylesheet" href="<%=cp%>/resource/css/style-desktop.css"  type="text/css">
+
+<script type="text/javascript" src="<%=cp%>/resource/jquery/js/jquery.min.js"></script>
+
+<script type="text/javascript" src="<%=cp%>/resource/js/util-jquery.js"></script>
+<script type="text/javascript" src="<%=cp%>/resource/js/util.js"></script>
+
 </head>
 
 <body>
