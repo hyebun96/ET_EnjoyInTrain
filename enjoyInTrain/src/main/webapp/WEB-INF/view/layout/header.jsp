@@ -10,7 +10,12 @@
 <!-- Header -->
 		<div id="header">
 		<div class="loginForm">
-			<a href="#">Login</a> | <a href="#">Join</a>
+			<c:if test="${empty sessionScope.crew}">
+				<a href="<%=cp%>/crew/login">Login</a> | <a href="<%=cp%>/crew/crew">Join</a>
+			</c:if>
+			<c:if test="${not empty sessionScope.crew}">
+				<a href="<%=cp%>/crew/logout">Logout</a> | <a href="#">정보수정이나 마이페이지</a>
+			</c:if>
 		</div>
 			<div class="container">
 					
@@ -29,7 +34,7 @@
 							<li><a href="<%=cp%>/exam">게시판예시</a></li>
 						</ul>
 						<ul>
-							<li class="active"><a href="#">회원가입</a></li>
+							<li class="active"><a href="<%=cp%>/crew/crew">회원가입</a></li>
 							<li><a href="#">qna</a></li>
 							<li><a href="#">faq</a></li>
 							<li><a href="#">공지사항</a></li>

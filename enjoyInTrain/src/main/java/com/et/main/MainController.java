@@ -9,10 +9,4 @@ public class MainController {
 	public String main() {
 		return ".main.main";
 	}
-	
-	
-	@RequestMapping("/exam")
-	public String example() {
-		return ".temp.left";
-	}
 }

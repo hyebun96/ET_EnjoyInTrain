@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="crew">
+	<select id="readCrew" parameterType="String" resultType="com.et.crew.Crew">
+		SELECT crewId, crewBirth, crewChatWarning, crewName, crewPwd, crewTel, crewEmail
+		FROM crew
+		WHERE crewId=#{crewId}
+	</select>
+	
+	<insert id="insertCrew" parameterType="com.et.crew.Crew">
+		INSERT INTO crew(crewId, crewName, crewPwd, crewTel, crewEmail, crewBirth, crewChatWarning) 
+		VALUES(#{crewId},#{crewName},#{crewPwd},#{crewTel},#{crewEmail},#{crewBirth},#{crewChatWarning})
+	</insert>
+	
+	
+</mapper> 
