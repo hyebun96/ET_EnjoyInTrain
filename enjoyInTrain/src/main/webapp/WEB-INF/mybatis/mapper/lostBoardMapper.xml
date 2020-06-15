@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="temp">
+	<insert id="insertLostBoard" parameterType="">
+		INSERT INTO lostNotice (lostNum, crewCode, lostContent, lostTitle, lostCreated, lostHitCount)
+		VALUES (lostNotice_seq.NEXTVAL, #{crewCode}, #{lostContent}, #{lostTitle}, SYSDATE, 0)
+	</insert>
+	
+	<update id="updateLostBoard" parameterType="">
+		UPDATE lostNotice SET lostContent = #{lostContent}, lostTitle = #{lostTitle} WHERE lostNum = #{lostNum}
+	</update>
+	
+	<delete id="deleteLostBoarad" parameterType="">
+		DELETE FROM lostNotice WHERE lostNum = #{lostNum}
+	</delete>
+	
+	<select id="listLostBoard" parameterType="">
+		SELECT lostNum, crewCode, lostContent, lostTitle, lostCreated, lostHitCount FROM lostNotice	
+	</select>
+</mapper>
