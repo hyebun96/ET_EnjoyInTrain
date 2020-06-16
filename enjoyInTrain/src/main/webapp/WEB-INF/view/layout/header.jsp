@@ -35,8 +35,8 @@
 						</ul>
 						<ul>
 							<li class="active"><a href="<%=cp%>/crew/crew">회원가입</a></li>
-							<li><a href="#">qna</a></li>
-							<li><a href="#">faq</a></li>
+							<li><a href="<%=cp%>/qna/list">qna</a></li>
+							<li><a href="<%=cp%>/faq/list">faq</a></li>
 							<li><a href="#">공지사항</a></li>
 							<li><a href="#">유실물</a></li>
 							<li><a href="#">자유게시판</a></li>

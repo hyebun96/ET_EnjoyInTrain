@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="faq">
+	<!-- 카테고리목록 -->
+	<select id="listCategory" resultType="com.et.faq.FAQ">
+		SELECT categoryNum, category
+		FROM faqCategory
+		ORDER BY categoryNum
+	</select>
+	
+	<!-- faq리스트 -->
+	<select id="listFaQ" parameterType="map" resultType="com.et.faq.FAQ">
+		SELECT faqNum, faqTitle, faqContent,  faqCategory, emCode
+		FROM faq
+		<if test="group!=0">
+			WHERE faqCategory = #{group}
+		</if>
+		ORDER BY faqNum DESC 
+	</select>
+	
+	<!-- faq insert-->
+	<insert id="insertFaQ" parameterType="com.et.faq.FAQ">
+		INSERT INTO FAQ(faqNum, faqTitle, faqContent, faqCategory, emCode)
+		VALUES(faq_seq.NEXTVAL, #{faqTitle}, #{faqContent}, #{categoryNum}, #{emCode})
+	</insert>
+	
+	<!-- faq찾기 -->
+	<select id="readQnA" parameterType="Integer" resultType="com.et.faq.FAQ">
+		SELECT faqNum, faqTitle, faqContent, category, emCode
+		FROM faq f
+		JOIN faqCategory fc ON f.faqCategory = fc.categoryNum
+		WHERE faqNum = #{num}
+	</select>
+	
+	<!-- faq update -->
+	<update id="updateFaQ" parameterType="com.et.faq.FAQ">
+		UPDATE faq SET faqTitle=#{faqTitle}, faqContent=#{faqContent}, faqCategory=#{categoryNum}
+		WHERE faqNum = #{faqNum}
+	</update>
+	
+	<delete id="deleteFaQ" parameterType="Integer">
+		DELETE FROM faq
+		WHERE faqNum = #{faqNum}
+	</delete>
+	
+</mapper>
