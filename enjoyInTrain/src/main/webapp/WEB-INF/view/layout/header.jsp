@@ -21,7 +21,7 @@
 					
 				<!-- Logo -->
 					<div id="logo">
-						<h1><a href="#">Ex Machina</a></h1>
+						<a href="<%=cp%>/notice/list"><img src="<%=cp%>/resource/images/etmainlogo.png"; width="200"></a>
 					</div>
 				
 				<!-- Nav -->
@@ -37,7 +37,7 @@
 							<li class="active"><a href="<%=cp%>/crew/crew">회원가입</a></li>
 							<li><a href="<%=cp%>/qna/list">qna</a></li>
 							<li><a href="<%=cp%>/faq/list">faq</a></li>
-							<li><a href="#">공지사항</a></li>
+							<li><a href="<%=cp%>/notice/list">공지사항</a></li>
 							<li><a href="#">유실물</a></li>
 							<li><a href="#">자유게시판</a></li>
 							<li><a href="#">신고</a></li>
