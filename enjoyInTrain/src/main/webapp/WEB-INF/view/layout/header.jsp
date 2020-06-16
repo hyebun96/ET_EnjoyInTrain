@@ -38,7 +38,7 @@
 							<li><a href="<%=cp%>/qna/list">qna</a></li>
 							<li><a href="<%=cp%>/faq/list">faq</a></li>
 							<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-							<li><a href="#">유실물</a></li>
+							<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
 							<li><a href="#">자유게시판</a></li>
 							<li><a href="#">신고</a></li>
 						</ul>

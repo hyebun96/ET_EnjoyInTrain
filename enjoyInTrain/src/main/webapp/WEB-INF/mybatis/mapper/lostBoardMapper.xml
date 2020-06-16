@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lostBoard">
+<!-- 시퀀스  -->
+	<select id="seq" resultType="Integer">
+		SELECT lostNotice_seq.NEXTVAL FROM dual
+	</select>
+
+<!-- 글 등록 -->
+	<insert id="insertLostBoard" parameterType="com.et.lostBoard.LostBoard">
+		INSERT INTO lostNotice(lostNum, crewId, lostContent, lostTitle, lostCreated, lostHitCount)
+		VALUES(#{lostNum}, #{crewId}, #{lostContent}, #{lostTitle}, SYSDATE, 0)
+	</insert>
+
+	<sql id="where-list">
+		<choose>
+			<when test="condition == 'all' ">
+			   ( INSTR(lostTitle, #{keyword}) &gt; 0
+		          OR DBMS_LOB.INSTR(lostContent, #{keyword}) &gt; 0 )
+			</when>
+			<when test="condition == 'lostCreated' ">
+			   ( TO_CHAR(lostCreated, 'YYYYMMDD') = #{keyword}
+		          OR TO_CHAR(lostCreated, 'YYYY-MM-DD') = #{keyword} )
+			</when>
+			<when test="condition == 'lostContent'">
+			    DBMS_LOB.INSTR(lostContent, #{keyword}) &gt; 0
+			</when>
+			<otherwise>
+			    INSTR(${condition}, #{keyword}) &gt; 0
+			</otherwise>
+		</choose>
+	</sql>
+	
+<!-- 글 개수 -->
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) FROM lostNotice l JOIN crew c ON l.crewId = c.crewId
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				<include refid="where-list"/>
+			</if>
+		</where>
+	</select>
+	
+<!-- 글 리스트 -->
+	<select id="listLostBoard" parameterType="map" resultType="com.et.lostBoard.LostBoard">
+		SELECT l.lostNum, l.crewId, lostContent, lostTitle, lostCreated, lostHitCount,
+		       NVL(replyCount, 0) replyCount
+        FROM lostNotice l 
+		JOIN crew c ON l.crewId=c.crewId
+		LEFT OUTER JOIN (
+			SELECT lostNum , COUNT(*) replyCount FROM lostReply WHERE answer = 0
+			GROUP BY lostNum 
+		) r ON l.lostNum = r.lostNum
+		<where>
+			<if test="keyword!=null and keyword!=''">
+				<include refid="where-list"/>
+			</if>
+		</where>
+		ORDER BY lostNum DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+<!-- 글 보기 -->
+	<select id="readLostBoard" parameterType="Integer" resultType="com.et.lostBoard.LostBoard">
+		SELECT l.lostNum, l.crewId, lostContent, lostTitle, lostCreated, lostHitCount, saveFileName
+		FROM lostNotice l 
+		JOIN crew c ON l.crewId = c.crewId
+		LEFT OUTER JOIN (
+			SELECT lostNum, saveFileName FROM lostFile
+		) f ON l.lostNum = f.lostNum 
+		WHERE l.lostNum = #{lostNum}
+	</select>
+	
+<!-- 조회수 증가 -->
+	<update id="updateHitCount" parameterType="Integer">
+		UPDATE lostNotice SET lostHitCount=lostHitCount+1 WHERE lostNum = #{lostNum}
+	</update>
+	
+<!-- 이전글 -->
+	<select id="preReadLostBoard" parameterType="map" resultType="com.et.lostBoard.LostBoard">
+		SELECT lostNum, lostTitle FROM lostNotice l 
+		JOIN crew c ON l.crewId = c.crewId
+		<where>
+			<if test="keyword != null and keyword != '' ">
+				<include refid="where-list"/>
+			</if>
+			AND (lostNum &gt; #{lostNum})
+		</where>
+		ORDER BY lostNum ASC
+		FETCH FIRST 1 ROWS ONLY
+	</select>
+	
+<!-- 다음글 -->
+		<select id="nextReadLostBoard" parameterType="map" resultType="com.et.lostBoard.LostBoard">
+		SELECT lostNum, lostTitle FROM lostNotice l 
+		JOIN crew c ON l.crewId = c.crewId
+		<where>
+			<if test="keyword != null and keyword != '' ">
+				<include refid="where-list"/>
+			</if>
+			AND (lostNum &lt; #{lostNum})
+		</where>
+		ORDER BY lostNum DESC
+		FETCH FIRST 1 ROWS ONLY
+	</select>
+	
+<!-- 글 수정 -->
+	<update id="updateLostBoard" parameterType="com.et.lostBoard.LostBoard">
+		UPDATE lostNotice SET lostTitle=#{lostTitle}, lostContent=#{lostContent}
+		WHERE lostNum = #{lostNum}
+	</update>
+	
+<!-- 글 삭제 -->
+	<delete id="deleteLostBoard" parameterType="Integer">
+		DELETE FROM lostNotice WHERE lostNum = #{lostNum}
+	</delete>
+	
+<!-- 댓글 리스트 -->
+
+<!-- 댓글 및 답글 삭제 -->
+
+<!-- 댓글의 답글 리스트 -->
+
+<!-- 댓글의 답글 개수 -->
+
+<!-- 파일 등록 -->
+	<insert id="insertFile" parameterType="com.et.lostBoard.LostBoard">
+		INSERT INTO lostFile(num, lostNum, saveFilename, originalFilename, fileSize)
+		VALUES(lostFile_seq.NEXTVAL, #{lostNum}, #{saveFileName, jdbcType=VARCHAR}, #{originalFileName, jdbcType=VARCHAR}, #{fileSize})
+	</insert>
+	
+<!-- 파일 리스트 -->
+	<select id="listFile" parameterType="Integer" resultType="com.et.lostBoard.LostBoard">
+		SELECT num, lostNum, saveFilename, originalFilename, fileSize
+		FROM lostFile 
+		WHERE num=#{num}
+	</select>
+	
+<!-- 파일 찾기 -->
+	<select id="readFile" parameterType="Integer" resultType="com.et.lostBoard.LostBoard">
+		SELECT num, f.lostNum, saveFilename, originalFilename, fileSize
+		FROM lostFile
+	    WHERE num=#{num} 
+	</select>
+	
+<!-- 파일 삭제 -->
+	<delete id="deleteFile" parameterType="map">
+		DELETE FROM lostFile WHERE ${lostNum} = #{lostNum}
+	</delete>
+
+</mapper>
