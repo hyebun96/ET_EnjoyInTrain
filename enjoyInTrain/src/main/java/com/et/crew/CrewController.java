@@ -42,7 +42,7 @@ public class CrewController {
 		
 		SessionInfo info=new SessionInfo();
 		info.setCrewId(dto.getCrewId());
-		info.setCrewId(dto.getCrewName());
+		info.setCrewName(dto.getCrewName());
 		session.setMaxInactiveInterval(30*60);  //세션유지시간 30분
 		session.setAttribute("crew", info);
 		
