@@ -26,6 +26,7 @@ import com.et.common.FileManager;
 import com.et.common.MyUtil;
 
 @Controller("notice.noticeController")
+@RequestMapping("/notice/*")
 public class NoticeController {
 	@Autowired
 	private NoticeService service;
