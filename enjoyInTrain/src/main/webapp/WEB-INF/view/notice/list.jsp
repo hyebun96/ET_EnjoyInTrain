@@ -5,7 +5,14 @@
 <%
    String cp = request.getContextPath();
 %>
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+<style type="text/css">
+.noticebar{
+background-color: red;
+width: 100%;
+height: 100px;
+}
+</style>
 <script type="text/javascript">
 	function searchList() {
 		var f=document.searchForm;
@@ -59,7 +66,7 @@
 		        </form>
 							 </div>
 							</div>
-							<ul>
+							<ul class="noticebar">
 								<li style="float: left; width: 100px;">번호</li>
 								<li style="float: left; width: 100px;">제목</li>
 								<li style="float: left; width: 100px;">등록일</li>

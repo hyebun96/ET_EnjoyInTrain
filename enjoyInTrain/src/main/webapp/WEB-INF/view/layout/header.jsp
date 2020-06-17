@@ -17,12 +17,12 @@
 				<a href="<%=cp%>/crew/logout">Logout</a> | <a href="#">정보수정이나 마이페이지</a>
 			</c:if>
 		</div>
-			<div class="container">
-					
 				<!-- Logo -->
 					<div id="logo">
-						<a href="<%=cp%>/notice/list"><img src="<%=cp%>/resource/images/etmainlogo.png"; width="200"></a>
+						<a href="<%=cp%>/notice/list"><img src="<%=cp%>/resource/images/etmainlogo.png" width="200"></a>
 					</div>
+			<div class="container">
+					
 				
 				<!-- Nav -->
 					<nav id="nav">
@@ -39,7 +39,7 @@
 							<li><a href="<%=cp%>/faq/list">faq</a></li>
 							<li><a href="<%=cp%>/notice/list">공지사항</a></li>
 							<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
-							<li><a href="#">자유게시판</a></li>
+							<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
 							<li><a href="#">신고</a></li>
 						</ul>
 					</nav>
