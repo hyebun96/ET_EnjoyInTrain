@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="freeBoard">
+	<select id="seq" resultType="Integer">
+		SELECT freeBoard_seq.NEXTVAL FROM dual
+	</select>
+
+<!-- 게시글 등록 -->
+	<!-- 글등록 -->
+	<insert id="insertBoard" parameterType="com.et.freeBoard.FreeBoard">
+		INSERT INTO freeBoard(fbNum,crewId,fbContent,fbTitle,fbCreated,fbHitCount)
+		VALUES (#{fbNum},#{crewId},#{fbContent},#{fbTitle},SYSDATE,0)
+	</insert>
+	<!-- 파일등록 -->	
+	<insert id="insertFile" parameterType="com.et.freeBoard.FreeBoard">
+		INSERT INTO freeBoardFile(fbFileNum,fbNum,OriginalFileName,SaveFileName,FileSize)
+		VALUES (freeBoardFile_seq.NEXTVAL,#{fbNum},#{originalFileName,jdbcType=VARCHAR},#{saveFileName,jdbcType=VARCHAR},#{fileSize})
+	</insert>
+
+	<sql id="where-list">
+		<choose>
+			<when test="condition == 'all' ">
+				( INSTR(fbTitle, #{keyword}) &gt; 0
+				OR DBMS_LOB.INSTR(fbTitle, #{keyword}) &gt; 0 )
+			</when>
+			<when test="condition == 'fbCreated' ">
+				( TO_CHAR(fbCreated, 'YYYYMMDD') = #{keyword}
+				OR TO_CHAR(fbCreated, 'YYYY-MM-DD') = #{fbCreated} )
+			</when>
+			<when test="condition == 'fbContent'">
+				DBMS_LOB.INSTR(fbContent, #{keyword}) &gt; 0
+			</when>
+			<otherwise>
+				INSTR(${condition}, #{keyword}) &gt; 0
+			</otherwise>
+		</choose>
+	</sql>
+
+	<!-- 글개수 -->
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM freeBoard fb
+		JOIN crew c ON
+		c.crewId=fb.crewId
+		<where>
+			<if test="keyword!=null and keyword!='' ">
+				<include refid="where-list" />
+			</if>
+		</where>
+	</select>
+	
+<!-- 게시글 리스트 -->
+	<!-- 글리스트 -->
+	<select id="listBoard" parameterType="map" resultType="com.et.freeBoard.FreeBoard">
+		SELECT fb.fbNum,c.crewId,c.crewName,fbContent,fbTitle,
+				TO_CHAR(fbCreated,'YYYY-MM-DD') fbCreated,fbHitCount,fbLikeCount,
+				NVL(replyCount, 0) replyCount,NVL(FileCount,0) fileCount
+		FROM freeBoard fb
+		JOIN crew c ON c.crewId=fb.crewId
+		LEFT OUTER JOIN (
+			SELECT fbNum, COUNT(*) replyCount FROM freeBoardReply
+			WHERE answer = 0
+			GROUP BY fbNum
+			) r ON fb.fbNum = r.fbNum
+		LEFT OUTER JOIN (
+			SELECT fbNum, COUNT(*) FileCount FROM freeBoardFile
+			GROUP BY fbNum
+			) fbf ON fb.fbNum = fbf.fbNum
+		<where>
+			<if test="keyword != null and keyword != ''">
+				<include refid="where-list" />
+			</if>
+		</where>
+		ORDER BY fbNum DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+
+<!-- alticle -->	
+	<!-- 글보기 -->
+	<select id="readBoard" parameterType="Integer" resultType="com.et.freeBoard.FreeBoard">
+		SELECT fbNum, c.crewId, fbTitle, fbContent ,fbCreated,fbHitCount,fbLikeCount
+		FROM freeBoard fb
+		JOIN crew c ON c.crewId=fb.crewId
+        WHERE fbNum=#{fbNum}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateHitCount" parameterType="Integer">
+		UPDATE freeBoard SET fbHitCount = fbHitCount+1
+		WHERE fbNum=#{fbNum}
+	</update>
+	
+	<!-- 이전글 -->
+	<select id="preReadBoard" parameterType="map" resultType="com.et.freeBoard.FreeBoard">
+		SELECT fbNum,fbTitle
+		FROM freeBoard fb
+		JOIN crew c ON c.crewId=fb.crewId
+		<where>
+			<if test="keyword != null and keyword != '' ">
+				<include refid="where-list"/>
+			</if>
+			AND (fbNum &gt; #{num})
+		</where>
+		ORDER BY fbNum ASC
+		FETCH FIRST 1 ROWS ONLY
+	</select>
+	
+	<!-- 다음글 -->
+	<select id="nextReadBoard" parameterType="map" resultType="com.et.freeBoard.FreeBoard">
+		SELECT fbNum,fbTitle
+		FROM freeBoard fb
+		JOIN crew c ON c.crewId=fb.crewId
+		<where>
+			<if test="keyword != null and keyword != '' ">
+				<include refid="where-list"/>
+			</if>
+			AND (fbNum &lt; #{num})
+		</where>
+		ORDER BY fbNum DESC
+		FETCH FIRST 1 ROWS ONLY
+	</select>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateBoard">
+		UPDATE freeBoard SET fbTitle=#{fbTitle},fbContent=#{fbContent}
+		WHERE fbNum=#{fbNum}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard">
+		DELETE FROM freeBoard WHERE fbNum=#{fbNum}
+	</delete>
+	
+<!-- 파일 -->	
+	<!-- 파일 리스트 -->
+	<select id="listFile" parameterType="Integer" resultType="com.et.freeBoard.FreeBoard">
+		SELECT fbFileNum, fbNum, saveFileName, originalFileName, fileSize
+		FROM freeBoardFile
+		WHERE fbNum=#{num}    
+	</select>
+	
+	<!-- 파일읽기 -->
+	<select id="readFile" parameterType="Integer" resultType="com.et.freeBoard.FreeBoard">
+		SELECT fbFileNum,fbNum,saveFileName,originalFileName,fileSize
+		FROM freeBoardFile
+		WHERE fbFileNum=#{fbFileNum}
+	</select>
+
+	<!-- 파일 삭제 -->
+	<delete id="deleteFile" parameterType="map">
+		DELETE FROM freeBoardFile 
+		WHERE ${field} = #{num}
+	</delete>
+	
+<!-- 게시글 좋아요 -->
+	<!-- 게시글 좋아요 추가-->
+	<insert id="insertBoardLike" parameterType="map">
+		INSERT INTO freeBoardLike(fbNum,crewId)
+		VALUES (#{fbNum},#{crewId})
+	</insert>
+	
+	<!-- 게시글 좋아요 개수 -->
+	<select id="boardLikeCount" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*)
+		FROM freeBoardLike
+		WHERE fbNum=#{fbNum}
+	</select>
+	
+<!-- 댓글 (reply)-->
+	<!-- 댓글 추가 -->
+	
+	<!-- 댓글개수 -->
+	
+	<!-- 댓글 리스트 -->
+	
+	<!-- 댓글 좋아요 -->	
+	
+	<!-- 좋아요 추가 -->
+	
+	<!-- 좋아요 개수 -->
+
+<!-- 댓글의 답글 -->	
+	<!-- 댓글의 답글 리스트 -->
+	
+	<!-- 댓글의 답글 개수 -->
+	
+	<!-- 댓글 및 답글 삭제 -->
+
+</mapper>
