@@ -100,11 +100,11 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public Notice readNotice(int num) {
+	public Notice readNotice(int noticeNum) {
 		Notice dto=null;
 
 		try {
-			dto=dao.selectOne("notice.readNotice", num);
+			dto=dao.selectOne("notice.readNotice", noticeNum);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -167,20 +167,20 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public void deleteNotice(int num, String pathname) throws Exception {
+	public void deleteNotice(int noticeNum, String pathname) throws Exception {
 		try {
-			List<Notice> listFile=listFile(num);
+			List<Notice> listFile=listFile(noticeNum);
 			if(listFile!=null) {
 				for(Notice dto:listFile) {
 					fileManager.doFileDelete(dto.getSaveFilename(), pathname);
 				}
 			}
 			Map<String, Object> map=new HashMap<String, Object>();
-			map.put("field", "num");
-			map.put("num", num);
+			map.put("field", "noticeNum");
+			map.put("noticeNum", noticeNum);
 			deleteFile(map);
 			
-			dao.deleteData("notice.deleteNotice", num);
+			dao.deleteData("notice.deleteNotice", noticeNum);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -211,11 +211,11 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public Notice readFile(int fileNum) {
+	public Notice readFile(int noticeFileNum) {
 		Notice dto=null;
 		
 		try {
-			dto=dao.selectOne("notice.readFile", fileNum);
+			dto=dao.selectOne("notice.readFile", noticeFileNum);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

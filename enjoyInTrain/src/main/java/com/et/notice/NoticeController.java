@@ -188,7 +188,7 @@ public class NoticeController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("condition", condition);
 		map.put("keyword", keyword);
-		map.put("num", noticeNum);
+		map.put("noticeNum", noticeNum);
 
 		Notice preReadDto = service.preReadNotice(map);
 		Notice nextReadDto = service.nextReadNotice(map);
@@ -238,15 +238,10 @@ public class NoticeController {
 			@RequestParam String page,
 			HttpSession session) throws Exception {
 		
-		if(! dto.getEmCode().equals("1")) {
-			return "redirect:/notice/list?page="+page;
-		}
-		
 		try {
 			String root = session.getServletContext().getRealPath("/");
 			String pathname = root + File.separator + "uploads" + File.separator + "notice";		
 			
-			dto.setEmCode(dto.getEmCode());
 			service.updateNotice(dto, pathname);
 		} catch (Exception e) {
 		}
@@ -285,7 +280,7 @@ public class NoticeController {
 
 	@RequestMapping(value="/notice/download")
 	public void download(
-			@RequestParam int fileNum,
+			@RequestParam int noticeFileNum,
 			HttpServletResponse resp,
 			HttpSession session) throws Exception {
 		String root = session.getServletContext().getRealPath("/");
@@ -293,7 +288,7 @@ public class NoticeController {
 
 		boolean b = false;
 		
-		Notice dto = service.readFile(fileNum);
+		Notice dto = service.readFile(noticeFileNum);
 		if(dto!=null) {
 			String saveFilename = dto.getSaveFilename();
 			String originalFilename = dto.getOriginalFilename();
@@ -348,20 +343,20 @@ public class NoticeController {
 	@RequestMapping(value="/notice/deleteFile", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> deleteFile(
-			@RequestParam int fileNum,
+			@RequestParam int noticeFileNum,
 			HttpSession session) throws Exception {
 		
 		String root = session.getServletContext().getRealPath("/");
 		String pathname = root + "uploads" + File.separator + "notice";
 		
-		Notice dto=service.readFile(fileNum);
+		Notice dto=service.readFile(noticeFileNum);
 		if(dto!=null) {
 			fileManager.doFileDelete(dto.getSaveFilename(), pathname);
 		}
 		
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("field", "fileNum");
-		map.put("num", fileNum);
+		map.put("num", noticeFileNum);
 		service.deleteFile(map);
 		
 		Map<String, Object> model = new HashMap<>(); 

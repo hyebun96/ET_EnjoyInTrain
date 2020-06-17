@@ -7,7 +7,21 @@
 %>
 
 <script type="text/javascript">
+function deleteNotice() {
+	  var q = "noticeNum=${dto.noticeNum}&${query}";
+	  var url = "<%=cp%>/notice/delete?" + q;
 
+	  if(confirm("위 자료를 삭제 하시 겠습니까 ? "))
+	  	location.href=url;
+	}
+
+function updateNotice() {
+	  var q = "noticeNum=${dto.noticeNum}&page=${page}";
+	  var url = "<%=cp%>/notice/update?" + q;
+
+	  location.href=url;
+	
+	}
 
 </script>
 
@@ -36,25 +50,10 @@
 							</header>
 							<ul class="style1">
 								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
+								<li><a href="<%=cp%>/notice/list">이벤트</a></li>
 							</ul>
 						</section>
-						<section class="sidebar">
-							<header>
-								<h2>메뉴창2</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								
-							</ul>
-						</section>
+
 					</div>
 				
 					<div class="9u skel-cell-important">
@@ -73,16 +72,43 @@
 								<li class="notice-content">${dto.noticeContent}</li>
 							</ul>	
 					
-					<c:if test="${sessionScope.member.userId=='admin'}">				    
-			          <button type="button" class="btn" onclick="updateBoard();">수정</button>
-			       </c:if>
-			       <c:if test="${sessionScope.member.userId=='admin'}">				    
-			          <button type="button" class="btn" onclick="deleteBoard();">삭제</button>
-			       </c:if>
 			       
 			        <button type="button" class="btn" onclick="javascript:location.href='<%=cp%>/notice/list?${query}';">리스트</button>
 			       
 			        </form>
+			        <c:forEach var="vo" items="${listFile}">
+						<ul>
+							<li>
+				   			   <a href="<%=cp%>/notice/download?noticeFileNum=${vo.noticeFileNum}">${vo.originalFilename}</a>
+			         			 (<fmt:formatNumber value="${vo.fileSize/1024}" pattern="0.00"/> KByte)
+			         		</li>
+				  		</ul> 
+					</c:forEach>
+						<ul>
+			         		<li>
+			         		이전글 :
+			        		 <c:if test="${not empty preReadDto}">
+			           		   <a href="<%=cp%>/notice/article?${query}&noticeNum=${preReadDto.noticeNum}">${preReadDto.noticeTitle}</a>
+			       			 </c:if>
+			         		</li>
+			         		<li>
+			         		다음글 :
+			        		 <c:if test="${not empty nextReadDto}">
+			             		 <a href="<%=cp%>/notice/article?${query}&noticeNum=${nextReadDto.noticeNum}">${nextReadDto.noticeTitle}</a>
+			        		</c:if>
+			         		</li>
+			         	</ul>
+			         	
+			         	<ul>
+			         		<li>
+			         						    
+			          			<button type="button" class="btn" onclick="updateNotice();">수정</button>
+			       						    
+			          			<button type="button" class="btn" onclick="deleteNotice();">삭제</button>
+			       			
+			         		</li>
+			         	</ul>
+			         	
 			        </div>
 						</section>
 					</div>

@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Notice {
-	// noticeNum, noticeContent, noticeTitle, nCreated, nHitCount, nLikeCount, emCode
-	private int num;
 	private int noticeNum;
 	private String noticeContent;
 	private String noticeTitle;
@@ -16,7 +14,7 @@ public class Notice {
 	private String emCode;
 	
 	
-	private int fileNum;
+	private int noticeFileNum;
 	private String originalFilename;
 	private String saveFilename;
 	private long fileSize;
@@ -82,12 +80,12 @@ public class Notice {
 		this.emCode = emCode;
 	}
 
-	public int getFileNum() {
-		return fileNum;
+	public int getnoticeFileNum() {
+		return noticeFileNum;
 	}
 
-	public void setFileNum(int fileNum) {
-		this.fileNum = fileNum;
+	public void setnoticeFileNum(int noticeFileNum) {
+		this.noticeFileNum = noticeFileNum;
 	}
 
 	public String getOriginalFilename() {
@@ -137,16 +135,6 @@ public class Notice {
 	public void setGap(long gap) {
 		this.gap = gap;
 	}
-
-	public int getNum() {
-		return num;
-	}
-
-	public void setNum(int num) {
-		this.num = num;
-	}
-
-	
 
 	
 }

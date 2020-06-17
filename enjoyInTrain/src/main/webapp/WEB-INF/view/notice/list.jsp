@@ -5,6 +5,13 @@
 <%
    String cp = request.getContextPath();
 %>
+
+<script type="text/javascript">
+	function searchList() {
+		var f=document.searchForm;
+		f.submit();
+	}
+</script>
 	<!-- Banner -->
 		<div id="banner">
 			<div class="container">
@@ -26,23 +33,7 @@
 							</header>
 							<ul class="style1">
 								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-							</ul>
-						</section>
-						<section class="sidebar">
-							<header>
-								<h2>메뉴창2</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								
+								<li><a href="<%=cp%>/notice/list">이벤트</a></li>
 							</ul>
 						</section>
 					</div>
@@ -51,10 +42,10 @@
 						<section>
 							<header>
 								<h2>공지사항</h2>
-								<span class="byline">공지사항 | 신규서비스 및 다양한 소식이 업데이트 됩니다.</span>
+								<span class="byline">Notice | Check news of new services and events</span>
 							</header>
 							<div>
-							${dataCount==0 ? "게시글이 없습니다.":paging}
+							
 							 <div align="right">
 				<form name="searchForm" action="<%=cp%>/notice/list" method="post">
 		            	<select name="condition" class="selectField">
@@ -76,7 +67,7 @@
 								<li style="float: left; width: 100px;">첨부</li>
 							</ul>
 							<c:forEach var="dto" items="${noticeList}">
-							<ul>
+							<ul style="clear: both;">
 								<li style="width: 100px; float: left;">${dto.noticeNum}</li>
 								<li style="width: 100px; float: left;"><a href="${articleUrl}&noticeNum=${dto.noticeNum}"> ${dto.noticeTitle}</a></li>
 								<li style="width: 100px; float: left;">${dto.nCreated}</li>
@@ -88,7 +79,7 @@
                    				</li>
 							</ul>
 							</c:forEach>
-							
+							${dataCount==0 ? "게시글이 없습니다.":paging}
 		         				 <button type="button" class="btn" onclick="javascript:location.href='<%=cp%>/notice/created';">글올리기</button>
 		         			
 						</section>
