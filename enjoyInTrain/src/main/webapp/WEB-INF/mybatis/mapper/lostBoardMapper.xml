@@ -115,15 +115,57 @@
 	<delete id="deleteLostBoard" parameterType="Integer">
 		DELETE FROM lostNotice WHERE lostNum = #{lostNum}
 	</delete>
+
+<!-- 댓글 -->
+	<insert id="insertReply" parameterType="com.et.lostBoard.Reply">
+		INSERT INTO lostReply(lostReplyNum, crewId, content, created, answer, lostNum)
+		VALUES(lostReply_seq.NEXTVAL, #{crewId}, #{content}, SYSDATE, #{answer}, #{lostNum})
+	</insert>
+	
+<!-- 댓글 개수 -->
+	<select id="replyCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) FROM lostReply WHERE lostNum = #{lostNum} AND answer=0
+	</select>
 	
 <!-- 댓글 리스트 -->
-
+	<select id="listReply" parameterType="map" resultType="com.et.lostBoard.Reply">
+		SELECT r.lostReplyNum, r.crewId, content, created, NVL(answerCount, 0) answerCount, lostNum
+		FROM lostReply r
+		JOIN crew c ON r.crewId=c.crewId
+		LEFT OUTER JOIN (
+			SELECT answer, COUNT(*) answerCount
+			FROM lostReply WHERE answer !=0 GROUP BY answer
+		) a ON r.lostReplyNum = a.answer
+		WHERE lostNum = #{lostNum} AND r.answer=0
+		ORDER BY r.lostReplyNum DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
 <!-- 댓글 및 답글 삭제 -->
+	<delete id="deleteReply" parameterType="map">
+		DELETE FROM lostReply WHERE
+		<if test="mode=='reply'">
+			lostReplyNum IN (
+				SELECT lostReplyNum FROM lostReply START WITH lostReplyNum = #{lostReplyNum}
+				CONNECT BY PRIOR lostReplyNum = answer
+			)
+		</if>
+		<if test="mode=='answer'">
+			lostReplyNum = #{lostReplyNum}
+		</if>
+	</delete>
 
 <!-- 댓글의 답글 리스트 -->
-
+	<select id="listReplyAnswer" parameterType="Integer" resultType="com.et.lostBoard.Reply">
+		SELECT lostReplyNum, lostNum, r.crewId, content, created, answer FROM lostReply r
+		JOIN crew c ON r.crewId = c.crewId
+		WHERE answer = #{answer}
+		ORDER BY lostReplyNum DESC
+	</select>
+	
 <!-- 댓글의 답글 개수 -->
-
+	<select id="replyAnswerCount" parameterType="Integer" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) FROM lostReply WHERE answer = #{answer}
+	</select>
 <!-- 파일 등록 -->
 	<insert id="insertFile" parameterType="com.et.lostBoard.LostBoard">
 		INSERT INTO lostFile(num, lostNum, saveFilename, originalFilename, fileSize)

@@ -162,38 +162,72 @@ public class LostBoardServiceImpl implements LostBoardService {
 
 	@Override
 	public void insertReply(Reply dto) throws Exception {
-		// TODO Auto-generated method stub
+		try {
+			dao.insertData("lostBoard.insertReply", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 		
 	}
 
 	@Override
 	public List<Reply> listReply(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Reply> list = null;
+		
+		try {
+			list = dao.selectList("lostBoard.listReply", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	@Override
 	public int replyCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		
+		try {
+			result = dao.selectOne("lostBoard.replyCount", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
 	public void deleteReply(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+
+		try {
+			dao.deleteData("lostBoard.deleteReply", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 		
 	}
 
 	@Override
 	public List<Reply> listReplyAnswer(int answer) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Reply> list = null;
+		try {
+			list = dao.selectList("lostBoard.listReplyAnswer", answer);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
 	}
 
 	@Override
 	public int replyAnswerCount(int answer) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		
+		try {
+			result = dao.selectOne("lostBoard.replyAnswerCount", answer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override

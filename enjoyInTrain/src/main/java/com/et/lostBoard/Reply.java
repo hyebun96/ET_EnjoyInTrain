@@ -1,21 +1,31 @@
 package com.et.lostBoard;
 
 public class Reply {
-	private int replyNum;
+	private int lostNum;
+	private int lostReplyNum;
 	private int num;
-	private String userId;
+	private String crewId;
 	private String userName;
 	private String content;
 	private String created;
 	private int answer;
 	private int answerCount;
 
-	public int getReplyNum() {
-		return replyNum;
+	
+	public int getLostNum() {
+		return lostNum;
 	}
 
-	public void setReplyNum(int replyNum) {
-		this.replyNum = replyNum;
+	public void setLostNum(int lostNum) {
+		this.lostNum = lostNum;
+	}
+
+	public int getLostReplyNum() {
+		return lostReplyNum;
+	}
+
+	public void setLostReplyNum(int lostReplyNum) {
+		this.lostReplyNum = lostReplyNum;
 	}
 
 	public int getNum() {
@@ -25,13 +35,13 @@ public class Reply {
 	public void setNum(int num) {
 		this.num = num;
 	}
-
-	public String getUserId() {
-		return userId;
+	
+	public String getCrewId() {
+		return crewId;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setCrewId(String crewId) {
+		this.crewId = crewId;
 	}
 
 	public String getUserName() {

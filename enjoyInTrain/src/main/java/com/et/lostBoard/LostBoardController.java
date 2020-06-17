@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.et.common.FileManager;
 import com.et.common.MyUtil;
@@ -36,6 +37,7 @@ public class LostBoardController {
 	@Autowired
 	private FileManager fileManager;
 	
+	// 게시글 리스트
 	@RequestMapping(value="list")
 	public String list(
 			@RequestParam(value="page", defaultValue="1") int page,
@@ -123,6 +125,7 @@ public class LostBoardController {
 		return ".lostBoard.list";
 	}
 	
+	// 게시글 작성 폼
 	@RequestMapping(value="created", method=RequestMethod.GET)
 	public String insertForm(
 			Model model
@@ -133,6 +136,7 @@ public class LostBoardController {
 		return ".lostBoard.created";
 	}
 	
+	// 게시글 작성
 	@RequestMapping(value="created", method=RequestMethod.POST)
 	public String insert(
 			LostBoard dto,
@@ -156,6 +160,7 @@ public class LostBoardController {
 		return "redirect:/lostBoard/list";
 	}
 	
+	// 게시글 보기
 	@RequestMapping(value="article")
 	public String article(
 			@RequestParam int lostNum,
@@ -206,6 +211,7 @@ public class LostBoardController {
 		return ".lostBoard.article";				
 	}
 	
+	// 게시글 수정폼
 	@RequestMapping(value="update", method=RequestMethod.GET)
 	public String updateForm(
 			@RequestParam int lostNum,
@@ -232,6 +238,7 @@ public class LostBoardController {
 		return ".lostBoard.created";
 	}
 	
+	// 게시글 수정
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public String update(
 			LostBoard dto,
@@ -252,6 +259,7 @@ public class LostBoardController {
 		return "redirect:/lostBoard/list?page="+page;
 	}
 	
+	// 파일 삭제
 	@RequestMapping(value="deleteFile")
 	public String deleteFile(
 			@RequestParam int lostNum,
@@ -287,6 +295,7 @@ public class LostBoardController {
 		return "redirect:/lostBoard/update?num="+lostNum+"&page="+page;
 	}
 	
+	// 게시글 삭제
 	@RequestMapping(value="delete")
 	public String delete(
 			@RequestParam int lostNum,
@@ -311,5 +320,125 @@ public class LostBoardController {
 		
 		
 		return "redirect:/lostBoard/list?"+query;
+	}
+	
+	// 댓글 리스트
+	@RequestMapping(value="listReply")
+	public String listReply(
+			@RequestParam int lostNum,
+			@RequestParam(value="pageNo", defaultValue="1") int page,
+			Model model
+			) throws Exception {
+		
+		int rows = 5;
+		int total_page = 0;
+		int dataCount = 0;
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("lostNum", lostNum);
+		
+		dataCount = service.replyCount(map);
+		total_page = myutil.pageCount(rows, dataCount);
+		if(page>total_page) {
+			page=total_page;
+		}
+		int offset = (page-1)*rows;
+		if(offset<0) offset = 0;
+		map.put("offset", offset);
+		map.put("rows", rows);
+		List<Reply> listReply = service.listReply(map);
+		
+		for(Reply dto : listReply) {
+			dto.setContent(myutil.htmlSymbols(dto.getContent()));
+			dto.setCreated(dto.getCreated().substring(0,10));
+		}
+		
+		// AJAX 용 페이징
+		String paging = myutil.pagingMethod(page, total_page, "listPage");
+		
+		// 포워딩할 jsp로 넘길 데이터
+		model.addAttribute("listReply", listReply);
+		model.addAttribute("pageNo", page);
+		model.addAttribute("replyCount", dataCount);
+		model.addAttribute("total_page", total_page);
+		model.addAttribute("paging", paging);
+		
+		
+		
+		return "lostBoard/listReply";
+				
+	}
+	
+	// 댓글 및 댓글의 답글 등록 
+	@RequestMapping(value="insertReply", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertReply(
+				Reply dto,
+				HttpSession session
+			) {
+		SessionInfo info = (SessionInfo)session.getAttribute("crew");
+		String state = "true";
+		
+		try {
+			dto.setCrewId(info.getCrewId());
+			service.insertReply(dto);
+		} catch (Exception e) {
+			state="false";
+		}
+		
+		Map<String, Object> model = new HashMap<>();
+		model.put("state", state);
+		return model;
+	}
+	
+	// 댓글 및 댓글의 답글 삭제
+	@RequestMapping(value="deleteReply", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteReply(
+				@RequestParam Map<String, Object> paramMap
+			) {
+		
+		String state="true";
+		
+		try {
+			service.deleteReply(paramMap);
+		} catch (Exception e) {
+			state="fasle";
+		}
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("state", state);
+		return map;
+		
+	}
+	
+	// 댓글의 답글 리스트
+	@RequestMapping(value="listReplyAnswer")
+	public String listReplyAnswer(
+			@RequestParam int answer,
+			Model model
+			) throws Exception {
+		
+		List<Reply> listReplyAnswer = service.listReplyAnswer(answer);
+		for(Reply dto : listReplyAnswer) {
+			dto.setContent(myutil.htmlSymbols(dto.getContent()));
+		}
+		
+		model.addAttribute("listReplyAnswer", listReplyAnswer);
+		return "lostBoard/listReplyAnswer";
+	}
+	
+	// 댓글의 답글 개수 
+	@RequestMapping(value="countReplyAnswer")
+	@ResponseBody
+	public Map<String, Object> countReplyAnswer(
+				@RequestParam(value="answer") int answer
+			) {
+		
+		int count = service.replyAnswerCount(answer);
+		
+		Map<String, Object> model = new HashMap<>();
+		model.put("count", count);
+		return model;
 	}
 }
