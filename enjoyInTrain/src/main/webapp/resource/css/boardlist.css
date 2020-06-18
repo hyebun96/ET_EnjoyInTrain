@@ -1,0 +1,152 @@
+@charset "UTF-8";
+
+#board_title{
+	font-weight: bold;
+	font-size: 40px;
+	height: 60px;
+}
+
+#board_main{
+	width : 800px;
+	min-height: 750px;
+}
+
+#board_page{
+	text-align: right;	
+}
+
+#board_form1 li{
+	float: left;
+	border-top: 2px solid #cccccc;
+	border-bottom: 2px solid #cccccc;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#board_subnum{
+	width: 10%;
+	border-right: 1px solid #cccccc;
+}
+
+#board_subtitle{
+	width: 40%;
+	border-right: 1px solid #cccccc;
+}
+
+#board_subwriter{
+	width: 15%;
+	border-right: 1px solid #cccccc;
+}
+
+#board_subcreated{
+	width: 25%;
+	border-right: 1px solid #cccccc;
+}
+
+#board_subcount{
+	width: 10%;
+}
+
+#board_form2 li{
+	height: 40px;
+	line-height: 40px;
+}
+
+#board_subnum_list{
+	clear:both;
+	float: left;
+	width: 10%;
+	height: 30px;
+	text-align: center;
+	border-right: 1px solid #cccccc;
+}
+
+#board_subtitle_list{
+	float: left;
+	width: 40%;
+	height: 30px;
+	padding-left: 10px;
+	border-right: 1px solid #cccccc;
+}
+
+#board_subwriter_list{
+	float: left;
+	width: 15%;
+	height: 30px;
+	padding-left: 10px;
+	border-right: 1px solid #cccccc;
+}
+
+#board_subcreated_list{
+	float: left;
+	width: 25%;
+	height: 30px;
+	text-align: center;
+	border-right: 1px solid #cccccc;
+}
+
+#board_subcount_list{
+	float: left;
+	width: 10%;
+	height: 30px;
+	text-align: center;
+}
+
+#board_pagecount{
+	border-top: 2px solid #cccccc;
+}
+
+#board_button{
+	margin:0 auto;
+	text-align: center;
+	width: 650px;
+}
+
+#board_button_reset{
+	float: left;
+	width: 90px;
+}
+
+#board_button_reset button{
+	height: 30px;
+}
+
+#board_button_option{
+	float: left;
+	width: 90px;
+}
+
+#board_button_option select{
+	width: 80px;
+	height: 30px;
+}
+
+#board_button_word{
+	float: left;
+	width: 250px;
+}
+
+#board_button_word input{
+	width: 250px;
+}
+
+#board_button_search{
+	float: left;
+	width: 70px;
+}
+
+#board_button_search button{
+	width: 55px;
+	height: 30px;
+}
+
+#board_button_send{
+	float: left;
+	width: 70px;
+}
+
+#board_button_send button{
+	height: 30px;
+}

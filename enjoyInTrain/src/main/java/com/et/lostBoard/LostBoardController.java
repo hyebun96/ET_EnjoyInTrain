@@ -186,7 +186,7 @@ public class LostBoardController {
 		}
 		
 		dto.setLostContent(myutil.htmlSymbols(dto.getLostContent()));
-		
+		dto.setLostCreated(dto.getLostCreated().substring(0,10));
 		
 		// 이전 글, 다음 글
 		

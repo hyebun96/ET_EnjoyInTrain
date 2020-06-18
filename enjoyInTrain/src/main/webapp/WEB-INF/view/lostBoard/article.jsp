@@ -5,7 +5,13 @@
 <%
    String cp = request.getContextPath();
 %>
-
+<link rel="stylesheet" href="<%=cp%>/resource/css/board.css" type="text/css">
+<style type="text/css">
+.homepage #main{
+   margin-top: 0em;
+    padding-top: 0em;
+}
+</style>
 <script type="text/javascript">
 function deleteLostBoard() {
 	<c:if test="${sessionScope.crew.crewId=='admin' || sessionScope.crew.crewId==dto.crewId}">
@@ -257,53 +263,53 @@ $(function () {
 								<h2>Feugiat Tempus</h2>
 							</header>
 							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Etiam rhoncus volutpat erat</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Nulla luctus eleifend purus</a></li>
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-							</ul>
-						</section>
-						<section class="sidebar">
-							<header>
-								<h2>Nulla luctus eleifend</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Integer gravida nibh quis urna</a></li>
-								<li><a href="#">Etiam posuere augue sit amet nisl</a></li>
-								<li><a href="#">Mauris vulputate dolor sit amet nibh</a></li>
+								<li><a href="<%=cp%>/notice/list">공지사항&이벤트</a></li>
+								<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
+								<li><a href="<%=cp%>/qna/list">QNA</a></li>
+								<li><a href="<%=cp%>/faq/list">FAQ</a></li>
+								<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
 							</ul>
 						</section>
 					</div>
+					
+					<div id="board_title">유실물 게시판</div>
 				<form action="" name="lostBoardForm" method="post" enctype="multipart/form-data">
-					<div class="9u skel-cell-important">
-						<ul>
-							<li style="float: left; width: 100px; clear: both;">제목</li>
-							<li style="float: left; width: 100px">${dto.lostTitle}</li>
-							<li style="float: left; width: 100px; clear: both;">작성자</li>
-							<li style="float: left; width: 100px">${dto.crewId}</li>
-							<li style="float: left; width: 100px; clear: both;">${dto.lostCreated} | 조회 ${dto.lostHitCount}</li>
-							<li style="float: left; width: 100px; clear: both;">내용</li>
-							<li style="float: left;">
+					<div>
+						<ul id="board_main">
+							<li id="board_question">제목</li>
+							<li id="board_answer">${dto.lostTitle}</li>
+							<li id="board_question">작성자</li>
+							<li id="board_answer">${dto.crewId}</li>
+							<li id="board_question">작성일</li>
+							<li id="board_answer">${dto.lostCreated}</li>
+							<li id="board_question">조회수</li>
+							<li id="board_answer">${dto.lostHitCount}</li>
+							<li id="board_content1">
 								${dto.lostContent}
+							</li>
+							<li id="board_content1">
 								<c:if test="${dto.saveFileName!=null}">
-									<img src="<%=cp%>/uploads/lostBoard/${dto.saveFileName}">
+									<img src="<%=cp%>/uploads/lostBoard/${dto.saveFileName}" style="width: 400px; height: 500px;">
 								</c:if>
 							</li>
 				
 							
 						</ul>
 						<ul>
-							<li>
-								이전글 : 
+							<li id="board_option_pre">
+								이전글 &nbsp;:
+									<c:if test="${empty preReadDto}">
+										&nbsp;이전 글이 존재 하지 않습니다.
+									</c:if>
 									<c:if test="${not empty preReadDto}">
 										<a href="<%=cp%>/lostBoard/article?${query}&lostNum=${preReadDto.lostNum}">${preReadDto.lostTitle}</a>
 									</c:if>
 							</li>
-							<li>
-								다음글 : 
+							<li id="board_option_next">
+								다음글 &nbsp;:
+									<c:if test="${empty nextReadDto}">
+										&nbsp;다음 글이 존재 하지 않습니다.
+									</c:if> 
 									<c:if test="${not empty nextReadDto}">
 										<a href="<%=cp%>/lostBoard/article?${query}&lostNum=${nextReadDto.lostNum}">${nextReadDto.lostTitle}</a>
 									</c:if>
@@ -312,32 +318,31 @@ $(function () {
 					</div>
 					<div>
 						<ul>
-							<li style="clear: both;">
-								<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/created';">글쓰기</button>
-								<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/list';">목록으로</button>
+							<li id="board_button">
 								<c:if test="${sessionScope.crew.crewId=='admin' || sessionScope.crew.crewId==dto.crewId}">
 									<button type="button" onclick="updateLostBoard();">수정하기</button>
 									<button type="button" onclick="deleteLostBoard();">삭제하기</button>
 								</c:if>
+								<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/list';">목록으로</button>
 							</li>
 						</ul>
 					</div>
-				</form>
 					<div>
-						<ul>
-							 <li>
-							 	<span style='font-weight: bold;' >댓글쓰기</span><span> - 타인을 비방하거나 개인정보를 유출하는 글의 게시를 삼가 주세요.</span>
+						<ul id="reply_main">
+							 <li id="reply_title">
+							 	댓글쓰기 - 타인을 비방하거나 개인정보를 유출하는 글의 게시를 삼가 주세요.
 							 </li>
 									
-							<li>
-								<textarea style="width: 400px; height: 70px"></textarea>
+							<li id="reply_content">
+								<textarea style="width: 800px; height: 150px; resize: none"></textarea>
 							</li>
-							<li>
+							<li id="reply_button">
 								<button type="button" class="btnSendReply">댓글등록</button>
 							</li>
 						</ul>
 					</div>
-				<div id="listReply"></div>
+					<div id="listReply"></div>
+				</form>
 					
 				</div>
 			</div>

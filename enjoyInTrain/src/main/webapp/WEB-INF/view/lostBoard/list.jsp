@@ -5,6 +5,20 @@
 <%
    String cp = request.getContextPath();
 %>
+<link rel="stylesheet" href="<%=cp%>/resource/css/boardlist.css" type="text/css">
+<style type="text/css">
+.homepage #main{
+   margin-top: 0em;
+    padding-top: 0em;
+}
+</style>
+<script type="text/javascript">
+
+	function search() {
+		var f=document.searchForm;
+		f.submit();
+	}
+</script>
 	<!-- Banner -->
 		<div id="banner">
 			<div class="container">
@@ -25,76 +39,69 @@
 								<h2>Feugiat Tempus</h2>
 							</header>
 							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Etiam rhoncus volutpat erat</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Nulla luctus eleifend purus</a></li>
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-							</ul>
-						</section>
-						<section class="sidebar">
-							<header>
-								<h2>Nulla luctus eleifend</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Integer gravida nibh quis urna</a></li>
-								<li><a href="#">Etiam posuere augue sit amet nisl</a></li>
-								<li><a href="#">Mauris vulputate dolor sit amet nibh</a></li>
+								<li><a href="<%=cp%>/notice/list">공지사항&이벤트</a></li>
+								<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
+								<li><a href="<%=cp%>/qna/list">QNA</a></li>
+								<li><a href="<%=cp%>/faq/list">FAQ</a></li>
+								<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
 							</ul>
 						</section>
 					</div>
+					<div id="board_title">유실물 게시판</div>
 				
 					<div class="9u skel-cell-important">
 					<ul>
-						<li>${dataCount}개(${page}/${total_page} 페이지)</li>
+						<li id="board_page">${dataCount}개(${page}/${total_page} 페이지)</li>
 					</ul>
-						<ul>
-							<li style="float: left; width: 100px">번호</li>
-							<li style="float: left; width: 100px">제목</li>
-							<li style="float: left; width: 100px">작성자</li>
-							<li style="float: left; width: 100px">작성일</li>
-							<li style="float: left; width: 100px">조회수</li>
+						<ul id="board_form1">
+							<li id="board_subnum">번호</li>
+							<li id="board_subtitle">제목</li>
+							<li id="board_subwriter">작성자</li>
+							<li id="board_subcreated">작성일</li>
+							<li id="board_subcount">조회수</li>
 						</ul>
-							<ul>
+							<ul id="board_form2">
 								<c:forEach var="dto" items="${list}">
-									<li style="float: left; width: 100px; clear: both;">${dto.listNum}</li>
-									<li style="float: left; width: 100px">
+									<li id="board_subnum_list">${dto.listNum}</li>
+									<li id="board_subtitle_list">
 										<a href="${articleUrl}&lostNum=${dto.lostNum}">${dto.lostTitle}</a>
 										<c:if test="${dto.gap < 1}">
 							               <img src='<%=cp%>/resource/images/new.gif'>
 							           	</c:if>
 									</li>
-									<li style="float: left; width: 100px">${dto.crewId}</li>
-									<li style="float: left; width: 100px">${dto.lostCreated}</li>
-									<li style="float: left; width: 100px">${dto.lostHitCount}</li>
+									<li id="board_subwriter_list">${dto.crewId}</li>
+									<li id="board_subcreated_list">${dto.lostCreated}</li>
+									<li id="board_subcount_list">${dto.lostHitCount}</li>
 								</c:forEach>
 							</ul>
 						<ul>
-							<li> ${dataCount==0 ? "등록된 게시물이 없습니다.":paging}</li>
-					
-							<li>
-								<select id="condition" style="clear: both; float: left;">
-									<option value=""></option>
-									<option value="all">전체</option>
-									<option value="lostCreated">작성일</option>
-									<option value="lostContent">내용</option>
-									<option value="lostTitle">제목</option>
-									<option value="crewId">작성자</option>
-								</select>
-							</li>
-						
-							<li style="float: left;">
-								<input type="text" id="keyword">
-							</li>
-							<li style="float: left;">
-								<button type="button" onclick="search()">검색</button>
-							</li>
-							<li>
-								<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/created';">글쓰기</button>
-							</li>
+							<li style="clear: both;"> ${dataCount==0 ? "등록된 게시물이 없습니다.":paging}</li>
 						</ul>
+						<form name="searchForm" action="<%=cp%>/lostBoard/list" method="post">
+							<ul id="board_button">
+								<li id="board_button_reset">
+									<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/list?page=1';">새로고침</button>
+								</li>
+								<li id="board_button_option">
+									<select name="condition" style="clear: both; float: left;">
+										<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
+										<option value="lostCreated" ${condition=="lostCreated"?"selected='selected'":""}>작성일</option>
+										<option value="lostContent" ${condition=="lostContent"?"selected='selected'":""}>내용</option>
+										<option value="lostTitle" ${condition=="lostTitle"?"selected='selected'":""}>제목</option>
+										<option value="crewId" ${condition=="crewId"?"selected='selected'":""}>작성자</option>
+									</select>
+								</li>
+								<li id="board_button_word">
+									<input type="text" name="keyword" value="${keyword}">
+								</li>
+								<li id="board_button_search">
+									<button type="button" onclick="search()">검색</button>
+								</li>
+								<li id="board_button_send">
+									<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/created';">글쓰기</button>
+								</li>
+							</ul>
+						</form>
 					</div>
 					
 				</div>

@@ -5,7 +5,13 @@
 <%
    String cp = request.getContextPath();
 %>
-
+<link rel="stylesheet" href="<%=cp%>/resource/css/board.css" type="text/css">
+<style type="text/css">
+.homepage #main{
+   margin-top: 0em;
+    padding-top: 0em;
+}
+</style>
 <script type="text/javascript">
 function send() {
     var f = document.lostBoardForm;
@@ -53,44 +59,32 @@ function send() {
 								<h2>Feugiat Tempus</h2>
 							</header>
 							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Etiam rhoncus volutpat erat</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Nulla luctus eleifend purus</a></li>
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-							</ul>
-						</section>
-						<section class="sidebar">
-							<header>
-								<h2>Nulla luctus eleifend</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Integer gravida nibh quis urna</a></li>
-								<li><a href="#">Etiam posuere augue sit amet nisl</a></li>
-								<li><a href="#">Mauris vulputate dolor sit amet nibh</a></li>
+								<li><a href="<%=cp%>/notice/list">공지사항&이벤트</a></li>
+								<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
+								<li><a href="<%=cp%>/qna/list">QNA</a></li>
+								<li><a href="<%=cp%>/faq/list">FAQ</a></li>
+								<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
 							</ul>
 						</section>
 					</div>
 				<form action="" name="lostBoardForm" method="post" enctype="multipart/form-data">
+				<div id="board_title">유실물 게시판</div>
 					<div class="9u skel-cell-important">
-						<ul>
-							<li style="float: left; width: 100px; clear: both;">제목</li>
-							<li style="float: left; width: 100px"><input type="text" name="lostTitle" value="${dto.lostTitle}"></li>
-							<li style="float: left; width: 100px; clear: both;">작성자</li>
-							<li style="float: left; width: 100px">${sessionScope.crew.crewName}</li>
-							<li style="float: left; width: 100px; clear: both;">내용</li>
-							<li style="float: left;">
-								<textarea Id="content" name="lostContent" rows="12" class="boxTA" style="width: 95%; height: 270px">${dto.lostContent}</textarea>
+						<ul id="board_main">
+							<li id="board_question">제목</li>
+							<li id="board_answer"><input type="text" name="lostTitle" value="${dto.lostTitle}"></li>
+							<li id="board_question">작성자</li>
+							<li id="board_answer">${sessionScope.crew.crewName}</li>
+							<li id="board_content">
+								<textarea id="content" name="lostContent" style="width: 800px; height: 600px; resize: none">${dto.lostContent}</textarea>
 							</li>
-							<li style="float: left; width: 100px; clear: both;">첨부파일</li>
-							<li style="float: left; width: 100px"><input type="file" name="upload"></li>
+							<li id="board_question">첨부파일</li>
+							<li id="board_answer"><input type="file" name="upload"></li>
 						</ul>
 					</div>
 					<div>
 						<ul>
-							<li style="clear: both;">
+							<li id="board_button">
 								<button type="button" onclick="send()">${mode=='update'?'수정완료':'등록완료'}</button>
 								<button type="reset">다시입력</button>
 								<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/list';">${mode=='update'?'수정취소':'등록취소'}</button>
