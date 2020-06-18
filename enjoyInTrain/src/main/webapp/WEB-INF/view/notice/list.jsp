@@ -6,18 +6,18 @@
    String cp = request.getContextPath();
 %>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
 <style type="text/css">
-.noticebar{
-background-color: red;
-width: 100%;
-height: 100px;
+.homepage #main{
+   margin-top: 0em;
+    padding-top: 0em;
 }
 </style>
 <script type="text/javascript">
-	function searchList() {
+function searchList() {
 		var f=document.searchForm;
 		f.submit();
-	}
+}
 </script>
 	<!-- Banner -->
 		<div id="banner">
@@ -39,6 +39,7 @@ height: 100px;
 								<h2>메뉴창1</h2>
 							</header>
 							<ul class="style1">
+								<li><a href="<%=cp%>/notice/list">전체보기</a></li>
 								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
 								<li><a href="<%=cp%>/notice/list">이벤트</a></li>
 							</ul>
@@ -54,6 +55,7 @@ height: 100px;
 							<div>
 							
 							 <div align="right">
+							 
 				<form name="searchForm" action="<%=cp%>/notice/list" method="post">
 		            	<select name="condition" class="selectField">
 		                  <option value="all" ${condition=="all"?"selected='selected'":""}>모두</option>
@@ -73,10 +75,14 @@ height: 100px;
 								<li style="float: left; width: 100px;">조회수</li>
 								<li style="float: left; width: 100px;">첨부</li>
 							</ul>
-							<c:forEach var="dto" items="${noticeList}">
+							<c:forEach var="dto" items="${list}">
 							<ul style="clear: both;">
 								<li style="width: 100px; float: left;">${dto.noticeNum}</li>
-								<li style="width: 100px; float: left;"><a href="${articleUrl}&noticeNum=${dto.noticeNum}"> ${dto.noticeTitle}</a></li>
+								<li style="width: 100px; float: left;"><a href="${articleUrl}&noticeNum=${dto.noticeNum}"> ${dto.noticeTitle}</a>
+										<c:if test="${dto.gap < 1}">
+							               <img src='<%=cp%>/resource/images/new.gif'>
+							           	</c:if>
+								</li>
 								<li style="width: 100px; float: left;">${dto.nCreated}</li>
 								<li style="width: 100px; float: left;">${dto.nHitCount}</li>
 								<li style="width: 100px; float: left;">
@@ -87,8 +93,9 @@ height: 100px;
 							</ul>
 							</c:forEach>
 							${dataCount==0 ? "게시글이 없습니다.":paging}
+							<c:if test="${sessionScope.crew.crewId=='a'}">
 		         				 <button type="button" class="btn" onclick="javascript:location.href='<%=cp%>/notice/created';">글올리기</button>
-		         			
+		         			</c:if>
 						</section>
 					</div>
 					

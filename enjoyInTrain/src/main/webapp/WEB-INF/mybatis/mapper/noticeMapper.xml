@@ -13,20 +13,25 @@
 	</insert>
 
 	<sql id="where-list">
-		<if test="condition=='all' ">
+		<choose>
+		<when test="condition=='all' ">
 			( INSTR(noticeTitle, #{keyword}) &gt; 0
 				OR DBMS_LOB.INSTR(noticeContent, #{keyword}) &gt; 0 )
-		</if>
-		<if test="condition=='noticeTitle' ">
+		</when>
+		<when test="condition=='noticeTitle' ">
 			INSTR(noticeTitle, #{keyword}) &gt; 0
-		</if>
-		<if test="condition=='noticeContent' ">
+		</when>
+		<when test="condition=='noticeContent' ">
 			DBMS_LOB.INSTR( noticeContent, #{keyword}) &gt; 0 
-		</if>
-		<if test="condition=='nCreated' ">
+		</when>
+		<when test="condition=='nCreated' ">
 			( TO_CHAR(nCreated, 'YYYY-MM-DD') = #{keyword}
 				OR TO_CHAR(nCreated, 'YYYYMMDD') = #{keyword} )
-		</if>
+		</when>
+		<otherwise>
+			INSTR(${condition}, #{keyword}) &gt; 0
+		</otherwise>
+		</choose>
 	</sql>
 	
 	<!-- 공지 글  리스트 -->
@@ -37,8 +42,9 @@
 		LEFT OUTER JOIN (
 			SELECT noticeNum, count(*) fileCount from noticeFile
 			group by noticeNum
-		) f on n.noticeNum = f.noticeNum
+		) f on n.noticeNum = f.noticeNum 
 		 order by noticeNum DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	
 	<!-- 데이터개수  -->
@@ -54,19 +60,19 @@
 	
 	<!-- 리스트 -->
 	<select id="listNotice" parameterType="map" resultType="com.et.notice.Notice">
-		SELECT n.noticeNum, noticeTitle, nhitCount, 
+		SELECT nn.noticeNum, noticeTitle, nhitCount, 
 		       nCreated, NVL(fileCount, 0) fileCount
-		FROM notice n
+		FROM notice nn
 		LEFT OUTER JOIN (
 			SELECT noticeNum, count(*) fileCount from noticeFile
 			group by noticeNum
-		) f on n.noticeNum = f.noticeNum		
+		) f on nn.noticeNum = f.noticeNum		
 		<where>
-			<if test="keyword != null and keyword != ''">
+			<if test="keyword != null and keyword!=''  ">
 				<include refid="where-list"/>
 			</if>
 		</where>
-		ORDER BY n.noticeNum DESC
+		ORDER BY nn.noticeNum DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	 </select>
 

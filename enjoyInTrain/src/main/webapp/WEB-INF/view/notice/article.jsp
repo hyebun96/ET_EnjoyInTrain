@@ -5,7 +5,13 @@
 <%
    String cp = request.getContextPath();
 %>
-
+<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
+<style type="text/css">
+.homepage #main{
+   margin-top: 0em;
+    padding-top: 0em;
+}
+</style>
 <script type="text/javascript">
 function deleteNotice() {
 	  var q = "noticeNum=${dto.noticeNum}&${query}";
@@ -58,56 +64,68 @@ function updateNotice() {
 				
 					<div class="9u skel-cell-important">
 						<section>
-							
+							<header>
+								<h2>공지사항</h2>
+								<span class="byline">공지사항 | 신규서비스 및 다양한 소식이 업데이트 됩니다.</span>
+							</header>
 							<div id="namul">
 					<form name="noticeForm" method="post" enctype="multipart/form-data">
+						<table class="noticearticle">
+							<tr class="noticearticletitle">
+								<td class="noticearticletitle1">제목  </td>
+								<td colspan="3" style="text-align: left;"> ${dto.noticeTitle} </td>
+							</tr>
+							<tr class="noticearticletitle">
+								<td class="noticearticletitle2">등록일</td>
+								<td style="text-align: center;">${dto.nCreated}</td>
+								<td class="noticearticletitle2">조회수</td>
+								<td width="300px" style="text-align: center;">${dto.nHitCount}</td>
+								
+							</tr>
+							<tr style="padding: 5px 5px;">
+								<td class="notice-content" colspan="4">${dto.noticeContent}</td>
+							</tr>
 							
-							<ul class="notice">
-								<li class="notice-qeustion-left">등록일</li>
-								<li class="notice-answer-short">${dto.nCreated}</li>
-								<li class="notice-qeustion">게시물제목</li>
-								<li class="notice-answer-long">${dto.noticeTitle}</li>
-								<li class="notice-qeustion-left">조회수</li>
-								<li class="notice-answer-short">${dto.nHitCount}</li>
-								<li class="notice-content">${dto.noticeContent}</li>
-							</ul>	
-					
-			       
-			        <button type="button" class="btn" onclick="javascript:location.href='<%=cp%>/notice/list?${query}';">리스트</button>
-			       
+							<tr class="articleReadDto1">
+							<c:forEach var="vo" items="${listFile}">
+								<td colspan="4">
+									첨부 파일  ▷
+									<c:if test="${not empty vo.noticeNum}">
+									 <a href="<%=cp%>/notice/download?noticeFileNum=${vo.noticeFileNum}">${vo.originalFilename}</a>
+									 </c:if>
+								</td>
+							</c:forEach>
+							</tr>
+							<tr class="articleReadDto">
+								<td colspan="2" style="text-align: left;">
+								
+								<c:if test="${not empty preReadDto}">
+			           		   		<a href="<%=cp%>/notice/article?${query}&noticeNum=${preReadDto.noticeNum}"> ＜＜이전 글 보기  ＿ ${preReadDto.noticeTitle}</a>
+			       			 	</c:if>
+			       			 	</td>
+			       			 	
+			       			 	<td colspan="2" style="text-align: right;">
+			        			<c:if test="${not empty nextReadDto}">
+			             			 <a href="<%=cp%>/notice/article?${query}&noticeNum=${nextReadDto.noticeNum}">${nextReadDto.noticeTitle} ＿  다음 글 보기 ＞＞ </a>
+			        			</c:if>
+								 
+								</td>
+			       			 	
+							</tr>
+							
+							
+							<tr>
+								<td colspan="4">
+								<button type="button" class="articlebtn" onclick="javascript:location.href='<%=cp%>/notice/list?${query}';">리스트</button>
+								<c:if test="${sessionScope.crew.crewId=='a'}">	    
+			          			<button type="button" class="articlebtn" onclick="updateNotice();">수정</button>
+			          			<button type="button" class="articlebtn" onclick="deleteNotice();">삭제</button>
+			          			</c:if>
+			          			</td>
+							</tr>
+						</table>
 			        </form>
-			        <c:forEach var="vo" items="${listFile}">
-						<ul>
-							<li>
-				   			   <a href="<%=cp%>/notice/download?noticeFileNum=${vo.noticeFileNum}">${vo.originalFilename}</a>
-			         			 (<fmt:formatNumber value="${vo.fileSize/1024}" pattern="0.00"/> KByte)
-			         		</li>
-				  		</ul> 
-					</c:forEach>
-						<ul>
-			         		<li>
-			         		이전글 :
-			        		 <c:if test="${not empty preReadDto}">
-			           		   <a href="<%=cp%>/notice/article?${query}&noticeNum=${preReadDto.noticeNum}">${preReadDto.noticeTitle}</a>
-			       			 </c:if>
-			         		</li>
-			         		<li>
-			         		다음글 :
-			        		 <c:if test="${not empty nextReadDto}">
-			             		 <a href="<%=cp%>/notice/article?${query}&noticeNum=${nextReadDto.noticeNum}">${nextReadDto.noticeTitle}</a>
-			        		</c:if>
-			         		</li>
-			         	</ul>
-			         	
-			         	<ul>
-			         		<li>
-			         						    
-			          			<button type="button" class="btn" onclick="updateNotice();">수정</button>
-			       						    
-			          			<button type="button" class="btn" onclick="deleteNotice();">삭제</button>
-			       			
-			         		</li>
-			         	</ul>
+						
 			         	
 			        </div>
 						</section>

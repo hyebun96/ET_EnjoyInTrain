@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.et.common.FileManager;
 import com.et.common.MyUtil;
+import com.et.crew.SessionInfo;
 
 @Controller("notice.noticeController")
 @RequestMapping("/notice/*")
@@ -62,12 +63,6 @@ public class NoticeController {
 
         if(total_page < current_page) 
             current_page = total_page;
-
-
-        List<Notice> noticeList = null;
-        if(current_page==1) {
-          noticeList=service.listNoticeTop();
-        }
         
 
         int offset = (current_page-1) * rows;
@@ -79,10 +74,10 @@ public class NoticeController {
 
         Date endDate = new Date();
         long gap;
-        int listNum, n = 0;
+       // int n = 0;
         for(Notice dto : list) {
-            listNum = dataCount - (offset + n);
-            dto.setNoticeNum(listNum);
+           // listNum = dataCount - (offset + n);
+            // dto.setNoticeNum(listNum);
             
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date beginDate = formatter.parse(dto.getnCreated());
@@ -92,7 +87,7 @@ public class NoticeController {
             
             dto.setnCreated(dto.getnCreated().substring(0, 10));
             
-            n++;
+           // n++;
         }
         
         String cp=req.getContextPath();
@@ -111,7 +106,7 @@ public class NoticeController {
         
         String paging = myUtil.paging(current_page, total_page, listUrl);
 		
-		model.addAttribute("noticeList", noticeList);
+
 		model.addAttribute("list", list);
 		model.addAttribute("page", current_page);
 		model.addAttribute("dataCount", dataCount);
@@ -129,9 +124,14 @@ public class NoticeController {
 	@RequestMapping(value="/notice/created", method=RequestMethod.GET)
 	public String createdForm(
 			Model model,
-			Notice dto
+			Notice dto,
+			HttpSession session
 			) throws Exception {
 		
+		SessionInfo info=(SessionInfo)session.getAttribute("crew");
+		if(! info.getCrewId().equals("a")) {
+			return "redirect:/notice/list";
+		}
 		
 		model.addAttribute("mode", "created");
 		dto.setEmCode("1");
@@ -144,9 +144,11 @@ public class NoticeController {
 			HttpSession session
 			) throws Exception {
 		
-//		if(! dto.getEmCode().equals("1")) {
-//			return "redirect:/notice/list";
-//		}
+		SessionInfo info=(SessionInfo)session.getAttribute("crew");
+		
+		if(! info.getCrewId().equals("a")) {
+			return "redirect:/notice/list";
+		}
 
 		try {
 			
@@ -192,7 +194,7 @@ public class NoticeController {
 
 		Notice preReadDto = service.preReadNotice(map);
 		Notice nextReadDto = service.nextReadNotice(map);
-        
+		dto.setnCreated(dto.getnCreated().substring(0, 10));
 		List<Notice> listFile=service.listFile(noticeNum);
 				
 		model.addAttribute("dto", dto);
@@ -212,9 +214,10 @@ public class NoticeController {
 			HttpSession session,			
 			Model model, Notice dto	) throws Exception {
 
-//		if(! dto.getEmCode().equals("1")) {
-//			return "redirect:/notice/list";
-//		}
+		SessionInfo info=(SessionInfo)session.getAttribute("crew");
+		if(! info.getCrewId().equals("a")) {
+			return "redirect:/notice/list?page="+page;
+		}
 
 		dto = service.readNotice(noticeNum);
 		
@@ -238,6 +241,11 @@ public class NoticeController {
 			@RequestParam String page,
 			HttpSession session) throws Exception {
 		
+		SessionInfo info=(SessionInfo)session.getAttribute("crew");
+		if(! info.getCrewId().equals("a")) {
+			return "redirect:/notice/list?page="+page;
+		}
+		
 		try {
 			String root = session.getServletContext().getRealPath("/");
 			String pathname = root + File.separator + "uploads" + File.separator + "notice";		
@@ -257,15 +265,15 @@ public class NoticeController {
 			@RequestParam(defaultValue="") String keyword,
 			HttpSession session, Notice dto) throws Exception {
 		
+		SessionInfo info=(SessionInfo)session.getAttribute("crew");
 		keyword = URLDecoder.decode(keyword, "utf-8");
 		String query="page="+page;
 		if(keyword.length()!=0) {
 			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "UTF-8");
 		}
-//		
-//		if(! dto.getEmCode().equals("1")) {
-//			return "redirect:/notice/list?"+query;
-//		}
+		if(! info.getCrewId().equals("a")) {
+			return "redirect:/notice/list?"+query;
+		}
 
 		
 		try {

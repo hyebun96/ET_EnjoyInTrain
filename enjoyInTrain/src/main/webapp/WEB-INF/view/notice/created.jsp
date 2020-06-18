@@ -5,6 +5,13 @@
 <%
    String cp = request.getContextPath();
 %>
+<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
+<style type="text/css">
+.homepage #main{
+   margin-top: 0em;
+    padding-top: 0em;
+}
+</style>
 
 <script type="text/javascript">
   <c:if test="${mode=='update'}">
@@ -78,12 +85,6 @@
 							</header>
 							<div id="namul">
 					<form name="noticeForm" method="post" enctype="multipart/form-data">
-							<ul>
-								<li style="float: left; width: 100px;">번호</li>
-								<li style="float: left; width: 100px;">제목</li>
-								<li style="float: left; width: 100px;">등록일</li>
-							</ul>
-							<br>
 							<ul>
 							<li>
 								제목  <input type="text" name="noticeTitle" maxlength="100" class="boxTF" style="width: 50%;" value="${dto.noticeTitle}">

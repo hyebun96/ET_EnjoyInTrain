@@ -1,0 +1,81 @@
+@charset "UTF-8";
+*{
+	margin: 0; padding: 0;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+a:hover, a:active{
+	text-decoration : none;
+	color: #81F79F;
+}
+
+.articlebtn{
+	color: #333333;
+	font-weight: 500;
+	font-family: "맑은 고딕", 나눔고딕, 돋움, sans-serif;
+	border: 1px solid #cccccc;
+	background-color: #ffffff;
+	text-align: center;
+	cursor: pointer;
+	padding: 3px 10px 5px;
+	border-radius: 4px;
+	margin: 20px 15px;
+}
+
+.articlebtn:hover, .articlebtn:focus, .articlebtn:active{
+	background-color: #81F79F;
+	color: white;
+}
+
+.noticebar{
+background-color: red;
+width: 100%;
+height: 100px;
+}
+
+.noticearticle{
+	border-top: 1px solid black;
+	width: 100%;
+	
+}
+.noticearticletitle{
+	border-top: 1px solid black;
+}
+
+.noticearticletitle td{
+	border-bottom: 1px solid black;
+	padding: 1px 20px;
+}
+.noticearticletitle1{
+	background-color: #fafafa;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	height: 40px;
+	text-align: center;
+	width: 130px;
+}
+.noticearticletitle2{
+	background-color: #fafafa;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	height: 40px;
+	text-align: center;
+	width: 130px;
+}
+
+.notice-content{
+	padding: 10px 20px;
+	border-top: 1px solid black;
+}
+
+.articleReadDto{
+	font-size: 15px;
+	height: 40px;
+	line-height: 40px;
+	font-family: "나눔 고딕";
+}
+
+
+
