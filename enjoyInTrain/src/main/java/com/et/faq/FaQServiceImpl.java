@@ -47,7 +47,7 @@ public class FaQServiceImpl implements FaQService{
 	public FAQ readFAQ(int num) {
 		FAQ dto = null;
 		try {
-			dto = dao.selectOne("faq.readQnA", num);
+			dto = dao.selectOne("faq.readFaQ", num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

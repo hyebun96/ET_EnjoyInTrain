@@ -133,7 +133,7 @@ function sendOk() {
 						      <td class="title" width="100" bgcolor="#eeeeee" style="text-align: center;">분&nbsp;&nbsp;&nbsp;&nbsp;류</td>
 						      <td style="padding-left:10px;"> 
 						        <select class="selectField" name="categoryNum" style="width: 150px;">
-						        	<option value="${dto.category}">:: 분류 선택 ::</option>
+						        	<option value="">:: 분류 선택 ::</option>
 						        	<c:forEach var="vo" items="${groupList}">
 						        		<option  value="${vo.categoryNum}" ${dto.categoryNum==vo.categoryNum?"selected='selected'":""}>${vo.category}</option>
 						        	</c:forEach>
@@ -155,7 +155,7 @@ function sendOk() {
 						  <tr align="left" height="40" style="border-bottom: 1px solid #cccccc;"> 
 						     <td class="title" width="100" bgcolor="#eeeeee" style="text-align: center;">작성자</td>
 						     <td style="padding-left:10px;"> 
-						         ${sessionScope.member.userName}
+						        ${dto.emName}
 						     </td>
 						  </tr>
 						

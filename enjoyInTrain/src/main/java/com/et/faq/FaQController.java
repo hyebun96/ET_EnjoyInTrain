@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.et.crew.SessionInfo;
-
 @Controller("faq.FaQController")
 @RequestMapping("/faq/*")
 public class FaQController {
@@ -36,7 +34,6 @@ public class FaQController {
 		
 		for(FAQ dto : list) {
 			dto.setFaqContent(dto.getFaqContent().replaceAll("\n", "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"));
-			
 		}
 		
 		model.addAttribute("list",list);
@@ -64,7 +61,7 @@ public class FaQController {
 			@RequestParam(defaultValue="0") int group
 			,HttpSession session) throws Exception{
 		
-		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		/*SessionInfo info=(SessionInfo)session.getAttribute("crew");*/
 		
 		try {
 			dto.setEmCode(1);
@@ -83,7 +80,7 @@ public class FaQController {
 			 HttpSession session,
 			Model model) throws Exception{
 		
-		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		/*SessionInfo info=(SessionInfo)session.getAttribute("crew");*/
 		
 		FAQ dto = service.readFAQ(num);
 		List<FAQ> groupList = service.listCategory();
@@ -107,7 +104,7 @@ public class FaQController {
 			@RequestParam int group
 			/*,HttpSession session*/) throws Exception{
 		
-		/*SessionInfo info=(SessionInfo)session.getAttribute("member");*/
+		/*SessionInfo info=(SessionInfo)session.getAttribute("crew");*/
 		
 		try {
 			dto.setEmCode(1);
@@ -125,7 +122,6 @@ public class FaQController {
 			/*,HttpSession session*/) throws Exception{
 		
 		service.deleteFAQ(num);
-		
 		
 		return "redirect:/faq/list?group="+group;
 	}

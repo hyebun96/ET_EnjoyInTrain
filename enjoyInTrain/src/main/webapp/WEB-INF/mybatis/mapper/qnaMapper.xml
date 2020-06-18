@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qna">
+	<!-- 카테고리목록 -->
+	<select id="listCategory" resultType="com.et.qna.QnA">
+		SELECT categoryNum, category
+		FROM faqCategory
+		ORDER BY categoryNum
+	</select>
+	
+	
+	<!-- faq리스트 => 18c로 바꿀 것-->
+	<select id="listFaQ" parameterType="Integer" resultType="com.et.faq.FAQ">
+		SELECT * FROM (
+    		SELECT ROWNUM rnum, tb.* FROM(
+        		SELECT faqNum, faqTitle, faqContent, faqCategory, emCode
+				FROM faq
+				<if test="group!=0">
+				WHERE faqCategory = #{group}
+				</if>
+				ORDER BY faqNum DESC 
+	    	)tb WHERE ROWNUM &lt;= 5
+		)WHERE rnum &gt;= 1
+	</select>
+	
+	<select id="listQnA" parameterType="map" resultType="com.et.qna.QnA">
+		SELECT qnaNum, crewId, categoryNum, category, qnaTitle, qnaContent, qnaCreated, qnaHitCount, qnaSecret
+		FROM qna q
+		JOIN faqCategory fc ON q.qnacategory = fc.categoryNum
+		<if test="group!=0">
+			WHERE qnaCategory = #{group}
+		</if>
+		ORDER BY qnaNum DESC 
+	</select>
+	
+	<insert id="insertQnA" parameterType="com.et.qna.QnA">
+		INSERT INTO qna(qnaNum, crewId, qnaCategory, qnaTitle, qnaContent, qnaCreated, qnaHitCount, qnaSecret)
+		VALUES(qna_seq.NEXTVAL, #{crewId}, #{categoryNum}, #{qnaTitle}, null, SYSDATE, 0, #{qnaSecret})
+	</insert>
+	
+	<select id="readQnA" parameterType="Integer" resultType="com.et.qna.QnA">
+		SELECT qnaNum, q.crewId, crewName, categoryNum ,category, qnaTitle, qnaContent, qnaHitCount ,qnaSecret
+		FROM qna q
+		JOIN faqCategory fc ON q.qnaCategory = fc.categoryNum
+		JOIN Crew c ON q.crewId = c.crewId
+		WHERE qnaNum = #{num}
+	</select>
+	
+	<update id="updateQnA" parameterType="com.et.qna.QnA">
+		UPDATE qna SET qnaTitle=#{qnaTitle}, qnaContent=#{qnaContent}, qnaCategory=#{categoryNum}, qnaSecret = #{qnaSecret}
+		WHERE qnaNum = #{qnaNum}
+	</update>
+	
+	<delete id="deleteQnA" parameterType="map">
+		DELETE FROM qna
+		WHERE qnaNum = #{num}
+	</delete>
+	
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM qna q
+		JOIN faqCategory fc ON q.qnacategory = fc.categoryNum
+		<where>
+			<if test="group!=0">
+				WHERE qnaCategory = #{group}
+			</if>
+		</where>
+	</select>
+	
+	<update id="updateHitCount" parameterType="Integer">
+		UPDATE qna SET qnaHitCount = qnaHitCount+1 WHERE qnaNum = #{num}
+	</update>
+	
+	 <select id="preReadQnA" parameterType="map" resultType="com.et.qna.QnA">
+		SELECT qnaNum, qnaTitle, qnaSecret
+		FROM qna q
+		JOIN faqCategory fc ON q.qnacategory = fc.categoryNum
+		<where>
+			<if test="group!=0">
+				WHERE qnaCategory = #{group}
+			</if>
+			AND (qnaNum &gt; #{num})
+		</where>
+		ORDER BY qnaNum ASC
+		FETCH FIRST 1 ROWS ONLY
+	</select>
+
+	<select id="nextReadQnA" parameterType="map" resultType="com.et.qna.QnA">
+		SELECT qnaNum, qnaTitle, qnaSecret
+		FROM qna q
+		JOIN faqCategory fc ON q.qnacategory = fc.categoryNum
+		<where>
+			<if test="group!=0">
+				WHERE qnaCategory = #{group}
+			</if>
+			AND (qnaNum &lt; #{num})
+		</where>
+		ORDER BY qnaNum DESC
+		FETCH FIRST 1 ROWS ONLY
+	</select>
+	
+	
+</mapper>

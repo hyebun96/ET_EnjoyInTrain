@@ -6,7 +6,6 @@
    String cp = request.getContextPath();
 %>
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 <style type="text/css">
 .homepage #main{
    margin-top: 0em;
@@ -28,7 +27,7 @@ tr.over {
 	cursor: pointer;
 }
 ul.tabs {
-	margin: 5px 0px;
+	margin: 0;
 	padding: 0;
 	float: left;
 	list-style: none;
@@ -54,34 +53,6 @@ ul.tabs li.active{
 	font-weight: 700;
 	border: 1px solid #dddddd;
 	border-bottom-color:  transparent;
-}
-
-#btn{
-	width: 100px; 
-	height: 30px; 
-	margin-top: 20px; 
-	background-color: white; 
-	border-color: #cccccc;
-}
-
-#updatebtn{
-	width: 50px; 
-	height: 30px;  
-	background-color: white; 
-	border-color: #cccccc;
-	float: right;
-	border-radius: 10px;
-	margin-right: 5px;
-}
-
-#deletebtn{
-	width: 50px; 
-	height: 30px;  
-	background-color: white; 
-	border-color: #cccccc;
-	float: right;
-	border-radius: 10px;
-	margin-right: 5px;
 }
 
 </style>
@@ -113,7 +84,7 @@ $(function(){
 		$(this).removeClass("over");
 	});
 	
-	$(".board-list #question").click(function(){
+	$(".board-list tr").click(function(){
 		
 		if($(this).next("tr").is(":visible")){
 			$(this).next("tr").hide();
@@ -124,6 +95,12 @@ $(function(){
 	});
 });
 
+$(function(){
+	$("#btn").click(function(){
+		var url="<%=cp%>/faq/create;	
+		location.href=url;
+	});
+});
 
 </script>
 
@@ -175,17 +152,13 @@ $(function(){
 							<div id ="tab-content" style="clear: both; padding: 20px 0px 0px;">
 								
 							<table style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse;">
-								<tbody class="board-list">			
+								<tbody class="board-list">
 									<c:forEach var="dto" items="${list}">
-										<tr id="question" data-num="${dto.faqNum}" height="35" style="border-bottom: 1px solid #cccccc;">
-											<td style="padding: 5px 0px;"><i class="fas fa-question-circle"></i>&nbsp;&nbsp;${dto.faqTitle}
-												<c:if test="${sessionScope.crew.crewId=='a'}">
-													<button type="button" id="deletebtn" class="btn" onclick="javascript:location.href='<%=cp%>/faq/delete?num=${dto.faqNum}';"><i class="fas fa-trash-alt"></i></button><button type="button" id="updatebtn" class="btn" onclick="javascript:location.href='<%=cp%>/faq/update?num=${dto.faqNum}';"><i class="fas fa-wrench"></i></button>
-												</c:if>
-											</td>
+										<tr align="center" data-num="${dto.faqNum}" height="35" style="border-bottom: 1px solid #cccccc;">
+											<td>${dto.faqTitle}</td>
 										</tr>
-										<tr  height="35" style="background-color:#e7e7e7; border-bottom: 1px solid #cccccc; display: none;" >
-											<td style="padding: 10px 0px;">&nbsp;<i class="fas fa-subway"></i>&nbsp;&nbsp;${dto.faqContent}</td>
+										<tr align="center" height="35" style="border-bottom: 1px solid #cccccc; display: none;" >
+											<td>${dto.faqContent}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -194,9 +167,7 @@ $(function(){
 							<table style="width: 100%; border-spacing: 0px;">
 							   <tr height="35">
 								<td align="right">
-									<c:if test="${sessionScope.crew.crewId=='a'}">
-								       <button style="border-radius: 10px;" type="button" id="btn" class="btn" onclick="javascript:location.href='<%=cp%>/faq/created';">FAQ올리기</button>
-								    </c:if>   
+								       <button type="button" id="btn" style="width: 100px; height: 30px; margin-top: 20px; background-color: white; border-color: #cccccc">FAQ올리기</button>
 								 </td>
 							   </tr>
 							</table>

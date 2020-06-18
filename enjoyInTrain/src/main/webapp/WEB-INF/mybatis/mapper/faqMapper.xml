@@ -26,10 +26,11 @@
 	</insert>
 	
 	<!-- faq찾기 -->
-	<select id="readQnA" parameterType="Integer" resultType="com.et.faq.FAQ">
-		SELECT faqNum, faqTitle, faqContent, category, emCode
+	<select id="readFaQ" parameterType="Integer" resultType="com.et.faq.FAQ">
+		SELECT faqNum, faqTitle, faqContent, categoryNum ,category, f.emCode, emName
 		FROM faq f
 		JOIN faqCategory fc ON f.faqCategory = fc.categoryNum
+		JOIN employee e ON f.emCode = e.emCode
 		WHERE faqNum = #{num}
 	</select>
 	
