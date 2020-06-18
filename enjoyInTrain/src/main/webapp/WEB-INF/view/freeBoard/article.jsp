@@ -46,8 +46,127 @@ function deleteBoard() {
 </c:if>
 
 }
+</script>
+
+<script type="text/javascript">
+function login() {
+	location.href="<%=cp%>/crew/login";
+}
+
+function ajaxJSON(url,type,query,fn){
+	$.ajax({
+		type:type,
+		url:url,
+		data:query,
+		dataType:"json",
+		success:function(data){
+			fn(data);
+		},
+		beforeSend:function(jqXHR){
+			jqXHR.setRequestHeader("AJAX",true);
+		},
+		error:function(jqXHR){
+			if(jqXHR.status==403){
+				login();
+				return false;
+			}
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+function ajaxHTML(url,type,query,selector) {
+	$.ajax({
+		type:type,
+		url:url,
+		data:query,
+		success:function(data){
+			$(selector).html(data);
+		},
+		beforeSend:function(jqXHR){
+			jqXHR.setRequestHeader("AJAX",true);
+		},
+		error:function(jqXHR){
+			if(jqXHR.status==403){
+				login();
+				return false;
+			}
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+
+//게시글 좋아요 여부
+$(function() {
+	$(".btnSendBoardLike").click(function(){
+		if(! confirm("게시물에 공감하십니까?")){
+			return false;
+		}
+		
+		var url="<%=cp%>/freeBoard/insertBoardLike";
+		var num="${dto.fbNum}";
+		var query = {num:num};
+		
+		var fn = function(data) {
+			var state = data.state;
+			if(state == "true"){
+				var count = data.boardLikeCount;
+				$("#boardLikeCount").text(count);
+			}else if(state == "false"){
+				alert("좋아요는 한번만 가능합니다.");
+			}
+		};
+		ajaxJSON(url,"post",query,fn);
+	});
+});
+
+$(function() {
+	listPage(1);
+});
+
+function listPage(page) {
+	var url = "<%=cp%>/freeBoard/listReply";
+	var query = "num=${dto.fbNum}&pageNo="+page;
+	var selector = "#listReply";
+	
+	ajaxHTML(url,"get",query,selector);
+}
+
+//댓글 추가
+$(function() {
+	$(".btnSendReply").click(function() {
+		var num = "${dto.fbNum}";
+		var $tb=$(this).closet("table");
+		var content = $tb.find("textarea").val().trim();
+		
+		if(! content){
+			$tb.find("textarea").focus();
+			return false;
+		}
+		
+		content = encodeURIComponent(content);
+		
+		var url = "<%=cp%>/freeBoard/insertReply";
+		var query = "fbNum="+fbNum+"&content="+content+"&answer=0";
+		
+		var fn = function(data) {
+			$tb.find("textarea").val("");
+			
+			var state=data.state;
+			if(state=="true") {
+				listPage(1);
+			} else if(state=="false") {
+				alert("댓글을 추가 하지 못했습니다.");
+			}
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	});
+});
+
 
 </script>
+
 
 <!-- Banner -->
 <div id="banner">
@@ -177,13 +296,12 @@ function deleteBoard() {
 										- 타인을 비방하거나 개인정보를 유출하는 글의 게시를 삼가 주세요.</span></td>
 							</tr>
 							<tr>
-								<td style='padding: 5px 5px 0px;'><textarea class='boxTA'
-										style='width: 99%; height: 70px;'></textarea></td>
+								<td style='padding: 5px 5px 0px;'>
+								<textarea class='boxTA' style='width: 99%; height: 70px;'></textarea></td>
 							</tr>
 							<tr>
 								<td align='right'>
-									<button type='button' class='btn btnSendReply'
-										style='padding: 10px 20px;'>댓글 등록</button>
+									<button type='button' class='btn btnSendReply' style='padding: 10px 20px;'>댓글 등록</button>
 								</td>
 							</tr>
 						</table>

@@ -19,6 +19,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	@Autowired
 	private FileManager fileManager;
 
+//게시글 추가
 	@Override
 	public void insertBoard(FreeBoard dto, String pathname) throws Exception {
 		try {
@@ -52,6 +53,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		}
 	}
 
+//게시글 리스트
 	@Override
 	public List<FreeBoard> listBoard(Map<String, Object> map) {
 		List<FreeBoard> list = null;
@@ -64,6 +66,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		return list;
 	}
 
+//게시글데이터 갯수	
 	@Override
 	public int dataCount(Map<String, Object> map) {
 		int result = 0;
@@ -77,6 +80,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		return result;
 	}
 
+//게시글 보기	
 	@Override
 	public FreeBoard readBoard(int num) {
 		FreeBoard dto = null;
@@ -90,6 +94,8 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		return dto;
 	}
 
+	
+//게시글 조회 개수	
 	@Override
 	public void updateHitCount(int num) throws Exception {
 		try {
@@ -101,6 +107,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		
 	}
 
+//이전글	
 	@Override
 	public FreeBoard preReadBoard(Map<String, Object> map) {
 		FreeBoard dto = null;
@@ -113,6 +120,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		return dto;
 	}
 
+//다음글	
 	@Override
 	public FreeBoard nextReadBoard(Map<String, Object> map) {
 		FreeBoard dto = null;
@@ -124,6 +132,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		return dto;
 	}
 
+//수정	
 	@Override
 	public void updateBoard(FreeBoard dto, String pathname) throws Exception {
 		try {
@@ -151,6 +160,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		}
 	}
 
+//게시글 삭제	
 	@Override
 	public void deleteBoard(int num, String pathname, String crewId) throws Exception {
 		try {
@@ -168,7 +178,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		}
 	}
 
-//file
+//파일추가
 	@Override
 	public void insertFile(FreeBoard dto) throws Exception {
 		try {
@@ -179,6 +189,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		}
 	}
 
+//파일 리스트
 	@Override
 	public List<FreeBoard> listFile(int num) {
 		List<FreeBoard> listFile = null;
@@ -192,6 +203,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		return listFile;
 	}
 
+//파일보기	
 	@Override
 	public FreeBoard readFile(int fileNum) {
 		FreeBoard dto = null;
@@ -204,6 +216,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		return dto;
 	}
 
+//파일 삭제	
 	@Override
 	public void deleteFile(Map<String, Object> map) throws Exception {
 		try {
@@ -212,16 +225,19 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 			e.printStackTrace();
 		}
 	}
-
+	
+//게시글 좋아요
 	@Override
 	public void insertBoardLike(Map<String, Object> map) throws Exception {
 		try {
 			dao.insertData("freeBoard.insertBoardLike",map);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
-
+	
+//게시글 좋아요 개수
 	@Override
 	public int boardLikeCount(int num) {
 		int result = 0;
@@ -233,25 +249,46 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		return result;
 	}
 
+//댓글추가 
 	@Override
 	public void insertReply(Reply dto) throws Exception {
-
+	
+		try {
+			dao.insertData("freeBoard.insertReply",dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	
 	}
 
+//댓글리스트	
 	@Override
 	public List<Reply> listReply(Map<String, Object> map) {
 		List<Reply> list = null;
-
+		
+		try {
+			list = dao.selectList("freeBoard.listReply",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return list;
 	}
 
+//댓글 개수	
 	@Override
 	public int replyCount(Map<String, Object> map) {
 		int result = 0;
-
+		try {
+			result=dao.selectOne("freeBoard.replyCount",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 
+//댓글 삭제	
 	@Override
 	public void deleteReply(Map<String, Object> map) throws Exception {
 

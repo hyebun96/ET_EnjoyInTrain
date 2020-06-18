@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -353,10 +354,111 @@ public class FreeBoardController {
 			try {
 				resp.setContentType("text/html; charset=utf-8");
 				PrintWriter out = resp.getWriter();
-				out.println("<script>alert('파일 다운로드가 불가능 합니다 !!!');history.back();</script>");
+				out.println("<script>alert('파일 다운로드가 불가능 합니다.');history.back();</script>");
 			} catch (Exception e) {
 			}
 		}
+	}
+	
+	//게시글 좋아요 추가 :  AJAX-JSON
+	@RequestMapping(value="insertBoardLike",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertBoardLike(
+			@RequestParam int num,
+			HttpSession session
+			) {
+		
+		String state="true";
+		int boardLikeCount=0;
+		SessionInfo info = (SessionInfo)session.getAttribute("crew");
+		
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("fbNum", num);
+		paramMap.put("crewId", info.getCrewId());
+		
+		try {
+			service.insertBoardLike(paramMap);
+		} catch (Exception e) {
+			state="false";
+		}
+		
+		boardLikeCount =service.boardLikeCount(num);
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		model.put("boardLikeCount", boardLikeCount);
+		
+		return model;
+	}
+	
+	// 댓글 리스트 : AJAX-TEXT
+	@RequestMapping("listReply")
+	public String listReply(
+			@RequestParam int fbNum,
+			@RequestParam(value="pageNo", defaultValue="1")int current_page,
+			Model model
+			)throws Exception{
+		
+		int rows=5;
+		int total_page = 0;
+		int dataCount = 0;
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("fbNum", fbNum);
+		
+		dataCount = service.replyCount(map);
+		total_page = myUtil.pageCount(rows, dataCount);
+		if(current_page>total_page) {
+			current_page=total_page;
+		}
+		
+		int offset = (current_page-1) * rows;
+		if(offset<0) {
+			offset = 0;
+		}
+		
+		map.put("offset", offset);
+		map.put("rows", rows);
+		
+		List<Reply> listReply = service.listReply(map);
+		
+		for(Reply dto : listReply) {
+			dto.setContent(myUtil.htmlSymbols(dto.getContent()));
+			dto.setCreated(dto.getCreated().substring(0,10));
+		}
+		
+		// AJAX 용 페이징
+		String paging =myUtil.pagingMethod(current_page, total_page, "listPage");
+		
+		// 포워딩할 jsp로 넘길 데이터
+		model.addAttribute("listReply",listReply);
+		model.addAttribute("pageNo",current_page);
+		model.addAttribute("replyCount",dataCount);
+		model.addAttribute("total_page",total_page);
+		model.addAttribute("paging",paging);
+		
+		return "freeBoard/listReply";
+	}
+	
+	@RequestMapping(value="insertReply", method=RequestMethod.POST)
+	public Map<String, Object> insertReply(
+			Reply dto,
+			HttpSession session
+			) {
+		SessionInfo info = (SessionInfo) session.getAttribute("crew");
+		String state = "true";
+		
+		try {
+			dto.setCrewId(info.getCrewId());
+			service.insertReply(dto);
+		} catch (Exception e) {
+			state = "false";
+		}
+		
+		Map<String, Object> model = new HashMap<>();
+		model.put("state", state);
+		
+		return model;
 	}
 	
 }

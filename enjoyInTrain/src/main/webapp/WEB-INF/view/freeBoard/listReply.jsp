@@ -17,38 +17,6 @@
 	src="<%=cp%>/resource/se/js/HuskyEZCreator.js" charset="utf-8"></script>
 
 
-
-<!-- Banner -->
-<div id="banner">
-	<div class="container"></div>
-</div>
-<!-- /Banner -->
-
-<!-- Main -->
-<div id="page">
-
-	<!-- Main -->
-	<div id="main" class="container">
-		<div class="row">
-
-			<!-- 사이드 바 메뉴 -->
-			<div class="3u">
-				<section class="sidebar">
-					<header>
-						<h2>자유게시판</h2>
-					</header>
-
-					<ul class="style1">
-						<li><a href="#">소메뉴1</a></li>
-						<li><a href="#">소메뉴2</a></li>
-						<li><a href="#">소메뉴3</a></li>
-						<li><a href="#">소메뉴4</a></li>
-						<li><a href="#">소메뉴5</a></li>
-					</ul>
-				</section>
-			</div>
-			<!-- /사이드바 메뉴 -->
-
 			<!-- 메인 내용 -->
 			<table style='width: 100%; margin: 10px auto 30px; border-spacing: 0px;'>
 				<thead id='listReplyHeader'>
@@ -56,9 +24,7 @@
 						<td colspan='2'>
 							<div style='clear: both;'>
 								<div style='float: left;'>
-									<span style='color: #3EA9CD; font-weight: bold;'>댓글
-										${replyCount}개</span> <span>[댓글 목록, ${pageNo}/${total_page}
-										페이지]</span>
+									<span style='color: #3EA9CD; font-weight: bold;'>댓글${replyCount}개</span> <span>[댓글 목록, ${pageNo}/${total_page}페이지]</span>
 								</div>
 								<div style='float: right; text-align: right;'></div>
 							</div>
@@ -73,16 +39,15 @@
 								style='padding: 5px 5px; border: 1px solid #cccccc; border-right: none;'>
 								<span><b>${vo.crewName}</b></span>
 							</td>
-							<td width='50%'
-								style='padding: 5px 5px; border: 1px solid #cccccc; border-left: none;'
-								align='right'><span>${vo.created}</span> | <c:if
-									test="${vo.crewId == sessionScope.crew.crewId ||  sessionScope.crew.crewId == 'admin' }">
-									<span class="deleteReply" style="cursor: pointer;"
-										data-fbReplyNum='${vo.fbReplyNum}' data-pageNo='${pageNo}'>삭제</span>
-								</c:if> <c:if
-									test="${vo.crewId != sessionScope.crew.crewId &&  sessionScope.crew.crewId != 'admin' }">
+							<td width='50%' style='padding: 5px 5px; border: 1px solid #cccccc; border-left: none;' align='right'>
+								<span>${vo.created}</span> | 
+								<c:if test="${vo.crewId == sessionScope.crew.crewId ||  sessionScope.crew.crewId == 'admin' }">
+									<span class="deleteReply" style="cursor: pointer;" data-fbReplyNum='${vo.fbReplyNum}' data-pageNo='${pageNo}'>삭제</span>
+								</c:if> 
+								<c:if test="${vo.crewId != sessionScope.crew.crewId &&  sessionScope.crew.crewId != 'admin' }">
 									<span class="notifyReply">신고</span>
-								</c:if></td>
+								</c:if>
+							</td>
 						</tr>
 						<tr>
 							<td colspan='2' valign='top' style='padding: 5px 5px;'>
@@ -100,11 +65,7 @@
 								<button type='button' class='btn btnSendReplyLike'
 									data-fbReplyNum='${vo.fbReplyNum}' data-replyLike='1' title="좋아요">
 									<i class="far fa-hand-point-up"></i> <span>${vo.likeCount}</span>
-								</button>
-								<button type='button' class='btn btnSendReplyLike'
-									data-fbReplyNum='${vo.fbReplyNum}' data-replyLike='0' title="싫어요">
-									<i class="far fa-hand-point-down"></i> <span>${vo.disLikeCount}</span>
-								</button>
+								</button>						
 							</td>
 						</tr>
 

@@ -22,11 +22,11 @@
 		<choose>
 			<when test="condition == 'all' ">
 				( INSTR(fbTitle, #{keyword}) &gt; 0
-				OR DBMS_LOB.INSTR(fbTitle, #{keyword}) &gt; 0 )
+				OR DBMS_LOB.INSTR(fbContent, #{keyword}) &gt; 0 )
 			</when>
 			<when test="condition == 'fbCreated' ">
 				( TO_CHAR(fbCreated, 'YYYYMMDD') = #{keyword}
-				OR TO_CHAR(fbCreated, 'YYYY-MM-DD') = #{fbCreated} )
+				OR TO_CHAR(fbCreated, 'YYYY-MM-DD') = #{keyword} )
 			</when>
 			<when test="condition == 'fbContent'">
 				DBMS_LOB.INSTR(fbContent, #{keyword}) &gt; 0
@@ -52,6 +52,7 @@
 	
 <!-- 게시글 리스트 -->
 	<!-- 글리스트 -->
+	<!-- 		WHERE answer = 0 -->
 	<select id="listBoard" parameterType="map" resultType="com.et.freeBoard.FreeBoard">
 		SELECT fb.fbNum,c.crewId,c.crewName,fbContent,fbTitle,
 				TO_CHAR(fbCreated,'YYYY-MM-DD') fbCreated,fbHitCount,fbLikeCount,
@@ -60,7 +61,6 @@
 		JOIN crew c ON c.crewId=fb.crewId
 		LEFT OUTER JOIN (
 			SELECT fbNum, COUNT(*) replyCount FROM freeBoardReply
-			WHERE answer = 0
 			GROUP BY fbNum
 			) r ON fb.fbNum = r.fbNum
 		LEFT OUTER JOIN (
@@ -82,6 +82,7 @@
 		SELECT fbNum, c.crewId, fbTitle, fbContent ,fbCreated,fbHitCount,fbLikeCount
 		FROM freeBoard fb
 		JOIN crew c ON c.crewId=fb.crewId
+		
         WHERE fbNum=#{fbNum}
 	</select>
 	
@@ -169,16 +170,41 @@
 	
 <!-- 댓글 (reply)-->
 	<!-- 댓글 추가 -->
+	<insert id="insertReply" parameterType="com.et.freeBoard.Reply">
+		INSERT INTO freeBoardReply(fbReplyNum, fbNum, crewId, content, answer, created)
+		VALUES (fbreply_seq.NEXTVAL, #{fbNum}, #{crewId}, #{content}, #{answer}, SYSDATE)
+	</insert>
 	
 	<!-- 댓글개수 -->
+	<select id="replyCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) FROM freeBoardReply
+		WHERE fbNum=#{fbNum} AND answer=0
+	</select>
 	
 	<!-- 댓글 리스트 -->
-	
+	<select id="listReply" parameterType="map" resultType="com.et.freeBoard.Reply">
+		SELECT fbr.fbReplyNum, c.crewId, c.crewName, fbr.fbNum, content, created, 
+		       NVL(answerCount, 0) answerCount,
+		       NVL(likeCount, 0) likeCount
+		FROM freeBoardReply fbr
+		JOIN crew c ON c.crewId = fbr.crewId
+		LEFT OUTER JOIN (
+			SELECT answer, COUNT(*) answerCount
+			FROM freeBoardReply WHERE answer!=0 GROUP BY answer
+		) a ON fbr.fbReplyNum = a.answer
+		LEFT OUTER JOIN (
+			SELECT fbReplyNum, COUNT(DECODE(replyLike, 1, 1)) likeCount
+			FROM freeBoardReplyLike GROUP BY fbReplyNum
+		) lc ON lc.fbReplyNum = fbr.fbReplyNum
+		WHERE fbNum=#{fbNum} AND a.answer=0
+		ORDER BY lc.fbReplyNum DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>	
 	<!-- 댓글 좋아요 -->	
 	
-	<!-- 좋아요 추가 -->
+	<!-- 댓글 좋아요 추가 -->
 	
-	<!-- 좋아요 개수 -->
+	<!-- 댓글 좋아요 개수 -->
 
 <!-- 댓글의 답글 -->	
 	<!-- 댓글의 답글 리스트 -->
