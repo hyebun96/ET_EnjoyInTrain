@@ -50,17 +50,17 @@
 					<div id="board_title">유실물 게시판</div>
 				
 					<div class="9u skel-cell-important">
-					<ul>
-						<li id="board_page">${dataCount}개(${page}/${total_page} 페이지)</li>
-					</ul>
-						<ul id="board_form1">
-							<li id="board_subnum">번호</li>
-							<li id="board_subtitle">제목</li>
-							<li id="board_subwriter">작성자</li>
-							<li id="board_subcreated">작성일</li>
-							<li id="board_subcount">조회수</li>
-						</ul>
-							<ul id="board_form2">
+							<ul>
+								<li id="board_page">${dataCount}개(${page}/${total_page} 페이지)</li>
+							</ul>
+							<ul id="board_form1">
+								<li id="board_subnum">번호</li>
+								<li id="board_subtitle">제목</li>
+								<li id="board_subwriter">작성자</li>
+								<li id="board_subcreated">작성일</li>
+								<li id="board_subcount">조회수</li>
+							</ul>
+							<ul id="board_form2"  >
 								<c:forEach var="dto" items="${list}">
 									<li id="board_subnum_list">${dto.listNum}</li>
 									<li id="board_subtitle_list">
@@ -74,9 +74,9 @@
 									<li id="board_subcount_list">${dto.lostHitCount}</li>
 								</c:forEach>
 							</ul>
-						<ul>
-							<li style="clear: both;"> ${dataCount==0 ? "등록된 게시물이 없습니다.":paging}</li>
-						</ul>
+							<ul>
+								<li style="clear: both;" id="board-sample"> ${dataCount==0 ? "등록된 게시물이 없습니다.":paging}</li>
+							</ul>
 						<form name="searchForm" action="<%=cp%>/lostBoard/list" method="post">
 							<ul id="board_button">
 								<li id="board_button_reset">

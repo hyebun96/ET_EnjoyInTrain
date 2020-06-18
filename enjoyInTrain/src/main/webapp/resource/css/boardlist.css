@@ -150,3 +150,7 @@
 #board_button_send button{
 	height: 30px;
 }
+
+#board-sample{
+	border-top:2px solid #cccccc;
+}
