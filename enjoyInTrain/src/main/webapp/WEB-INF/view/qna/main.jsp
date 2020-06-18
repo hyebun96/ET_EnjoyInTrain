@@ -193,6 +193,7 @@ function insertForm(){
 function articleQnA(num, secret, id) {
 	if(secret=="1") {
 		if(id!="${sessionScope.crew.crewId}" && "${sessionScope.crew.crewId}" != "a") {
+			alert("비밀글은 열람할 수 없습니다.");
 			return;
 		}
 	}
