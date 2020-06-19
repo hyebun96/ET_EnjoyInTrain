@@ -17,8 +17,8 @@
 				<a href="<%=cp%>/crew/logout">Logout</a> | <a href="#">정보수정이나 마이페이지</a>
 			</c:if>
 		</div>
-				<!-- Logo -->
-					<div id="logo" style="margin-left: 300px">
+				<!-- Logo --> 
+					<div id="logo" style="padding-left: 15%;">
 						<a href="<%=cp%>/main"><img src="<%=cp%>/resource/images/etmainlogo.png" width="200"></a>
 					</div>
 			<div class="container">
