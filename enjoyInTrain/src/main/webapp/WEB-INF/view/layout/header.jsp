@@ -19,7 +19,7 @@
 		</div>
 				<!-- Logo -->
 					<div id="logo">
-						<a href="<%=cp%>/notice/list"><img src="<%=cp%>/resource/images/etmainlogo.png" width="200"></a>
+						<a href="<%=cp%>/main"><img src="<%=cp%>/resource/images/etmainlogo.png" width="200"></a>
 					</div>
 			<div class="container">
 					
@@ -27,7 +27,7 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul>
-							<li class="active"><a href="<%=cp%>/temp/index.jsp">Homepage</a></li>
+							<li class="active"><a href="<%=cp%>/main">Homepage</a></li>
 							<li><a href="<%=cp%>/temp/left-sidebar.jsp">Left Sidebar</a></li>
 							<li><a href="right-sidebar.html">Right Sidebar</a></li>
 							<li><a href="no-sidebar.html">No Sidebar</a></li>

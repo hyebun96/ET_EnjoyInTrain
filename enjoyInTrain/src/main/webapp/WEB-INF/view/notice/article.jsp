@@ -66,7 +66,7 @@ function updateNotice() {
 						<section>
 							<header>
 								<h2>공지사항</h2>
-								<span class="byline">공지사항 | 신규서비스 및 다양한 소식이 업데이트 됩니다.</span>
+								<span class="byline">Notice | Check news of new services and events</span>
 							</header>
 							<div id="namul">
 					<form name="noticeForm" method="post" enctype="multipart/form-data">
@@ -88,7 +88,7 @@ function updateNotice() {
 							
 							<tr class="articleReadDto1">
 							<c:forEach var="vo" items="${listFile}">
-								<td colspan="4">
+								<td>
 									첨부 파일  ▷
 									<c:if test="${not empty vo.noticeNum}">
 									 <a href="<%=cp%>/notice/download?noticeFileNum=${vo.noticeFileNum}">${vo.originalFilename}</a>
