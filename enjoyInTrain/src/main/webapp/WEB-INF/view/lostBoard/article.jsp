@@ -265,7 +265,7 @@ $(function () {
 							<ul class="style1">
 								<li><a href="<%=cp%>/notice/list">공지사항&이벤트</a></li>
 								<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
-								<li><a href="<%=cp%>/qna/list">QNA</a></li>
+								<li><a href="<%=cp%>/qna/main">QNA</a></li>
 								<li><a href="<%=cp%>/faq/list">FAQ</a></li>
 								<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
 							</ul>
@@ -276,14 +276,14 @@ $(function () {
 				<form action="" name="lostBoardForm" method="post" enctype="multipart/form-data">
 					<div>
 						<ul id="board_main">
-							<li id="board_question">제목</li>
-							<li id="board_answer">${dto.lostTitle}</li>
-							<li id="board_question">작성자</li>
-							<li id="board_answer">${dto.crewId}</li>
-							<li id="board_question">작성일</li>
-							<li id="board_answer">${dto.lostCreated}</li>
-							<li id="board_question">조회수</li>
-							<li id="board_answer">${dto.lostHitCount}</li>
+							<li id="board_question1">제목</li>
+							<li id="board_answer1">${dto.lostTitle}</li>
+							<li id="board_question2">작성자</li>
+							<li id="board_answer2">${dto.crewId}</li>
+							<li id="board_question1">작성일</li>
+							<li id="board_answer1">${dto.lostCreated}</li>
+							<li id="board_question2">조회수</li>
+							<li id="board_answer2">${dto.lostHitCount}</li>
 							<li id="board_content1">
 								${dto.lostContent}
 							</li>
@@ -297,22 +297,20 @@ $(function () {
 						</ul>
 						<ul>
 							<li id="board_option_pre">
-								이전글 &nbsp;:
-									<c:if test="${empty preReadDto}">
-										&nbsp;이전 글이 존재 하지 않습니다.
-									</c:if>
-									<c:if test="${not empty preReadDto}">
-										<a href="<%=cp%>/lostBoard/article?${query}&lostNum=${preReadDto.lostNum}">${preReadDto.lostTitle}</a>
-									</c:if>
+								<c:if test="${empty preReadDto}">
+									&nbsp;이전 글이 존재 하지 않습니다.
+								</c:if>
+								<c:if test="${not empty preReadDto}">
+									<a href="<%=cp%>/lostBoard/article?${query}&lostNum=${preReadDto.lostNum}">＜＜ 이전글 &nbsp;＿${preReadDto.lostTitle}</a>
+								</c:if>
 							</li>
 							<li id="board_option_next">
-								다음글 &nbsp;:
-									<c:if test="${empty nextReadDto}">
-										&nbsp;다음 글이 존재 하지 않습니다.
-									</c:if> 
-									<c:if test="${not empty nextReadDto}">
-										<a href="<%=cp%>/lostBoard/article?${query}&lostNum=${nextReadDto.lostNum}">${nextReadDto.lostTitle}</a>
-									</c:if>
+								<c:if test="${empty nextReadDto}">
+									&nbsp;다음 글이 존재 하지 않습니다.
+								</c:if> 
+								<c:if test="${not empty nextReadDto}">
+									<a href="<%=cp%>/lostBoard/article?${query}&lostNum=${nextReadDto.lostNum}">${nextReadDto.lostTitle}＿&nbsp;다음글 ＞＞</a>
+								</c:if>
 							</li>
 						</ul>
 					</div>

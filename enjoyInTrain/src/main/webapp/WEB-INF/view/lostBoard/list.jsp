@@ -41,7 +41,7 @@
 							<ul class="style1">
 								<li><a href="<%=cp%>/notice/list">공지사항&이벤트</a></li>
 								<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
-								<li><a href="<%=cp%>/qna/list">QNA</a></li>
+								<li><a href="<%=cp%>/qna/main">QNA</a></li>
 								<li><a href="<%=cp%>/faq/list">FAQ</a></li>
 								<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
 							</ul>
@@ -88,7 +88,6 @@
 										<option value="lostCreated" ${condition=="lostCreated"?"selected='selected'":""}>작성일</option>
 										<option value="lostContent" ${condition=="lostContent"?"selected='selected'":""}>내용</option>
 										<option value="lostTitle" ${condition=="lostTitle"?"selected='selected'":""}>제목</option>
-										<option value="crewId" ${condition=="crewId"?"selected='selected'":""}>작성자</option>
 									</select>
 								</li>
 								<li id="board_button_word">

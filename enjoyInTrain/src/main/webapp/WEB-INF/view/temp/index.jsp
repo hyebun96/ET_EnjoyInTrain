@@ -66,7 +66,7 @@
 								<h2>Feugiat Tempus</h2>
 							</header>
 							<p class="subtitle">In posuere eleifend odio. Quisque semper augue mattis maecenas ligula.</p>
-							<p><a href="#"><img src="images/pics13.jpg" alt=""></a></p>
+							<p><a href="#"><img src="<%=cp%>/resource/images/pics13.jpg" alt=""></a></p>
 							<a href="#" class="button">More</a>
 						</section>
 					</div>
@@ -76,7 +76,7 @@
 								<h2>Maecenas lectus</h2>
 							</header>
 							<p class="subtitle">In posuere eleifend odio. Quisque semper augue mattis maecenas ligula.</p>
-							<p><a href="#"><img src="images/pics14.jpg" alt=""></a></p>
+							<p><a href="#"><img src="<%=cp%>/resource/images/pics14.jpg" alt=""></a></p>
 							<a href="#" class="button">More</a>
 						</section>
 					</div>
@@ -86,7 +86,7 @@
 								<h2>Luctus lectus</h2>
 							</header>
 							<p class="subtitle">In posuere eleifend odio. Quisque semper augue mattis maecenas ligula.</p>
-							<p><a href="#"><img src="images/pics15.jpg" alt=""></a></p>
+							<p><a href="#"><img src="<%=cp%>/resource/images/pics15.jpg" alt=""></a></p>
 							<a href="#" class="button">More</a>
 						</section>
 					</div>
@@ -96,7 +96,7 @@
 								<h2>Posuere eleifend</h2>
 							</header>
 							<p class="subtitle">In posuere eleifend odio. Quisque semper augue mattis maecenas ligula.</p>
-							<p><a href="#"><img src="images/pics16.jpg" alt=""></a></p>
+							<p><a href="#"><img src="<%=cp%>/resource/images/pics16.jpg" alt=""></a></p>
 							<a href="#" class="button">More</a>
 						</section>
 					</div>
@@ -126,19 +126,19 @@
 							</header>
 							<ul class="style2">
 								<li>
-									<a href="#"><img src="images/pics07.jpg" alt=""></a>
+									<a href="#"><img src="<%=cp%>/resource/images/pics07.jpg" alt=""></a>
 									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
 								</li>
 								<li>
-									<a href="#"><img src="images/pics08.jpg" alt=""></a>
+									<a href="#"><img src="<%=cp%>/resource/images/pics08.jpg" alt=""></a>
 									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
 								</li>
 								<li>
-									<a href="#"><img src="images/pics09.jpg" alt=""></a>
+									<a href="#"><img src="<%=cp%>/resource/images/pics09.jpg" alt=""></a>
 									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
 								</li>
 								<li>
-									<a href="#"><img src="images/pics10.jpg" alt=""></a>
+									<a href="#"><img src="<%=cp%>/resource/images/pics10.jpg" alt=""></a>
 									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
 								</li>
 							</ul>						
@@ -183,7 +183,7 @@
 				<div class="row">
 					<section class="4u">
 						<div class="box">
-							<a href="#" class="image left"><img src="images/pics04.jpg" alt=""></a>
+							<a href="#" class="image left"><img src="<%=cp%>/resource/images/pics04.jpg" alt=""></a>
 							<h3>Etiam posuere augue</h3>
 							<p>Donec nonummy magna quis risus eleifend. </p>
 							<a href="#" class="button">More</a>
@@ -191,7 +191,7 @@
 					</section>
 					<section class="4u">
 						<div class="box">
-							<a href="#" class="image left"><img src="images/pics05.jpg" alt=""></a>
+							<a href="#" class="image left"><img src="<%=cp%>/resource/images/pics05.jpg" alt=""></a>
 							<h3>Etiam posuere augue</h3>
 							<p>Donec nonummy magna quis risus eleifend. </p>
 							<a href="#" class="button">More</a>
@@ -199,7 +199,7 @@
 					</section>
 					<section class="4u">
 						<div class="box">
-							<a href="#" class="image left"><img src="images/pics06.jpg" alt=""></a>
+							<a href="#" class="image left"><img src="<%=cp%>/resource/images/pics06.jpg" alt=""></a>
 							<h3>Etiam posuere augue</h3>
 							<p>Donec nonummy magna quis risus eleifend. </p>
 							<a href="#" class="button">More</a>
@@ -250,12 +250,12 @@
 							<h2>Nulla leifend</h2>
 							<p>Donec placerat odio vel elit. Nullam ante orci, pellentesque eget, tempus quis, ultrices in, est. Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat.</p>
 							<ul class="style5">
-								<li><a href="#"><img src="images/pics07.jpg" alt=""></a></li>
-								<li><a href="#"><img src="images/pics08.jpg" alt=""></a></li>
-								<li><a href="#"><img src="images/pics09.jpg" alt=""></a></li>
-								<li><a href="#"><img src="images/pics10.jpg" alt=""></a></li>
-								<li><a href="#"><img src="images/pics11.jpg" alt=""></a></li>
-								<li><a href="#"><img src="images/pics12.jpg" alt=""></a></li>
+								<li><a href="#"><img src="<%=cp%>/resource/images/pics07.jpg" alt=""></a></li>
+								<li><a href="#"><img src="<%=cp%>/resource/images/pics08.jpg" alt=""></a></li>
+								<li><a href="#"><img src="<%=cp%>/resource/images/pics09.jpg" alt=""></a></li>
+								<li><a href="#"><img src="<%=cp%>/resource/images/pics10.jpg" alt=""></a></li>
+								<li><a href="#"><img src="<%=cp%>/resource/images/pics11.jpg" alt=""></a></li>
+								<li><a href="#"><img src="<%=cp%>/resource/images/pics12.jpg" alt=""></a></li>
 							</ul>
 							<a href="#" class="button">More Collections</a>
 						</section>

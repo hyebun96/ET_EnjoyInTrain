@@ -1,20 +1,28 @@
 @charset "UTF-8";
+a{
+	text-decoration: none;
+	color: black;
+}
+
+a:hover, a:active{
+	color: blue;
+}
 
 #board_title{
 	font-weight: bold;
 	font-size: 40px;
-	height: 60px;
+	min-height: 60px;
 }
 
 #board_main{
 	width : 800px;
-	min-height: 750px;
+	min-height: 650px;
 }
 
-#board_question{
+#board_question1{
+	clear:both;
 	float: left; 
-	width: 20%; 
-	clear: both;
+	width: 15%; 
 	text-align: center;
 	border: 1px solid black;
 	height: 40px;
@@ -22,9 +30,29 @@
 	font-weight: bold;
 }
 
-#board_answer{
+#board_answer1{
 	 float: left; 
-	 width: 80%;
+	 width: 55%;
+	 border: 1px solid black;
+	 height: 40px;
+	 line-height: 40px;
+	 padding-left: 10px;
+	 font-weight: bold;
+}
+
+#board_question2{
+	float: left; 
+	width: 15%; 
+	text-align: center;
+	border: 1px solid black;
+	height: 40px;
+	line-height: 40px;
+	font-weight: bold;
+}
+
+#board_answer2{
+	 float: left; 
+	 width: 15%;
 	 border: 1px solid black;
 	 height: 40px;
 	 line-height: 40px;
@@ -54,24 +82,31 @@
 
 #board_option_pre{
 	clear: both;
-	width: 100%;
+	float: left;
+	width: 50%;
 	height: 50px;
 	border-top: 1px solid #cccccc;
 	border-bottom: 1px solid #cccccc;
 	line-height: 50px;
+	text-align: left;
 }
 
+
 #board_option_next{
-	width: 100%;
+	width: 50%;
+	float: left;
 	border-bottom: 1px solid #cccccc;
+	border-top: 1px solid #cccccc;
 	height: 50px;
 	line-height: 50px;
-	
+	text-align: right;
 }
 
 #board_button{
 	clear: both;
 	text-align: right;
+	height: 50px;
+	line-height: 50px;
 }
 
 #board_button button{

@@ -85,7 +85,7 @@
 				<div class="row">
 					<section class="4u">
 						<div class="box">
-							<a href="#" class="image left"><img src="images/pics04.jpg" alt=""></a>
+							<a href="#" class="image left"><img src="<%=cp%>/resource/images/pics04.jpg" alt=""></a>
 							<h3>Etiam posuere augue</h3>
 							<p>Donec nonummy magna quis risus eleifend. </p>
 							<a href="#" class="button">More</a>
@@ -93,7 +93,7 @@
 					</section>
 					<section class="4u">
 						<div class="box">
-							<a href="#" class="image left"><img src="images/pics05.jpg" alt=""></a>
+							<a href="#" class="image left"><img src="<%=cp%>/resource/images/pics05.jpg" alt=""></a>
 							<h3>Etiam posuere augue</h3>
 							<p>Donec nonummy magna quis risus eleifend. </p>
 							<a href="#" class="button">More</a>
@@ -101,7 +101,7 @@
 					</section>
 					<section class="4u">
 						<div class="box">
-							<a href="#" class="image left"><img src="images/pics06.jpg" alt=""></a>
+							<a href="#" class="image left"><img src="<%=cp%>/resource/images/pics06.jpg" alt=""></a>
 							<h3>Etiam posuere augue</h3>
 							<p>Donec nonummy magna quis risus eleifend. </p>
 							<a href="#" class="button">More</a>
@@ -152,12 +152,12 @@
 							<h2>Nulla leifend</h2>
 							<p>Donec placerat odio vel elit. Nullam ante orci, pellentesque eget, tempus quis, ultrices in, est. Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat.</p>
 							<ul class="style5">
-								<li><a href="#"><img src="images/pics07.jpg" alt=""></a></li>
-								<li><a href="#"><img src="images/pics08.jpg" alt=""></a></li>
-								<li><a href="#"><img src="images/pics09.jpg" alt=""></a></li>
-								<li><a href="#"><img src="images/pics10.jpg" alt=""></a></li>
-								<li><a href="#"><img src="images/pics11.jpg" alt=""></a></li>
-								<li><a href="#"><img src="images/pics12.jpg" alt=""></a></li>
+								<li><a href="#"><img src="<%=cp%>/resource/images/pics07.jpg" alt=""></a></li>
+								<li><a href="#"><img src="<%=cp%>/resource/images/pics08.jpg" alt=""></a></li>
+								<li><a href="#"><img src="<%=cp%>/resource/images/pics09.jpg" alt=""></a></li>
+								<li><a href="#"><img src="<%=cp%>/resource/images/pics10.jpg" alt=""></a></li>
+								<li><a href="#"><img src="<%=cp%>/resource/images/pics11.jpg" alt=""></a></li>
+								<li><a href="#"><img src="<%=cp%>/resource/images/pics12.jpg" alt=""></a></li>
 							</ul>
 							<a href="#" class="button">More Collections</a>
 						</section>
