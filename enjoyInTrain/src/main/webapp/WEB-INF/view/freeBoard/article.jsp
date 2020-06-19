@@ -13,10 +13,6 @@
 }
 </style>
 
-<script type="text/javascript"
-	src="<%=cp%>/resource/se/js/HuskyEZCreator.js" charset="utf-8">
-</script>
-
 <script type="text/javascript">
 function updateBoard(){
 <c:if test ="${sessionScope.crew.crewId == dto.crewId}">
@@ -120,13 +116,15 @@ $(function() {
 	});
 });
 
+
+//리스트 페이징처리
 $(function() {
 	listPage(1);
 });
 
 function listPage(page) {
 	var url = "<%=cp%>/freeBoard/listReply";
-	var query = "num=${dto.fbNum}&pageNo="+page;
+	var query = "fbNum=${dto.fbNum}&pageNo="+page;
 	var selector = "#listReply";
 	
 	ajaxHTML(url,"get",query,selector);
@@ -136,7 +134,7 @@ function listPage(page) {
 $(function() {
 	$(".btnSendReply").click(function() {
 		var num = "${dto.fbNum}";
-		var $tb=$(this).closet("table");
+		var $tb=$(this).closest("table");
 		var content = $tb.find("textarea").val().trim();
 		
 		if(! content){
@@ -147,7 +145,7 @@ $(function() {
 		content = encodeURIComponent(content);
 		
 		var url = "<%=cp%>/freeBoard/insertReply";
-		var query = "fbNum="+fbNum+"&content="+content+"&answer=0";
+		var query = "fbNum="+num+"&content="+content+"&answer=0";
 		
 		var fn = function(data) {
 			$tb.find("textarea").val("");
@@ -164,6 +162,157 @@ $(function() {
 	});
 });
 
+
+//댓글 삭제
+$(function () {
+	$("body").on("click", ".deleteReply", function () {
+		if(! confirm("게시물을 삭제하시겠습니까?")){
+			return false;
+		}
+		
+		var fbReplyNum = $(this).attr("data-replyNum");
+		var page=$(this).attr("data-pageNo");
+		
+		var url = "<%=cp%>/freeBoard/deleteReply";
+		var query = "fbReplyNum="+fbReplyNum+"&mode=reply";
+		
+		var fn = function (data) {
+			listPage(page);
+			
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	});
+});
+
+//댓글 좋아요
+$(function() {
+	$("body").on("click",".btnSendReplyLike",function(){
+		var fbReplyNum = $(this).attr("data-replyNum");
+		var replyLike = $(this).attr("data-replyLike");
+		var $btn = $(this);
+		
+		if(! confirm("게시물에 공감하십니까?")){
+			return false;
+		}
+		
+		var url="<%=cp%>/freeBoard/insertReplyLike";
+		var query="fbReplyNum="+fbReplyNum+"&replyLike="+replyLike;
+		
+		var fn = function(data) {
+			var state=data.state;
+	
+			if(state=="true"){
+				var likeCount = data.likeCount;
+				$btn.parent("td").children().eq(0).find("span").html(likeCount);
+			} else if(state =="false"){
+				alert("좋아요는 한번만 가능합니다.");
+			}
+		};
+		
+		ajaxJSON(url,"post",query,fn);
+	});	
+});
+
+//댓글별 답글 리스트
+function listReplyAnswer(answer) {
+	var url="<%=cp%>/freeBoard/listReplyAnswer";
+	var query = {answer : answer};
+	var selector = "#listReplyAnswer"+answer;
+	
+	ajaxHTML(url,"get",query,selector);
+}
+
+//댓글별 답글 개수
+function countReplyAnswer(answer){
+	var url = "<%=cp%>/freeBoard/countReplyAnswer";
+	var query = {answer:answer};
+	
+	var fn = function(data) {
+		var count = data.count;
+		var vid = "#answerCount"+answer;
+		$(vid).html(count);
+	};
+	ajaxJSON(url,"post",query,fn);
+}
+
+//답글버튼(댓글별 답글 등록 폼,답글 리스트)
+$(function() {
+	$("body").on("click",".btnReplyAnswerLayout",function(){
+		
+		var $trReplyAnswer = $(this).closest("tr").next();
+		// var $trReplyAnswer = $(this).parent().parent().next();
+		// var $answerList = $trReplyAnswer.children().children().eq(0);
+		
+		var isVisible=$trReplyAnswer.is(':visible');
+		var fbReplyNum = $(this).attr("data-replyNum");
+		
+		if(isVisible){
+			$trReplyAnswer.hide();
+		} else{
+			$trReplyAnswer.show();
+			
+			//답글리스트
+			listReplyAnswer(fbReplyNum);
+			
+			//답글 개수
+			countReplyAnswer(fbReplyNum);
+		}
+	});
+});
+
+//댓글별 답글 등록
+$(function () {
+	$("body").on("click", ".btnSendReplyAnswer", function () {
+		var fbNum = "${dto.fbNum}";
+		var fbReplyNum = $(this).attr("data-replyNum");
+		var $td = $(this).closest("td");
+		var content = $td.find("textarea").val().trim();
+		if(!content){
+			$td.find("textarea").focus();
+			return false;
+		}
+		
+		cotent = encodeURIComponent(content);
+		
+		var url = "<%=cp%>/freeBoard/insertReply";
+	
+		var query = "fbNum="+fbNum+"&content="+content+"&answer="+fbReplyNum;
+		
+		var fn = function (data) {
+			$td.find("textarea").val("");
+			
+			var state = data.state;
+			if(state=="true"){
+				listReplyAnswer(fbReplyNum);
+				countReplyAnswer(fbReplyNum);
+			}
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	});
+});
+
+//댓글별 답글 삭제
+$(function () {
+	$("body").on("click", ".deleteReplyAnswer", function () {
+		if(!confirm("게시물을 삭제하시겠습니까 ? ")){
+			return;
+		}
+		var fbReplyNum = $(this).attr("data-replyNum");
+		var answer = $(this).attr("data-answer");
+		
+		var url = "<%=cp%>/freeBoard/deleteReply";
+		var query = "fbReplyNum="+fbReplyNum+"&mode=answer";
+		
+		var fn = function (data) {
+			listReplyAnswer(answer);
+			countReplyAnswer(answer);
+		};
+		
+		ajaxJSON(url, "post", query, fn);
+	});
+});
 
 </script>
 

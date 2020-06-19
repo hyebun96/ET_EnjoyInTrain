@@ -55,7 +55,7 @@
 	<!-- 		WHERE answer = 0 -->
 	<select id="listBoard" parameterType="map" resultType="com.et.freeBoard.FreeBoard">
 		SELECT fb.fbNum,c.crewId,c.crewName,fbContent,fbTitle,
-				TO_CHAR(fbCreated,'YYYY-MM-DD') fbCreated,fbHitCount,fbLikeCount,
+				TO_CHAR(fbCreated,'YYYY-MM-DD') fbCreated,fbHitCount,
 				NVL(replyCount, 0) replyCount,NVL(FileCount,0) fileCount
 		FROM freeBoard fb
 		JOIN crew c ON c.crewId=fb.crewId
@@ -79,11 +79,16 @@
 <!-- alticle -->	
 	<!-- 글보기 -->
 	<select id="readBoard" parameterType="Integer" resultType="com.et.freeBoard.FreeBoard">
-		SELECT fbNum, c.crewId, fbTitle, fbContent ,fbCreated,fbHitCount,fbLikeCount
+		SELECT fb.fbNum, c.crewId, fbTitle, fbContent , fbCreated, fbHitCount,
+        NVL(fbLikeCount, 0) fbLikeCount
 		FROM freeBoard fb
 		JOIN crew c ON c.crewId=fb.crewId
-		
-        WHERE fbNum=#{fbNum}
+		LEFT OUTER JOIN (
+		    SELECT fbNum, COUNT(*) fbLikeCount 
+		    FROM freeBoardLike
+		    GROUP BY fbNum
+		) b ON fb.fbNum = b.fbNum
+        WHERE fb.fbNum=#{fbNum}
 	</select>
 	
 	<!-- 조회수 증가 -->
@@ -193,24 +198,55 @@
 			FROM freeBoardReply WHERE answer!=0 GROUP BY answer
 		) a ON fbr.fbReplyNum = a.answer
 		LEFT OUTER JOIN (
-			SELECT fbReplyNum, COUNT(DECODE(replyLike, 1, 1)) likeCount
+			SELECT fbReplyNum, COUNT(*) likeCount
 			FROM freeBoardReplyLike GROUP BY fbReplyNum
 		) lc ON lc.fbReplyNum = fbr.fbReplyNum
-		WHERE fbNum=#{fbNum} AND a.answer=0
-		ORDER BY lc.fbReplyNum DESC
+		WHERE fbr.fbNum=#{fbNum} AND fbr.answer=0
+		ORDER BY fbr.fbReplyNum DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>	
-	<!-- 댓글 좋아요 -->	
 	
+<!-- 댓글 좋아요 -->		
 	<!-- 댓글 좋아요 추가 -->
+	<insert id="insertReplyLike" parameterType="map">
+		INSERT INTO freeBoardReplyLike(fbReplyNum,crewId,replyLike)
+		VALUES (#{fbReplyNum},#{crewId},#{replyLike})
+	</insert>
 	
 	<!-- 댓글 좋아요 개수 -->
-
+	<select id="replyLikeCount" parameterType="map" resultType="map">
+		SELECT COUNT(*) likeCount
+		FROM freeBoardReplyLike WHERE fbReplyNum = #{fbReplyNum}
+	</select>
+	
 <!-- 댓글의 답글 -->	
 	<!-- 댓글의 답글 리스트 -->
+	<select id="listReplyAnswer" parameterType="Integer" resultType="com.et.freeBoard.Reply">
+		SELECT fbReplyNum, fbNum, c.crewId, c.crewName, content, created, answer
+		FROM freeBoardReply fbr
+		JOIN crew c ON c.crewId = fbr.crewId
+		WHERE answer = #{answer}
+		ORDER BY fbReplyNum DESC
+	</select>
 	
 	<!-- 댓글의 답글 개수 -->
+	<select id="replyAnswerCount" parameterType="Integer" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM freeBoardReply WHERE answer = #{answer}
+	</select>
 	
 	<!-- 댓글 및 답글 삭제 -->
+	<delete id="deleteReply" parameterType="map">
+		DELETE FROM freeBoardReply WHERE
+		<if test="mode=='reply'">
+			fbReplyNum IN (
+				SELECT fbReplyNum FROM freeBoardReply START WITH fbReplyNum = #{fbReplyNum}
+				CONNECT BY PRIOR fbReplyNum = answer
+			)
+		</if>
+		<if test="mode=='answer'">
+			fbReplyNum = #{fbReplyNum}
+		</if>
+	</delete>
 
 </mapper>

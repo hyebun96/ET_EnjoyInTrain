@@ -18,12 +18,11 @@ public class Reply {
 	private String crewName;
 	private String content;	//댓글내용
 	private String created; //댓글작성날짜
-	private String answer;  //답변번호
+	private int answer;  //답변번호
 	private int fbNum;		//게시판번호
 	
 	private int answerCount;   //답변갯수
 	private int likeCount;		//좋아요갯수
-	private int disLikeCount;	//싫어요갯수
 	
 	public int getFbReplyNum() {
 		return fbReplyNum;
@@ -61,10 +60,10 @@ public class Reply {
 	public void setCreated(String created) {
 		this.created = created;
 	}
-	public String getAnswer() {
+	public int getAnswer() {
 		return answer;
 	}
-	public void setAnswer(String answer) {
+	public void setAnswer(int answer) {
 		this.answer = answer;
 	}
 	public int getFbNum() {
@@ -85,13 +84,5 @@ public class Reply {
 	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
 	}
-	public int getDisLikeCount() {
-		return disLikeCount;
-	}
-	public void setDisLikeCount(int disLikeCount) {
-		this.disLikeCount = disLikeCount;
-	}
-	
-	
 
 }

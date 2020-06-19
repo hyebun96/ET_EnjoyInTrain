@@ -2,17 +2,17 @@ package com.et.freeBoard;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import org.apache.commons.collections4.Get;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -366,7 +366,7 @@ public class FreeBoardController {
 	public Map<String, Object> insertBoardLike(
 			@RequestParam int num,
 			HttpSession session
-			) {
+			) throws Exception {
 		
 		String state="true";
 		int boardLikeCount=0;
@@ -440,7 +440,9 @@ public class FreeBoardController {
 		return "freeBoard/listReply";
 	}
 	
+	// 댓글 및 댓글의 답글 등록 : AJAX-JSON
 	@RequestMapping(value="insertReply", method=RequestMethod.POST)
+	@ResponseBody
 	public Map<String, Object> insertReply(
 			Reply dto,
 			HttpSession session
@@ -460,5 +462,100 @@ public class FreeBoardController {
 		
 		return model;
 	}
+
+	// 댓글 및 댓글의 답글 삭제 : AJAX-JSON
+	@RequestMapping(value="deleteReply",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteReply(
+			@RequestParam Map<String,Object> paramMap
+			){
+		String state="true";
+		try {
+			service.deleteReply(paramMap);
+		} catch (Exception e) {
+			state="false";
+		}
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("state", state);
+		
+		return map;
+	}
+	
+	//댓글 좋아요 추가
+	@RequestMapping(value="insertReplyLike", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertReplyLike(
+			@RequestParam Map<String, Object> paramMap,
+			HttpSession session
+			)throws Exception{
+		String state = "true";
+		
+		SessionInfo info = (SessionInfo) session.getAttribute("crew");
+		Map<String, Object> model = new HashMap<>();
+		
+		
+		
+		try {
+			paramMap.put("crewId", info.getCrewId());
+			service.insertReplyLike(paramMap);
+		} catch (Exception e) {
+			state="false";
+		}
+		Map<String, Object> countMap = service.replyLikeCount(paramMap);
+		
+		int likeCount = ((BigDecimal)countMap.get("LIKECOUNT")).intValue();
+		
+		model.put("likeCount", likeCount);
+		model.put("state", state);
+		
+		return model;
+	}
+	
+	//댓글 좋아요 갯수 : AJAX-JSON
+	@RequestMapping(value="countReplyLike", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> countReplyLike(
+			@RequestParam Map<String, Object> paramMap,
+			HttpSession session
+			)throws Exception {
+	
+		Map<String, Object> countMap =service.replyLikeCount(paramMap);
+		
+		int likeCount = ((BigDecimal)countMap.get("LIKECOUNT")).intValue();
+		Map<String, Object>model=new HashMap<>();
+		model.put("likeCount", likeCount);
+		
+		return model;
+	}
+	
+	 // 댓글의 답글 리스트 : AJAX-TEXT
+	@RequestMapping("listReplyAnswer")
+	public String listReplyAnswer(
+			@RequestParam int answer,
+			Model model
+			)throws Exception{
+		
+		List<Reply> listReplyAnswer = service.listReplyAnswer(answer);
+		for(Reply dto : listReplyAnswer) {
+			dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+		}
+		
+		model.addAttribute("listReplyAnswer",listReplyAnswer);
+		
+		return "freeBoard/listReplyAnswer";
+	}
+	
+	//댓글의 답글 개수 :  AJAX-JSON
+	@RequestMapping("countReplyAnswer")
+	@ResponseBody
+	public Map<String , Object> countReplyAnswer (@RequestParam("answer")int answer){
+		int count = service.replyAnswerCount(answer);
+		Map<String, Object> model = new HashMap<>();
+		model.put("count", count);
+		
+		return model;
+	}
+	
 	
 }

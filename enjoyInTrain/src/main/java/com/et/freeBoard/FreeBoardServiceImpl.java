@@ -291,31 +291,54 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 //댓글 삭제	
 	@Override
 	public void deleteReply(Map<String, Object> map) throws Exception {
-
+		try {
+			dao.deleteData("freeBoard.deleteReply",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	@Override
 	public List<Reply> listReplyAnswer(int answer) {
 		List<Reply> list = null;
-
+		try {
+			list = dao.selectList("freeBoard.listReplyAnswer",answer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return list;
 	}
 
 	@Override
 	public int replyAnswerCount(int answer) {
 		int result = 0;
-
+		try {
+			result = dao.selectOne("freeBoard.replyAnswerCount",answer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 
 	@Override
 	public void insertReplyLike(Map<String, Object> map) throws Exception {
-
+		try {
+			dao.insertData("freeBoard.insertReplyLike",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	@Override
 	public Map<String, Object> replyLikeCount(Map<String, Object> map) {
-
-		return null;
+		Map<String, Object> countMap=null;
+		try {
+			countMap = dao.selectOne("freeBoard.replyLikeCount",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return countMap;
 	}
 }
