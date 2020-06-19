@@ -59,7 +59,7 @@ table td{
 						
 							<tr height="35" style="border-top: 1px solid #cccccc;  border-bottom: 1px solid #cccccc;">
 								 <td colspan="2" align="left" style="padding-left: 5px;">
-								  질문 : ${dto.qnaTitle}
+								 <i class="fas fa-question-circle"></i>&nbsp;&nbsp; 질문 : ${dto.qnaTitle}
 								 </td>
 							</tr>
 							
@@ -80,7 +80,7 @@ table td{
 							
 							<c:if test="${dto.qnaContent != null }">
 								<tr style="border-bottom: 1px solid #cccccc;">
-								  <td align="left" style="width:90%; padding: 10px 5px;" valign="top" height="200">
+								  <td align="left" style="width:90%; padding: 10px 5px; " valign="top" height="200">
 								     <i class="fas fa-subway"></i>&nbsp;답변   <br><br> ${dto.qnaContent}
 								   </td>
 								</tr>

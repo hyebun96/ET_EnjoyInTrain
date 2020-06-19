@@ -192,14 +192,14 @@ $(function(){
 					</td>
 				</tr>
 				
-				<c:if test="${mode=='update' && sessionScope.crew.crewId=='a'}">		
-				<tr align="left" style="border-bottom: 1px solid #cccccc;"  > 
+	
+				<tr align="left" style="border-bottom: 1px solid #cccccc; display: ${mode=='update' && sessionScope.crew.crewId=='a' ? '' : 'none;' } "> 
 					<td class="title" bgcolor="#eeeeee" style="text-align: center; padding-top:5px;">답&nbsp;&nbsp;&nbsp;&nbsp;변</td>
 					<td valign="top" style="padding:5px 0px 5px 10px;"> 
 						<textarea name="qnaContent" class="boxTA" style="width: 95%; height: 200px;">${dto.qnaContent}</textarea>
 					</td>
 				</tr>
-				</c:if>
+		
 			
 			</table>
 						

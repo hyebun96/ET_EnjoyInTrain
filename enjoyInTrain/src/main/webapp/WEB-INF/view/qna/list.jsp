@@ -95,7 +95,7 @@ ul.tabs li.active{
 			<tbody class="board-list">
 				<tr height="35" style="border-bottom: 1px solid #cccccc;">
 					<td></td>
-					<td style="padding-left: 20px;">Question<span style="float: right; padding-right: 30px;">Answer</span></td>
+					<td style="padding-left: 20px;">Question<span style="float: right; padding-right: 30px;">Answer</span><span style="float: right; padding-right: 30px;">Crew</span></td>
 				</tr>
 								
 			<c:forEach var="dto" items="${list}">
@@ -105,6 +105,10 @@ ul.tabs li.active{
 						<c:if test="${dto.qnaContent != null}">
 							<span style="float: right;">답변완료&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						</c:if>
+						<c:if test="${dto.qnaContent == null}">
+							<span style="float: right;">답변준비&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						</c:if>
+						<span style="float: right;">${dto.crewId}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 					</td>
 				</tr>
 			</c:forEach>
