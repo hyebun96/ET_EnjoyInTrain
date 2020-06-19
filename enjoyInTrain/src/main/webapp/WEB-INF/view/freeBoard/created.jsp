@@ -169,7 +169,7 @@
 			  <tr>
 			      <td>첨&nbsp;&nbsp;&nbsp;&nbsp;부</td>
 			      <td style="padding-left:10px;"> 
-			          <input type="file" name="upload" class="boxTF" size="53">
+			          <input type="file" name="upload" multiple="multiple" class="boxTF" size="53">
 			       </td>
 			  </tr>
 			  

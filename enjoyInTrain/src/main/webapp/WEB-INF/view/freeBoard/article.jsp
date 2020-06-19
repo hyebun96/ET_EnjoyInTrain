@@ -5,7 +5,7 @@
 <%
 	String cp = request.getContextPath();
 %>
-
+<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
 <style>
 .homepage #main {
 	margin-top: 0em;
@@ -353,14 +353,13 @@ $(function () {
 				<section>
 					<header>
 						<h2>자유게시판</h2>
-						<span class="byline" style="font-size: 3px; margin-top: 20px;">ffff.</span>
+							<span class="byline"> ◑일상이야기를 들려주세요.</span>
 					</header>
 
 					<div>
 						<table
 							style="width: 100%; margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
-							<tr height="35"
-								style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc;">
+							<tr height="35" style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc;">
 								<td colspan="2" align="center">${dto.fbTitle}</td>
 							</tr>
 
