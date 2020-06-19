@@ -73,9 +73,10 @@
 	</update>
 	
 	 <select id="preReadQnA" parameterType="map" resultType="com.et.qna.QnA">
-		SELECT qnaNum, qnaTitle, qnaSecret
+		SELECT qnaNum, qnaTitle, qnaSecret, q.crewId
 		FROM qna q
 		JOIN faqCategory fc ON q.qnacategory = fc.categoryNum
+		JOIN crew c ON q.crewId = c.crewId
 		<where>
 			<if test="group!=0">
 				WHERE qnaCategory = #{group}
@@ -87,9 +88,10 @@
 	</select>
 
 	<select id="nextReadQnA" parameterType="map" resultType="com.et.qna.QnA">
-		SELECT qnaNum, qnaTitle, qnaSecret
+		SELECT qnaNum, qnaTitle, qnaSecret, q.crewId
 		FROM qna q
 		JOIN faqCategory fc ON q.qnacategory = fc.categoryNum
+		JOIN crew c ON q.crewId = c.crewId
 		<where>
 			<if test="group!=0">
 				WHERE qnaCategory = #{group}

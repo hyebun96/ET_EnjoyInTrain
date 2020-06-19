@@ -90,7 +90,7 @@ table td{
 							    <td colspan="2" align="left" style="padding-left: 5px;">
 							       이전글 :
 							         <c:if test="${not empty preReadDto}">
-							              <a href="javascript:articleQnA('${preReadDto.qnaNum}', '${preReadDto.qnaSecret}', '${dto.crewId}');">${preReadDto.qnaTitle}</a>
+							              <a href="javascript:articleQnA('${preReadDto.qnaNum}', '${preReadDto.qnaSecret}', '${preReadDto.crewId}');">${preReadDto.qnaTitle}</a>
 							        </c:if>
 							    </td>
 							</tr>
@@ -99,7 +99,7 @@ table td{
 							    <td colspan="2" align="left" style="padding-left: 5px;">
 							       다음글 :
 							         <c:if test="${not empty nextReadDto}">
-							              <a href="javascript:articleQnA('${nextReadDto.qnaNum}', '${nextReadDto.qnaSecret}', '${dto.crewId}');">${nextReadDto.qnaTitle}</a>
+							              <a href="javascript:articleQnA('${nextReadDto.qnaNum}', '${nextReadDto.qnaSecret}', '${nextReadDto.crewId}');">${nextReadDto.qnaTitle}</a>
 							        </c:if>
 							    </td>
 							</tr>

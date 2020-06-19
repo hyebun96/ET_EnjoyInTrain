@@ -191,6 +191,7 @@ function insertForm(){
 
 // 게시판 폼
 function articleQnA(num, secret, id) {
+	
 	if(secret=="1") {
 		if(id!="${sessionScope.crew.crewId}" && "${sessionScope.crew.crewId}" != "a") {
 			alert("비밀글은 열람할 수 없습니다.");
@@ -325,9 +326,7 @@ function sendOk(mode) {
 							</div>
 							
 							
-							<div id ="tab-content" style="clear: both; padding: 10px 0px 0px; width: 800px;">
-								
-							</div>
+							<div id ="tab-content" style="clear: both; padding: 10px 0px 0px; width: 800px;"></div>
 							
 							</section>
 					</div>

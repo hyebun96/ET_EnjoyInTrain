@@ -860,7 +860,7 @@
 		position: relative;
 		padding: 12em 0em;
 		background: url(../images/mainTrain.gif) no-repeat center;
-		background-size: 1903px 350px;
+		background-size: 100% 350px;
 		color: #fff;
 		
 	}
