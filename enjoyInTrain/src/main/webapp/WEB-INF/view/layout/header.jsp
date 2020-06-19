@@ -18,7 +18,7 @@
 			</c:if>
 		</div>
 				<!-- Logo -->
-					<div id="logo">
+					<div id="logo" style="margin-left: 300px">
 						<a href="<%=cp%>/main"><img src="<%=cp%>/resource/images/etmainlogo.png" width="200"></a>
 					</div>
 			<div class="container">
