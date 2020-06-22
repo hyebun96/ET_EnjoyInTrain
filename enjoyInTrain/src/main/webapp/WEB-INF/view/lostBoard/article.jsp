@@ -5,7 +5,7 @@
 <%
    String cp = request.getContextPath();
 %>
-<link rel="stylesheet" href="<%=cp%>/resource/css/boardarticle.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/lostboardarticle.css" type="text/css">
 <style type="text/css">
 .homepage #main{
    margin-top: 0em;
