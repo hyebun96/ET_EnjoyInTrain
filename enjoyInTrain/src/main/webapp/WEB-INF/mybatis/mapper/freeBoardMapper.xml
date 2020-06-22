@@ -41,8 +41,7 @@
 	<select id="dataCount" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*), 0)
 		FROM freeBoard fb
-		JOIN crew c ON
-		c.crewId=fb.crewId
+		JOIN crew c ON c.crewId=fb.crewId
 		<where>
 			<if test="keyword!=null and keyword!='' ">
 				<include refid="where-list" />
@@ -79,7 +78,7 @@
 <!-- alticle -->	
 	<!-- 글보기 -->
 	<select id="readBoard" parameterType="Integer" resultType="com.et.freeBoard.FreeBoard">
-		SELECT fb.fbNum, c.crewId, fbTitle, fbContent , fbCreated, fbHitCount,
+		SELECT fb.fbNum, c.crewId,c.crewName, fbTitle, fbContent , fbCreated, fbHitCount,
         NVL(fbLikeCount, 0) fbLikeCount
 		FROM freeBoard fb
 		JOIN crew c ON c.crewId=fb.crewId

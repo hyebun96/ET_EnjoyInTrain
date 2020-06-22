@@ -5,12 +5,47 @@
 <%
 	String cp = request.getContextPath();
 %>
-<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/freeBoard.css" type="text/css">
 <style>
 .homepage #main {
 	margin-top: 0em;
 	padding-top: 0em;
 }
+
+.articleReadDto1{
+	width: 100px;
+	font-size: 15px;
+	height: 80px;
+	line-height: 40px;
+	font-family: "나눔 고딕";
+}
+
+a:-webkit-any-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.btn{
+	width: 100px; 
+	height: 30px; 
+	background-color: white; 
+	border-color: #cccccc;
+	border-radius: 10px;
+	margin: 20px 10px;
+}
+
+.btn1{
+	width: 70px; 
+	height: 30px; 
+	background-color: white; 
+	border-color: #cccccc;
+	border-radius: 10px;
+	margin: 20px 10px;
+}
+
+
+
 </style>
 
 <script type="text/javascript">
@@ -353,7 +388,7 @@ $(function () {
 				<section>
 					<header>
 						<h2>자유게시판</h2>
-							<span class="byline"> ◑일상이야기를 들려주세요.</span>
+							<span class="byline" style="margin-top: 20px; font-size: 15px;">Please feel free to write.</span>
 					</header>
 
 					<div>
@@ -378,7 +413,7 @@ $(function () {
 							<tr style="border-bottom: 1px solid #cccccc;">
 								<td colspan="2" height="40" style="padding-bottom: 15px;"
 									align="center">
-									<button type="button" class="btn btnSendBoardLike" title="좋아요">
+									<button style="width: 50px;" type="button" class="btn btnSendBoardLike" title="좋아요">
 										<i class="fas fa-hand-point-up"></i>&nbsp;&nbsp;<span
 											id="boardLikeCount">${dto.fbLikeCount}</span>
 									</button>
@@ -395,37 +430,37 @@ $(function () {
 							</tr>
 							</c:forEach>
 
-							<tr height="35" style="border-bottom: 1px solid #cccccc;">
-								<td colspan="2" align="left" style="padding-left: 5px;">
-									이전글 : 
+							<tr class="articleReadDto" >
+								<td colspan="1" style="text-align: left;">
 									<c:if test="${not empty preReadDto}">
-										<a href="<%=cp%>/freeBoard/article?${query}&num=${preReadDto.fbNum}">${preReadDto.fbTitle}</a>
+										<a href="<%=cp%>/freeBoard/article?${query}&num=${preReadDto.fbNum}"> ＜＜이전 글 보기  ＿ ${preReadDto.fbTitle}</a>
 									</c:if>
 								</td>
-							</tr>
 
-							<tr height="35" style="border-bottom: 1px solid #cccccc;">
-								<td colspan="2" align="left" style="padding-left: 5px;">
-									다음글 : 
+								<td colspan="1" style="text-align: right;">
 									<c:if test="${not empty nextReadDto}">
-										<a href="<%=cp%>/freeBoard/article?${query}&num=${nextReadDto.fbNum}">${nextReadDto.fbTitle}</a>
+										<a href="<%=cp%>/freeBoard/article?${query}&num=${nextReadDto.fbNum}">${nextReadDto.fbTitle} ＿  다음 글 보기 ＞＞ </a>
 									</c:if>
+							
 								</td>
 							</tr>
+							
+							
 						</table>
-
+								<br>
+								<br>
 						<table
 							style="width: 100%; margin: 0px auto 20px; border-spacing: 0px;">
 							<tr height="45">
 								<td width="300" align="left">
 									<c:if
 										test="${sessionScope.crew.crewId==dto.crewId}">
-										<button type="button" class="btn" onclick="updateBoard();">수정</button>
+										<button type="button" class="btn1" onclick="updateBoard();">수정</button>
 									</c:if> 
 									
 									<c:if
-										test="${sessionScope.crew.crewId==dto.crewId || sessionScope.crew.crewId=='admin'}">
-										<button type="button" class="btn" onclick="deleteBoard();">삭제</button>
+										test="${sessionScope.crew.crewId==dto.crewId || sessionScope.crew.crewId=='a'}">
+										<button type="button" class="btn1" onclick="deleteBoard();">삭제</button>
 									</c:if>
 								</td>
 
@@ -449,7 +484,7 @@ $(function () {
 							</tr>
 							<tr>
 								<td align='right'>
-									<button type='button' class='btn btnSendReply' style='padding: 10px 20px;'>댓글 등록</button>
+									<button type='button' class='btn btnSendReply' style=' width: 110px;'>댓글 등록</button>
 								</td>
 							</tr>
 						</table>

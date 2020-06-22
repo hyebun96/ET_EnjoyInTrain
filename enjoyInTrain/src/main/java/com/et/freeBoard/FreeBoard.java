@@ -35,6 +35,8 @@ public class FreeBoard {
 	private long fileSize;			 //파일크기
 	private int fileCount;			//파일갯수
 	private List<MultipartFile> upload; // <input type='file' name='upload' ..
+	
+	private long gap;
 
 	public int getListNum() {
 		return listNum;
@@ -131,6 +133,12 @@ public class FreeBoard {
 	}
 	public void setUpload(List<MultipartFile> upload) {
 		this.upload = upload;
+	}
+	public long getGap() {
+		return gap;
+	}
+	public void setGap(long gap) {
+		this.gap = gap;
 	}
 	
 }	

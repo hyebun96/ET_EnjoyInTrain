@@ -6,74 +6,64 @@
    String cp = request.getContextPath();
 %>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+
 <style>
 .homepage #main{
 	margin-top: 0em;
     padding-top: 0em;
 }
 
-element.style{
-	font-size: x-large;
+.alert-info {
+    border: 1px solid #9acfea;
+    border-radius: 4px;
+    background-color: #d9edf7;
+    color: #31708f;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
-.search-height1{
-	width: 100%; 
-	margin: 20px auto 10px; 
-	border-spacing: 0px;
+tr.over {
+	background: #f5fffa;
+	cursor: pointer;
 }
 
-.search-height1 tr{
-	height=35;
+.boxTF{
+	width: 300px;
 }
 
-.menu-heght1{
-	width: 100%; 
-	border-spacing: 0px; 
-	border-collapse: collapse;
+
+#btn{
+	width: 80px; 
+	height: 30px; 
+	margin-top: 20px; 
+	background-color: white; 
+	border-color: #cccccc;
+	border-radius: 10px;
+	
 }
 
-.menu-heght2{
-	align:center; 
-	bgcolor:#eeeeee;
-	height:35;
-	border-top: 1px solid #cccccc; 
-	border-bottom: 1px solid #cccccc;
-	color: #787878;
+#btnsearch{
+	width: 50px; 
+	height: 30px; 
+	margin-top: 20px; 
+	background-color: white; 
+	border-color: #cccccc;
 }
 
-.listname1{
-	 align:center; 
-	 bgcolor:#ffffff;
-	 height: 35;
-	 border-bottom: 1px solid #cccccc;
+
+.listname1 td{
+	color: black;
 }
 
-.nocontent1{
-	 width: 100%; 
-	 border-spacing: 0px;
-	 height:35;
-	 text-align:center;
+.listname1:hover{
+	background: #f5fffa;
 }
 
-.btn{
-	background: white;
-	border-color: #787878;
-	border-width: 1px;
-	height: 27px;
-}
-
-.menubottom1{
-	 width: 100%; 
-	 margin: 10px auto; 
-	 border-spacing: 0px;"
-}
-
-.menubottom1 tr{
-	  height:40;
-}
-
-.menubottom1 td{
-	 width:100;
+a:-webkit-any-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
 }
 
 </style>
@@ -83,6 +73,7 @@ function searchList() {
 	var f=document.searchForm;
 	f.submit();
 }
+
 </script>
 
 <!-- Banner -->
@@ -122,17 +113,70 @@ function searchList() {
 				<section>
 					<header>
 						<h2>자유게시판</h2>
-						<span class="byline" style="margin-top: 20px; ">일상이야기를 들려주세요.</span>
+						<span class="byline" style="margin-top: 20px; font-size: 15px;">Please feel free to write.</span>
 					</header>
 					
 					<div>
-						<table class="search-height1">
-							<tr>
-								<td align="left" width="50%">
+						<table style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse;">
+							<tbody class="board-list">
+							<tr height="35" style="border-bottom: 1px solid #cccccc;">
+					
+								<td align="right" width="100%">
 									${dataCount}개(${page}/${total_page} 페이지)
 								</td>
+								  <td align="right">
+				         				 &nbsp;
+				    			  </td>
+						</table>
 						
-								<td align="right">
+						
+						<table style="width: 100%; margin: 0px auto; border-spacing: 0px; border-collapse: collapse;">
+							<tr class="menu-heght2" height="35" style="border-bottom: 1px solid #cccccc;">
+								<th width="60">번호</th>
+								<th width="200">제목</th>
+								<th width="100">작성자</th>
+								<th width="80">작성일</th>
+								<th width="60">조회수</th>
+								<th width="50">파일</th>
+							</tr>
+							<c:forEach var="dto" items="${list}">
+							 	<tr class="listname1" align="center"  height="35" style="border-bottom: 1px solid #cccccc; color: black;"> 
+									<td>${dto.listNum}</td>
+									<td align="left" style="padding-left: 20px; color: black; text-decoration: none;">
+										<a href="${articleUrl}&num=${dto.fbNum}">${dto.fbTitle} [ ${dto.replyCount} ]
+										<c:if test="${dto.gap < 2}">
+							               <img src='<%=cp%>/resource/images/new.gif'>
+							           	</c:if>
+							           </a>	
+									</td>
+									<td>${dto.crewName}</td>
+									<td>${dto.fbCreated}</td>
+									<td>${dto.fbHitCount}</td>
+									<td>
+										<c:if test="${dto.fileCount !=0}">
+										<!-- 	<a href="<%=cp%>/freeBoard/download?num=${dto.fbNum}">  -->
+											<i class="far fa-file"></i></a>
+										</c:if>
+									</td>
+								</tr>
+							</c:forEach>
+						</table>
+				
+						<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
+						   <tr height="35">
+							<td align="center">
+							       ${dataCount==0?"등록된 게시물이 없습니다.":paging}
+							</td>
+						   </tr>
+						</table>
+
+						<table style="width: 100%; margin: 10px auto; border-spacing: 0px;">
+						   <tr height="40">
+						   		<td align="left" width="100">
+										<button type="button" class="btn" id="btn" onclick="javascript:location.href='<%=cp%>/freeBoard/list';">새로고침</button>
+								</td>
+								
+		      					<td align="center">
 									<form name="searchForm" action="<%=cp%>/freeBoard/list" method="post">
 										<select name="condition" class="selectField">
 											<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
@@ -142,56 +186,12 @@ function searchList() {
 											<option value="fbCreated" ${condition=="fbCreated"?"selected='selected'":""}>등록일</option>
 										</select>
 										<input type="text" name="keyword" value="${keyword}" class="boxTF" width="50">
-										<button type="button" class="btn" onclick="searchList()">검색</button>
+										<button type="button" class="btnsearch" id="btnsearch" onclick="searchList()">검색</button>
 									</form>
 								</td>
-							</tr>
-						</table>
-						
-						<table class="menu-heght1">
-							<tr class="menu-heght2"> 
-								<th width="60">번호</th>
-								<th width="200">제목</th>
-								<th width="100">작성자</th>
-								<th width="80">작성일</th>
-								<th width="60">조회수</th>
-								<th width="50">파일</th>
-							</tr>
-						 <c:forEach var="dto" items="${list}">
-							<tr class="listname1"> 
-								<td>${dto.listNum}</td>
-								<td align="left" style="padding-left: 10px;">
-									<a href="${articleUrl}&num=${dto.fbNum}">${dto.fbTitle}(${dto.replyCount})</a>
-								</td>
-								<td>${dto.crewName}</td>
-								<td>${dto.fbCreated}</td>
-								<td>${dto.fbHitCount}</td>
-								<td>
-									<c:if test="${dto.fileCount !=0}">
-										<a href="<%=cp%>/freeBoard/download?num=${dto.fbNum}">
-										<i class="far fa-file"></i></a>
-									</c:if>
-								</td>
-							</tr>
-						</c:forEach>
-						</table>
-				
-						<table class="nocontent1">
-							<tr>
-								<td>
-									${dataCount==0?"등록된 게시물이 없습니다.":paging}
-								</td>
-							</tr>
-						</table>
-				
-						<table class="menubottom1">
-							<tr>
-								<td align="left">
-									<button type="button" class="btn" onclick="javascript:location.href='<%=cp%>/freeBoard/list';">새로고침</button>
-								</td>
 								
-								<td align="right">
-									<button type="button" class="btn" onclick="javascript:location.href='<%=cp%>/freeBoard/created';">글올리기</button>
+								<td align="right" width="100">
+									<button style="border-radius: 10px;" type="button" class="btn" id="btn" onclick="javascript:location.href='<%=cp%>/freeBoard/created';">글올리기</button>
 								</td>
 							</tr>
 						</table>

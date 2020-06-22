@@ -47,18 +47,19 @@
 }
 
 .btn{
-	background: white;
-	border-color: #787878;
-	border-width: 1px;
-	height: 27px;
-	align:center;
+	width: 100px; 
+	height: 30px; 
+	background-color: white; 
+	border-color: #cccccc;
+	border-radius: 10px;
+	margin: 20px 10px;
 }
 
 .menu-height1 .boxTF{
 	background: white;
 	border-color: #787878;
 	border-width: 1px;
-	height: 27px;
+	height: 28px;
 	align:center;
 	width: 95%; 
 
@@ -75,14 +76,14 @@
         var str = f.fbTitle.value;
         if(!str) {
             alert("제목을 입력하세요. ");
-            f.subject.focus();
+            f.fbTitle.focus();
             return;
         }
 
     	str = f.fbContent.value;
         if(!str) {
             alert("내용을 입력하세요. ");
-            f.content.focus();
+            f.fbContent.focus();
             return;
         }
 
@@ -139,7 +140,7 @@
 				<section>
 					<header>
 						<h2>자유게시판</h2>
-						<span class="byline" style="font-size: 3px; margin-top: 20px; ">일상이야기를 들려주세요.</span>
+							<span class="byline" style="margin-top: 20px; font-size: 15px;">Please feel free to write.</span>
 					</header>
 					
 					<div>
@@ -154,7 +155,7 @@
 			
 			  <tr> 
 			      <td>작성자</td>
-			      <td style="padding-left:10px;"> 
+			      <td style="text-align: left; padding-left: 22px"> 
 			      	  ${sessionScope.crew.crewName}
 			      </td>
 			  </tr>
@@ -177,7 +178,7 @@
 			  	<c:forEach var="vo" items="${listFile}">
 				  <tr id="f${vo.fbFileNum}" >
 				      <td>첨부된파일</td>
-				      <td style="padding-left:10px;">
+				      <td style="padding-left:10px; ">
 						 ${vo.originalFileName}
 						<a href="javascript:deleteFile('${vo.fbFileNum}');"><i class="far fa-trash-alt"></i></a> 				       
 				       </td>
@@ -187,9 +188,10 @@
 
 			  </table>
 			
-			  <table class="bott-button" >
-			     <tr> 
-			      <td>
+			  
+			  <table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
+				<tr height="45"> 
+					<td align="center" >
 			        <button type="submit" class="btn" onclick="check();">${mode=='update'?'수정완료':'등록하기'}</button>
 			        <button type="reset" class="btn">다시입력</button>
 			        <button type="button" class="btn" onclick="javascript:location.href='<%=cp%>/freeBoard/list';">${mode=='update'?'수정취소':'등록취소'}</button>

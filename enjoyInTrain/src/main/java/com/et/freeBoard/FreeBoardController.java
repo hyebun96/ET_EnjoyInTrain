@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +14,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.apache.commons.collections4.Get;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -82,6 +84,20 @@ public class FreeBoardController {
             listNum = dataCount - (offset + n);
             dto.setListNum(listNum);
             n++;
+        }
+        
+        Date endDate = new Date();
+        long gap;
+    
+        for(FreeBoard dto : list) {
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date beginDate = formatter.parse(dto.getFbCreated());
+
+            gap=(endDate.getTime() - beginDate.getTime()) / (60*60* 1000);
+            dto.setGap(gap);
+            
+            dto.setFbCreated(dto.getFbCreated().substring(0, 10));
         }
         
         String query = "";
