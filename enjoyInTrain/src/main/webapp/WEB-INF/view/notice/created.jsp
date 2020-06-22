@@ -99,7 +99,7 @@
 								<td colspan="3" style="text-align: left;"> <input type="text" name="noticeTitle" maxlength="100" class="boxTF" style="width: 100%;" value="${dto.noticeTitle}"> </td>
 							</tr>
 							<tr style="padding: 5px 5px;">
-								<td class="notice-content1" colspan="4"> <textarea name="noticeContent" rows="12" class="boxTA" style="width: 100%;">${dto.noticeContent}</textarea></td>
+								<td class="notice-content1" colspan="4"> <textarea name="noticeContent" rows="12" style="width: 100%;" >${dto.noticeContent}</textarea></td>
 							</tr>
 							
 							<tr class="articleReadDto1">

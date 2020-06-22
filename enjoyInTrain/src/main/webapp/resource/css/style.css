@@ -54,6 +54,7 @@
 	a
 	{
 		color: #ff0000;
+		text-decoration: none;
 	}
 
 	sub
@@ -255,10 +256,35 @@
 				padding-top: 0;
 				border-top: 0;
 			}
-			
-			ul.style1 img
-			{
-			}
+
+
+.style1 >li>a{
+	display: inline-block;
+	position: relative;
+	width: auto;
+	height: 35px;
+	padding: 11px 0 0 18px;
+	color: #5a5a5a;
+	letter-spacing: -1px;
+	font-size: 12px;
+	font-weight: bold;
+	background-color: #fff;
+}
+
+
+
+.style1 >li :hover {
+	color: black;
+	border-style: outset;
+	border-bottom: 2px solid #048249;
+	font-size: 14px;
+}
+
+.style1 :after {
+	content: '';
+	position: absolute;
+	
+}
 
 
 		ul.style2
