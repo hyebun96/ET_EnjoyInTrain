@@ -261,38 +261,38 @@ public class LostBoardController {
 	
 	// 파일 삭제
 	@RequestMapping(value="deleteFile")
-	public String deleteFile(
-			@RequestParam int lostNum,
-			@RequestParam String page,
+	@ResponseBody
+	public Map<String, Object> deleteFile(
+			@RequestParam int num,
 			HttpSession session
 			) throws Exception {
+		
+		String state="true";
 		
 		SessionInfo info = (SessionInfo)session.getAttribute("crew");
 		
 		String root = session.getServletContext().getRealPath("/");
 		String pathname = root+"uploads"+File.separator+"lostBoard";
 		
-		LostBoard dto = service.readLostBoard(lostNum);
-		if(dto==null) {
-			return "redirect:/lostBoard/list?page="+page;
-		}
-		
-		if(!info.getCrewId().equals(dto.getCrewId())) {
-			return "redirect:/lostBoard/list?page="+page;
-		}
-		
 		try {
-			if(dto.getSaveFileName()!=null) {
+			
+			LostBoard dto = service.readFile(num);
+			if(dto!=null) {
 				fileManager.doFileDelete(dto.getSaveFileName(), pathname);
-				dto.setSaveFileName("");
-				dto.setOriginalFileName("");
-				service.updateLostBoard(dto, pathname);
 			}
+			
+			Map<String, Object> map = new HashMap<>();
+			map.put("field", "num");
+			map.put("num", num);
+			service.deleteFile(map);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/lostBoard/update?num="+lostNum+"&page="+page;
+		Map<String, Object> model = new HashMap<>();
+		model.put("state", state);
+		return model;
 	}
 	
 	// 게시글 삭제

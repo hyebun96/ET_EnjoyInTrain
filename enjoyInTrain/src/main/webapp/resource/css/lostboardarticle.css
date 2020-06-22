@@ -24,16 +24,15 @@ a:hover, a:active{
 	float: left; 
 	width: 15%; 
 	text-align: center;
-	border: 1px solid black;
 	height: 40px;
 	line-height: 40px;
 	font-weight: bold;
+	background: #cccccc;
 }
 
 #board_answer1{
 	 float: left; 
 	 width: 55%;
-	 border: 1px solid black;
 	 height: 40px;
 	 line-height: 40px;
 	 padding-left: 10px;
@@ -44,7 +43,7 @@ a:hover, a:active{
 	float: left; 
 	width: 15%; 
 	text-align: center;
-	border: 1px solid black;
+	background: #cccccc;
 	height: 40px;
 	line-height: 40px;
 	font-weight: bold;
@@ -53,7 +52,6 @@ a:hover, a:active{
 #board_answer2{
 	 float: left; 
 	 width: 15%;
-	 border: 1px solid black;
 	 height: 40px;
 	 line-height: 40px;
 	 padding-left: 10px;

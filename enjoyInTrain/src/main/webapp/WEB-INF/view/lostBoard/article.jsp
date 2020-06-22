@@ -5,7 +5,7 @@
 <%
    String cp = request.getContextPath();
 %>
-<link rel="stylesheet" href="<%=cp%>/resource/css/board.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/boardarticle.css" type="text/css">
 <style type="text/css">
 .homepage #main{
    margin-top: 0em;
@@ -263,7 +263,7 @@ $(function () {
 								<h2>Feugiat Tempus</h2>
 							</header>
 							<ul class="style1">
-								<li><a href="<%=cp%>/notice/list">공지사항&이벤트</a></li>
+								<li><a href="<%=cp%>/notice/list">공지사항/이벤트</a></li>
 								<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
 								<li><a href="<%=cp%>/qna/main">QNA</a></li>
 								<li><a href="<%=cp%>/faq/list">FAQ</a></li>

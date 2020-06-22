@@ -66,6 +66,12 @@
             <mvc:exclude-mapping path="/crew/crew"/>
             <mvc:exclude-mapping path="/crew/crewIdCheck"/>
             <mvc:exclude-mapping path="/crew/complete"/>
+            <mvc:exclude-mapping path="/qna/main"/>
+            <mvc:exclude-mapping path="/qna/list"/>
+            <mvc:exclude-mapping path="/qna/article"/>
+            <mvc:exclude-mapping path="/faq/list"/>    
+            <mvc:exclude-mapping path="/notice/list"/>
+            <mvc:exclude-mapping path="/notice/article"/>
             <bean class="com.et.crew.LoginCheckInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>	 

@@ -188,7 +188,7 @@
 	
 <!-- 파일 삭제 -->
 	<delete id="deleteFile" parameterType="map">
-		DELETE FROM lostFile WHERE ${lostNum} = #{lostNum}
+		DELETE FROM lostFile WHERE ${field} = #{num}
 	</delete>
 
 </mapper>

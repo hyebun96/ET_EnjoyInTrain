@@ -1,5 +1,6 @@
 package com.et.lostBoard;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,8 +34,8 @@ public class LostBoardServiceImpl implements LostBoardService {
 				dto.setSaveFileName(saveFilename);
 				dto.setOriginalFileName(dto.getUpload().getOriginalFilename());
 			}
-					
-				insertFile(dto);
+			
+			insertFile(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -127,10 +128,15 @@ public class LostBoardServiceImpl implements LostBoardService {
 				if(dto.getSaveFileName()!=null && dto.getSaveFileName().length()!=0) {
 					fileManager.doFileDelete(dto.getSaveFileName(), pathname);
 				}
+				// 파일 정보  삭제
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("field", "lostNum");
+				map.put("num", dto.getLostNum());
+				deleteFile(map);
+
 				
 				dto.setSaveFileName(saveFileName);
 				dto.setOriginalFileName(dto.getUpload().getOriginalFilename());
-				
 				
 				insertFile(dto);
 			}
@@ -151,6 +157,13 @@ public class LostBoardServiceImpl implements LostBoardService {
 				return;
 			}
 			fileManager.doFileDelete(dto.getSaveFileName(), pathname);
+			
+			// 파일 정보  삭제
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("field", "lostNum");
+			map.put("num", dto.getLostNum());
+			deleteFile(map);
+			
 			
 			dao.deleteData("lostBoard.deleteLostBoard", num);
 		} catch (Exception e) {

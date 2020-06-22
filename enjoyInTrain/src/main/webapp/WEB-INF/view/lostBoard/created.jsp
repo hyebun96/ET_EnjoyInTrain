@@ -5,7 +5,7 @@
 <%
    String cp = request.getContextPath();
 %>
-<link rel="stylesheet" href="<%=cp%>/resource/css/board.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/boardcreated.css" type="text/css">
 <style type="text/css">
 .homepage #main{
    margin-top: 0em;
@@ -37,6 +37,14 @@ function send() {
     return true;
 }
 
+<c:if test="${mode=='update'}">
+function deleteFile(num) {
+		var url="<%=cp%>/lostBoard/deleteFile";
+		$.post(url, {num:num}, function(data){
+			$("#f"+num).remove();
+		}, "json");
+}
+</c:if>
 
 </script>
 	<!-- Banner -->
@@ -59,7 +67,7 @@ function send() {
 								<h2>Feugiat Tempus</h2>
 							</header>
 							<ul class="style1">
-								<li><a href="<%=cp%>/notice/list">공지사항&이벤트</a></li>
+								<li><a href="<%=cp%>/notice/list">공지사항/이벤트</a></li>
 								<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
 								<li><a href="<%=cp%>/qna/main">QNA</a></li>
 								<li><a href="<%=cp%>/faq/list">FAQ</a></li>
@@ -68,23 +76,23 @@ function send() {
 						</section>
 					</div>
 				<form action="" name="lostBoardForm" method="post" enctype="multipart/form-data">
-				<div id="board_title">유실물 게시판</div>
+				<div id="article_title">유실물 게시판</div>
 					<div class="9u skel-cell-important">
-						<ul id="board_main">
-							<li id="board_question">제목</li>
-							<li id="board_answer"><input type="text" name="lostTitle" value="${dto.lostTitle}"></li>
-							<li id="board_question">작성자</li>
-							<li id="board_answer">${sessionScope.crew.crewName}</li>
-							<li id="board_content">
-								<textarea id="content" name="lostContent" style="width: 800px; height: 600px; resize: none">${dto.lostContent}</textarea>
+						<ul id="article_main">
+							<li id="article_question">제목</li>
+							<li id="article_answer"><input type="text" name="lostTitle" value="${dto.lostTitle}"></li>
+							<li id="article_question">작성자</li>
+							<li id="article_answer">${sessionScope.crew.crewName}</li>
+							<li id="article_content">
+								<textarea id="content" name="lostContent">${dto.lostContent}</textarea>
 							</li>
-							<li id="board_question">첨부파일</li>
-							<li id="board_answer"><input type="file" name="upload"></li>
+							<li id="article_question">첨부파일</li>
+							<li id="article_file"><input type="file" name="upload"></li>
 						</ul>
 					</div>
 					<div>
 						<ul>
-							<li id="board_button">
+							<li id="article_button">
 								<button type="button" onclick="send()">${mode=='update'?'수정완료':'등록완료'}</button>
 								<button type="reset">다시입력</button>
 								<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/list';">${mode=='update'?'수정취소':'등록취소'}</button>
