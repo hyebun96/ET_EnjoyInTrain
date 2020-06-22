@@ -104,15 +104,15 @@ function updateNotice() {
 								</td>
 							</tr>
 							</c:forEach>
-							<tr class="articleReadDto">
-								<td colspan="2" style="text-align: left;">
+							<tr>
+								<td colspan="2" style="text-align: left;" class="articleReadDto">
 								
 								<c:if test="${not empty preReadDto}">
 			           		   		<a href="<%=cp%>/notice/article?${query}&noticeNum=${preReadDto.noticeNum}"> ＜＜이전 글 보기  ＿ ${preReadDto.noticeTitle}</a>
 			       			 	</c:if>
 			       			 	</td>
 			       			 	
-			       			 	<td colspan="2" style="text-align: right;">
+			       			 	<td colspan="2" style="text-align: right;"  class="articleReadDto">
 			        			<c:if test="${not empty nextReadDto}">
 			             			 <a href="<%=cp%>/notice/article?${query}&noticeNum=${nextReadDto.noticeNum}">${nextReadDto.noticeTitle} ＿  다음 글 보기 ＞＞ </a>
 			        			</c:if>

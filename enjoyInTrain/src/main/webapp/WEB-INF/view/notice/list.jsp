@@ -61,8 +61,8 @@ function searchList() {
 							
 							
 							<div style="clear: both;">
-								<ul class="tabs">
-									<li id="tab-0" data-tab="0">공지사항</li>
+								<ul>
+									<li>공지사항</li>
 									<li>
 										<form name="searchForm" action="<%=cp%>/notice/list" method="post">
 		            						<select name="condition" class="selectField">

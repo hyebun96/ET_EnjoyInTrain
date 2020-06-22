@@ -36,6 +36,7 @@ a:hover, a:active{
 	width: 100%;
 	height: 10px;
 	border-bottom: 2px solid #cccccc;
+	font-weight: 550;
 }
 
 
@@ -155,6 +156,6 @@ a:hover, a:active{
 	border-bottom: 1px solid #cccccc;
 }
 
-.question :hover {
+.board-list :hover {
 	background: #e7e7e7;
 }
