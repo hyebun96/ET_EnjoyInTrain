@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="employee">
+	<!-- 직원등록 -->
+	<insert id="insertEmployee" parameterType="com.et.employee.Employee">
+		INSERT INTO employee(emCode,emName,ptCode,emBirth,hireDate,emcheck)
+		VALUES (employee_seq.NEXTVAL,#{emName},#{ptCode},#{emBirth},#{hireDate},1)
+	</insert>
+
+	<!-- 검색 -->
+	<sql id="where-list">
+		<choose>
+			<when test="condition == 'all' ">
+				( INSTR(emName, #{keyword}) &gt; 0
+				OR DBMS_LOB.INSTR(ptCategory, #{keyword}) &gt; 0 )
+			</when>
+			<when test="condition == 'hireDate' ">
+				( TO_CHAR(hireDate, 'YYYYMMDD') = #{keyword}
+				OR TO_CHAR(hireDate, 'YYYY-MM-DD') = #{keyword} )
+			</when>
+			<when test="condition == 'ptCategory'">
+				DBMS_LOB.INSTR(ptCategory, #{keyword}) &gt; 0
+			</when>
+			<otherwise>
+				INSTR(${condition}, #{keyword}) &gt; 0
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<!-- 직원리스트 -->
+	<select id="listEmployee" parameterType="map" resultType="com.et.employee.Employee">
+		SELECT emCode, emName, ptCategory, po.ptCode,
+			   TO_CHAR(TO_DATE(embirth), 'YYYY.MM.DD') embirth,
+			   TO_CHAR(TO_DATE(hireDate), 'YYYY.MM.DD') hireDate,
+			   emCheck
+		FROM employee em
+		JOIN position po ON po.ptCode = em.ptcode
+	   	<where>
+			<if test="keyword != null and keyword != ''">
+				<include refid="where-list" />
+			</if>
+		</where>
+		ORDER BY hireDate DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY 	
+	</select>
+	
+	<!-- 글 개수  -->
+	<select id="dataCount" parameterType="map" resultType="Integer">
+	SELECT NVL(COUNT(*), 0)
+	FROM employee em
+	JOIN position po ON po.ptCode = em.ptcode
+   	<where>
+		<if test="keyword!=null and keyword!='' ">
+			<include refid="where-list" />
+		</if>
+	</where>
+	</select>
+	
+	<!-- 직책리스트 -->
+	<select id="listPosition" resultType="com.et.employee.Employee">
+		SELECT ptCode,ptcategory
+		FROM position
+		ORDER BY ptCode ASC
+	</select>
+	
+	<!-- 글보기 -->
+	<select id="readEmployee" parameterType="com.et.employee.Employee" resultType="com.et.employee.Employee">
+		SELECT  emCode, emName,po.ptCategory,po.ptCode,
+			    TO_CHAR(TO_DATE(embirth), 'YYYY.MM.DD') embirth,
+			    TO_CHAR(TO_DATE(hireDate), 'YYYY.MM.DD') hireDate,
+			    emCheck
+		FROM employee em 
+		JOIN position po ON po.ptCode = em.ptcode
+		WHERE emCode = #{emCode}
+	</select>
+	
+	<!-- 직원정보수정 -->
+	<update id="updateEmployee">
+		UPDATE employee SET emcheck=#{emcheck}
+		WHERE emCode=#{emCode}
+	</update>
+	
+
+</mapper>
