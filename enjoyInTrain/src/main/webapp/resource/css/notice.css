@@ -8,7 +8,6 @@ a{
 }
 a:hover, a:active{
 	text-decoration : none;
-	color: #81F79F;
 }
 
 .articlebtn{
@@ -26,16 +25,19 @@ a:hover, a:active{
 	height: 35px;
 }
 
-.articlebtn:hover, .articlebtn:focus, .articlebtn:active{
-	background-color: #81F79F;
-	color: white;
+.articlebtn:hover, .articlebtn:focus, .articlebtn:active .articlebtn:visited{
+	border: 1px solid #cccccc;
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 15px;
 }
 
 .noticebar{
-background-color: red;
-width: 100%;
-height: 100px;
+	width: 100%;
+	height: 10px;
+	border-bottom: 2px solid #cccccc;
 }
+
 
 .noticearticle{
 	border-top: 1px solid black;
@@ -89,16 +91,70 @@ height: 100px;
 	font-family: "나눔 고딕";
 }
 
-.articleReadDto1{
-	width: 100px;
-	font-size: 15px;
-	height: 80px;
-	line-height: 40px;
-	font-family: "나눔 고딕";
+.articleReadDto:hover{
+	text-decoration : none;
+	font-weight: bold;
 }
 
 .notice-content1{
 	padding: 30px 30px 30px 30px;
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
+}
+
+		ul.style11
+		{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		
+			ul.style11 li
+			{
+				padding: 0.60em 0em;
+				border-top: 1px solid;
+				border-color: rgba(0,0,0,.1);
+			}
+			
+			ul.style11 li:first-child
+			{
+				padding-top: 0;
+				border-top: 0;
+			}
+
+
+.style11 >li>a{
+	display: inline-block;
+	position: relative;
+	width: auto;
+	height: 35px;
+	padding: 11px 0 0 18px;
+	color: #5a5a5a;
+	letter-spacing: -1px;
+	font-size: 12px;
+	font-weight: bold;
+	background-color: #fff;
+}
+
+
+
+.style11 >li :hover {
+	color: black;
+	border-style: outset;
+	border-bottom: 2px solid #048249;
+	font-size: 14px;
+}
+
+.style11 :after {
+	content: '';
+	position: absolute;
+	
+}
+
+.question2{
+	border-bottom: 1px solid #cccccc;
+}
+
+.question :hover {
+	background: #e7e7e7;
 }

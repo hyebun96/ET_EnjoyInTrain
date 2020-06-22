@@ -66,12 +66,17 @@
 					<div class="3u">
 						<section class="sidebar">
 							<header>
-								<h2>메뉴창1</h2>
+								<font size="3px">News</font>
+								<h2>Enjoy in Train</h2>
 							</header>
-							<ul class="style1">
+							<ul class="style11">
+								<li><a href="#">회원가입</a></li>
+								<li><a href="#">QnA</a></li>
+								<li><a href="#">FAQ</a></li>
 								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">이벤트</a></li>
-
+								<li><a href="#">유실물</a></li>
+								<li><a href="#">자유게시판</a></li>
+								<li><a href="#">신고</a></li>
 							</ul>
 						</section>
 						
@@ -100,7 +105,7 @@
 							<tr class="articleReadDto1">
 							
 								<td colspan="4">
-									첨부 파일  ▷
+									<font style="font-weight: bold;">첨부 파일  ▶</font>
 									<input type="file" name="upload" multiple="multiple" class="boxTF" size="53" style="width: 200px; height: 25px;">
 								</td>
 							

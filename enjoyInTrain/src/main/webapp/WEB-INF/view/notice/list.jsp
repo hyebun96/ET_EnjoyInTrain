@@ -18,6 +18,7 @@ function searchList() {
 		var f=document.searchForm;
 		f.submit();
 }
+
 </script>
 	<!-- Banner -->
 		<div id="banner">
@@ -36,12 +37,17 @@ function searchList() {
 					<div class="3u">
 						<section class="sidebar">
 							<header>
-								<h2>메뉴창1</h2>
+								<font size="3px">News</font>
+								<h2>Enjoy in Train</h2>
 							</header>
-							<ul class="style1">
-								<li><a href="<%=cp%>/notice/list">전체보기</a></li>
+							<ul class="style11">
+								<li><a href="#">회원가입</a></li>
+								<li><a href="#">QnA</a></li>
+								<li><a href="#">FAQ</a></li>
 								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">이벤트</a></li>
+								<li><a href="#">유실물</a></li>
+								<li><a href="#">자유게시판</a></li>
+								<li><a href="#">신고</a></li>
 							</ul>
 						</section>
 					</div>
@@ -52,51 +58,77 @@ function searchList() {
 								<h2>공지사항</h2>
 								<span class="byline">Notice | Check news of new services and events</span>
 							</header>
-							<div>
 							
-							 <div align="right">
-							 
-				<form name="searchForm" action="<%=cp%>/notice/list" method="post">
-		            	<select name="condition" class="selectField">
-		                  <option value="all" ${condition=="all"?"selected='selected'":""}>모두</option>
-		                  <option value="noticeTitle" ${condition=="noticeTitle"?"selected='selected'":""}>제목</option>
-		                  <option value="noticeContent" ${condition=="noticeContent"?"selected='selected'":""}>내용</option>
-		                  <option value="nCreated" ${condition=="nCreated"?"selected='selected'":""}>등록일</option>
-		            	</select>
-		          	  <input type="text" name="keyword" value="${keyword}" class="boxTF">
-		            	<button type="button" class="btn" onclick="searchList()">검색</button>
-		        </form>
-							 </div>
+							
+							<div style="clear: both;">
+								<ul class="tabs">
+									<li id="tab-0" data-tab="0">공지사항</li>
+									<li>
+										<form name="searchForm" action="<%=cp%>/notice/list" method="post">
+		            						<select name="condition" class="selectField">
+		                  						<option value="all" ${condition=="all"?"selected='selected'":""}>모두</option>
+		                  						<option value="noticeTitle" ${condition=="noticeTitle"?"selected='selected'":""}>제목</option>
+		                  						<option value="noticeContent" ${condition=="noticeContent"?"selected='selected'":""}>내용</option>
+		                  						<option value="nCreated" ${condition=="nCreated"?"selected='selected'":""}>등록일</option>
+		            						</select>
+		          	  							<input type="text" name="keyword" value="${keyword}" class="boxTF" width="300px">
+		            							<button type="button" class="btn" onclick="searchList()">검색</button>
+		        					</form>
+		        					</li>
+								</ul>
 							</div>
-							<ul class="noticebar">
-								<li style="float: left; width: 100px;">번호</li>
-								<li style="float: left; width: 100px;">제목</li>
-								<li style="float: left; width: 100px;">등록일</li>
-								<li style="float: left; width: 100px;">조회수</li>
-								<li style="float: left; width: 100px;">첨부</li>
-							</ul>
-							<c:forEach var="dto" items="${list}">
-							<ul style="clear: both;">
-								<li style="width: 100px; float: left;">${dto.noticeNum}</li>
-								<li style="width: 100px; float: left;"><a href="${articleUrl}&noticeNum=${dto.noticeNum}"> ${dto.noticeTitle}</a>
-										<c:if test="${dto.gap < 1}">
-							               <img src='<%=cp%>/resource/images/new.gif'>
-							           	</c:if>
-								</li>
-								<li style="width: 100px; float: left;">${dto.nCreated}</li>
-								<li style="width: 100px; float: left;">${dto.nHitCount}</li>
-								<li style="width: 100px; float: left;">
-									<c:if test="${dto.fileCount != 0}">
-                        				<a href="<%=cp%>/notice/zipdownload?noticeNum=${dto.noticeNum}"><i class="far fa-file"></i></a>
-                   					</c:if>
-                   				</li>
-							</ul>
-							</c:forEach>
-							${dataCount==0 ? "게시글이 없습니다.":paging}
-							<c:if test="${sessionScope.crew.crewId=='a'}">
-		         				 <button type="button" class="btn" onclick="javascript:location.href='<%=cp%>/notice/created';">글올리기</button>
-		         			</c:if>
-						</section>
+							
+							<div id ="tab-content" style="clear: both; padding: 20px 0px 0px;">
+							
+							
+							<table style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse;">
+										<tr class="noticebar">
+											<td>번호 </td>
+											<td>제목</td>
+											<td>등록일</td>
+											<td>조회수</td>
+											<td>첨부</td>
+										</tr>
+										
+								<tbody class="board-list">			
+									<c:forEach var="dto" items="${list}">
+										<tr class="question" data-num="${dto.noticeNum}" height="35" style="border-bottom: 1px solid #cccccc;">
+											<td>${dto.noticeNum}</td>
+											<td style="padding: 5px 0px;"><a href="${articleUrl}&noticeNum=${dto.noticeNum}">${dto.noticeTitle}</a>
+												<c:if test="${dto.gap < 1}">
+							               			<img src='<%=cp%>/resource/images/new.gif'>
+							           			</c:if>
+											</td>
+											<td>${dto.nCreated}</td>
+											<td>${dto.nHitCount}</td>
+											<td>	
+												<c:if test="${dto.fileCount != 0}">
+                        							<a href="<%=cp%>/notice/zipdownload?noticeNum=${dto.noticeNum}"><i class="far fa-file"></i></a>
+                   								</c:if>
+                   								
+                   							</td>
+										</tr>
+										
+									</c:forEach>
+									
+										
+								</tbody>
+							</table>
+								
+							<table style="width: 100%; border-spacing: 0px;">
+							   <tr height="35">
+								<td align="right">
+									<c:if test="${sessionScope.crew.crewId=='a'}">
+		         							 <button type="button" class="articlebtn" onclick="javascript:location.href='<%=cp%>/notice/created';">글올리기</button>
+		         					</c:if> 
+								 </td>
+							   </tr>
+							</table>
+												${dataCount==0 ? "게시글이 없습니다.":paging}
+							
+							</div>
+							
+							</section>
 					</div>
 					
 				</div>
