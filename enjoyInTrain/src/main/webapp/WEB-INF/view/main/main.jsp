@@ -69,24 +69,22 @@
 					<div class="6u">
 						<section>
 							<header>
-								<h2>Integer gravida nibh quis urna</h2>
-								<span class="byline">Augue praesent a lacus at urna congue rutrum</span>
+								<h2>자유여행</h2>
+								<span class="byline">나만의 추억 만들기</span>
 							</header>
-							<p>This is <strong>Ex Machina</strong>, a responsive HTML5 site template freebie by <a href="http://templated.co">TEMPLATED</a>. Released for free under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so use it for whatever (personal or commercial) &ndash; just give us credit! Check out more of our stuff at <a href="http://templated.co">our site</a> or follow us on <a href="http://twitter.com/templatedco">Twitter</a>.</p>
-							<p>Sed etiam vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Vestibulum pellentesque, justo mollis pretium suscipit, justo nulla blandit libero, in blandit augue justo quis nisl. Fusce mattis viverra elit. Fusce quis tortor. Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget lorem ipsum dolor. Donec placerat odio vel elit. Nullam ante orci, pellentesque eget, tempus quis, ultrices in, est. Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat. Sed etiam vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat.</p>
-							<p>Sed etiam vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Vestibulum pellentesque, justo mollis pretium suscipit, justo nulla blandit libero, in blandit augue justo quis nisl. Fusce mattis viverra elit. Fusce quis tortor. Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget lorem ipsum dolor. Donec placerat odio vel elit. Nullam ante orci, pellentesque eget, tempus quis, ultrices in, est. Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat. Sed etiam vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat.</p>
-							<a href="#" class="button">More Details</a>
+							<img src="<%=cp%>/resource/images/ex1.PNG" alt="">
+							<a href="<%=cp%>/notice/list" class="button">자세히 보기</a>
 						</section>
 					</div>
 					<div class="3u">
 						<section class="sidebar">
 							<header>
-								<h2>Feugiat Tempus</h2>
+								<h2>Free Travel</h2>
 							</header>
 							<ul class="style2">
 								<li>
-									<a href="#"><img src="<%=cp%>/resource/images/pics07.jpg" alt=""></a>
-									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
+									<p>기차여행 만들기ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ</p>
+									<p>자신만의 여행</p>
 								</li>
 								<li>
 									<a href="#"><img src="<%=cp%>/resource/images/pics08.jpg" alt=""></a>
@@ -132,6 +130,29 @@
 				</div>
 			</div>
 			<!-- Main -->
+			
+					<div class="6u">
+						<section>
+							<header>
+								<h2>자유여행</h2>
+								<span class="byline">나만의 추억 만들기</span>
+							</header>
+							<img src="<%=cp%>/resource/images/ex1.PNG" alt="">
+							<a href="<%=cp%>/notice/list" class="button">자세히 보기</a>
+						</section>
+					</div>
+					
+					<div class="6u">
+						<section>
+							<header>
+								<h2>자유여행</h2>
+								<span class="byline">나만의 추억 만들기</span>
+							</header>
+							<img src="<%=cp%>/resource/images/ex1.PNG" alt="">
+							<a href="<%=cp%>/notice/list" class="button">자세히 보기</a>
+						</section>
+					</div>
+					
 
 		</div>
 	<!-- /Main -->
