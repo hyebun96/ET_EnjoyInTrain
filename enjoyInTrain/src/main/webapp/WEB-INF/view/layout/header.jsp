@@ -40,7 +40,7 @@
 							<li><a href="<%=cp%>/notice/list">공지사항</a></li>
 							<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
 							<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
-							<li><a href="#">신고</a></li>
+							<li><a href="<%=cp%>/suggest/list">고객의 소리</a></li>
 						</ul>
 					</nav>
 

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="suggest">
+	<insert id="insertSuggest" parameterType="com.et.suggest.Suggest">
+		INSERT INTO suggest(sgCode, sgCategory, crewId, sgContent, sgTitle,
+		    sgCreated, sgHitCount, groupNum, dept, orderNo, parent)
+		VALUES(#{sgCode},#{sgCategory},#{crewId},#{sgContent},#{sgTitle},
+			SYSDATE, 0,#{groupNum}, #{dept}, #{orderNo},#{parent} )
+	</insert>
+	
+	<select id="suggestSeq" resultType="Integer">
+		SELECT suggest_seq.NEXTVAL FROM dual
+	</select>
+	
+	<select id="listSuggest" parameterType="map" resultType="com.et.suggest.Suggest">
+		SELECT sgCode, sgCategory, crewId, sgContent, sgTitle, TO_CHAR(sgCreated,'YYYY-MM-DD') sgCreated, sgHitCount, groupNum, dept, orderNo, parent, anContent, anCreated
+		FROM suggest
+		ORDER BY groupNum DESC, orderNo ASC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	<select id="readSuggest" parameterType="Integer" resultType="com.et.suggest.Suggest">
+		SELECT sgCode, sgCategory, crewId, sgContent, sgTitle, sgCreated, sgHitCount, groupNum, dept, orderNo, parent, anContent, anCreated
+		FROM suggest
+		WHERE sgCode=#{sgCode}
+	</select>
+	
+	<update id="updateOrderNo" parameterType="map">
+		UPDATE suggest SET orderNo=orderNo+1
+		WHERE groupNum=#{groupNum} AND orderNo &gt; #{orderNo}
+	</update>
+	
+	<select id="dataCount" resultType="Integer">
+		SELECT NVL(COUNT(*),0) FROM suggest
+	</select>
+	
+	<update id="updateHitCount" parameterType="Integer">
+		UPDATE suggest SET sgHitCount=sgHitCount+1 WHERE sgCode=#{sgCode}
+	</update>
+	
+	<delete id="deleteSuggest" parameterType="Integer">
+		DELETE FROM suggest 
+		WHERE sgCode IN(
+   			SELECT sgCode FROM suggest START WITH sgCode=#{sgCode}
+    		CONNECT BY PRIOR sgCode=parent)
+	</delete>
+	
+	<update id="updateSuggest" parameterType="com.et.suggest.Suggest">
+		UPDATE suggest SET sgCategory=#{sgCategory}, sgTitle=#{sgTitle}, sgContent=#{sgContent} WHERE sgCode=${sgCode}
+	</update>
+	
+	<select id="sgCommentSeq" resultType="Integer">
+		SELECT sgComment_seq.NEXTVAL FROM dual
+	</select>
+	
+	<insert id="insertComment" parameterType="com.et.suggest.Comment">
+		INSERT INTO sgComment(num, crewId, content, created, sgCode, answer) 
+		VALUES(#{num}, #{crewId}, #{content}, SYSDATE, #{sgCode},#{answer})
+	</insert>
+	
+	<select id="listComment" parameterType="map" resultType="com.et.suggest.Comment">
+		SELECT sc.num, crewId, sc.sgCode, content, created, NVL(answerCount, 0) answerCount, sc.answer
+		FROM sgComment sc
+		LEFT OUTER JOIN (
+			SELECT answer, COUNT(*) answerCount
+			FROM sgComment WHERE answer!=0 GROUP BY answer
+		) sc2 ON sc.num = sc2.answer AND sc.answer=0
+        WHERE sc.sgCode=#{sgCode} AND sc.answer=0
+		ORDER BY sc.num DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	<select id="commentCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*),0) FROM sgComment 
+		WHERE sgCode=#{sgCode} AND answer=0
+	</select>
+	
+	<delete id="deleteComment" parameterType="map">
+		DELETE FROM sgComment WHERE
+		<if test="mode=='reply'">
+			num IN (
+ 		   	    SELECT num FROM sgComment START WITH num = #{replyNum}
+			    CONNECT BY PRIOR num = answer
+			)
+		</if>
+		<if test="mode=='answer'">
+			num = #{replyNum}
+		</if>
+	</delete>
+	
+	<!-- 댓글의 답글 리스트 -->
+	<select id="listReplyAnswer" parameterType="Integer" resultType="com.et.suggest.Comment">
+		SELECT num, crewId, content, created, sgCode, answer
+		FROM sgComment
+		WHERE answer = #{answer}
+		ORDER BY num DESC
+	</select>
+	
+		<!-- 댓글의 답글 개수 -->
+	<select id="replyAnswerCount" parameterType="Integer" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM sgComment WHERE answer = #{answer}
+	</select>
+	
+	<!-- 파일 -->
+	<insert id="insertFile" parameterType="com.et.suggest.Suggest">
+		INSERT INTO suggestFile(num, sgCode, saveFilename, 
+					originalFilename, fileSize) VALUES
+				(suggestFile_seq.NEXTVAL, #{sgCode}, #{saveFilename},
+					#{originalFilename}, #{fileSize})
+	</insert>
+	
+	<select id="listFile" parameterType="Integer" resultType="com.et.suggest.Suggest">
+		SELECT num fileNum, sgCode, saveFilename, originalFilename, fileSize
+		FROM suggestFile
+		WHERE sgCode=#{sgCode}  
+	</select>
+	
+	<select id="readFile" parameterType="Integer" resultType="com.et.suggest.Suggest">
+		SELECT num fileNum, sgCode, saveFilename, originalFilename, fileSize
+		FROM suggestFile
+		WHERE num=#{fileNum}    
+	</select>
+	
+	<delete id="deleteFile" parameterType="map">
+		DELETE FROM suggestFile WHERE ${field} = #{num}
+	</delete>
+	
+	<!-- 이전글 -->
+	<select id="preReadSuggest" parameterType="map" resultType="com.et.suggest.Suggest">
+		SELECT sgCode, sgTitle
+		FROM suggest 
+		WHERE (sgCode &gt; #{sgCode})
+		ORDER BY sgCode ASC
+		FETCH FIRST 1 ROWS ONLY
+    </select>
+
+    <!-- 다음글 -->
+    <select id="nextReadSuggest" parameterType="map" resultType="com.et.suggest.Suggest">
+		SELECT sgCode, sgTitle
+		FROM suggest 
+		WHERE (sgCode &lt; #{sgCode})
+		ORDER BY sgCode DESC
+		FETCH FIRST 1 ROWS ONLY
+    </select>
+    
+    <update id="insertAn" parameterType="map">
+    	UPDATE suggest SET anContent=#{anContent}, anCreated=SYSDATE
+    	WHERE sgCode=#{sgCode}
+    </update>
+	
+</mapper>
