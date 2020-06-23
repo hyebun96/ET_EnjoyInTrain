@@ -76,10 +76,28 @@
 	</select>
 	
 	<!-- 직원정보수정 -->
-	<update id="updateEmployee">
-		UPDATE employee SET emcheck=#{emcheck}
+	<update id="updateEmployee" parameterType="com.et.employee.Employee" >
+		UPDATE employee SET emcheck=#{emcheck},ptCode=#{ptCode}
 		WHERE emCode=#{emCode}
 	</update>
-	
 
+<!-- 카테고리(직책)-->
+	<!-- 직책 추가 -->
+	<insert id="insertCategory" parameterType="map">
+		INSERT INTO position(ptCode,category)
+		VALUES(position_seq.NEXTVAL,#{category})
+	</insert>
+	
+	<!-- 직책 수정 -->
+	<update id="updateCategory" parameterType="map">
+		UPDATE position SET category=#{category}
+		WHERE ptCode=#{ptCode}
+	</update>
+	
+	<!-- 직책 삭제 -->
+	<delete id="deleteCategory" parameterType="Integer">
+		DELETE FROM position
+		WHERE ptCode=#{ptCode}
+	</delete>
+	
 </mapper>

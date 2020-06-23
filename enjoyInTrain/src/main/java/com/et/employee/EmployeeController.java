@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.et.common.MyUtil;
-import com.et.freeBoard.FreeBoard;
 
 @Controller("employee.employeeController")
 @RequestMapping("/employee/*")
@@ -123,8 +122,11 @@ public class EmployeeController {
 			Employee dto
 			) throws Exception{
 		
-		
-		service.insertEmployee(dto);
+		try {
+			service.insertEmployee(dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return "redirect:/employee/list";
 	}
@@ -142,6 +144,7 @@ public class EmployeeController {
 		
 		dto = service.readEmployee(dto);
 		model.addAttribute("dto",dto);
+		
 		
 		List<Employee> list = service.listPosition();
 		model.addAttribute("ptCodelist",list);
@@ -161,5 +164,4 @@ public class EmployeeController {
 		
 		return "redirect:/employee/list";
 	}
-	
 }

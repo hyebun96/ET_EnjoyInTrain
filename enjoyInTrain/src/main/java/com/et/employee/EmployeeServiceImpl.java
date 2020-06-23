@@ -59,5 +59,36 @@ public class EmployeeServiceImpl implements EmployeeService{
 			throw e;
 		}
 	}
-	
+
+	@Override
+	public void insertCategory(Map<String, Object> map) throws Exception {
+		try {
+			dao.insertData("employee.insertCategory",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	@Override
+	public void updateCategory(Map<String, Object> map) throws Exception {
+		try {
+			dao.updateData("employee.updateCategory",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+
+	@Override
+	public void deleteCategory(int ptCode) throws Exception {
+		try {
+		dao.deleteData("employee.deleteCategory",ptCode);
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
 }

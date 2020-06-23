@@ -121,7 +121,7 @@ function searchList() {
 			
 				<section>
 					<header>
-						<h2>직원리스트</h2>
+						<h2 style="padding-left: 500px;">직원리스트</h2>
 					</header>
 					
 					<div style="padding-left: 500px;">
@@ -141,7 +141,6 @@ function searchList() {
 											<option value="emName" ${condition=="emName"?"selected='selected'":""}>이름</option>
 											<option value="ptCategory" ${condition=="ptCategory"?"selected='selected'":""}>직책</option>
 											<option value="hireDate" ${condition=="hireDate"?"selected='selected'":""}>입사일</option>
-											<option value="emcheck" ${condition=="emcheck"?"selected='selected'":""}>재직여부</option>
 										</select>
 										<input type="text" name="keyword" value="${keyword}" class="boxTF" width="50">
 										<button type="button" class="btnsearch" onclick="searchList()">검색</button>
@@ -169,7 +168,6 @@ function searchList() {
 								<td>${dto.emBirth}</td>
 								<td>${dto.hireDate}</td>
 								<td>${dto.emcheck==1?'재직':'퇴사'}</td>
-								
 							</tr>
 						</c:forEach>
 						</table>

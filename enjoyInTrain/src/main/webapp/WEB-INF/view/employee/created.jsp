@@ -7,11 +7,44 @@
 %>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 
-<style>
+<style type="text/css">
 .homepage #main{
 	margin-top: 0em;
     padding-top: 0em;
+}
+
+.help-block {
+	margin-top: 3px; 
+	width: 200px;
+	text-align: center;
 }	
+
+
+element.style {
+    position: absolute;
+    height: 250px;
+    top: 636px;
+    left: 293.5px;
+    z-index: 101;
+}
+
+.ui-widget-header {
+	background: none;
+	border: none;
+	line-height:35px;
+	border-bottom: 1px solid #cccccc;
+	border-radius: 0px;
+}
+
+.ui-dialog .ui-dialog-content {
+    position: relative;
+    border: 0;
+    padding: 1px;
+    background: none;
+    overflow: hidden; 
+  
+}
+
 
 .menu-height1{
 	width: 100%; 
@@ -66,9 +99,34 @@
 
 </style>
 
-<script type="text/javascript" src="<%=cp%>/resource/se/js/HuskyEZCreator.js" charset="utf-8"></script>
 
 <script type="text/javascript">
+function login() {
+	location.href="<%=cp%>/crew/login";
+}
+
+function ajaxJSON(url, type, query, fn) {
+	$.ajax({
+		type:type
+		,url:url
+		,data:query
+		,dataType:"json"
+		,success:function(data) {
+			fn(data);
+		}
+		,beforeSend:function(jqXHR) {
+	        jqXHR.setRequestHeader("AJAX", true);
+	    }
+	    ,error:function(jqXHR) {
+	    	if(jqXHR.status==403) {
+	    		login();
+	    		return false;
+	    	}
+	    	console.log(jqXHR.responseText);
+	    }
+	});
+}
+
     function check() {
         var f = document.employeeForm;
 
@@ -105,16 +163,80 @@
 
         f.submit();
     }
-    
+//추가 버튼 눌렀을때    
+$(function(){
+	$("#btnCategoryUpdate").click(function(){
+		//폼 reset
+		$("form[name=addCategoryForm]").each(function(){
+			this.reset();
+		});
+		
+		$("#category-dialog").dialog({
+			  modal: true,
+			  height: 300,
+			  width: 450,
+			  title: '직책추가',
+			  close : function(event, ui) {
+			}
+		});
+	});
+});
 
- <c:if test="${mode=='update'}">
-  function deleteFile(fbFileNum) {
-		var url="<%=cp%>/freeBoard/deleteFile";
-		$.post(url, {fbFileNum:fbFileNum}, function(data){
-			$("#f"+fbFileNum).remove();
-		}, "json");
-  }
-</c:if>
+//수정 완료
+$(function() {
+	$("#btnCategorySendOk").click(function() {
+		if(! catecheck()){
+			return false;
+		}
+		
+		var query = $("form[name=addCategoryForm]").serialize();
+		var url = "<%=cp%>/employee/update";
+		
+		$.ajax({
+			type:"post"
+			,url:url
+			,data:query
+			,dataType:"json"
+			,success:function(data) {
+				var state =data.state;
+				if(state == "true"){
+					var page ="${page}";
+					var num="${dto.emCode}";
+					location.href="<%=cp%>/employee/update?page="+page+"&emCode="+emCode;
+				}
+			}
+			,beforeSend:function(jqXHR) {
+		        jqXHR.setRequestHeader("AJAX", true);
+		    }
+		    ,error:function(jqXHR) {
+		    	if(jqXHR.status==403) {
+		    		login();
+		    		return false;
+		    	}
+		    	console.log(jqXHR.responseText);
+		    }
+		});
+		
+	});	
+});
+
+//창 닫기
+$(function() {
+	$("#btnCategorySendCencel").click(function() {
+		$("#category-dialog").dialog("close");
+	});
+});
+
+//유효성 검사
+$(function catecheck() {
+	if(! $("#form-category").val()){
+		$("#form-category").focus();
+		
+		return false;
+	}
+	return true;
+});
+
 
 </script>
 
@@ -128,81 +250,145 @@
 <div id="page">
 		
 	<!-- Main -->
-	<div id="main" class="container">
-		<div class="row">
-			
-		
-			
-			<!-- 메인 내용 -->
-			<div class="9u skel-cell-important">
+		<div id="main" class="container">
+			<div class="row">
+				<!-- 메인 내용 -->
+				<div class="9u skel-cell-important">
 				<section>
 					<header>
 						<h2>${mode=='update'?'직원정보수정':'직원등록'}</h2>
 					</header>
 					
 					<div>
-			<form name="employeeForm" method="post" enctype="multipart/form-data" onsubmit="return submitContents(this);">
-			  <table class="menu-height1">
-			  <tr style="border-top: 1px solid #cccccc;"> 
-			      <td>이름</td>
-			      <td style="padding:10px;"> 
-			        <input type="text" name="emName" maxlength="100" class="boxTF" style="width: 50%;" value="${dto.emName}">
-			      </td>
-			  </tr>
-			  <tr style="border-top: 1px solid #cccccc;"> 
-			      <td>직책</td>
-			      <td style="padding:10px; "> 
-					<select name="ptCode" class="selectField">
-						<c:forEach var="pt" items="${ptCodelist}">
-							<option value="${pt.ptCode}" ${dto.ptCode == pt.ptCode ?"selected='selected'":""}>${pt.ptCategory}</option>
-						</c:forEach>
-					</select>
-			      </td>
-			  </tr>
-				
-			 <tr style="border-top: 1px solid #cccccc;"> 
-			      <td>생년월일</td>
-			      <td style="padding:10px;"> 
-			        <input type="text" name="emBirth" maxlength="10" class="boxTF" style="width: 50%;" value="${dto.emBirth}">
-			      </td>
-			  </tr>
-			  
-			 <tr style="border-top: 1px solid #cccccc;"> 
-			      <td>입사일</td>
-			      <td style="padding:10px;"> 
-			        <input type="text" name="hireDate" maxlength="10" class="boxTF" style="width: 50%;" value="${dto.hireDate}">
-			      </td>
-			 </tr>
-			 
-			<c:if test="${mode=='update'}">
-			 <tr style="border-top: 1px solid #cccccc;"> 
-			      <td>재직여부</td>
-			      <td style="padding:10px;"> 
-			      <select name="emcheck" class="selectField" >
-						<option value="${dto.emcheck}" ${dto.emcheck == 1 ?"selected='selected'":""}>재직</option> 
-						<option value="${dto.emcheck}" ${dto.emcheck == 0 ?"selected='selected'":""}>퇴사</option>
-			      </select>
-			      </td>
-			 </tr>
-			 </c:if>
-			  </table>
-			
-			  <table class="bott-button" >
-			     <tr> 
-			      <td>
-			        <button type="submit" class="btn" onclick="check();">${mode=='update'?'수정완료':'등록하기'}</button>
-			        <button type="reset" class="btn">다시입력</button>
-			        <button type="button" class="btn" onclick="javascript:location.href='<%=cp%>/employee/list';">${mode=='update'?'수정취소':'등록취소'}</button>
-			        
-			      </td>
-			    </tr>
-			  </table>
-			</form>
-    </div>
-    			</section>
+						<form name="employeeForm" method="post"
+							enctype="multipart/form-data"
+							onsubmit="return submitContents(this);">
+							<table class="menu-height1">
+
+								<c:if test="${mode=='update'}">
+									<tr style="border-top: 1px solid #cccccc;">
+										<td>사번</td>
+										<td style="padding: 10px; text-align: left;">
+										 <input type="text" name="emCode"
+											value="${dto.emCode}" readonly="readonly">
+										</td>
+									</tr>
+								</c:if>
+								<tr style="border-top: 1px solid #cccccc;">
+									<td>이름</td>
+									<td style="padding: 10px; text-align: left;">
+										<c:if test="${mode =='create'}">
+											<input type="text" name="emName" maxlength="100"
+												class="boxTF" style="width: 50%;" value="${dto.emName}">
+										</c:if> <c:if test="${mode =='update'}">
+											<input type="text" name="emName" maxlength="100"
+												class="boxTF" style="width: 50%;" value="${dto.emName}"
+												readonly="readonly">
+										</c:if></td>
+								</tr>
+								<tr style="border-top: 1px solid #cccccc;">
+									<td>직책</td>
+									<td style="padding: 10px; text-align: left;"><select name="ptCode"
+										class="selectField">
+											<c:forEach var="pt" items="${ptCodelist}">
+												<option value="${pt.ptCode}"
+													${dto.ptCode == pt.ptCode ?"selected='selected'":""}>${pt.ptCategory}</option>
+											</c:forEach>
+									</select>
+										<button type="button" class="btn" id="btnCategoryUpdate">
+											직책 추가</button></td>
+								</tr>
+
+								<tr style="border-top: 1px solid #cccccc;">
+									<td>생년월일</td>
+									<td style="padding: 10px; text-align: left; ">
+										<c:if test="${mode =='create'}">
+											<input type="text" name="emBirth" maxlength="10"
+												class="boxTF" style="width: 50%;" value="${dto.emBirth}">
+										</c:if> <c:if test="${mode =='update'}">
+											<input type="text" name="emBirth" maxlength="10"
+												class="boxTF" style="width: 50%;" value="${dto.emBirth}"
+												readonly="readonly">
+										</c:if></td>
+								</tr>
+
+								<tr style="border-top: 1px solid #cccccc;">
+									<td>입사일</td>
+									<td style="padding: 10px; text-align: left;">
+										<c:if test="${mode =='create'}">
+											<input type="text" name="hireDate" maxlength="10"
+												class="boxTF" style="width: 50%;" value="${dto.hireDate}">
+										</c:if> <c:if test="${mode =='update'}">
+											<input type="text" name="hireDate" maxlength="10"
+												class="boxTF" style="width: 50%;" value="${dto.hireDate}"
+												readonly="readonly">
+										</c:if></td>
+								</tr>
+
+								<c:if test="${mode=='update'}">
+									<tr style="border-top: 1px solid #cccccc;">
+										<td>재직여부</td>
+										<td style="padding: 10px; text-align: left;">
+										<select name="emcheck"class="selectField">
+												<option value="1"
+													${dto.emcheck == 1 ?"selected='selected'":""}>재직</option>
+												<option value="0"
+													${dto.emcheck == 0 ?"selected='selected'":""}>퇴사</option>
+										</select></td>
+									</tr>
+								</c:if>
+							</table>
+
+							<table
+								style="width: 100%; margin: 0px auto; border-spacing: 0px;">
+								<tr height="45">
+									<td align="center">
+										<button type="submit" class="btn" onclick="check();">${mode=='update'?'수정완료':'등록하기'}</button>
+										<button type="reset" class="btn">다시입력</button>
+										<button type="button" class="btn"
+											onclick="javascript:location.href='<%=cp%>/freeBoard/list';">${mode=='update'?'수정취소':'등록취소'}</button>
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+					
+ 					<div id="category-dialog"  style="display: none; text-align: center; vertical-align:middle;">
+ 					<form action="addCategoryForm">
+	 					<table>
+	 						<tr>
+								<td valign="top" style="width:100px; text-align: center; padding-top: 5px;">
+									<label style="font-weight: 900;">추가할 직책</label>
+								</td>
+	 							
+	 							<td style="padding-left:5px;">
+									<p style="margin-top: 1px; margin-bottom: 5px;">
+								    	<input type="text" name="category" id="form-category" maxlength="100" class="boxTF" style="width: 200px; ">
+								    </p>
+								</td>
+							</tr>
+							<tr>
+								<td>								
+								    <p class="help-block">* 입력은 필수 입니다.</p>
+								</td>
+							</tr>
+							
+							<tr height="45">		
+								<td align="center" colspan="2"> 
+	 								<input type="hidden" name="emCode" value="${dto.emCode}">
+	 								<button type="button" class="btn" id="btnCategorySendOk" style="width: 50px; margin-left: 10px;">추가</button>
+	 								<button type="button" class="btn" id="btnCategorySendCencel" style="width: 90px; margin-left: 10px;">추가 취소</button>
+	 								 <input type="hidden" name="page" value="${page}">
+								</td>
+							</tr>
+	 					</table>
+ 					</form>
+ 					
+ 					</div>
+ 				</section>
 			</div>
 			<!-- /메인내용 -->
-			
+		
 		</div>
 	</div>
 	<!-- /Main -->

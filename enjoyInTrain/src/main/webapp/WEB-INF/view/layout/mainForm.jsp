@@ -14,8 +14,12 @@
 <link rel="stylesheet" href="<%=cp%>/resource/css/skel-noscript.css" type="text/css" >
 <link rel="stylesheet" href="<%=cp%>/resource/css/style.css" type="text/css">
 <link rel="stylesheet" href="<%=cp%>/resource/css/style-desktop.css"  type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/jquery/css/smoothness/jquery-ui.min.css" type="text/css">
 
 <script type="text/javascript" src="<%=cp%>/resource/jquery/js/jquery.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/resource/js/util-jquery.js"></script>
+<script type="text/javascript" src="<%=cp%>/resource/js/util.js"></script>
+
 
 </head>
 
@@ -33,6 +37,8 @@
     <tiles:insertAttribute name="footer"/>
 </div>
 
+<script type="text/javascript" src="<%=cp%>/resource/jquery/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/resource/jquery/js/jquery.ui.datepicker-ko.js"></script>
 
 </body>
 </html>
