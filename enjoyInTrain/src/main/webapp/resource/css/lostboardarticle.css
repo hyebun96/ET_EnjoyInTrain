@@ -28,15 +28,19 @@ a:hover, a:active{
 	line-height: 40px;
 	font-weight: bold;
 	background: #cccccc;
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
 }
 
 #board_answer1{
-	 float: left; 
-	 width: 55%;
-	 height: 40px;
-	 line-height: 40px;
-	 padding-left: 10px;
-	 font-weight: bold;
+	float: left; 
+	width: 55%;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	font-weight: bold;
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
 }
 
 #board_question2{
@@ -47,21 +51,27 @@ a:hover, a:active{
 	height: 40px;
 	line-height: 40px;
 	font-weight: bold;
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	
 }
 
 #board_answer2{
-	 float: left; 
-	 width: 15%;
-	 height: 40px;
-	 line-height: 40px;
-	 padding-left: 10px;
-	 font-weight: bold;
+	float: left; 
+	width: 15%;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	font-weight: bold;
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
 }
 
 #board_content{
 	float: left;
 	width: 100%;
 	min-height: 600px;
+	border-top: 1px solid #cccccc;
 }
 
 #board_content1{

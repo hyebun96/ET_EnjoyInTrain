@@ -269,8 +269,6 @@ public class LostBoardController {
 		
 		String state="true";
 		
-		SessionInfo info = (SessionInfo)session.getAttribute("crew");
-		
 		String root = session.getServletContext().getRealPath("/");
 		String pathname = root+"uploads"+File.separator+"lostBoard";
 		

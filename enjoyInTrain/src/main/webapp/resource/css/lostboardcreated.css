@@ -28,6 +28,8 @@ a:hover, a:active{
 	font-weight: bold;
 	font-size: 15px;
 	line-height: 40px;
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
 }
 
 #article_answer{
@@ -36,11 +38,15 @@ a:hover, a:active{
 	height: 40px;
 	line-height: 40px;
 	text-align: center;
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
 }
 
 #article_answer input{
 	width:280px;
 	height: 40px;
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
 }
 
 #article_content textarea{

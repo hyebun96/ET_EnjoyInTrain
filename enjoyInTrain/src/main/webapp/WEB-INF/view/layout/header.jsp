@@ -30,7 +30,7 @@
 							<li class="active"><a href="<%=cp%>/main">Homepage</a></li>
 							<li><a href="<%=cp%>/temp/left-sidebar.jsp">Left Sidebar</a></li>
 							<li><a href="right-sidebar.html">Right Sidebar</a></li>
-							<li><a href="no-sidebar.html">No Sidebar</a></li>
+							<li><a href="<%=cp %>/booking/receipt">No Sidebar</a></li>
 							<li><a href="<%=cp%>/exam">게시판예시</a></li>
 						</ul>
 						<ul>
