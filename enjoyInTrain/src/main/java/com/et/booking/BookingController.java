@@ -8,10 +8,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/booking/*")
 public class BookingController {
 	
-	@RequestMapping(value="reservation")
+	@RequestMapping(value="reservation", method=RequestMethod.GET)
 	public String reservation() {
 		return ".booking.reservation";
 	}
+	
+	@RequestMapping(value="reservation", method=RequestMethod.POST)
+	public String reservationSubmit(
+			Booking dto
+			) {
+		
+		return "";
+	}
+	
+	
+	
 	
 	@RequestMapping(value="payment", method=RequestMethod.GET)			// 결제폼
 	public String paymentForm() {

@@ -192,46 +192,6 @@
 	border-bottom: 1px solid #cccccc;
 }
 
-#travler_report{
-	border-collapse: collapse;
-	border-spacing: 0;
-	width: 100%;
-}
-
-#travler_report_title{
-	font-size: 15px;
-	height: 40px;
-	line-height: 40px;
-	border-bottom: 3px solid #cccccc;
-	font-weight: bold;
-}
-
-#travler_report_tag{
-	background: #EAEAEA;
-	text-align: center;
-	height: 40px;
-	line-height: 40px;
-	width: 50%;
-	border-bottom: 1px solid #cccccc;
-	border-right: 1px solid #cccccc;
-	font-weight: bold;
-}
-
-#travler_report_name{
-	height: 40px;
-	line-height: 40px;
-	text-align: center;
-	border-bottom: 1px solid #cccccc;
-	border-right: 1px solid #cccccc;
-}
-
-#travler_report_gender{
-	height: 40px;
-	line-height: 40px;
-	text-align: center;
-	border-bottom: 1px solid #cccccc;
-}
-
 #resetpayment{
 	border-collapse: collapse;
 	border-spacing: 0;

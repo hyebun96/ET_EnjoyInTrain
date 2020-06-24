@@ -245,19 +245,6 @@ $(function() {
 								</tr>
 							</table>
 							<div>
-								<table id="travler_report">
-									<tr>
-										<td id="travler_report_title" colspan="2">▷ 동행자 정보</td>
-									</tr>
-									<tr>
-										<td id="travler_report_tag">성명</td>
-										<td id="travler_report_tag">성별</td>
-									</tr>
-									<tr>
-										<td id="travler_report_name">노현호</td>
-										<td id="travler_report_gender">남자</td>
-									</tr>
-								</table>
 								<table id="resetpayment">
 									<tr>
 										<td id="resetpayment_title" colspan="3"> ▷ 결제/취소 기한 </td>

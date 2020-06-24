@@ -24,7 +24,7 @@ function embracing() {
 function reservation() {
 	var f = document.resrvationForm
 	
-	f.action="<%=cp%>";
+	f.action="<%=cp%>/receipt";
 	
 	f.submit();
     return true;
@@ -142,12 +142,9 @@ function reservation() {
 									<td id="reservation_report_question">이용인원</td>
 									<td id="reservation_report_answer" colspan="3">
 										<select>
-											<option value="1">성인1명</option>
-											<option value="1">성인2명</option>
-											<option value="1">성인3명</option>
-											<option value="1">성인4명</option>
-											<option value="1">성인5명</option>
-											<option value="1">성인6명</option>
+										   <c:forEach var="n" begin="0" end="5">
+										   		<option value="${n}">성인${n}명</option>
+										   </c:forEach>
 										</select>
 										<select>
 											<option value="1">어린이1명</option>
@@ -372,26 +369,6 @@ function reservation() {
 							<div><input type="checkbox">개인정보는 해당 상품 예약을 위한 목적으로만 활용되며 다른 목적으로는 일체 사용되지 않습니다. 개인정보활용에 동의하십니까?</div>
 
 							<div>
-								<table id="travler_report">
-									<tr>
-										<td id="travler_report_title" colspan="2">▷ 여행자 정보</td>
-									</tr>
-									<tr>
-										<td id="travler_report_tag">성명</td>
-										<td id="travler_report_tag">성별</td>
-									</tr>
-									<tr>
-										<td id="travler_report_name">
-											<input type="text">
-										</td>
-										<td id="travler_report_gender">
-											<select>
-												<option value="male">남자</option>
-												<option value="female">여자</option>
-											</select>
-										</td>
-									</tr>
-								</table>
 								<div id="travler_button">
 									<button type="button" onclick="javascript:location.href='<%=cp%>';">취소하기</button>
 									<button onclick="embracing()">장바구니 담기</button>
