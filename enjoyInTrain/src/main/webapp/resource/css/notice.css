@@ -159,3 +159,57 @@ a:hover, a:active{
 .board-list :hover {
 	background: #e7e7e7;
 }
+
+.mainnotice{
+	margin: 3px 3px;
+	padding : 1px auto;
+	border-bottom: 1px solid #cccccc;
+	border-style: outset;
+	height: 50px;
+	font-size: 14px;
+	color: #5a5a5a;
+}
+
+.mainnotice :hover {
+	background: #e7e7e7;
+}
+
+.mainnoticetable{
+	width: 260px;
+}
+
+.subtitle{
+	border-bottom: 1px solid #cccccc;
+	width: 100%;
+	font-style: italic;
+	
+}
+
+.maintop1{
+	display: block;
+}
+
+.3uET{
+	width: 33%;
+}
+.mainfirst{
+	position: relative;
+	float: left;
+	width: 49%;
+}
+.mainsecond{
+	position: relative;
+	float: left;
+	width: 49%;
+	display: inline-block;
+    font-weight: inherit;
+    color: inherit;
+    font-size: 100%;
+}
+
+
+
+.maindesign{
+	margin: 170px 20px 170px 20px;
+	
+}

@@ -5,7 +5,7 @@
 <%
 	String cp=request.getContextPath();
 %>
-
+<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
 <!-- Banner -->
 		<div id="banner">
 			<div class="container">
@@ -19,144 +19,110 @@
 			<!-- Extra -->
 			<div id="marketing" class="container" >
 				<div class="row">
-					<div class="3u">
+					<div class="3uET">
 						<section>
 							<header>
-								<h2>Feugiat Tempus</h2>
+								<h2>New Promotion</h2>
 							</header>
-							<p class="subtitle">In posuere eleifend odio. Quisque semper augue mattis maecenas ligula.</p>
-							<p><a href="#"><img src="<%=cp%>/resource/images/pics13.jpg" alt=""></a></p>
-							<a href="#" class="button">More</a>
+							<p class="subtitle">다양한 프로모션 상품정보를 확인해보세요!
+							<a href="<%=cp%>/main" class="button">More ▷</a>
+							</p>
+							<div class="maintop1">
+							<a href="#"><img src="<%=cp%>/resource/images/ex2.PNG" alt="" width="260px;"></a>
+							</div>
 						</section>
 					</div>
-					<div class="3u">
+					<div class="3uET">
 						<section>
 							<header>
-								<h2>Maecenas lectus</h2>
+								<h2>Notice or Event</h2>
 							</header>
-							<p class="subtitle">In posuere eleifend odio. Quisque semper augue mattis maecenas ligula.</p>
-							<p><a href="#"><img src="<%=cp%>/resource/images/pics14.jpg" alt=""></a></p>
-							<a href="#" class="button">More</a>
+							<p class="subtitle">Enjoy in Train 공지사항
+							<a href="<%=cp%>/main" class="button">More ▷</a>
+							</p>
+							<div class="maintop1">
+							<table class="mainnoticetable">
+							<c:forEach var="dto" items="${list}">
+								<tr class="mainnotice">
+									<td>
+											▷ <a href="${articleUrl}&noticeNum=${dto.noticeNum}">${dto.noticeTitle}</a>
+									</td>
+								</tr>
+							</c:forEach>
+							</table>
+							</div>
 						</section>
 					</div>
-					<div class="3u">
+					<div class="3uET">
 						<section>
 							<header>
-								<h2>Luctus lectus</h2>
+								<h2>Communication</h2>
 							</header>
-							<p class="subtitle">In posuere eleifend odio. Quisque semper augue mattis maecenas ligula.</p>
-							<p><a href="#"><img src="<%=cp%>/resource/images/pics15.jpg" alt=""></a></p>
-							<a href="#" class="button">More</a>
+							<p class="subtitle">실시간 지역별 추천 오픈 채팅방 ! 
+							<a href="<%=cp%>/main" class="button">More ▷</a>
+							</p>
+							<div class="maintop1">
+							<a href="#"><img src="<%=cp%>/resource/images/ex4.PNG" alt="" width="260px"></a>
+							
+							</div>
 						</section>
 					</div>
-					<div class="3u">
-						<section>
-							<header>
-								<h2>Posuere eleifend</h2>
-							</header>
-							<p class="subtitle">In posuere eleifend odio. Quisque semper augue mattis maecenas ligula.</p>
-							<p><a href="#"><img src="<%=cp%>/resource/images/pics16.jpg" alt=""></a></p>
-							<a href="#" class="button">More</a>
-						</section>
-					</div>
+					
 				</div>
 			</div>
 			<!-- /Extra -->
 				
 			<!-- Main -->
-			<div id="main" class="container">
-				<div class="row">
-					<div class="6u">
-						<section>
-							<header>
-								<h2>자유여행</h2>
-								<span class="byline">나만의 추억 만들기</span>
-							</header>
-							<img src="<%=cp%>/resource/images/ex1.PNG" alt="">
-							<a href="<%=cp%>/notice/list" class="button">자세히 보기</a>
-						</section>
+			<div class="maindesign">
+					<div class="mainfirst">
+							<img src="<%=cp%>/resource/images/ex3.PNG" alt="" width="600" height="600" style="opacity: 0.8">
+							<a href="<%=cp%>/notice/list" class="button">More ▷</a>
 					</div>
-					<div class="3u">
-						<section class="sidebar">
-							<header>
-								<h2>Free Travel</h2>
-							</header>
-							<ul class="style2">
-								<li>
-									<p>기차여행 만들기ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ</p>
-									<p>자신만의 여행</p>
-								</li>
-								<li>
-									<a href="#"><img src="<%=cp%>/resource/images/pics08.jpg" alt=""></a>
-									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
-								</li>
-								<li>
-									<a href="#"><img src="<%=cp%>/resource/images/pics09.jpg" alt=""></a>
-									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
-								</li>
-								<li>
-									<a href="#"><img src="<%=cp%>/resource/images/pics10.jpg" alt=""></a>
-									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
-								</li>
-							</ul>						
-						</section>
+					<div class="mainsecond">
+
+								<h2><b>(레일티켓)한복입고 떠나는 경복궁/북촌 한옥마을 투어</b></h2>
+								<br>
+							한복입고 떠다는 경복궁 ' 한옥마을 투어<br>
+							-- KTX왕복승차권 + 한복남 한복 대여권이 결합된 자유여행상품입니다.<br>
+							-- 한복대여권 수량은 열차표를 구매하시는 고객님의 수량과 똑같이 구매하셔야 합니다.<br>
+							-- 추천 코스 밑 자세한 내용은 해당 글 을 통해 확인 가능합니다.<br>
 					</div>
-					<div class="3u">
-						<section class="sidebar">
-							<header>
-								<h2>Feugiat Tempus</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Etiam rhoncus volutpat erat</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Nulla luctus eleifend purus</a></li>
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-							</ul>
-						</section>
-						<section class="sidebar">
-							<header>
-								<h2>Nulla luctus eleifend</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Integer gravida nibh quis urna</a></li>
-								<li><a href="#">Etiam posuere augue sit amet nisl</a></li>
-								<li><a href="#">Mauris vulputate dolor sit amet nibh</a></li>
-							</ul>
-						</section>
-					</div>
-				</div>
 			</div>
+			
+			
 			<!-- Main -->
 			
-					<div class="6u">
-						<section>
-							<header>
-								<h2>자유여행</h2>
-								<span class="byline">나만의 추억 만들기</span>
-							</header>
-							<img src="<%=cp%>/resource/images/ex1.PNG" alt="">
-							<a href="<%=cp%>/notice/list" class="button">자세히 보기</a>
-						</section>
+			
+			<div class="6u">
+				<div class="3u">a
+			
+			
+			
+			
+			
+			<div class="maindesign">
+					<div class="mainfirst">
+							<img src="<%=cp%>/resource/images/ex3.PNG" alt="" width="400" height="400" style="opacity: 0.8">
+							<a href="<%=cp%>/notice/list" class="button">More ▷</a>
+					</div>
+					<div class="mainsecond">
+						@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 					</div>
 					
-					<div class="6u">
-						<section>
-							<header>
-								<h2>자유여행</h2>
-								<span class="byline">나만의 추억 만들기</span>
-							</header>
-							<img src="<%=cp%>/resource/images/ex1.PNG" alt="">
-							<a href="<%=cp%>/notice/list" class="button">자세히 보기</a>
-						</section>
-					</div>
 					
-
+					<div class="mainthird">
+						##########################################
+					</div>
+			</div>
+			
+				</div>
+			</div>
 		</div>
 	<!-- /Main -->
-
+		
+		
+			
+			
 	<!-- Featured -->
 		<div id="featured">
 			<div class="container">
@@ -166,7 +132,7 @@
 							<a href="#" class="image left"><img src="<%=cp%>/resource/images/pics04.jpg" alt=""></a>
 							<h3>Etiam posuere augue</h3>
 							<p>Donec nonummy magna quis risus eleifend. </p>
-							<a href="#" class="button">More</a>
+							<a href="#" class="button">More ▷</a>
 						</div>
 					</section>
 					<section class="4u">
@@ -174,7 +140,7 @@
 							<a href="#" class="image left"><img src="<%=cp%>/resource/images/pics05.jpg" alt=""></a>
 							<h3>Etiam posuere augue</h3>
 							<p>Donec nonummy magna quis risus eleifend. </p>
-							<a href="#" class="button">More</a>
+							<a href="#" class="button">More ▷</a>
 						</div>
 					</section>
 					<section class="4u">
@@ -182,7 +148,7 @@
 							<a href="#" class="image left"><img src="<%=cp%>/resource/images/pics06.jpg" alt=""></a>
 							<h3>Etiam posuere augue</h3>
 							<p>Donec nonummy magna quis risus eleifend. </p>
-							<a href="#" class="button">More</a>
+							<a href="#" class="button">More ▷</a>
 						</div>
 					</section>
 				</div>

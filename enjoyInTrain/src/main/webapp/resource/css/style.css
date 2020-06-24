@@ -342,24 +342,22 @@
 			display: inline-block;
 			margin-top: 0.5em;
 			padding: 0.50em 1.5em;
-			background: #e95d3c;
-			border-radius: 6px;
 			text-decoration: none;
 			text-transform: uppercase;
 			font-size: 1.1em;
-			color: #FFF;
+			color: #0A9696;
 			-moz-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
 			-webkit-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
 			-o-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
 			-ms-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
 			transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
 			cursor: pointer;
+			font-weight: 550;
 		}
 
 			.button:hover
 			{
-				background: #de3d27;
-				color: #FFF !important;
+				color: #de3d27 !important;
 			}
 
 /*********************************************************************************/

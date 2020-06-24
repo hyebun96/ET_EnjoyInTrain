@@ -12,7 +12,7 @@ public interface NoticeService {
 	
 	// 세부내용
 	public void updateHitCount(int num) throws Exception;
-	public Notice readNotice(int num);
+	public Notice readNotice(int noticeNum);
 	public Notice preReadNotice(Map<String, Object> map);
 	public Notice nextReadNotice(Map<String, Object> map);
 	
