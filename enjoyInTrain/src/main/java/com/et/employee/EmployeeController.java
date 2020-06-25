@@ -104,7 +104,7 @@ public class EmployeeController {
 		model.addAttribute("condition", condition);
 		model.addAttribute("keyword", keyword);
 		
-		return ".employee.list";
+		return ".admin.employee.list";
 	}
 	
 
@@ -120,7 +120,7 @@ public class EmployeeController {
 		model.addAttribute("emcheck",emcheck);
 		model.addAttribute("ptCodelist",list);
 		
-		return ".employee.created";
+		return ".admin.employee.created";
 	}
 	
 	@RequestMapping(value="create", method=RequestMethod.POST)
@@ -157,7 +157,7 @@ public class EmployeeController {
 		model.addAttribute("ptCodelist",list);
 
 		
-		return ".employee.created";
+		return ".admin.employee.created";
 	}
 	
 	@RequestMapping(value="update",method=RequestMethod.POST)

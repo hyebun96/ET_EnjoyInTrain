@@ -13,9 +13,12 @@
 			<c:if test="${empty sessionScope.crew}">
 				<a href="<%=cp%>/crew/login">Login</a> | <a href="<%=cp%>/crew/crew">Join</a>
 			</c:if>
-			<c:if test="${not empty sessionScope.crew}">
-				<a href="<%=cp%>/crew/logout">Logout</a> | <a href="#">정보수정이나 마이페이지</a>
+			<c:if test="${not empty sessionScope.crew && sessionScope.crew.crewId != 'a'}">
+				<a href="#">My Page</a> | <a href="<%=cp%>/crew/logout">Logout</a>
 			</c:if>
+		 	<c:if test="${sessionScope.crew.crewId=='a'}">
+                <a href="<%=cp%>/admin">관리자Page</a> | <a href="<%=cp%>/crew/logout">Logout</a>
+            </c:if>
 		</div>
 				<!-- Logo --> 
 					<div id="logo" style="padding-left: 15%;">

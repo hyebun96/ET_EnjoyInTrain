@@ -28,7 +28,6 @@ element.style {
     height: 150px;
 }
 
-
 .ui-widget-header {
 	background: none;
 	border: none;

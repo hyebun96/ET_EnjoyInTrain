@@ -155,7 +155,7 @@ function searchList() {
 
 <!-- Main -->
 <div id="page">
-		
+
 	<!-- Main -->
 	<div id="main" class="container">
 		<div class="row">
@@ -164,7 +164,7 @@ function searchList() {
 			<div class="3u">
 				<section class="sidebar">
 					<header>
-						<h2>자유게시판</h2>
+						<h2>직원관리</h2>
 					</header>
 					
 					<ul class="style1">

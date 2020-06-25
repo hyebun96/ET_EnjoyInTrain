@@ -13,7 +13,7 @@
 	</definition>
 	
    <!-- 3단 관리자 -->
-	<definition name=".adminLayout" template="/WEB-INF/view/admin/layout/layout3.jsp">
+	<definition name=".adminLayout" template="/WEB-INF/view/admin/layout/mainForm.jsp">
 	    <put-attribute name="title" value="spring" />
 	  	<put-attribute name="header" value="/WEB-INF/view/admin/layout/header.jsp" />
 		<put-attribute name="body1" value="/WEB-INF/view/admin/main/main.jsp" />
