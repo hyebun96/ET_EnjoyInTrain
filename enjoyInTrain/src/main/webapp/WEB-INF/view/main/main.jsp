@@ -75,7 +75,7 @@
 			<!-- Main -->
 			<div class="maindesign">
 					<div class="mainfirst">
-							<img src="<%=cp%>/resource/images/ex3.PNG" alt="" width="600" height="600" style="opacity: 0.8">
+							<img src="<%=cp%>/resource/images/ex6.PNG" alt="" width="500" height="500" style="opacity: 1">
 							<a href="<%=cp%>/notice/list" class="button">More ▷</a>
 					</div>
 					<div class="mainsecond">
@@ -93,30 +93,45 @@
 			<!-- Main -->
 			
 			
-			<div class="6u">
-				<div class="3u">a
-			
-			
+			<div class="maindesign1">
+					<div class="mainfirst1">
+							<a href="<%=cp%>/notice/list" class="button">More ▷</a>
+							<img src="<%=cp%>/resource/images/ex5.png" alt="" width="400" height="400" style="opacity: 1">
+					</div>
+					<div class="mainsecond1">
+
+								<h2><b>즐거운 여행이 더 즐거워지는 방법 !?</b></h2>
+								<br>
+								기차여행도 내 맘대로 만든다! <br>
+								세상 단 하나뿐인 나만의 기차여행을 시작해보자!<br>
+								고객이 원하는 여행 콘텐츠를 선택하는 여행상품.<br>
+							
+					</div>
+			</div>
 			
 			
 			
 			<div class="maindesign">
 					<div class="mainfirst">
-							<img src="<%=cp%>/resource/images/ex3.PNG" alt="" width="400" height="400" style="opacity: 0.8">
+							<img src="<%=cp%>/resource/images/ex7.PNG" alt="" width="500" height="500" style="opacity: 1">
 							<a href="<%=cp%>/notice/list" class="button">More ▷</a>
 					</div>
 					<div class="mainsecond">
-						@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-					</div>
-					
-					
-					<div class="mainthird">
-						##########################################
+
+								<h2><b>청</b>춘은</h2>
+								<h2><b>바</b>로</h2>
+								<h2><b>지</b>금!</h2>
+								<br>
+							만25세 ~ 35세 의 청춘들을 위한 할인제도<br>
+							-- 기타 : 힘내라 노인<br>
+							-- 용기내라 청춘<br>
+							-- 굳세워라 중년<br>
 					</div>
 			</div>
 			
-				</div>
-			</div>
+			
+			
+
 		</div>
 	<!-- /Main -->
 		

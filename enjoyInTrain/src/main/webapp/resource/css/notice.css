@@ -194,22 +194,44 @@ a:hover, a:active{
 }
 .mainfirst{
 	position: relative;
+	width: 50%;
 	float: left;
-	width: 49%;
+	margin-bottom: 170px;
 }
 .mainsecond{
 	position: relative;
-	float: left;
-	width: 49%;
-	display: inline-block;
+	float: right;
     font-weight: inherit;
     color: inherit;
     font-size: 100%;
+    width: 50%;
 }
-
-
 
 .maindesign{
-	margin: 170px 20px 170px 20px;
-	
+	margin: 170px 1px 170px 1px;
+	width: 100%;
+	height: 600px;
+	background: #cccccc;
 }
+
+.maindesign1{
+	margin: 170px 1px 170px 1px;
+	width: 100%;
+	height: 600px;
+	background: #e0efdb;
+}
+
+.mainfirst1{
+	width: 50%;
+	margin-bottom: 170px;
+	float: right;
+}
+
+.mainsecond1{;
+	width: 50%;
+    font-weight: inherit;
+    color: inherit;
+    font-size: 100%;
+    float: right;
+}
+
