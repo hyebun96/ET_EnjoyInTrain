@@ -17,19 +17,35 @@ public class EmployeeServiceImpl implements EmployeeService{
 	
 	@Override
 	public List<Employee> listEmployee(Map<String, Object> map) throws Exception {
-		List<Employee> list = dao.selectList("employee.listEmployee", map);
+		List<Employee> list=null;
+		
+		try {
+			list = dao.selectList("employee.listEmployee", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return list;
 	}
 
 	@Override
-	public int dataCount(Map<String, Object> map) throws Exception {
-		int dataCnt = dao.selectOne("employee.dataCount", map);
+	public int dataCount(Map<String, Object> map) {
+		int dataCnt =0;
+		try{
+			dataCnt= dao.selectOne("employee.dataCount", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return dataCnt;
 	}
 
 	@Override
 	public void insertEmployee(Employee dto) throws Exception {
+		try {
 			dao.insertData("employee.insertEmployee",dto);
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	@Override
@@ -45,8 +61,16 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public Employee readEmployee(Employee dto) throws Exception {
-		return  dao.selectOne("employee.readEmployee",dto);
+	public Employee readEmployee(int emCode) throws Exception {
+		Employee dto = null;
+		
+		try {
+			dto = dao.selectOne("employee.readEmployee",emCode);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
 		
 	}
 
@@ -61,9 +85,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public void insertCategory(Map<String, Object> map) throws Exception {
+	public void insertCategory(Employee dto) throws Exception {
 		try {
-			dao.insertData("employee.insertCategory",map);
+			dao.insertData("employee.insertCategory",dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -84,11 +108,12 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public void deleteCategory(int ptCode) throws Exception {
 		try {
-		dao.deleteData("employee.deleteCategory",ptCode);
+			dao.deleteData("employee.deleteCategory",ptCode);
 		}catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
 	}
+
 
 }

@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.et.common.MyUtil;
 
@@ -30,6 +31,7 @@ public class EmployeeController {
 	@RequestMapping("list")
 	public String list(
 			@RequestParam(value="page",defaultValue ="1") int current_page,
+			@RequestParam(defaultValue="1") int emcheck,
 			@RequestParam(defaultValue="all") String condition,
 			@RequestParam(defaultValue="") String keyword,
 			HttpServletRequest req,
@@ -47,6 +49,7 @@ public class EmployeeController {
 		
 		//전체페이지수
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("emcheck", emcheck);
 		map.put("condition", condition);
 		map.put("keyword", keyword);
 		dataCount = service.dataCount(map);
@@ -75,22 +78,23 @@ public class EmployeeController {
 			n++;
 		}
 		
-		 String query = "";
-        String listUrl = cp+"/employee/list";
-        String articleUrl = cp+"/employee/update?page=" + current_page;
+		String query = "";
+        String listUrl = cp+"/employee/list?emcheck="+emcheck;
+        String articleUrl = cp+"/employee/update?emcheck="+emcheck+"&page=" + current_page;
         if(keyword.length()!=0) {
         	query = "condition=" +condition + 
         	         "&keyword=" + URLEncoder.encode(keyword, "utf-8");	
         }
         
         if(query.length()!=0) {
-        	listUrl = cp+"/employee/list?" + query;
-        	articleUrl = cp+"/employee/update?page=" + current_page + "&"+ query;
+        	listUrl += "&"+query;
+        	articleUrl +="&"+query;
         }
         
         String paging = myUtil.paging(current_page, total_page, listUrl);
 	        
 		model.addAttribute("list", list);
+		model.addAttribute("emcheck", emcheck);
         model.addAttribute("articleUrl", articleUrl);
         model.addAttribute("page", current_page);
         model.addAttribute("dataCount", dataCount);
@@ -106,20 +110,23 @@ public class EmployeeController {
 
 	@RequestMapping(value="create",  method=RequestMethod.GET)
 	public String createdForm(
+			@RequestParam(defaultValue="1") int emcheck,
 			Model model
 			) throws Exception{
-
-	
-		model.addAttribute("mode","create");
+		
 		List<Employee> list = service.listPosition();
+
+		model.addAttribute("mode","create");
+		model.addAttribute("emcheck",emcheck);
 		model.addAttribute("ptCodelist",list);
 		
 		return ".employee.created";
 	}
 	
-	@RequestMapping(value="create",method=RequestMethod.POST)
+	@RequestMapping(value="create", method=RequestMethod.POST)
 	public String createdSubmit(
-			Employee dto
+			Employee dto,
+			@RequestParam(defaultValue="1") int emcheck
 			) throws Exception{
 		
 		try {
@@ -128,33 +135,35 @@ public class EmployeeController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/employee/list";
+		return "redirect:/employee/list?emcheck="+emcheck;
 	}
 	
 	@RequestMapping(value="update",  method=RequestMethod.GET)
 	public String updateForm(
 			Model model,
-			Employee dto,
-			@RequestParam int num
+			@RequestParam int emCode,
+			@RequestParam(defaultValue="1") int emcheck,
+			@RequestParam String page
 			) throws Exception{
 		
-		
-		model.addAttribute("mode","update");
-		dto.setEmCode(num);
-		
-		dto = service.readEmployee(dto);
-		model.addAttribute("dto",dto);
-		
-		
+		Employee dto = service.readEmployee(emCode);
 		List<Employee> list = service.listPosition();
+		
+		
+		model.addAttribute("dto",dto);
+		model.addAttribute("page",page);
+		model.addAttribute("emcheck",emcheck);
+		model.addAttribute("mode","update");
 		model.addAttribute("ptCodelist",list);
+
 		
 		return ".employee.created";
 	}
 	
 	@RequestMapping(value="update",method=RequestMethod.POST)
 	public String updateSubmit(
-			Employee dto
+			Employee dto,
+			@RequestParam int emcheck
 			)throws Exception{
 		
 		try {
@@ -162,6 +171,26 @@ public class EmployeeController {
 		} catch (Exception e) {
 		}
 		
-		return "redirect:/employee/list";
+		return "redirect:/employee/list?emcheck="+emcheck;
+	}
+	
+	@RequestMapping(value="catecreate",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> categorycreatedSubmit(
+			Employee dto
+			)throws Exception{
+		
+		String state = "true";
+		try {
+			service.insertCategory(dto);
+			
+		} catch (Exception e) {
+			state = "false";
+			e.printStackTrace();
+		}
+		
+		Map<String, Object> model = new HashMap<>();
+		model.put("state", state);
+		return model;
 	}
 }

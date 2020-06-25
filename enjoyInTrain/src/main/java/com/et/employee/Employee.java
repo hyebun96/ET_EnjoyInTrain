@@ -8,9 +8,9 @@ public class Employee {
 	private String hireDate; //입사일
 	private int emcheck; //재직여부
 	private String emBirth; //생년월일
+	
 	private int ptCode;  //직책코드
 	private String ptCategory; //직책
-	
 	
 	public int getListNum() {
 		return listNum;

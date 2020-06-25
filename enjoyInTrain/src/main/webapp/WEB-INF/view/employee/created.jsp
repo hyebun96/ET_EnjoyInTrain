@@ -19,14 +19,15 @@
 	text-align: center;
 }	
 
-
 element.style {
-    position: absolute;
-    height: 250px;
-    top: 636px;
-    left: 293.5px;
-    z-index: 101;
+    text-align: center;
+    vertical-align: middle;
+    width: auto;
+    min-height: 0px;
+    max-height: none;
+    height: 150px;
 }
+
 
 .ui-widget-header {
 	background: none;
@@ -39,15 +40,16 @@ element.style {
 .ui-dialog .ui-dialog-content {
     position: relative;
     border: 0;
-    padding: 1px;
+    padding: 20px;
     background: none;
     overflow: hidden; 
+    height: 150px;
   
 }
 
-
 .menu-height1{
-	width: 100%; 
+	width: 60%; 
+	float:left;
 	margin: 20px auto 0px; 
 	border-spacing: 0px; 
 	border-collapse: collapse;"
@@ -80,11 +82,12 @@ element.style {
 }
 
 .btn{
-	background: white;
-	border-color: #787878;
-	border-width: 1px;
-	height: 27px;
-	align:center;
+	width: 80px; 
+	height: 30px; 
+	margin-top: 20px; 
+	background-color: white; 
+	border-color: #cccccc;
+	border-radius: 10px;
 }
 
 .menu-height1 .boxTF{
@@ -96,15 +99,9 @@ element.style {
 	width: 95%; 
 
 }
-
 </style>
 
-
 <script type="text/javascript">
-function login() {
-	location.href="<%=cp%>/crew/login";
-}
-
 function ajaxJSON(url, type, query, fn) {
 	$.ajax({
 		type:type
@@ -163,7 +160,8 @@ function ajaxJSON(url, type, query, fn) {
 
         f.submit();
     }
-//추가 버튼 눌렀을때    
+    
+// 카테고리 추가 버튼 눌렀을때    
 $(function(){
 	$("#btnCategoryUpdate").click(function(){
 		//폼 reset
@@ -182,15 +180,17 @@ $(function(){
 	});
 });
 
-//수정 완료
+// 카테고리 등록 완료
 $(function() {
 	$("#btnCategorySendOk").click(function() {
-		if(! catecheck()){
+
+		if(! $("#form-category").val()){
+			$("#form-category").focus();
 			return false;
 		}
 		
 		var query = $("form[name=addCategoryForm]").serialize();
-		var url = "<%=cp%>/employee/update";
+		var url = "<%=cp%>/employee/catecreate";
 		
 		$.ajax({
 			type:"post"
@@ -201,8 +201,7 @@ $(function() {
 				var state =data.state;
 				if(state == "true"){
 					var page ="${page}";
-					var num="${dto.emCode}";
-					location.href="<%=cp%>/employee/update?page="+page+"&emCode="+emCode;
+					location.href="<%=cp%>/employee/update?page="+page+"&emCode=${dto.emCode}&emcheck=${emcheck}";
 				}
 			}
 			,beforeSend:function(jqXHR) {
@@ -216,7 +215,6 @@ $(function() {
 		    	console.log(jqXHR.responseText);
 		    }
 		});
-		
 	});	
 });
 
@@ -225,16 +223,6 @@ $(function() {
 	$("#btnCategorySendCencel").click(function() {
 		$("#category-dialog").dialog("close");
 	});
-});
-
-//유효성 검사
-$(function catecheck() {
-	if(! $("#form-category").val()){
-		$("#form-category").focus();
-		
-		return false;
-	}
-	return true;
 });
 
 
@@ -250,8 +238,27 @@ $(function catecheck() {
 <div id="page">
 		
 	<!-- Main -->
-		<div id="main" class="container">
-			<div class="row">
+			<!-- Main -->
+			<div id="main" class="container">
+				<div class="row">
+			
+			<!-- 사이드 바 메뉴 -->
+			<div class="3u">
+				<section class="sidebar">
+					<header>
+						<h2>관리자메뉴</h2>
+					</header>
+					
+					<ul class="style1">
+						<li><a href="#">직원리스트</a></li>
+						<li><a href="#">소메뉴2</a></li>
+						<li><a href="#">소메뉴3</a></li>
+						<li><a href="#">소메뉴4</a></li>
+						<li><a href="#">소메뉴5</a></li>					
+					</ul>
+				</section>
+			</div>
+			<!-- /사이드바 메뉴 -->
 				<!-- 메인 내용 -->
 				<div class="9u skel-cell-important">
 				<section>
@@ -260,17 +267,13 @@ $(function catecheck() {
 					</header>
 					
 					<div>
-						<form name="employeeForm" method="post"
-							enctype="multipart/form-data"
-							onsubmit="return submitContents(this);">
-							<table class="menu-height1">
-
+						<form name="employeeForm" method="post" enctype="multipart/form-data" onsubmit="return submitContents(this);">
+							<table class="menu-height1" >
 								<c:if test="${mode=='update'}">
 									<tr style="border-top: 1px solid #cccccc;">
 										<td>사번</td>
 										<td style="padding: 10px; text-align: left;">
-										 <input type="text" name="emCode"
-											value="${dto.emCode}" readonly="readonly">
+											<input type="text" name="emCode" style="width: 25%;" value="${dto.emCode}" readonly="readonly">
 										</td>
 									</tr>
 								</c:if>
@@ -278,51 +281,47 @@ $(function catecheck() {
 									<td>이름</td>
 									<td style="padding: 10px; text-align: left;">
 										<c:if test="${mode =='create'}">
-											<input type="text" name="emName" maxlength="100"
-												class="boxTF" style="width: 50%;" value="${dto.emName}">
+											<input type="text" name="emName" maxlength="100" class="boxTF" style="width: 25%;" value="${dto.emName}">
 										</c:if> <c:if test="${mode =='update'}">
-											<input type="text" name="emName" maxlength="100"
-												class="boxTF" style="width: 50%;" value="${dto.emName}"
-												readonly="readonly">
-										</c:if></td>
+											<input type="text" name="emName" maxlength="100" class="boxTF" style="width: 25%;" value="${dto.emName}" readonly="readonly">
+										</c:if>
+									</td>
 								</tr>
 								<tr style="border-top: 1px solid #cccccc;">
 									<td>직책</td>
-									<td style="padding: 10px; text-align: left;"><select name="ptCode"
-										class="selectField">
+									<td style="padding: 10px; text-align: left;">
+										<select name="ptCode" class="selectField">
 											<c:forEach var="pt" items="${ptCodelist}">
-												<option value="${pt.ptCode}"
-													${dto.ptCode == pt.ptCode ?"selected='selected'":""}>${pt.ptCategory}</option>
+												<option value="${pt.ptCode}" ${dto.ptCode == pt.ptCode ?"selected='selected'":""}>${pt.ptCategory}</option>
 											</c:forEach>
-									</select>
-										<button type="button" class="btn" id="btnCategoryUpdate">
-											직책 추가</button></td>
+										</select>
+										<c:if test="${mode=='update'}">
+											<button type="button" class="btn" id="btnCategoryUpdate">직책 추가</button>
+										</c:if>
+									</td>
 								</tr>
 
 								<tr style="border-top: 1px solid #cccccc;">
 									<td>생년월일</td>
 									<td style="padding: 10px; text-align: left; ">
 										<c:if test="${mode =='create'}">
-											<input type="text" name="emBirth" maxlength="10"
-												class="boxTF" style="width: 50%;" value="${dto.emBirth}">
-										</c:if> <c:if test="${mode =='update'}">
-											<input type="text" name="emBirth" maxlength="10"
-												class="boxTF" style="width: 50%;" value="${dto.emBirth}"
-												readonly="readonly">
-										</c:if></td>
+											<input type="text" name="emBirth" maxlength="10" class="boxTF" style="width: 25%;" value="${dto.emBirth}">
+										</c:if> 
+										<c:if test="${mode =='update'}">
+											<input type="text" name="emBirth" maxlength="10" class="boxTF" style="width: 25%;" value="${dto.emBirth}" readonly="readonly">
+										</c:if>
+									</td>
 								</tr>
 
 								<tr style="border-top: 1px solid #cccccc;">
 									<td>입사일</td>
 									<td style="padding: 10px; text-align: left;">
 										<c:if test="${mode =='create'}">
-											<input type="text" name="hireDate" maxlength="10"
-												class="boxTF" style="width: 50%;" value="${dto.hireDate}">
+											<input type="text" name="hireDate" maxlength="10" class="boxTF" style="width: 25%;" value="${dto.hireDate}">
 										</c:if> <c:if test="${mode =='update'}">
-											<input type="text" name="hireDate" maxlength="10"
-												class="boxTF" style="width: 50%;" value="${dto.hireDate}"
-												readonly="readonly">
-										</c:if></td>
+											<input type="text" name="hireDate" maxlength="10" class="boxTF" style="width: 25%;" value="${dto.hireDate}" readonly="readonly">
+										</c:if>
+									</td>
 								</tr>
 
 								<c:if test="${mode=='update'}">
@@ -330,11 +329,10 @@ $(function catecheck() {
 										<td>재직여부</td>
 										<td style="padding: 10px; text-align: left;">
 										<select name="emcheck"class="selectField">
-												<option value="1"
-													${dto.emcheck == 1 ?"selected='selected'":""}>재직</option>
-												<option value="0"
-													${dto.emcheck == 0 ?"selected='selected'":""}>퇴사</option>
-										</select></td>
+												<option value="1" ${dto.emcheck == 1 ?"selected='selected'":""}>재직</option>
+												<option value="0" ${dto.emcheck == 0 ?"selected='selected'":""}>퇴사</option>
+										</select>
+									</td>
 									</tr>
 								</c:if>
 							</table>
@@ -345,45 +343,40 @@ $(function catecheck() {
 									<td align="center">
 										<button type="submit" class="btn" onclick="check();">${mode=='update'?'수정완료':'등록하기'}</button>
 										<button type="reset" class="btn">다시입력</button>
-										<button type="button" class="btn"
-											onclick="javascript:location.href='<%=cp%>/freeBoard/list';">${mode=='update'?'수정취소':'등록취소'}</button>
+										<button type="button" class="btn" onclick="javascript:location.href='<%=cp%>/employee/list?emcheck=${emcheck}';">${mode=='update'?'수정취소':'등록취소'}</button>
+										<c:if test="${mode=='update'}">
+											<input type="hidden" name="page" value="${page}">
+											<input type="hidden" name="emcheck" value="${emcheck }">
+										</c:if>	
 									</td>
 								</tr>
 							</table>
 						</form>
 					</div>
-					
- 					<div id="category-dialog"  style="display: none; text-align: center; vertical-align:middle;">
- 					<form action="addCategoryForm">
-	 					<table>
-	 						<tr>
-								<td valign="top" style="width:100px; text-align: center; padding-top: 5px;">
-									<label style="font-weight: 900;">추가할 직책</label>
-								</td>
-	 							
-	 							<td style="padding-left:5px;">
-									<p style="margin-top: 1px; margin-bottom: 5px;">
-								    	<input type="text" name="category" id="form-category" maxlength="100" class="boxTF" style="width: 200px; ">
-								    </p>
-								</td>
-							</tr>
-							<tr>
-								<td>								
-								    <p class="help-block">* 입력은 필수 입니다.</p>
-								</td>
-							</tr>
+
+ 					<div id="category-dialog"  style="display: none; text-align: center; ">
+ 					<form name="addCategoryForm">
+					<table style="width: 100%; margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
+	 					<tr>
+			      			<td width="100" valign="top" style="text-align: right; padding-top: 5px;">
+								<label style="font-weight: 900; vertical-align: middle;">추가할 직책</label>
+							</td>
+							<td style="padding: 0 0 15px 15px;">
+		       					<p style="margin-top: 1px; margin-bottom: 5px;">
+							   		<input type="text" name="ptCategory" id="form-category" maxlength="100" class="boxTF">
+							    </p>
+						    	<p class="help-block">* 입력은 필수 입니다.</p>
+							</td>
+						</tr>
 							
-							<tr height="45">		
-								<td align="center" colspan="2"> 
-	 								<input type="hidden" name="emCode" value="${dto.emCode}">
-	 								<button type="button" class="btn" id="btnCategorySendOk" style="width: 50px; margin-left: 10px;">추가</button>
-	 								<button type="button" class="btn" id="btnCategorySendCencel" style="width: 90px; margin-left: 10px;">추가 취소</button>
-	 								 <input type="hidden" name="page" value="${page}">
-								</td>
-							</tr>
+						<tr height="45">		
+							<td align="center" colspan="2"> 
+ 								<button type="button" class="btn" id="btnCategorySendOk" style="width: 50px; margin-left: 10px;">추가</button>
+ 								<button type="button" class="btn" id="btnCategorySendCencel" style="width: 90px; margin-left: 10px;">추가 취소</button>
+							</td>
+						</tr>
 	 					</table>
  					</form>
- 					
  					</div>
  				</section>
 			</div>
