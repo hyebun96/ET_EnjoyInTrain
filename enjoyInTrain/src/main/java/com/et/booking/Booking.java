@@ -6,7 +6,7 @@ public class Booking {
 	private String prStartDate;			// 시작일
 	private String prEndDate;			// 종료일
 	private int prMaxCount;				// 최대인원
-	private String prGrade;				// 이용인원 구분(성인,유아 등등..)
+	private String prGrade;				// 이용인원 구분(성인,유아 등등..) / 보류
 	private int prCount; 				// 예약인원
 	private String prTrainName; 		// 기차명
 	private String prStartStation;		// 출발역

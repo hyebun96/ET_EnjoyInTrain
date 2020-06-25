@@ -15,7 +15,7 @@ import com.et.common.MyUtil;
 
 @Controller("train.trainController")
 @RequestMapping("/train/*")
-public class trainController {
+public class TrainController {
 	
 	@Autowired
 	private MyUtil myutil;
