@@ -1,0 +1,162 @@
+@charset "UTF-8";
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+a:hover, a:active{
+	color: blue;
+}
+
+#train_title{
+	font-weight: bold;
+	font-size: 40px;
+	height: 60px;
+}
+
+#train_main{
+	width : 800px;
+	min-height: 750px;
+}
+
+#train_page{
+	text-align: right;	
+}
+
+#train_form1 li{
+	float: left;
+	border-top: 2px solid #cccccc;
+	border-bottom: 2px solid #cccccc;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#train_subnum{
+	width: 10%;
+	border-right: 1px solid #cccccc;
+}
+
+#train_subtitle{
+	width: 40%;
+	border-right: 1px solid #cccccc;
+}
+
+#train_subwriter{
+	width: 15%;
+	border-right: 1px solid #cccccc;
+}
+
+#train_subcreated{
+	width: 25%;
+	border-right: 1px solid #cccccc;
+}
+
+#train_subcount{
+	width: 10%;
+}
+
+#train_form2 li{
+	height: 40px;
+	line-height: 40px;
+}
+
+#train_subnum_list{
+	clear:both;
+	float: left;
+	width: 10%;
+	height: 30px;
+	text-align: center;
+	border-bottom: 1px solid #cccccc;
+}
+
+#train_subtitle_list{
+	float: left;
+	width: 40%;
+	height: 30px;
+	padding-left: 10px;
+	border-bottom: 1px solid #cccccc;
+}
+
+#train_subwriter_list{
+	float: left;
+	width: 15%;
+	height: 30px;
+	padding-left: 10px;
+	border-bottom: 1px solid #cccccc;
+}
+
+#train_subcreated_list{
+	float: left;
+	width: 25%;
+	height: 30px;
+	text-align: center;
+	border-bottom: 1px solid #cccccc;
+}
+
+#train_subcount_list{
+	float: left;
+	width: 10%;
+	height: 30px;
+	text-align: center;
+	border-bottom: 1px solid #cccccc;
+}
+
+#train_pagecount{
+	border-top: 2px solid #cccccc;
+}
+
+#train_button{
+	text-align: right;
+	width: 650px;
+	height: 40px;
+}
+
+#train_button_reset{
+	float: left;
+	width: 90px;
+}
+
+#train_button_reset button{
+	height: 30px;
+}
+
+
+#train_button_send{
+	width: 70px;
+}
+
+#train_button_send button{
+	height: 30px;
+}
+
+#train-sample{
+	text-align: center;
+}
+
+#insertTrain_dialog{
+	display: none;
+	vertical-align:middle;
+}
+
+#train_question{
+	width: 120px;
+}
+
+#train_answer{
+	width: 120px;
+}
+
+#train_answer input{
+	width: 100px;
+}
+
+#roomSetting{
+	display: none;
+}
+
+#roomSetting_grade input{
+	width: 100px;
+}
