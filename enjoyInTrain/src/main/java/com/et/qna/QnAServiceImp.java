@@ -18,7 +18,6 @@ public class QnAServiceImp implements QnAService{
 	@Override
 	public void insertQnA(QnA dto) throws Exception {
 		try {
-
 			dao.insertData("qna.insertQnA", dto);
 		} catch (Exception e) {
 			e.printStackTrace();

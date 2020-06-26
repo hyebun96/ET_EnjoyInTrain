@@ -299,12 +299,11 @@ function sendOk(mode) {
 								<h2>F&nbsp;A&nbsp;Q</h2>
 							</header>
 							<ul class="style1">
-								<li><a href="#">승차권구매</a></li>
-								<li><a href="#">승차권이용</a></li>
-								<li><a href="#">승차권환불</a></li>
-								<li><a href="#">코레일멤버십</a></li>
-								<li><a href="#">결제</a></li>
-								<li><a href="#">기타</a></li>
+								<li><a href="<%=cp%>/notice/list">공지사항/이벤트</a></li>
+								<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
+								<li><a href="<%=cp%>/qna/main">QNA</a></li>
+								<li><a href="<%=cp%>/faq/list">FAQ</a></li>
+								<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
 							</ul>
 						</section>
 					</div>
