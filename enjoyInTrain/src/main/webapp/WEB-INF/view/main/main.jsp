@@ -21,52 +21,132 @@
 				<div class="row">
 					<div class="3uET">
 						<section>
-							<header>
-								<h2>New Promotion</h2>
-							</header>
-							<p class="subtitle">다양한 프로모션 상품정보를 확인해보세요!
-							<a href="<%=cp%>/main" class="button">More ▷</a>
-							</p>
-							<div class="maintop1">
-							<a href="#"><img src="<%=cp%>/resource/images/ex2.PNG" alt="" width="260px;"></a>
-							</div>
-						</section>
-					</div>
-					<div class="3uET">
-						<section>
-							<header>
-								<h2>Notice or Event</h2>
-							</header>
-							<p class="subtitle">Enjoy in Train 공지사항
-							<a href="<%=cp%>/main" class="button">More ▷</a>
-							</p>
-							<div class="maintop1">
-							<table class="mainnoticetable">
-							<c:forEach var="dto" items="${list}">
-								<tr class="mainnotice">
+							<table class="mainreservation">
+								<tr>
 									<td>
-											▷ <a href="${articleUrl}&noticeNum=${dto.noticeNum}">${dto.noticeTitle}</a>
+										<select name="condition" class="selectmainreservation">
+		                  					<option value="all" class="selectmainreservation1">출발역</option>
+		                  					<option>어디</option>
+		                  					<option>어디?</option>
+		                  					<option>어디이</option>
+		            					</select>
+		            				</td>
+		            				<td>
+										<select name="condition" class="selectmainreservation">
+		                  					<option value="all" class="selectmainreservation1">도착역::</option>
+		                  					<option>어디</option>
+		                  					<option>어디?</option>
+		                  					<option>어디이</option>
+		            					</select>
+		            				</td>
+								</tr>
+								<tr>
+									<td>
+										<select name="condition" class="selectmainreservation">
+		                  					<option value="all">날짜</option>
+		                  					<option>날짜</option>
+		                  					<option>날짜아</option>
+		                  					<option>나알짜아</option>
+		            					</select>
+									</td>
+									<td>
+										<select name="condition" class="selectmainreservation">
+		                  					<option value="all">시간</option>
+		                  					<option>시간</option>
+		                  					<option>시가안</option>
+		                  					<option>시이가안</option>
+		            					</select>
 									</td>
 								</tr>
-							</c:forEach>
+								<tr>
+									<td colspan="2">
+										<button type="button" class="mainreservationbutton" onclick=""> ♬예메 조회 ▷ </button>
+									</td>
+								</tr>
 							</table>
+							<table class="mainreservationicon">
+								<tr>
+									<td>
+										<a href="#"><img src="<%=cp%>/resource/images/mainicon1.png" alt="" width="50px;">
+										<br>
+										예매 조회
+										</a>
+									</td>
+									<td>
+										<a href="#"><img src="<%=cp%>/resource/images/mainicon1.png" alt="" width="50px;">
+										<br>
+										열차 시간표 조회
+										</a>
+									</td>
+									<td>
+										<a href="#"><img src="<%=cp%>/resource/images/mainicon1.png" alt="" width="50px;">
+										<br>
+										 고객센터
+										 </a>
+									</td>
+									<td>
+										<a href="#"><img src="<%=cp%>/resource/images/mainicon1.png" alt="" width="50px;">
+										<br>
+										 유실물 센터
+										 </a>
+									</td>
+								</tr>
+							</table>
+							
+						<div class="mainnotice2">
+								<p class="subtitle">Enjoy in Train 공지사항
+									<a href="<%=cp%>/notice/list" class="mainnoticebutton"> + 더보기 </a>
+								</p>
+							<div class="maintop1">
+								<table class="mainnoticetable">
+									<c:forEach var="dto" items="${list}">
+									<tr class="mainnotice">
+										<td>
+											▷ <a href="${articleUrl}&noticeNum=${dto.noticeNum}">${dto.noticeTitle}</a>
+										</td>
+									</tr>
+									</c:forEach>
+								</table>
 							</div>
+						</div>
+							
 						</section>
 					</div>
 					<div class="3uET">
 						<section>
-							<header>
-								<h2>Communication</h2>
-							</header>
-							<p class="subtitle">실시간 지역별 추천 오픈 채팅방 ! 
-							<a href="<%=cp%>/main" class="button">More ▷</a>
-							</p>
 							<div class="maintop1">
-							<a href="#"><img src="<%=cp%>/resource/images/ex4.PNG" alt="" width="260px"></a>
+							<a href="#"><img src="<%=cp%>/resource/images/mainTrain.gif" alt="" width="600px"></a>
 							
 							</div>
+							
+							<div class="mainnotice2">
+								<p class="subtitle">뭐넣지 이건	</p>
+							<div class="maintop1">
+								<table class="z">
+									<tr>
+										<td>
+											aa
+										</td>
+										<td>
+											bb
+										</td>
+									</tr>
+									<tr>
+										<td>
+											cc
+										</td>
+										<td>
+											dd
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						
+						
 						</section>
 					</div>
+
 					
 				</div>
 			</div>

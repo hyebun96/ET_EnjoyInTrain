@@ -163,7 +163,6 @@ a:hover, a:active{
 .mainnotice{
 	margin: 3px 3px;
 	padding : 1px auto;
-	border-bottom: 1px solid #cccccc;
 	border-style: outset;
 	height: 50px;
 	font-size: 14px;
@@ -175,14 +174,13 @@ a:hover, a:active{
 }
 
 .mainnoticetable{
-	width: 260px;
+	width: 100%;
 }
 
 .subtitle{
 	border-bottom: 1px solid #cccccc;
 	width: 100%;
-	font-style: italic;
-	
+	margin-top: 20px;
 }
 
 .maintop1{
