@@ -224,7 +224,7 @@ function reservation(){
 	var f = document.travelArticleForm;
 	var query = $(f).serialize();
 	
-	f.action="<%=cp%>/booking/reservation";
+	f.action="<%=cp%>/booking/reservation?"+query;
 
 	console.log(query);
 	f.submit();
@@ -252,7 +252,7 @@ function reservation(){
 				<img src="<%=cp%>/resource/images/jeju.jpg" style="width: 300px;">				
 			</td>
 			<td class="title" style="text-align: center;">상품번호</td>
-			<td style="padding-left: 10px; width: 200px;">${dto.pmCode}</td>
+			<td style="padding-left: 10px; width: 200px;"><input type="text" name="pmCode" value="${dto.pmCode}">${dto.pmCode}</td>
 			<td class="title" id="calendar" style="text-align: center; padding-top: 5px;" rowspan="7">
 				<table style="width: 200px; margin-left: 10px;" class="calendar">
 					<tr style="border-bottom: 2px solid #cccccc;">
@@ -295,7 +295,7 @@ function reservation(){
 		<tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
 		<td class="title"   style="text-align: center;">예약 인원</td>
 			<td style="padding-left: 10px; width: 343px;">
-				<select name="prPersonnel">
+				<select name="prPersonal">
 					<option value="1">1명</option>
 					<option value="2">2명</option>
 					<option value="3">3명</option>
@@ -326,7 +326,7 @@ function reservation(){
 		<tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
 		<td class="title"   style="text-align: center;">출발일자</td>
 			<td style="padding-left: 10px; width: 343px;">
-				<input type="date" name="date" id="date">
+				<input type="date" name="prStartDate" id="date">
 			</td>
 		</tr>
 		
@@ -356,7 +356,7 @@ function reservation(){
 				<c:if test="${vo == startList.get(0)}">
 					<td class="title" rowspan="${startLength}">오는 열차</td>
 				</c:if>
-				<td class="title"><input type="checkbox" name="" value="${vo.trainCode}"></td>
+				<td class="title"><input type="checkbox" name="prStartTrain" value="${vo.trainCode}"></td>
 				<td class="title">${vo.trainName}</td>
 				<td class="title">${vo.trainCode}</td>
 				<td class="title">${vo.startTime}</td>
@@ -382,7 +382,7 @@ function reservation(){
 				<c:if test="${vo == endList.get(0)}">
 					<td class="title"  rowspan="${endLength}">가는 열차</td>
 				</c:if>
-				<td class="title"><input type="checkbox" name="" value="${vo.trainCode}"></td>
+				<td class="title"><input type="checkbox" name="prEndTrain" value="${vo.trainCode}"></td>
 				<td class="title">${vo.trainName}</td>
 				<td class="title">${vo.trainCode}</td>
 				<td class="title">${vo.startTime}</td>

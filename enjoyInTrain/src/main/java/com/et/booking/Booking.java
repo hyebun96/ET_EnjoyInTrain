@@ -1,14 +1,16 @@
 package com.et.booking;
 
 public class Booking {
-	private String prCode;				// 상품코드
+	private int prCode;				// 상품코드
+	private String pmCode;
 	private String prTitle;				// 상품명
 	private String prStartDate;			// 시작일
 	private String prEndDate;			// 종료일
 	private int prMaxCount;				// 최대인원
 	private String prGrade;				// 이용인원 구분(성인,유아 등등..) / 보류
-	private int prCount; 				// 예약인원
-	private String prTrainName; 		// 기차명
+	private int prPersonal; 				// 예약인원
+	private String prStartTrain; 		// 기차명
+	private String prEndTrain;			//
 	private String prStartStation;		// 출발역
 	private String prEndStation;		// 도착역
 	private String prSeatGrade;			// 객실등급
@@ -27,11 +29,18 @@ public class Booking {
 	private String paymentDate;			// 결제기한일
 	private int payment;				// 결제 유무
 	
-	public String getPrCode() {
+
+	public int getPrCode() {
 		return prCode;
 	}
-	public void setPrCode(String prCode) {
+	public void setPrCode(int prCode) {
 		this.prCode = prCode;
+	}
+	public String getPmCode() {
+		return pmCode;
+	}
+	public void setPmCode(String pmCode) {
+		this.pmCode = pmCode;
 	}
 	public String getPrTitle() {
 		return prTitle;
@@ -63,17 +72,23 @@ public class Booking {
 	public void setPrGrade(String prGrade) {
 		this.prGrade = prGrade;
 	}
-	public int getPrCount() {
-		return prCount;
+	public int getPrPersonal() {
+		return prPersonal;
 	}
-	public void setPrCount(int prCount) {
-		this.prCount = prCount;
+	public void setPrPersonal(int prPersonal) {
+		this.prPersonal = prPersonal;
 	}
-	public String getPrTrainName() {
-		return prTrainName;
+	public String getPrStartTrain() {
+		return prStartTrain;
 	}
-	public void setPrTrainName(String prTrainName) {
-		this.prTrainName = prTrainName;
+	public void setPrStartTrain(String prStartTrain) {
+		this.prStartTrain = prStartTrain;
+	}
+	public String getPrEndTrain() {
+		return prEndTrain;
+	}
+	public void setPrEndTrain(String prEndTrain) {
+		this.prEndTrain = prEndTrain;
 	}
 	public String getPrStartStation() {
 		return prStartStation;

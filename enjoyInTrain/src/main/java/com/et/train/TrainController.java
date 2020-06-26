@@ -31,14 +31,14 @@ public class TrainController {
 		
 		int rows = 10;
 		int total_page = 0;
-		int trainCount = 0;
+		int dataCount = 0;
 		
 		// 전체 페이지 수
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		trainCount = service.trainCount();
-		if(trainCount!=0) {
-			total_page = myutil.pageCount(rows, trainCount);
+		dataCount = service.trainCount();
+		if(dataCount!=0) {
+			total_page = myutil.pageCount(rows, dataCount);
 		}
 		
 		// 다른 사람이 자료를 삭제하여 전체 페이지수가 변화 된 경우
@@ -53,41 +53,35 @@ public class TrainController {
 		map.put("rows", rows);
 		
 		// 글리스트
-		List<Train> list = service.listTrain(map);
+//		List<Train> list = service.listTrain(map);
 		
-		// 리스트의 번호
-		int listNum, n=0;
-		for(Train dto : list) {
-			listNum = trainCount - (offset + n);
-			dto.setTrainCount(listNum);
-			n++;
-		}
+//		// 리스트의 번호
+//		int trainNum, n=0;
+//		for(Train dto : list) {
+//			trainNum = dataCount - (offset + n);
+//			dto.setTrainNum(trainNum);
+//			n++;
+//		}
 		
 		String paging = myutil.paging(page, total_page);
 		
-		model.addAttribute("list",list);
+//		model.addAttribute("list",list);
         model.addAttribute("page", page);
-        model.addAttribute("trainCount", trainCount);
+        model.addAttribute("dataCount", dataCount);
         model.addAttribute("total_page", total_page);
         model.addAttribute("paging", paging);
 		
-		return ".train.list";
+		return ".admin.train.list";
 	}
 	
-	@RequestMapping(value="created", method=RequestMethod.GET)
-	public String insertForm() throws Exception {
-		
-		return ".train.created";
-	}
 	
-	// 게시글 작성
 	@RequestMapping(value="created", method=RequestMethod.POST)
 	public String insert(
 			Train dto
 			) throws Exception {
 		
 		try {
-			service.insertTrain(dto);
+			service.insertRoom(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

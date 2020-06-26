@@ -4,28 +4,21 @@
 <mapper namespace="train">
 
 	<!-- 기차 추가(총 칸, 총 좌석 입력) -->
-	<insert id="insertTrain" parameterType="com.et.train.Train">
-		INSERT INTO putTrain(trainNum ,trainCode, trainName, trainRoomCount, trainSeatCount)
-					VALUES(putTrain_seq.NEXTVAL ,#{trainCode}, #{trainName}, #{trainRoomCount}, #{trainSeatCount})
+	<insert id="insertCategory" parameterType="com.et.train.Train">
+		INSERT INTO trainCategory(trainCategory) VALUES (#{trainCategory})
 	</insert>
-	
 	<insert id="insertRoom" parameterType="com.et.train.Train">
-		INSERT INTO trainSeting(roomCode, trainCode, roomNum, roomGrade, seatRow, seatColumn) VALUES(trainSeting_seq.NEXTVAL, #{trainCode}, #{roomNum}, #{roomGrade}, #{seatRow}, #{seatColumn})
+		INSERT INTO trainSetting(trainCategory, roomNum, roomGrade, seatRow, seatColumn) VALUES(#{trainCategory}, #{roomNum}, #{roomGrade}, #{seatRow}, #{seatColumn})
 	</insert>
-	<select id="readTrain" parameterType="String" resultType="com.et.train.Train">
-		SELECT pt.trainCode, trainName, trainRoomCount, trainSeatCount, roomCode, roomGrade 
-		FROM putTrain  pt
-		JOIN trainSeting ts ON pt.trainCode = ts.trainCode
-		WHERE trainCode=#{trainCode}
-	</select>
+
 	<select id="listTrain" parameterType="map" resultType="com.et.train.Train">
-		SELECT trainCode, trainName, trainRoomCount, trainSeatCount  FROM putTrain
+		SELECT trainCategory, trainRoomCount, trainSeatCount  FROM trainCategory
 	</select>
 	
 	<select id="trainCount" parameterType="map" resultType="Integer">
-		SELECT NVL(COUNT(*), 0) FROM putTrain 
+		SELECT NVL(COUNT(*), 0) FROM trainCategory 
 	</select>
 	<update id="totalSeatCount" parameterType="map">
-		UPDATE putTrain SET trainSeatCount=#{trainSeatCount} WHERE trainCode = #{trainCode}
+		UPDATE trainCategory SET trainSeatCount=#{trainSeatCount} WHERE trainCategory = #{trainCategory}
 	</update>
 </mapper>

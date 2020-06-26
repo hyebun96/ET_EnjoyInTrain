@@ -3,72 +3,33 @@ package com.et.train;
 import java.util.List;
 
 public class Train {
-	private String trainCode;					// 기차코드
-	private String trainName;					// 기차명
-	private String seatCode;					// 좌석 코드
+	private String trainCategory;				// 기차코드
 	
 	private List<Integer> roomNums;				// 칸 번호 리스트
 	private int roomNum;						// 칸 번호
 	private List<String> roomNames;				// 객실 등급 리스트
 	private String roomGrade;					// 객실 등급
 	
-	private List<Integer> seatRows;					// 좌석 행 리스트
-	private int seatRow;							// 좌석 행
-	private List<Integer> seatColumns;				// 좌석 열 리스트
+	private List<Integer> seatRows;				// 좌석 행 리스트
+	private int seatRow;						// 좌석 행
+	private List<Integer> seatColumns;			// 좌석 열 리스트
 	private int seatColumn;						// 좌석 열
 	private int trainSeatCount;					// 좌석 갯수
 	private int trainRoomCount;					// 칸 갯수
 	private int trainCount;
 	private int trainNum;
 	
-	public List<Integer> getSeatRows() {
-		return seatRows;
+	public String getTrainCategory() {
+		return trainCategory;
 	}
-	public void setSeatRows(List<Integer> seatRows) {
-		this.seatRows = seatRows;
-	}
-
-	public List<Integer> getSeatColumns() {
-		return seatColumns;
-	}
-	public void setSeatColumns(List<Integer> seatColumns) {
-		this.seatColumns = seatColumns;
-	}
-	public int getSeatRow() {
-		return seatRow;
-	}
-	public void setSeatRow(int seatRow) {
-		this.seatRow = seatRow;
-	}
-	public int getSeatColumn() {
-		return seatColumn;
-	}
-	public void setSeatColumn(int seatColumn) {
-		this.seatColumn = seatColumn;
+	public void setTrainCategory(String trainCategory) {
+		this.trainCategory = trainCategory;
 	}
 	public List<Integer> getRoomNums() {
 		return roomNums;
 	}
 	public void setRoomNums(List<Integer> roomNums) {
 		this.roomNums = roomNums;
-	}
-	public String getTrainCode() {
-		return trainCode;
-	}
-	public void setTrainCode(String trainCode) {
-		this.trainCode = trainCode;
-	}
-	public String getTrainName() {
-		return trainName;
-	}
-	public void setTrainName(String trainName) {
-		this.trainName = trainName;
-	}
-	public String getSeatCode() {
-		return seatCode;
-	}
-	public void setSeatCode(String seatCode) {
-		this.seatCode = seatCode;
 	}
 	public int getRoomNum() {
 		return roomNum;
@@ -88,11 +49,29 @@ public class Train {
 	public void setRoomGrade(String roomGrade) {
 		this.roomGrade = roomGrade;
 	}
-	public int getTrainNum() {
-		return trainNum;
+	public List<Integer> getSeatRows() {
+		return seatRows;
 	}
-	public void setTrainNum(int trainNum) {
-		this.trainNum = trainNum;
+	public void setSeatRows(List<Integer> seatRows) {
+		this.seatRows = seatRows;
+	}
+	public int getSeatRow() {
+		return seatRow;
+	}
+	public void setSeatRow(int seatRow) {
+		this.seatRow = seatRow;
+	}
+	public List<Integer> getSeatColumns() {
+		return seatColumns;
+	}
+	public void setSeatColumns(List<Integer> seatColumns) {
+		this.seatColumns = seatColumns;
+	}
+	public int getSeatColumn() {
+		return seatColumn;
+	}
+	public void setSeatColumn(int seatColumn) {
+		this.seatColumn = seatColumn;
 	}
 	public int getTrainSeatCount() {
 		return trainSeatCount;
@@ -112,12 +91,13 @@ public class Train {
 	public void setTrainCount(int trainCount) {
 		this.trainCount = trainCount;
 	}
-	public int gettrainNum() {
+	public int getTrainNum() {
 		return trainNum;
 	}
-	public void settrainNum(int trainNum) {
+	public void setTrainNum(int trainNum) {
 		this.trainNum = trainNum;
 	}
+	
 	
 	
 }

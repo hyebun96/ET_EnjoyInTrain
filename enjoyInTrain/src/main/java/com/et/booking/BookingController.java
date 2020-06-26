@@ -2,10 +2,12 @@ package com.et.booking;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.et.crew.SessionInfo;
 
@@ -13,12 +15,21 @@ import com.et.crew.SessionInfo;
 @RequestMapping("/booking/*")
 public class BookingController {
 	
+	@Autowired
+	private BookingService service;
+	
+	
 	@RequestMapping(value="reservation", method=RequestMethod.GET)
 	public String reservation(
-			Model model
+			Model model,
+			Booking dto
 			) {
 		
-		model.addAttribute("mode", "insert");
+		String num = dto.getPmCode();
+		
+		
+		model.addAttribute("mode", "reservation");
+		model.addAttribute("dto",dto);
 		
 		return ".booking.reservation";
 	}
@@ -33,7 +44,7 @@ public class BookingController {
 		
 		try {
 			dto.setCrewId(info.getCrewId());
-			
+			service.insertReservation(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

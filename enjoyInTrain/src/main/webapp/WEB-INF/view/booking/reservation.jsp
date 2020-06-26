@@ -15,7 +15,7 @@
 function embracing() {
 	var f = document.reservationForm;
 	
-	f.action="<%=cp%>";
+	f.action="<%=cp%>/booking/${mode}";
 	
 	f.submit();
     return true;
@@ -24,7 +24,7 @@ function embracing() {
 function reservation() {
 	var f = document.resrvationForm
 	
-	f.action="<%=cp%>/receipt";
+	f.action="<%=cp%>/booking/${mode}";
 	
 	f.submit();
     return true;
@@ -98,11 +98,11 @@ function reservation() {
 								</tr>
 								<tr>
 									<td id="reservation_info_question">상품코드</td>
-									<td id="reservation_info_answer">F20180612033</td>
+									<td id="reservation_info_answer">${dto.pmCode}</td>
 									<td id="reservation_info_question">출발일자</td>
-									<td id="reservation_info_answer">2020년 6월 28일</td>
+									<td id="reservation_info_answer">${dto.prStartDate}</td>
 									<td id="reservation_info_question">예약인원</td>
-									<td id="reservation_info_answer">1명</td>
+									<td id="reservation_info_answer">${dto.prPersonal}</td>
 								</tr>
 							</table>
 							
@@ -115,8 +115,8 @@ function reservation() {
 								<tr>
 									<td id="reservation_report_num" rowspan="5">1</td>
 									<td id="reservation_report_group" rowspan="5">가는열차</td>
-									<td id="reservation_report_question">상품평</td>
-									<td id="reservation_report_answer">KTX 108열차</td>
+									<td id="reservation_report_question">상품명</td>
+									<td id="reservation_report_answer">${dto.prStartTrain}</td>
 									<td id="reservation_report_question">객실등급</td>
 									<td id="reservation_report_answer">
 										<select>
@@ -147,36 +147,24 @@ function reservation() {
 										   </c:forEach>
 										</select>
 										<select>
-											<option value="1">어린이1명</option>
-											<option value="1">어린이2명</option>
-											<option value="1">어린이3명</option>
-											<option value="1">어린이4명</option>
-											<option value="1">어린이5명</option>
-											<option value="1">어린이6명</option>
+											 <c:forEach var="n" begin="0" end="5">
+										   		<option value="${n}">어린이${n}명</option>
+										   </c:forEach>
 										</select>
 										<select>
-											<option value="1">경로1명</option>
-											<option value="1">경로2명</option>
-											<option value="1">경로3명</option>
-											<option value="1">경로4명</option>
-											<option value="1">경로5명</option>
-											<option value="1">경로6명</option>
+											 <c:forEach var="n" begin="0" end="5">
+										   		<option value="${n}">경로${n}명</option>
+										   </c:forEach>
 										</select>
 										<select>
-											<option value="1">장애인1명</option>
-											<option value="1">장애인2명</option>
-											<option value="1">장애인3명</option>
-											<option value="1">장애인4명</option>
-											<option value="1">장애인5명</option>
-											<option value="1">장애인6명</option>
+											 <c:forEach var="n" begin="0" end="5">
+										   		<option value="${n}">장애인${n}명</option>
+										   </c:forEach>
 										</select>
 										<select>
-											<option value="1">동반유아1명</option>
-											<option value="1">동반유아2명</option>
-											<option value="1">동반유아3명</option>
-											<option value="1">동반유아4명</option>
-											<option value="1">동반유아5명</option>
-											<option value="1">동반유아6명</option>
+											 <c:forEach var="n" begin="0" end="5">
+										   		<option value="${n}">동반유아${n}명</option>
+										   </c:forEach>
 										</select>
 									</td>
 								</tr>
@@ -198,21 +186,17 @@ function reservation() {
 									<td id="reservation_report_question">이용인원</td>
 									<td id="reservation_report_answer">
 										<select>
-											<option value="1">1명</option>
-											<option value="2">2명</option>
-											<option value="3">3명</option>
-											<option value="4">4명</option>
-											<option value="5">5명</option>
+											 <c:forEach var="n" begin="0" end="5">
+										   		<option value="${n}">${n}명</option>
+										   </c:forEach>
 										</select>
 									</td>
 									<td id="reservation_report_question">이용수량</td>
 									<td id="reservation_report_answer">
 										<select>
-											<option value="1">1개</option>
-											<option value="2">2개</option>
-											<option value="3">3개</option>
-											<option value="4">4개</option>
-											<option value="5">5개</option>
+											<c:forEach var="n" begin="0" end="5">
+										   		<option value="${n}">${n}명</option>
+										   </c:forEach>
 										</select>
 										(기준 1인/최대1인)
 									</td>
@@ -220,8 +204,8 @@ function reservation() {
 								<tr>
 									<td id="reservation_report_num" rowspan="5">3</td>
 									<td id="reservation_report_group" rowspan="5">오는열차</td>
-									<td id="reservation_report_question">상품평</td>
-									<td id="reservation_report_answer">KTX 163열차</td>
+									<td id="reservation_report_question">상품명</td>
+									<td id="reservation_report_answer">${dto.prEndTrain}</td>
 									<td id="reservation_report_question">객실등급</td>
 									<td id="reservation_report_answer">
 										<select>
@@ -247,44 +231,29 @@ function reservation() {
 									<td id="reservation_report_question">이용인원</td>
 									<td id="reservation_report_answer" colspan="3">
 										<select>
-											<option value="1">성인1명</option>
-											<option value="1">성인2명</option>
-											<option value="1">성인3명</option>
-											<option value="1">성인4명</option>
-											<option value="1">성인5명</option>
-											<option value="1">성인6명</option>
+										   <c:forEach var="n" begin="0" end="5">
+										   		<option value="${n}">성인${n}명</option>
+										   </c:forEach>
 										</select>
 										<select>
-											<option value="1">어린이1명</option>
-											<option value="1">어린이2명</option>
-											<option value="1">어린이3명</option>
-											<option value="1">어린이4명</option>
-											<option value="1">어린이5명</option>
-											<option value="1">어린이6명</option>
+											 <c:forEach var="n" begin="0" end="5">
+										   		<option value="${n}">어린이${n}명</option>
+										   </c:forEach>
 										</select>
 										<select>
-											<option value="1">경로1명</option>
-											<option value="1">경로2명</option>
-											<option value="1">경로3명</option>
-											<option value="1">경로4명</option>
-											<option value="1">경로5명</option>
-											<option value="1">경로6명</option>
+											 <c:forEach var="n" begin="0" end="5">
+										   		<option value="${n}">경로${n}명</option>
+										   </c:forEach>
 										</select>
 										<select>
-											<option value="1">장애인1명</option>
-											<option value="1">장애인2명</option>
-											<option value="1">장애인3명</option>
-											<option value="1">장애인4명</option>
-											<option value="1">장애인5명</option>
-											<option value="1">장애인6명</option>
+											 <c:forEach var="n" begin="0" end="5">
+										   		<option value="${n}">장애인${n}명</option>
+										   </c:forEach>
 										</select>
 										<select>
-											<option value="1">동반유아1명</option>
-											<option value="1">동반유아2명</option>
-											<option value="1">동반유아3명</option>
-											<option value="1">동반유아4명</option>
-											<option value="1">동반유아5명</option>
-											<option value="1">동반유아6명</option>
+											 <c:forEach var="n" begin="0" end="5">
+										   		<option value="${n}">동반유아${n}명</option>
+										   </c:forEach>
 										</select>
 									</td>
 								</tr>

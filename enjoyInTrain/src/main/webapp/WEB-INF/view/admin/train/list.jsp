@@ -54,19 +54,13 @@ $(function () {
 function send() {
     var f = document.insertTrainForm;
 
-	var str = f.trainCode.value;
+	var str = f.trainCategory.value;
     if(!str) {
         alert("기차 코드를 입력하세요. ");
         f.trainCode.focus();
         return false;
     }
 	
-	str = f.trainName.value;
-	if(!str || str=="<p>&nbsp;</p>") {
-        alert("기차명을 입력하세요. ");
-        f.trainName.focus();
-        return false;
-    }
 
 
 	f.action="<%=cp%>/train/created";
@@ -109,22 +103,18 @@ function send() {
 							<li id="train_button_reset">
 								<button type="button" onclick="javascript:location.href='<%=cp%>/losttrain/list?page=1';">새로고침</button>
 							</li>
-							<li id="train_page">${TrainCount}개(${page}/${total_page} 페이지)</li>
+							<li id="train_page">${dataCount}개(${page}/${total_page} 페이지)</li>
 						</ul>
 						<ul id="train_form1">
 							<li id="train_subnum">번호</li>
-							<li id="train_subtitle">기차코드</li>
-							<li id="train_subwriter">기차명</li>
+							<li id="train_subwriter">기차종류</li>
 							<li id="train_subcreated">칸갯수</li>
 							<li id="train_subcount">좌석갯수</li>
 						</ul>
 						<ul id="train_form2"  >
 							<c:forEach var="dto" items="${list}">
 								<li id="train_subnum_list">${dto.trainNum}</li>
-								<li id="train_subtitle_list">
-									${dto.trainCode}
-								</li>
-								<li id="train_subwriter_list">${dto.trainName}</li>
+								<li id="train_subwriter_list">${dto.trainCategory}</li>
 								<li id="train_subcreated_list">${dto.trainRoomCount}</li>
 								<li id="train_subcount_list">${dto.trainSeatCount}</li>
 							</c:forEach>
@@ -152,10 +142,8 @@ function send() {
 			<div>
 				<table>
 					<tr>
-						<td id="train_question">기차코드</td>
-						<td id="train_answer"><input type="text" name="trainCode"></td>
-						<td id="train_question">기차명</td>
-						<td id="train_answer"><input type="text" name="trainName"></td>
+						<td id="train_question">기차종류</td>
+						<td id="train_answer"><input type="text" name="trainCategory"></td>
 						<td id="train_question">칸수</td>
 						<td id="train_answer">
 							<select name="trainRoomCount">

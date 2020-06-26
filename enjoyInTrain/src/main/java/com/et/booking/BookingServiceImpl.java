@@ -4,13 +4,19 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-@Service
-public class BookingServiceImpl implements BookingService {
+@Service("booking.bookingService")
+public class BookingServiceImpl implements BookingService{
 
 	@Override
 	public void insertReservation(Booking dto) throws Exception {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Booking readPromotionDetail() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override

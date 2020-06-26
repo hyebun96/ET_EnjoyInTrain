@@ -15,10 +15,9 @@ public class TrainServiceImpl implements TrainService{
 	private CommonDAO dao;
 
 	@Override
-	public void insertTrain(Train dto) {
+	public void insertRoom(Train dto) {
 		try {
-			dao.insertData("train.insertTrain", dto);
-			
+			dao.insertData("train.insertCategory", dto);
 			int total=0;
 			if(dto.getRoomNames()!=null) {
 				for(int i=0; i<dto.getRoomNums().size(); i++) {
@@ -26,9 +25,10 @@ public class TrainServiceImpl implements TrainService{
 					dto.setRoomGrade(dto.getRoomNames().get(i));
 					dto.setSeatRow(dto.getSeatRows().get(i));
 					dto.setSeatColumn(dto.getSeatColumns().get(i));
-					insertRoom(dto);
+					dao.insertData("train.insertRoom", dto);
 					total+=dto.getSeatRow()*dto.getSeatColumn();
 				}
+				
 				dto.setTrainSeatCount(total);
 				totalSeatCount(dto);
 			}
@@ -37,16 +37,6 @@ public class TrainServiceImpl implements TrainService{
 			e.printStackTrace();
 		}
 		
-	}
-
-	@Override
-	public Train readTrain(String code) {
-		Train dto = null;
-		try {
-			dto = dao.selectOne("train.readTrain", code);
-		} catch (Exception e) {
-		}
-		return dto;
 	}
 
 	@Override
@@ -72,14 +62,6 @@ public class TrainServiceImpl implements TrainService{
 		return result;
 	}
 
-	@Override
-	public void insertRoom(Train dto) {
-		try {
-			dao.insertData("train.insertRoom", dto);
-		} catch (Exception e) {
-		}
-		
-	}
 
 	@Override
 	public void totalSeatCount(Train dto) {
