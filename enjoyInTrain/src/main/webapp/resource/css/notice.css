@@ -169,6 +169,11 @@ a:hover, a:active{
 	color: #5a5a5a;
 }
 
+.mainnoticetd{
+	padding: 10px 10px;
+	font-weight: 500;
+}
+
 .mainnotice :hover {
 	background: #e7e7e7;
 }
@@ -188,48 +193,33 @@ a:hover, a:active{
 }
 
 .3uET{
-	width: 33%;
-}
-.mainfirst{
-	position: relative;
 	width: 50%;
-	float: left;
-	margin-bottom: 170px;
 }
-.mainsecond{
-	position: relative;
-	float: right;
-    font-weight: inherit;
-    color: inherit;
-    font-size: 100%;
-    width: 50%;
-}
+
+
 
 .maindesign{
 	margin: 170px 1px 170px 1px;
 	width: 100%;
-	height: 600px;
-	background: #cccccc;
-}
-
-.maindesign1{
-	margin: 170px 1px 170px 1px;
-	width: 100%;
-	height: 600px;
+	height: 1100px;
 	background: #e0efdb;
 }
 
-.mainfirst1{
-	width: 50%;
+.mainfirst{
+	width: 25%;
 	margin-bottom: 170px;
-	float: right;
+	float: left;
+	padding: 25px;
+	height: 350px;
+	
 }
 
-.mainsecond1{;
-	width: 50%;
-    font-weight: inherit;
-    color: inherit;
-    font-size: 100%;
-    float: right;
+.mainsecond{;
+	width: 25%;
+	margin-bottom: 170px;
+	float: left;
+	padding: 25px;
+	height: 350px;
+	
 }
 

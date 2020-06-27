@@ -14,7 +14,7 @@
 
 	body
 	{
-		background: #202020 url(images/img01.jpg) repeat;
+		background: #fff url(images/img01.jpg) repeat;
 	}
 
 	body,input,textarea,select
@@ -899,6 +899,11 @@
 		position: relative;
 		background: #fff;
 	}
+	
+	#page1{
+		position: relative;
+		background: #f7f6f7;
+	}
 
 	#main
 	{
@@ -1027,8 +1032,8 @@
 /* ET main                                                                     */
 /*********************************************************************************/
 .mainreservation{
-	border: 1px solid black;
 	background: #ddd7e4;
+	
 }
 
 
@@ -1047,18 +1052,28 @@
 }
 
 .mainreservationbutton{
-	width: 100%;
+	width: 80%;
 	margin-bottom: 20px;
 	height: 30px;
 	margin-top: 20px;
+	border: none;
+	border-radius: 5px
+}
+
+.mainreservationbuttontd{
+	text-align: center;
 }
 
 .mainreservationicon{
 	font-size: 10px;
 	width: 100%;
 	text-align: center;
-	border: 1px solid black;
 	border-top: none;
+	background: #fff;
+}
+
+.mainreservationicon1{
+	padding-top: 25px;
 }
 
 .mainnoticebutton{
@@ -1072,13 +1087,49 @@
 }
 
 .mainnotice2{
-	background: #ddd7e4;
+	background: #fff;
+}
+.mainnoticeTitle{
+	padding: 10px 10px;
+}
+
+.main0000{
+	text-align: center;
+	width: 100%;
+	padding-top: 50px;
+	padding-bottom: 25px;
 }
 
 
+.mainex0000{
+	border-top: 1px solid #cccccc;
+}
+
+.main0001{
+	text-align: center;
+	width: 100%;
+	margin-bottom: 100px;
+	margin-top: 100px;
+}
+
+.mainhot{
+	width: 300px;
+	color: #c774d2;
+	font-weight: 600;
+	font-size: 30px;
+	text-align: center;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
 
 
+.mainhot a{
+	color: #07a8c4;
+	float: right;
+	font-weight: normal;
+	font-size: 14px;
+}
 
-
-
-
+.mainhot a:hover {
+	color: #eeaa43;
+}
