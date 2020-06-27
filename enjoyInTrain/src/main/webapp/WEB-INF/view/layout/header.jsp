@@ -21,7 +21,7 @@
             </c:if>
 		</div>
 				
-			<div class="container">
+			<div class="container1">
 				<!-- Nav -->
 				<div class="menu">
 						<ul class="nav">
