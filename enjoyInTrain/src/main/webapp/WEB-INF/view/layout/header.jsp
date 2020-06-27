@@ -22,19 +22,60 @@
 		</div>
 				
 			<div class="container">
-					
-				
 				<!-- Nav -->
-					<nav id="nav">
-						<ul>
-							<li style="line-height: 100px;"><a href="<%=cp%>/temp/left-sidebar.jsp">Reservation</a></li>
-							<li style="line-height: 100px;"><a href="<%=cp%>/travel/travel">Promotion</a></li>
-							<li>
-								<a href="<%=cp%>/main"><img src="<%=cp%>/resource/images/etmainlogo.png" width="200"></a>
+				<div class="menu">
+						<ul class="nav">
+							<li class="navbar"><a href="<%=cp%>/temp/left-sidebar.jsp">Reservation</a>
+								<ul>
+									<li class="active"><a href="<%=cp%>/crew/crew">회원가입</a></li>
+									<li><a href="<%=cp%>/qna/main">qna</a></li>
+									<li><a href="<%=cp%>/faq/list">faq</a></li>
+									<li><a href="<%=cp%>/notice/list">공지사항</a></li>
+									<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
+									<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
+									<li><a href="<%=cp%>/suggest/list">고객의 소리</a></li>
+								</ul>
 							</li>
-							<li style="line-height: 100px;"><a href="<%=cp %>/booking/receipt">Board</a></li>
-							<li style="line-height: 100px;"><a href="<%=cp%>/exam">게시판예시</a></li>
+							<li class="navbar"><a href="<%=cp%>/travel/travel">Promotion</a>
+								<ul>
+									<li class="active"><a href="<%=cp%>/crew/crew">회원가입</a></li>
+									<li><a href="<%=cp%>/qna/main">qna</a></li>
+									<li><a href="<%=cp%>/faq/list">faq</a></li>
+									<li><a href="<%=cp%>/notice/list">공지사항</a></li>
+									<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
+									<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
+									<li><a href="<%=cp%>/suggest/list">고객의 소리</a></li>
+								</ul>
+							</li>
+							
+							<li>	
+								<a href="<%=cp%>/main"><img src="<%=cp%>/resource/images/mainlogo.png" width="100"></a>
+							</li>
+							
+							<li class="navbar"><a href="<%=cp %>/booking/receipt">Board</a>
+								<ul>
+									<li class="active"><a href="<%=cp%>/crew/crew">회원가입</a></li>
+									<li><a href="<%=cp%>/qna/main">qna</a></li>
+									<li><a href="<%=cp%>/faq/list">faq</a></li>
+									<li><a href="<%=cp%>/notice/list">공지사항</a></li>
+									<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
+									<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
+									<li><a href="<%=cp%>/suggest/list">고객의 소리</a></li>
+								</ul>
+							</li>
+							<li class="navbar"><a href="<%=cp%>/exam">게시판예시</a>
+								<ul>
+									<li class="active"><a href="<%=cp%>/crew/crew">회원가입</a></li>
+									<li><a href="<%=cp%>/qna/main">qna</a></li>
+									<li><a href="<%=cp%>/faq/list">faq</a></li>
+									<li><a href="<%=cp%>/notice/list">공지사항</a></li>
+									<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
+									<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
+									<li><a href="<%=cp%>/suggest/list">고객의 소리</a></li>
+								</ul>
+							</li>
 						</ul>
+					</div>
 						<!-- 
 						<ul>
 							<li class="active"><a href="<%=cp%>/crew/crew">회원가입</a></li>
@@ -46,7 +87,7 @@
 							<li><a href="<%=cp%>/suggest/list">고객의 소리</a></li>
 						</ul>
 						 -->
-					</nav>
+					
 
 			</div>
 		</div>
