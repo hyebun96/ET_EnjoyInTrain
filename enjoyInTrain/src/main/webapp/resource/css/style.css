@@ -836,13 +836,16 @@
 	#nav
 	{
 		position: absolute;
-		right: 0em;
-		top: 2.2em;
+		top: 0em;
+		margin-left: 150px;
+		width: 100%;
 	}
 
 		#nav > ul > li
 		{
 			float: left;
+			font-size: 15px;
+			margin: 2px;
 		}
 		
 			#nav > ul > li:last-child
@@ -854,21 +857,40 @@
 			#nav > ul > li > span
 			{
 				display: block;
-				margin-left: 0.7em;
-				padding: 0.80em 1.2em;
 				letter-spacing: 0.06em;
 				text-decoration: none;
 				text-transform: uppercase;
 				font-size: 1.1em;
 				outline: 0;
 				color: #333;
+				padding-bottom: 0;
+				margin: 0px 20px;
+				padding: 0px 20px;
+				
 			}
 
-			#nav li.active a
+			#nav > ul > li > span
 			{
-				background: #e95d3c;
 				border-radius: 5px;
-				color: #FFF;
+				border-bottom:1px solid black;
+				padding: 0px 20px;
+				margin: 0px 20px;
+			}
+			
+			#nav > ul >li{
+				margin: 2px;
+			}
+			
+			#nav > ul > li > a:hover,
+			#nav > ul > li > span:hover,
+			#nav > ul > li > span:active
+			{
+				border-radius: 5px;
+				border-bottom:1px solid #30A479;
+				color: #30A479;
+				font-weight:bold;
+				padding: 0px 20px;
+				margin: 0px 20px;
 			}
 
 			#nav > ul > li > ul
