@@ -19,4 +19,42 @@
 		WHERE crewId=#{crewId}
 	</select>
 	
+<!-- 회원관리-->
+	<!-- 검색 -->
+	<sql id="where-list">
+		<choose>
+			<when test="condition=='crewId'">
+				INSTR(crewId,#{keyword}) &gt; =1
+			</when>
+			<otherwise>
+				INSTR(${condition},#{keyword}) &gt; =1
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<!-- 데이터갯수 -->
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT COUNT(*)
+		FROM crew c
+		<where>
+			<if test="keyword != null and keyword != ''">
+				<include refid="where-list"/>
+			</if>
+		</where>
+	</select>
+	
+	<!-- 회원리스트 -->
+	<select id="listCrew" parameterType="map" resultType="com.et.crew.Crew">
+		SELECT crewId,crewName,crewTel,crewEmail,crewBirth,crewchatwarning
+		FROM crew
+		<where>
+			<if test="keyword != null and keyword != ''">
+				<include refid="where-list" />
+			</if>
+		</where>
+		ORDER BY crewName ASC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	
 </mapper> 

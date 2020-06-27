@@ -14,6 +14,8 @@ public class Crew {
 	private String crewBirth;
 	private int crewChatWarning;
 	
+	private int listNum; // 리스트 번호
+	
 	public int getCrewChatWarning() {
 		return crewChatWarning;
 	}
@@ -87,4 +89,11 @@ public class Crew {
 	public void setCrewBirth(String crewBirth) {
 		this.crewBirth = crewBirth;
 	}
+	public int getListNum() {
+		return listNum;
+	}
+	public void setListNum(int listNum) {
+		this.listNum = listNum;
+	}
+	
 }
