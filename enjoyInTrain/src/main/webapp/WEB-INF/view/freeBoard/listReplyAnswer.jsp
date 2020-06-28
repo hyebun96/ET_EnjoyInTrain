@@ -37,8 +37,4 @@
 			    </div>			            
 			</c:forEach>
 			<!-- /메인내용 -->
-		</div>
-	</div>
-	<!-- /Main -->
-</div>
-<!-- /Main -->
+s

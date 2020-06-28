@@ -18,13 +18,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.et.common.FileManager;
 import com.et.common.MyUtil;
-import com.et.crew.SessionInfo;
 
 @Controller("notice.noticeController")
 @RequestMapping("/notice/*")
@@ -121,48 +118,7 @@ public class NoticeController {
 	}
 	
 	
-	@RequestMapping(value="/notice/created", method=RequestMethod.GET)
-	public String createdForm(
-			Model model,
-			Notice dto,
-			HttpSession session
-			) throws Exception {
-		
-		SessionInfo info=(SessionInfo)session.getAttribute("crew");
-		if(! info.getCrewId().equals("a")) {
-			return "redirect:/notice/list";
-		}
-		
-		model.addAttribute("mode", "created");
-		dto.setEmCode("1");
-		return ".notice.created";
-	}
-
-	@RequestMapping(value="/notice/created", method=RequestMethod.POST)
-	public String createdSubmit(
-			Notice dto,
-			HttpSession session
-			) throws Exception {
-		
-		SessionInfo info=(SessionInfo)session.getAttribute("crew");
-		
-		if(! info.getCrewId().equals("a")) {
-			return "redirect:/notice/list";
-		}
-
-		try {
-			
-			String root = session.getServletContext().getRealPath("/");
-			String pathname = root + "uploads" + File.separator + "notice";
-			
-			dto.setEmCode("1");
-			service.insertNotice(dto, pathname);
-		} catch (Exception e) {
-		}
-		
-		return "redirect:/notice/list";
-	}
-
+	
 	@RequestMapping(value="/notice/article")
 	public String article(
 			@RequestParam int noticeNum,
@@ -205,85 +161,6 @@ public class NoticeController {
 		model.addAttribute("query", query);
 		
 		return ".notice.article";
-	}
-
-	@RequestMapping(value="/notice/update", method=RequestMethod.GET)
-	public String updateForm(
-			@RequestParam int noticeNum,
-			@RequestParam String page,
-			HttpSession session,			
-			Model model, Notice dto	) throws Exception {
-
-		SessionInfo info=(SessionInfo)session.getAttribute("crew");
-		if(! info.getCrewId().equals("a")) {
-			return "redirect:/notice/list?page="+page;
-		}
-
-		dto = service.readNotice(noticeNum);
-		
-		if(dto==null) {
-			return "redirect:/notice/list?page="+page;
-		}
-		
-		List<Notice> listFile=service.listFile(noticeNum);
-			
-		model.addAttribute("mode", "update");
-		model.addAttribute("page", page);
-		model.addAttribute("dto", dto);
-		model.addAttribute("listFile", listFile);
-		
-		return ".notice.created";
-	}
-
-	@RequestMapping(value="/notice/update", method=RequestMethod.POST)
-	public String updateSubmit(
-			Notice dto,
-			@RequestParam String page,
-			HttpSession session) throws Exception {
-		
-		SessionInfo info=(SessionInfo)session.getAttribute("crew");
-		if(! info.getCrewId().equals("a")) {
-			return "redirect:/notice/list?page="+page;
-		}
-		
-		try {
-			String root = session.getServletContext().getRealPath("/");
-			String pathname = root + File.separator + "uploads" + File.separator + "notice";		
-			
-			service.updateNotice(dto, pathname);
-		} catch (Exception e) {
-		}
-		
-		return "redirect:/notice/list?page="+page;
-	}
-
-	@RequestMapping(value="/notice/delete")
-	public String delete(
-			@RequestParam int noticeNum,
-			@RequestParam String page,
-			@RequestParam(defaultValue="all") String condition,
-			@RequestParam(defaultValue="") String keyword,
-			HttpSession session, Notice dto) throws Exception {
-		
-		SessionInfo info=(SessionInfo)session.getAttribute("crew");
-		keyword = URLDecoder.decode(keyword, "utf-8");
-		String query="page="+page;
-		if(keyword.length()!=0) {
-			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "UTF-8");
-		}
-		if(! info.getCrewId().equals("a")) {
-			return "redirect:/notice/list?"+query;
-		}
-
-		
-		try {
-			String root = session.getServletContext().getRealPath("/");
-			String pathname = root + "uploads" + File.separator + "notice";
-			service.deleteNotice(noticeNum, pathname);
-		} catch (Exception e) {
-		}
-		
-		return "redirect:/notice/list?"+query;
 	}
 
 	@RequestMapping(value="/notice/download")
@@ -347,30 +224,4 @@ public class NoticeController {
 			}
 		}
 	}
-	
-	@RequestMapping(value="/notice/deleteFile", method=RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> deleteFile(
-			@RequestParam int noticeFileNum,
-			HttpSession session) throws Exception {
-		
-		String root = session.getServletContext().getRealPath("/");
-		String pathname = root + "uploads" + File.separator + "notice";
-		
-		Notice dto=service.readFile(noticeFileNum);
-		if(dto!=null) {
-			fileManager.doFileDelete(dto.getSaveFilename(), pathname);
-		}
-		
-		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("field", "fileNum");
-		map.put("num", noticeFileNum);
-		service.deleteFile(map);
-		
-		Map<String, Object> model = new HashMap<>(); 
-		model.put("state", "true");
-		return model;
-	}
-	
-	
 }

@@ -56,5 +56,20 @@
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	
+	<insert id="insertMemberState" parameterType="com.et.crew.Crew">
+		INSERT INTO crew(crewId)
+		VARUES (#{crewId})
+	</insert>
 	
+	<select id="listCrewState" parameterType="String" resultType="com.et.crew.Crew">
+		SELECT crewId,crewName,crewTel,crewEmail,crewBirth,crewchatwarning
+		FROM crew
+		ORDER BY crewName ASC
+	</select>
+
+	<select id="readCrewState" parameterType="String" resultType="com.et.crew.Crew">
+		SELECT crewId, crewBirth, crewChatWarning, crewName, crewPwd, crewTel, crewEmail
+		FROM crew
+		WHERE crewId=#{crewId}
+	</select>
 </mapper> 

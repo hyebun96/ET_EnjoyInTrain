@@ -27,7 +27,7 @@
 							<li class="active"><a href="#">매출관리</a></li>
 							<li class="active"><a href="<%=cp%>/employee/list">직원</a></li>
 							<li class="active"><a href="<%=cp%>/admin/crewManage/list">회원관리</a></li>
-							<li class="active"><a href="#">등등등</a></li>
+							<li class="active"><a href="<%=cp%>/admin/notice/list">게시판관리</a></li>
 						</ul>
 					</nav>
 			</div>

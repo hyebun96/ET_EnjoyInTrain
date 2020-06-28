@@ -7,7 +7,7 @@
 %>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 
-<style>
+<style type="text/css">
 .homepage #main{
 	margin-top: 0em;
     padding-top: 0em;
@@ -23,16 +23,6 @@
     margin-bottom: 20px;
 }
 
-tr.over {
-	background: #f5fffa;
-	cursor: pointer;
-}
-
-.listname1{
-	padding-left: 20px;
-}
-
-
 .btn{
 	width: 80px; 
 	height: 30px; 
@@ -40,70 +30,6 @@ tr.over {
 	background-color: white; 
 	border-color: #cccccc;
 	border-radius: 10px;
-}
-
-.btn1{
-	width: 80px; 
-	height: 25px; 
-	margin-top: 20px; 
-	background-color: white; 
-	border-color: #cccccc;
-	border-radius: 10px;
-}
-
-.btnsearch{
-	width: 55px; 
-	height: 25px;  
-	margin-top: 20px; 
-	background-color: white; 
-	border-color: #cccccc;
-	border-radius: 10px;
-}
-
-.menu-heght1{
-	width: 100%; 
-	border-spacing: 0px; 
-	margin: 0px auto; 
-	border-collapse: collapse;
-
-}
-
-.menu-heght1{
-	height=35; 
-	border-bottom: 1px solid #cccccc;
-}
-
-.qu:hover{
-	background: #f5fffa;
-}
-
-ul.tabs {
-	margin: 0;
-	padding: 0;
-	float: left;
-	list-style: none;
-	height: 35px;
-	border-bottom: 1px solid #dddddd;
-	width: 100%;
-}
-ul.tabs li {
-	float: left;
-	margin: 0;
-	cursor: pointer;
-	padding: 0px 21px ;
-	height: 35px;
-	line-height: 35px;
-	overflow: hidden;
-	position: relative;
-	background: #ffffff;
-}
-ul.tabs li:hover {
-	background: #e7e7e7;
-}	
-ul.tabs li.active{
-	font-weight: 700;
-	border: 1px solid #dddddd;
-	border-bottom-color:  transparent;
 }
 
 a {
@@ -123,14 +49,22 @@ a {
 	line-height:35px;
 	border-bottom: 1px solid #cccccc;
 	border-radius: 0px;
+	width : 800px;
 }
 .hover-tr:hover {
 	cursor: pointer;
 	background: #fffdfd;
 }
 
-</style>
+.ui-dialog .ui-dialog-content {
+    position: relative;
+    border: 0;
+    padding: .5em 1em;
+    background: none;
+    overflow: inherit;
+}
 
+</style>
 
 <script type="text/javascript">
 function searchList() {
@@ -147,9 +81,6 @@ function detailedCrew(crewId) {
 			" 수정 " : function() {
 				updateOk();
 			},
-			" 삭제 " : function() {
-	    	    deleteOk(userId);
-		   },
 	       " 닫기 " : function() {
 	    	    $(this).dialog("close");
 	       }
@@ -210,28 +141,8 @@ function updateOk() {
 			console.log(jqXHR.responseText);
 		}
 	});
-	$('crew-dialog').dialog("close");	
+	$('#crew-dialog').dialog("close");	
 }
-
-function deleteOk(crewId) {
-	if(confirm('선택한 계정을 삭제하시겠습니까?')){
-		
-	}
-	$('crew-dialog').dialog("close");	
-}
-
-function crewStateDetailView() {
-	$('crewStateDetail').dialog({
-		modal : true,
-		minHeight : 100,
-		maxHeight : 450,
-		width : 750,
-		title: '계정상태 상세 ',
-		close : function(event, ui) {
-		}
-	});
-}
-
 
 
 </script>
@@ -275,7 +186,14 @@ function crewStateDetailView() {
 						<h2>회원관리</h2>
 					</header>
 					
-					<div>		
+					<div>	
+					<table style="width: 100%; margin: 20px auto 0px; border-spacing: 0px;">
+					   <tr height="35">
+					      <td align="right" width="50%">
+					          ${dataCount}명(${page}/${total_page} 페이지)
+					      </td>
+						</tr>
+					</table>	
 						<table style="width: 100%; margin: 0px auto; border-spacing: 0px; border-collapse: collapse;">
 			               <tr align="center" bgcolor="#eeeeee" height="35" style="border-top: 2px solid #cccccc; border-bottom: 1px solid #cccccc;"> 
 						      <th style="width: 60px; color: #787878;">번호</th>
@@ -289,7 +207,7 @@ function crewStateDetailView() {
 						 
 						 <c:forEach var="dto" items="${list}">
 						  <tr align="center" height="35" style="border-bottom: 1px solid #cccccc;" class="hover-tr"
-						      onclick="deteailedCrew('${dto.crewId}');"> 
+						      onclick="detailedCrew('${dto.crewId}');"> 
 						      <td>${dto.listNum}</td>
 						      <td>${dto.crewId}</td>
 						      <td>${dto.crewName}</td>
@@ -336,8 +254,8 @@ function crewStateDetailView() {
 			</div>
 			<!-- /메인내용 -->
 			
-			<div id="crew-dialog" style="display: none;">
-			</div>
 		</div>
 	</div>
+</div>
+<div id="crew-dialog" style="display: none;">
 </div>

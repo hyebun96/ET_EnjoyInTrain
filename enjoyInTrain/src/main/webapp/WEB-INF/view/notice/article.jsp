@@ -13,14 +13,6 @@
 }
 </style>
 <script type="text/javascript">
-function deleteNotice() {
-	  var q = "noticeNum=${dto.noticeNum}&${query}";
-	  var url = "<%=cp%>/notice/delete?" + q;
-
-	  if(confirm("위 자료를 삭제 하시 겠습니까 ? "))
-	  	location.href=url;
-	}
-
 function updateNotice() {
 	  var q = "noticeNum=${dto.noticeNum}&page=${page}";
 	  var url = "<%=cp%>/notice/update?" + q;
@@ -120,21 +112,9 @@ function updateNotice() {
 								</td>
 			       			 	
 							</tr>
-							
-							
-							<tr>
-								<td colspan="4">
-								<button type="button" class="articlebtn" onclick="javascript:location.href='<%=cp%>/notice/list?${query}';">리스트</button>
-								<c:if test="${sessionScope.crew.crewId=='a'}">	    
-			          			<button type="button" class="articlebtn" onclick="updateNotice();">수정</button>
-			          			<button type="button" class="articlebtn" onclick="deleteNotice();">삭제</button>
-			          			</c:if>
-			          			</td>
-							</tr>
 						</table>
 			        </form>
 						
-			         	
 			        </div>
 						</section>
 					</div>

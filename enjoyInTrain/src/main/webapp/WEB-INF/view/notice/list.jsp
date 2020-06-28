@@ -114,17 +114,8 @@ function searchList() {
 										
 								</tbody>
 							</table>
-								
-							<table style="width: 100%; border-spacing: 0px;">
-							   <tr height="35">
-								<td align="right">
-									<c:if test="${sessionScope.crew.crewId=='a'}">
-		         							 <button type="button" class="articlebtn" onclick="javascript:location.href='<%=cp%>/notice/created';">글올리기</button>
-		         					</c:if> 
-								 </td>
-							   </tr>
-							</table>
-												${dataCount==0 ? "게시글이 없습니다.":paging}
+							
+							${dataCount==0 ? "게시글이 없습니다.":paging}
 							
 							</div>
 							

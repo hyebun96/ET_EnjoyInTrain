@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.text.html.FormSubmitEvent.MethodType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -101,7 +100,7 @@ public class CrewManageController {
 	}
 	
 	// AJAX-Text
-	@RequestMapping(value="/admin/CrewManage/detaile")
+	@RequestMapping(value="/admin/crewManage/detaile")
 	public String detailedCrew(
 			@RequestParam String crewId,
 			Model model) throws Exception {

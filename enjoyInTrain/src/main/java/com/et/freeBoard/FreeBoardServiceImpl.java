@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.et.common.FileManager;
 import com.et.common.dao.CommonDAO;
 
-@Service("freeBoard.freeBoardService")
+@Service(".admin.freeBoard.freeBoardService")
 public class FreeBoardServiceImpl implements FreeBoardService {
 
 	@Autowired
