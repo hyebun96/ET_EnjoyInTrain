@@ -8,7 +8,7 @@
 <!-- Copyright -->
 <div id="footer0000">
 		<div class="footer1">
-			<a href="<%=cp%>/main"><img src="<%=cp%>/resource/images/mainlogo.png" width="70px;" height="70px;"></a>
+			<a href="<%=cp%>/main"><img src="<%=cp%>/resource/images/mainlogo1.png" width="70px;" height="70px;"></a>
 		</div>
 		<div class="footer2">
 			상호 : Enjoy in Train | 사업자등록 : 789-12-45687 | 주소: 서울시 마포구 서교동 56-8 | Tel: 02-1234-2589 | Fax: 02-1234-2589
