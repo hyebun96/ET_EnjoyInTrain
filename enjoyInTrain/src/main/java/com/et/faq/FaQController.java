@@ -45,11 +45,13 @@ public class FaQController {
 	
 	@RequestMapping(value="created", method = RequestMethod.GET)
 	public String createdForm(
+			@RequestParam(defaultValue="0") int group,
 			Model model) throws Exception{
 		
 		List<FAQ> groupList = service.listCategory();
 		
 		model.addAttribute("mode","created");
+		model.addAttribute("group", group);
 		model.addAttribute("groupList",groupList);
 		
 		return ".faq.created";

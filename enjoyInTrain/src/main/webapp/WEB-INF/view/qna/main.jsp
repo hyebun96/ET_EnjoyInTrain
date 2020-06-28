@@ -304,6 +304,7 @@ function sendOk(mode) {
 								<li><a href="<%=cp%>/qna/main">QNA</a></li>
 								<li><a href="<%=cp%>/faq/list">FAQ</a></li>
 								<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
+								<li><a href="<%=cp%>/suggest/list">고객의 소리</a></li>
 							</ul>
 						</section>
 					</div>
