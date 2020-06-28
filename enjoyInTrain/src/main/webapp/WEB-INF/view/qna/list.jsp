@@ -106,9 +106,9 @@ ul.tabs li.active{
 							<span style="float: right;">답변완료&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						</c:if>
 						<c:if test="${dto.qnaContent == null}">
-							<span style="float: right;">답변준비&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							<span style="float: right;">&nbsp;미답변&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						</c:if>
-						<span style="float: right;">${dto.crewId}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<span style="float: right;">${dto.crewName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 					</td>
 				</tr>
 			</c:forEach>
