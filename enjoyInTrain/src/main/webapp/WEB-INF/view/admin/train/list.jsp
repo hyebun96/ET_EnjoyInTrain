@@ -6,6 +6,13 @@
    String cp = request.getContextPath();
 %>
 <link rel="stylesheet" href="<%=cp%>/resource/css/trainlist.css" type="text/css">
+<style>
+	#insertTrain_dialog input {
+		width: 100px;
+		margin-right: 5px;
+	}
+</style>
+
 <script type="text/javascript">
 $(function() {
 	$("#insertTrain").click(function() {
@@ -39,10 +46,11 @@ $(function () {
 			var n = document.insertTrainForm.trainRoomCount.value;
 			var s="";
 			for(var i=1; i<=n; i++) {
-				s+="<tr><td>호실 : <input type='text' name='roomNums' value='"+i+"' readonly='readonly' style='width:50px;'></td>";
-				s+="<td id='roomSetting_grade'><input type='text' name='roomNames'></td>";
-				s+="<td>좌석(행) : <input type='text' name='seatRows' style='width:50px;'></td>"
-				s+="<td>좌석(열) : <input type='text' name='seatColumns' style='width:50px;'></td></tr>"
+				s+="<tr><td><label> 호실 : <input type='text' name='roomNums' value='"+i+"' readonly='readonly' ></label></td>";
+				s+="<td id='roomSetting_grade'><select name='roomNames' >";
+				s+="<option value='일반'>일반</option><option value='특실'>특실</option></select></td>"
+				s+="<td><input type='text' name='seatRows'  placeholder='좌석(행)'></td>"
+				s+="<td><input type='text' name='seatColumns'  placeholder='좌석(열)'></td></tr>"
 			}
 			s+="<tr><td><button type='button' onclick='send();'>등록</button></td></tr>";
 			$("#roomSetting").html(s);
@@ -143,7 +151,7 @@ function send() {
 				<table>
 					<tr>
 						<td id="train_question">기차종류</td>
-						<td id="train_answer"><input type="text" name="trainCategory"></td>
+						<td id="train_answer"><input type="text" name="trainCategory" ></td>
 						<td id="train_question">칸수</td>
 						<td id="train_answer">
 							<select name="trainRoomCount">

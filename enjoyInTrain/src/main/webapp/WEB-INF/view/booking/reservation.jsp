@@ -2,6 +2,7 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	String cp=request.getContextPath();
 %>
@@ -28,6 +29,22 @@ function reservation() {
 	
 	f.submit();
     return true;
+}
+
+function changeEmail() {
+    var f = document.reservationForm;
+	    
+    var str = f.selectEmail.value;
+    if(str!="direct") {
+        f.email2.value=str; 
+        f.email2.readOnly = true;
+        f.email1.focus(); 
+    }
+    else {
+        f.email2.value="";
+        f.email2.readOnly = false;
+        f.email1.focus();
+    }
 }
 </script>
 <link rel="stylesheet" href="<%=cp%>/resource/css/reservation.css" type="text/css">
@@ -94,15 +111,15 @@ function reservation() {
 								<tr><td id="reservation_info_title" colspan="6">■ 선택상품정보</td></tr>
 								<tr>
 									<td id="reservation_info_question">상품명</td>
-									<td colspan="5" id="reservation_info_answer">(레일티켓)한복입고 떠나는 경복궁＇북촌 한옥마을 투어(당일)</td>
+									<td colspan="5" id="reservation_info_answer">${startDto.pmTitle}</td>
 								</tr>
 								<tr>
 									<td id="reservation_info_question">상품코드</td>
-									<td id="reservation_info_answer">${dto.pmCode}</td>
+									<td id="reservation_info_answer">${startDto.pmCode}</td>
 									<td id="reservation_info_question">출발일자</td>
-									<td id="reservation_info_answer">${dto.prStartDate}</td>
+									<td id="reservation_info_answer">${startDto.pmStartDate}</td>
 									<td id="reservation_info_question">예약인원</td>
-									<td id="reservation_info_answer">${dto.prPersonal}</td>
+									<td id="reservation_info_answer">${prPersonal}</td>
 								</tr>
 							</table>
 							
@@ -116,7 +133,7 @@ function reservation() {
 									<td id="reservation_report_num" rowspan="5">1</td>
 									<td id="reservation_report_group" rowspan="5">가는열차</td>
 									<td id="reservation_report_question">상품명</td>
-									<td id="reservation_report_answer">${dto.prStartTrain}</td>
+									<td id="reservation_report_answer">${startDto.trainCode}</td>
 									<td id="reservation_report_question">객실등급</td>
 									<td id="reservation_report_answer">
 										<select>
@@ -128,42 +145,32 @@ function reservation() {
 								</tr>
 								<tr>
 									<td id="reservation_report_question">이용기간</td>
-									<td id="reservation_report_answer" colspan="3">2020년 6월 28일 (일)</td>
+									<td id="reservation_report_answer" colspan="3">${startDto.pmStartDate}</td>
 
 								</tr>
 
 								<tr>
 									<td id="reservation_report_question">출발역</td>
-									<td id="reservation_report_answer">부산(06:10)</td>
+									<td id="reservation_report_answer">${startDto.startStation}(06:10)</td>
 									<td id="reservation_report_question">도착역</td>
-									<td id="reservation_report_answer">서울(09:03)</td>
+									<td id="reservation_report_answer">${startDto.endStation}(09:03)</td>
 								</tr>
 								<tr>
 									<td id="reservation_report_question">이용인원</td>
 									<td id="reservation_report_answer" colspan="3">
 										<select>
-										   <c:forEach var="n" begin="0" end="5">
+										   <c:forEach var="n" begin="0" end="${prPersonal}">
 										   		<option value="${n}">성인${n}명</option>
 										   </c:forEach>
 										</select>
 										<select>
-											 <c:forEach var="n" begin="0" end="5">
+											 <c:forEach var="n" begin="0" end="${prPersonal}">
 										   		<option value="${n}">어린이${n}명</option>
 										   </c:forEach>
 										</select>
 										<select>
-											 <c:forEach var="n" begin="0" end="5">
+											 <c:forEach var="n" begin="0" end="${prPersonal}">
 										   		<option value="${n}">경로${n}명</option>
-										   </c:forEach>
-										</select>
-										<select>
-											 <c:forEach var="n" begin="0" end="5">
-										   		<option value="${n}">장애인${n}명</option>
-										   </c:forEach>
-										</select>
-										<select>
-											 <c:forEach var="n" begin="0" end="5">
-										   		<option value="${n}">동반유아${n}명</option>
 										   </c:forEach>
 										</select>
 									</td>
@@ -174,19 +181,19 @@ function reservation() {
 								</tr>
 								<tr>
 									<td id="reservation_report_num" rowspan="3">2</td>
-									<td id="reservation_report_group" rowspan="3">북촌 한복대여권</td>
+									<td id="reservation_report_group" rowspan="3">${startDto.product}</td>
 									<td id="reservation_report_question">상품명</td>
-									<td id="reservation_report_answer" colspan="3">전통한복 대여권(2시간30분)</td>
+									<td id="reservation_report_answer" colspan="3">${startDto.product}</td>
 								</tr>
 								<tr>
 									<td id="reservation_report_question">이용기간</td>
-									<td id="reservation_report_answer" colspan="3">2020년 6월 28일 (일) 한복대여권(2시간 30분)</td>
+									<td id="reservation_report_answer" colspan="3">${startDto.product}</td>
 								</tr>
 								<tr>
 									<td id="reservation_report_question">이용인원</td>
 									<td id="reservation_report_answer">
 										<select>
-											 <c:forEach var="n" begin="0" end="5">
+											 <c:forEach var="n" begin="0" end="${prPersonal}">
 										   		<option value="${n}">${n}명</option>
 										   </c:forEach>
 										</select>
@@ -194,18 +201,18 @@ function reservation() {
 									<td id="reservation_report_question">이용수량</td>
 									<td id="reservation_report_answer">
 										<select>
-											<c:forEach var="n" begin="0" end="5">
+											<c:forEach var="n" begin="0" end="${prPersonal}">
 										   		<option value="${n}">${n}명</option>
 										   </c:forEach>
 										</select>
-										(기준 1인/최대1인)
+										(기준 1인/최대 ${prPersonal} 인)
 									</td>
 								</tr>
 								<tr>
 									<td id="reservation_report_num" rowspan="5">3</td>
 									<td id="reservation_report_group" rowspan="5">오는열차</td>
 									<td id="reservation_report_question">상품명</td>
-									<td id="reservation_report_answer">${dto.prEndTrain}</td>
+									<td id="reservation_report_answer">${endDto.trainCode}</td>
 									<td id="reservation_report_question">객실등급</td>
 									<td id="reservation_report_answer">
 										<select>
@@ -223,36 +230,26 @@ function reservation() {
 
 								<tr>
 									<td id="reservation_report_question">출발역</td>
-									<td id="reservation_report_answer">서울(20:00)</td>
+									<td id="reservation_report_answer">${endDto.startStation}(20:00)</td>
 									<td id="reservation_report_question">도착역</td>
-									<td id="reservation_report_answer">부산(22:37)</td>
+									<td id="reservation_report_answer">${endDto.endStation}(22:37)</td>
 								</tr>
 								<tr>
 									<td id="reservation_report_question">이용인원</td>
 									<td id="reservation_report_answer" colspan="3">
 										<select>
-										   <c:forEach var="n" begin="0" end="5">
+										   <c:forEach var="n" begin="0" end="${prPersonal}">
 										   		<option value="${n}">성인${n}명</option>
 										   </c:forEach>
 										</select>
 										<select>
-											 <c:forEach var="n" begin="0" end="5">
+											 <c:forEach var="n" begin="0" end="${prPersonal}">
 										   		<option value="${n}">어린이${n}명</option>
 										   </c:forEach>
 										</select>
 										<select>
-											 <c:forEach var="n" begin="0" end="5">
+											 <c:forEach var="n" begin="0" end="${prPersonal}">
 										   		<option value="${n}">경로${n}명</option>
-										   </c:forEach>
-										</select>
-										<select>
-											 <c:forEach var="n" begin="0" end="5">
-										   		<option value="${n}">장애인${n}명</option>
-										   </c:forEach>
-										</select>
-										<select>
-											 <c:forEach var="n" begin="0" end="5">
-										   		<option value="${n}">동반유아${n}명</option>
 										   </c:forEach>
 										</select>
 									</td>
@@ -294,13 +291,13 @@ function reservation() {
 								<tr>
 									<td id="travler_info_question">예약자 이름</td>
 									<td id="travler_info_name">
-										<input type="text" name="traveler">
+										<input type="text" name="traveler" value="${dto.crewName}">
 									</td>
 									<td id="travler_info_question">생년월일</td>
 									<td id="travler_info_birth">
-										<input type="text" name="year">년
-										<input type="text" name="month">월
-										<input type="text" name="day">일
+										<input type="text" name="year" value="${fn:substring(dto.crewBirth, 0, 4)}">년
+										<input type="text" name="month" value="${fn:substring(dto.crewBirth, 5, 7)}">월
+										<input type="text" name="day" value="${fn:substring(dto.crewBirth, 8, 10)}">일
 									</td>
 								</tr>
 								<tr>
@@ -314,23 +311,24 @@ function reservation() {
 											<option value="018">018</option>
 											<option value="019">019</option>
 										</select>
-										- <input type="text" name="tel2">
-										- <input type="text" name="tel3">
+										- <input type="text" name="tel2" value="${fn:substring(dto.crewTel, 4, 8)}">
+										- <input type="text" name="tel3" value="${fn:substring(dto.crewTel, 9, 13)}">
 									</td>
 								</tr>
 								<tr>
 									<td id="travler_info_question">이메일</td>								
 									<td id="travler_info_email" colspan="3">
-										<input type="text" name="email1">
-										<input type="text" name="email2">
-										<select>
-											<option>직접입력</option>
-											<option>nate.com</option>
-											<option>empal.com</option>
-											<option>hanmail.com</option>
-											<option>naver.com</option>
-											<option>yahoo.com</option>
-											<option>google.com</option>
+										<input type="text" name="email1" value="${fn:split(dto.crewEmail,'@')[0]}"> @ 
+										<input type="text" name="email2" value="${fn:split(dto.crewEmail,'@')[1]}">
+										<select name="selectEmail" onchange="changeEmail()" >
+											<option>선 택</option>
+											<option value="direct" ${email2==""?"selected='selected'":""}>직접입력</option>
+											<option value="nate.com" ${fn:split(dto.crewEmail,'@')[1]=="nate.com"?"selected='selected'":""}>nate.com</option>
+											<option value="empal.com" ${fn:split(dto.crewEmail,'@')[1]=="empal.com"?"selected='selected'":""}>empal.com</option>
+											<option value="hanmail.com" ${fn:split(dto.crewEmail,'@')[1]=="hanmail.com"?"selected='selected'":""}>hanmail.com</option>
+											<option value="naver.com" ${fn:split(dto.crewEmail,'@')[1]=="naver.com"?"selected='selected'":""}>naver.com</option>
+											<option value="yahoo.com" ${fn:split(dto.crewEmail,'@')[1]=="yahoo.com"?"selected='selected'":""}>yahoo.com</option>
+											<option value="gogle.com" ${fn:split(dto.crewEmail,'@')[1]=="gogle.com"?"selected='selected'":""}>google.com</option>
 										</select>
 									</td>
 								</tr>

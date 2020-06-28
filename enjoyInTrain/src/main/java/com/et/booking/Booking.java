@@ -1,38 +1,44 @@
 package com.et.booking;
 
 public class Booking {
-	private int prCode;				// 상품코드 	ge
+	private int prCode;					// 상품코드 	get
 	private String pmCode;
 	private String pmTitle;				// 프로모션 상품명
-	private String pmDate;			// 프로모션 시작일(맵퍼에서 받아오지 않음) get
+	private String pmStartDate;
+	private String pmEndDate;
 	private int pmPrice;				// 프로모션 가격
 	private int pmMaxCount;				// 최대인원
 	private String prGrade;				// 이용인원 구분(성인,유아 등등..) / 보류
-	private int prPersonal; 				// 예약인원 get
+	private int prPersonal; 			// 예약인원 get
 	private String startTrain; 			// 기차명	get
 	private String endTrain;			//		get
-	
+	private int trainCode;
 	// 가는 기차
+	private String stCode;				// 출발하는 기차
 	private String startStation;		// 출발하는 역 @	
 	private String endStation;			// 출발하는 역 @	
 	
 	// 오는 기차
-	private String startStation2;	// 출발하는 역 @	
-	private String endStation2;		// 도착하는 역 @
+	private String edCode;				// 돌아오는 기차
+	private String startStation2;		// 출발하는 역 @	
+	private String endStation2;			// 도착하는 역 @
+	
+	private String product;				// 프로모션 상품
+	private String productContent;		// 프로모션 상품 설명
 	
 	private String prSeatGrade;			// 객실등급
 	private String prStartTrainSeat;	// 출발역 좌석
 	private String prEndTrainSeat;		// 도착역 좌석
 	private String crewId;				// 회원 아이디
-	private String UserName;			// 예약자 이름
-	private String UserEmail;			// 예약자 이메일
+	private String crewName;			// 예약자 이름
+	private String crewEmail;			// 예약자 이메일
 	private String email1;			
 	private String email2;
-	private String UserTel;				// 예약자 전화번호
+	private String crewTel;				// 예약자 전화번호
 	private String tel1;
 	private String tel2;
 	private String tel3;
-	private String UserBirth;			// 예약자 생년월일
+	private String crewBirth;			// 예약자 생년월일
 	private String paymentDate;			// 결제기한일
 	private int payment;				// 결제 유무
 	public int getPrCode() {
@@ -53,11 +59,17 @@ public class Booking {
 	public void setPmTitle(String pmTitle) {
 		this.pmTitle = pmTitle;
 	}
-	public String getPmDate() {
-		return pmDate;
+	public String getPmStartDate() {
+		return pmStartDate;
 	}
-	public void setPmDate(String pmDate) {
-		this.pmDate = pmDate;
+	public void setPmStartDate(String pmStartDate) {
+		this.pmStartDate = pmStartDate;
+	}
+	public String getPmEndDate() {
+		return pmEndDate;
+	}
+	public void setPmEndDate(String pmEndDate) {
+		this.pmEndDate = pmEndDate;
 	}
 	public int getPmPrice() {
 		return pmPrice;
@@ -95,6 +107,18 @@ public class Booking {
 	public void setEndTrain(String endTrain) {
 		this.endTrain = endTrain;
 	}
+	public int getTrainCode() {
+		return trainCode;
+	}
+	public void setTrainCode(int trainCode) {
+		this.trainCode = trainCode;
+	}
+	public String getStCode() {
+		return stCode;
+	}
+	public void setStCode(String stCode) {
+		this.stCode = stCode;
+	}
 	public String getStartStation() {
 		return startStation;
 	}
@@ -107,6 +131,12 @@ public class Booking {
 	public void setEndStation(String endStation) {
 		this.endStation = endStation;
 	}
+	public String getEdCode() {
+		return edCode;
+	}
+	public void setEdCode(String edCode) {
+		this.edCode = edCode;
+	}
 	public String getStartStation2() {
 		return startStation2;
 	}
@@ -118,6 +148,18 @@ public class Booking {
 	}
 	public void setEndStation2(String endStation2) {
 		this.endStation2 = endStation2;
+	}
+	public String getProduct() {
+		return product;
+	}
+	public void setProduct(String product) {
+		this.product = product;
+	}
+	public String getProductContent() {
+		return productContent;
+	}
+	public void setProductContent(String productContent) {
+		this.productContent = productContent;
 	}
 	public String getPrSeatGrade() {
 		return prSeatGrade;
@@ -143,17 +185,17 @@ public class Booking {
 	public void setCrewId(String crewId) {
 		this.crewId = crewId;
 	}
-	public String getUserName() {
-		return UserName;
+	public String getCrewName() {
+		return crewName;
 	}
-	public void setUserName(String userName) {
-		UserName = userName;
+	public void setCrewName(String crewName) {
+		this.crewName = crewName;
 	}
-	public String getUserEmail() {
-		return UserEmail;
+	public String getCrewEmail() {
+		return crewEmail;
 	}
-	public void setUserEmail(String userEmail) {
-		UserEmail = userEmail;
+	public void setCrewEmail(String crewEmail) {
+		this.crewEmail = crewEmail;
 	}
 	public String getEmail1() {
 		return email1;
@@ -167,11 +209,11 @@ public class Booking {
 	public void setEmail2(String email2) {
 		this.email2 = email2;
 	}
-	public String getUserTel() {
-		return UserTel;
+	public String getCrewTel() {
+		return crewTel;
 	}
-	public void setUserTel(String userTel) {
-		UserTel = userTel;
+	public void setCrewTel(String crewTel) {
+		this.crewTel = crewTel;
 	}
 	public String getTel1() {
 		return tel1;
@@ -191,11 +233,11 @@ public class Booking {
 	public void setTel3(String tel3) {
 		this.tel3 = tel3;
 	}
-	public String getUserBirth() {
-		return UserBirth;
+	public String getCrewBirth() {
+		return crewBirth;
 	}
-	public void setUserBirth(String userBirth) {
-		UserBirth = userBirth;
+	public void setCrewBirth(String crewBirth) {
+		this.crewBirth = crewBirth;
 	}
 	public String getPaymentDate() {
 		return paymentDate;

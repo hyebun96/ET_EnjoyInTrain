@@ -235,7 +235,7 @@ function reservation(){
 </script>
 	<p>상세</p>
 
-<form name="travelArticleForm" method="get" enctype="multipart/form-data" s>
+<form name="travelArticleForm" method="get" enctype="multipart/form-data">
 	<table id="travelTable"
 		style="border-spacing: 0px; border-collapse: collapse;">
 		<tr align="left" height="40"
@@ -326,7 +326,7 @@ function reservation(){
 		<tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
 		<td class="title"   style="text-align: center;">출발일자</td>
 			<td style="padding-left: 10px; width: 343px;">
-				<input type="date" name="prStartDate" id="date">
+				<input type="date" name="pmStartDate" id="date">
 			</td>
 		</tr>
 		
@@ -356,7 +356,7 @@ function reservation(){
 				<c:if test="${vo == startList.get(0)}">
 					<td class="title" rowspan="${startLength}">오는 열차</td>
 				</c:if>
-				<td class="title"><input type="checkbox" name="prStartTrain" value="${vo.trainCode}"></td>
+				<td class="title"><input type="checkbox" name="startTrain" value="${vo.trainCode}"></td>
 				<td class="title">${vo.trainName}</td>
 				<td class="title">${vo.trainCode}</td>
 				<td class="title">${vo.startTime}</td>
@@ -382,7 +382,7 @@ function reservation(){
 				<c:if test="${vo == endList.get(0)}">
 					<td class="title"  rowspan="${endLength}">가는 열차</td>
 				</c:if>
-				<td class="title"><input type="checkbox" name="prEndTrain" value="${vo.trainCode}"></td>
+				<td class="title"><input type="checkbox" name="endTrain" value="${vo.trainCode}"></td>
 				<td class="title">${vo.trainName}</td>
 				<td class="title">${vo.trainCode}</td>
 				<td class="title">${vo.startTime}</td>

@@ -21,13 +21,13 @@ public class BookingServiceImpl implements BookingService{
 	}
 
 	@Override
-	public Booking readPromotionDetail(Map<String, Object> map) {
-		Booking dto = null;
+	public List<Booking> readPromotionDetail(Map<String, Object> map) {
+		List<Booking> list = null;
 		try {
-			dto = dao.selectOne("booking.readPromotionDetail", map);
+			list = dao.selectList("booking.readTravel", map);
 		} catch (Exception e) {
 		}
-		return dto;
+		return list;
 	}
 
 	@Override
@@ -52,6 +52,16 @@ public class BookingServiceImpl implements BookingService{
 	public Booking readReservation() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Booking readCrew(Map<String, Object> map) {
+		Booking dto = null;
+		try {
+			dto=dao.selectOne("booking.readCrew", map);
+		} catch (Exception e) {
+		}
+		return dto;
 	}
 
 

@@ -1,13 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="temp">
-<!-- 프로모션예약 -->
-	<insert id="insertReservation" parameterType="map">
-		INSERT INTO pmReservation(prCode, pmCode, prUsingDate, prPersonnel, prUserCount, prAddUserName, 
-								  prAddUserCount, prAddUserPersonnel, prbasicPrice, prAddPrice, prTotalPrice)
-					VALUES(#{prCode}, #{pmCode}, #{prUsingDate}, #{prPersonnel}, #{prUserCount}, #{prAddUserName}, 
-						   #{prAddUserCount}, #{prAddUserPersonnel}, #{prbasicPrice}, #{prAddPrice}, #{prTotalPrice})
-	</insert>
-	<insert id=""></insert>
+<mapper namespace="booking">
+
+	<select id="listStation" resultType="com.et.travel.Station">
+		SELECT sCode, sName, line, lineOrder, engName
+		FROM station
+		ORDER BY sCode DESC
+	</select>
+
+	<!-- 프로모션 읽어오기 -->
+	<select id="readTravel" parameterType="map" resultType="com.et.booking.Booking">
+		SELECT pd.pmCode, TO_CHAR(pmStartDate, 'YYYY-MM-DD') pmStartDate, pmEndDate, pmTitle, pmContent, pmPrice, pmMaxCount, 
+			product, productContent, p.traincode, p.startStation, p.endStation
+		FROM promotionDetail pd
+		JOIN promotion p ON pd.pmCode = p.pmCode
+		WHERE pd.pmCode = #{pmCode} AND (p.traincode = #{startTrain} OR p.traincode = #{endTrain})
+	</select>
+	
+	
+	<select id="readPromotion" parameterType="String" resultType="com.et.travel.Travel">
+		SELECT pmCode, trainCode
+		FROM promotion
+		WHERE pmCode= #{trainCode};
+	</select>
+	
+	<select id="readCrew" parameterType="map" resultType="com.et.booking.Booking">
+		SELECT crewName, crewTel, crewEmail, crewBirth
+		FROM crew
+		WHERE crewId=#{crewId}
+	</select>
+	
+	<!--  짝수 : 하행선 -->
+	<select id="startlist1" parameterType="map" resultType="com.et.travel.Promotion">
+		SELECT pmCode, startStation, endStation
+		FROM promotion p
+		JOIN STATIONLINE6 t ON p.traincode = t.traincode
+		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 0
+	</select>
+	
+	<select id="startlist2" parameterType="com.et.travel.Promotion" resultType="com.et.travel.Promotion">
+		SELECT pmCode, p.trainCode, trainName, startStation, endStation, ${startStation} startTime, ${endStation} endTime
+		FROM promotion p
+		JOIN STATIONLINE6 t ON p.traincode = t.traincode
+		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 0
+	</select>
+	
+	<!-- 홀수 : 상행선 -->
+	<select id="endlist1" parameterType="map" resultType="com.et.travel.Promotion">
+		SELECT pmCode, startStation, endStation
+		FROM promotion p
+		JOIN STATIONLINE6 t ON p.traincode = t.traincode
+		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 1
+	</select>
+	
+	<select id="endlist2" parameterType="com.et.travel.Promotion" resultType="com.et.travel.Promotion">
+		SELECT pmCode, p.trainCode, trainName, startStation, endStation, ${startStation} endTime, ${endStation} startTime
+		FROM promotion p
+		JOIN STATIONLINE6 t ON p.traincode = t.traincode
+		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 1
+	</select>
+
 </mapper>
