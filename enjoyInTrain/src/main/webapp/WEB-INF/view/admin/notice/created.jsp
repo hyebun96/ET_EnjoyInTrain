@@ -16,7 +16,7 @@
 <script type="text/javascript">
   <c:if test="${mode=='update'}">
   function deleteFile(noticeFileNum) {
-		var url="<%=cp%>/notice/deleteFile";
+		var url="<%=cp%>/admin/notice/deleteFile";
 		$.post(url, {noticeFileNum:noticeFileNum}, function(data){
 			$("#f"+noticeFileNum).remove();
 		}, "json");
@@ -43,7 +43,7 @@
             return;
         }
 
-    	f.action="<%=cp%>/notice/${mode}";
+    	f.action="<%=cp%>/admin/notice/${mode}";
 
         f.submit();
     }
@@ -73,7 +73,7 @@
 								<li><a href="#">회원가입</a></li>
 								<li><a href="#">QnA</a></li>
 								<li><a href="#">FAQ</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
+								<li><a href="<%=cp%>/admin/notice/list">공지사항</a></li>
 								<li><a href="#">유실물</a></li>
 								<li><a href="#">자유게시판</a></li>
 								<li><a href="#">신고</a></li>
@@ -114,7 +114,7 @@
 			        </form>
 					<button type="button" class="articlebtn" onclick="sendOk();">${mode=='update'?'수정완료':'등록하기'}</button>
 			        <button type="reset" class="articlebtn">다시입력</button>
-			        <button type="button" class="articlebtn" onclick="javascript:location.href='<%=cp%>/notice/list';">${mode=='update'?'수정취소':'등록취소'}</button>
+			        <button type="button" class="articlebtn" onclick="javascript:location.href='<%=cp%>/admin/notice/list';">${mode=='update'?'수정취소':'등록취소'}</button>
 			        <c:if test="${mode=='update'}">
 			         	 <input type="hidden" name="noticeNum" value="${dto.noticeNum}">
 			        	 <input type="hidden" name="page" value="${page}">
