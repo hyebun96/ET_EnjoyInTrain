@@ -60,7 +60,7 @@
 								</tr>
 								<tr>
 									<td colspan="2" class="mainreservationbuttontd">
-										<button type="button" class="mainreservationbutton" onclick=""> ♬예메 조회 ▷ </button>
+										<button type="button" class="mainreservationbutton" onclick=""> ♬예메 ▷ </button>
 									</td>
 								</tr>
 							</table>
@@ -247,8 +247,8 @@
 							<a href="<%=cp%>/notice/list" class="button">자세히 보기 ▷</a>
 							</div>
 					</div>
-			</div>
 			
+			</div>
 			
 			</div>
 			

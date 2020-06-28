@@ -14,7 +14,7 @@
 
 	body
 	{
-		background: #fff url(images/img01.jpg) repeat;
+		background: none;
 	}
 
 	body,input,textarea,select
@@ -841,10 +841,10 @@
 
 .menu {
     margin:0px auto;
-    width: 100%;
-    min-height: 100px;
+    width: 1519px;
 	box-sizing: border-box;
 	text-align: center;
+	height: 150px;
 }
 
 ul.nav {
@@ -852,6 +852,7 @@ ul.nav {
   padding: 0;
   list-style: none;
   display: inline-block;
+  margin-top: 10px;
 }
 
 ul.nav li { 
@@ -870,35 +871,49 @@ ul.nav li a {
 }
 
 ul.nav .current a, ul.nav .navbar:hover > a {
-  font-weight : 600;
   text-decoration: none;
   border-bottom: 2px solid #6f047f;
-  
+  position: relative; 
 }
 
 ul.nav ul {
   display: none;
 }
 
+ul.nav .navbar{
+	text-align: center;
+	font-family: sans-serif;
+	font-weight: 900;
+	font-size: 20px;
+}
+
+ul.nav .navbar a{
+	padding-top: 20px;
+}
+
 ul.nav .navbar:hover > ul {
   position: absolute;
   display: block;
-  width: 60%;
-  height: 40px;
   margin: 40px 0 0 -1px;
-  z-index: 101;
   box-sizing: border-box;
-  padding-top: 20px;
+  padding-top: 50px;
+  text-align: center;
+  font-size: 15px;
+  
 }
+.navbar2{left: 33%;}
+.navbar3{left: 60%;}
+.navbar4{left: 70%;}
 
 
 ul.nav li:hover > ul li a {
-  float: left;
   line-height: 39px;
   color: #333;
   text-decoration: none;
   margin: 0;
   padding: 0 20px 0 20px;
+  text-align: center;
+  
 }
 
 ul.nav li:hover > ul li a:hover {
@@ -936,6 +951,7 @@ ul.nav li:hover > ul li a:hover {
 	#page1{
 		position: relative;
 		background: #f7f6f7;
+		
 	}
 
 	#main
@@ -982,7 +998,6 @@ ul.nav li:hover > ul li a:hover {
 	#copyright
 	{
 		position: relative;
-		padding: 3em 0em 0em 0em;
 		border-top: 1px solid #303030;
 		letter-spacing: 1px;
 		text-align: center;
@@ -1167,3 +1182,35 @@ ul.nav li:hover > ul li a:hover {
 .mainhot a:hover {
 	color: #eeaa43;
 }
+
+#footer0000{
+	width: 1519px;
+	position: relative;
+	height: 100px;
+	background: #666666;
+	padding-top: 20px;
+	font-style: italic;
+	color: white;
+	padding-bottom: 20px;
+	font-size: 12px;
+}
+
+#footer0000 a{
+	color: white;
+}
+
+.footer1{
+	width: 20%;
+	float: left;
+	height: 70px;
+	text-align: right;
+	padding-right: 30px;
+}
+.footer2{
+	width: 80%;
+	float: left;
+	height: 70px;
+	
+}
+
+

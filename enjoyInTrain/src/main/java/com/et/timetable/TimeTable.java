@@ -1,5 +1,5 @@
 package com.et.timetable;
 
-public class Timetable {
+public class TimeTable {
 
 }

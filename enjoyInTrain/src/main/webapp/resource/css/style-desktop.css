@@ -38,11 +38,13 @@
 	#page
 	{
 		padding: 2em 0em 6em 0em;
+		
 	}
 	
 	.homepage #page
 	{
 		padding: 6em 0em;
+		padding-bottom: 500px;
 	}
 
 	#main
