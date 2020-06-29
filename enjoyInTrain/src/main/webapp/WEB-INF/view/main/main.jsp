@@ -7,9 +7,9 @@
 %>
 <link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
 
-
 	<!-- Main -->
 		<div id="page1">
+<a style="display:scroll;position:fixed;bottom:50px;right:50px; font-size: 30px;" href="#" title="맨위로"><img src="<%=cp%>/resource/images/up.png" alt="" width="50px;"></a>
 			
 			<div class="main0000">
 				<img src="<%=cp%>/resource/images/mainlogo0000.png" alt="" width="500px;" height="100px;">
@@ -67,25 +67,25 @@
 							<table class="mainreservationicon">
 								<tr>
 									<td class="mainreservationicon1">
-										<a href="#"><img src="<%=cp%>/resource/images/mainicon1.png" alt="" width="50px;">
+										<a href="#"><img src="<%=cp%>/resource/images/card.png" alt="" width="50px;">
 										<br>
 										예매 조회
 										</a>
 									</td>
 									<td class="mainreservationicon1">
-										<a href="#"><img src="<%=cp%>/resource/images/mainicon1.png" alt="" width="50px;">
+										<a href="#"><img src="<%=cp%>/resource/images/railway.png" alt="" width="50px;">
 										<br>
 										열차 시간표 조회
 										</a>
 									</td>
 									<td class="mainreservationicon1">
-										<a href="#"><img src="<%=cp%>/resource/images/mainicon1.png" alt="" width="50px;">
+										<a href="#"><img src="<%=cp%>/resource/images/phone.png" alt="" width="50px;">
 										<br>
 										 고객센터
 										 </a>
 									</td>
 									<td class="mainreservationicon1">
-										<a href="#"><img src="<%=cp%>/resource/images/mainicon1.png" alt="" width="50px;">
+										<a href="#"><img src="<%=cp%>/resource/images/lost.png" alt="" width="50px;">
 										<br>
 										 유실물 센터
 										 </a>
@@ -129,17 +129,17 @@
 											<a href="<%=cp%>/notice/list" class="button">More ▷</a>
 										</td>
 										<td>
-											<img src="<%=cp%>/resource/images/ex5.png" alt="" width="200" height="100" style="opacity: 1; background-size: cover;" >
+											<img src="<%=cp%>/resource/images/bell.png" alt="" width="100" height="100" style="opacity: 1; background-size: cover;" >
 											<a href="<%=cp%>/notice/list" class="button">More ▷</a>
 										</td>
 									</tr>
 									
 									<tr>
 										<td>
-											청바지
+											할인 제도
 										</td>
 										<td>
-											세상 단 하나뿐인 나만의 기차여행을 시작해 보자!
+											고객의 소리
 										</td>
 									</tr>
 									

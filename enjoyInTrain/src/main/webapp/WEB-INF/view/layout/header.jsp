@@ -27,21 +27,16 @@
 						<ul class="nav">
 							<li class="navbar"><a href="<%=cp%>/temp/left-sidebar.jsp">Reservation</a>
 								<ul class="navbar1">
-									<li class="active"><a href="<%=cp%>/crew/crew">회원가입</a></li>
-									<li><a href="<%=cp%>/qna/main">qna</a></li>
-									<li><a href="<%=cp%>/faq/list">faq</a></li>
-									<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-									<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
-									<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
-									<li><a href="<%=cp%>/suggest/list">고객의 소리</a></li>
+									<li><a href="<%=cp%>/qna/main">예약 하기</a></li>
+									<li><a href="<%=cp%>/faq/list">예약 조회</a></li>
+									
 								</ul>
 							</li>
 							<li class="navbar"><a href="<%=cp%>/travel/travel">Promotion</a>
 								<ul class="navbar2">
-									<li class="active"><a href="<%=cp%>/crew/crew">회원가입</a></li>
-									<li><a href="<%=cp%>/qna/main">qna</a></li>
-									<li><a href="<%=cp%>/faq/list">faq</a></li>
-									<li><a href="<%=cp%>/notice/list">공지사항</a></li>
+									<li><a href="<%=cp%>/qna/main">프로모션 예약</a></li>
+									<li><a href="<%=cp%>/faq/list">프로모션 예약 조회</a></li>
+									<li><a href="<%=cp%>/notice/list">프로모션 이용안내</a></li>
 									
 								</ul>
 							</li>
@@ -62,7 +57,10 @@
 							</li>
 							<li class="navbar"><a href="<%=cp%>/exam">게시판예시</a>
 								<ul class="navbar4">
-									
+									<li class="active"><a href="<%=cp%>/crew/crew">회원가입</a></li>
+									<li><a href="<%=cp%>/qna/main">qna</a></li>
+									<li><a href="<%=cp%>/faq/list">faq</a></li>
+									<li><a href="<%=cp%>/notice/list">공지사항</a></li>
 									<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
 									<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
 									<li><a href="<%=cp%>/suggest/list">고객의 소리</a></li>
