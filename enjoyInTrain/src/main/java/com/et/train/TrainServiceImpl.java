@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.et.common.dao.CommonDAO;
 
-@Service("manager.trainService")
+@Service("train.trainService")
 public class TrainServiceImpl implements TrainService{
 
 	@Autowired
