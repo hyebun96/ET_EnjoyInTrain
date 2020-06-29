@@ -22,7 +22,7 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul>
-							<li class="active"><a href="#">기차관리</a></li>
+							<li class="active"><a href="<%=cp%>/admin/train/list">기차관리</a></li>
 							<li class="active"><a href="#">프로모션관리</a></li>
 							<li class="active"><a href="#">매출관리</a></li>
 							<li class="active"><a href="<%=cp%>/employee/list">직원</a></li>

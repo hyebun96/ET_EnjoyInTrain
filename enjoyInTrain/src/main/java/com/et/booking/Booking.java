@@ -8,8 +8,11 @@ public class Booking {
 	private String pmEndDate;
 	private int pmPrice;				// 프로모션 가격
 	private int pmMaxCount;				// 최대인원
-	private String prGrade;				// 이용인원 구분(성인,유아 등등..) / 보류
+	private int adult;					// 성인
+	private int child;					// 유아
+	private int oldMan;					// 경로
 	private int prPersonal; 			// 예약인원 get
+	private String prGrade;				// 이용인원 구분(성인,유아 등등..) / 보류
 	private String startTrain; 			// 기차명	get
 	private String endTrain;			//		get
 	private int trainCode;
@@ -26,21 +29,18 @@ public class Booking {
 	private String product;				// 프로모션 상품
 	private String productContent;		// 프로모션 상품 설명
 	
-	private String prSeatGrade;			// 객실등급
+	private String roomGrade;			// 객실등급
+	private int prAddPrice;				// 객실등급에 따라 추가금액
 	private String prStartTrainSeat;	// 출발역 좌석
 	private String prEndTrainSeat;		// 도착역 좌석
 	private String crewId;				// 회원 아이디
 	private String crewName;			// 예약자 이름
 	private String crewEmail;			// 예약자 이메일
-	private String email1;			
-	private String email2;
 	private String crewTel;				// 예약자 전화번호
-	private String tel1;
-	private String tel2;
-	private String tel3;
 	private String crewBirth;			// 예약자 생년월일
-	private String paymentDate;			// 결제기한일
-	private int payment;				// 결제 유무
+	private String prReservationDate;	// 결제기한일
+	private int prpayment;				// 결제 유무
+	
 	public int getPrCode() {
 		return prCode;
 	}
@@ -88,6 +88,24 @@ public class Booking {
 	}
 	public void setPrGrade(String prGrade) {
 		this.prGrade = prGrade;
+	}
+	public int getAdult() {
+		return adult;
+	}
+	public void setAdult(int adult) {
+		this.adult = adult;
+	}
+	public int getChild() {
+		return child;
+	}
+	public void setChild(int child) {
+		this.child = child;
+	}
+	public int getOldMan() {
+		return oldMan;
+	}
+	public void setOldMan(int oldMan) {
+		this.oldMan = oldMan;
 	}
 	public int getPrPersonal() {
 		return prPersonal;
@@ -161,11 +179,17 @@ public class Booking {
 	public void setProductContent(String productContent) {
 		this.productContent = productContent;
 	}
-	public String getPrSeatGrade() {
-		return prSeatGrade;
+	public String getRoomGrade() {
+		return roomGrade;
 	}
-	public void setPrSeatGrade(String prSeatGrade) {
-		this.prSeatGrade = prSeatGrade;
+	public void setRoomGrade(String roomGrade) {
+		this.roomGrade = roomGrade;
+	}
+	public int getPrAddPrice() {
+		return prAddPrice;
+	}
+	public void setPrAddPrice(int prAddPrice) {
+		this.prAddPrice = prAddPrice;
 	}
 	public String getPrStartTrainSeat() {
 		return prStartTrainSeat;
@@ -197,41 +221,11 @@ public class Booking {
 	public void setCrewEmail(String crewEmail) {
 		this.crewEmail = crewEmail;
 	}
-	public String getEmail1() {
-		return email1;
-	}
-	public void setEmail1(String email1) {
-		this.email1 = email1;
-	}
-	public String getEmail2() {
-		return email2;
-	}
-	public void setEmail2(String email2) {
-		this.email2 = email2;
-	}
 	public String getCrewTel() {
 		return crewTel;
 	}
 	public void setCrewTel(String crewTel) {
 		this.crewTel = crewTel;
-	}
-	public String getTel1() {
-		return tel1;
-	}
-	public void setTel1(String tel1) {
-		this.tel1 = tel1;
-	}
-	public String getTel2() {
-		return tel2;
-	}
-	public void setTel2(String tel2) {
-		this.tel2 = tel2;
-	}
-	public String getTel3() {
-		return tel3;
-	}
-	public void setTel3(String tel3) {
-		this.tel3 = tel3;
 	}
 	public String getCrewBirth() {
 		return crewBirth;
@@ -239,17 +233,17 @@ public class Booking {
 	public void setCrewBirth(String crewBirth) {
 		this.crewBirth = crewBirth;
 	}
-	public String getPaymentDate() {
-		return paymentDate;
+	public String getPrReservationDate() {
+		return prReservationDate;
 	}
-	public void setPaymentDate(String paymentDate) {
-		this.paymentDate = paymentDate;
+	public void setPrReservationDate(String prReservationDate) {
+		this.prReservationDate = prReservationDate;
 	}
-	public int getPayment() {
-		return payment;
+	public int getPrpayment() {
+		return prpayment;
 	}
-	public void setPayment(int payment) {
-		this.payment = payment;
+	public void setPrpayment(int prpayment) {
+		this.prpayment = prpayment;
 	}
-	
+
 }

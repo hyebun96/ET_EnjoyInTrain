@@ -59,9 +59,7 @@ public class BookingController {
 			Booking dto,
 			HttpSession session
 			) {
-		
 		SessionInfo info = (SessionInfo)session.getAttribute("crew");
-		
 		try {
 			dto.setCrewId(info.getCrewId());
 			service.insertReservation(dto);
@@ -69,7 +67,7 @@ public class BookingController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/";
+		return "redirect:/travel/main";
 	}
 	
 	

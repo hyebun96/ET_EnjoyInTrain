@@ -2,7 +2,13 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="booking">
-
+	
+	<insert id="insertReservation">
+		INSERT INTO 
+		pmReservation(prCode, pmCode, pmStartDate, adult, child, oldMan prPersonal, product, prAddPrice, crewId, prReservationDate, prPayment)
+		VALUES(promotionreservation_seq.NEXVAL, #{pmCode}, #{pmStartDate}, #{pmEndDate}, #{adult}, #{child}, #{oldMan}, #{prPersonal}, #{product}, #{prAddPrice}, #{crewId}, #{prReservationDate}, #{prPayment})
+	</insert>
+	
 	<select id="listStation" resultType="com.et.travel.Station">
 		SELECT sCode, sName, line, lineOrder, engName
 		FROM station
@@ -17,20 +23,19 @@
 		JOIN promotion p ON pd.pmCode = p.pmCode
 		WHERE pd.pmCode = #{pmCode} AND (p.traincode = #{startTrain} OR p.traincode = #{endTrain})
 	</select>
-	
-	
-	<select id="readPromotion" parameterType="String" resultType="com.et.travel.Travel">
-		SELECT pmCode, trainCode
-		FROM promotion
-		WHERE pmCode= #{trainCode};
-	</select>
-	
+		
 	<select id="readCrew" parameterType="map" resultType="com.et.booking.Booking">
 		SELECT crewName, crewTel, crewEmail, crewBirth
 		FROM crew
 		WHERE crewId=#{crewId}
 	</select>
 	
+	<select id="readPromotion" parameterType="String" resultType="com.et.travel.Travel">
+		SELECT pmCode, trainCode
+		FROM promotion
+		WHERE pmCode= #{trainCode};
+	</select>
+
 	<!--  짝수 : 하행선 -->
 	<select id="startlist1" parameterType="map" resultType="com.et.travel.Promotion">
 		SELECT pmCode, startStation, endStation

@@ -1,7 +1,6 @@
 package com.et.train;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.et.common.MyUtil;
 
 @Controller("train.trainController")
-@RequestMapping("/train/*")
+@RequestMapping("/admin/train/*")
 public class TrainController {
 	
 	@Autowired
@@ -86,7 +85,7 @@ public class TrainController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/train/list";
+		return "redirect:admin/train/list";
 	}
 	
 }

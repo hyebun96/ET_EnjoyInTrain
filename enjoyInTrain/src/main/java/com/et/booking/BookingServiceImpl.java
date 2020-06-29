@@ -16,8 +16,11 @@ public class BookingServiceImpl implements BookingService{
 
 	@Override
 	public void insertReservation(Booking dto) throws Exception {
-		// TODO Auto-generated method stub
-		
+		try {
+			dao.insertData("booking.insertReservation", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
