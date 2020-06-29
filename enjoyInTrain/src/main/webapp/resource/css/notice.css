@@ -10,6 +10,24 @@ a:hover, a:active{
 	text-decoration : none;
 }
 
+.noticebtn{
+	width: 70px;
+	height: 30px;
+	background: none;
+	border: 1px solid #ccc;
+}
+
+.noticeinput{
+	width: 250px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+.notice_notice{
+	font-size: 18px;
+	padding-bottom: 25px;
+}
+
 .articlebtn{
 	color: #333333;
 	font-weight: 500;
@@ -132,7 +150,7 @@ a:hover, a:active{
 	padding: 11px 0 0 18px;
 	color: #5a5a5a;
 	letter-spacing: -1px;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: bold;
 	background-color: #fff;
 }
@@ -190,6 +208,9 @@ a:hover, a:active{
 
 .maintop1{
 	display: block;
+	font-size: 16px;
+	font-style: 맑은 고딕;
+	font-weight: 500;
 }
 
 .3uET{

@@ -61,17 +61,17 @@ function searchList() {
 							
 							<div style="clear: both;">
 								<ul>
-									<li>공지사항</li>
+									<li class="notice_notice">ET 의 공지사항 과 이벤트 사항</li>
 									<li>
 										<form name="searchForm" action="<%=cp%>/notice/list" method="post">
-		            						<select name="condition" class="selectField">
+		            						<select name="condition" class="selectField, noticebtn">
 		                  						<option value="all" ${condition=="all"?"selected='selected'":""}>모두</option>
 		                  						<option value="noticeTitle" ${condition=="noticeTitle"?"selected='selected'":""}>제목</option>
 		                  						<option value="noticeContent" ${condition=="noticeContent"?"selected='selected'":""}>내용</option>
 		                  						<option value="nCreated" ${condition=="nCreated"?"selected='selected'":""}>등록일</option>
 		            						</select>
-		          	  							<input type="text" name="keyword" value="${keyword}" class="boxTF" width="300px">
-		            							<button type="button" class="btn" onclick="searchList()">검색</button>
+		          	  							<input type="text" name="keyword" value="${keyword}" class="noticeinput" width="300px">
+		            							<button type="button" class="noticebtn" onclick="searchList()">검색</button>
 		        					</form>
 		        					</li>
 								</ul>

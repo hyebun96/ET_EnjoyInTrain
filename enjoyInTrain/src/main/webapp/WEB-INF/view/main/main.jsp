@@ -9,7 +9,7 @@
 
 	<!-- Main -->
 		<div id="page1">
-<a style="display:scroll;position:fixed;bottom:50px;right:50px; font-size: 30px;" href="#" title="맨위로"><img src="<%=cp%>/resource/images/up.png" alt="" width="50px;"></a>
+<a style="display:scroll;position:fixed;bottom:40px;right:40px; font-size: 15px;" href="#" title="맨위로"><img src="<%=cp%>/resource/images/up.png" alt="" width="40px;"></a>
 			
 			<div class="main0000">
 				<img src="<%=cp%>/resource/images/mainlogo0000.png" alt="" width="500px;" height="100px;">
@@ -103,7 +103,7 @@
 									<c:forEach var="dto" items="${list}">
 									<tr class="mainnotice">
 										<td class="mainnoticetd">
-											▷ <a href="${articleUrl}&noticeNum=${dto.noticeNum}">${dto.noticeTitle}</a>
+											▶ &nbsp; <a href="${articleUrl}&noticeNum=${dto.noticeNum}">${dto.noticeTitle}</a>
 										</td>
 									</tr>
 									</c:forEach>
@@ -116,7 +116,7 @@
 					<div class="3uET">
 						<section>
 							<div class="maintop1">
-							<a href="#"><img src="<%=cp%>/resource/images/mainTrain.gif" alt="" width="600px"></a>
+							<a href="#"><img src="<%=cp%>/resource/images/mainTrain.gif" alt="" width="644px"></a>
 							
 							</div>
 							
@@ -124,22 +124,23 @@
 							<div class="maintop1">
 								<table class="z">
 									<tr>
-										<td>
-											<img src="<%=cp%>/resource/images/ex7.PNG" alt="" width="200" height="100" style="opacity: 1">
-											<a href="<%=cp%>/notice/list" class="button">More ▷</a>
+										<td class="maintop1_notice1">
+											<img src="<%=cp%>/resource/images/ex7.PNG" alt="" width="312" height="100" style="opacity: 1">
 										</td>
-										<td>
-											<img src="<%=cp%>/resource/images/bell.png" alt="" width="100" height="100" style="opacity: 1; background-size: cover;" >
-											<a href="<%=cp%>/notice/list" class="button">More ▷</a>
+										<td class="maintop1_notice2">
+											<img src="<%=cp%>/resource/images/call.PNG" alt="" width="312" height="100" style="opacity: 1; background-size: cover;" >
+											
 										</td>
 									</tr>
 									
 									<tr>
-										<td>
-											할인 제도
+										<td class="maintop1_notice1">
+											ET 만의 특별한 할인 제도
+											<a href="<%=cp%>/notice/list" class="button1"> + 자세히 보기 </a>
 										</td>
-										<td>
-											고객의 소리
+										<td class="maintop1_notice2">
+											&nbsp; 고객의 소리
+											<a href="<%=cp%>/notice/list" class="button1">여기는 ▷</a>
 										</td>
 									</tr>
 									

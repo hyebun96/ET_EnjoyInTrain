@@ -361,6 +361,15 @@
 			cursor: pointer;
 			font-weight: 550;
 		}
+		
+		.button1{
+			cursor: pointer;
+			font-size: 12px;
+			float: right;
+		}
+		.button1:hover{
+			font-size: 13px;
+		}
 
 			.button:hover
 			{
@@ -1212,5 +1221,16 @@ ul.nav li:hover > ul li a:hover {
 	height: 70px;
 	
 }
+
+.maintop1_notice1{
+	width: 50%; 
+	padding-right: 10px;
+}
+
+.maintop1_notice2{
+	width: 50%; 
+	padding-left: 10px;
+}
+
 
 
