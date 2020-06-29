@@ -5,6 +5,27 @@
 <%
    String cp = request.getContextPath();
 %>
+<style type="text/css">
+.homepage #main{
+   margin-top: 0em;
+    padding-top: 0em;
+}
+
+header .byline {
+    display: block;
+    margin: 0.5em 0 0 0;
+    padding: 0 0 0.5em 0;
+    text-transform: uppercase;
+    font-size: 1.4em;
+    padding-bottom: 30px;
+}
+
+.listLine{
+    height: 40px;
+    border-bottom: 1px solid #cccccc;
+}
+
+</style>
 <script type="text/javascript">
 function suggestList(){
 	var f=document.suggestListForm;
@@ -52,8 +73,8 @@ function suggestList(){
 									<option value="10" ${rows==10?"selected='selected' ":"" }>10개씩출력</option>
 									<option value="20" ${rows==20?"selected='selected' ":"" }>20개씩출력</option>
 								</select>
-								<table style="width:900px; text-align:center; border: 1px solid gray;">
-									<tr style="background: white;">
+								<table style="width:900px; padding-top:10px; text-align:center;">
+									<tr style="background: white; height:50px; border-bottom:1px solid #cccccc; border-width: 3px;">
 										<td style="width: 40px;">번호</td>
 										<td style="width: 100px;">카테고리</td>
 										<td>제목</td>
@@ -63,7 +84,7 @@ function suggestList(){
 										<td style="width: 50px;">조회수</td>
 									</tr>
 									<c:forEach var="dto" items="${list}">
-										<tr>
+										<tr class="listLine">
 											<td>${dto.listNum}</td>
 											<td>${dto.sgCategory}</td>
 											<td style="text-align: left;">

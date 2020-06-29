@@ -298,7 +298,7 @@ function sendOk(mode) {
 								<h2>게시판 관리</h2>
 							</header>
 							<ul class="style1">
-								<li><a href="<%=cp%>/admin/qna/main">QnA</a></li>
+									<li><a href="<%=cp%>/admin/qna/main">QnA</a></li>
 								<li><a href="<%=cp%>/admin/faq/list">FAQ</a></li>
 								<li><a href="<%=cp%>/admin/notice/list">공지사항</a></li>
 								<li><a href="<%=cp%>/admin/lostBoard/list">유실물</a></li>

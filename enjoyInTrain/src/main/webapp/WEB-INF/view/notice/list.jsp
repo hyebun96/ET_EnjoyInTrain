@@ -38,16 +38,15 @@ function searchList() {
 						<section class="sidebar">
 							<header>
 								<font size="3px">News</font>
-								<h2>Enjoy in Train</h2>
+								<h2>게시판</h2>
 							</header>
 							<ul class="style11">
-								<li><a href="#">회원가입</a></li>
-								<li><a href="#">QnA</a></li>
-								<li><a href="#">FAQ</a></li>
+								<li><a href="<%=cp%>/qna/main">QnA</a></li>
+								<li><a href="<%=cp%>/faq/list">FAQ</a></li>
 								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="#">유실물</a></li>
-								<li><a href="#">자유게시판</a></li>
-								<li><a href="#">신고</a></li>
+								<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
+								<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
+								<li><a href="<%=cp%>/suggest/list">고객의소리</a></li>
 							</ul>
 						</section>
 					</div>
@@ -82,13 +81,13 @@ function searchList() {
 							
 							
 							<table style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse;">
-										<tr class="noticebar">
-											<td>번호 </td>
-											<td>제목</td>
-											<td>등록일</td>
-											<td>조회수</td>
-											<td>첨부</td>
-										</tr>
+								<tr class="noticebar">
+									<td>번호 </td>
+									<td>제목</td>
+									<td>등록일</td>
+									<td>조회수</td>
+									<td>첨부</td>
+								</tr>
 										
 								<tbody class="board-list">			
 									<c:forEach var="dto" items="${list}">

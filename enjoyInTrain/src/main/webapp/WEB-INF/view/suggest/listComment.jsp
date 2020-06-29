@@ -31,10 +31,10 @@
 	        </td>
 	       <td width='50%' style='padding:5px 5px; border:1px solid #cccccc; border-left:none;' align='right'>
 	           <span>${dto.created}</span> |
-	           <c:if test="${dto.crewId == sessionScope.crew.crewId ||  sessionScope.crew.crewId == 'admin' }">
+	           <c:if test="${dto.crewId == sessionScope.crew.crewId}">
 	                <span class="deleteComment" style="cursor: pointer;" data-replyNum='${dto.num}' data-pageNo='${pageNo}'>삭제</span>
 	           	</c:if>
-	           <c:if test="${dto.crewId != sessionScope.crew.crewId &&  sessionScope.crew.crewId != 'admin' }">
+	           <c:if test="${dto.crewId != sessionScope.crew.crewId}">
 	           		<span class="notifyReply">신고</span>
 	           	</c:if>
 	        </td>

@@ -5,6 +5,29 @@
 <%
    String cp = request.getContextPath();
 %>
+
+<style type="text/css">
+.homepage #main{
+   margin-top: 0em;
+    padding-top: 0em;
+}
+
+header .byline {
+    display: block;
+    margin: 0.5em 0 0 0;
+    padding: 0 0 0.5em 0;
+    text-transform: uppercase;
+    font-size: 1.4em;
+    padding-bottom: 30px;
+}
+
+.listLine{
+    height: 40px;
+    border-bottom: 1px solid #cccccc;
+}
+
+</style>
+
 <script type="text/javascript">
 function suggestList(){
 	var f=document.suggestListForm;
@@ -28,26 +51,15 @@ function suggestList(){
 					<div class="3u">
 						<section class="sidebar">
 							<header>
-								<h2>Feugiat Tempus</h2>
+								<h2>게시판</h2>
 							</header>
 							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Etiam rhoncus volutpat erat</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Nulla luctus eleifend purus</a></li>
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-							</ul>
-						</section>
-						<section class="sidebar">
-							<header>
-								<h2>Nulla luctus eleifend</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Integer gravida nibh quis urna</a></li>
-								<li><a href="#">Etiam posuere augue sit amet nisl</a></li>
-								<li><a href="#">Mauris vulputate dolor sit amet nibh</a></li>
+								<li><a href="<%=cp%>/qna/main">QnA</a></li>
+								<li><a href="<%=cp%>/faq/list">FAQ</a></li>
+								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
+								<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
+								<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
+								<li><a href="<%=cp%>/suggest/list">고객의소리</a></li>
 							</ul>
 						</section>
 					</div>
@@ -57,14 +69,14 @@ function suggestList(){
 							<header>
 								<form action="<%=cp%>/suggest/list" name="suggestListForm" method="post">
 								<h2>고객의 소리</h2>
-								<span class="byline">어쩌구저쩌구</span>
+								<span class="byline">불편/불만사항,칭찬사례,제안 등의 내용을 작성해주세요.</span>
 								<select name="rows" onchange="suggestList();">
 									<option value="5" ${rows==5?"selected='selected' ":"" }>5개씩출력</option>
 									<option value="10" ${rows==10?"selected='selected' ":"" }>10개씩출력</option>
 									<option value="20" ${rows==20?"selected='selected' ":"" }>20개씩출력</option>
 								</select>
-								<table style="width:900px; text-align:center; border: 1px solid gray;">
-									<tr style="background: white;">
+								<table style="width:900px; padding-top:10px; text-align:center;">
+									<tr style="background: white; height:50px; border-bottom:1px solid #cccccc; border-width: 3px;">
 										<td style="width: 40px;">번호</td>
 										<td style="width: 100px;">카테고리</td>
 										<td>제목</td>
@@ -74,7 +86,7 @@ function suggestList(){
 										<td style="width: 50px;">조회수</td>
 									</tr>
 									<c:forEach var="dto" items="${list}">
-										<tr>
+										<tr class="listLine">
 											<td>${dto.listNum}</td>
 											<td>${dto.sgCategory}</td>
 											<td style="text-align: left;">
@@ -97,7 +109,6 @@ function suggestList(){
 								</table>
 								${dataCount==0?"등록된 게시물이 없습니다.":paging}
 								<input type="hidden" name="rows" value="${rows}">
-								<button type="button" onclick="javascript:location.href='<%=cp%>/suggest/created';">글올리기</button>
 								</form>
 							</header>
 						</section>

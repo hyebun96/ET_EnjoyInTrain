@@ -22,10 +22,10 @@
 			                <div style='float: left;'><b>${dto.crewName}</b></div>
 			                <div style='float: right;'>
 			                    <span>${dto.created}</span> |
-			                    <c:if test="${sessionScope.crew.crewId==dto.crewId || sessionScope.crew.crewId=='admin'}">
+			                    <c:if test="${sessionScope.crew.crewId==dto.crewId}">
 			                    	<span class='deleteReplyAnswer' style='cursor: pointer;' data-replyNum='${dto.num}' data-answer='${dto.answer}'>삭제</span>
 			                    </c:if>
-			                    <c:if test="${sessionScope.crew.crewId!=dto.crewId && sessionScope.crew.crewId!='admin'}">
+			                    <c:if test="${sessionScope.crew.crewId!=dto.crewId}">
 			                    	<span class="notifyReply">신고</span>
 			                    </c:if>
 			                </div>
@@ -37,8 +37,6 @@
 			    </div>			            
 			</c:forEach>
 			<!-- /메인내용 -->
-		</div>
-	</div>
-	<!-- /Main -->
-</div>
+
+
 <!-- /Main -->

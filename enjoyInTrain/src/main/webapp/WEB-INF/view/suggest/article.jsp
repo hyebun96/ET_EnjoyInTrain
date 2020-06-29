@@ -277,11 +277,15 @@ function insertAn(){
 					<div class="3u">
 						<section class="sidebar">
 							<header>
-								<h2>메뉴창1</h2>
+								<h2>게시판</h2>
 							</header>
 							<ul class="style1">
+								<li><a href="<%=cp%>/qna/main">QnA</a></li>
+								<li><a href="<%=cp%>/faq/list">FAQ</a></li>
 								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/notice/list">이벤트</a></li>
+								<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
+								<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
+								<li><a href="<%=cp%>/suggest/list">고객의소리</a></li>
 							</ul>
 						</section>
 
@@ -346,11 +350,11 @@ function insertAn(){
 							<tr>
 								<td colspan="4">
 								<button type="button" class="articlebtn" onclick="javascript:location.href='<%=cp%>/suggest/list?${query}';">리스트</button>
-								<c:if test="${dto.crewId != sessionScope.crew.crewId &&  sessionScope.crew.crewId != 'admin' }">
+								<c:if test="${dto.crewId != sessionScope.crew.crewId &&  sessionScope.crew.crewId != 'a' }">
 			          				<button type="button" class="articlebtn" onclick="updateNotice();">수정</button>
 			          				<button type="button" class="articlebtn" onclick="deleteNotice();">삭제</button>
 			          			</c:if>
-			          			<c:if test="${sessionScope.crew.crewId != 'admin' }">
+			          			<c:if test="${sessionScope.crew.crewId != 'a' }">
 			          				<button type="button" class="articlebtn" onclick="insertAn();">답변달기</button>
 			          			</c:if>
 			          			</td>
