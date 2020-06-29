@@ -129,7 +129,7 @@
 											<a href="<%=cp%>/notice/list" class="button">More ▷</a>
 										</td>
 										<td>
-											<img src="<%=cp%>/resource/images/ex5.png" alt="" width="200" height="100" style="opacity: 1">
+											<img src="<%=cp%>/resource/images/ex5.png" alt="" width="200" height="100" style="opacity: 1; background-size: cover;" >
 											<a href="<%=cp%>/notice/list" class="button">More ▷</a>
 										</td>
 									</tr>
@@ -157,7 +157,7 @@
 			<!-- /Extra -->
 				
 			<div class="main0001">
-				<img src="<%=cp%>/resource/images/test02.png" alt="" width="150px;" class="main00010">
+				<img src="<%=cp%>/resource/images/ex11.png" alt="" width="250px;" height="40px;" class="main00010">
 			</div>
 				
 			<!-- Main -->

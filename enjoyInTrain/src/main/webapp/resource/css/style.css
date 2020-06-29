@@ -1021,6 +1021,7 @@ ul.nav li:hover > ul li a:hover {
 	#marketing
 	{
 		position: relative;
+		padding-bottom: 50px;
 	}
 	
 	#marketing header h2
@@ -1146,7 +1147,7 @@ ul.nav li:hover > ul li a:hover {
 	text-align: center;
 	width: 100%;
 	padding-top: 50px;
-	padding-bottom: 25px;
+	padding-bottom: 50px;
 }
 
 
