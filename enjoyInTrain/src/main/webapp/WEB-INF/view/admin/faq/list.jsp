@@ -104,7 +104,7 @@ $(function(){
 		
 		$("#tab-"+tab).addClass("active");
 		
-		var url="<%=cp%>/faq/list?group=" + tab;
+		var url="<%=cp%>/admin/faq/list?group=" + tab;
 			location.href = url;
 
 		});
@@ -153,15 +153,15 @@ $(function(){
 			<div class="3u">
 				<section class="sidebar">
 					<header>
-						<h2>F&nbsp;A&nbsp;Q</h2>
+						<h2>게시판 관리</h2>
 					</header>
 					<ul class="style1">
-						<li><a href="<%=cp%>/notice/list">공지사항/이벤트</a></li>
-						<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
-						<li><a href="<%=cp%>/qna/main">QNA</a></li>
-						<li><a href="<%=cp%>/faq/list">FAQ</a></li>
-						<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
-						<li><a href="<%=cp%>/suggest/list">고객의 소리</a></li>
+						<li><a href="<%=cp%>/admin/qna/main">QnA</a></li>
+								<li><a href="<%=cp%>/admin/faq/list">FAQ</a></li>
+								<li><a href="<%=cp%>/admin/notice/list">공지사항</a></li>
+								<li><a href="<%=cp%>/admin/lostBoard/list">유실물</a></li>
+								<li><a href="<%=cp%>/admin/freeBoard/list">자유게시판</a></li>
+								<li><a href="<%=cp%>/admin/suggest/list">고객의소리</a></li>
 					</ul>
 				</section>
 			</div>
@@ -189,6 +189,16 @@ $(function(){
 									<tr id="question" data-num="${dto.faqNum}" height="35"
 										style="border-bottom: 1px solid #cccccc;">
 										<td style="padding: 5px 0px;">&nbsp;&nbsp;<i class="fas fa-question-circle"></i>&nbsp;&nbsp;${dto.faqTitle}
+									 	
+											<c:if test="${sessionScope.crew.crewId=='a'}">
+												<button type="button" id="deletebtn" class="btn" onclick="javascript:location.href='<%=cp%>/admin/faq/delete?num=${dto.faqNum}';">
+													<i class="fas fa-trash-alt"></i>
+												</button>
+												<button type="button" id="updatebtn" class="btn" onclick="javascript:location.href='<%=cp%>/admin/faq/update?num=${dto.faqNum}';">
+													<i class="fas fa-wrench"></i>
+												</button>
+											</c:if>
+										
 										</td>
 									</tr>
 									<tr height="35" id="content"
@@ -200,6 +210,18 @@ $(function(){
 								</c:forEach>
 							</tbody>
 						</table>
+
+						<table style="width: 100%; border-spacing: 0px;">
+							<tr height="35">
+								<td align="right">
+								<c:if test="${sessionScope.crew.crewId=='a'}">
+									<button style="border-radius: 10px;" type="button" id="btn"
+										class="btn"
+										onclick="javascript:location.href='<%=cp%>/admin/faq/created?group=${group}'">FAQ올리기</button>
+								</c:if></td>
+							</tr>
+						</table>
+
 					</div>
 
 				</section>

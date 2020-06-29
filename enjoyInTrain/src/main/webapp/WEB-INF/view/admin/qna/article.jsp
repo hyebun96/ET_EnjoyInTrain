@@ -98,7 +98,8 @@ a {
 		</c:if>
 
 		<tr height="35" style="border-bottom: 1px solid #cccccc;">
-			<td colspan="2" style="width: 100%;"><c:if
+			<td colspan="2" style="width: 100%;">
+				<c:if
 					test="${not empty preReadDto}">
 					<a href="javascript:articleQnA('${preReadDto.qnaNum}', '${preReadDto.qnaSecret}', '${preReadDto.crewId}');" class="aTag">
 						＜＜이전_${preReadDto.qnaTitle}</a>
@@ -113,14 +114,10 @@ a {
 	<table style="width: 100%; margin: 0px auto 20px; border-spacing: 0px;">
 		<tr height="45">
 			<td width="400px" align="left">
-
-				<c:if test="${sessionScope.crew.crewId==dto.crewId}">
-					<button type="button" class="btn" onclick="updateForm('${dto.qnaNum}');">질문수정하기</button>
-				</c:if> 
-				<c:if
-					test="${sessionScope.crew.crewId==dto.crewId}">
-					<button type="button" class="btn" onclick="deleteQnA('${dto.qnaNum}');">삭제</button>
-				</c:if>
+					<button type="button" class="btn"
+						onclick="updateForm('${dto.qnaNum}');">답변달기</button>
+					<button type="button" class="btn"
+						onclick="deleteQnA('${dto.qnaNum}');">삭제</button>
 			</td>
 
 			<td align="right">

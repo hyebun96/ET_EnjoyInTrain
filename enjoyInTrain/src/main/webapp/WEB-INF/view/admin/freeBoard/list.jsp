@@ -93,15 +93,16 @@ function searchList() {
 			<div class="3u">
 				<section class="sidebar">
 					<header>
-						<h2>자유게시판</h2>
+						<h2>게시판 관리</h2>
 					</header>
 					
 					<ul class="style1">
-						<li><a href="#">소메뉴1</a></li>
-						<li><a href="#">소메뉴2</a></li>
-						<li><a href="#">소메뉴3</a></li>
-						<li><a href="#">소메뉴4</a></li>
-						<li><a href="#">소메뉴5</a></li>					
+						<li><a href="<%=cp%>/admin/qna/main">QnA</a></li>
+						<li><a href="<%=cp%>/admin/faq/list">FAQ</a></li>
+						<li><a href="<%=cp%>/admin/notice/list">공지사항</a></li>
+						<li><a href="<%=cp%>/admin/lostBoard/list">유실물</a></li>
+						<li><a href="<%=cp%>/admin/freeBoard/list">자유게시판</a></li>
+						<li><a href="<%=cp%>/admin/suggest/list">고객의소리</a></li>			
 					</ul>
 				</section>
 			</div>

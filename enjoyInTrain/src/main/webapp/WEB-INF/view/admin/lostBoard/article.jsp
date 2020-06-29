@@ -16,7 +16,7 @@
 function deleteLostBoard() {
 	<c:if test="${sessionScope.crew.crewId=='admin' || sessionScope.crew.crewId==dto.crewId}">
 		var q = "lostNum=${dto.lostNum}&${query}";
-		var url = "<%=cp%>/lostBoard/delete?"+q;
+		var url = "<%=cp%>/admin/lostBoard/delete?"+q;
 		
 		if(confirm("위 자료를 삭제 하시겠습니까?")){
 			location.href=url;
@@ -30,7 +30,7 @@ function deleteLostBoard() {
 function updateLostBoard() {
 	<c:if test="${sessionScope.crew.crewId==dto.crewId}">
 		var q = "lostNum=${dto.lostNum}&page=${page}";
-		var url = "<%=cp%>/lostBoard/update?"+q;
+		var url = "<%=cp%>/admin/lostBoard/update?"+q;
 		
 		location.href = url;
 	</c:if>
@@ -90,7 +90,7 @@ $(function(){
 });
 
 function listPage(page) {
-	var url = "<%=cp%>/lostBoard/listReply";
+	var url = "<%=cp%>/admin/lostBoard/listReply";
 	var query = "lostNum=${dto.lostNum}&pageNo="+page;
 	var selector = "#listReply";
 	
@@ -110,7 +110,7 @@ $(function () {
 		
 		cotent = encodeURIComponent(content);
 		
-		var url ="<%=cp%>/lostBoard/insertReply";
+		var url ="<%=cp%>/admin/lostBoard/insertReply";
 		var query = "lostNum="+lostNum+"&content="+content+"&answer=0";
 		
 		var fn = function (data) {
@@ -137,7 +137,7 @@ $(function () {
 		var lostReplyNum = $(this).attr("data-replyNum");
 		var page=$(this).attr("data-pageNo");
 		
-		var url = "<%=cp%>/lostBoard/deleteReply";
+		var url = "<%=cp%>/admin/lostBoard/deleteReply";
 		var query = "lostReplyNum="+lostReplyNum+"&mode=reply";
 		
 		var fn = function (data) {
@@ -150,7 +150,7 @@ $(function () {
 
 // 댓글별 답글 리스트
 function listReplyAnswer(answer) {
-	var url = "<%=cp%>/lostBoard/listReplyAnswer";
+	var url = "<%=cp%>/admin/lostBoard/listReplyAnswer";
 	var query = {answer:answer};
 	var selector = "#listReplyAnswer"+answer;
 	
@@ -159,7 +159,7 @@ function listReplyAnswer(answer) {
 
 // 댓글별 답글 개수
 function countReplyAnswer(answer) {
-	var url = "<%=cp%>/lostBoard/countReplyAnswer";
+	var url = "<%=cp%>/admin/lostBoard/countReplyAnswer";
 	var query = {answer:answer};
 	
 	var fn = function (data) {
@@ -205,7 +205,7 @@ $(function () {
 		
 		cotent = encodeURIComponent(content);
 		
-		var url = "<%=cp%>/lostBoard/insertReply";
+		var url = "<%=cp%>/admin/lostBoard/insertReply";
 		var query = "lostNum="+lostNum+"&content="+content+"&answer="+lostReplyNum;
 		
 		var fn = function (data) {
@@ -231,7 +231,7 @@ $(function () {
 		var lostReplyNum = $(this).attr("data-replyNum");
 		var answer = $(this).attr("data-answer");
 		
-		var url = "<%=cp%>/lostBoard/deleteReply";
+		var url = "<%=cp%>/admin/lostBoard/deleteReply";
 		var query = "lostReplyNum="+lostReplyNum+"&mode=answer";
 		
 		var fn = function (data) {
@@ -263,11 +263,11 @@ $(function () {
 								<h2>Feugiat Tempus</h2>
 							</header>
 							<ul class="style1">
-								<li><a href="<%=cp%>/notice/list">공지사항/이벤트</a></li>
-								<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
-								<li><a href="<%=cp%>/qna/main">QNA</a></li>
-								<li><a href="<%=cp%>/faq/list">FAQ</a></li>
-								<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
+								<li><a href="<%=cp%>/admin/notice/list">공지사항/이벤트</a></li>
+								<li><a href="<%=cp%>/admin/freeBoard/list">자유게시판</a></li>
+								<li><a href="<%=cp%>/admin/qna/main">QNA</a></li>
+								<li><a href="<%=cp%>/admin/faq/list">FAQ</a></li>
+								<li><a href="<%=cp%>/admin/lostBoard/list">유실물</a></li>
 							</ul>
 						</section>
 					</div>
@@ -289,7 +289,7 @@ $(function () {
 							</li>
 							<li id="board_content1">
 								<c:if test="${dto.saveFileName!=null}">
-									<img src="<%=cp%>/uploads/lostBoard/${dto.saveFileName}" style="width: 400px; height: 500px;">
+									<img src="<%=cp%>/admin/uploads/lostBoard/${dto.saveFileName}" style="width: 400px; height: 500px;">
 								</c:if>
 							</li>
 				
@@ -301,7 +301,7 @@ $(function () {
 									&nbsp;이전 글이 존재 하지 않습니다.
 								</c:if>
 								<c:if test="${not empty preReadDto}">
-									<a href="<%=cp%>/lostBoard/article?${query}&lostNum=${preReadDto.lostNum}">＜＜ 이전글 &nbsp;＿${preReadDto.lostTitle}</a>
+									<a href="<%=cp%>/admin/lostBoard/article?${query}&lostNum=${preReadDto.lostNum}">＜＜ 이전글 &nbsp;＿${preReadDto.lostTitle}</a>
 								</c:if>
 							</li>
 							<li id="board_option_next">
@@ -309,7 +309,7 @@ $(function () {
 									&nbsp;다음 글이 존재 하지 않습니다.
 								</c:if> 
 								<c:if test="${not empty nextReadDto}">
-									<a href="<%=cp%>/lostBoard/article?${query}&lostNum=${nextReadDto.lostNum}">${nextReadDto.lostTitle}＿&nbsp;다음글 ＞＞</a>
+									<a href="<%=cp%>/admin/lostBoard/article?${query}&lostNum=${nextReadDto.lostNum}">${nextReadDto.lostTitle}＿&nbsp;다음글 ＞＞</a>
 								</c:if>
 							</li>
 						</ul>
@@ -317,11 +317,8 @@ $(function () {
 					<div>
 						<ul>
 							<li id="board_button">
-								<c:if test="${sessionScope.crew.crewId==dto.crewId}">
-									<button type="button" onclick="updateLostBoard();">수정하기</button>
 									<button type="button" onclick="deleteLostBoard();">삭제하기</button>
-								</c:if>
-								<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/list';">목록으로</button>
+								<button type="button" onclick="javascript:location.href='<%=cp%>/admin/lostBoard/list';">목록으로</button>
 							</li>
 						</ul>
 					</div>

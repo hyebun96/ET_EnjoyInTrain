@@ -28,7 +28,7 @@ import com.et.crew.SessionInfo;
 import com.et.notice.Notice;
 import com.et.notice.NoticeService;
 
-@Controller("admin.notice.noticeController")
+@Controller("admin.notice.NoticeController")
 public class NoticeController {
 	
 	@Autowired

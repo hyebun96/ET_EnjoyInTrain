@@ -78,7 +78,7 @@ function sendOk() {
 	
 	var group = f.categoryNum.value;
 	
-	f.action="<%=cp%>/faq/${mode}?group=" + group;
+	f.action="<%=cp%>/admin/faq/${mode}?group=" + group;
 
 	f.submit();
 	}
@@ -169,7 +169,7 @@ function sendOk() {
 										<button type="button" class="btn" onclick="sendOk();">${mode=='update'?'수정완료':'등록하기'}</button>
 										<button type="reset" class="btn">다시입력</button>
 										<button type="button" class="btn"
-											onclick="javascript:location.href='<%=cp%>/faq/list';">${mode=='update'?'수정취소':'등록취소'}</button>
+											onclick="javascript:location.href='<%=cp%>/admin/faq/list';">${mode=='update'?'수정취소':'등록취소'}</button>
 										<c:if test="${mode=='update'}">
 											<input type="hidden" name="faqNum" value="${dto.faqNum}">
 											<input type="hidden" name="group" value="${group}">
