@@ -150,7 +150,7 @@ public class LostBoardController {
 		
 		LostBoard dto = service.readLostBoard(lostNum);
 		if(dto==null) {
-			return "redirect:/lostBoard/list?"+query;
+			return "redirect:/admin/lostBoard/list?"+query;
 		}
 		
 		dto.setLostContent(myutil.htmlSymbols(dto.getLostContent()));
@@ -237,7 +237,7 @@ public class LostBoardController {
 		service.deleteLostBoard(lostNum, pathname, info.getCrewId());
 		
 		
-		return "redirect:/lostBoard/list?"+query;
+		return "redirect:/admin/lostBoard/list?"+query;
 	}
 	
 	// 댓글 리스트
