@@ -1,5 +1,9 @@
 package com.et.travel;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class Travel {
 	private int categoryNum;		// 카테고리 번호 @ 여행지종류
 	
@@ -26,13 +30,18 @@ public class Travel {
 	private String pmEndDate;		// 프로모션 예약 가능 종료 날짜 @
 	
 	private String pmTitle;			// 프로모션 제목 @
-	private String pmContent;		// 프로모션 내용 @
 	private int pmPrice;			// 프로모션 가격
 	private int pmMaxCount;			// 프로모션 최대 인원 @
 	private int pmPercent;			// 협력업체 상환 비율 @
 	
 	private String product;			// 프로모션 상품
 	private String productContent;	// 프로모션 상품 설명
+	
+	private MultipartFile upload;
+	private String saveFileName;
+	
+	private List<MultipartFile> uploadContent;
+	
 	
 	public int getCategoryNum() {
 		return categoryNum;
@@ -118,12 +127,6 @@ public class Travel {
 	public void setPmTitle(String pmTitle) {
 		this.pmTitle = pmTitle;
 	}
-	public String getPmContent() {
-		return pmContent;
-	}
-	public void setPmContent(String pmContent) {
-		this.pmContent = pmContent;
-	}
 	public int getPmPrice() {
 		return pmPrice;
 	}
@@ -165,6 +168,24 @@ public class Travel {
 	}
 	public void setPartnerTel(String partnerTel) {
 		this.partnerTel = partnerTel;
+	}
+	public String getSaveFileName() {
+		return saveFileName;
+	}
+	public void setSaveFileName(String saveFileName) {
+		this.saveFileName = saveFileName;
+	}
+	public MultipartFile getUpload() {
+		return upload;
+	}
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+	}
+	public List<MultipartFile> getUploadContent() {
+		return uploadContent;
+	}
+	public void setUploadContent(List<MultipartFile> uploadContent) {
+		this.uploadContent = uploadContent;
 	}
 	
 	

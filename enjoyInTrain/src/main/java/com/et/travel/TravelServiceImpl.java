@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.et.common.FileManager;
 import com.et.common.dao.CommonDAO;
 
 @Service("travel.travelService")
@@ -13,6 +15,9 @@ public class TravelServiceImpl implements TravelService{
 	
 	@Autowired
 	private CommonDAO dao;
+	
+	@Autowired
+	private FileManager fileManager;
 	
 	@Override
 	public List<Category> listCategory() {
@@ -112,9 +117,34 @@ public class TravelServiceImpl implements TravelService{
 	}
 
 	@Override
-	public void insertPromotionDetail(Travel dto) throws Exception {
+	public void insertPromotionDetail(Travel dto, String path) throws Exception {
 		try {
 			dao.insertData("travel.insertPromotionDetail", dto);
+			
+			Photo pdto = new Photo();
+			pdto.setPmCode(dto.getPmCode());
+
+			String saveFilename = fileManager.doFileUpload(dto.getUpload(), path);
+			if(saveFilename!=null) {
+				pdto.setOriginalFileName(dto.getUpload().getOriginalFilename());
+				pdto.setFileSize(dto.getUpload().getSize());
+				pdto.setSaveFileName(saveFilename);
+				dao.insertData("travel.insertPhoto", pdto);
+			}	
+			
+			if(!dto.getUpload().isEmpty()) {				
+				for(MultipartFile mpf : dto.getUploadContent()) {
+					
+					saveFilename = fileManager.doFileUpload(mpf, path);
+					if(saveFilename!=null && mpf.getSize()!=-1) {
+						pdto.setOriginalFileName(mpf.getOriginalFilename());
+						pdto.setFileSize(mpf.getSize());
+						pdto.setSaveFileName(saveFilename);
+						dao.insertData("travel.insertContentPhoto", pdto);
+					}	
+				}
+			}
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -122,10 +152,10 @@ public class TravelServiceImpl implements TravelService{
 	}
 
 	@Override
-	public Travel readTravel(String num) {
+	public Travel readTravel(String pmCode) {
 		Travel dto = null;
 		try {
-			dto = dao.selectOne("travel.readTravel", num);
+			dto = dao.selectOne("travel.readTravel", pmCode);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -175,6 +205,28 @@ public class TravelServiceImpl implements TravelService{
 			e.printStackTrace();
 		}
 		return endList;
+	}
+
+	@Override
+	public List<Photo> listPhoto(String pmCode) {
+		List<Photo> photoList = null;
+		try {
+			photoList = dao.selectList("travel.listPhoto", pmCode);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return photoList;
+	}
+	
+	@Override
+	public List<Photo> listPhoto2(String pmCode) {
+		List<Photo> photoContentList = null;
+		try {
+			photoContentList = dao.selectList("travel.listPhoto2", pmCode);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return photoContentList;
 	}
 
 	

@@ -14,10 +14,13 @@ public interface TravelService {
 	public List<Travel> listTravel(Map<String, Object> map);
 	
 	public void insertPromotion(Travel dto) throws Exception;
-	public void insertPromotionDetail(Travel dto) throws Exception;
+	public void insertPromotionDetail(Travel dto,String path) throws Exception;
 	
-	public Travel readTravel(String num);
+	public Travel readTravel(String pmCode);
 	public StationLine readPromotion(String trainCode);
 	public List<Promotion> startList(Travel dto);
 	public List<Promotion> endList(Travel dto);
+	
+	public List<Photo> listPhoto(String pmCode);
+	public List<Photo> listPhoto2(String pmCode);
 }

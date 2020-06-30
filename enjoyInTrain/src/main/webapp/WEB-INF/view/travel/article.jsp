@@ -388,6 +388,11 @@ function reservation(){
 				<td class="title">예약현황</td>
 			</tr>
 		</c:forEach>
+		
+		
+		<tr  align="left" style="border-bottom: 1px solid #cccccc; border-bottom: 1px solid #cccccc;">
+		
+		</tr>
 			
 		<tr align="left" height="40" style="float: right;">
 			<td  class="title"><button type="button"  id="btn" class="btn" onclick="javascript:location.href='<%=cp%>/travel/travel';">리스트</button></td>

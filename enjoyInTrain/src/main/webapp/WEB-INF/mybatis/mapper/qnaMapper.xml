@@ -25,9 +25,10 @@
 	</select>
 	
 	<select id="listQnA" parameterType="map" resultType="com.et.qna.QnA">
-		SELECT qnaNum, crewId, categoryNum, category, qnaTitle, qnaContent, qnaCreated, qnaHitCount, qnaSecret
+		SELECT qnaNum, q.crewId,crewName, categoryNum, category, qnaTitle, qnaContent, qnaCreated, qnaHitCount, qnaSecret
 		FROM qna q
 		JOIN faqCategory fc ON q.qnacategory = fc.categoryNum
+		JOIN crew c ON q.crewId = c.crewId
 		<if test="group!=0">
 			WHERE qnaCategory = #{group}
 		</if>
