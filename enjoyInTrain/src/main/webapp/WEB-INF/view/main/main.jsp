@@ -140,7 +140,7 @@
 										</td>
 										<td class="maintop1_notice2">
 											&nbsp; 고객의 소리
-											<a href="<%=cp%>/notice/list" class="button1">여기는 ▷</a>
+											<a href="<%=cp%>/notice/list" class="button1"> + 문의하기 </a>
 										</td>
 									</tr>
 									

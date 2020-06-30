@@ -6,6 +6,7 @@
    String cp = request.getContextPath();
 %>
 <link rel="stylesheet" href="<%=cp%>/resource/css/lostboardlist.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
 <style type="text/css">
 .homepage #main{
    margin-top: 0em;
@@ -81,7 +82,7 @@
 						<form name="searchForm" action="<%=cp%>/lostBoard/list" method="post">
 							<ul id="board_button">
 								<li id="board_button_reset">
-									<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/list?page=1';">새로고침</button>
+									<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/list?page=1';" class="noticebtn">새로고침</button>
 								</li>
 								<li id="board_button_option">
 									<select name="condition" style="clear: both; float: left;">
@@ -95,10 +96,10 @@
 									<input type="text" name="keyword" value="${keyword}">
 								</li>
 								<li id="board_button_search">
-									<button type="button" onclick="search()">검색</button>
+									<button type="button" onclick="search()" class="noticebtn">검색</button>
 								</li>
 								<li id="board_button_send">
-									<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/created';">글쓰기</button>
+									<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/created';" class="noticebtn">글쓰기</button>
 								</li>
 							</ul>
 						</form>

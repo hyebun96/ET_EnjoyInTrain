@@ -15,7 +15,10 @@ a:hover, a:active{
 	height: 30px;
 	background: none;
 	border: 1px solid #ccc;
+	cursor: pointer;
 }
+
+
 
 .noticeinput{
 	width: 250px;
