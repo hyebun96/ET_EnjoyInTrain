@@ -94,18 +94,6 @@ $(function() {
 								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
 							</ul>
 						</section>
-						<section class="sidebar">
-							<header>
-								<h2>Nulla luctus eleifend</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Integer gravida nibh quis urna</a></li>
-								<li><a href="#">Etiam posuere augue sit amet nisl</a></li>
-								<li><a href="#">Mauris vulputate dolor sit amet nibh</a></li>
-							</ul>
-						</section>
 					</div>
 				
 					<div class="9u skel-cell-important">
@@ -113,14 +101,14 @@ $(function() {
 						<div>
 							<table id="receipt_header">
 								<tr>
-									<td id="receipt_state1">홈 > 기차 여행 패키지 > 예약완료</td>
+									<td id="receipt_state1">홈 > 기차 여행 패키지 > 예약하기 > 예약완료 ></td>
 									<td id="receipt_logo"  rowspan="2"></td>
 								</tr>
 								<tr>
 									<td id="receipt_title">예약완료</td>
 								</tr>
 								<tr>
-									<td id="receipt_state2" colspan="2">① 예약하기 ＞ ② 예약완료 ＞</td>
+									<td id="receipt_state2" colspan="2">①예약하기 ＞② 예약완료 ＞</td>
 								</tr>
 							</table>
 						</div>
@@ -257,7 +245,6 @@ $(function() {
 								</table>
 								<div id="travler_button">
 									<button type="button" id="showStatement">예약명세서</button>
-									<button type="button" id="showstatement">예약내역</button>
 									<button type="button" onclick="javascript:location.href='<%=cp%>/travel/main';">확인</button>
 									<button type="button" onclick="javascript:location.href='<%=cp%>/booking/payment?prCode=${dto.prCode}';">결제하기</button>
 								</div>
@@ -340,15 +327,5 @@ $(function() {
 		</table>
 		<div>● 최소인원 미달, 천재지변 등에 의한 행사 취소 시에는 전액 환불됩니다.</div>
 		<div>● 출발시간 내 미 도착 시 당일 취소로 간주합니다.</div>
-	</form>
-	</div>
-	
-	<div id="breakdow_dialog">
-	<form action="showBreakdownForm">
-		<table>
-			<tr>
-				<td id="statement_title" valign="top">예약명세서</td>
-			</tr>
-		</table>
 	</form>
 	</div>

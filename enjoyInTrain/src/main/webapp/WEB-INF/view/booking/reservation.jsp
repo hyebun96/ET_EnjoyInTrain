@@ -6,12 +6,6 @@
 <%
 	String cp=request.getContextPath();
 %>
-<style type="text/css">
-.homepage #main{
-   margin-top: 0em;
-    padding-top: 0em;
-}
-</style>
 <script type="text/javascript">
 function embracing() {
 	var f = document.reservationForm;
@@ -137,6 +131,42 @@ $(function(){
 	
 });
 
+$(function() {
+	$("#showStartSeat").click(function() {
+		$("form[name=reservationForm]").each(function () {
+			this.reset();
+		});
+		
+		$("#startSeat_dialog").dialog({
+			modal: true,
+			height: 450,
+			width: 900,
+			title: '가는 열차 좌석선택',
+			clos : function (event, ui) {
+			}
+		})
+		
+	});
+});
+
+$(function() {
+	$("#showEndSeat").click(function() {
+		$("form[name=reservationForm]").each(function () {
+			this.reset();
+		});
+		
+		$("#endSeat_dialog").dialog({
+			modal: true,
+			height: 450,
+			width: 900,
+			title: '오는 열차 좌석선택',
+			clos : function (event, ui) {
+			}
+		})
+		
+	});
+});
+
 </script>
 <link rel="stylesheet" href="<%=cp%>/resource/css/reservation.css" type="text/css">
 	<!-- Banner -->
@@ -166,18 +196,6 @@ $(function(){
 								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
 							</ul>
 						</section>
-						<section class="sidebar">
-							<header>
-								<h2>Nulla luctus eleifend</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Integer gravida nibh quis urna</a></li>
-								<li><a href="#">Etiam posuere augue sit amet nisl</a></li>
-								<li><a href="#">Mauris vulputate dolor sit amet nibh</a></li>
-							</ul>
-						</section>
 					</div>
 				
 				<div class="9u skel-cell-important">
@@ -185,14 +203,14 @@ $(function(){
 						<div>
 							<table id="reservation_header">
 								<tr>
-									<td id="reservation_state1">홈 > 예약하기</td>
+									<td id="reservation_state1">홈 > 기차 여행 패키지 > 예약하기 > </td>
 									<td id="reservation_logo"  rowspan="2"></td>
 								</tr>
 								<tr>
 									<td id="reservation_title">예약하기</td>
 								</tr>
 								<tr>
-									<td id="reservation_state2" colspan="2">① 예약하기 ＞ ② 예약완료 ＞</td>
+									<td id="reservation_state2" colspan="2">① 예약하기 ＞ </td>
 								</tr>
 							</table>
 						</div>
@@ -282,7 +300,7 @@ $(function(){
 								</tr>
 								<tr>
 									<td id="reservation_report_question">좌석선택</td>
-									<td id="reservation_report_answer"><button type="button">좌석선택</button></td>
+									<td id="reservation_report_answer"><button type="button" id="showStartSeat">좌석선택</button></td>
 								</tr>
 								<tr>
 									<td id="reservation_report_num" rowspan="3">2</td>
@@ -364,7 +382,7 @@ $(function(){
 								</tr>
 								<tr>
 									<td id="reservation_report_question">좌석선택</td>
-									<td id="reservation_report_answer" colspan="3"><button type="button">좌석선택</button></td>
+									<td id="reservation_report_answer" colspan="3"><button type="button" id="showEndSeat">좌석선택</button></td>
 								</tr>
 							</table>
 						</div>
@@ -457,4 +475,68 @@ $(function(){
 		</div>
 			<!-- Main -->
 
+		</div>
+		
+		<div id="startSeat_dialog">
+			<form action="">
+			<table style="margin: 40px auto; width: 750px;">
+				<c:forEach var="rows" begin="1" end="2">
+					<tr style="text-align: center;">
+						<td colspan="2">
+							<c:forEach var="columns" begin="1" end="10">
+									<a href="#"><img alt="" src="<%=cp%>/resource/images/seat.png" style="width: 50px; height: 50px; margin-right: 10px;"></a>
+							</c:forEach>
+						</td>
+					</tr>
+				</c:forEach>
+					<tr style="text-align: center; margin-top: 15px;">
+						<td style="height: 40px;" colspan="2"><td>
+					</tr>
+				<c:forEach var="rows" begin="1" end="2">
+					<tr style="text-align: center; margin-top: 15px;">
+						<td colspan="2">
+							<c:forEach var="columns" begin="1" end="10">
+									<a href="#"><img alt="" src="<%=cp%>/resource/images/seat.png" style="width: 50px; height: 50px; margin-right: 10px;"></a>
+							</c:forEach>
+						</td>
+					</tr>
+				</c:forEach>
+				<tr>
+					<td style="text-align: left; height: 60px; line-height: 60px;"><a href="#">＜＜ 이전 칸 </a></td>
+					<td style="text-align: right; height: 60px; line-height: 60px;"><a href="#">다음 칸  ＞＞ </a></td>
+				</tr>
+			</table>
+			</form>
+		</div>
+		
+		<div id="endSeat_dialog">
+			<form action="">
+							<table style="margin: 40px auto; width: 750px;">
+				<c:forEach var="rows" begin="1" end="2">
+					<tr style="text-align: center;">
+						<td colspan="2">
+							<c:forEach var="columns" begin="1" end="10">
+									<a href="#"><img alt="" src="<%=cp%>/resource/images/seat.png" style="width: 50px; height: 50px; margin-right: 10px;"></a>
+							</c:forEach>
+						</td>
+					</tr>
+				</c:forEach>
+					<tr style="text-align: center; margin-top: 15px;">
+						<td style="height: 40px;" colspan="2"><td>
+					</tr>
+				<c:forEach var="rows" begin="1" end="2">
+					<tr style="text-align: center; margin-top: 15px;">
+						<td colspan="2">
+							<c:forEach var="columns" begin="1" end="10">
+									<a href="#"><img alt="" src="<%=cp%>/resource/images/seat.png" style="width: 50px; height: 50px; margin-right: 10px;"></a>
+							</c:forEach>
+						</td>
+					</tr>
+				</c:forEach>
+				<tr>
+					<td style="text-align: left; height: 60px; line-height: 60px;"><a href="#">＜＜ 이전 칸 </a></td>
+					<td style="text-align: right; height: 60px; line-height: 60px;"><a href="#">다음 칸  ＞＞ </a></td>
+				</tr>
+			</table>
+			</form>
 		</div>

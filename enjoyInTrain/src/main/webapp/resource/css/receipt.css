@@ -1,5 +1,8 @@
 @charset "UTF-8";
-
+.homepage #main{
+   margin-top: 0em;
+    padding-top: 0em;
+}
 #receipt_header{
 	width: 100%;
 	height: 200px;

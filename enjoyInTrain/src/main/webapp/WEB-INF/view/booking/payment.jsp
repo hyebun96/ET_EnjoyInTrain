@@ -33,25 +33,13 @@
 								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
 							</ul>
 						</section>
-						<section class="sidebar">
-							<header>
-								<h2>Nulla luctus eleifend</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Integer gravida nibh quis urna</a></li>
-								<li><a href="#">Etiam posuere augue sit amet nisl</a></li>
-								<li><a href="#">Mauris vulputate dolor sit amet nibh</a></li>
-							</ul>
-						</section>
 					</div>
 				
 					<div class="9u skel-cell-important">
 						<div>
 							<table id="payment_header">
 								<tr>
-									<td id="payment_state1">홈 > 여행상품 > 여행상품 > 여행상품 결제</td>
+									<td id="payment_state1">홈 > 기차 여행 패키지 > 예약하기 > 예약완료 > 결제</td>
 									<td id="payment_logo"  rowspan="2"></td>
 								</tr>
 								<tr>
@@ -123,27 +111,17 @@
 								<tr>
 									<td id="payment_info_question">유효기간</td>
 									<td colspan="5" id="payment_info_answer">
-										<select name="cardMonth">
-											<option value="1">1월</option>
-											<option value="2">2월</option>
-											<option value="3">3월</option>
-											<option value="4">4월</option>
-											<option value="5">5월</option>
-											<option value="6">6월</option>
-											<option value="7">7월</option>
-											<option value="8">8월</option>
-											<option value="9">9월</option>
-											<option value="10">10월</option>
-											<option value="11">11월</option>
-											<option value="12">12월</option>
-										</select> 월
 										<select>
-											<option value="2020">2020</option>
-											<option value="2021">2021</option>
-											<option value="2022">2022</option>
-											<option value="2023">2023</option>
-											<option value="2024">2024</option>
-										</select>
+											<c:forEach var="b" begin="2020" end="2030">
+												<option value="${b}">${b}</option>
+											</c:forEach>
+										</select> 년
+										<select name="cardMonth">
+											<c:forEach var="a" begin="1" end="12" >
+												<option value="${a}">${a}</option>
+											</c:forEach>
+										</select> 월
+										
 									</td>
 								</tr>
 								<tr>
