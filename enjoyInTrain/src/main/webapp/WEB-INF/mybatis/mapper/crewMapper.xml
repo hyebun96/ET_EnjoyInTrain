@@ -19,6 +19,16 @@
 		WHERE crewId=#{crewId}
 	</select>
 	
+	<update id="updateCrew" parameterType="com.et.crew.Crew">
+		UPDATE crew SET crewPwd = #{crewPwd},crewTel = #{crewTel},
+						crewEmail = #{crewEmail} ,crewBirth = #{crewBirth}
+		WHERE crewId = #{crewId}
+	</update>
+	
+	<delete id="deleteCrew" parameterType="String">
+		DELTE FROM crew WHERE crewId = #{crewId}
+	</delete>
+	
 <!-- 회원관리-->
 	<!-- 검색 -->
 	<sql id="where-list">

@@ -44,20 +44,17 @@ function updateNotice() {
 					<div class="3u">
 						<section class="sidebar">
 							<header>
-								<font size="3px">News</font>
-								<h2>Enjoy in Train</h2>
+								<h2>게시판</h2>
 							</header>
-							<ul class="style11">
-								<li><a href="#">회원가입</a></li>
-								<li><a href="#">QnA</a></li>
-								<li><a href="#">FAQ</a></li>
+							<ul class="style1">
+								<li><a href="<%=cp%>/qna/main">QnA</a></li>
+								<li><a href="<%=cp%>/faq/list">FAQ</a></li>
 								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
-								<li><a href="#">유실물</a></li>
-								<li><a href="#">자유게시판</a></li>
-								<li><a href="#">신고</a></li>
+								<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
+								<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
+								<li><a href="<%=cp%>/suggest/list">고객의소리</a></li>
 							</ul>
 						</section>
-
 					</div>
 				
 					<div class="9u skel-cell-important">

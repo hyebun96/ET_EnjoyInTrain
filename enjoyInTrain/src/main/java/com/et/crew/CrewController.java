@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
+
 @Controller("crew.crewController")
 @RequestMapping("/crew/*")
 public class CrewController {
+	
 	@Autowired
 	private CrewService service;
 	
@@ -119,5 +121,61 @@ public class CrewController {
 			return "redirect:/";
 		}
 		return ".crew.complete";
+	}
+	
+	@RequestMapping(value="update", method=RequestMethod.GET)
+	public String updateForm(
+			Model model, 
+			HttpSession session,
+			Crew dto
+		) {
+		SessionInfo info=(SessionInfo)session.getAttribute("crew");
+		
+		dto=service.readCrew(info.getCrewId());
+
+		model.addAttribute("dto",dto);
+		model.addAttribute("mode","update");
+		
+		return ".crew.crew2";
+	}
+	
+	@RequestMapping(value="update",method = RequestMethod.POST)
+	public String updateSubmit(
+			Crew dto,
+			final RedirectAttributes reAttr,
+			Model model
+			)throws Exception{
+		
+		try {
+			service.updateCrew(dto);
+		} catch (Exception e) {
+			model.addAttribute("mode","update");
+			model.addAttribute("message","회원수정이 실패했습니다.");
+			
+			return ".crew.crew2";
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append(dto.getCrewName() + "님의 회원정보가 정상적으로 변경되었습니다.<br>");
+		sb.append("메인화면으로 이동하시기 바랍니다.<br>");
+		
+		reAttr.addFlashAttribute("title","회원정보수정");
+		reAttr.addFlashAttribute("dto",dto);
+		reAttr.addFlashAttribute("message",sb.toString());
+		
+		return "redirect:/crew/complete";
+	}
+
+	@RequestMapping(value="delete")
+	public Map<String, Object> delete(Map<String, Object> dto) throws Exception{
+		Map<String, Object> model = new HashMap<>();
+		
+		try {
+			service.deleteCrew(dto);
+			model.put("state", "true");
+		} catch (Exception e) {
+			model.put("state", "false");
+		}
+		return model;
 	}
 }

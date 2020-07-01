@@ -34,13 +34,12 @@ function searchList() {
 			<div id="main" class="container">
 				<div class="row">
 
-					<div class="3u">
+				<div class="3u">
 						<section class="sidebar">
 							<header>
-								<font size="3px">News</font>
 								<h2>게시판</h2>
 							</header>
-							<ul class="style11">
+							<ul class="style1">
 								<li><a href="<%=cp%>/qna/main">QnA</a></li>
 								<li><a href="<%=cp%>/faq/list">FAQ</a></li>
 								<li><a href="<%=cp%>/notice/list">공지사항</a></li>

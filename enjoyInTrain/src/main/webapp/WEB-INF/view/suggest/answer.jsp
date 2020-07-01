@@ -56,7 +56,6 @@
 								<li><a href="<%=cp%>/suggest/list">고객의소리</a></li>
 							</ul>
 						</section>
-						
 					</div>
 				
 					<div class="9u skel-cell-important">

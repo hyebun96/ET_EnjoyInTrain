@@ -26,6 +26,13 @@ header .byline {
     border-bottom: 1px solid #cccccc;
 }
 
+a {
+    color: black;
+    padding-left: 40px;
+    text-decoration: none;
+}
+
+
 </style>
 
 <script type="text/javascript">
@@ -97,7 +104,7 @@ function suggestList(){
 													<a href="${articleUrl}&sgCode=${dto.sgCode}">${dto.sgTitle}</a>
 												</c:if>
 												<c:if test="${dto.dept!=0}">
-													<a href="${articleUrl}&sgCode=${dto.sgCode}">[re]${dto.sgTitle}</a>
+													<a href="${articleUrl}&sgCode=${dto.sgCode}">ㄴ [re]${dto.sgTitle}</a>
 												</c:if>
 											</td>
 											<td>${dto.crewName}</td>

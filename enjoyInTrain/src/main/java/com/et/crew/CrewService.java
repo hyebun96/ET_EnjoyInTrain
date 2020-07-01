@@ -6,6 +6,8 @@ import java.util.Map;
 public interface CrewService {
 	public Crew readCrew(String crewId);
 	public void insertCrew(Crew dto) throws Exception;
+	public void updateCrew(Crew dto) throws Exception;
+	public void deleteCrew(Map<String, Object> map) throws Exception;
 	
 	public int dataCount(Map<String, Object> map);
 	public List<Crew> listCrew(Map<String, Object> map);
