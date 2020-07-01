@@ -3,21 +3,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="booking">
 	
-	<insert id="insertReservation">
-		INSERT INTO 
-		pmReservation(prCode, pmCode, pmStartDate, adult, child, oldMan prPersonal, product, prAddPrice, crewId, prReservationDate, prPayment)
-		VALUES(promotionreservation_seq.NEXVAL, #{pmCode}, #{pmStartDate}, #{pmEndDate}, #{adult}, #{child}, #{oldMan}, #{prPersonal}, #{product}, #{prAddPrice}, #{crewId}, #{prReservationDate}, #{prPayment})
-	</insert>
-	
-	<select id="listStation" resultType="com.et.travel.Station">
-		SELECT sCode, sName, line, lineOrder, engName
-		FROM station
-		ORDER BY sCode DESC
+	<!-- 난수 생성 -->	
+	<select id="reservationNumber" parameterType="String" resultType="String">
+		SELECT LPAD(ROUND(DBMS_RANDOM.VALUE(0, 1) *1000000000000), 12, '0') from dual
 	</select>
-
 	<!-- 프로모션 읽어오기 -->
 	<select id="readTravel" parameterType="map" resultType="com.et.booking.Booking">
-		SELECT pd.pmCode, TO_CHAR(pmStartDate, 'YYYY-MM-DD') pmStartDate, pmEndDate, pmTitle, pmContent, pmPrice, pmMaxCount, 
+		SELECT pd.pmCode, TO_CHAR(pmStartDate, 'YYYY-MM-DD') pmStartDate, pmEndDate, pmTitle, pmPrice, pmMaxCount, 
 			product, productContent, p.traincode, p.startStation, p.endStation
 		FROM promotionDetail pd
 		JOIN promotion p ON pd.pmCode = p.pmCode
@@ -30,6 +22,34 @@
 		WHERE crewId=#{crewId}
 	</select>
 	
+	<!-- 예약 -->
+	<select id="seq" resultType="Integer">
+		SELECT pmreservation_seq.NEXTVAL FROM dual
+	</select>
+	
+	<insert id="insertReservation" parameterType="com.et.booking.Booking">
+			INSERT INTO 
+			pmReservation(prCode, pmCode, pmStartDate, adult, child, oldMan, prPersonnel, product, productUserCount, prAddPrice, crewId, prReservationDate, prPayment, startTrain, endTrain, roomGrade, roomGrade1, reservationNumber)
+			VALUES(#{prCode}, #{pmCode}, #{pmStartDate}, #{adult}, #{child}, #{oldMan}, #{prPersonnel}, #{product}, #{productUserCount}, #{prAddPrice}, #{crewId}, SYSDATE, 0, #{startTrain}, #{endTrain}, #{roomGrade}, #{roomGrade1}, #{reservationNumber})
+
+	</insert>
+	
+	<select id="readReservation" parameterType="map" resultType="com.et.booking.Booking">
+		SELECT DISTINCT pr.prCode, pr.pmCode, TO_CHAR(pr.pmStartDate, 'YYYY-MM-DD') pmStartDate, pr.adult, pr.child, pr.oldMan, pr.prPersonnel, pr.product, pr.productUserCount, pr.prAddPrice, pr.crewId, pr.prReservationDate, pr.startTrain, pr.endTrain,
+			   pr.roomGrade, pr.roomGrade1, pr.reservationNumber, pd.pmTitle, pd.pmPrice, pd.productContent, p.startStation, p.endStation, c.crewName, c.crewEmail, c.crewTel, c.crewBirth
+		FROM pmReservation pr
+		JOIN promotionDetail pd ON pd.pmCode = pr.pmCode
+		JOIN promotion p ON pr.startTrain = p.trainCode
+		JOIN crew c ON pr.crewId = c.crewId
+		WHERE pr.prCode = #{prCode} AND pr.crewId = #{crewId}
+	</select>
+	
+	<select id="listStation" resultType="com.et.travel.Station">
+		SELECT sCode, sName, line, lineOrder, engName
+		FROM station
+		ORDER BY sCode DESC
+	</select>
+
 	<select id="readPromotion" parameterType="String" resultType="com.et.travel.Travel">
 		SELECT pmCode, trainCode
 		FROM promotion

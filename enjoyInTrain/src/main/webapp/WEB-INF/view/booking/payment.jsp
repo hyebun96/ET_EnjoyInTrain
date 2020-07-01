@@ -64,7 +64,7 @@
 							<table id="payment_appear">
 								<tr>
 									<td> 예약번호 
-										<span id="reservationNumber">20200623803272</span> 
+										<span id="reservationNumber">${dto.reservationNumber}</span>
 										<span id="paymentstate">예약내역</span> 입니다.
 									</td>
 								</tr>
@@ -80,21 +80,29 @@
 									<td id="payment_report_pay1">요금</td>
 								</tr>
 								<tr>
-									<td id="payment_report_num2">20200623803272</td>
+									<td id="payment_report_num2">${dto.reservationNumber}</td>
 									<td id="payment_report_category2">패키지상품</td>
-									<td id="payment_report_name2">(목포,광주송정 출발)장항역/국립생태원 ECO-螟패키지 (열차+입장권), 당일</td>
-									<td id="payment_report_pay2">18,000원</td>
+									<td id="payment_report_name2">${dto.pmTitle}</td>
+									<td id="payment_report_pay2">${dto.pmPrice}원</td>
+									<c:if test="${dto.prAddPrice!=0}">
+										<tr>
+											<td id="payment_report_num2"></td>
+											<td id="payment_report_category2">패키지상품</td>
+											<td id="payment_report_name2">${dto.pmTitle}</td>
+											<td id="payment_report_pay2">${dto.pmPrice}원</td>
+										<tr>
+									</c:if>
 								</tr>
 								<tr>
 									<td id="payment_report_cost1" colspan="3">총비용</td>
-									<td id="payment_report_cost2">18,000원</td>
+									<td id="payment_report_cost2">${dto.pmPrice + dto.prAddPrice}원</td>
 								</tr>
 							</table>
 							<table id="payment_info">
 								<tr><td id="payment_info_title" colspan="6">■ 결제정보</td></tr>
 								<tr>
 									<td id="payment_info_question">결제금액</td>
-									<td colspan="5" id="payment_info_answer">18,000원</td>
+									<td colspan="5" id="payment_info_answer">${dto.pmPrice + dto.prAddPrice}원</td>
 								</tr>
 								<tr>
 									<td id="payment_info_question">카드선택</td>

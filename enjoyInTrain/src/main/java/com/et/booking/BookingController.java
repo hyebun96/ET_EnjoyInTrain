@@ -30,10 +30,11 @@ public class BookingController {
 			HttpSession session
 			) {
 		
+		
 		List<Booking> list = service.readPromotionDetail(paramMap);
 		Booking startDto = null, endDto = null;
 		for(Booking dto : list) {
-			if(dto.getTrainCode()%2==0)
+			if(Integer.parseInt(dto.getTrainCode())%2==0)
 				startDto = dto;
 			else endDto = dto;
 		}
@@ -44,11 +45,11 @@ public class BookingController {
 		map.put("crewId", dto.getCrewId());
 		dto=service.readCrew(map);
 		
-		
 		model.addAttribute("mode", "reservation");
 		model.addAttribute("startDto",startDto);
 		model.addAttribute("endDto",endDto);
-		model.addAttribute("prPersonal", paramMap.get("prPersonal"));
+		model.addAttribute("pmStartDate",paramMap.get("pmStartDate"));
+		model.addAttribute("prPersonnel", paramMap.get("prPersonnel"));
 		model.addAttribute("dto", dto);
 		
 		return ".booking.reservation";
@@ -60,34 +61,66 @@ public class BookingController {
 			HttpSession session
 			) {
 		SessionInfo info = (SessionInfo)session.getAttribute("crew");
+		int seq = 0;
 		try {
 			dto.setCrewId(info.getCrewId());
-			service.insertReservation(dto);
+			seq = service.insertReservation(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/travel/main";
+		return "redirect:/booking/receipt?prCode="+seq;
 	}
 	
 	
+	@RequestMapping(value="receipt")			// 영수증
+	public String receipt(
+			@RequestParam int prCode,
+			HttpSession session,
+			Model model
+			) {
+		SessionInfo info = (SessionInfo)session.getAttribute("crew");
+		Map<String, Object> map = new HashMap<>();
+		map.put("prCode", prCode);
+		map.put("crewId", info.getCrewId());
+		try {
+			Booking dto = new Booking();
+			dto= service.readReservation(map);
+			model.addAttribute("dto", dto);
+			model.addAttribute("prCode", prCode);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ".booking.receipt";
+	}
 	
 	
 	@RequestMapping(value="payment", method=RequestMethod.GET)			// 결제폼
-	public String paymentForm() {
-		
+	public String paymentForm(
+			@RequestParam int prCode,
+			HttpSession session,
+			Model model
+			) {
+		SessionInfo info = (SessionInfo)session.getAttribute("crew");
+		Map<String, Object> map = new HashMap<>();
+		map.put("prCode", prCode);
+		map.put("crewId", info.getCrewId());
+		try {
+			Booking dto = new Booking();
+			dto= service.readReservation(map);
+			model.addAttribute("dto", dto);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return ".booking.payment";
 	}
 	
+	@RequestMapping(value="payment", method=RequestMethod.POST)			// 결제완료
 	public String paymentSubmit() {
-		
 		
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value="receipt")			// 영수증
-	public String receipt() {
-		
-		return ".booking.receipt";
-	}
 }

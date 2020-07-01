@@ -71,7 +71,7 @@ function send() {
 	
 
 
-	f.action="<%=cp%>/train/created";
+	f.action="<%=cp%>/admin/train/created";
 	
 	f.submit();
 

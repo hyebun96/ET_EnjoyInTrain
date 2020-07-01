@@ -93,6 +93,13 @@
 	border-bottom: 1px solid #cccccc;
 	font-weight: bold;
 }
+.addPrice{
+	color: red;
+}
+
+.addPrice1{
+	color: red;
+}
 
 #reservation_report_question{
 	width: 15%;
@@ -110,6 +117,10 @@
 	border-bottom: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
 	padding-left: 10px;
+}
+
+#reservation_report_answer span{
+	color : blue;
 }
 
 #agreement {

@@ -15,12 +15,20 @@ public class BookingServiceImpl implements BookingService{
 	private CommonDAO dao;
 
 	@Override
-	public void insertReservation(Booking dto) throws Exception {
+	public int insertReservation(Booking dto) throws Exception {
+		int seq = 0;
+		String reservationNumber = null;
 		try {
+			seq = dao.selectOne("booking.seq");
+			dto.setPrCode(seq);
+			reservationNumber = dao.selectOne("booking.reservationNumber");
+			dto.setReservationNumber(reservationNumber);
 			dao.insertData("booking.insertReservation", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return seq;
 	}
 
 	@Override
@@ -52,9 +60,14 @@ public class BookingServiceImpl implements BookingService{
 	}
 
 	@Override
-	public Booking readReservation() {
-		// TODO Auto-generated method stub
-		return null;
+	public Booking readReservation(Map<String, Object> map) {
+		Booking dto = null;
+		try {
+			dto = dao.selectOne("booking.readReservation", map);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return dto;
 	}
 
 	@Override

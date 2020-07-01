@@ -133,7 +133,7 @@
 	</insert>
 	
 	<select id="listPhoto2" parameterType="String" resultType="com.et.travel.Photo">
-		SELECT fileNum, pmCode, saveFileName, originalFileName, fileSize
+		SELECT fileContentNum, pmCode, saveFileName, originalFileName, fileSize
 		FROM promotionContentFile
 		WHERE pmCode = #{pmCode}
 	</select>
