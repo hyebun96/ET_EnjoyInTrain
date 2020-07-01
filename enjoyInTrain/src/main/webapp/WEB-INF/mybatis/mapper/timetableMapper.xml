@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="timetable">
+	<insert id="insertTimeTable" parameterType="com.et.timetable.TimeTable">
+		INSERT INTO stationline2(scode, traincode, trainname, HAENGSIN, YONGSAN, GWANGMYEONG, CHEONANASAN, OSONG,
+		 GONGJU, SEODAEJEON, GYERYONG, NONSAN, IKSAN, JEONGEUP, GWANGJUSONGJEONG, NAJU, MOKPO)
+			VALUES (stationline2_seq.NEXTVAL, #{traincode}, #{trainname}, #{HAENGSIN}, #{YONGSAN}, #{GWANGMYEONG}, #{CHEONANASAN}, #{OSONG},
+			#{GONGJU},#{SEODAEJEON}, #{GYERYONG}, #{NONSAN}, #{IKSAN}, #{JEONGEUP}, #{GWANGJUSONGJEONG}, #{NAJU}, #{MOKPO})
+	</insert>
+	
+	<select id="dataCount" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) FROM stationline2
+	</select>
+	
+	<select id="listTimeTable" parameterType="map" resultType="com.et.timetable.TimeTable">
+		SELECT hak, name, TO_CHAR(birth, 'YYYY-MM-DD') birth, kor, eng, mat, 
+		       (kor+eng+mat) tot, (kor+eng+mat)/3 ave
+		FROM stationline2
+		ORDER BY hak
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	<select id="readTimeTable" parameterType="String" resultType="com.et.timetable.TimeTable">
+		SELECT hak, name, TO_CHAR(birth, 'YYYY-MM-DD') birth,
+			kor, eng, mat 
+		FROM stationline2
+		WHERE hak=#{hak}
+	</select>
+	
+	
+</mapper>
