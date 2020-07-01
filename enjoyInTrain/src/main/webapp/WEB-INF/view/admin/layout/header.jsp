@@ -24,7 +24,7 @@
 						<ul>
 							<li class="active"><a href="<%=cp%>/admin/train/list">기차관리</a></li>
 							<li class="active"><a href="#">프로모션관리</a></li>
-							<li class="active"><a href="#">매출관리</a></li>
+							<li class="active"><a href="<%=cp%>/admin/sales/list">매출관리</a></li>
 							<li class="active"><a href="<%=cp%>/employee/list">직원</a></li>
 							<li class="active"><a href="<%=cp%>/admin/crewManage/list">회원관리</a></li>
 							<li class="active"><a href="<%=cp%>/admin/notice/list">게시판관리</a></li>
