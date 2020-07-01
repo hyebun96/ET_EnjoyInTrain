@@ -1,11 +1,13 @@
 package com.et.travel;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +29,7 @@ public class TravelController {
 	@Autowired
 	private MyUtil myUtil;
 	
-	@RequestMapping("travel")
+	@RequestMapping("main")
 	public String travel(
 			Model model) throws Exception{
 		
@@ -82,6 +84,7 @@ public class TravelController {
 		return "/travel/list";
 	}
 	
+	// 하행선
 	@RequestMapping(value="stationLine1", method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> stationLineList(
@@ -96,12 +99,11 @@ public class TravelController {
 		List<StationLine> stationLineList = service.listStationLine(map);
 		
 		map.put("stationLineList", stationLineList);
-		
-		
-		
+
 		return map;
 	}
 	
+	// 상행선
 	@RequestMapping(value="stationLine2", method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> stationLineList2(
@@ -119,18 +121,22 @@ public class TravelController {
 		return map;
 	}
 	
+	// 생성폼
 	@RequestMapping(value="created", method=RequestMethod.GET)
 	public String createdForm(Model model) throws Exception{
 		
+		// 카테고리
 		List<Category> categoryList = service.listCategory();
 		
 		model.addAttribute("mode","created");
 		model.addAttribute("categoryList",categoryList);
 		
+		// 협력업체
 		List<Partner> partnerList = service.listPartner();
 		
 		model.addAttribute("partnerList",partnerList);
 		
+		// 경로 디테일
 		List<Station> stationList = service.listStation();
 		
 		model.addAttribute("stationList",stationList);
@@ -140,11 +146,19 @@ public class TravelController {
 		return "travel/created";
 	}
 	
+	// 생성
 	@RequestMapping(value="created", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> createdSubmit(
-			Travel dto) throws Exception{
+			Travel dto,
+			HttpSession session) throws Exception{
 		
+		// 여행지 사진
+		
+		String root=session.getServletContext().getRealPath("/");
+		String path=root+"uploads"+File.separator+"travel";
+		
+		// 프로모션 코드 랜덤생성
 		Random rd = new Random();
 		String pmCode = "p";
 		for(int i=0; i<10; i++) {
@@ -153,10 +167,11 @@ public class TravelController {
 		
 		dto.setPmCode(pmCode);
 		
+		// 성공여부
 		String state = "true";
 		
 		try {
-			service.insertPromotionDetail(dto);
+			service.insertPromotionDetail(dto, path);
 			service.insertPromotion(dto);
 		} catch (Exception e) {
 			state="false";
@@ -164,11 +179,12 @@ public class TravelController {
 		
 		Map<String, Object> model = new HashMap<>();
 		model.put("state", state);
-		
+
 		return model;
 	}
 	
-	@RequestMapping("main")
+	// 리스트
+	@RequestMapping("travel")
 	public String main(
 			Model model) throws Exception {
 		
@@ -178,35 +194,129 @@ public class TravelController {
 		return ".travel.main";
 	}
 	
+	// article
 	@RequestMapping(value="article", method=RequestMethod.GET)
 	public String articleForm(
-			@RequestParam String num,
+			@RequestParam String pmCode,
 			Model model) throws Exception{
 		Travel dto = null;
 		List<Promotion> startList = null;
 		List<Promotion> endList = null;
+		List<Photo> photoList = null;
+		List<Photo> photoContentList = null;
 		
 		try {
-			dto = service.readTravel(num);
+			dto = service.readTravel(pmCode);
 			
 			startList = service.startList(dto);
 			endList = service.endList(dto);
+			
+			photoList = service.listPhoto(pmCode);
+			
+			photoContentList = service.listPhoto2(pmCode);
 			
 		} catch (Exception e) {
 			throw e;
 		}
 		
 		startList.size();
-		
+
 		model.addAttribute("dto", dto);
 		model.addAttribute("startList", startList);
 		model.addAttribute("endList", endList);
 		model.addAttribute("startLength",startList.size());
 		model.addAttribute("endLength", endList.size());
+		model.addAttribute("photoList", photoList);
+		model.addAttribute("photoContentList", photoContentList);
+		
 		
 		return "travel/article";
 	}
 	
 	
+	// 생성폼
+		@RequestMapping(value="update", method=RequestMethod.GET)
+		public String updateForm(
+				@RequestParam String pmCode,
+				Model model) throws Exception{
+			
+			try {
+				// 카테고리
+				List<Category> categoryList = service.listCategory();
+				
+				model.addAttribute("mode","created");
+				model.addAttribute("categoryList",categoryList);
+				
+				// 협력업체
+				List<Partner> partnerList = service.listPartner();
+				
+				model.addAttribute("partnerList",partnerList);
+				
+				// 경로 디테일
+				List<Station> stationList = service.listStation();
+				
+				model.addAttribute("stationList",stationList);
+				model.addAttribute("mode", "update");
+			
+				Travel dto = service.readTravel(pmCode);
+				model.addAttribute("dto", dto);
+				
+				List<Promotion> startList = null;
+				List<Promotion> endList = null;
+				
+				startList = service.startList(dto);
+				endList = service.endList(dto);
+				
+				model.addAttribute("startList", startList);
+				model.addAttribute("endList", endList);
+				
+				List<Photo> photoList = null;
+				photoList = service.listPhoto(dto.getPmCode());
+				
+				model.addAttribute("photoList", photoList);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+			
+			return "travel/created";
+		}
+		
+		// 생성
+		@RequestMapping(value="update", method=RequestMethod.POST)
+		@ResponseBody
+		public Map<String, Object> updateSubmit(
+				Travel dto,
+				HttpSession session) throws Exception{
+			
+			// 여행지 사진
+			String root=session.getServletContext().getRealPath("/");
+			String path=root+"uploads"+File.separator+"travel";
+			
+			// 프로모션 코드 랜덤생성
+			Random rd = new Random();
+			String pmCode = "p";
+			for(int i=0; i<10; i++) {
+				pmCode +=  Integer.toString(rd.nextInt(10));
+			}
+			
+			dto.setPmCode(pmCode);
+			
+			// 성공여부
+			String state = "true";
+			
+			try {
+				service.insertPromotionDetail(dto, path);
+				service.insertPromotion(dto);
+			} catch (Exception e) {
+				state="false";
+			}
+			
+			Map<String, Object> model = new HashMap<>();
+			model.put("state", state);
+
+			return model;
+		}
 	
 }

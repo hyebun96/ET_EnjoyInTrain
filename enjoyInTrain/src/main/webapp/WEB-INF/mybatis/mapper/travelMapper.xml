@@ -30,9 +30,11 @@
 	</select>
 
 	<select id="listTravel" parameterType="map" resultType="com.et.travel.Travel">
-		SELECT pmCode, pmStartDate, pmEndDate, pmTitle, pmContent, pmPrice, pmMaxCount, pmPercent, pd.categoryNum
+		SELECT pd.pmCode, pmStartDate, pmEndDate, pmTitle, pmPrice, pmMaxCount, pmPercent, pd.categoryNum,
+			saveFileName
 		FROM promotiondetail pd
 		JOIN promotionCategory pc ON pd.categoryNum = pc.categoryNum
+		JOIN promotionFile pf ON pd.pmCode = pf.pmCode
 		<if test="group!=0">
 			WHERE pc.categoryNum = #{group}
 		</if>
@@ -64,18 +66,18 @@
 	</insert>
 	
 	<insert id="insertPromotionDetail" parameterType="com.et.travel.Travel">
-		INSERT INTO promotionDetail(pmCode, pmStartDate, pmEndDate, pmTitle, pmContent, pmPrice, pmMaxCount, pmPercent, categoryNum, partnerCode, product, productContent)
-		VALUES(#{pmCode}, #{pmStartDate}, #{pmEndDate}, #{pmTitle}, #{pmContent}, #{pmPrice}, #{pmMaxCount}, #{pmPercent}, #{categoryNum}, #{partnerCode}, #{product}, #{productContent})
+		INSERT INTO promotionDetail(pmCode, pmStartDate, pmEndDate, pmTitle, pmPrice, pmMaxCount, pmPercent, categoryNum, partnerCode, product, productContent, stock)
+		VALUES(#{pmCode}, #{pmStartDate}, #{pmEndDate}, #{pmTitle}, #{pmPrice}, #{pmMaxCount}, #{pmPercent}, #{categoryNum}, #{partnerCode}, #{product}, #{productContent}, 0)
 	</insert>
 	
 	<!-- article -->
 	<select id="readTravel" parameterType="String" resultType="com.et.travel.Travel">
-		SELECT pd.pmCode, pmStartDate, pmEndDate, pmTitle, pmContent, pmPrice, pmMaxCount, 
-			pmPercent, categoryNum, partnerName, partnerTel, product, 
+		SELECT pd.pmCode, pmStartDate, pmEndDate, pmTitle, pmPrice, pmMaxCount, 
+			pmPercent, categoryNum, pd.partnerCode, partnerName, partnerTel, product, 
 			productContent
 		FROM promotionDetail pd
 		JOIN partner pr ON pd.partnerCode = pr.partnerCode
-		WHERE pd.pmCode = #{num}
+		WHERE pd.pmCode = #{pmCode}
 	</select>
 	
 	<select id="readPromotion" parameterType="String" resultType="com.et.travel.Travel">
@@ -112,6 +114,28 @@
 		FROM promotion p
 		JOIN STATIONLINE6 t ON p.traincode = t.traincode
 		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 1
+	</select>
+	
+	<insert id="insertPhoto" parameterType="com.et.travel.Photo">
+		INSERT INTO promotionFile(fileNum, pmCode, saveFileName, originalFileName, fileSize)
+		VALUES(promotionFile_seq.NEXTVAL, #{pmCode}, #{saveFileName}, #{originalFileName}, #{fileSize})
+	</insert>
+	
+	<select id="listPhoto" parameterType="String" resultType="com.et.travel.Photo">
+		SELECT fileNum, pmCode, saveFileName, originalFileName, fileSize
+		FROM promotionFile
+		WHERE pmCode = #{pmCode}
+	</select>
+	
+	<insert id="insertContentPhoto" parameterType="com.et.travel.Photo">
+		INSERT INTO promotionContentFile(fileContentNum, pmCode, saveFileName, originalFileName, fileSize)
+		VALUES(promotionContentFile_seq.NEXTVAL, #{pmCode}, #{saveFileName}, #{originalFileName}, #{fileSize})
+	</insert>
+	
+	<select id="listPhoto2" parameterType="String" resultType="com.et.travel.Photo">
+		SELECT fileContentNum, pmCode, saveFileName, originalFileName, fileSize
+		FROM promotionContentFile
+		WHERE pmCode = #{pmCode}
 	</select>
 
 </mapper>

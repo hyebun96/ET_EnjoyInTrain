@@ -1,6 +1,7 @@
 package com.et.train;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,7 @@ public class TrainController {
 		
 		// 글리스트
 //		List<Train> list = service.listTrain(map);
-		
+//		
 //		// 리스트의 번호
 //		int trainNum, n=0;
 //		for(Train dto : list) {
@@ -61,7 +62,7 @@ public class TrainController {
 //			dto.setTrainNum(trainNum);
 //			n++;
 //		}
-		
+	
 		String paging = myutil.paging(page, total_page);
 		
 //		model.addAttribute("list",list);
@@ -85,7 +86,7 @@ public class TrainController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:admin/train/list";
+		return "redirect:/admin/train/list";
 	}
 	
 }

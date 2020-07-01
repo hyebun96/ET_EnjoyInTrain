@@ -208,7 +208,7 @@ function ajaxHTML(url, type, query, selector) {
 	    }
 	});
 }
-
+<%--
 $(function(){
 	$(".calendar #day").click(function() {
 		var year = <%=year%>;
@@ -218,7 +218,7 @@ $(function(){
 			
 		$("#date").html(data);
 	});
-});
+});--%>
 
 function reservation(){
 	var f = document.travelArticleForm;
@@ -226,18 +226,17 @@ function reservation(){
 	
 	f.action="<%=cp%>/booking/reservation?"+query;
 
-	console.log(query);
 	f.submit();
-	
 }
 
 
+
+
 </script>
-	<p>상세</p>
 
 <form name="travelArticleForm" method="get" enctype="multipart/form-data">
-	<table id="travelTable"
-		style="border-spacing: 0px; border-collapse: collapse;">
+	<table id="travelTable" style="border-spacing: 0px; border-collapse: collapse;">
+		
 		<tr align="left" height="40"
 			style="border-bottom: 1px solid #cccccc; border-top: 3px solid #cccccc;">
 			<td class="title"  style="text-align: center;"
@@ -248,11 +247,16 @@ function reservation(){
 
 		<tr align="left" height="40"
 			style=" border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc;">
-			<td rowspan="5" colspan="2" style="width: 100px; padding: 10px 10px;">
-				<img src="<%=cp%>/resource/images/jeju.jpg" style="width: 300px;">				
+			<td rowspan="7" colspan="2" style="width: 100px; padding: 10px 20px;">
+				
+				<c:forEach var="vo" items="${photoList}">
+					<img src="<%=cp%>/uploads/travel/${vo.saveFileName}" style="width: 300px; height:200px; ">	
+				</c:forEach>
+				
 			</td>
 			<td class="title" style="text-align: center;">상품번호</td>
-			<td style="padding-left: 10px; width: 200px;"><input type="text" name="pmCode" value="${dto.pmCode}">${dto.pmCode}</td>
+			<td style="padding-left: 10px; width: 200px;">${dto.pmCode}
+				<input type="hidden" name="pmCode" value="${dto.pmCode}"></td>
 			<td class="title" id="calendar" style="text-align: center; padding-top: 5px;" rowspan="7">
 				<table style="width: 200px; margin-left: 10px;" class="calendar">
 					<tr style="border-bottom: 2px solid #cccccc;">
@@ -270,8 +274,7 @@ function reservation(){
 						<td>목</td>
 						<td>금</td>
 						<td>토</td>
-					</tr>
-					
+					</tr>				
 				</table>
 			</td>
 		</tr>
@@ -295,7 +298,7 @@ function reservation(){
 		<tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
 		<td class="title"   style="text-align: center;">예약 인원</td>
 			<td style="padding-left: 10px; width: 343px;">
-				<select name="prPersonal">
+				<select name="prPersonnel">
 					<option value="1">1명</option>
 					<option value="2">2명</option>
 					<option value="3">3명</option>
@@ -311,12 +314,6 @@ function reservation(){
 		</tr>
 		
 		<tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
-			<td rowspan="2" style="width: 50px; padding: 10px 10px;">
-				<img src="<%=cp%>/resource/images/jeju.jpg" style="width: 70px;">
-			</td>
-			<td rowspan="2" style="width: 50px; padding: 10px 10px;">
-				<img src="<%=cp%>/resource/images/jeju.jpg" style="width: 70px;">
-			</td>
 			<td class="title"   style="text-align: center;">예약 최소 인원</td>
 			<td style="padding-left: 10px; width: 343px;">
 				1명
@@ -339,7 +336,7 @@ function reservation(){
 		style=" margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
 		<tr align="left" height="40"
 			style="border-bottom: 1px solid #cccccc; border-top: 3px solid #cccccc;">
-			<td class="title">상품 그룹</td>
+			<td class="title" style="width: 100px;">상품 그룹</td>
 			<td class="title">선택</td>
 			<td class="title">상품명</td>
 			<td class="title">열차번호</td>
@@ -391,10 +388,16 @@ function reservation(){
 				<td class="title">예약현황</td>
 			</tr>
 		</c:forEach>
+		
+		
+		<tr  align="left" style="border-bottom: 1px solid #cccccc; border-bottom: 1px solid #cccccc;">
+		
+		</tr>
 			
 		<tr align="left" height="40" style="float: right;">
-			<td  class="title"><button type="button"  id="btn" class="btn" >리스트</button></td>
+			<td  class="title"><button type="button"  id="btn" class="btn" onclick="javascript:location.href='<%=cp%>/travel/travel';">리스트</button></td>
 			<td class="title"><button type="button" id="btn" class="btn" onclick="reservation();">예약하기</button></td>
+			<td class="title"><button type="button" id="btn" class="btn" onclick="updateForm('${dto.pmCode}');">수정하기</button></td>
 		</tr>
 				
 		

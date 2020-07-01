@@ -109,7 +109,7 @@ $(function() {
 					</div>
 				
 					<div class="9u skel-cell-important">
-					<form action="" name="reservationForm">
+					<form action="" name="reservationForm" >
 						<div>
 							<table id="receipt_header">
 								<tr>
@@ -130,15 +130,15 @@ $(function() {
 								<tr><td id="receipt_info_title" colspan="6">■ 예약완료</td></tr>
 								<tr>
 									<td id="receipt_info_question">상품명</td>
-									<td colspan="5" id="receipt_info_answer">(레일티켓)한복입고 떠나는 경복궁＇북촌 한옥마을 투어(당일)</td>
+									<td colspan="5" id="receipt_info_answer">${dto.pmTitle}</td>
 								</tr>
 								<tr>
 									<td id="receipt_info_question">상품코드</td>
-									<td id="receipt_info_answer">F20180612033</td>
+									<td id="receipt_info_answer">${dto.pmCode}</td>
 									<td id="receipt_info_question">출발일자</td>
-									<td id="receipt_info_answer">2020년 6월 28일</td>
+									<td id="receipt_info_answer">${dto.pmStartDate}</td>
 									<td id="receipt_info_question">예약인원</td>
-									<td id="receipt_info_answer">1명</td>
+									<td id="receipt_info_answer">${dto.prPersonnel}</td>
 								</tr>
 							</table>
 							
@@ -151,27 +151,27 @@ $(function() {
 								<tr>
 									<td id="receipt_report_num" rowspan="5">1</td>
 									<td id="receipt_report_group" rowspan="5">가는열차</td>
-									<td id="receipt_report_question">상품평</td>
-									<td id="receipt_report_answer">KTX 108열차</td>
+									<td id="receipt_report_question">상품명</td>
+									<td id="receipt_report_answer">${dto.startTrain}</td>
 									<td id="receipt_report_question">객실등급</td>
-									<td id="receipt_report_answer">일반실</td>
+									<td id="receipt_report_answer">${dto.roomGrade}</td>
 								</tr>
 								<tr>
 									<td id="receipt_report_question">이용기간</td>
-									<td id="receipt_report_answer" colspan="3">2020년 6월 28일 (일)</td>
+									<td id="receipt_report_answer" colspan="3">${dto.pmStartDate}</td>
 
 								</tr>
 
 								<tr>
 									<td id="receipt_report_question">출발역</td>
-									<td id="receipt_report_answer">부산(06:10)</td>
+									<td id="receipt_report_answer">${dto.startStation}(06:10)</td>
 									<td id="receipt_report_question">도착역</td>
-									<td id="receipt_report_answer">서울(09:03)</td>
+									<td id="receipt_report_answer">${dto.endStation}(09:03)</td>
 								</tr>
 								<tr>
 									<td id="receipt_report_question">이용인원</td>
 									<td id="receipt_report_answer" colspan="3">
-										성인 1명 어린이 1명 경로 1명 장애인 1명 동반유아 1명
+										성인 ${dto.adult}명 어린이  ${dto.child}명 경로  ${dto.oldMan}명
 									</td>
 								</tr>
 								<tr>
@@ -180,44 +180,44 @@ $(function() {
 								</tr>
 								<tr>
 									<td id="receipt_report_num" rowspan="3">2</td>
-									<td id="receipt_report_group" rowspan="3">북촌 한복대여권</td>
+									<td id="receipt_report_group" rowspan="3"> ${dto.product}</td>
 									<td id="receipt_report_question">상품명</td>
-									<td id="receipt_report_answer" colspan="3">전통한복 대여권(2시간30분)</td>
+									<td id="receipt_report_answer" colspan="3">${dto.productContent}</td>
 								</tr>
 								<tr>
 									<td id="receipt_report_question">이용기간</td>
-									<td id="receipt_report_answer" colspan="3">2020년 6월 28일 (일) 한복대여권(2시간 30분)</td>
+									<td id="receipt_report_answer" colspan="3">${dto.pmStartDate}</td>
 								</tr>
 								<tr>
 									<td id="receipt_report_question">이용인원</td>
-									<td id="receipt_report_answer">1명</td>
+									<td id="receipt_report_answer">${dto.prPersonnel}명</td>
 									<td id="receipt_report_question">이용수량</td>
-									<td id="receipt_report_answer">1개 (기준 1인/최대1인)</td>
+									<td id="receipt_report_answer">${dto.productUserCount}개 </td>
 								</tr>
 								<tr>
 									<td id="receipt_report_num" rowspan="5">3</td>
 									<td id="receipt_report_group" rowspan="5">오는열차</td>
-									<td id="receipt_report_question">상품평</td>
-									<td id="receipt_report_answer">KTX 163열차</td>
+									<td id="receipt_report_question">상품명</td>
+									<td id="receipt_report_answer">${dto.endTrain}</td>
 									<td id="receipt_report_question">객실등급</td>
-									<td id="receipt_report_answer">일반실</td>
+									<td id="receipt_report_answer">${dto.roomGrade1}</td>
 								</tr>
 								<tr>
 									<td id="receipt_report_question">이용기간</td>
-									<td id="receipt_report_answer" colspan="3">2020년 6월 28일 (일)</td>
+									<td id="receipt_report_answer" colspan="3">${dto.pmStartDate}</td>
 
 								</tr>
 
 								<tr>
 									<td id="receipt_report_question">출발역</td>
-									<td id="receipt_report_answer">서울(20:00)</td>
+									<td id="receipt_report_answer">${dto.endStation}(20:00)</td>
 									<td id="receipt_report_question">도착역</td>
-									<td id="receipt_report_answer">부산(22:37)</td>
+									<td id="receipt_report_answer">${dto.startStation}(22:37)</td>
 								</tr>
 								<tr>
 									<td id="receipt_report_question">이용인원</td>
 									<td id="receipt_report_answer" colspan="3">
-										성인 1명 어린이 1명 경로 1명 장애인 1명 동반유아 1명
+										성인 ${dto.adult}명 어린이  ${dto.child}명 경로  ${dto.oldMan}명
 									</td>
 								</tr>
 								<tr>
@@ -226,7 +226,7 @@ $(function() {
 								</tr>
 							</table>
 						</div>
-						<div><table id="receipt_cost"><tr><td>총 결제금액 : 15,800<td></tr></table></div>
+						<div><table id="receipt_cost"><tr><td>총 결제금액 : ${dto.pmPrice+dto.prAddPrice}원<td></tr></table></div>
 						<div>
 							<div id="traveler_title">■ 예약자 및 여행자 정보입력</div>
 							<table id="travler_info">
@@ -235,13 +235,13 @@ $(function() {
 								</tr>
 								<tr>
 									<td id="travler_info_question">예약자 이름</td>
-									<td id="travler_info_name">노현호</td>
+									<td id="travler_info_name">${dto.crewName}</td>
 									<td id="travler_info_question">이메일</td>
-									<td id="travler_info_email">admin@admin.com</td>
+									<td id="travler_info_email">${dto.crewEmail}</td>
 								</tr>
 								<tr>
 									<td id="travler_info_question">휴대전화</td>
-									<td colspan="3" id="travler_info_tel">010-0000-0000</td>
+									<td colspan="3" id="travler_info_tel">${dto.crewTel}</td>
 								</tr>
 							</table>
 							<div>
@@ -250,16 +250,16 @@ $(function() {
 										<td id="resetpayment_title" colspan="3"> ▷ 결제/취소 기한 </td>
 									</tr>
 									<tr>
-										<td id="resetpayment_question">결제기한일</td>
-										<td id="resetpayment_answer">2020-06-23 15:37</td>
+										<td id="resetpayment_question">예약일일</td>
+										<td id="resetpayment_answer">${dto.prReservationDate}</td>
 										<td id="resetpayment_condition">2020-06-23 15:37 까지 결제하지 않으면 자동 취소됩니다.</td>
 									</tr>
 								</table>
 								<div id="travler_button">
 									<button type="button" id="showStatement">예약명세서</button>
 									<button type="button" id="showstatement">예약내역</button>
-									<button onclick="reservation()">확인</button>
-									<button>결제하기</button>
+									<button type="button" onclick="javascript:location.href='<%=cp%>/travel/main';">확인</button>
+									<button type="button" onclick="javascript:location.href='<%=cp%>/booking/payment?prCode=${dto.prCode}';">결제하기</button>
 								</div>
 							</div>
 						</div>	
@@ -277,7 +277,7 @@ $(function() {
 		<table id="statement_table">
 			<tr>
 				<td id="statement_info_question" valign="top">To</td>
-				<td id="statement_info_answer" valign="top">노현호 고객님</td>
+				<td id="statement_info_answer" valign="top">${dto.crewName} 고객님</td>
 			</tr>
 			<tr>
 				<td id="statement_info_question" valign="top">From</td>
@@ -289,7 +289,7 @@ $(function() {
 			</tr>
 			<tr>
 				<td id="statement_info_question" valign="top">발행일자</td>
-				<td id="statement_info_answer" valign="top">2020/09/23</td>
+				<td id="statement_info_answer" valign="top">${dto.prReservationDate}</td>
 			</tr>
 			<tr>
 				<td id="statement_info_question" valign="top">예약번호</td>
@@ -297,7 +297,7 @@ $(function() {
 			</tr>
 			<tr>
 				<td id="statement_info_question1" valign="top">상품평</td>
-				<td id="statement_info_answer" valign="top">(목포,광주송정 출발)장항역/국립생태원 ECO-磁패키지 (열차+입장권), 당일</td>
+				<td id="statement_info_answer" valign="top">${dto.pmTitle}</td>
 			</tr>
 		</table>
 		<table id="statement_report">
@@ -310,23 +310,23 @@ $(function() {
 				<td id="statement_report_productCount1">상품수량</td>
 			</tr>
 			<tr>
-				<td rowspan="3" id="statement_report_date2">2020/06/25</td>
-				<td id="statement_report_productName2">KTX 504열차</td>
-				<td id="statement_report_productCount2">1인</td>
+				<td rowspan="3" id="statement_report_date2">${dto.pmStartDate}</td>
+				<td id="statement_report_productName2">${dto.startTrain}</td>
+				<td id="statement_report_productCount2">${dto.prPersonnel}인</td>
 			</tr>
 			<tr>
-				<td id="statement_report_productName2">[대전충남]ECO-磁 국립생태원 패키지</td>
-				<td id="statement_report_productCount2">1인</td>
+				<td id="statement_report_productName2">${dto.product}</td>
+				<td id="statement_report_productCount2">${dto.productUserCount}인</td>
 			</tr>
 			<tr>
-				<td id="statement_report_productName2">무궁화호 1557열차</td>
-				<td id="statement_report_productCount2">1인</td>
+				<td id="statement_report_productName2">${dto.endTrain}</td>
+				<td id="statement_report_productCount2">${dto.prPersonnel}인</td>
 			</tr>
 			<tr>
 				<td colspan="3" id="statement_report_cost1">총 결제금액</td>
 			</tr>
 			<tr>
-				<td colspan="3" id="statement_report_cost2">18,000원</td>
+				<td colspan="3" id="statement_report_cost2">${dto.pmPrice+dto.prAddPrice}원</td>
 			</tr>
 		</table>
 		<table id="statement_notice">

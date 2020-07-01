@@ -6,6 +6,19 @@
 	String cp = request.getContextPath();
 %>
 
+<style type="text/css">
+#btn{
+	border-radius: 150px; 
+	border: 1px solid black; 
+	width: 120px;
+	height: 120px;
+	margin: 0;
+}
+#btn:hover{
+	background: #21373F;
+	color: white;
+}
+</style>
 <script type="text/javascript">
 
 $(function(){
@@ -41,12 +54,14 @@ function articleForm(num) {
 	var tab = $tab.attr("data-tab");
 	
 	var url="<%=cp%>/travel/article";
-	var query="num="+num;
+	var query="pmCode="+num;
 	
+	console.log(query);
 	var selector = "#tab-content";
 	
 	ajaxHTML(url, "get", query, selector);
 }
+
 
 </script>
 
@@ -70,8 +85,14 @@ function articleForm(num) {
 				data-num="${dto.pmCode}" height="35"
 				style="border-bottom: 1px solid #cccccc;"
 				onclick="javascript:articleForm('${dto.pmCode}');">
-				<td>${dto.pmTitle}</td>
-				<td>${dto.pmPrice}&#126;</td>
+				<td style="width: 300px;">
+					<img src="<%=cp%>/uploads/travel/${dto.saveFileName}" width="254px" height="150px" style="margin: 15px 15px;">
+				</td>
+				<td style="width: 720px; font-weight: bold; ">
+					${dto.pmTitle}<br>  
+					<p style="color:orange;">${dto.pmPrice}&#126;</p>
+				</td>
+				<td><button id="btn"> <i class="far fa-paper-plane" style="font-size: 25px;"></i><br><br>예약하기</button></td>
 			</tr>
 		</c:forEach>
 	</tbody>

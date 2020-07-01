@@ -78,6 +78,65 @@ $(function(){
 		}
 	});
 });
+
+$(function(){
+	
+	$(".adult").change(function(){
+		var total = ${prPersonnel};
+		var result;
+		var adult = $(this).val();
+		var n = total-adult;
+		var $select=$(".child");
+		$select.empty();
+		for(var i=0; i<=n; i++) {
+				$select.append("<option value='"+i+"'>어린이 "+i+"명</option>");
+		}
+	});
+	
+	$(".child").change(function(){
+		var total = ${prPersonnel};
+		var result;
+		var adult = $(this).parent().find(".adult").val();
+		var child = $(this).val();
+		var n = total-adult-child;
+		var $select=$(".oldMan");
+		$select.empty();
+		for(var i=0; i<=n; i++) {
+				$select.append("<option value='"+i+"'>경로 "+i+"명</option>");
+		}
+	});
+	
+});
+
+$(function(){
+	
+	$(".adult1").change(function(){
+		var total = ${prPersonnel};
+		var result;
+		var adult = $(this).val();
+		var n = total-adult;
+		var $select=$(".child1");
+		$select.empty();
+		for(var i=0; i<=n; i++) {
+				$select.append("<option value='"+i+"'>어린이 "+i+"명</option>");
+		}
+	});
+	
+	$(".child1").change(function(){
+		var total = ${prPersonnel};
+		var result;
+		var adult = $(this).parent().find(".adult1").val();
+		var child = $(this).val();
+		var n = total-adult-child;
+		var $select=$(".oldMan1");
+		$select.empty();
+		for(var i=0; i<=n; i++) {
+				$select.append("<option value='"+i+"'>경로 "+i+"명</option>");
+		}
+	});
+	
+});
+
 </script>
 <link rel="stylesheet" href="<%=cp%>/resource/css/reservation.css" type="text/css">
 	<!-- Banner -->
@@ -151,12 +210,12 @@ $(function(){
 										<input type="hidden" name="pmCode" value="${startDto.pmCode}">
 									</td> 
 									<td id="reservation_info_question">출발일자</td>
-									<td id="reservation_info_answer">${startDto.pmStartDate}
-										<input type="hidden" name="pmStartDate" value="${startDto.pmStartDate}">
+									<td id="reservation_info_answer">${pmStartDate}
+										<input type="hidden" name="pmStartDate" value="${pmStartDate}">
 									</td>
 									<td id="reservation_info_question">예약인원</td>
-									<td id="reservation_info_answer">${prPersonal}
-										<input type="hidden" name="prPersonal" value="${prPersonal}">
+									<td id="reservation_info_answer">${prPersonnel}
+										<input type="hidden" name="prPersonnel" value="${prPersonnel}">
 									</td>
 								</tr>
 							</table>
@@ -172,7 +231,7 @@ $(function(){
 									<td id="reservation_report_group" rowspan="5">가는열차</td>
 									<td id="reservation_report_question">상품명</td>
 									<td id="reservation_report_answer">${startDto.trainCode}
-										<input type="hidden" name="trainCode" value="${startDto.trainCode}">
+										<input type="hidden" name="startTrain" value="${startDto.trainCode}">
 									</td>
 									<td id="reservation_report_question">객실등급</td>
 									<td id="reservation_report_answer">
@@ -181,13 +240,13 @@ $(function(){
 											<option value="특실" ${roomGrade=="특실"?"selected='selected'":""}>특실</option>
 										</select>
 										재고 : 309
-										<span class="addPrice" style="display: none;">+5,800</span>
+										<span class="addPrice" style="display: none;"> + ${dto.prAddPrice}</span>
 										
 									</td>
 								</tr>
 								<tr>
 									<td id="reservation_report_question">이용기간</td>
-									<td id="reservation_report_answer" colspan="3">${startDto.pmStartDate}</td>
+									<td id="reservation_report_answer" colspan="3">${pmStartDate}</td>
 
 								</tr>
 
@@ -204,26 +263,26 @@ $(function(){
 								<tr>
 									<td id="reservation_report_question">이용인원</td>
 									<td id="reservation_report_answer" colspan="3">
-										<select name="adult">
-										   <c:forEach var="n" begin="0" end="${prPersonal}">
-										   		<option value="${n}">성인${n}명</option>
+										<select name="adult" class="adult">
+										   <c:forEach var="n" begin="0" end="${prPersonnel}">
+										   		<option value="${n}" ${adult=="${n}"?"selected='selected'":""}>성인 ${n}명</option>
 										   </c:forEach>
 										</select>
-										<select name="child">
-											 <c:forEach var="n" begin="0" end="${prPersonal}">
-										   		<option value="${n}">어린이${n}명</option>
+										<select name="child" class="child">
+											 <c:forEach var="n" begin="0" end="${prPersonnel}">
+										   		<option value="${n}" ${child=="${n}"?"selected='selected'":""}>어린이 ${n}명</option>
 										   </c:forEach>
 										</select>
-										<select name="oldMan">
-											 <c:forEach var="n" begin="0" end="${prPersonal}">
-										   		<option value="${n}">경로${n}명</option>
+										<select name="oldMan" class="oldMan">
+											 <c:forEach var="n" begin="0" end="${prPersonnel}">
+										   		<option value="${n}" ${oldMan=="${n}"?"selected='selected'":""}>경로 ${n}명</option>
 										   </c:forEach>
 										</select>
 									</td>
 								</tr>
 								<tr>
 									<td id="reservation_report_question">좌석선택</td>
-									<td id="reservation_report_answer"><button>좌석선택</button></td>
+									<td id="reservation_report_answer"><button type="button">좌석선택</button></td>
 								</tr>
 								<tr>
 									<td id="reservation_report_num" rowspan="3">2</td>
@@ -235,25 +294,18 @@ $(function(){
 								</tr>
 								<tr>
 									<td id="reservation_report_question">이용기간</td>
-									<td id="reservation_report_answer" colspan="3">${startDto.product}</td>
+									<td id="reservation_report_answer" colspan="3">${pmStartDate}</td>
 								</tr>
 								<tr>
-									<td id="reservation_report_question">이용인원</td>
-									<td id="reservation_report_answer">
-										<select name="productUser">
-											 <c:forEach var="n" begin="0" end="${prPersonal}">
-										   		<option value="${n}">${n}명</option>
-										   </c:forEach>
-										</select>
-									</td>
 									<td id="reservation_report_question">이용수량</td>
-									<td id="reservation_report_answer">
+									<td id="reservation_report_answer" colspan="3">
 										<select name="productUserCount">
-											<c:forEach var="n" begin="0" end="${prPersonal}">
-										   		<option value="${n}">${n}명</option>
+											<c:forEach var="n" begin="1" end="${prPersonnel}">
+										   		<option value="${n}" ${productUserCount=="${n}"?"selected='selected'":""}>${n}명</option>
 										   </c:forEach>
 										</select>
-										(기준 1인/최대 ${prPersonal} 인)
+										(기준 1인/최대 ${prPersonnel} 인)
+										<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가격은 프로모션에 포함되어 있습니다.</span> 
 									</td>
 								</tr>
 								<tr>
@@ -261,7 +313,7 @@ $(function(){
 									<td id="reservation_report_group" rowspan="5">오는열차</td>
 									<td id="reservation_report_question">상품명</td>
 									<td id="reservation_report_answer">${endDto.trainCode}
-										<input type="hidden" name="trainCode" value="${endDto.trainCode}">
+										<input type="hidden" name="endTrain" value="${endDto.trainCode}">
 									</td>
 									<td id="reservation_report_question">객실등급</td>
 									<td id="reservation_report_answer">
@@ -270,12 +322,13 @@ $(function(){
 											<option value="특실" ${roomGrade=="특실"?"selected='selected'":""}>특실</option>
 										</select>
 										재고 : 309
-										<span class="addPrice1" style="display: none;">+5,800</span>
+										<span class="addPrice1" style="display: none;"> + ${dto.prAddPrice}</span>
 									</td>
 								</tr>
 								<tr>
 									<td id="reservation_report_question">이용기간</td>
-									<td id="reservation_report_answer" colspan="3">2020년 6월 28일 (일)</td>
+									<td id="reservation_report_answer" colspan="3">${pmStartDate}
+									</td>
 
 								</tr>
 
@@ -292,26 +345,26 @@ $(function(){
 								<tr>
 									<td id="reservation_report_question">이용인원</td>
 									<td id="reservation_report_answer" colspan="3">
-										<select name="adult">
-										   <c:forEach var="n" begin="0" end="${prPersonal}">
-										   		<option value="${n}" ${adult=="${n}"?"selected='selected'":""}>성인${n}명</option>
+										<select name="adult1" class="adult1">
+										   <c:forEach var="n" begin="0" end="${prPersonnel}">
+										   		<option value="${n}" ${adult1=="${n}"?"selected='selected'":""}>성인 ${n}명</option>
 										   </c:forEach>
 										</select>
-										<select name="child">
-											 <c:forEach var="n" begin="0" end="${prPersonal}">
-										   		<option value="${n}" ${child=="${n}"?"selected='selected'":""}>어린이${n}명</option>
+										<select name="child1" class="child1">
+											 <c:forEach var="n" begin="0" end="${prPersonnel}">
+										   		<option value="${n}" ${child1=="${n}"?"selected='selected'":""}>어린이 ${n}명</option>
 										   </c:forEach>
 										</select>
-										<select name="oldMan">
-											 <c:forEach var="n" begin="0" end="${prPersonal}">
-										   		<option value="${n}" ${oldMan=="${n}"?"selected='selected'":""}>경로${n}명</option>
+										<select name="oldMan1" class="oldMan1">
+											 <c:forEach var="n" begin="0" end="${prPersonnel}">
+										   		<option value="${n}" ${oldMan1=="${n}"?"selected='selected'":""}>경로 ${n}명</option>
 										   </c:forEach>
 										</select>
 									</td>
 								</tr>
 								<tr>
 									<td id="reservation_report_question">좌석선택</td>
-									<td id="reservation_report_answer" colspan="3"><button>좌석선택</button></td>
+									<td id="reservation_report_answer" colspan="3"><button type="button">좌석선택</button></td>
 								</tr>
 							</table>
 						</div>

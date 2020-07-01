@@ -140,7 +140,15 @@ function insertForm(){
 	ajaxHTML(url, "get", query, selector);
 }
 
-
+// 업데이트 폼
+function updateForm(pmCode){
+	
+	var url = "<%=cp%>/travel/update";
+	var query = "pmCode="+pmCode;
+	var selector = "#tab-content";
+	
+	ajaxHTML(url, "get", query, selector);
+}
 	
 	
 </script>
