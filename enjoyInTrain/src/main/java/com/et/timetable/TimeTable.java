@@ -1,62 +1,134 @@
 package com.et.timetable;
 
 public class TimeTable {
-	private String hak;
-	private String name;
-	private String birth;
-	private int kor;
-	private int eng;
-	private int mat;
-	private int tot;
-	private int ave;
+	//scode, traincode, trainname, HAENGSIN, YONGSAN, GWANGMYEONG, CHEONANASAN, OSONG,
+	// GONGJU, SEODAEJEON, GYERYONG, NONSAN, IKSAN, JEONGEUP, GWANGJUSONGJEONG, NAJU, MOKPO
+	private String scode;
+	private String traincode;
+	private String trainname;
+	private String haengsin;
+	private String yongsan;
+	private String gwangmyeong;
+	private String cheonanasan;
+	private String osong;
+	private String gongju;
+	private String seodaejeon;
+	private String gyeryong;
+	private String nonsan;
+	private String iksan;
+	private String jeongeup;
+	private String gwangjusongjeong;
+	private String naju;
+	private String mokpo;
 	
-	public String getHak() {
-		return hak;
+	
+	
+	public String getScode() {
+		return scode;
 	}
-	public void setHak(String hak) {
-		this.hak = hak;
+	public void setScode(String scode) {
+		this.scode = scode;
 	}
-	public String getName() {
-		return name;
+	public String getTraincode() {
+		return traincode;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setTraincode(String traincode) {
+		this.traincode = traincode;
 	}
-	public String getBirth() {
-		return birth;
+	public String getTrainname() {
+		return trainname;
 	}
-	public void setBirth(String birth) {
-		this.birth = birth;
+	public void setTrainname(String trainname) {
+		this.trainname = trainname;
 	}
-	public int getKor() {
-		return kor;
+	public String getHaengsin() {
+		return haengsin;
 	}
-	public void setKor(int kor) {
-		this.kor = kor;
+	public void setHaengsin(String haengsin) {
+		this.haengsin = haengsin;
 	}
-	public int getEng() {
-		return eng;
+	public String getYongsan() {
+		return yongsan;
 	}
-	public void setEng(int eng) {
-		this.eng = eng;
+	public void setYongsan(String yongsan) {
+		this.yongsan = yongsan;
 	}
-	public int getMat() {
-		return mat;
+	public String getGwangmyeong() {
+		return gwangmyeong;
 	}
-	public void setMat(int mat) {
-		this.mat = mat;
+	public void setGwangmyeong(String gwangmyeong) {
+		this.gwangmyeong = gwangmyeong;
 	}
-	public int getTot() {
-		return tot;
+	public String getCheonanasan() {
+		return cheonanasan;
 	}
-	public void setTot(int tot) {
-		this.tot = tot;
+	public void setCheonanasan(String cheonanasan) {
+		this.cheonanasan = cheonanasan;
 	}
-	public int getAve() {
-		return ave;
+	public String getOsong() {
+		return osong;
 	}
-	public void setAve(int ave) {
-		this.ave = ave;
+	public void setOsong(String osong) {
+		this.osong = osong;
 	}
+	public String getGongju() {
+		return gongju;
+	}
+	public void setGongju(String gongju) {
+		this.gongju = gongju;
+	}
+	public String getSeodaejeon() {
+		return seodaejeon;
+	}
+	public void setSeodaejeon(String seodaejeon) {
+		this.seodaejeon = seodaejeon;
+	}
+	public String getGyeryong() {
+		return gyeryong;
+	}
+	public void setGyeryong(String gyeryong) {
+		this.gyeryong = gyeryong;
+	}
+	public String getNonsan() {
+		return nonsan;
+	}
+	public void setNonsan(String nonsan) {
+		this.nonsan = nonsan;
+	}
+	public String getIksan() {
+		return iksan;
+	}
+	public void setIksan(String iksan) {
+		this.iksan = iksan;
+	}
+	public String getJeongeup() {
+		return jeongeup;
+	}
+	public void setJeongeup(String jeongeup) {
+		this.jeongeup = jeongeup;
+	}
+	public String getGwangjusongjeong() {
+		return gwangjusongjeong;
+	}
+	public void setGwangjusongjeong(String gwangjusongjeong) {
+		this.gwangjusongjeong = gwangjusongjeong;
+	}
+	public String getNaju() {
+		return naju;
+	}
+	public void setNaju(String naju) {
+		this.naju = naju;
+	}
+	public String getMokpo() {
+		return mokpo;
+	}
+	public void setMokpo(String mokpo) {
+		this.mokpo = mokpo;
+	}
+	
+	
+	
+	
+	
 	
 }

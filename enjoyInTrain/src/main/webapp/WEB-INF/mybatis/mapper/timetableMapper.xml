@@ -5,8 +5,8 @@
 	<insert id="insertTimeTable" parameterType="com.et.timetable.TimeTable">
 		INSERT INTO stationline2(scode, traincode, trainname, HAENGSIN, YONGSAN, GWANGMYEONG, CHEONANASAN, OSONG,
 		 GONGJU, SEODAEJEON, GYERYONG, NONSAN, IKSAN, JEONGEUP, GWANGJUSONGJEONG, NAJU, MOKPO)
-			VALUES (stationline2_seq.NEXTVAL, #{traincode}, #{trainname}, #{HAENGSIN}, #{YONGSAN}, #{GWANGMYEONG}, #{CHEONANASAN}, #{OSONG},
-			#{GONGJU},#{SEODAEJEON}, #{GYERYONG}, #{NONSAN}, #{IKSAN}, #{JEONGEUP}, #{GWANGJUSONGJEONG}, #{NAJU}, #{MOKPO})
+			VALUES (stationline2_seq.NEXTVAL, #{traincode}, #{trainname}, #{haengsin}, #{yongsan}, #{gwangmyeong}, #{cheonanasan}, #{osong},
+			#{gongju},#{seodaejeon}, #{gyeryong}, #{nonsan}, #{iksan}, #{jeongeup}, #{gwangjusongjeong}, #{naju}, #{mokpo})
 	</insert>
 	
 	<select id="dataCount" resultType="Integer">
@@ -14,19 +14,27 @@
 	</select>
 	
 	<select id="listTimeTable" parameterType="map" resultType="com.et.timetable.TimeTable">
-		SELECT hak, name, TO_CHAR(birth, 'YYYY-MM-DD') birth, kor, eng, mat, 
-		       (kor+eng+mat) tot, (kor+eng+mat)/3 ave
+		SELECT scode, traincode, trainname, HAENGSIN, YONGSAN, GWANGMYEONG, CHEONANASAN, OSONG,
+		 GONGJU, SEODAEJEON, GYERYONG, NONSAN, IKSAN, JEONGEUP, GWANGJUSONGJEONG, NAJU, MOKPO
 		FROM stationline2
-		ORDER BY hak
+		ORDER BY scode
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	
 	<select id="readTimeTable" parameterType="String" resultType="com.et.timetable.TimeTable">
-		SELECT hak, name, TO_CHAR(birth, 'YYYY-MM-DD') birth,
-			kor, eng, mat 
+		SELECT scode, traincode, trainname, HAENGSIN, YONGSAN, GWANGMYEONG, CHEONANASAN, OSONG,
+		 GONGJU, SEODAEJEON, GYERYONG, NONSAN, IKSAN, JEONGEUP, GWANGJUSONGJEONG, NAJU, MOKPO 
 		FROM stationline2
-		WHERE hak=#{hak}
+		WHERE scode=#{scode}
 	</select>
 	
+	<update id="updateTimeTable" parameterType="com.et.timetable.TimeTable">
+		UPDATE stationline2 SET traincode=#{traincode}, trainname=#{trainname}, HAENGSIN=#{haengsin}, YONGSAN=#{yongsan}, GWANGMYEONG=#{gwangmyeong}, CHEONANASAN=#{cheonanasan}, OSONG=#{osong},
+		 GONGJU=#{gongju}, SEODAEJEON=#{seodaejeon}, GYERYONG=#{gyeryong}, NONSAN=#{nonsan}, IKSAN=#{iksan}, JEONGEUP=#{jeongeup}, GWANGJUSONGJEONG=#{gwangjusongjeong}, NAJU=#{naju}, MOKPO=#{mokpo}  
+		WHERE scode=#{scode}
+	</update>
 	
+	<delete id="deleteTimeTable" parameterType="String">
+		DELETE FROM stationline2 WHERE scode=#{scode}
+	</delete>
 </mapper>
