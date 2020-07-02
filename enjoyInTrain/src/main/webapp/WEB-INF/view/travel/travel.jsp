@@ -263,9 +263,9 @@ function reservation(){
 	var f = document.travelArticleForm;
 	var query = $(f).serialize();
 	
-	//f.action="<%=cp%>/booking/reservation?"+query;
+	f.action="<%=cp%>/booking/reservation?"+query;
 
-	//f.submit();
+	f.submit();
 }
 
 </script>
