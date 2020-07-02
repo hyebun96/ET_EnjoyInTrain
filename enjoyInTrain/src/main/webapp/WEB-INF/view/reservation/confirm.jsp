@@ -119,9 +119,8 @@ function requestPay(){
                 }
             });
             //성공시 이동할 페이지
-            var f=document.reservationForm2;
-            f.action="<%=cp%>/reservation/reservation";
-            f.submit;
+            var f=document.reservationForm;
+            f.submit();
         } else {
             msg = '결제에 실패하였습니다.';
             msg += '에러내용 : ' + rsp.error_msg;
@@ -131,6 +130,7 @@ function requestPay(){
         }
     });
 };    
+
 </script>
 
 
@@ -142,7 +142,7 @@ function requestPay(){
 					<div class="9u skel-cell-important">
 						<section>
 							<header>
-								<form action="<%=cp%>/reservation/reservation" id="reservationForm2" name="reservationForm2" method="post">
+								<form action="<%=cp%>/reservation/reservation"  name="reservationForm" method="post">
 								<h2>예약확인</h2>
 								<span class="byline">confirm</span>
 								<div style="width: 1200px; text-align: center;">
@@ -213,7 +213,7 @@ function requestPay(){
 								 	</table>
 								 	<button type="button" onclick="requestPay()" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #6f047f; color: white; border: none;">결제하기</button>
 									<button type="button" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #6f047f; color: white; border: none;">다시계산</button>
-									<button >좌석예약(테스트)</button>
+									<button onclick="aa();">좌석예약(테스트)</button>
 								</div>
 								</form>
 							</header>
