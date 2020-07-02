@@ -3,6 +3,91 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reservation">
 	<select id="listStation" resultType="com.et.reservation.Station">
-		SELECT DISTINCT sname FROM station
+		SELECT DISTINCT sname FROM station6
 	</select>
+	
+	<!-- 역이름 영어, 코드로 가져오기 -->
+	<select id="readStation" parameterType="Object" resultType="map">
+		SELECT engName, sCode FROM station6
+		WHERE sName=#{station}
+	</select>
+	
+	<!-- 시간표 가져오기 -->
+	<select id="listTrain" parameterType="com.et.reservation.Condition" resultType="com.et.reservation.Train">
+		SELECT trainCode, trainName, departureTime, arriveTime FROM (
+    		SELECT trainCode, trainName, ${startSt} departureTime, ${endSt} arriveTime
+    		FROM stationline7)
+		WHERE departureTime IS NOT NULL AND arriveTime IS NOT NULL
+			AND SUBSTR(departureTime,1,2)>=#{time}
+			AND TO_DATE(arriveTime,'HH24:MI')-TO_DATE(departureTime,'HH24:MI')>0
+			AND MOD(trainCode,2)=#{route}
+			AND trainName=#{tCategory}
+		ORDER BY departuretime ASC
+	</select>
+	
+	<select id="firstSt" resultType="String">
+		SELECT sName
+		FROM timetable7 tt 
+		JOIN station6 st ON tt.firstCode=st.sCode
+		WHERE ttCode=1
+	</select>
+	
+	<select id="lastSt" resultType="String">
+		SELECT sName
+		FROM timetable7 tt 
+		JOIN station6 st ON tt.lastCode=st.sCode
+		WHERE ttCode=1
+	</select>
+	
+	<!-- 소요시간 계산 -->
+	<select id="totalTime" parameterType="com.et.reservation.Train" resultType="Integer">
+		SELECT ROUND((TO_DATE(#{arriveTime},'HH24:MI')-TO_DATE(#{departureTime},'HH24:MI'))*24*60*60/60)
+		FROM dual
+	</select>
+	
+	<!-- 상행인지 하행인지 계산하기 -->
+	<select id="searchRoute" parameterType="map" resultType="String">
+		SELECT sname FROM station6 WHERE line=(
+    		SELECT line FROM(
+        		SELECT line, COUNT(*) cnt FROM station6 
+        		WHERE sname=#{startSt} OR sname=#{endSt}
+        		GROUP BY line
+    		) 
+    		WHERE cnt=2
+    	)
+ 		AND sname=#{startSt} OR sname=#{endSt}
+ 		ORDER BY lineorder
+	</select>
+	
+	<!-- 좌석 행열 가져오기 -->
+	<select id="readseat" parameterType="map" resultType="com.et.reservation.Seat">
+		SELECT roomNum, roomGrade, seatRow, seatColumn FROM trainsetting7
+		WHERE trainCategory=#{tCategory} AND roomNum=#{roomNum}
+	</select>
+	
+	<select id="listSeat" parameterType="String" resultType="com.et.reservation.Seat">
+		SELECT roomNum, roomGrade, seatRow, seatColumn FROM trainsetting7
+		WHERE trainCategory=#{tCategory}
+	</select>
+	
+	<!-- 요금 가져오기 -->
+	<select id="readsPay" parameterType="map" resultType="Integer">
+		SELECT ${seatPay} FROM spay7
+		WHERE startCode=#{startCode} AND endCode=#{endCode} AND trainCategory=#{trainCategory}
+	</select>
+	
+<!-- 	
+	기차예약, 기차예약상세테이블은 1번씩만, 좌석테이블은 여러번 insert
+	<insert id="">
+		INSERT INTO trainreservation(trCode, trDate) VALUES(trainreservation_seq.NEXTVAL,#{})
+	</insert>
+	
+	<insert id="">
+		INSERT INTO trReservationInfo(trCode, startCode, endCode, trainCode) VALUES()
+	</insert>
+	
+	<insert id="">
+		INSERT INTO reservedSeat(rsSeatCode, seatNum, trCode, seatType, seatPay, roomNum, trainCode) VALUES(reservedSeat_seq.NEXTVAL, );
+	</insert>
+ -->	
 </mapper>

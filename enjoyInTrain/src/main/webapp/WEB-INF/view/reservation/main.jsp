@@ -5,11 +5,14 @@
 <%
    String cp = request.getContextPath();
 %>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 <style>
-.tabs li:hover{
-		background: gray;
-		color: white;
+
+.tabs li{
+		font-weight:bold;
+		background:#EAEAEA; 
 	}
+
 
 /* The Modal (background) */
 .modal {
@@ -30,9 +33,19 @@
 .modal-content {
   background-color: #fefefe;
   margin: auto;
-  padding: 20px;
+  padding: 10px;
   border: 1px solid #888;
-  width: 80%;
+  width: 400px;
+  height: 500px;
+}
+
+.modal-content2 {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 800px;
+  height: 600px;
 }
 
 /* The Close Button */
@@ -49,20 +62,91 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+table td{
+	padding-left:20px;
+	padding-right: 20px;
+	padding-top: 10px;
+}
+
 </style>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
   <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <c:forEach var="dto" items="${list}">
-    	<button class="stationBtn" value="${dto.sName}">${dto.sName}</button>
-    </c:forEach>
+  <div style="background: #6f047f;" class="modal-content">
+  	<div style="text-align:center;  margin-bottom: 10px;">
+    <span  style="line-height:17px; font-size:17px; color: white; font-weight: bold;">노선선택</span><span class="close">&times;</span>
+    </div>
+	    <div style="padding:10px; height:90%; background: white;">
+	    	<c:set var="i" value="0"/>
+		    <table style="height:250px; width: 100%;">
+		    	<tr>
+		    		<c:forEach var="dto" items="${list}">
+		    			<td style=" height:35px; padding:5px; width: 30%;">
+		    				<button type="button" value="${dto.sName}" class="stationBtn" style="border:1px solid #D5D5D5;  height:100%; width: 100%;">${dto.sName}</button></td>
+		    			<c:set var="i" value="${i+1}"/>
+		    			<c:if test="${i%3==0}">
+		    				</tr>
+		    				<tr>
+		    			</c:if>
+		    		</c:forEach>
+		    	</tr>
+		    </table>
+	    </div>
   </div>
 </div>
 
+
 <script type="text/javascript">
+function ajaxJSON(url, type, query, fn) {
+	$.ajax({
+		type:type
+		,url:url
+		,data:query
+		,dataType:"json"
+		,success:function(data) {
+			fn(data);
+		}
+		,beforeSend:function(jqXHR) {
+	        jqXHR.setRequestHeader("AJAX", true);
+	    }
+	    ,error:function(jqXHR) {
+	    	if(jqXHR.status==403) {
+	    		login();
+	    		return false;
+	    	}
+	    	console.log(jqXHR.responseText);
+	    }
+	});
+}
+
+function ajaxHTML(url, type, query, selector) {
+	$.ajax({
+		type:type
+		,url:url
+		,data:query
+		,success:function(data) {
+			if($.trim(data)=="error") {
+				listPage(1);
+				$(selector).html(data);
+				return false;
+			}	
+			$(selector).html(data);
+		}
+		,beforeSend:function(jqXHR) {
+	        jqXHR.setRequestHeader("AJAX", true);
+	    }
+	    ,error:function(jqXHR) {
+	    	if(jqXHR.status==403) {
+	    		login();
+	    		return false;
+	    	}
+	    	console.log(jqXHR.responseText);
+	    }
+	});
+}
+
 $(function(){
 	var st="";
 	var modal = document.getElementById("myModal");
@@ -91,6 +175,7 @@ $(function(){
 	});
 });
 
+//출발역 도착역 바꾸기
 function stationch(){
 	var startSt=$("#startSt").val();
 	var endSt=$("#endSt").val();
@@ -98,65 +183,11 @@ function stationch(){
 	$("#endSt").val(startSt);
 }
 
-function ajaxHTML(url, type, query, selector) {
-	$.ajax({
-		type:type
-		,url:url
-		,data:query
-		,success:function(data) {
-			if($.trim(data)=="error") {
-				listPage(1);
-				return false;
-			}	
-			$(selector).html(data);
-		}
-		,beforeSend:function(jqXHR) {
-	        jqXHR.setRequestHeader("AJAX", true);
-	    }
-	    ,error:function(jqXHR) {
-	    	if(jqXHR.status==403) {
-	    		login();
-	    		return false;
-	    	}
-	    	console.log(jqXHR.responseText);
-	    }
-	});
-}
-
-$(function(){
-	$("#tab-general").addClass("active");
-	listPage(1);
-
-	$("ul.tabs li").click(function() {
-		tab = $(this).attr("data-tab");
-		
-		$("ul.tabs li").each(function(){
-			$(this).removeClass("active");
-		});
-		
-		$("#tab-"+tab).addClass("active");
-		
-		// listPage(1);
-		reloadBoard();
-	});
-});
-
-// 새로고침
-function reloadBoard() {
-	var f=document.reservationForm;
-	
-	listPage(1);
-}
-
 function listPage(page) {
-	var $tab = $(".tabs .active");
-	var tab = $tab.attr("data-tab");
-	
-	var url="<%=cp%>/reservation/"+tab+"/main";
-	var query="";
-	var selector = "#tab-content";
-	
-	ajaxHTML(url, "get", query, selector);
+	var url="<%=cp%>/reservation/list";
+	var query=$("form[name=reservationForm]").serialize();
+	var selector = "#listcontent";
+	ajaxHTML(url, "post", query, selector);
 }
 
 </script>
@@ -168,128 +199,132 @@ function listPage(page) {
 	<!-- /Banner -->
 
 	<!-- Main -->
-		<div id="page">
+		<div id="page" >
 				
 			<!-- Main -->
 			<div id="main" class="container" style="margin-top: 0; padding-top: 0;">
 				<div class="row">
-					<div class="3u">
-						<section class="sidebar">
-							<header>
-								<h2>Feugiat Tempus</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Etiam rhoncus volutpat erat</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Nulla luctus eleifend purus</a></li>
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-							</ul>
-						</section>
-						<section class="sidebar">
-							<header>
-								<h2>Nulla luctus eleifend</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Integer gravida nibh quis urna</a></li>
-								<li><a href="#">Etiam posuere augue sit amet nisl</a></li>
-								<li><a href="#">Mauris vulputate dolor sit amet nibh</a></li>
-							</ul>
-						</section>
-					</div>
-				
 					<div class="9u skel-cell-important">
 						<section>
 							<header>
 								<form action="" name="reservationForm" method="post">
 								<h2>기차예약</h2>
 								<span class="byline">reservation</span>
-								<div style="width: 800px; ">
+								<div style="width: 1200px; ">
 									<div style="width: 100%; ">
-										<ul class="tabs" style=" text-align:center; width: 100%; border:1px solid gray;">
-											<li style=" width:33%; float: left" id="tab-general" data-tab="general" >일반승차권 조회</li>
-											<li style="width:33%; float: left" id="tab-group" data-tab="group">단체승차권 조회</li>
-											<li style=" width:34%; float: left" id="tab-discount" data-tab="discount">할인승차권 조회</li>
+										<ul class="tabs" style="font-size:17px; text-align:center; width: 100%; border:1px solid #D5D5D5;">
+											<li style="background:#6f047f; color:white; border-right: 1px solid #D5D5D5; line-height:40px; height:40px; width:100%; float: left">승차권 조회</li>
 										</ul>
-										<table  style="width:100%; border: 1px solid gray;">
+										<table style="font-size:13px; width:100%; border: 1px solid #D5D5D5;">
+											<tr>
+												<td colspan="3" >
+													<div>
+														<div style="float: left;">
+															<input style="font-size: 13px;" type="text" value="${firstSt}" name="startSt" id="startSt">
+															<button type="button" style="border:none; background: #6f047f;" class="myBtn" >
+																<i class="fas fa-map-marker-alt" style="margin:4px; font-size: 17px; color: white;"></i>
+															</button>
+															
+														</div>
+														<i onclick="stationch();" style="color:gray; margin-left:10px; margin-right:10px; float: left; font-size: 25px;" class="fas fa-exchange-alt"></i>
+														<div style="float: left; margin-right: 10px;" >
+															<input style="font-size: 13px;" type="text" value="${lastSt}" name="endSt" id="endSt">
+															<button type="button" class="myBtn" style="border:none; background: #6f047f;" >
+																<i class="fas fa-map-marker-alt" style="margin:4px; font-size: 17px; color: white;"></i>
+															</button>
+														</div>
+														<select name="day" id="day" style="height: 28px;">
+															<c:forEach var="day" items="${daylist}">
+																<option value="${day}">${day}</option>
+															</c:forEach>
+														</select>
+																						
+														<select name="time" id="time" style="height: 28px;">
+															<c:forEach var="n" begin="0" end="22" step="2">
+																<option>${n<10?"0":""}${n}</option>
+															</c:forEach>
+														</select>
+															시
+													<i style="margin-left:5px; color:#5D5D5D; font-size: 25px;" class="far fa-calendar-alt"></i>
+													</div>
+												</td>
+											</tr>
 											<tr>
 												<td colspan="3">
-													<div style="float: left;">
-														<input type="text" value="" id="startSt">
-														<button type="button" class="myBtn" >지역선택</button>
-													</div>
-													<button style="float: left;" type="button" onclick="stationch();"><-></button> 
-													<div>
-														<input type="text" value="" id="endSt">
-														<button type="button" class="myBtn">지역선택</button>
-													</div>
-													<select>
-														<option>2020/06/22(월)</option>
-														<option>2020/06/23(화)</option>
-														<option>2020/06/24(수)</option>
-													</select>
-																					
-													<select>
-														<c:forEach var="n" begin="0" end="22" step="2">
-															<option>${n}</option>
+													<b style="color: #4C4C4C; margin-right: 10px;">· 열차종류</b>  
+													<input type="radio" checked="checked" value="all" name="tCategory">전체
+													<input type="radio" value="KTX" name="tCategory">KTX
+													<input type="radio" value="ITX" name="tCategory">ITX
+													<input type="radio" value="mugunghwa" name="tCategory">무궁화
+												</td>
+											</tr>
+											<tr>
+												<td colspan="3">
+													<b style="color: #4C4C4C; margin-right: 10px;">· 여정경로</b>  
+													<input type="radio" checked="checked" value="direct" name="path">직통
+													<input type="radio" value="transfer" name="path">환승
+													<input type="radio" value="round" name="path">왕복
+												</td>
+											</tr>
+											<tr>
+												<td colspan="3">
+													<b style=" margin-right: 10px; color: #4C4C4C">· 인원정보</b> 
+													<select name="adult" id="adult" style="font-size: 13px;">
+														<option value="1" selected="selected">어른(만 13세 이상)1명</option>
+														<c:forEach var="i" begin="1" end="9" step="1">
+															<option value="${i}">어른(만 13세 이상)${i}명</option>
 														</c:forEach>
 													</select>
-														시
-													<button>캘린더</button>
-												</td>
-											</tr>
-											<tr>
-												<td colspan="3">
-													*여정경로  
-													<input type="radio">직통
-													<input type="radio">환승
-													<input type="radio">왕복
-												</td>
-											</tr>
-											<tr>
-												<td colspan="3">
-													*인원정보 
-													<select>
-														<option>어른(만 13세 이상)0명</option>
-														<option>어른(만 13세 이상)1명</option>
+													<select name="child" id="child" style="font-size: 13px;">
+														<c:forEach var="i" begin="0" end="9" step="1">
+															<option value="${i}">어린이(만 6~12세 이상)${i}명</option>
+														</c:forEach>
 													</select>
-													<select>
-														<option>어린이(만 6~12세 이상)0명</option>
-														<option>어린이(만 6~12세 이상)1명</option>
+													<select name="senior" id="senior" style="font-size: 13px;">
+														<c:forEach var="i" begin="0" end="9" step="1">
+															<option value="${i}">경로(만 65세 이상)${i}명</option>
+														</c:forEach>
 													</select>
-													<select>
-														<option>경로(만 65세 이상)0명</option>
-														<option>걍로(만 65세 이상)1명</option>
+													<select name="disabled1" id="disabled1" style="font-size: 13px;">
+														<c:forEach var="i" begin="0" end="9" step="1">
+															<option value="${i}">중증장애인 ${i}명</option>
+														</c:forEach>
 													</select>
-													<select>
-														<option>중증장애인 0명</option>
-														<option>중증장애인 1명</option>
-													</select>
-													<select>
-														<option>경로장애인 0명</option>
-														<option>경로장애인 1명</option>
+													<select name="disabled2" id="disabled2" style="font-size: 13px;">
+														<c:forEach var="i" begin="0" end="9" step="1">
+															<option value="${i}">경증장애인 ${i}명</option>
+														</c:forEach>
 													</select>
 												</td>
 											</tr>
 											<tr>
 												<td colspan="3">
-													*좌석종류
-													<select>
-														<option>1인석</option>
-														<option>창즉좌석</option>
-														<option>내즉좌석</option>
+													<b style="color: #4C4C4C;  margin-right: 10px;">· 좌석종류</b>
+													<select name="seat" id="seat1" style="font-size: 13px;">
+														<option value="all">좌석위치</option>
+														<option value="alone">1인석</option>
+														<option value="window">창즉좌석</option>
+														<option value="inside">내즉좌석</option>
 													</select>
-													<select>
-														<option>일반</option>
-														<option>휠체어</option>
+													<select name="seat2" id="seat2" style="font-size: 13px;">
+														<option value="all">좌석속성</option>
+														<option value="normal">일반</option>
+														<option value="bathchair">휠체어</option>
 													</select>
+												</td>
+											</tr>
+											<tr>
+												<td style="border-right:1px solid #D5D5D5; padding-bottom: 10px; font-size: 12px; text-align: right;">
+													<label>'중증':장애의 정도가 심한 장애인 (구1-3급)</label><br>
+													<label>'경증':장애의 정도가 심하지 않은 장애인 (구4-6급)</label>
 												</td>
 											</tr>
 										</table>
 									</div>
-									<div style="width: 100%;" id="tab-content"></div>
+									<div style="text-align: center; ">
+										<button type="button" onclick="listPage(1);" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #6f047f; color: white; border: none;">조회하기</button>
+									</div>
+									<div style="margin-top:20px; width: 100%;" id="listcontent"></div>
 								</div>
 								</form>
 							</header>
