@@ -161,9 +161,12 @@ public class ReservationController {
 	}
 	
 	@RequestMapping("reservation")
-	public String reservation() {
-		
-		
+	public String reservation(
+			Reservation rv,
+			ReservedSeat seat,
+			@RequestParam Map<String,String> map
+			) {
+		service.reservation(rv, seat, map);
 		return "redirect:/reservation/complete";
 	}
 	

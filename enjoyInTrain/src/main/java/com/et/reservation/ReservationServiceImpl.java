@@ -161,4 +161,51 @@ public class ReservationServiceImpl implements ReservationService{
 		return result;
 	}
 
+	@Override
+	public void reservation(Reservation rv, ReservedSeat seat, Map<String,String> map) {
+		try {
+			//날짜(ex 2020/7/2(목))->2020/7/2 형식으로 바꿔줌
+			String trDate=rv.getTrDate();
+			rv.setTrDate(trDate.substring(0,trDate.length()-3));
+			
+			//시작역이름(ex 용산)->역 코드로 바꾸기
+			Map<String, String> model;
+			model=dao.selectOne("reservation.readStation", rv.getStartCode());
+			rv.setStartCode(model.get("SCODE"));
+			//도착역이름(ex 용산)->역 코드로 바꾸기
+			model=dao.selectOne("reservation.readStation", rv.getEndCode());
+			rv.setEndCode(model.get("SCODE"));
+			
+			//trainreservation 시퀀스 가져오기
+			int trCode=dao.selectOne("reservation.trainreservationSeq");
+			rv.setTrCode(trCode);
+			
+			//기차예약테이블에 저장
+			dao.insertData("reservation.insertReservation", rv);
+			//기차예약상세테이블에 저장
+			dao.insertData("reservation.insertReservationInfo", rv);
+			
+			
+			
+			//예약된좌석 테이블에 저장
+			int total=Integer.parseInt(map.get("total"));
+			for(int i=1; i<=total; i++) {
+				ReservedSeat rvSeat=new ReservedSeat();
+				
+				//reservedSeat 시퀀스 가져오기
+				int rsSeatCode=dao.selectOne("reservation.reservedSeatSeq");
+				
+				rvSeat.setRsSeatCode(rsSeatCode);
+				rvSeat.setSeatNum(map.get("seatNum"+i));
+				rvSeat.setTrCode(trCode);
+				rvSeat.setSeatType(map.get("seatType"+i));
+				rvSeat.setSeatPay(Integer.parseInt(map.get("seatPay"+i)));
+				rvSeat.setRoomNum(Integer.parseInt(map.get("roomNum")));
+				rvSeat.setTrainCode(map.get("trainCode"));
+				dao.insertData("reservation.insertReservedSeat", rvSeat);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
