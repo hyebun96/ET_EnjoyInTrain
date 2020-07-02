@@ -135,7 +135,7 @@ $(function(){
 		var day = $(this).attr("data-tab");
 		var data = year + '년' + month + '월 ' + day + '일';
 			
-		$("#date").html(data);
+		$("#selectDate").html(data);
 		
 		month = month<10 ? "0"+month : month;
 		day = day <10 ? "0"+day : day;
@@ -223,10 +223,8 @@ $(function(){
 								${year}년  ${month} 월
 							<button type="button" onclick="calendar( ${lastYear}, ${lastMonth} , '${dto.getPmCode()}');"><i class='fas fa-arrow-circle-left'></i></button>
 						</td></tr>
-						<tr><td>일</td><td>월</td><td>화</td><td>수</td><td>목</td><td>금</td><td>토</td></tr>
-						<tr>
-							${result}
-						</tr>
+					<tr><td>일</td><td>월</td><td>화</td><td>수</td><td>목</td><td>금</td><td>토</td></tr>
+					${result}
 				</table>
 			</td>
 		</tr>
@@ -274,10 +272,9 @@ $(function(){
 		
 		<tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
 		<td class="title"   style="text-align: center;">출발일자</td>
-			<td style="padding-left: 10px; width: 343px;" id="date">
-				<input type="hidden" name="pmStartDate" id="pmStartDate" value="">
-					
-				
+			<td style="padding-left: 10px; width: 343px;">
+				<span id="selectDate"></span>
+				<input type="hidden" name="pmStartDate" id="pmStartDate">
 			</td>
 		</tr>
 	</table>	

@@ -337,7 +337,7 @@ public class TravelController {
 		
 		
 		int col = 0;
-		String result = "";
+		String result = "<tr>";
 		
 		 //1일 앞 처리
 	    for(int i=1;i<week;i++){
@@ -361,6 +361,7 @@ public class TravelController {
 	    	result += "<td class='nextday' data-tab='"+ n +"'>"+(n++)+"</td>";
 	       col++;
 	    }
+	    result += "</tr>";
 
 	    model.addAttribute("preYear", preYear);
 	    model.addAttribute("preMonth", preMonth);
