@@ -23,4 +23,6 @@ public interface TravelService {
 	
 	public List<Photo> listPhoto(String pmCode);
 	public List<Photo> listPhoto2(String pmCode);
+	
+	public List<Travel> travelRankList();
 }

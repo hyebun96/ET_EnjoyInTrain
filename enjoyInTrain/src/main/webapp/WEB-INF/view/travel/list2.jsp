@@ -30,7 +30,7 @@
 			<tr id="question-${dto.categoryNum}" class="qu"
 				data-num="${dto.pmCode}" height="35"
 				style="border-bottom: 1px solid #cccccc;"
-				onclick="javascript:articleForm('${dto.pmCode}');">
+				onclick="location.href='<%=cp%>/travel/travel?pmCode=${dto.pmCode}'">
 				<td style="width: 300px;">
 					<img src="<%=cp%>/uploads/travel/${dto.saveFileName}" width="254px" height="150px" style="margin: 15px 15px;">
 				</td>
@@ -38,7 +38,6 @@
 					${dto.pmTitle}<br>  
 					<p style="color:orange;"><fmt:formatNumber value="${dto.pmPrice}" pattern="#,###" />&#126;</p>
 				</td>
-				<td><button id="btn"> <i class="far fa-paper-plane" style="font-size: 25px;"></i><br><br>예약하기</button></td>
 			</tr>
 		</c:forEach>
 	</tbody>

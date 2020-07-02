@@ -24,7 +24,7 @@
 	<select id="dataCount" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*), 0) 
 		FROM promotionDetail
-		<if test="group!=0">
+		<if test="group!=0"> 
 			WHERE CategoryNum = #{group}
 		</if>
 	</select>
@@ -136,6 +136,17 @@
 		SELECT fileContentNum, pmCode, saveFileName, originalFileName, fileSize
 		FROM promotionContentFile
 		WHERE pmCode = #{pmCode}
+	</select>
+	
+	<select id="travelRank" resultType="com.et.travel.Travel">
+		SELECT pmCode, pmTitle, saveFileName, pmPrice FROM (
+		    SELECT ROWNUM rnum, tb.pmCode pmCode, tb.pmTitle pmTitle, tb.saveFileName saveFileName, pmPrice FROM(
+		        SELECT  pd.pmCode, pmTitle , saveFileName, pmPrice
+		        FROM promotionDetail pd
+		        JOIN promotionFile pf ON pd.pmCode = pf.pmCode
+		        ORDER BY stock DESC 
+		    )tb WHERE ROWNUM &lt;= 4
+		)WHERE rnum &gt;= 1 
 	</select>
 
 </mapper>

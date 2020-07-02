@@ -1,14 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true"%>
+<%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
-	String cp = request.getContextPath();
+	String cp=request.getContextPath();
 %>
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 <style type="text/css">
+
 .homepage #main{
-   margin-top: 0em;
+   margin-top: 5em;
     padding-top: 0em;
 }   
 
@@ -63,10 +65,15 @@ ul.tabs li.active{
 	border-color: #cccccc;
 }
 
+.\36 u {width: 70%;}
+
 </style>
+
 <script type="text/javascript">
+
 $(function(){
 	$("#tab-0").addClass("active");
+	
 	list(0);
 });
 
@@ -117,65 +124,181 @@ function ajaxHTML(url, type, query, selector) {
 	});
 }
 
-function list(group){
-	var $tab = $(".tabs .active");
-	var tab = $tab.attr("data-tab");
-	
-	var url="<%=cp%>/travel/list";
+function list(group){	
+	var url="<%=cp%>/travel/list2";
 	var query="group="+ group;
 	var selector = "#tab-content";
 	
 	ajaxHTML(url, "get", query, selector);
 }
 
-// 생성 폼
-function insertForm(){
-	var $tab = $(".tabs .active");
-	var tab = $tab.attr("data-tab");
-	
-	var url = "<%=cp%>/travel/created";
-	var query = "";
-	var selector = "#tab-content";
-	
-	ajaxHTML(url, "get", query, selector);
-}
-
-// 업데이트 폼
-function updateForm(pmCode){
-	
-	var url = "<%=cp%>/travel/update";
-	var query = "pmCode="+pmCode;
-	var selector = "#tab-content";
-	
-	ajaxHTML(url, "get", query, selector);
-}
-	
-	
 </script>
 
-<!-- Main -->
-<div id="page">
+
+
+<!-- Banner2 -->
+		<div id="banner2">
+			<div class="container">
+			</div>
+		</div>
+	<!-- /Banner -->
 
 	<!-- Main -->
-	<div id="main" class="container">
-		<div class="row">
+		<div id="page">
 
-			<div class="9u skel-cell-important">
-				<section>
-					<header>
-						<h2>여행 프로모션</h2>
-						<span class="byline">Travel Promotion</span>
-					</header>
+			<!-- 여행 상품 순위 -->
+			<div class="container" >
+			
+				<div class="6u" style="">
+						<section>
+							<header>
+								<h2 style="font-weight: bold;">BEST 여행 상품</h2>
+								<br>
+							</header>
+						</section>
+				</div>
+				
+				<div class="row">
+					
 
+					<div class="3u">
+						<section>
+							<header>
+								<h3><img src="<%=cp%>/resource/images/one.png" style="width: 50px;"></h3>
+							</header>
+							<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto1.pmTitle}</p>
+							<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto1.pmPrice}" pattern="#,###" /></p>
+							
 
-					<div id="tab-content"
-						style="clear: both; padding: 10px 0px 0px; width: 1200px;"></div>
-				</section>
+							<p>
+								<a href="#"><img src="<%=cp%>/uploads/travel/${dto1.saveFileName}" style="width: 282px; height: 200px;">
+							</a></p>
+						</section>
+					</div>
+					<div class="3u">
+						<section>
+							<header>
+								<h2><img src="<%=cp%>/resource/images/two.png" style="width: 50px;"></h2>
+							</header>
+							<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto2.pmTitle}</p>
+							<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto2.pmPrice}" pattern="#,###" /></p>
+							<p>
+								<a href="#"><img src="<%=cp%>/uploads/travel/${dto2.saveFileName}" style="width: 282px; height: 200px;">
+							</a></p>
+						</section>
+					</div>
+					<div class="3u">
+						<section>
+							<header>
+								<h2><img src="<%=cp%>/resource/images/three.png" style="width: 50px;"></h2>
+							</header>
+							<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto3.pmTitle}</p>
+							<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto3.pmPrice}" pattern="#,###" /></p>
+							<p><a href="#">
+								<img src="<%=cp%>/uploads/travel/${dto3.saveFileName}" style="width: 282px; height: 200px;">
+							</a></p>
+						</section>
+					</div>
+					<div class="3u">
+						<section>
+							<header>
+								<h2><img src="<%=cp%>/resource/images/recommend.png" style="width: 50px;"></h2>
+							</header>
+							<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto4.pmTitle}</p>
+							<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto4.pmPrice}" pattern="#,###" /></p>
+							<p><a href="#">
+								<img src="<%=cp%>/uploads/travel/${dto4.saveFileName}" style="width: 282px; height: 200px;">
+							</a></p>
+						</section>
+					</div>
+				
+				</div>
+				
+				
 			</div>
+			<!-- 여행상품 순위 -->
+				
+			<!-- tab키를 이용한 여행 리스트 -->
+			<div id="main" class="container">
+				<div class="row">
+					<div class="6u">
+						<section>
+							<header>
+								<h3 style="font-weight: bold; font-size: 25px;">여행 상품 리스트</h3>
+							</header>
+							
+							<div id ="tab-content" style="clear: both; padding: 10px 0px 0px; width: 800px;">
+							
+							</div>
+							
+						</section>
+					</div>
+					
+					
+					<!-- 세일 -->
+					<div class="3u">
+						<section class="sidebar">
+							<header>
+								<h2 style="font-weight: bold;">특별 할인 상품</h2>
+							</header>
+							<ul class="style2">
+								<li>
+									<a href="#"><img src="<%=cp%>/resource/images/pics07.jpg" alt=""></a>
+									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
+								</li>
+								<li>
+									<a href="#"><img src="<%=cp%>/resource/images/pics08.jpg" alt=""></a>
+									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
+								</li>
+								<li>
+									<a href="#"><img src="<%=cp%>/resource/images/pics09.jpg" alt=""></a>
+									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
+								</li>
+								<li>
+									<a href="#"><img src="<%=cp%>/resource/images/pics10.jpg" alt=""></a>
+									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
+								</li>
+							</ul>						
+						</section>
+					</div>
+				</div>
+			</div>
+			<!-- Main -->
 
 		</div>
-	</div>
-	<!-- Main -->
+	<!-- /Main -->
 
-</div>
-<!-- /Main -->
+	<!-- Featured -->
+		<div id="featured">
+			<div class="container">
+				<div class="row">
+					<section class="4u">
+						<div class="box">
+							<a href="#" class="image left"><img src="<%=cp%>/resource/images/pics04.jpg" alt=""></a>
+							<h3>Etiam posuere augue</h3>
+							<p>Donec nonummy magna quis risus eleifend. </p>
+							<a href="#" class="button">More</a>
+						</div>
+					</section>
+					<section class="4u">
+						<div class="box">
+							<a href="#" class="image left"><img src="<%=cp%>/resource/images/pics05.jpg" alt=""></a>
+							<h3>Etiam posuere augue</h3>
+							<p>Donec nonummy magna quis risus eleifend. </p>
+							<a href="#" class="button">More</a>
+						</div>
+					</section>
+					<section class="4u">
+						<div class="box">
+							<a href="#" class="image left"><img src="<%=cp%>/resource/images/pics06.jpg" alt=""></a>
+							<h3>Etiam posuere augue</h3>
+							<p>Donec nonummy magna quis risus eleifend. </p>
+							<a href="#" class="button">More</a>
+						</div>
+					</section>
+				</div>
+				<div class="divider"></div>
+			</div>
+		</div>
+	<!-- /Featured -->
+

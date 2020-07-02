@@ -27,14 +27,14 @@
 						<ul class="nav">
 							<li class="navbar"><a href="<%=cp%>/temp/left-sidebar.jsp">Reservation</a>
 								<ul class="navbar1">
-									<li><a href="<%=cp%>/qna/main">예약 하기</a></li>
+									<li><a href="<%=cp%>/reservation/main">예약 하기</a></li>
 									<li><a href="<%=cp%>/faq/list">예약 조회</a></li>
 									
 								</ul>
 							</li>
-							<li class="navbar"><a href="<%=cp%>/travel/travel">Promotion</a>
+							<li class="navbar"><a href="<%=cp%>/travel/main">Promotion</a>
 								<ul class="navbar2">
-									<li><a href="<%=cp%>/qna/main">프로모션 예약</a></li>
+									<li><a href="<%=cp%>/travel/travel">프로모션 리스트</a></li>
 									<li><a href="<%=cp%>/faq/list">프로모션 예약 조회</a></li>
 									<li><a href="<%=cp%>/notice/list">프로모션 이용안내</a></li>
 									

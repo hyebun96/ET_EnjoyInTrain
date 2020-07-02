@@ -10,34 +10,6 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 <link rel="stylesheet" href="<%=cp%>/resource/jquery/css/smoothness/jquery-ui.min.css" type="text/css">
 
-<script type="text/javascript" src="<%=cp%>/resource/jquery/js/jquery.min.js"></script>
-<script type="text/javascript" src="<%=cp%>/resource/js/util-jquery.js"></script>
-<script type="text/javascript" src="<%=cp%>/resource/js/util.js"></script>
-<%
-	request.setCharacterEncoding("utf-8");
-
-	Calendar cal = Calendar.getInstance();
-	
-	int year = cal.get(Calendar.YEAR);
-	int month = cal.get(Calendar.MONTH) + 1;
-	
-	String sy = request.getParameter("year");
-	String sm = request.getParameter("month");
-	
-	if(sy!=null){
-		year = Integer.parseInt(sy);
-	}
-	if(sm!=null){
-		year = Integer.parseInt(sm);
-	}
-	
-	cal.set(year, month-1, 1);
-	
-	year = cal.get(Calendar.YEAR);
-	month = cal.get(Calendar.MONTH)+1;
-	int week = cal.get(Calendar.DAY_OF_WEEK);
-	
-%>
 <style type="text/css">
 
 a{
@@ -72,9 +44,6 @@ a:hover, a:active{
 	border-radius: 100px;
 }
 
-/*
-
-
  .calendar td:nth-child(7n+1){
 	color: red;
 }
@@ -85,8 +54,7 @@ a:hover, a:active{
 
 .calendar td .gray{
 	 color: gray;
-} */
-
+} 
 
 </style>
 
@@ -130,7 +98,7 @@ table td {
 
 .title {
 	text-align: center;
-	 width: 100px;
+	 width: 150px;
 }
 
 #train, #train2 {
@@ -146,8 +114,6 @@ table td {
 
 #train td, #train2 td {
 	border: 1px solid #cccccc;
-	//
-	eaeaea
 }
 
 #travelTable tr {
@@ -162,76 +128,68 @@ table td {
 </style>
 
 <script type="text/javascript">
-function ajaxJSON(url, type, query, fn) {
-	$.ajax({
-		type:type
-		,url:url
-		,data:query
-		,dataType:"json"
-		,success:function(data) {
-			fn(data);
-		}
-		,beforeSend:function(jqXHR) {
-	        jqXHR.setRequestHeader("AJAX", true);
-	    }
-	    ,error:function(jqXHR) {
-	    	if(jqXHR.status==403) {
-	    		login();
-	    		return false;
-	    	}
-	    	console.log(jqXHR.responseText);
-	    }
-	});
-}
-
-function ajaxHTML(url, type, query, selector) {
-	$.ajax({
-		type:type
-		,url:url
-		,data:query
-		,success:function(data) {
-			if($.trim(data)=="error") {
-				listPage(1);
-				return false;
-			}	
-			$(selector).html(data);
-		}
-		,beforeSend:function(jqXHR) {
-	        jqXHR.setRequestHeader("AJAX", true);
-	    }
-	    ,error:function(jqXHR) {
-	    	if(jqXHR.status==403) {
-	    		login();
-	    		return false;
-	    	}
-	    	console.log(jqXHR.responseText);
-	    }
-	});
-}
-<%--
 $(function(){
-	$(".calendar #day").click(function() {
-		var year = <%=year%>;
-		var month = <%=month%>;
+	$(".calendar .day").click(function() {
+		var year = ${year};
+		var month =	${month};
 		var day = $(this).attr("data-tab");
 		var data = year + '년' + month + '월 ' + day + '일';
 			
 		$("#date").html(data);
+		
+		month = month<10 ? "0"+month : month;
+		day = day <10 ? "0"+day : day;
+		
+		var date2 = year +"-" +month+"-"+day;
+		
+		$(".reservationForm").show();
+		
+		$("input[name=pmStartDate]").val(date2);
+		
+		console.log($("input[name=pmStartDate]").val());
 	});
-});--%>
+});
 
-function reservation(){
-	var f = document.travelArticleForm;
-	var query = $(f).serialize();
+
+$(function(){
+	$(".calendar .preday").click(function() {
+		var year = ${year};
+		var month =	${month-1};
+		var day = $(this).attr("data-tab");
+		var data = year + '년' + month + '월 ' + day + '일';
+			
+		$("#date").html(data);
+		
+		month = month<10 ? "0"+month : month;
+		day = day <10 ? "0"+day : day;
+		
+		var date2 = year +"-" +month+"-"+day;
+		
+		$(".reservationForm").show();
 	
-	f.action="<%=cp%>/booking/reservation?"+query;
+		$("input[name=pmStartDate]").val(date2);
+	});
+});
 
-	f.submit();
-}
-
-
-
-
+$(function(){
+	$(".calendar .nextday").click(function() {
+		var year = ${year};
+		var month =	${month+1};
+		var day = $(this).attr("data-tab");
+		var data = year + '년' + month + '월 ' + day + '일';
+			
+		$("#date").html(data);
+		
+		month = month<10 ? "0"+month : month;
+		day = day <10 ? "0"+day : day;
+		
+		var date2 = year +"-" +month+"-"+day;
+		
+		$(".reservationForm").show();
+	
+		$("input[name=pmStartDate]").val(date2);
+	});
+});
 </script>
 
 <form name="travelArticleForm" method="get" enctype="multipart/form-data">
@@ -257,24 +215,18 @@ function reservation(){
 			<td class="title" style="text-align: center;">상품번호</td>
 			<td style="padding-left: 10px; width: 200px;">${dto.pmCode}
 				<input type="hidden" name="pmCode" value="${dto.pmCode}"></td>
-			<td class="title" id="calendar" style="text-align: center; padding-top: 5px;" rowspan="7">
-				<table style="width: 200px; margin-left: 10px;" class="calendar">
-					<tr style="border-bottom: 2px solid #cccccc;">
-						<td colspan="8" style="text-align: center; color: black; width: 50px;"><a
-							href="article.jsp?year=<%=year%>&month=<%=month - 1%>"><i class="fas fa-arrow-circle-left"></i></a> 
-								<%=year%>년 <%=month%>월
-							 <a href="article.jsp?year=<%=year%>&month=<%=month + 1%>"><i class="fas fa-arrow-circle-right"></i></a>
-						</td>
-					</tr>
-					<tr>
-						<td>일</td>
-						<td>월</td>
-						<td>화</td>
-						<td>수</td>
-						<td>목</td>
-						<td>금</td>
-						<td>토</td>
-					</tr>				
+			<td class="title" style="text-align: center; padding-top: 5px;" rowspan="7">
+				<table style='width: 200px; margin-left: 10px;' class='calendar'>
+					<tr style='border-bottom: 2px solid #cccccc;'>
+						<td colspan='8' style='text-align: center; color: black; width: 50px;'>
+							<button type="button" onclick="calendar( ${preYear}, ${preMonth} , '${dto.getPmCode()}');"><i class='fas fa-arrow-circle-left'></i></button>
+								${year}년  ${month} 월
+							<button type="button" onclick="calendar( ${lastYear}, ${lastMonth} , '${dto.getPmCode()}');"><i class='fas fa-arrow-circle-left'></i></button>
+						</td></tr>
+						<tr><td>일</td><td>월</td><td>화</td><td>수</td><td>목</td><td>금</td><td>토</td></tr>
+						<tr>
+							${result}
+						</tr>
 				</table>
 			</td>
 		</tr>
@@ -322,23 +274,21 @@ function reservation(){
 		
 		<tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
 		<td class="title"   style="text-align: center;">출발일자</td>
-			<td style="padding-left: 10px; width: 343px;">
-				<input type="date" name="pmStartDate" id="date">
+			<td style="padding-left: 10px; width: 343px;" id="date">
+				<input type="hidden" name="pmStartDate" id="pmStartDate" value="">
+					
+				
 			</td>
-		</tr>
-		
-		<tr style="border-top: 3px solid #cccccc; border-bottom: 3px solid #cccccc;">
-			<td colspan="5">&nbsp;</td>
 		</tr>
 	</table>	
 		
-	<table 
-		style=" margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
-		<tr align="left" height="40"
-			style="border-bottom: 1px solid #cccccc; border-top: 3px solid #cccccc;">
-			<td class="title" style="width: 100px;">상품 그룹</td>
+	<table style=" margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
+	
+		<tr class="reservationForm" align="center" height="40"
+			style="border-bottom: 1px solid #cccccc; border-top: 3px solid #cccccc; display: none;" >
+			<td class="title" style="width: 200px;">상품 그룹</td>
 			<td class="title">선택</td>
-			<td class="title">상품명</td>
+			<td class="title" style="width: 200px;">상품명</td>
 			<td class="title">열차번호</td>
 			<td class="title">출발시간</td>
 			<td class="title">도착시간</td>
@@ -346,12 +296,10 @@ function reservation(){
 			<td class="title">예약현황</td>
 		</tr>
 		
-		<tbody>
-			
 		<c:forEach var="vo" items="${startList}">
-			<tr align="left" style="border-bottom: 1px solid #cccccc; border-bottom: 1px solid #cccccc;">
+			<tr class="reservationForm" align="center" style="border-bottom: 1px solid #cccccc; border-bottom: 1px solid #cccccc;  display: none;">
 				<c:if test="${vo == startList.get(0)}">
-					<td class="title" rowspan="${startLength}">오는 열차</td>
+					<td rowspan="${startLength}" style="width: 200px;">오는 열차</td>
 				</c:if>
 				<td class="title"><input type="checkbox" name="startTrain" value="${vo.trainCode}"></td>
 				<td class="title">${vo.trainName}</td>
@@ -363,7 +311,7 @@ function reservation(){
 			</tr>
 		</c:forEach>
 		
-			<tr align="left" style="border-bottom: 1px solid #cccccc; border-bottom: 1px solid #cccccc;">
+			<tr class="reservationForm" align="left" style="border-bottom: 1px solid #cccccc; border-bottom: 1px solid #cccccc;  display: none;">
 				<td class="title">${dto.product}</td>
 				<td class="title"><input type="radio" checked="checked"></td>
 				<td class="title">${dto.productContent}</td>
@@ -375,7 +323,7 @@ function reservation(){
 			</tr>
 		
 		<c:forEach var="vo" items="${endList}">
-			<tr align="left" style="border-bottom: 1px solid #cccccc; border-bottom: 1px solid #cccccc;">
+			<tr class="reservationForm" align="left" style="border-bottom: 1px solid #cccccc; display: none;">
 				<c:if test="${vo == endList.get(0)}">
 					<td class="title"  rowspan="${endLength}">가는 열차</td>
 				</c:if>
@@ -389,24 +337,30 @@ function reservation(){
 			</tr>
 		</c:forEach>
 		
-		
-		<tr  align="left" style="border-bottom: 1px solid #cccccc; border-bottom: 1px solid #cccccc;">
-		
-		</tr>
-			
-		<tr align="left" height="40" style="float: right;">
+		<tr class="reservationForm" align="left" height="40" style=" display: none;">
 			<td  class="title"><button type="button"  id="btn" class="btn" onclick="javascript:location.href='<%=cp%>/travel/travel';">리스트</button></td>
 			<td class="title"><button type="button" id="btn" class="btn" onclick="reservation();">예약하기</button></td>
 			<td class="title"><button type="button" id="btn" class="btn" onclick="updateForm('${dto.pmCode}');">수정하기</button></td>
 		</tr>
-				
-		
-		</tbody>
-		
 	</table>
+		
+	<c:if test="${photoContentList!=null}">
+		<table style=" margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse; width: 1200px;">
+			<tr align="center" height="40"
+				style="border-bottom: 1px solid #cccccc; border-top: 3px solid #cccccc; ">
+				<td colspan="8">상품 상세 설명</td>
+			</tr>
+			<tr align="center" style="clear:both; width: 100%; border-bottom: 1px solid #cccccc; margin-top: 200px;">
+				<td colspan="8" style="width: 100%">
+					<c:forEach var="vo" items="${photoContentList}">
+						<img src="<%=cp%>/uploads/travel/${vo.saveFileName}"  style="width: 90%">
+					</c:forEach>
+				</td>
+			</tr>	
+		</table>
+	</c:if>
 	
- 
-	
+
 </form>
 
 

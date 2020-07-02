@@ -229,5 +229,16 @@ public class TravelServiceImpl implements TravelService{
 		return photoContentList;
 	}
 
+	@Override
+	public List<Travel> travelRankList() {
+		List<Travel> travelRankList = null;
+		try {
+			travelRankList = dao.selectList("travel.travelRank");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return travelRankList;
+	}
+
 	
 }
