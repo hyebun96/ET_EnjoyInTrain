@@ -97,7 +97,7 @@ function requestPay(){
         if ( rsp.success ) {
             //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
             jQuery.ajax({
-                url: "/reservation/complete", //cross-domain error가 발생하지 않도록 주의해주세요
+                url: "/reservation/reservation", //cross-domain error가 발생하지 않도록 주의해주세요
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -119,7 +119,9 @@ function requestPay(){
                 }
             });
             //성공시 이동할 페이지
-            location.href='<%=cp%>/reservation/complete';
+            var f=document.reservationForm2;
+            f.action="<%=cp%>/reservation/reservation";
+            f.submit;
         } else {
             msg = '결제에 실패하였습니다.';
             msg += '에러내용 : ' + rsp.error_msg;
@@ -140,7 +142,7 @@ function requestPay(){
 					<div class="9u skel-cell-important">
 						<section>
 							<header>
-								<form action="<%=cp%>/reservation/reservation" name="reservationForm" method="post">
+								<form action="<%=cp%>/reservation/reservation" id="reservationForm2" name="reservationForm2" method="post">
 								<h2>예약확인</h2>
 								<span class="byline">confirm</span>
 								<div style="width: 1200px; text-align: center;">
