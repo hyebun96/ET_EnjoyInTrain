@@ -76,18 +76,27 @@
 		WHERE startCode=#{startCode} AND endCode=#{endCode} AND trainCategory=#{trainCategory}
 	</select>
 	
-<!-- 	
-	기차예약, 기차예약상세테이블은 1번씩만, 좌석테이블은 여러번 insert
-	<insert id="">
-		INSERT INTO trainreservation(trCode, trDate) VALUES(trainreservation_seq.NEXTVAL,#{})
+	<!-- trainreservation 시퀀스 가져오기 -->
+	<select id="trainreservationSeq" resultType="Integer">
+		SELECT trainreservation_seq.NEXTVAL FROM dual
+	</select>
+	
+	<!-- reservedSeat 시퀀스 가져오기 -->
+	<select id="reservedSeatSeq" resultType="Integer">
+		SELECT reservedSeat_seq.NEXTVAL FROM dual
+	</select>
+	
+	<insert id="insertReservation" parameterType="com.et.reservation.Reservation">
+		INSERT INTO trainreservation(trCode, trDate) VALUES(#{trCode},#{trDate})
 	</insert>
 	
-	<insert id="">
-		INSERT INTO trReservationInfo(trCode, startCode, endCode, trainCode) VALUES()
+	<insert id="insertReservationInfo" parameterType="com.et.reservation.Reservation">
+		INSERT INTO trReservationInfo(trCode, startCode, endCode, trainCode) VALUES(#{trCode},#{startCode},#{endCode},#{trainCode})
 	</insert>
 	
-	<insert id="">
-		INSERT INTO reservedSeat(rsSeatCode, seatNum, trCode, seatType, seatPay, roomNum, trainCode) VALUES(reservedSeat_seq.NEXTVAL, );
+	<insert id="insertReservedSeat" parameterType="com.et.reservation.ReservedSeat">
+		INSERT INTO reservedSeat(rsSeatCode, seatNum, trCode, seatType, seatPay, roomNum, trainCode) 
+		VALUES(#{rsSeatCode},#{seatNum},#{trCode},#{seatType},#{seatPay},#{roomNum},#{trainCode})
 	</insert>
- -->	
-</mapper>
+	
+ </mapper>

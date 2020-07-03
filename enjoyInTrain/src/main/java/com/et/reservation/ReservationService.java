@@ -11,4 +11,5 @@ public interface ReservationService {
 	public Seat readSeat(Map<String, String> map);
 	public List<Seat> listSeat(String trainCategory);
 	public int readsPay(Map<String, String> map);
+	public void reservation(Reservation rv, ReservedSeat seat, Map<String,String> map);
 }

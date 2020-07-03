@@ -115,21 +115,23 @@ a:hover, a:active{
 }
 
 #train_button_reset{
-	float: left;
-	width: 90px;
+	float: right;
+	width: 100%;
 }
 
 #train_button_reset button{
-	height: 30px;
+	height: 40px;
 }
 
 
 #train_button_send{
-	width: 70px;
+	width: 100%;
+	float: right;
 }
 
 #train_button_send button{
-	height: 30px;
+	height: 40px;
+	
 }
 
 #train-sample{

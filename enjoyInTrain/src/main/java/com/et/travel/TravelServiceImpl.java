@@ -239,6 +239,120 @@ public class TravelServiceImpl implements TravelService{
 		}
 		return travelRankList;
 	}
+	
+	@Override
+	public void deleteFile(Map<String, Object> map) throws Exception{
+		try {
+			dao.deleteData("travel.deleteFile", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
+	@Override
+	public void deleteContentFile(Map<String, Object> map) throws Exception{
+		try {
+			dao.deleteData("travel.deleteContentFile", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public Photo readFile(int fileNum) {
+		Photo dto = null;
+		try {
+			dto = dao.selectOne("travel.readFile", fileNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+
+	@Override
+	public Photo readContentFile(int fileNum) {
+		Photo dto = null;
+		try {
+			dto = dao.selectOne("travel.readContentFile", fileNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+
+	@Override
+	public void updatePromotion(Travel dto) throws Exception {
+		try {
+			for(int i=0; i<dto.getStartCode().length; i++) {
+				dto.setStCode(dto.getStartCode()[i]);
+				dao.updateData("travel.insertPromotionStart", dto);
+			}
+			
+			for(int i=0; i<dto.getEndCode().length;  i++) {
+				dto.setEdCode(dto.getEndCode()[i]);
+				dao.updateData("travel.insertPromotionEnd", dto);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	@Override
+	public void updatePromotionDetail(Travel dto, String path) throws Exception {
+		try {
+			dao.updateData("travel.updatePromotionDetail", dto);
+			
+			Photo pdto = new Photo();
+			pdto.setPmCode(dto.getPmCode());
+
+			String saveFilename = "";
+			if(!dto.getUpload().isEmpty()) {
+				saveFilename = fileManager.doFileUpload(dto.getUpload(), path);
+				if(saveFilename!=null) {
+					pdto.setOriginalFileName(dto.getUpload().getOriginalFilename());
+					pdto.setFileSize(dto.getUpload().getSize());
+					pdto.setSaveFileName(saveFilename);
+					dao.insertData("travel.insertPhoto", pdto);
+				}	
+			}
+			
+			if(!dto.getUploadContent().isEmpty()) {				
+				for(MultipartFile mpf : dto.getUploadContent()) {
+					
+					saveFilename = fileManager.doFileUpload(mpf, path);
+					if(saveFilename!=null && mpf.getSize()!=-1) {
+						pdto.setOriginalFileName(mpf.getOriginalFilename());
+						pdto.setFileSize(mpf.getSize());
+						pdto.setSaveFileName(saveFilename);
+						dao.insertData("travel.insertContentPhoto", pdto);
+					}	
+				}
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	@Override
+	public void deleteTrain(int trainCode) throws Exception {
+		try {
+			dao.deleteData("travel.deleteTrain", trainCode);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void insertPromotionAdd(Promotion dto) throws Exception {
+		try {
+			dao.insertData("travel.insertPromotionAdd", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

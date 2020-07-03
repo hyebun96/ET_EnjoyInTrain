@@ -129,67 +129,67 @@ table td {
 
 <script type="text/javascript">
 $(function(){
-	$(".calendar .day").click(function() {
-		var year = ${year};
-		var month =	${month};
-		var day = $(this).attr("data-tab");
-		var data = year + '년' + month + '월 ' + day + '일';
-			
-		$("#selectDate").html(data);
-		
-		month = month<10 ? "0"+month : month;
-		day = day <10 ? "0"+day : day;
-		
-		var date2 = year +"-" +month+"-"+day;
-		
-		$(".reservationForm").show();
-		
-		$("input[name=pmStartDate]").val(date2);
-		
-		console.log($("input[name=pmStartDate]").val());
+	   $(".calendar .day").click(function() {
+	      var year = ${year};
+	      var month =   ${month};
+	      var day = $(this).attr("data-tab");
+	      var data = year + '년' + month + '월 ' + day + '일';
+	         
+	      $("#selectDate").html(data);
+	      
+	      month = month<10 ? "0"+month : month;
+	      day = day <10 ? "0"+day : day;
+	      
+	      var date2 = year +"-" +month+"-"+day;
+	      
+	      $(".reservationForm").show();
+	      
+	      $("input[name=pmStartDate]").val(date2);
+	      
+	   });
 	});
-});
 
 
-$(function(){
-	$(".calendar .preday").click(function() {
-		var year = ${year};
-		var month =	${month-1};
-		var day = $(this).attr("data-tab");
-		var data = year + '년' + month + '월 ' + day + '일';
-			
-		$("#date").html(data);
-		
-		month = month<10 ? "0"+month : month;
-		day = day <10 ? "0"+day : day;
-		
-		var date2 = year +"-" +month+"-"+day;
-		
-		$(".reservationForm").show();
-	
-		$("input[name=pmStartDate]").val(date2);
+	$(function(){
+	   $(".calendar .preday").click(function() {
+	      var year = ${year};
+	      var month =   ${month-1};
+	      var day = $(this).attr("data-tab");
+	      var data = year + '년' + month + '월 ' + day + '일';
+	         
+	      $("#selectDate").html(data);
+	      
+	      month = month<10 ? "0"+month : month;
+	      day = day <10 ? "0"+day : day;
+	      
+	      var date2 = year +"-" +month+"-"+day;
+	      
+	      $(".reservationForm").show();
+	   
+	      $("input[name=pmStartDate]").val(date2);
+	   });
 	});
-});
 
-$(function(){
-	$(".calendar .nextday").click(function() {
-		var year = ${year};
-		var month =	${month+1};
-		var day = $(this).attr("data-tab");
-		var data = year + '년' + month + '월 ' + day + '일';
-			
-		$("#date").html(data);
-		
-		month = month<10 ? "0"+month : month;
-		day = day <10 ? "0"+day : day;
-		
-		var date2 = year +"-" +month+"-"+day;
-		
-		$(".reservationForm").show();
-	
-		$("input[name=pmStartDate]").val(date2);
+	$(function(){
+	   $(".calendar .nextday").click(function() {
+	      var year = ${year};
+	      var month =   ${month+1};
+	      var day = $(this).attr("data-tab");
+	      var data = year + '년' + month + '월 ' + day + '일';
+	         
+	      $("#selectDate").html(data);
+	      
+	      month = month<10 ? "0"+month : month;
+	      day = day <10 ? "0"+day : day;
+	      
+	      var date2 = year +"-" +month+"-"+day;
+	      
+	      $(".reservationForm").show();
+	   
+	      $("input[name=pmStartDate]").val(date2);
+	   });
 	});
-});
+
 </script>
 
 <form name="travelArticleForm" method="get" enctype="multipart/form-data">
@@ -223,8 +223,10 @@ $(function(){
 								${year}년  ${month} 월
 							<button type="button" onclick="calendar( ${lastYear}, ${lastMonth} , '${dto.getPmCode()}');"><i class='fas fa-arrow-circle-left'></i></button>
 						</td></tr>
-					<tr><td>일</td><td>월</td><td>화</td><td>수</td><td>목</td><td>금</td><td>토</td></tr>
-					${result}
+						<tr><td>일</td><td>월</td><td>화</td><td>수</td><td>목</td><td>금</td><td>토</td></tr>
+						<tr>
+							${result}
+						</tr>
 				</table>
 			</td>
 		</tr>
@@ -270,13 +272,14 @@ $(function(){
 			</td>
 		</tr>
 		
-		<tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
-		<td class="title"   style="text-align: center;">출발일자</td>
-			<td style="padding-left: 10px; width: 343px;">
-				<span id="selectDate"></span>
-				<input type="hidden" name="pmStartDate" id="pmStartDate">
-			</td>
-		</tr>
+		 <tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
+	      <td class="title"   style="text-align: center;">출발일자</td>
+	         <td style="padding-left: 10px; width: 343px;">
+	            <span id="selectDate"></span>
+	            <input type="hidden" name="pmStartDate" id="pmStartDate">
+	         </td>
+	      </tr>
+
 	</table>	
 		
 	<table style=" margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
@@ -311,12 +314,7 @@ $(function(){
 			<tr class="reservationForm" align="left" style="border-bottom: 1px solid #cccccc; border-bottom: 1px solid #cccccc;  display: none;">
 				<td class="title">${dto.product}</td>
 				<td class="title"><input type="radio" checked="checked"></td>
-				<td class="title">${dto.productContent}</td>
-				<td class="title"></td>
-				<td class="title">-</td>
-				<td class="title">-</td>
-				<td class="title">-</td>
-				<td class="title">-</td>
+				<td class="title" colspan="6" style="text-align: left; padding-left: 70px;">${dto.productContent}</td>
 			</tr>
 		
 		<c:forEach var="vo" items="${endList}">

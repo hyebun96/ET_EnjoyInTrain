@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 14px;
+	font-family: "Malgun Gothic", "맑은 고딕", NanumGothic, 나눔고딕, 돋움, sans-serif;
+}
+
+a {
+	color: #000000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+a:active, a:hover {
+	text-decoration: underline;
+	color: tomato;
+}
+
+.title {
+	font-weight: bold;
+	font-size: 16px;
+	font-family: 나눔고딕, "맑은 고딕", 돋움, sans-serif;
+}
+
+.btn {
+	color: #333333;
+	font-weight: 500;
+	font-family: "맑은 고딕", 나눔고딕, 돋움, sans-serif;
+	border: 1px solid #cccccc;
+	background-color: #ffffff;
+	text-align: center;
+	cursor: pointer;
+	padding: 3px 10px 5px;
+	border-radius: 4px;
+}
+
+.btn:active, .btn:focus, .btn:hover {
+	background-color: #e6e6e6;
+	border-color: #adadad;
+	color: #333333;
+}
+
+.boxTF {
+	border: 1px solid #999999;
+	padding: 3px 5px 5px;
+	border-radius: 4px;
+	background-color: #ffffff;
+	font-family: "맑은 고딕", 나눔고딕, 돋움, sans-serif;
+}
+
+.selectField {
+	border: 1px solid #999999;
+	padding: 2px 5px 4px;
+	border-radius: 4px;
+	font-family: "맑은 고딕", 나눔고딕, 돋움, sans-serif;
+}
+
+.title {
+	width: 100%;
+	height: 45px;
+	line-height: 45px;
+	text-align: left;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+tr.over {
+	background: #dde4fd;
+}
+
+.time-table input {
+	border: none;
+	padding: 3px 5px 5px;
+	background-color: #ffffff;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: "맑은 고딕", 나눔고딕, 돋움, sans-serif;
+}
+
+.time-table input[readonly] {
+	pointer-events: none;
+	border: none;
+	text-align: center;
+}
+
+.time-table button {
+	color: #333333;
+	font-weight: 500;
+	font-family: "맑은 고딕", 나눔고딕, 돋움, sans-serif;
+	border: none;
+	width: 100%;
+	text-align: center;
+	cursor: pointer;
+	padding: 4px 10px 4px;
+	background-color: #ffffff;
+}
+
+.time-table button:hover {
+	font-weight: 500;
+	color: #4374d9;
+}
+
+.spanUpdate, .spanUpdateOk, .spanDelete, .spanUpdateCancel {
+	cursor: pointer;
+}
+
+.spanUpdate:hover, .spanUpdateOk:hover, .spanDelete:hover,
+	.spanUpdateCancel:hover {
+	font-weight: 500;
+	color: #4374d9;
+}

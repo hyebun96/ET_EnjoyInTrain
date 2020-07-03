@@ -68,7 +68,28 @@ public class TimeTableController {
 		
 		String state="true";
 		try {
+			System.out.println(dto.getTraincode());
+			System.out.println(dto.getTraincode());
+			System.out.println(dto.getTraincode());
+			System.out.println(dto.getTraincode());
+			System.out.println(dto.getTrainname());
+			System.out.println(dto.getTrainname());
+			System.out.println(dto.getTrainname());
+			System.out.println(dto.getTrainname());
+			System.out.println(dto.getTrainname());
+			System.out.println(dto.getTrainname());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
 			timeTableService.insertTimeTable(dto);
+			
 		} catch (Exception e) {
 			state="false";
 		}
@@ -78,6 +99,36 @@ public class TimeTableController {
 		return model;
 	}
 	
+	@RequestMapping(value="/admin/timetable/update", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> update(TimeTable dto) throws Exception{
+		String state = "true";
+		
+		try {
+			timeTableService.updateTimeTable(dto);
+		} catch (Exception e) {
+			state="false";
+		}
+		
+		Map<String, Object> model = new HashMap<>();
+		model.put("state", state);
+		
+		return model;
+	}
 	
+	@RequestMapping(value="/admin/timetable/delete", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> delete(@RequestParam String scode) throws Exception {
+		String state="true";
+		try {
+			timeTableService.deleteTimeTable(scode);
+		} catch (Exception e) {
+			state="false";
+		}
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		return model;
+	}
 	
 }

@@ -30,7 +30,7 @@
 	</select>
 
 	<select id="listTravel" parameterType="map" resultType="com.et.travel.Travel">
-		SELECT pd.pmCode, pmStartDate, pmEndDate, pmTitle, pmPrice, pmMaxCount, pmPercent, pd.categoryNum,
+		SELECT pd.pmCode, TO_CHAR(pmStartDate,'YYYY/MM/DD') pmStartDate, TO_CHAR(pmEndDate,'YYYY/MM/DD') pmEndDate, pmTitle, pmPrice, pmMaxCount, pmPercent, pd.categoryNum,
 			saveFileName
 		FROM promotiondetail pd
 		JOIN promotionCategory pc ON pd.categoryNum = pc.categoryNum
@@ -72,7 +72,7 @@
 	
 	<!-- article -->
 	<select id="readTravel" parameterType="String" resultType="com.et.travel.Travel">
-		SELECT pd.pmCode, pmStartDate, pmEndDate, pmTitle, pmPrice, pmMaxCount, 
+		SELECT pd.pmCode, TO_CHAR(pmStartDate,'YYYY/MM/DD') pmStartDate, TO_CHAR(pmEndDate,'YYYY/MM/DD') pmEndDate, pmTitle, pmPrice, pmMaxCount, 
 			pmPercent, categoryNum, pd.partnerCode, partnerName, partnerTel, product, 
 			productContent
 		FROM promotionDetail pd
@@ -148,5 +148,40 @@
 		    )tb WHERE ROWNUM &lt;= 4
 		)WHERE rnum &gt;= 1 
 	</select>
+	
+	<delete id="deleteFile" parameterType="map">
+		DELETE FROM promotionFile WHERE fileNum = ${fileNum}
+	</delete>
+	
+	<delete id="deleteContentFile" parameterType="map">
+		DELETE FROM promotionContentFile WHERE fileContentNum = ${fileNum}
+	</delete>
+	
+	<select id="readFile" parameterType="Integer" resultType="com.et.travel.Photo">
+		SELECT fileNum, pmCode, saveFileName, originalFileName, fileSize
+		FROM promotionfile WHERE fileNum = ${fileNum}
+	</select>
+	
+	<select id="readContentFile" parameterType="Integer" resultType="com.et.travel.Photo">
+		SELECT fileContentNum, pmCode, saveFileName, originalFileName, fileSize
+		FROM readContentFile WHERE fileContentNum = ${fileNum}
+	</select>
+	
+	<update id="updatePromotionDetail" parameterType="com.et.travel.Travel">
+		UPDATE promotionDetail SET 
+			pmStartDate = #{pmStartDate}, pmEndDate = #{pmEndDate}, pmTitle = #{pmTitle},
+			pmPrice = #{pmPrice}, pmMaxCount = #{pmMaxCount}, pmPercent =  #{pmPercent}, categoryNum = #{categoryNum},
+			partnerCode = #{partnerCode}, product = #{product}, productContent=  #{productContent}
+		WHERE pmCode = #{pmCode}
+	</update>
+	
+	<delete id="deleteTrain" parameterType="Integer">
+		DELETE FROM promotion WHERE trainCode = ${trainCode}
+	</delete>
+	
+	<insert id="insertPromotionAdd" parameterType="com.et.travel.Promotion">
+		INSERT INTO promotion(pmSeq, pmCode, trainCode, startStation, endStation)  
+		VALUES(promotion_seq.NEXTVAL, #{pmCode}, #{trainCode}, #{startStation}, #{endStation})
+	</insert>
 
 </mapper>

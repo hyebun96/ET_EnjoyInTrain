@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class Photo {
 	private String pmCode;
 	private int fileNum;
+	private int fileContentNum;
 	private String saveFileName;
 	private String originalFileName;
 	private long fileSize;
@@ -47,6 +48,12 @@ public class Photo {
 	}
 	public void setUploads(List<MultipartFile> uploads) {
 		this.uploads = uploads;
+	}
+	public int getFileContentNum() {
+		return fileContentNum;
+	}
+	public void setFileContentNum(int fileContentNum) {
+		this.fileContentNum = fileContentNum;
 	}
 	
 	
