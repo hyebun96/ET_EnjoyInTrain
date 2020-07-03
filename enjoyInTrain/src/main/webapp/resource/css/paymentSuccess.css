@@ -3,49 +3,49 @@
    margin-top: 0em;
     padding-top: 0em;
 }
-#payment_header{
+.payment_header{
 	width: 100%;
 	height: 200px;
 }
 
-#payment_state1{
+.payment_state1{
 	width: 70%;
 	height: 40px;
 }
 
-#payment_logo {
+.payment_logo {
 	width: 30%;
 	background: url(../images/travel.png) no-repeat center;
 	background-size: contain;
 }
 
-#payment_title{
+.payment_title{
 	font-weight: bold;
 	font-size: 30px;
 	height: 100px;
 }
 
-#payment_state2{
+.payment_state2{
 	text-align: right;
 	padding-right: 30px;
 }
 
-#payment_report{
+.payment_report{
 	border-collapse: collapse;
 	border-spacing: 0;
 	width: 100%;
 }
 
-#reservationNumber{
+.reservationNumber{
 	font-weight: bold;
 	font-size: 20px;
 }
 
-#paymentstate{
+.paymentstate{
 	color: red;
 }
 
-#payment_report_title{
+.payment_report_title{
 	font-weight: bold;
 	font-size: 20px;
 	height: 40px;
@@ -53,7 +53,7 @@
 	border-bottom: 3px solid #cccccc;
 }
 
-#payment_report_num1{
+.payment_report_num1{
 	width: 18%;
 	height: 40px;
 	background: #EAEAEA;
@@ -63,7 +63,7 @@
 	font-weight: bold;
 }
 
-#payment_report_category1{
+.payment_report_category1{
 	width: 12%;
 	height: 40px;
 	background: #EAEAEA;
@@ -73,7 +73,7 @@
 	font-weight: bold;
 }
 
-#payment_report_name1{
+.payment_report_name1{
 	width: 55%;
 	height: 40px;
 	background: #EAEAEA;
@@ -83,7 +83,7 @@
 	font-weight: bold;
 }
 
-#payment_report_pay1{
+.payment_report_pay1{
 	width: 15%;
 	height: 40px;
 	background: #EAEAEA;
@@ -94,7 +94,7 @@
 	font-weight: bold;
 }
 
-#payment_report_num2{
+.payment_report_num2{
 	width: 18%;
 	height: 50px;
 	border-bottom: 1px solid #cccccc;
@@ -102,7 +102,7 @@
 	padding-left: 10px;
 }
 
-#payment_report_category2{
+.payment_report_category2{
 	width: 12%;
 	height: 50px;
 	border-bottom: 1px solid #cccccc;
@@ -110,7 +110,7 @@
 	padding-left: 10px;
 }
 
-#payment_report_name2{
+.payment_report_name2{
 	width: 55%;
 	height: 50px;
 	border-bottom: 1px solid #cccccc;
@@ -118,7 +118,7 @@
 	padding-left: 10px;
 }
 
-#payment_report_pay2{
+.payment_report_pay2{
 	width: 15%;
 	height: 50px;
 	border-bottom: 1px solid #cccccc;
@@ -127,7 +127,7 @@
 	padding-left: 10px;
 }
 
-#payment_report_cost1{
+.payment_report_cost1{
 	background: #EAEAEA;
 	border-bottom: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
@@ -137,7 +137,7 @@
 	color: blue;
 }
 
-#payment_report_cost2{
+.payment_report_cost2{
 	background: #EAEAEA;
 	border-bottom: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
@@ -148,20 +148,20 @@
 	font-weight: bold;
 }
 
-#payment_appear{
+.payment_appear{
 	width: 100%;
 	text-align: center;
 	border-radius: 30px;
 	background: #EAEAEA;
 	height: 60px;
 }
-#payment_info{
+.payment_info{
 	border-collapse: collapse;
 	border-spacing: 0;
 	width: 100%;
 }
 
-#payment_info_title{
+.payment_info_title{
 	font-weight: bold;
 	font-size: 20px;
 	height: 40px;
@@ -169,63 +169,67 @@
 	border-bottom: 3px solid #cccccc;
 }
 
-#payment_info_question{
+.payment_info_question{
 	padding-left: 20px;
 	height: 40px;
-	background: #EAEAEA;
+	background: .EAEAEA;
 	width: 20%;
 	border-bottom: 1px solid #cccccc;
 	border-right: 1px solid #cccccc;
 	font-weight: bold;
 }
 
-#payment_info_answer{
+.payment_info_answer{
 	padding-left: 10px;
 	height: 40px;
 	width: 80%;
 	border-bottom: 1px solid #cccccc;
 }
-#payment_info_cardNum{
+.payment_info_cardNum{
 	padding-left: 10px;
 	height: 40px;
 	width: 80%;
 	border-bottom: 1px solid #cccccc;
 }
 
-#payment_info_cardNum input{
+.payment_info_cardNum input{
 	width: 80px;
 	height: 25px;
 }
 
-#payment_info_pwd{
+.payment_info_pwd{
 	padding-left: 10px;
 	height: 40px;
 	width: 80%;
 	border-bottom: 1px solid #cccccc;
 }
 
-#payment_info_pwd input{
+.payment_info_pwd input{
 	width: 40px;
 	height: 25px;
 }
 
-#payment_info_num{
+.payment_info_num{
 	padding-left: 10px;
 	height: 40px;
 	width: 80%;	
 	border-bottom: 1px solid #cccccc;
 }
 
-#payment_info_num input{
+.payment_info_num input{
 	width: 100px;
 	height: 25px;
 }
 
-#payment_button{
+.payment_button{
 	text-align: right;
 	padding-right: 20px;	
 }
 
-#payment_button button {
+.payment_button button {
 	height: 30px;
+}
+#showReservationCancle_dialog {
+	display: none;
+	vertical-align:middle;
 }

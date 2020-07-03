@@ -1,5 +1,6 @@
 package com.et.booking;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,14 +15,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.et.crew.SessionInfo;
+import com.et.reservation.Condition;
+import com.et.reservation.Seat;
+import com.et.reservation.Train;
 
-@Controller("bookingController")
+@Controller("booking.bookingController")
 @RequestMapping("/booking/*")
 public class BookingController {
 	
 	@Autowired
 	private BookingService service;
-	
 	
 	@RequestMapping(value="reservation", method=RequestMethod.GET)
 	public String reservation(
@@ -30,20 +33,26 @@ public class BookingController {
 			HttpSession session
 			) {
 		
-		
 		List<Booking> list = service.readPromotionDetail(paramMap);
 		Booking startDto = null, endDto = null;
+		Booking start = null, end = null;
 		for(Booking dto : list) {
-			if(Integer.parseInt(dto.getTrainCode())%2==0)
+			if(Integer.parseInt(dto.getTrainCode())%2==0) {
 				startDto = dto;
-			else endDto = dto;
+				start = service.readtrainlist(startDto);
+			}
+			else {
+				endDto = dto;
+				end = service.readtrainlist(endDto);
+			}
 		}
-		Booking dto = new Booking();
+
+		
 		SessionInfo info = (SessionInfo)session.getAttribute("crew");
-		dto.setCrewId(info.getCrewId());
+
 		Map<String , Object> map = new HashMap<>();
-		map.put("crewId", dto.getCrewId());
-		dto=service.readCrew(map);
+		map.put("crewId", info.getCrewId());
+		Booking dto=service.readCrew(map);
 		
 		model.addAttribute("mode", "reservation");
 		model.addAttribute("startDto",startDto);
@@ -51,6 +60,8 @@ public class BookingController {
 		model.addAttribute("pmStartDate",paramMap.get("pmStartDate"));
 		model.addAttribute("prPersonnel", paramMap.get("prPersonnel"));
 		model.addAttribute("dto", dto);
+		model.addAttribute("start", start);
+		model.addAttribute("end", end);
 		
 		return ".booking.reservation";
 	}
@@ -69,26 +80,41 @@ public class BookingController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/booking/receipt?prCode="+seq;
+		return "redirect:/booking/receipt?prSeq="+seq;
 	}
 	
 	
 	@RequestMapping(value="receipt")			// 영수증
 	public String receipt(
-			@RequestParam int prCode,
+			@RequestParam int prSeq,
 			HttpSession session,
 			Model model
 			) {
 		SessionInfo info = (SessionInfo)session.getAttribute("crew");
 		Map<String, Object> map = new HashMap<>();
-		map.put("prCode", prCode);
+		map.put("prSeq", prSeq);
 		map.put("crewId", info.getCrewId());
 		try {
-			Booking dto = new Booking();
-			dto= service.readReservation(map);
-			model.addAttribute("dto", dto);
-			model.addAttribute("prCode", prCode);
 			
+			List<Booking> list = service.readReservation(map);
+			Booking startDto = null, endDto = null;
+			Booking start = null, end = null;
+			for(Booking dto : list) {
+				if(Integer.parseInt(dto.getTrainCode())%2==0) {
+					startDto = dto;
+					start = service.readtrainlist(startDto);
+				}
+				else {
+					endDto = dto;
+					end = service.readtrainlist(endDto);
+				}
+				model.addAttribute("dto", dto);
+				model.addAttribute("prSeq", prSeq);
+				model.addAttribute("startDto",startDto);
+				model.addAttribute("endDto",endDto);
+				model.addAttribute("start", start);
+				model.addAttribute("end", end);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -96,31 +122,102 @@ public class BookingController {
 	}
 	
 	
-	@RequestMapping(value="payment", method=RequestMethod.GET)			// 결제폼
+	@RequestMapping(value="paymentSuccess")			// 결제폼
 	public String paymentForm(
-			@RequestParam int prCode,
+			@RequestParam int prSeq,
 			HttpSession session,
 			Model model
 			) {
 		SessionInfo info = (SessionInfo)session.getAttribute("crew");
 		Map<String, Object> map = new HashMap<>();
-		map.put("prCode", prCode);
+		map.put("prSeq", prSeq);
 		map.put("crewId", info.getCrewId());
 		try {
-			Booking dto = new Booking();
-			dto= service.readReservation(map);
-			model.addAttribute("dto", dto);
-			
+			List<Booking> list = service.readReservation(map);
+			Booking startDto = null, endDto = null;
+			Booking start = null, end = null;
+			for(Booking dto : list) {
+				if(Integer.parseInt(dto.getTrainCode())%2==0) {
+					startDto = dto;
+					start = service.readtrainlist(startDto);
+				}
+				else {
+					endDto = dto;
+					end = service.readtrainlist(endDto);
+				}
+				model.addAttribute("startDto",startDto);
+				model.addAttribute("endDto",endDto);
+				model.addAttribute("start", start);
+				model.addAttribute("end", end);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return ".booking.payment";
+		return ".booking.paymentSuccess";
 	}
-	
-	@RequestMapping(value="payment", method=RequestMethod.POST)			// 결제완료
-	public String paymentSubmit() {
+	@RequestMapping(value="delete")
+	public String cancleReservation(
+			@RequestParam int prSeq,
+			HttpSession session
+			) throws Exception {
+		SessionInfo info = (SessionInfo)session.getAttribute("crew");
+		try {
+			Map<String, Object> map = new HashMap<>();
+			map.put("crewId", info.getCrewId());
+			map.put("prSeq", prSeq);
+			service.deleteReservation(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/travel/main";
+	}
+//	
+//	@RequestMapping(value="paymentSuccess", method=RequestMethod.POST)			// 결제완료
+//	public String paymentSubmit() {
+//		
+//		try {
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return "redirect:/travel/main";
+//	}
+//	
+	@RequestMapping("seat")
+	public String seatForm(
+			@RequestParam Map<String, String> map,
+			Condition rsDto,
+			Model model
+			) {		
+		if(map.get("tCategory").equals("all")) {
+			map.put("tCategory", "KTX");  //수정필요
+		}else if(map.get("tCategory").equals("KTX")) {
+			map.put("tCategory", "KTX");
+		}else if(map.get("tCategory").equals("ITX")) {
+			map.put("tCategory", "ITX");
+		}else if(map.get("tCategory").equals("mugunghwa")) {
+			map.put("tCategory", "mugunghwa");
+		}
+		Seat dto=new Seat();
+		dto.setRoomNum(Integer.parseInt(map.get("roomNum")));
+		dto=service.readSeat(map);
+		List<Seat> list=service.listSeat(map.get("tCategory"));
 		
-		return "redirect:/";
+		rsDto.setTotal(rsDto.getAdult()+rsDto.getChild()+rsDto.getSenior()+rsDto.getDisabled1()+rsDto.getDisabled2());
+		
+		List<Train> listtrain=new ArrayList<>();
+		listtrain=service.listTrain(rsDto);
+		for(Train train:listtrain) {
+			//소요시간
+			train.setTotalTime(service.totalTime(train));
+		}
+		
+		model.addAttribute("list",list);
+		model.addAttribute("listtrain",listtrain);
+		model.addAttribute("rsDto",dto);
+		model.addAttribute("dto",dto);
+		model.addAttribute("map",map);
+		return "booking/seat";
 	}
-	
 }

@@ -2,7 +2,7 @@ package com.et.booking;
 
 public class Booking {
 	// 프로모션 정보
-	private int prCode;					// 예약코드  
+	private int prSeq;					// 예약코드  
 	private String pmCode;				// 프로모션 상품코드
 	private String pmTitle;				// 프로모션 상품명
 	private String pmStartDate;			// 프로모션 예약 시작 날짜
@@ -19,9 +19,14 @@ public class Booking {
 	private int prPersonnel; 			// 예약인원 get
 	
 	// 가는 기차 & 오는 기차
+	private String trainName;
 	private String trainCode;
-	private String startTrain; 			// 가는 기차명	
-	private String endTrain;			// 오는 기차명		
+	private String startTrainName;		// 가는 기차 이름
+	private String startTrain; 			// 가는 기차코드	
+	private String startTime;			// 가는 기차 시간
+	private String endTrainName;		// 오는 기차 이름
+	private String endTrain;			// 오는 기차코드	
+	private String endTime;				// 오는 기차 시간
 	private String startStation;		// 출발하는 역 @	
 	private String roomGrade;			// 객실등급
 	private String prStartTrainSeat;	// 출발역 좌석
@@ -41,15 +46,22 @@ public class Booking {
 	private String crewEmail;			// 예약자 이메일
 	private String crewTel;				// 예약자 전화번호
 	private String crewBirth;			// 예약자 생년월일
-	private String prReservationDate;	// 결제기한일
+	private String prReservationDate;	// 예약한 날
 	private int prpayment;				// 결제 유무
 	private String reservationNumber;	// 예약번호
+	private String prPaymentDate;		// 결제한 날
 	
-	public int getPrCode() {
-		return prCode;
+	public String getTrainName() {
+		return trainName;
 	}
-	public void setPrCode(int prCode) {
-		this.prCode = prCode;
+	public void setTrainName(String trainName) {
+		this.trainName = trainName;
+	}
+	public int getPrSeq() {
+		return prSeq;
+	}
+	public void setPrSeq(int prSeq) {
+		this.prSeq = prSeq;
 	}
 	public String getPmCode() {
 		return pmCode;
@@ -129,17 +141,41 @@ public class Booking {
 	public void setTrainCode(String trainCode) {
 		this.trainCode = trainCode;
 	}
+	public String getStartTrainName() {
+		return startTrainName;
+	}
+	public void setStartTrainName(String startTrainName) {
+		this.startTrainName = startTrainName;
+	}
 	public String getStartTrain() {
 		return startTrain;
 	}
 	public void setStartTrain(String startTrain) {
 		this.startTrain = startTrain;
 	}
+	public String getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+	public String getEndTrainName() {
+		return endTrainName;
+	}
+	public void setEndTrainName(String endTrainName) {
+		this.endTrainName = endTrainName;
+	}
 	public String getEndTrain() {
 		return endTrain;
 	}
 	public void setEndTrain(String endTrain) {
 		this.endTrain = endTrain;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 	public String getStartStation() {
 		return startStation;
@@ -249,5 +285,12 @@ public class Booking {
 	public void setReservationNumber(String reservationNumber) {
 		this.reservationNumber = reservationNumber;
 	}
+	public String getPrPaymentDate() {
+		return prPaymentDate;
+	}
+	public void setPrPaymentDate(String prPaymentDate) {
+		this.prPaymentDate = prPaymentDate;
+	}
+	
 	
 }

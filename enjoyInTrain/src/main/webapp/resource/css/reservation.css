@@ -3,40 +3,40 @@
    margin-top: 0em;
     padding-top: 0em;
 }
-#reservation_header{
+.reservation_header{
 	width: 100%;
 	height: 200px;
 }
 
-#reservation_state1{
+.reservation_state1{
 	width: 70%;
 	height: 40px;
 }
 
-#reservation_logo {
+.reservation_logo {
 	width: 30%;
 	background: url(../images/travel.png) no-repeat center;
 	background-size: contain;
 }
 
-#reservation_title{
+.reservation_title{
 	font-weight: bold;
 	font-size: 30px;
 	height: 100px;
 }
 
-#reservation_state2{
+.reservation_state2{
 	text-align: right;
 	padding-right: 30px;
 }
 
-#reservation_info{
+.reservation_info{
 	border-collapse: collapse;
 	border-spacing: 0;
 	width: 100%;
 }
 
-#reservation_info_title{
+.reservation_info_title{
 	font-weight: bold;
 	font-size: 20px;
 	height: 40px;
@@ -44,7 +44,7 @@
 	border-bottom: 3px solid #cccccc;
 }
 
-#reservation_info_question{
+.reservation_info_question{
 	background: #EAEAEA;
 	width: 16%;
 	height: 40px;
@@ -54,19 +54,19 @@
 	font-weight: bold;
 }
 
-#reservation_info_answer{
+.reservation_info_answer{
 	padding-left: 10px;
 	width: 16%;
 	border-bottom: 1px solid #cccccc;
 }
 
-#reservation_report{
+.reservation_report{
 	border-collapse: collapse;
 	border-spacing: 0;
 	width: 100%;
 }
 
-#reservation_report_num{
+.reservation_report_num{
 	width: 7%;
 	height: 40px;
 	line-height: 40px;
@@ -76,7 +76,7 @@
 	font-weight: bold;
 }
 
-#reservation_report_group{
+.reservation_report_group{
 	width: 13%;
 	height: 40px;
 	line-height: 40px;
@@ -87,7 +87,7 @@
 	font-weight: bold;
 }
 
-#reservation_report_info{
+.reservation_report_info{
 	width: 70%;
 	height: 40px;
 	line-height: 40px;
@@ -105,7 +105,7 @@
 	color: red;
 }
 
-#reservation_report_question{
+.reservation_report_question{
 	width: 15%;
 	background: #EAEAEA;
 	height: 40px;
@@ -115,7 +115,7 @@
 	font-weight: bold;
 }
 
-#reservation_report_answer{
+.reservation_report_answer{
 	width: 25%;
 	height: 40px;
 	border-bottom: 1px solid #cccccc;
@@ -123,15 +123,15 @@
 	padding-left: 10px;
 }
 
-#reservation_report_answer span{
+.reservation_report_answer span{
 	color : blue;
 }
 
-#agreement {
+.agreement {
 	
 }
 
-#traveler_title{
+.traveler_title{
 	font-weight: bold;
 	font-size: 20px;
 	height: 50px;
@@ -139,7 +139,7 @@
 	margin-top: 10px;
 }
 
-#traveler_title_sub{
+.traveler_title_sub{
 	font-size: 15px;
 	height: 40px;
 	line-height: 40px;
@@ -147,13 +147,13 @@
 	font-weight: bold;
 }
 
-#travler_info{
+.travler_info{
 	border-collapse: collapse;
 	border-spacing: 0;
 	width: 100%;
 }
 
-#travler_info_question{
+.travler_info_question{
 	width: 13%;
 	background: #EAEAEA;
 	height: 40px;
@@ -164,7 +164,7 @@
 	font-weight: bold;
 }
 
-#travler_info_name{
+.travler_info_name{
 	width: 37%;
 	height: 40px;
 	padding-left: 10px;
@@ -172,12 +172,12 @@
 	border-bottom: 1px solid #cccccc;
 }
 
-#travler_info_name input{
+.travler_info_name input{
 	width: 200px;
 	height: 25px;
 }
 
-#travler_info_birth{
+.travler_info_birth{
 	width: 37%;
 	height: 40px;
 	line-height: 40px;
@@ -185,12 +185,12 @@
 	border-bottom: 1px solid #cccccc;
 }
 
-#travler_info_birth input{
+.travler_info_birth input{
 	width: 80px;
 	height: 25px;
 }
 
-#travler_info_tel{
+.travler_info_tel{
 	width: 37%;
 	height: 40px;
 	line-height: 40px;
@@ -198,12 +198,12 @@
 	border-bottom: 1px solid #cccccc;
 }
 
-#travler_info_tel input{
+.travler_info_tel input{
 	width: 80px;
 	height: 25px;
 }
 
-#travler_info_email{
+.travler_info_email{
 	width: 37%;
 	height: 40px;
 	line-height: 40px;
@@ -211,27 +211,27 @@
 	border-bottom: 1px solid #cccccc;
 }
 
-#travler_info_email input{
+.travler_info_email input{
 	width: 80px;
 	height: 25px;
 }
 
-#travler_button{
+.travler_button{
 	width: 100%;
 	text-align: right;
 }
 
-#travler_button button{
+.travler_button button{
 	height: 30px;
 	padding: 5px 10px 5px 10px;
 }
 
-#startSeat_dialog{
+.startSeat_dialog{
 	display: none;
 	vertical-align:middle;
 }
 
-#endSeat_dialog{
+.endSeat_dialog{
 	display: none;
 	vertical-align:middle;
 }
