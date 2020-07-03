@@ -12,7 +12,7 @@
 		INSERT INTO crew(crewId, crewName, crewPwd, crewTel, crewEmail, crewBirth, crewChatWarning) 
 		VALUES(#{crewId},#{crewName},#{crewPwd},#{crewTel},#{crewEmail},#{crewBirth},#{crewChatWarning})
 	</insert>
-	
+	 
 	<select id="readCrewName" parameterType="String" resultType="String">
 		SELECT crewName 
 		FROM crew

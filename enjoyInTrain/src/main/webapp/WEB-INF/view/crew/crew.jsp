@@ -12,7 +12,7 @@
 .homepage #main{
 	margin-top: 0em;
     padding-top: 0em;
-}
+} 
 
 .help-block{
 	font-size: 12px;

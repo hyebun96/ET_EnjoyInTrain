@@ -102,13 +102,16 @@ function updateNotice() {
 			       			 	</td>
 			       			 	
 			       			 	<td colspan="2" style="text-align: right;"  class="articleReadDto">
-			        			<c:if test="${not empty nextReadDto}">
-			             			 <a href="<%=cp%>/notice/article?${query}&noticeNum=${nextReadDto.noticeNum}">${nextReadDto.noticeTitle} ＿  다음 글 보기 ＞＞ </a>
-			        			</c:if>
-								 
+				        			<c:if test="${not empty nextReadDto}">
+				             			 <a href="<%=cp%>/notice/article?${query}&noticeNum=${nextReadDto.noticeNum}">${nextReadDto.noticeTitle} ＿  다음 글 보기 ＞＞ </a>
+				        			</c:if>
 								</td>
-			       			 	
 							</tr>
+							<tr>
+								<td colspan="4">
+									<button type="button" style="float: right; width: 120px;" class="articlebtn" onclick="javascript:location.href='<%=cp%>/admin/notice/list?${query}';">리스트</button>
+								</td>
+							</tr>   
 						</table>
 			        </form>
 						

@@ -12,7 +12,7 @@
 	margin-top: 0em;
     padding-top: 0em;
 }
-
+ 
 .alert-info {
     border: 1px solid #9acfea;
     border-radius: 4px;

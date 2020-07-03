@@ -15,7 +15,7 @@ public class Crew {
 	private int crewChatWarning;
 	
 	private int listNum; // 리스트 번호
-	
+	 
 	public int getCrewChatWarning() {
 		return crewChatWarning;
 	}
