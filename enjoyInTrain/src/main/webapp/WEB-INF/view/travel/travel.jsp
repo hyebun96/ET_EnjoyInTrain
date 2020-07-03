@@ -201,8 +201,6 @@ $(function(){
 
 });
 
-
-
 // 리스트
 function list(group){
 
@@ -222,6 +220,40 @@ function insertForm(){
 	
 	ajaxHTML(url, "get", query, selector);
 }
+
+//submit
+function sendOk(mode) {
+	var f = document.travelForm;
+	var query = new FormData(f);
+
+	var url = "<%=cp%>/travel/"+mode;
+	
+	if(f.upload.value=="" && list==null){
+		alert('메인이미지를 필수적으로 입력해주세요.');
+		f.upload.focus();
+		return;
+	}
+	
+	 if(f.upload.value!="") {
+ 		if(! /(\.gif|\.jpg|\.png|\.jpeg)$/i.test(f.upload.value)) {
+ 			alert('이미지 파일만 가능합니다.(bmp 파일은 불가) !!!');
+ 			f.upload.focus();
+ 			return;
+ 		}
+ 	}
+
+	var fn = function(data) {
+		var state = data.state;
+		if (state == "false")
+			alert("게시물을 추가(수정)하지 못했습니다. !!!");
+		alert('들어옴');
+		list(0);
+	}
+	
+	ajaxFileJSON(url, "post", query, fn);   
+
+}
+
 
 // 업데이트 폼
 function updateForm(pmCode){
@@ -244,6 +276,77 @@ function articleForm(num) {
 	ajaxHTML(url, "get", query, selector);
 }
 
+function createdTrain(trainCode){
+	var url ="<%=cp%>/travel/createdTrain";
+	$.post(url,{
+		trainCode:trainCode,
+		pmCode : $("input[name=pmCode]").val(),
+		startStation : $("select[name=startStation]").val(),
+		endStation : $("select[name=endStation]").val()
+	}, function(data){
+		var trClone = "<tr id='f"+trainCode+" align='left' style='border: 1px solid #cccccc;'>" 
+			+ $("#f"+trainCode+"2").clone().html(); + "</tr>";
+		
+			trClone=trClone.replace("createdTrain2","deleteTrain");
+			trClone=trClone.replace("createdTrain","deleteTrain");
+			trClone=trClone.replace('plus','trash-alt');
+			
+			$("#tbodyAdd").append(trClone).clone().html;
+
+		$("#f"+trainCode+"2").remove();
+	
+	}, "json");
+}
+
+function createdTrain2(trainCode){
+	var url ="<%=cp%>/travel/createdTrain";
+	$.post(url,{
+		trainCode:trainCode,
+		pmCode : $("input[name=pmCode]").val(),
+		startStation : $("select[name=endStation]").val(),
+		endStation : $("select[name=startStation]").val()
+	}, function(data){
+		var trClone = "<tr id='f"+trainCode+" align='left' style='border: 1px solid #cccccc;'>" 
+			+ $("#f"+trainCode+"2").clone().html(); + "</tr>";
+		
+			trClone=trClone.replace("createdTrain","deleteTrain");
+			trClone=trClone.replace('plus','trash-alt');
+			
+			console.log(trClone);
+			
+			$("#tbodyAdd").append(trClone).clone().html;
+		
+		
+		$("#f"+trainCode+"2").remove();
+	
+	}, "json");
+}
+
+function deleteFile(fileNum){
+	var url ="<%=cp%>/travel/deleteFile";
+	$.post(url,{fileNum:fileNum}, function(data){
+		$("#f"+fileNum).remove();
+		$("input[name=upload]").val("");
+		$("input[name=upload]").show();
+	}, "json");
+}
+
+function deleteContentFile(fileContentNum){
+	var url = "<%=cp%>/travel/deleteContentFile";
+	$.post(url,{fileNum:fileContentNum},function(data){
+		$("#f"+fileContentNum).remove();
+	},"json");
+}
+
+function deleteTrain(trainCode){
+	var url = "<%=cp%>/travel/deleteTrain";
+	$.post(url,{trainCode:trainCode},function(data){
+		
+		$("#f"+trainCode).remove();
+		
+	},"json");
+}
+
 // 캘린더 변경
 function calendar(year, month, num){
 	
@@ -262,6 +365,8 @@ function calendar(year, month, num){
 function reservation(){
 	var f = document.travelArticleForm;
 	var query = $(f).serialize();
+	
+	console.log(query);
 	
 	f.action="<%=cp%>/booking/reservation?"+query;
 
@@ -294,7 +399,10 @@ function reservation(){
 					</div>
 
 					<div id="tab-content"
-						style="clear: both; padding: 10px 0px 0px; width: 1200px;"></div>
+						style="clear: both; padding: 10px 0px 0px; width: 1200px;">
+						
+						
+						</div>
 				</section>
 			</div>
 

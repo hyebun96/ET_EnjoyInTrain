@@ -45,11 +45,6 @@
 
 <table style="width: 100%; border-spacing: 0px;">
 	<tr height="35">
-		<td align="center">
-			  ${dataCount==0?"등록된 게시물이 없습니다.":paging}
-		</td>
-	</tr>
-	<tr height="35">
 		<td align="right"><c:if test="${sessionScope.crew.crewId == 'a'}">
 				<button style="border-radius: 10px;" type="button" id="btn"
 					class="btn" onclick="insertForm();">프로모션 추가</button>
