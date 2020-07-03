@@ -77,42 +77,24 @@ function send() {
 
 }
 </script>
-	<!-- Banner -->
-		<div id="banner">
-			<div class="container">
-			</div>
-		</div>
-	<!-- /Banner -->
+
 
 	<!-- Main -->
 		<div id="page">
 				
-			<!-- Main -->
-			<div id="main" class="container">
-				<div class="row">
+			<div class="trainandtime">
+				<a href="<%=cp%>/admin/train/list">Train</a> <span>|</span> <a href="<%=cp%>/admin/timetable/main">TimeTable</a>
+			</div>
 
-					<div class="3u">
-						<section class="sidebar">
-							<header>
-								<h2>Feugiat Tempus</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Etiam rhoncus volutpat erat</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Nulla luctus eleifend purus</a></li>
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-							</ul>
-						</section>
-					</div>
+
 				
-					<div class="9u skel-cell-important">
+					<div class="trainandtime_train">
 						<ul>
 							<li id="train_button_reset">
 								<button type="button" onclick="javascript:location.href='<%=cp%>/losttrain/list?page=1';">새로고침</button>
 							</li>
-							<li id="train_page">${dataCount}개(${page}/${total_page} 페이지)</li>
 						</ul>
+						
 						<ul id="train_form1">
 							<li id="train_subnum">번호</li>
 							<li id="train_subwriter">기차종류</li>
@@ -127,9 +109,6 @@ function send() {
 								<li id="train_subcount_list">${dto.trainSeatCount}</li>
 							</c:forEach>
 						</ul>
-						<ul>
-							<li style="clear: both;" id="train-sample"> ${trainCount==0 ? "등록된 게시물이 없습니다.":paging}</li>
-						</ul>
 						<form name="searchForm" action="<%=cp%>/losttrain/list" method="post">
 							<ul id="train_button">
 								<li id="train_button_send">
@@ -137,13 +116,15 @@ function send() {
 								</li>
 							</ul>
 						</form>
+						<ul>
+							<li style="clear: both;" id="train-sample"> ${trainCount==0 ? "등록된 게시물이 없습니다.":paging}</li>
+						</ul>
+						
 					</div>
 					
 				</div>
-			</div>
-			<!-- Main -->
 
-		</div>
+
 	<!-- /Main -->
 	<div id="insertTrain_dialog">
 		<form name="insertTrainForm" method="post">

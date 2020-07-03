@@ -68,7 +68,28 @@ public class TimeTableController {
 		
 		String state="true";
 		try {
+			System.out.println(dto.getTraincode());
+			System.out.println(dto.getTraincode());
+			System.out.println(dto.getTraincode());
+			System.out.println(dto.getTraincode());
+			System.out.println(dto.getTrainname());
+			System.out.println(dto.getTrainname());
+			System.out.println(dto.getTrainname());
+			System.out.println(dto.getTrainname());
+			System.out.println(dto.getTrainname());
+			System.out.println(dto.getTrainname());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
+			System.out.println(dto.getEmployee());
 			timeTableService.insertTimeTable(dto);
+			
 		} catch (Exception e) {
 			state="false";
 		}

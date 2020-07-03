@@ -151,7 +151,7 @@ $(function(){
 		var index = fields.index(this);
 	        
 		if (evt.keyCode == 13) {
-			if ( index > -1 && index < 17 ) {
+			if ( index > -1 && index < 18 ) {
 				fields.eq( index + 1 ).focus();
 			} else {
 				if($(this).closest("tr").find("#btnAdd").length>0) {
@@ -166,21 +166,21 @@ $(function(){
 		var fields = $(this).closest("tr").find("input:text");
 		var index = fields.index(this);
 
-		if(index>=3 && index<=16) {
-			var HAENGSIN=fields.eq(3).val().trim();
-			var YONGSAN=fields.eq(4).val().trim();
-			var GWANGMYEONG=fields.eq(5).val().trim();
-			var CHEONANASAN=fields.eq(6).val().trim();
-			var OSONG=fields.eq(7).val().trim();
-			var GONGJU=fields.eq(8).val().trim();
-			var SEODAEJEON=fields.eq(9).val().trim();
-			var GYERYONG=fields.eq(10).val().trim();
-			var NONSAN=fields.eq(11).val().trim();
-			var IKSAN=fields.eq(12).val().trim();
-			var JEONGEUP=fields.eq(13).val().trim();
-			var GWANGJUSONGJEONG=fields.eq(14).val().trim();
-			var NAJU=fields.eq(15).val().trim();
-			var MOKPO=fields.eq(16).val().trim();
+		if(index>=4 && index<=17) {
+			var HAENGSIN=fields.eq(4).val().trim();
+			var YONGSAN=fields.eq(5).val().trim();
+			var GWANGMYEONG=fields.eq(6).val().trim();
+			var CHEONANASAN=fields.eq(7).val().trim();
+			var OSONG=fields.eq(8).val().trim();
+			var GONGJU=fields.eq(9).val().trim();
+			var SEODAEJEON=fields.eq(10).val().trim();
+			var GYERYONG=fields.eq(11).val().trim();
+			var NONSAN=fields.eq(12).val().trim();
+			var IKSAN=fields.eq(13).val().trim();
+			var JEONGEUP=fields.eq(14).val().trim();
+			var GWANGJUSONGJEONG=fields.eq(15).val().trim();
+			var NAJU=fields.eq(16).val().trim();
+			var MOKPO=fields.eq(17).val().trim();
 
 			
 		}
@@ -204,7 +204,7 @@ function listPage(page) {
 }
 
 function printTimeTable(data) {
-	$(".score-list .rows").remove();
+	$(".timetable-list .rows").remove();
 	$(".pagingLayout").empty();
 	
 	var total_page=data.total_page;
@@ -219,6 +219,9 @@ function printTimeTable(data) {
 			var scode=value.scode;
 			var traincode=value.traincode;
 			var trainname=value.trainname;
+			
+			var employee=value.ptcategory;
+			
 			var haengsin=value.haengsin;
 			var yongsan=value.yongsan;
 			var gwangmyeong=value.gwangmyeong;
@@ -245,6 +248,7 @@ function printTimeTable(data) {
 			       .append("<td>"+scode+"</td>")
 			       .append("<td>"+traincode+"</td>")
 			       .append("<td>"+trainname+"</td>")
+			       .append("<td>"+employee+"</td>")
 			       .append("<td>"+haengsin+"</td>")
 			       .append("<td>"+yongsan+"</td>")
 			       .append("<td>"+gwangmyeong+"</td>")
@@ -260,7 +264,7 @@ function printTimeTable(data) {
 			       .append("<td>"+naju+"</td>")
 			       .append("<td>"+mokpo+"</td>")
 			       .append("<td><span class='spanUpdate'>수정</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span class='spanDelete'>삭제</span></td>")
-			       .appendTo(".score-list");
+			       .appendTo(".timetable-list");
 			
 	    });
 		
@@ -269,7 +273,7 @@ function printTimeTable(data) {
 }
 
 
-//등록하기
+//등록
 $(function(){
 	$("#btnAdd").click(function(){
 		if(! check()) {
@@ -279,7 +283,11 @@ $(function(){
 		var f=document.timeTableForm;
 		f.scode.value=$("#scode").val().trim();
 		f.traincode.value=$("#traincode").val().trim();
+		
 		f.trainname.value=$("#trainname").val().trim();
+		
+		f.employee.value=$("#employee").val().trim();
+		
 		f.haengsin.value=$("#haengsin").val().trim();
 		f.yongsan.value=$("#yongsan").val().trim();
 		f.gwangmyeong.value=$("#gwangmyeong").val().trim();
@@ -300,7 +308,7 @@ $(function(){
 
 			var fn = function(data) {
 				if (data.state == "false") {
-					alert("데이터 추가가 실패했습니다.");
+					alert("기차번호와 종류를 다시한번 확인해주세요.");
 					return false;
 				}
 
@@ -328,6 +336,9 @@ $(function(){
 				$("#trainname").focus();
 				return false;
 			}
+			
+			
+			
 
 			return true;
 		}
@@ -450,15 +461,13 @@ $(function(){
 
 
 
-<div>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</div>
+<div id="page">
 
 
-<div style="width: 1600px; margin: 30px auto 0px;">
+<div style="width: 100%; margin: 30px auto 0px;">
 
-	<div style="">
-		<h3>
-			<span>|</span> timetable
-		</h3>
+	<div class="trainandtime">
+			<a href="<%=cp%>/admin/train/list">Train</a> <span>|</span> <a href="<%=cp%>/admin/timetable/main">TimeTable</a>
 	</div>
 
 	<table class="time-table"
@@ -468,6 +477,7 @@ $(function(){
 				<td width="80">시간표등록고유번호</td>
 				<td width="100">기차번호</td>
 				<td width="100">기차종류</td>
+				<td width="80">직원</td>
 				<td width="80">행신</td>
 				<td width="80">용산</td>
 				<td width="80">광명</td>
@@ -491,6 +501,18 @@ $(function(){
 				<td><input type="text" id="scode" readonly="readonly"></td>
 				<td><input type="text" id="traincode"></td>
 				<td><input type="text" id="trainname"></td>
+				<td>
+				<select id="employee" name="employee">
+					<option value="all">선택</option>
+					<option value="1">기관사</option>
+					<option value="2">행정부</option>
+					<option value="3">기획부</option>
+					<option value="4">기술지원부</option>
+					<option value="5">홍보부</option>
+					<option value="6">개발부</option>
+
+				</select>
+				</td>
 				<td><input type="text" id="haengsin"></td>
 				<td><input type="text" id="yongsan"></td>
 				<td><input type="text" id="gwangmyeong"></td>
@@ -511,7 +533,7 @@ $(function(){
 			</tr>
 		</tbody>
 
-		<tfoot class="score-list"></tfoot>
+		<tfoot class="timetable-list"></tfoot>
 	</table>
 
 	<div class="pagingLayout" style="text-align: center; height: 50px;"></div>
@@ -519,20 +541,24 @@ $(function(){
 		<input type="hidden" name="scode"> 
 		<input type="hidden" name="traincode"> 
 		<input type="hidden" name="trainname">
+		
+		<input type="hidden" name="employee">
+		
 		<input type="hidden" name="haengsin"> 
 		<input type="hidden" name="yongsan"> 
-			<input type="hidden" name="gwangmyeong">
+		<input type="hidden" name="gwangmyeong">
 		<input type="hidden" name="cheonanasan"> 
 		<input type="hidden" name="osong"> 
-			<input type="hidden" name="gongju"> 
-			<input type="hidden" name="seodaejeon"> 
-			<input type="hidden" name="gyeryong"> 
-			<input type="hidden" name="nonsan">
+		<input type="hidden" name="gongju"> 
+		<input type="hidden" name="seodaejeon"> 
+		<input type="hidden" name="gyeryong"> 
+		<input type="hidden" name="nonsan">
 		<input type="hidden" name="iksan"> 
 		<input type="hidden" name="jeongeup"> 
-			<input type="hidden" name="gwangjusongjeong">
+		<input type="hidden" name="gwangjusongjeong">
 		<input type="hidden" name="naju"> 
 		<input type="hidden" name="mokpo">
 	</form>
 
+	</div>
 </div>

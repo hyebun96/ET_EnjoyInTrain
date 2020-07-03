@@ -14,8 +14,22 @@ public class TimeTableServiceImpl implements TimeTableService {
 	private CommonDAO dao;
 	
 	@Override
-	public void insertTimeTable(TimeTable dto) throws Exception {
+	public void insertTrain(TimeTable dto) throws Exception {
 		try {
+			dao.insertData("timetable.insertTrain", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			throw e;
+		}
+		
+	}
+	
+	@Override
+	public void insertTimeTable(TimeTable dto) throws Exception {
+		
+		try {
+			insertTrain(dto);
 			dao.insertData("timetable.insertTimeTable", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -78,6 +92,8 @@ public class TimeTableServiceImpl implements TimeTableService {
 		}
 		
 	}
+
+	
 
 	
 }

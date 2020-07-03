@@ -1,12 +1,12 @@
 package com.et.timetable;
 
 public class TimeTable {
-	//scode, traincode, trainname, HAENGSIN, YONGSAN, GWANGMYEONG, CHEONANASAN, OSONG,
-	// GONGJU, SEODAEJEON, GYERYONG, NONSAN, IKSAN, JEONGEUP, GWANGJUSONGJEONG, NAJU, MOKPO
-	private String scode;
-	private String traincode;
-	private String trainname;
-	private String haengsin;
+	// HAENGSIN, YONGSAN, GWANGMYEONG, CHEONANASAN, OSONG,
+	// GONGJU, SEODAEJEON, GYERYONG, NONSAN, IKSAN, JEONGEUP, GWANGJUSONGJEONG, NAJU, MOKPO	//호남선
+	private String scode;		//시간표 고유 코드
+	private String traincode;	//기차번호
+	private String trainname;	//기차카테고리
+	private String haengsin;	// 역정보
 	private String yongsan;
 	private String gwangmyeong;
 	private String cheonanasan;
@@ -21,8 +21,17 @@ public class TimeTable {
 	private String naju;
 	private String mokpo;
 	
+	private String employee;	//직원분류
+	private String ptcategory;
 	
 	
+	
+	public String getPtcategory() {
+		return ptcategory;
+	}
+	public void setPtcategory(String ptcategory) {
+		this.ptcategory = ptcategory;
+	}
 	public String getScode() {
 		return scode;
 	}
@@ -125,6 +134,13 @@ public class TimeTable {
 	public void setMokpo(String mokpo) {
 		this.mokpo = mokpo;
 	}
+	public String getEmployee() {
+		return employee;
+	}
+	public void setEmployee(String employee) {
+		this.employee = employee;
+	}
+	
 	
 	
 	

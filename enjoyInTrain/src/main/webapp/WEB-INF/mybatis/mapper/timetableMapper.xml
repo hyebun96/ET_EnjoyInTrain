@@ -9,22 +9,34 @@
 			#{gongju},#{seodaejeon}, #{gyeryong}, #{nonsan}, #{iksan}, #{jeongeup}, #{gwangjusongjeong}, #{naju}, #{mokpo})
 	</insert>
 	
+	<insert id="insertTrain" parameterType="com.et.timetable.TimeTable">
+		INSERT INTO train6(traincode, trcategory, emcode)
+		VALUES (#{traincode}, #{trainname}, #{employee})
+	</insert>
+	
 	<select id="dataCount" resultType="Integer">
 		SELECT NVL(COUNT(*), 0) FROM stationline2
 	</select>
 	
 	<select id="listTimeTable" parameterType="map" resultType="com.et.timetable.TimeTable">
-		SELECT scode, traincode, trainname, HAENGSIN, YONGSAN, GWANGMYEONG, CHEONANASAN, OSONG,
+		SELECT sl.scode, sl.traincode, trainname, p.ptcategory, HAENGSIN, YONGSAN, GWANGMYEONG, CHEONANASAN, OSONG,
 		 GONGJU, SEODAEJEON, GYERYONG, NONSAN, IKSAN, JEONGEUP, GWANGJUSONGJEONG, NAJU, MOKPO
-		FROM stationline2
+         from stationline2 sl 
+         join train6 tr on sl.traincode = tr.traincode
+         join employee e on e.emcode = tr.emcode
+         join position p on e.ptcode = p.ptcode
 		ORDER BY scode
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	
+	
 	<select id="readTimeTable" parameterType="String" resultType="com.et.timetable.TimeTable">
-		SELECT scode, traincode, trainname, HAENGSIN, YONGSAN, GWANGMYEONG, CHEONANASAN, OSONG,
-		 GONGJU, SEODAEJEON, GYERYONG, NONSAN, IKSAN, JEONGEUP, GWANGJUSONGJEONG, NAJU, MOKPO 
-		FROM stationline2
+		SELECT sl.scode, sl.traincode, trainname, p.ptcategory, HAENGSIN, YONGSAN, GWANGMYEONG, CHEONANASAN, OSONG,
+		 GONGJU, SEODAEJEON, GYERYONG, NONSAN, IKSAN, JEONGEUP, GWANGJUSONGJEONG, NAJU, MOKPO
+         from stationline2 sl 
+         join train6 tr on sl.traincode = tr.traincode
+         join employee e on e.emcode = tr.emcode
+         join position p on e.ptcode = p.ptcode
 		WHERE scode=#{scode}
 	</select>
 	
@@ -37,4 +49,12 @@
 	<delete id="deleteTimeTable" parameterType="String">
 		DELETE FROM stationline2 WHERE scode=#{scode}
 	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>
