@@ -111,7 +111,7 @@ alert("예약을 취소할 수  없습니다.");
 										<td class="payment_report_category2">가는 기차</td>
 										<td class="payment_report_name2">
 											${start.trainName} - ${startDto.trainCode}
-											(${start.startStation} - > ${start.endStation})
+											(${startDto.startStation} - > ${startDto.endStation})
 										</td>
 										<td class="payment_report_pay2"></td>
 									<tr>
@@ -126,7 +126,7 @@ alert("예약을 취소할 수  없습니다.");
 										<td class="payment_report_category2">오는 기차</td>
 										<td class="payment_report_name2">
 											${end.trainName} - ${endDto.trainCode}
-											(${end.startStation} - > ${end.endStation})
+											(${endDto.startStation} - > ${endDto.endStation})
 										</td>
 										<td class="payment_report_pay2"></td>
 									<tr>

@@ -15,12 +15,12 @@
 
 <script type="text/javascript">
 $(function() {
-	$("#showStatement").click(function() {
-		$("form[name=showStatementForm]").each(function () {
+	$("#showReservationInfo").click(function() {
+		$("form[name=showReservationInfoForm]").each(function () {
 			this.reset();
 		});
 		
-		$("#statement_dialog").dialog({
+		$("#reservationInfo_dialog").dialog({
 			modal: true,
 			height: 800,
 			width: 700,
@@ -43,10 +43,10 @@ function requestPay(){
         pay_method : 'card',
         merchant_uid : 'merchant_' + new Date().getTime(),
         name : '프로모션예약',
-        amount : "${dto.pmPrice+dto.prAddPrice}",
-        buyer_email : '${dto.crewEmail}',
-        buyer_name : '${dto.crewName}',
-        buyer_tel : '${dto.crewTel}',
+        amount : "${startDto.pmPrice+startDto.prAddPrice+endDto.prAddPrice}",
+        buyer_email : '${startDto.crewEmail}',
+        buyer_name : '${startDto.crewName}',
+        buyer_tel : '${startDto.crewTel}',
         buyer_addr : '경기도 광명시',
         buyer_postcode : '123-456'
     }, function(rsp) {
@@ -75,12 +75,12 @@ function requestPay(){
                 }
             });
             //성공시 이동할 페이지
-            location.href='<%=cp%>/booking/paymentSuccess?prSeq=${dto.prSeq}';
+            location.href='<%=cp%>/booking/paymentSuccess?prSeq=${startDto.prSeq}';
         } else {
             msg = '결제에 실패하였습니다.';
             msg += '에러내용 : ' + rsp.error_msg;
             //실패시 이동할 페이지
-            location.href="<%=cp%>/booking/receipt?prSeq=${dto.prSeq}";
+            location.href="<%=cp%>/booking/receipt?prSeq=${startDto.prSeq}";
             alert(msg);
         }
     });
@@ -138,15 +138,15 @@ function requestPay(){
 								<tr><td class="receipt_info_title" colspan="6">■ 예약완료</td></tr>
 								<tr>
 									<td class="receipt_info_question">상품명</td>
-									<td colspan="5" class="receipt_info_answer">${dto.pmTitle}</td>
+									<td colspan="5" class="receipt_info_answer">${startDto.pmTitle}</td>
 								</tr>
 								<tr>
 									<td class="receipt_info_question">상품코드</td>
-									<td class="receipt_info_answer">${dto.pmCode}</td>
+									<td class="receipt_info_answer">${startDto.pmCode}</td>
 									<td class="receipt_info_question">출발일자</td>
-									<td class="receipt_info_answer">${dto.pmStartDate}</td>
+									<td class="receipt_info_answer">${startDto.pmStartDate}</td>
 									<td class="receipt_info_question">예약인원</td>
-									<td class="receipt_info_answer">${dto.prPersonnel}</td>
+									<td class="receipt_info_answer">${startDto.prPersonnel}</td>
 								</tr>
 							</table>
 							
@@ -160,26 +160,26 @@ function requestPay(){
 									<td class="receipt_report_num" rowspan="5">1</td>
 									<td class="receipt_report_group" rowspan="5">가는열차</td>
 									<td class="receipt_report_question">상품명</td>
-									<td class="receipt_report_answer">${start.trainName} - ${dto.trainCode}</td>
+									<td class="receipt_report_answer">${start.trainName} - ${startDto.trainCode}</td>
 									<td class="receipt_report_question">객실등급</td>
-									<td class="receipt_report_answer">${dto.roomGrade}</td>
+									<td class="receipt_report_answer">${startDto.roomGrade}</td>
 								</tr>
 								<tr>
 									<td class="receipt_report_question">이용기간</td>
-									<td class="receipt_report_answer" colspan="3">${dto.pmStartDate}</td>
+									<td class="receipt_report_answer" colspan="3">${startDto.pmStartDate}</td>
 
 								</tr>
 
 								<tr>
 									<td class="receipt_report_question">출발역</td>
-									<td class="receipt_report_answer">${dto.startStation}(${start.startTime})</td>
+									<td class="receipt_report_answer">${startDto.startStation}(${start.startTime})</td>
 									<td class="receipt_report_question">도착역</td>
-									<td class="receipt_report_answer">${dto.endStation}(${start.endTime})</td>
+									<td class="receipt_report_answer">${startDto.endStation}(${start.endTime})</td>
 								</tr>
 								<tr>
 									<td class="receipt_report_question">이용인원</td>
 									<td class="receipt_report_answer" colspan="3">
-										성인 ${dto.adult}명 어린이  ${dto.child}명 경로  ${dto.oldMan}명
+										성인 ${startDto.adult}명 어린이  ${startDto.child}명 경로  ${startDto.oldMan}명
 									</td>
 								</tr>
 								<tr>
@@ -188,44 +188,44 @@ function requestPay(){
 								</tr>
 								<tr>
 									<td class="receipt_report_num" rowspan="3">2</td>
-									<td class="receipt_report_group" rowspan="3"> ${dto.product}</td>
+									<td class="receipt_report_group" rowspan="3"> ${startDto.product}</td>
 									<td class="receipt_report_question">상품명</td>
-									<td class="receipt_report_answer" colspan="3">${dto.productContent}</td>
+									<td class="receipt_report_answer" colspan="3">${startDto.productContent}</td>
 								</tr>
 								<tr>
 									<td class="receipt_report_question">이용기간</td>
-									<td class="receipt_report_answer" colspan="3">${dto.pmStartDate}</td>
+									<td class="receipt_report_answer" colspan="3">${startDto.pmStartDate}</td>
 								</tr>
 								<tr>
 									<td class="receipt_report_question">이용인원</td>
-									<td class="receipt_report_answer">${dto.prPersonnel}명</td>
+									<td class="receipt_report_answer">${startDto.prPersonnel}명</td>
 									<td class="receipt_report_question">이용수량</td>
-									<td class="receipt_report_answer">${dto.productUserCount}개 </td>
+									<td class="receipt_report_answer">${startDto.productUserCount}개 </td>
 								</tr>
 								<tr>
 									<td class="receipt_report_num" rowspan="5">3</td>
 									<td class="receipt_report_group" rowspan="5">오는열차</td>
 									<td class="receipt_report_question">상품명</td>
-									<td class="receipt_report_answer">${end.trainName} - ${dto.trainCode}</td>
+									<td class="receipt_report_answer">${end.trainName} - ${endDto.trainCode}</td>
 									<td class="receipt_report_question">객실등급</td>
-									<td class="receipt_report_answer">${dto.roomGrade1}</td>
+									<td class="receipt_report_answer">${endDto.roomGrade1}</td>
 								</tr>
 								<tr>
 									<td class="receipt_report_question">이용기간</td>
-									<td class="receipt_report_answer" colspan="3">${dto.pmStartDate}</td>
+									<td class="receipt_report_answer" colspan="3">${endDto.pmStartDate}</td>
 
 								</tr>
 
 								<tr>
 									<td class="receipt_report_question">출발역</td>
-									<td class="receipt_report_answer">${dto.endStation}(${end.startTime})</td>
+									<td class="receipt_report_answer">${endDto.startStation}(${end.startTime})</td>
 									<td class="receipt_report_question">도착역</td>
-									<td class="receipt_report_answer">${dto.startStation}(${end.endTime})</td>
+									<td class="receipt_report_answer">${endDto.endStation}(${end.endTime})</td>
 								</tr>
 								<tr>
 									<td class="receipt_report_question">이용인원</td>
 									<td class="receipt_report_answer" colspan="3">
-										성인 ${dto.adult}명 어린이  ${dto.child}명 경로  ${dto.oldMan}명
+										성인 ${endDto.adult}명 어린이  ${endDto.child}명 경로  ${endDto.oldMan}명
 									</td>
 								</tr>
 								<tr>
@@ -234,7 +234,7 @@ function requestPay(){
 								</tr>
 							</table>
 						</div>
-						<div><table class="receipt_cost"><tr><td>총 결제금액 : ${dto.pmPrice+dto.prAddPrice}원<td></tr></table></div>
+						<div><table class="receipt_cost"><tr><td>총 결제금액 : ${startDto.pmPrice+startDto.prAddPrice + endDto.prAddPrice}원<td></tr></table></div>
 						<div>
 							<div class="traveler_title">■ 예약자 및 여행자 정보입력</div>
 							<table class="travler_info">
@@ -243,13 +243,13 @@ function requestPay(){
 								</tr>
 								<tr>
 									<td class="travler_info_question">예약자 이름</td>
-									<td class="travler_info_name">${dto.crewName}</td>
+									<td class="travler_info_name">${startDto.crewName}</td>
 									<td class="travler_info_question">이메일</td>
-									<td class="travler_info_email">${dto.crewEmail}</td>
+									<td class="travler_info_email">${startDto.crewEmail}</td>
 								</tr>
 								<tr>
 									<td class="travler_info_question">휴대전화</td>
-									<td colspan="3" class="travler_info_tel">${dto.crewTel}</td>
+									<td colspan="3" class="travler_info_tel">${startDto.crewTel}</td>
 								</tr>
 							</table>
 							<div>
@@ -259,12 +259,12 @@ function requestPay(){
 									</tr>
 									<tr>
 										<td class="resetpayment_question">예약일일</td>
-										<td class="resetpayment_answer">${dto.prReservationDate}</td>
-										<td class="resetpayment_condition">2020-06-23 15:37 까지 결제하지 않으면 자동 취소됩니다.</td>
+										<td class="resetpayment_answer">${startDto.prReservationDate}</td>
+										<td class="resetpayment_condition">${startDto.prPaymentDate} 까지 결제하지 않으면 자동 취소됩니다.</td>
 									</tr>
 								</table>
 								<div class="travler_button">
-									<button type="button" id="showStatement">예약명세서</button>
+									<button type="button" id="showReservationInfo">예약명세서</button>
 									<button type="button" onclick="javascript:location.href='<%=cp%>/travel/main';">확인</button>
 									<button type="button" onclick="requestPay()">결제하기</button>
 								</div>
@@ -279,12 +279,12 @@ function requestPay(){
 
 		</div>
 	<!-- /Main -->
-	<div class="statement_dialog">
-	<form action="showStatementForm">
+	<div id="reservationInfo_dialog">
+	<form name="showReservationInfoForm">
 		<table class="statement_table">
 			<tr>
 				<td class="statement_info_question" valign="top">To</td>
-				<td class="statement_info_answer" valign="top">${dto.crewName} 고객님</td>
+				<td class="statement_info_answer" valign="top">${startDto.crewName} 고객님</td>
 			</tr>
 			<tr>
 				<td class="statement_info_question" valign="top">From</td>
@@ -296,7 +296,7 @@ function requestPay(){
 			</tr>
 			<tr>
 				<td class="statement_info_question" valign="top">발행일자</td>
-				<td class="statement_info_answer" valign="top">${dto.prReservationDate}</td>
+				<td class="statement_info_answer" valign="top">${startDto.prReservationDate}</td>
 			</tr>
 			<tr>
 				<td class="statement_info_question" valign="top">예약번호</td>
@@ -304,7 +304,7 @@ function requestPay(){
 			</tr>
 			<tr>
 				<td class="statement_info_question1" valign="top">상품평</td>
-				<td class="statement_info_answer" valign="top">${dto.pmTitle}</td>
+				<td class="statement_info_answer" valign="top">${startDto.pmTitle}</td>
 			</tr>
 		</table>
 		<table class="statement_report">
@@ -317,23 +317,23 @@ function requestPay(){
 				<td class="statement_report_productCount1">상품수량</td>
 			</tr>
 			<tr>
-				<td rowspan="3" class="statement_report_date2">${dto.pmStartDate}</td>
-				<td class="statement_report_productName2">${dto.startTrain}</td>
-				<td class="statement_report_productCount2">${dto.prPersonnel}인</td>
+				<td rowspan="3" class="statement_report_date2">${startDto.pmStartDate}</td>
+				<td class="statement_report_productName2">${startDto.startTrain}</td>
+				<td class="statement_report_productCount2">${startDto.prPersonnel}인</td>
 			</tr>
 			<tr>
-				<td class="statement_report_productName2">${dto.product}</td>
-				<td class="statement_report_productCount2">${dto.productUserCount}인</td>
+				<td class="statement_report_productName2">${startDto.product}</td>
+				<td class="statement_report_productCount2">${startDto.productUserCount}인</td>
 			</tr>
 			<tr>
-				<td class="statement_report_productName2">${dto.endTrain}</td>
-				<td class="statement_report_productCount2">${dto.prPersonnel}인</td>
+				<td class="statement_report_productName2">${endDto.endTrain}</td>
+				<td class="statement_report_productCount2">${endDto.prPersonnel}인</td>
 			</tr>
 			<tr>
 				<td colspan="3" class="statement_report_cost1">총 결제금액</td>
 			</tr>
 			<tr>
-				<td colspan="3" class="statement_report_cost2">${dto.pmPrice+dto.prAddPrice}원</td>
+				<td colspan="3" class="statement_report_cost2">${startDto.pmPrice+startDto.prAddPrice + endDto.prAddPrice}원</td>
 			</tr>
 		</table>
 		<table class="statement_notice">

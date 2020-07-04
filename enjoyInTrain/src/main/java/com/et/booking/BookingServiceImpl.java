@@ -32,9 +32,11 @@ public class BookingServiceImpl implements BookingService{
 			String []ss = dto.getTrainCode().split(",");
 			dto.setTrainCode(ss[0]);
 			dao.insertData("booking.insertReservation", dto);
+			dao.updateData("booking.updatePayDate", dto.getPrSeq());
 			if(ss.length>0)
 				dto.setTrainCode(ss[1]);
 			dao.insertData("booking.insertReservation", dto);
+			dao.updateData("booking.updatePayDate", dto.getPrSeq());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -115,6 +117,8 @@ public class BookingServiceImpl implements BookingService{
 	public Booking readtrainlist(Booking dto) {
 		Booking start = null;
 		try {
+//			dto.setStartStation(dao.selectOne("booking.getEngStart", dto.getStartStation()));
+//			dto.setEndStation(dao.selectOne("booking.getEngEnd", dto.getEndStation()));
 			start = dao.selectOne("booking.trainRead", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -219,6 +223,26 @@ public class BookingServiceImpl implements BookingService{
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public String readStartStation(String Station) {
+		String startStation = null;
+		try {
+			startStation = dao.selectOne("booking.getKoreaStart", Station);
+		} catch (Exception e) {
+		}
+		return startStation;
+	}
+
+	@Override
+	public String readEndStation(String Station) {
+		String endStation = null;
+		try {
+			endStation = dao.selectOne("booking.getKoreaEnd", Station);
+		} catch (Exception e) {
+		}
+		return endStation;
 	}
 
 }

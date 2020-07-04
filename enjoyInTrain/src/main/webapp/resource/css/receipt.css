@@ -246,7 +246,7 @@
 	margin-right: 5px;
 }
 
-.statement_dialog{
+#reservationInfo_dialog{
 	display: none;
 	vertical-align:middle;
 }

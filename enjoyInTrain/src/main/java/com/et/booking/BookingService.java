@@ -22,4 +22,6 @@ public interface BookingService {
 	public List<Train> listTrain(Condition dto);
 	public String totalTime(Train dto);
 	public List<Booking> readForCancle(Map<String , Object> map);
+	public String readStartStation(String Station);
+	public String readEndStation(String Station);
 }

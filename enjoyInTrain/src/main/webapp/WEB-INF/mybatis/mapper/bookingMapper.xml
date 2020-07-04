@@ -32,8 +32,13 @@
 			VALUES( pmreservation_seq.NEXTVAL, #{prSeq}, #{pmCode}, #{pmStartDate}, #{adult}, #{child}, #{oldMan}, #{prPersonnel}, #{product}, #{productUserCount}, #{prAddPrice}, #{crewId}, SYSDATE, 0, #{trainCode}, #{roomGrade}, #{reservationNumber})
 	</insert>
 	
+	<update id="updatePayDate" parameterType="Integer">
+		UPDATE pmReservation SET prPaymentDate = SYSDATE+3 WHERE prSeq = #{prSeq}
+	</update>
+	
+	<!-- 예약 목록 불러오기 -->
 	<select id="readReservation" parameterType="map" resultType="com.et.booking.Booking">
-		SELECT DISTINCT pr.prCode, pr.prSeq, pr.pmCode, TO_CHAR(pr.pmStartDate, 'YYYY-MM-DD') pmStartDate, pr.adult, pr.child, pr.oldMan, pr.prPersonnel, pr.product, pr.productUserCount, pr.prAddPrice, pr.crewId, pr.prReservationDate, pr.trainCode,
+		SELECT DISTINCT pr.prCode, pr.prSeq, pr.pmCode, TO_CHAR(pr.pmStartDate, 'YYYY-MM-DD') pmStartDate, pr.adult, pr.child, pr.oldMan, pr.prPersonnel, pr.product, pr.productUserCount, pr.prAddPrice, pr.crewId, pr.prReservationDate,pr.prPaymentDate, pr.trainCode,
 			   pr.roomGrade, pr.reservationNumber, pd.pmTitle, pd.pmPrice, pd.productContent, p.startStation, p.endStation, c.crewName, c.crewEmail, c.crewTel, c.crewBirth
 		FROM pmReservation pr
 		JOIN promotionDetail pd ON pd.pmCode = pr.pmCode
@@ -56,7 +61,7 @@
 	
 	<!-- 결제 -->
 	<update id="updatePrPaymentDate">
-		UPDATE pmReservation SET prPaymentDate = SYSDATE WHERE prCode = #{prCode}
+		UPDATE pmReservation SET prPaymentDate = SYSDATE+3 WHERE prCode = #{prCode}
 	</update>
 	<!-- 예약 취소 -->
 	<select id="readForCancle" parameterType="map" resultType="com.et.booking.Booking">
@@ -112,10 +117,17 @@
 	
 	<!-- 기차 시간, 이름 가져오기 -->
 	<select id="getTrain">
-		SELECT pmCode, startStation, endStation
+		SELECT pmCode, p.trainCode, startStation, endStation
 		FROM promotion p
 		JOIN STATIONLINE6 t ON p.traincode = t.traincode
-		WHERE pmCode = #{pmCode} AND trainCode = #{trainCode}
+		WHERE pmCode = #{pmCode} AND p.trainCode = #{trainCode}
+	</select>
+	<select id="getKoreaStart" parameterType="String" resultType="String">
+		SELECT sName FROM station WHERE engName = #{startStation}
+	</select>
+	
+	<select id="getKoreaEnd" parameterType="String" resultType="String">
+		SELECT sName FROM station WHERE engName = #{endStation}
 	</select>
 	
 	<select id="trainRead" parameterType="map" resultType="com.et.booking.Booking">

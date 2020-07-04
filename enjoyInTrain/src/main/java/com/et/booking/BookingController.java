@@ -34,20 +34,32 @@ public class BookingController {
 			) {
 		
 		List<Booking> list = service.readPromotionDetail(paramMap);
+		List<Booking> list1 = service.readPromotionDetail(paramMap);
 		Booking startDto = null, endDto = null;
 		Booking start = null, end = null;
 		for(Booking dto : list) {
-			if(Integer.parseInt(dto.getTrainCode())%2==0) {
+			if(Integer.parseInt(dto.getTrainCode())%2!=0) {
 				startDto = dto;
-				start = service.readtrainlist(startDto);
 			}
 			else {
 				endDto = dto;
-				end = service.readtrainlist(endDto);
 			}
 		}
+		for(Booking vo : list1) {
+			if(Integer.parseInt(vo.getTrainCode())%2!=0) {
+				start = vo;
+			}
+			else {
+				end = vo;
+			}
+		}
+		startDto.setStartStation(service.readStartStation(startDto.getStartStation()));
+		startDto.setEndStation(service.readEndStation(startDto.getEndStation()));			
+		endDto.setStartStation(service.readStartStation(endDto.getStartStation()));
+		endDto.setEndStation(service.readEndStation(endDto.getEndStation()));			
 
-		
+		start = service.readtrainlist(start);
+		end = service.readtrainlist(end);
 		SessionInfo info = (SessionInfo)session.getAttribute("crew");
 
 		Map<String , Object> map = new HashMap<>();
@@ -72,15 +84,15 @@ public class BookingController {
 			HttpSession session
 			) {
 		SessionInfo info = (SessionInfo)session.getAttribute("crew");
-		int seq = 0;
+		int prSeq = 0;
 		try {
 			dto.setCrewId(info.getCrewId());
-			seq = service.insertReservation(dto);
+			prSeq = service.insertReservation(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/booking/receipt?prSeq="+seq;
+		return "redirect:/booking/receipt?prSeq="+prSeq;
 	}
 	
 	
@@ -97,24 +109,39 @@ public class BookingController {
 		try {
 			
 			List<Booking> list = service.readReservation(map);
+			List<Booking> list1 = service.readReservation(map);
 			Booking startDto = null, endDto = null;
 			Booking start = null, end = null;
 			for(Booking dto : list) {
-				if(Integer.parseInt(dto.getTrainCode())%2==0) {
+				if(Integer.parseInt(dto.getTrainCode())%2!=0) {
 					startDto = dto;
-					start = service.readtrainlist(startDto);
 				}
 				else {
 					endDto = dto;
-					end = service.readtrainlist(endDto);
 				}
-				model.addAttribute("dto", dto);
-				model.addAttribute("prSeq", prSeq);
-				model.addAttribute("startDto",startDto);
-				model.addAttribute("endDto",endDto);
-				model.addAttribute("start", start);
-				model.addAttribute("end", end);
 			}
+			for(Booking vo : list1) {
+				if(Integer.parseInt(vo.getTrainCode())%2!=0) {
+					start = vo;
+				}
+				else {
+					end = vo;
+				}
+			}
+			
+			startDto.setStartStation(service.readStartStation(startDto.getStartStation()));
+			startDto.setEndStation(service.readEndStation(startDto.getEndStation()));			
+			endDto.setStartStation(service.readStartStation(endDto.getStartStation()));
+			endDto.setEndStation(service.readEndStation(endDto.getEndStation()));	
+			
+			start = service.readtrainlist(start);
+			end = service.readtrainlist(end);
+			model.addAttribute("prSeq", prSeq);
+			model.addAttribute("startDto",startDto);
+			model.addAttribute("endDto",endDto);
+			model.addAttribute("start", start);
+			model.addAttribute("end", end);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -134,22 +161,37 @@ public class BookingController {
 		map.put("crewId", info.getCrewId());
 		try {
 			List<Booking> list = service.readReservation(map);
+			List<Booking> list1 = service.readReservation(map);
 			Booking startDto = null, endDto = null;
 			Booking start = null, end = null;
 			for(Booking dto : list) {
-				if(Integer.parseInt(dto.getTrainCode())%2==0) {
+				if(Integer.parseInt(dto.getTrainCode())%2!=0) {
 					startDto = dto;
-					start = service.readtrainlist(startDto);
 				}
 				else {
 					endDto = dto;
-					end = service.readtrainlist(endDto);
 				}
+			}
+			startDto.setStartStation(service.readStartStation(startDto.getStartStation()));
+			startDto.setEndStation(service.readEndStation(startDto.getEndStation()));			
+			endDto.setStartStation(service.readStartStation(endDto.getStartStation()));
+			endDto.setEndStation(service.readEndStation(endDto.getEndStation()));
+			
+			for(Booking vo : list1) {
+				if(Integer.parseInt(vo.getTrainCode())%2!=0) {
+					start = vo;
+					start = service.readtrainlist(start);
+				}
+				else {
+					end = vo;
+					end = service.readtrainlist(end);
+				}
+			}
+			
 				model.addAttribute("startDto",startDto);
 				model.addAttribute("endDto",endDto);
 				model.addAttribute("start", start);
 				model.addAttribute("end", end);
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
