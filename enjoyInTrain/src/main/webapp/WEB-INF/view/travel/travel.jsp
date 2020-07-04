@@ -91,6 +91,7 @@ ul.tabs li.active{
 }
 
 </style>
+
 <script type="text/javascript">
 
 function ajaxFileJSON(url, type, query, fn) {
@@ -184,7 +185,7 @@ $(function(){
 		$(".tabs li").each(function(){
 			$(this).removeClass("active");
 		});
-		
+	
 		$("#tab-"+tab).addClass("active");
 		
 		list(tab);
@@ -217,7 +218,7 @@ function insertForm(){
 	var url = "<%=cp%>/travel/created";
 	var query = "";
 	var selector = "#tab-content";
-	
+
 	ajaxHTML(url, "get", query, selector);
 }
 
@@ -246,12 +247,9 @@ function sendOk(mode) {
 		var state = data.state;
 		if (state == "false")
 			alert("게시물을 추가(수정)하지 못했습니다. !!!");
-		alert('들어옴');
 		list(0);
 	}
-	
 	ajaxFileJSON(url, "post", query, fn);   
-
 }
 
 
@@ -270,7 +268,6 @@ function articleForm(num) {
 	
 	var url="<%=cp%>/travel/article";
 	var query="pmCode="+num + "&year=" +<%=year%> + "&month=" + <%=month%>;
-	
 	var selector = "#tab-content";
 	
 	ajaxHTML(url, "get", query, selector);
@@ -312,10 +309,7 @@ function createdTrain2(trainCode){
 			trClone=trClone.replace("createdTrain","deleteTrain");
 			trClone=trClone.replace('plus','trash-alt');
 			
-			console.log(trClone);
-			
 			$("#tbodyAdd").append(trClone).clone().html;
-		
 		
 		$("#f"+trainCode+"2").remove();
 	
@@ -351,13 +345,9 @@ function deleteTrain(trainCode){
 function calendar(year, month, num){
 	
 	var url="<%=cp%>/travel/article";
-	
 	var query="pmCode="+num + "&year=" + year + "&month=" + month;
-	
 	var selector = "#tab-content";
-	
-	console.log(query);
-	
+
 	ajaxHTML(url, "get", query, selector);
 }
 
@@ -365,14 +355,10 @@ function calendar(year, month, num){
 function reservation(){
 	var f = document.travelArticleForm;
 	var query = $(f).serialize();
-	
-	console.log(query);
-	
-	f.action="<%=cp%>/booking/reservation?"+query;
 
+	f.action="<%=cp%>/booking/reservation?"+query;
 	f.submit();
 }
-
 </script>
 
 <!-- Main -->
@@ -400,9 +386,7 @@ function reservation(){
 
 					<div id="tab-content"
 						style="clear: both; padding: 10px 0px 0px; width: 1200px;">
-						
-						
-						</div>
+					</div>
 				</section>
 			</div>
 

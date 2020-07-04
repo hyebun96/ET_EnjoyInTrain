@@ -53,7 +53,6 @@
 	/* Don't forget to set this to something that matches the design */
 	a
 	{
-		color: #ff0000;
 		text-decoration: none;
 	}
 
@@ -97,15 +96,10 @@
 		margin:0 auto;
 		hight:15px; 
 		padding-top:10px; 
-		padding-right:300px; 
+		padding-right:200px; 
 		padding-bottom: 10px;
-		background:#6f047f;
 		font-weight: bold;
-		color: white;
 		font-size: 13px;
-	}
-	.loginForm a{
-		color: white;
 	}
 
 	.adminloginForm{
@@ -292,6 +286,13 @@
 
 
 .style1 >li :hover {
+	color: black;
+	border-style: outset;
+	border-bottom: 2px solid #048249;
+	font-size: 14px;
+}
+
+.style1 >li :active {
 	color: black;
 	border-style: outset;
 	border-bottom: 2px solid #048249;
@@ -868,7 +869,6 @@
 
 .menu {
     margin:0px auto;
-    width: 1519px;
 	box-sizing: border-box;
 	text-align: center;
 	height: 150px;
@@ -892,7 +892,7 @@ ul.nav li a {
   line-height: 40px;
   color: #555;
   text-decoration: none;
-  margin: 1px 20px 1px 20px;
+  margin: 1px 35px;
   padding: 0 30px;
   
 }
@@ -928,8 +928,8 @@ ul.nav .navbar:hover > ul {
   font-size: 15px;
   
 }
-.navbar2{left: 33%;}
-.navbar3{left: 45%;}
+.navbar2{left: 30%;}
+.navbar3{left: 60%;}
 .navbar4{left: 60%;}
 
 
@@ -1079,13 +1079,10 @@ ul.adminnav li:hover > ul li a:hover {
 	#page
 	{
 		position: relative;
-		background: #fff;
 	}
 	
 	#page1{
 		position: relative;
-		background: #f7f6f7;
-		
 	}
 	
 	#adminpage{
@@ -1111,6 +1108,11 @@ ul.adminnav li:hover > ul li a:hover {
 	.sidebar header h2
 	{
 		font-size: 1.6em;
+	}
+	
+	.sidebar
+	{
+		width: 230px;
 	}
 
 /*********************************************************************************/
@@ -1229,8 +1231,7 @@ ul.adminnav li:hover > ul li a:hover {
 /* ET main                                                                     */
 /*********************************************************************************/
 .mainreservation{
-	background: #ddd7e4;
-	
+	background: #a299b3;
 }
 
 
@@ -1241,11 +1242,8 @@ ul.adminnav li:hover > ul li a:hover {
 	height: 30px;
 	border-radius: 5px;
 	margin-bottom: 0px;
-	
-}
-
-.selectmainreservation1 {
-	color: red;
+	font-weight: bold;
+	color: purple;
 }
 
 .mainreservationbutton{
@@ -1254,11 +1252,21 @@ ul.adminnav li:hover > ul li a:hover {
 	height: 30px;
 	margin-top: 20px;
 	border: none;
-	border-radius: 5px
+	border-radius: 5px;
+	background: white;
 }
 
 .mainreservationbuttontd{
 	text-align: center;
+	width: 440px;
+	height: 30px;
+	margin-left: 20px;
+	margin-bottom: 15px;
+	border-radius: 10px;
+	border: 1px solid purple;
+	background: purple;
+	color: white;
+	font-weight: bold;
 }
 
 .mainreservationicon{
@@ -1307,22 +1315,19 @@ ul.adminnav li:hover > ul li a:hover {
 	text-align: center;
 	width: 100%;
 	margin-bottom: 100px;
-	margin-top: 100px;
 }
 
 .mainhot{
-	width: 300px;
-	color: #c774d2;
+	width : 800px;
+	padding-top : 50px;
+	height : 150px;
 	font-weight: 600;
 	font-size: 30px;
 	text-align: center;
-	padding-top: 50px;
-	padding-bottom: 50px;
 }
 
 
 .mainhot a{
-	color: #07a8c4;
 	float: right;
 	font-weight: normal;
 	font-size: 14px;

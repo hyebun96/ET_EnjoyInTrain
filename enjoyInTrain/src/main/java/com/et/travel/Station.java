@@ -1,11 +1,11 @@
 package com.et.travel;
 
 public class Station {
-	private String sCode;
-	private String sName;
-	private String engName;
-	private String line;
-	private String lineOrder;
+	private String sCode;		// 역 코드
+	private String sName;		// 역 이름
+	private String engName;		// 역 영어이름
+	private String line;		// 호선
+	private String lineOrder;	// 호선순서
 	
 	public String getsCode() {
 		return sCode;

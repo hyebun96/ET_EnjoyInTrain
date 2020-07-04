@@ -5,34 +5,34 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Travel {
-	private int categoryNum;		// 카테고리 번호 @ 여행지종류
+	private int categoryNum;		// 카테고리 번호 (여행지종류)
 	
 	private String pmCode;			// 프로모션 코드 
 	
-	private int partnerCode;		// 협력업체 번호 @
+	private int partnerCode;		// 협력업체 번호 
 	private String partnerName;		
 	private String partnerTel;
 	
 	// 가는기차
-	private String startStation;	// 출발하는 역 @ 
-	private String endStation;		// 도착하는 역 @
+	private String startStation;	// 출발하는 역 
+	private String endStation;		// 도착하는 역 
 	
 	// 오는 기차
-	private String startStation2;	// 출발하는 역 @	
-	private String endStation2;		// 도착하는 역 @
+	private String startStation2;	// 출발하는 역 
+	private String endStation2;		// 도착하는 역 
 	
-	private String[] startCode;		// 출발하는 기차  @
+	private String[] startCode;		// 출발하는 기차  
 	private String stCode;
-	private String[] endCode;		// 돌아오는 기차 @
+	private String[] endCode;		// 돌아오는 기차 
 	private String edCode;
 	
-	private String pmStartDate;		// 프로모션 예약 가능 시작 날짜 @
-	private String pmEndDate;		// 프로모션 예약 가능 종료 날짜 @
+	private String pmStartDate;		// 프로모션 예약 가능 시작 날짜 
+	private String pmEndDate;		// 프로모션 예약 가능 종료 날짜 
 	
-	private String pmTitle;			// 프로모션 제목 @
+	private String pmTitle;			// 프로모션 제목 
 	private int pmPrice;			// 프로모션 가격
-	private int pmMaxCount;			// 프로모션 최대 인원 @
-	private int pmPercent;			// 협력업체 상환 비율 @
+	private int pmMaxCount;			// 프로모션 최대 인원
+	private int pmPercent;			// 협력업체 상환 비율 
 	
 	private String product;			// 프로모션 상품
 	private String productContent;	// 프로모션 상품 설명

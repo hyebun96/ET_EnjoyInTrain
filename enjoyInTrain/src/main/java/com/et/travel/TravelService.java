@@ -8,16 +8,12 @@ public interface TravelService {
 	public List<Partner> listPartner();
 	public List<Station> listStation();
 	
-	public int dataCount(Map<String, Object> map);
 	public List<StationLine> listStationLine(Map<String, Object> map);
 	public List<StationLine> listStationLine2(Map<String, Object> map);
 	public List<Travel> listTravel(Map<String, Object> map);
 	
-	public void insertPromotion(Travel dto) throws Exception;
 	public void insertPromotionDetail(Travel dto,String path) throws Exception;
-	
-	public void updatePromotion(Travel dto) throws Exception;
-	public void updatePromotionDetail(Travel dto,String path) throws Exception;
+		public void updatePromotionDetail(Travel dto,String path) throws Exception;
 
 	public Travel readTravel(String pmCode);
 	public StationLine readPromotion(String trainCode);
@@ -26,7 +22,7 @@ public interface TravelService {
 	
 	public List<Photo> listPhoto(String pmCode);
 	public List<Photo> listPhoto2(String pmCode);
-	
+
 	public List<Travel> travelRankList();
 	
 	public void deleteFile(Map<String, Object> map) throws Exception;

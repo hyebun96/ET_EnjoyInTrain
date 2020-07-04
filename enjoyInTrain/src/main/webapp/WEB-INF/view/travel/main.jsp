@@ -134,171 +134,135 @@ function list(group){
 
 </script>
 
-
-
 <!-- Banner2 -->
-		<div id="banner2">
-			<div class="container">
-			</div>
+<div id="banner2">
+	<div class="container">
+	</div>
+</div>
+<!-- /Banner2 -->
+
+<!-- Main -->
+<div id="page">
+
+	<!-- 여행 상품 순위 -->
+	<div class="container" >
+		<div class="6u" style="">
+			<section>
+				<header>
+					<h2 style="font-weight: bold;">BEST 여행 상품</h2>
+					<br>
+				</header>
+			</section>
 		</div>
-	<!-- /Banner -->
-
-	<!-- Main -->
-		<div id="page">
-
-			<!-- 여행 상품 순위 -->
-			<div class="container" >
+				
+		<div class="row">
+			<div class="3u">
+				<section>
+					<header>
+						<h3><img src="<%=cp%>/resource/images/one.png" style="width: 50px;"></h3>
+					</header>
+					<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto1.pmTitle}</p>
+					<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto1.pmPrice}" pattern="#,###" /></p>
+	
+					<p>
+						<a href="<%=cp%>/travel/travel?pmCode=${dto1.pmCode}">
+							<img src="<%=cp%>/uploads/travel/${dto1.saveFileName}" style="width: 282px; height: 200px;">
+						</a>
+					</p>
+				</section>
+			</div>
 			
-				<div class="6u" style="">
-						<section>
-							<header>
-								<h2 style="font-weight: bold;">BEST 여행 상품</h2>
-								<br>
-							</header>
-						</section>
-				</div>
-				
-				<div class="row">
-					
-
-					<div class="3u">
-						<section>
-							<header>
-								<h3><img src="<%=cp%>/resource/images/one.png" style="width: 50px;"></h3>
-							</header>
-							<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto1.pmTitle}</p>
-							<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto1.pmPrice}" pattern="#,###" /></p>
-							
-
-							<p>
-								<a href="#"><img src="<%=cp%>/uploads/travel/${dto1.saveFileName}" style="width: 282px; height: 200px;">
-							</a></p>
-						</section>
-					</div>
-					<div class="3u">
-						<section>
-							<header>
-								<h2><img src="<%=cp%>/resource/images/two.png" style="width: 50px;"></h2>
-							</header>
-							<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto2.pmTitle}</p>
-							<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto2.pmPrice}" pattern="#,###" /></p>
-							<p>
-								<a href="#"><img src="<%=cp%>/uploads/travel/${dto2.saveFileName}" style="width: 282px; height: 200px;">
-							</a></p>
-						</section>
-					</div>
-					<div class="3u">
-						<section>
-							<header>
-								<h2><img src="<%=cp%>/resource/images/three.png" style="width: 50px;"></h2>
-							</header>
-							<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto3.pmTitle}</p>
-							<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto3.pmPrice}" pattern="#,###" /></p>
-							<p><a href="#">
-								<img src="<%=cp%>/uploads/travel/${dto3.saveFileName}" style="width: 282px; height: 200px;">
-							</a></p>
-						</section>
-					</div>
-					<div class="3u">
-						<section>
-							<header>
-								<h2><img src="<%=cp%>/resource/images/recommend.png" style="width: 50px;"></h2>
-							</header>
-							<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto4.pmTitle}</p>
-							<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto4.pmPrice}" pattern="#,###" /></p>
-							<p><a href="#">
-								<img src="<%=cp%>/uploads/travel/${dto4.saveFileName}" style="width: 282px; height: 200px;">
-							</a></p>
-						</section>
-					</div>
-				
-				</div>
-				
-				
+			<div class="3u">
+				<section>
+					<header>
+						<h2><img src="<%=cp%>/resource/images/two.png" style="width: 50px;"></h2>
+					</header>
+					<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto2.pmTitle}</p>
+					<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto2.pmPrice}" pattern="#,###" /></p>
+					<p>
+						<a href="<%=cp%>/travel/travel?pmCode=${dto2.pmCode}">
+							<img src="<%=cp%>/uploads/travel/${dto2.saveFileName}" style="width: 282px; height: 200px;">
+						</a>
+					</p>
+				</section>
 			</div>
-			<!-- 여행상품 순위 -->
-				
-			<!-- tab키를 이용한 여행 리스트 -->
-			<div id="main" class="container">
-				<div class="row">
-					<div class="6u">
-						<section>
-							<header>
-								<h3 style="font-weight: bold; font-size: 25px;">여행 상품 리스트</h3>
-							</header>
-							
-							<div id ="tab-content" style="clear: both; padding: 10px 0px 0px; width: 800px;">
-							
-							</div>
-							
-						</section>
-					</div>
-					
-					
-					<!-- 세일 -->
-					<div class="3u">
-						<section class="sidebar">
-							<header>
-								<h2 style="font-weight: bold;">특별 할인 상품</h2>
-							</header>
-							<ul class="style2">
-								<li>
-									<a href="#"><img src="<%=cp%>/resource/images/pics07.jpg" alt=""></a>
-									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
-								</li>
-								<li>
-									<a href="#"><img src="<%=cp%>/resource/images/pics08.jpg" alt=""></a>
-									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
-								</li>
-								<li>
-									<a href="#"><img src="<%=cp%>/resource/images/pics09.jpg" alt=""></a>
-									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
-								</li>
-								<li>
-									<a href="#"><img src="<%=cp%>/resource/images/pics10.jpg" alt=""></a>
-									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
-								</li>
-							</ul>						
-						</section>
-					</div>
-				</div>
+			
+			<div class="3u">
+				<section>
+					<header>
+						<h2><img src="<%=cp%>/resource/images/three.png" style="width: 50px;"></h2>
+					</header>
+					<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto3.pmTitle}</p>
+					<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto3.pmPrice}" pattern="#,###" /></p>
+					<p>
+						<a href="<%=cp%>/travel/travel?pmCode=${dto3.pmCode}">
+							<img src="<%=cp%>/uploads/travel/${dto3.saveFileName}" style="width: 282px; height: 200px;">
+						</a>
+					</p>
+				</section>
 			</div>
-			<!-- Main -->
-
+					
+			<div class="3u">
+				<section>
+					<header>
+						<h2><img src="<%=cp%>/resource/images/recommend.png" style="width: 50px;"></h2>
+					</header>
+					<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto4.pmTitle}</p>
+					<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto4.pmPrice}" pattern="#,###" /></p>
+					<p>
+						<a href="<%=cp%>/travel/travel?pmCode=${dto4.pmCode}">
+							<img src="<%=cp%>/uploads/travel/${dto4.saveFileName}" style="width: 282px; height: 200px;">
+						</a>
+					</p>
+				</section>
+			</div>
+				
 		</div>
-	<!-- /Main -->
-
-	<!-- Featured -->
-		<div id="featured">
-			<div class="container">
-				<div class="row">
-					<section class="4u">
-						<div class="box">
-							<a href="#" class="image left"><img src="<%=cp%>/resource/images/pics04.jpg" alt=""></a>
-							<h3>Etiam posuere augue</h3>
-							<p>Donec nonummy magna quis risus eleifend. </p>
-							<a href="#" class="button">More</a>
-						</div>
-					</section>
-					<section class="4u">
-						<div class="box">
-							<a href="#" class="image left"><img src="<%=cp%>/resource/images/pics05.jpg" alt=""></a>
-							<h3>Etiam posuere augue</h3>
-							<p>Donec nonummy magna quis risus eleifend. </p>
-							<a href="#" class="button">More</a>
-						</div>
-					</section>
-					<section class="4u">
-						<div class="box">
-							<a href="#" class="image left"><img src="<%=cp%>/resource/images/pics06.jpg" alt=""></a>
-							<h3>Etiam posuere augue</h3>
-							<p>Donec nonummy magna quis risus eleifend. </p>
-							<a href="#" class="button">More</a>
-						</div>
-					</section>
-				</div>
-				<div class="divider"></div>
+	</div>
+			
+	<!-- tab키를 이용한 여행 리스트 -->
+	<div id="main" class="container">
+		<div class="row">
+			<div class="6u">
+				<section>
+					<header>
+						<h3 style="font-weight: bold; font-size: 25px;">여행 상품 리스트</h3>
+					</header>
+					
+					<div id ="tab-content" style="clear: both; padding: 10px 0px 0px; width: 800px;"></div>
+						
+				</section>
+			</div>
+					
+					
+			<!-- 세일 -->
+			<div class="3u">
+				<section class="sidebar">
+					<header>
+						<h2 style="font-weight: bold;">특별 할인 상품</h2>
+					</header>
+					<ul class="style2">
+						<li>
+							<a href="#"><img src="<%=cp%>/resource/images/pics07.jpg" alt=""></a>
+							<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
+						</li>
+						<li>
+							<a href="#"><img src="<%=cp%>/resource/images/pics08.jpg" alt=""></a>
+							<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
+						</li>
+						<li>
+							<a href="#"><img src="<%=cp%>/resource/images/pics09.jpg" alt=""></a>
+							<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
+						</li>
+						<li>
+							<a href="#"><img src="<%=cp%>/resource/images/pics10.jpg" alt=""></a>
+							<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
+						</li>
+					</ul>						
+				</section>
 			</div>
 		</div>
-	<!-- /Featured -->
+	</div>
+</div>
+<!-- /Main -->
 

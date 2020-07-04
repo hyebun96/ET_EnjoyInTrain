@@ -109,9 +109,7 @@ $(function(){
 			$("#train").append(s);
 		};
 		
-		
 		ajaxJSON(url, "get", query, fn);
-	
 		
 	});
 });
@@ -146,11 +144,9 @@ $(function(){
 		};
 		
 		ajaxJSON(url, "get", query, fn);
-	
-		
+
 	});
 });
-
 
 
 // 파일처리
@@ -193,7 +189,6 @@ $(function() {
 	});
 });
 
-
 </script>
 
 <form name="travelForm" method="post" enctype="multipart/form-data">
@@ -206,22 +201,20 @@ $(function() {
 			<td style="padding-left: 10px;">
 				<span>${dto.pmCode}</span>
 				<input type="hidden" name="pmCode" value="${pmCode}">
-
 			</td>
 		</tr>
 		
 		<tr align="left" style="border-bottom: 1px solid #cccccc;">
 			<td class="title" width="100"
-				style="text-align: center; padding-top: 5px;" colspan="2">메인 사진
-				업로드</td>
+				style="text-align: center; padding-top: 5px;" colspan="2">메인 사진 업로드</td>
 			<td valign="top" style="padding: 5px 0px 5px 10px;">
 				<c:if test="${mode=='created'}">
 					<input type="file" name="upload" class="boxTF" size="53" style="width: 95%; height: 25px;" >
 				</c:if>
 				<c:if test="${mode=='update'}">
-					<input type="file" name="upload" class="boxTF" value="${photoList[0].fileNum}" size="53" style="width: 95%; height: 25px; display: none;" >
+					<input type="file" name="upload" class="boxTF" value="${photoList[0].fileNum}" size="53" 
+						style="width: 95%; height: 25px; display: none;" >
 				</c:if>
-				
 			</td>
 			<td valign="top" style="padding: 5px 0px 5px 10px; display: none;" colspan="2">
 				메인사진은 한장만 업로드 가능합니다.
@@ -229,21 +222,23 @@ $(function() {
 		</tr>
 		
 		<c:if test="${mode=='update' && photoList!=null}">
-		<c:forEach var="pdto" items="${photoList}">
-			<tr id="f${pdto.fileNum}" align="left" style="border-bottom: 1px solid #cccccc;">
-				<td class="title" width="100"
-					style="text-align: center; padding-top: 5px;" colspan="2"></td>
-				<td valign="top" style="padding: 5px 0px 5px 10px;" colspan="4">
-					<a href="javascript:deleteFile('${pdto.fileNum}');"><i class="fas fa-trash-alt"></i></a>&nbsp;&nbsp;${pdto.originalFileName}
-				</td>	
-			</tr>
-		</c:forEach>
+			<c:forEach var="pdto" items="${photoList}">
+				<tr id="f${pdto.fileNum}" align="left" style="border-bottom: 1px solid #cccccc;">
+					<td class="title" width="100"
+						style="text-align: center; padding-top: 5px;" colspan="2"></td>
+					<td valign="top" style="padding: 5px 0px 5px 10px;" colspan="4">
+						<a href="javascript:deleteFile('${pdto.fileNum}');"><i class="fas fa-trash-alt"></i></a>
+							&nbsp;&nbsp;${pdto.originalFileName}
+					</td>	
+				</tr>
+			</c:forEach>
 		</c:if>	
 
 		<tr align="left" height="40" style="border-bottom: 1px solid #cccccc; border-top: 3px solid #cccccc;">
 			<td class="title" style="text-align: center;" colspan="2">여행 테마</td>
 			<td style="padding-left: 10px;" colspan="3">
-				<input type="text" name="pmTitle" id="pmTitle" maxlength="100" class="boxTF" style="width: 95%;" value="${dto.pmTitle}">
+				<input type="text" name="pmTitle" id="pmTitle" maxlength="100" class="boxTF" 
+					style="width: 95%;" value="${dto.pmTitle}">
 			</td>
 		</tr>
 
@@ -329,7 +324,6 @@ $(function() {
 			<td>선택된 기차</td>
 			<td colspan="3">
 				<table id="train" style="margin-top: 10px;">
-					
 					<tr align="left" height="40"
 						style="border: 1px solid #cccccc;">
 						<td>선택</td>
@@ -340,8 +334,6 @@ $(function() {
 					</tr>
 					
 					<tbody id="tbodyAdd">
-					
-					
 					</tbody>
 					
 					<c:forEach var="vo" items="${startList}">
@@ -353,57 +345,55 @@ $(function() {
 							<td>${vo.endTime}</td>
 						</tr>
 					</c:forEach>
-					
+
 				</table>
 			</td>
 		</tr>
-		
-
+	
 		<tr align="left"
 			style="border-bottom: 1px solid #cccccc; border-top: 3px solid #cccccc; border-bottom: 3px solid #cccccc;">
-			<td class="title" width="100"
-				style="text-align: center; padding-top: 5px; border-right: 1px solid #cccccc;"
-				rowspan="2">상품</td>
+			<td class="title" width="100" style="text-align: center; padding-top: 5px; border-right: 1px solid #cccccc;" rowspan="2">상품</td>
 			<td class="title" style="text-align: center;">상품명</td>
-			<td valign="top" style="padding: 5px 0px 5px 10px;"><input
-				type="text" name="product" value="${dto.product}"></td>
+			<td valign="top" style="padding: 5px 0px 5px 10px;">
+				<input type="text" name="product" value="${dto.product}">
+			</td>
 			<td class="title" style="text-align: center;">가격</td>
-			<td valign="top" style="padding: 5px 0px 5px 10px;"><input
-				type="text" name="pmPrice" value="${dto.pmPrice}"></td>
+			<td valign="top" style="padding: 5px 0px 5px 10px;"><input type="text" name="pmPrice" value="${dto.pmPrice}"></td>
 		</tr>
 
-		<tr align="left"
-			style="border-bottom:1px solid #cccccc; border-top: 3px solid #cccccc; border-bottom: 3px solid #cccccc; height: 57px;">
+		<tr align="left" style="border-bottom: 1px solid #cccccc; border-top: 3px solid #cccccc; border-bottom: 3px solid #cccccc; height: 57px;">
 			<td class="title" style="text-align: center;">내용</td>
 			<td valign="top" style="padding: 5px 0px 5px 10px;" colspan="3">
-				<textarea type="" name=productContent style="width: 95%">${dto.productContent}</textarea>
+				<textarea name=productContent style="width: 95%">${dto.productContent}</textarea>
 			</td>
 		</tr>
-
 
 		<!-- 오는 기차 : 출발역, 도착역, 시간  -->
 		<tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
 			<td class="title"
-				style="text-align: center; width: 50px; border-right: 1px solid #cccccc;"
-				rowspan="3">오는열차</td>
+				style="text-align: center; width: 50px; border-right: 1px solid #cccccc;" rowspan="3">오는열차</td>
 			<td class="title" style="text-align: center;">출발역</td>
-			<td style="padding-left: 10px;"><select class="selectField"
-				name="startStation2" id="startStation2" style="width: 150px;">
+			<td style="padding-left: 10px;">
+				<select class="selectField" name="startStation2" id="startStation2" style="width: 150px;">
 					<option value="">:: 출발역 선택 ::</option>
 					<c:forEach var="vo" items="${stationList}">
 						<option value="${vo.engName}"
-						${endList[0].startStation==vo.engName?"selected='selected'":""}>${vo.sName}</option>
+							${endList[0].startStation==vo.engName?"selected='selected'":""}>${vo.sName}
+						</option>
 					</c:forEach>
-			</select></td>
+				</select>
+			</td>
 			<td class="title" style="text-align: center;">도착역</td>
-			<td style="padding-left: 10px;"><select class="selectField"
-				name="endStation2" id="endStation2" style="width: 150px;">
+			<td style="padding-left: 10px;">
+				<select class="selectField" name="endStation2" id="endStation2" style="width: 150px;">
 					<option value="">:: 도착역 선택 ::</option>
 					<c:forEach var="vo" items="${stationList}">
 						<option value="${vo.engName}"
-						${endList[0].endStation==vo.engName?"selected='selected'":""}>${vo.sName}</option>
+							${endList[0].endStation==vo.engName?"selected='selected'":""}>${vo.sName}
+						</option>
 					</c:forEach>
-			</select></td>
+				</select>
+			</td>
 		</tr>
 
 		<!-- 기차 선택 -->
@@ -415,7 +405,6 @@ $(function() {
 			</td>
 		</tr>
 
-		
 		<tr>
 			<td></td>
 			<td colspan="3">
@@ -458,12 +447,13 @@ $(function() {
 				<td class="title" width="100"
 					style="text-align: center; padding-top: 5px;" colspan="2"></td>
 				<td valign="top" style="padding: 5px 0px 5px 10px;" colspan="4">
-					<a href="javascript:deleteContentFile('${pdto.fileContentNum}');"><i class="fas fa-trash-alt"></i></a>&nbsp;&nbsp;${pdto.originalFileName}
+					<a href="javascript:deleteContentFile('${pdto.fileContentNum}');">
+						<i class="fas fa-trash-alt"></i>
+					</a>&nbsp;&nbsp;${pdto.originalFileName}
 				</td>	
 			</tr>
 		</c:forEach>
 		</c:if>	
-
 	</table>
 
 	<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">

@@ -1,13 +1,13 @@
 package com.et.travel;
 
 public class Promotion {
-	private String pmCode;
-	private String trainCode;
-	private String trainName;
-	private String startStation;
-	private String endStation;
-	private String startTime;
-	private String endTime;
+	private String pmCode;		// 프로모션코드
+	private String trainCode;	// 기차 코드
+	private String trainName;	// 기차 이름
+	private String startStation;	// 출발역
+	private String endStation;		// 도착역
+	private String startTime;		// 출발역시간
+	private String endTime;			// 도착역시간
 	
 	public String getPmCode() {
 		return pmCode;

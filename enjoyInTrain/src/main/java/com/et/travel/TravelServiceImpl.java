@@ -41,18 +41,6 @@ public class TravelServiceImpl implements TravelService{
 		return listPartner;
 	}
 	
-
-	@Override
-	public int dataCount(Map<String, Object> map) {
-		int result = 0;
-		try {
-			result = dao.selectOne("travel.dataCount", map);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-	
 	@Override
 	public List<Station> listStation() {
 		List<Station> listStation = null;
@@ -95,25 +83,6 @@ public class TravelServiceImpl implements TravelService{
 			e.printStackTrace();
 		}
 		return list;
-	}
-
-	@Override
-	public void insertPromotion(Travel dto) throws Exception {
-		try {
-			for(int i=0; i<dto.getStartCode().length; i++) {
-				dto.setStCode(dto.getStartCode()[i]);
-				dao.insertData("travel.insertPromotionStart", dto);				
-			}
-			
-			for(int i=0; i<dto.getEndCode().length;  i++) {
-				dto.setEdCode(dto.getEndCode()[i]);
-				dao.insertData("travel.insertPromotionEnd", dto);				
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-		}
 	}
 
 	@Override
@@ -279,26 +248,7 @@ public class TravelServiceImpl implements TravelService{
 		}
 		return dto;
 	}
-
-	@Override
-	public void updatePromotion(Travel dto) throws Exception {
-		try {
-			for(int i=0; i<dto.getStartCode().length; i++) {
-				dto.setStCode(dto.getStartCode()[i]);
-				dao.updateData("travel.insertPromotionStart", dto);
-			}
-			
-			for(int i=0; i<dto.getEndCode().length;  i++) {
-				dto.setEdCode(dto.getEndCode()[i]);
-				dao.updateData("travel.insertPromotionEnd", dto);
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-		}
-	}
-
+	
 	@Override
 	public void updatePromotionDetail(Travel dto, String path) throws Exception {
 		try {

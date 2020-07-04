@@ -197,8 +197,7 @@ $(function(){
 		
 		<tr align="left" height="40"
 			style="border-bottom: 1px solid #cccccc; border-top: 3px solid #cccccc;">
-			<td class="title"  style="text-align: center;"
-				colspan="2">여행 테마</td>
+			<td class="title"  style="text-align: center;" colspan="2">여행 테마</td>
 			<td style="padding-left: 10px;" colspan="3" width="100%">${dto.pmTitle}</td>
 		</tr>
 
@@ -214,7 +213,8 @@ $(function(){
 			</td>
 			<td class="title" style="text-align: center;">상품번호</td>
 			<td style="padding-left: 10px; width: 200px;">${dto.pmCode}
-				<input type="hidden" name="pmCode" value="${dto.pmCode}"></td>
+				<input type="hidden" name="pmCode" value="${dto.pmCode}">
+			</td>
 			<td class="title" style="text-align: center; padding-top: 5px;" rowspan="7">
 				<table style='width: 200px; margin-left: 10px;' class='calendar'>
 					<tr style='border-bottom: 2px solid #cccccc;'>
@@ -222,11 +222,14 @@ $(function(){
 							<button type="button" onclick="calendar( ${preYear}, ${preMonth} , '${dto.getPmCode()}');"><i class='fas fa-arrow-circle-left'></i></button>
 								${year}년  ${month} 월
 							<button type="button" onclick="calendar( ${lastYear}, ${lastMonth} , '${dto.getPmCode()}');"><i class='fas fa-arrow-circle-left'></i></button>
-						</td></tr>
-						<tr><td>일</td><td>월</td><td>화</td><td>수</td><td>목</td><td>금</td><td>토</td></tr>
+						</td>
+					</tr>
+					<tr><td>일</td><td>월</td><td>화</td><td>수</td><td>목</td><td>금</td><td>토</td></tr>
+					<tbody>
 						<tr>
-							${result}
+							<td>${result}</td>
 						</tr>
+					</tbody>
 				</table>
 			</td>
 		</tr>
@@ -264,14 +267,14 @@ $(function(){
 				</select>
 			</td>
 		</tr>
-		
+
 		<tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
 			<td class="title"   style="text-align: center;">예약 최소 인원</td>
 			<td style="padding-left: 10px; width: 343px;">
 				1명
 			</td>
 		</tr>
-		
+
 		 <tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
 	      <td class="title"   style="text-align: center;">출발일자</td>
 	         <td style="padding-left: 10px; width: 343px;">
@@ -279,7 +282,6 @@ $(function(){
 	            <input type="hidden" name="pmStartDate" id="pmStartDate">
 	         </td>
 	      </tr>
-
 	</table>	
 		
 	<table style=" margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
@@ -311,11 +313,12 @@ $(function(){
 			</tr>
 		</c:forEach>
 		
-			<tr class="reservationForm" align="left" style="border-bottom: 1px solid #cccccc; border-bottom: 1px solid #cccccc;  display: none;">
-				<td class="title">${dto.product}</td>
-				<td class="title"><input type="radio" checked="checked"></td>
-				<td class="title" colspan="6" style="text-align: left; padding-left: 70px;">${dto.productContent}</td>
-			</tr>
+		<tr class="reservationForm" align="left" 
+			style="border-bottom: 1px solid #cccccc; border-bottom: 1px solid #cccccc;  display: none;">
+			<td class="title">${dto.product}</td>
+			<td class="title"><input type="radio" checked="checked"></td>
+			<td class="title" colspan="6" style="text-align: left; padding-left: 70px;">${dto.productContent}</td>
+		</tr>
 		
 		<c:forEach var="vo" items="${endList}">
 			<tr class="reservationForm" align="left" style="border-bottom: 1px solid #cccccc; display: none;">
@@ -333,7 +336,7 @@ $(function(){
 		</c:forEach>
 		
 		<tr class="reservationForm" align="left" height="40" style=" display: none;">
-			<td  class="title"><button type="button"  id="btn" class="btn" onclick="javascript:location.href='<%=cp%>/travel/travel';">리스트</button></td>
+			<td  class="title"><button type="button" id="btn" class="btn" onclick="javascript:location.href='<%=cp%>/travel/travel';">리스트</button></td>
 			<td class="title"><button type="button" id="btn" class="btn" onclick="reservation();">예약하기</button></td>
 			<td class="title"><button type="button" id="btn" class="btn" onclick="updateForm('${dto.pmCode}');">수정하기</button></td>
 		</tr>

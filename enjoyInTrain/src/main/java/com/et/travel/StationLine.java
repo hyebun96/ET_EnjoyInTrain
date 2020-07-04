@@ -1,12 +1,12 @@
 package com.et.travel;
 
 public class StationLine {
-	private int trainCode;
-	private String trainName;
-	private String startName;
-	private String endName;
-	private String startTime;
-	private String endTime;
+	private int trainCode;		// 기차번호
+	private String trainName;	// 기차이름
+	private String startName;	// 시발역
+	private String endName;		// 종착역
+	private String startTime;	// 시간
+	private String endTime;		// 시간
 	
 	public int getTrainCode() {
 		return trainCode;

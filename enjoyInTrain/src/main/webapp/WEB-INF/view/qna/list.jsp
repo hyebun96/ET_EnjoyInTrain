@@ -35,7 +35,7 @@ ul.tabs {
 	list-style: none;
 	height: 35px;
 	border-bottom: 1px solid #dddddd;
-	width: 100%;
+	width: 800px;
 }
 ul.tabs li {
 	float: left;

@@ -21,26 +21,6 @@
 		ORDER BY sCode DESC
 	</select>
 	
-	<select id="dataCount" parameterType="map" resultType="Integer">
-		SELECT NVL(COUNT(*), 0) 
-		FROM promotionDetail
-		<if test="group!=0"> 
-			WHERE CategoryNum = #{group}
-		</if>
-	</select>
-
-	<select id="listTravel" parameterType="map" resultType="com.et.travel.Travel">
-		SELECT pd.pmCode, TO_CHAR(pmStartDate,'YYYY/MM/DD') pmStartDate, TO_CHAR(pmEndDate,'YYYY/MM/DD') pmEndDate, pmTitle, pmPrice, pmMaxCount, pmPercent, pd.categoryNum,
-			saveFileName
-		FROM promotiondetail pd
-		JOIN promotionCategory pc ON pd.categoryNum = pc.categoryNum
-		JOIN promotionFile pf ON pd.pmCode = pf.pmCode
-		<if test="group!=0">
-			WHERE pc.categoryNum = #{group}
-		</if>
-		ORDER BY pmCode DESC
-	</select>
-	
 	<select id="listStationLine" parameterType="map" resultType="com.et.travel.StationLine">
 		SELECT trainCode, trainName, ${startStation} startTime, ${endStation} endTime 
 		FROM STATIONLINE6
@@ -54,25 +34,23 @@
 		WHERE ${startStation} IS NOT NULL AND ${endStation} IS NOT NULL
 			AND MOD(trainCode,2) = 0
 	</select>
+
+	<select id="listTravel" parameterType="map" resultType="com.et.travel.Travel">
+		SELECT pd.pmCode, TO_CHAR(pmStartDate,'YYYY/MM/DD') pmStartDate, 
+			TO_CHAR(pmEndDate,'YYYY/MM/DD') pmEndDate, 
+			pmTitle, pmPrice, pmMaxCount, pmPercent, pd.categoryNum, saveFileName
+		FROM promotiondetail pd
+		JOIN promotionCategory pc ON pd.categoryNum = pc.categoryNum
+		JOIN promotionFile pf ON pd.pmCode = pf.pmCode
+		<if test="group!=0">
+			WHERE pc.categoryNum = #{group}
+		</if>
+		ORDER BY pmCode DESC
+	</select>
 	
-	<insert id="insertPromotionStart" parameterType="com.et.travel.Travel">
-		INSERT INTO promotion(pmSeq, pmCode, trainCode, startStation, endStation) 
-		VALUES(promotion_seq.NEXTVAL, #{pmCode}, #{stCode}, #{startStation}, #{endStation})
-	</insert>
-	
-	<insert id="insertPromotionEnd" parameterType="com.et.travel.Travel">
-		INSERT INTO promotion(pmSeq, pmCode, trainCode, startStation, endStation) 
-		VALUES(promotion_seq.NEXTVAL, #{pmCode}, #{edCode}, #{startStation2}, #{endStation2})
-	</insert>
-	
-	<insert id="insertPromotionDetail" parameterType="com.et.travel.Travel">
-		INSERT INTO promotionDetail(pmCode, pmStartDate, pmEndDate, pmTitle, pmPrice, pmMaxCount, pmPercent, categoryNum, partnerCode, product, productContent, stock)
-		VALUES(#{pmCode}, #{pmStartDate}, #{pmEndDate}, #{pmTitle}, #{pmPrice}, #{pmMaxCount}, #{pmPercent}, #{categoryNum}, #{partnerCode}, #{product}, #{productContent}, 0)
-	</insert>
-	
-	<!-- article -->
 	<select id="readTravel" parameterType="String" resultType="com.et.travel.Travel">
-		SELECT pd.pmCode, TO_CHAR(pmStartDate,'YYYY/MM/DD') pmStartDate, TO_CHAR(pmEndDate,'YYYY/MM/DD') pmEndDate, pmTitle, pmPrice, pmMaxCount, 
+		SELECT pd.pmCode, TO_CHAR(pmStartDate,'YYYY/MM/DD') pmStartDate, 
+			TO_CHAR(pmEndDate,'YYYY/MM/DD') pmEndDate, pmTitle, pmPrice, pmMaxCount, 
 			pmPercent, categoryNum, pd.partnerCode, partnerName, partnerTel, product, 
 			productContent
 		FROM promotionDetail pd
@@ -116,22 +94,12 @@
 		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 1
 	</select>
 	
-	<insert id="insertPhoto" parameterType="com.et.travel.Photo">
-		INSERT INTO promotionFile(fileNum, pmCode, saveFileName, originalFileName, fileSize)
-		VALUES(promotionFile_seq.NEXTVAL, #{pmCode}, #{saveFileName}, #{originalFileName}, #{fileSize})
-	</insert>
-	
 	<select id="listPhoto" parameterType="String" resultType="com.et.travel.Photo">
 		SELECT fileNum, pmCode, saveFileName, originalFileName, fileSize
 		FROM promotionFile
 		WHERE pmCode = #{pmCode}
 	</select>
-	
-	<insert id="insertContentPhoto" parameterType="com.et.travel.Photo">
-		INSERT INTO promotionContentFile(fileContentNum, pmCode, saveFileName, originalFileName, fileSize)
-		VALUES(promotionContentFile_seq.NEXTVAL, #{pmCode}, #{saveFileName}, #{originalFileName}, #{fileSize})
-	</insert>
-	
+
 	<select id="listPhoto2" parameterType="String" resultType="com.et.travel.Photo">
 		SELECT fileContentNum, pmCode, saveFileName, originalFileName, fileSize
 		FROM promotionContentFile
@@ -149,14 +117,6 @@
 		)WHERE rnum &gt;= 1 
 	</select>
 	
-	<delete id="deleteFile" parameterType="map">
-		DELETE FROM promotionFile WHERE fileNum = ${fileNum}
-	</delete>
-	
-	<delete id="deleteContentFile" parameterType="map">
-		DELETE FROM promotionContentFile WHERE fileContentNum = ${fileNum}
-	</delete>
-	
 	<select id="readFile" parameterType="Integer" resultType="com.et.travel.Photo">
 		SELECT fileNum, pmCode, saveFileName, originalFileName, fileSize
 		FROM promotionfile WHERE fileNum = ${fileNum}
@@ -167,6 +127,41 @@
 		FROM readContentFile WHERE fileContentNum = ${fileNum}
 	</select>
 	
+	
+	
+	
+	<insert id="insertPromotionDetail" parameterType="com.et.travel.Travel">
+		INSERT INTO promotionDetail(pmCode, pmStartDate, pmEndDate, pmTitle, pmPrice, pmMaxCount, pmPercent, 
+			categoryNum, partnerCode, product, productContent, stock)
+		VALUES(#{pmCode}, #{pmStartDate}, #{pmEndDate}, #{pmTitle}, #{pmPrice}, #{pmMaxCount}, #{pmPercent}, 
+			#{categoryNum}, #{partnerCode}, #{product}, #{productContent}, 0)
+	</insert>
+	
+	<insert id="insertPhoto" parameterType="com.et.travel.Photo">
+		INSERT INTO promotionFile(fileNum, pmCode, saveFileName, originalFileName, fileSize)
+		VALUES(promotionFile_seq.NEXTVAL, #{pmCode}, #{saveFileName}, #{originalFileName}, #{fileSize})
+	</insert>
+	
+	<insert id="insertPromotionStart" parameterType="com.et.travel.Travel">
+		INSERT INTO promotion(pmSeq, pmCode, trainCode, startStation, endStation) 
+		VALUES(promotion_seq.NEXTVAL, #{pmCode}, #{stCode}, #{startStation}, #{endStation})
+	</insert>
+	
+	<insert id="insertPromotionEnd" parameterType="com.et.travel.Travel">
+		INSERT INTO promotion(pmSeq, pmCode, trainCode, startStation, endStation) 
+		VALUES(promotion_seq.NEXTVAL, #{pmCode}, #{edCode}, #{startStation2}, #{endStation2})
+	</insert>
+	
+	<insert id="insertContentPhoto" parameterType="com.et.travel.Photo">
+		INSERT INTO promotionContentFile(fileContentNum, pmCode, saveFileName, originalFileName, fileSize)
+		VALUES(promotionContentFile_seq.NEXTVAL, #{pmCode}, #{saveFileName}, #{originalFileName}, #{fileSize})
+	</insert>
+	
+	<insert id="insertPromotionAdd" parameterType="com.et.travel.Promotion">
+		INSERT INTO promotion(pmSeq, pmCode, trainCode, startStation, endStation)  
+		VALUES(promotion_seq.NEXTVAL, #{pmCode}, #{trainCode}, #{startStation}, #{endStation})
+	</insert>
+	
 	<update id="updatePromotionDetail" parameterType="com.et.travel.Travel">
 		UPDATE promotionDetail SET 
 			pmStartDate = #{pmStartDate}, pmEndDate = #{pmEndDate}, pmTitle = #{pmTitle},
@@ -175,13 +170,24 @@
 		WHERE pmCode = #{pmCode}
 	</update>
 	
-	<delete id="deleteTrain" parameterType="Integer">
-		DELETE FROM promotion WHERE trainCode = ${trainCode}
+	
+	
+	<delete id="deleteFile" parameterType="map">
+		DELETE FROM promotionFile WHERE fileNum = #{fileNum}
 	</delete>
 	
-	<insert id="insertPromotionAdd" parameterType="com.et.travel.Promotion">
-		INSERT INTO promotion(pmSeq, pmCode, trainCode, startStation, endStation)  
-		VALUES(promotion_seq.NEXTVAL, #{pmCode}, #{trainCode}, #{startStation}, #{endStation})
-	</insert>
+	<delete id="deleteContentFile" parameterType="map">
+		DELETE FROM promotionContentFile WHERE fileContentNum =#{fileNum}
+	</delete>
+	
+	<delete id="deleteTrain" parameterType="Integer">
+		DELETE FROM promotion WHERE trainCode = #{trainCode}
+	</delete>
+	
+	<delete id="deletePromotionDetail" parameterType="String">
+		DELETE FROM promtionDetail WHERE pmCode = #{pmCode}
+	</delete>
+	
+
 
 </mapper>

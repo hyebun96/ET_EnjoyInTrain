@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.et.common.FileManager;
-import com.et.common.MyUtil;
 import com.et.crew.SessionInfo;
 
 @Controller("travel.TravelController")
@@ -29,9 +28,6 @@ public class TravelController {
 	
 	@Autowired
 	private TravelService service;
-	
-	@Autowired
-	private MyUtil myUtil;
 	
 	@Autowired
 	private FileManager fileManager;
@@ -105,44 +101,20 @@ public class TravelController {
 	@RequestMapping("list2")
 	public String list2(
 			int group, 
-			@RequestParam(value="page", defaultValue="1") int current_page,
 			HttpServletRequest req,
 			Model model) throws Exception{
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("group", group);
-		
-		// 페이징
-		String cp = req.getContextPath();
-		
-		int rows = 5;
-		int total_page = 0;
-		int dataCount = 0;
-		
-		dataCount = service.dataCount(map);
-		
-		if(dataCount != 0) total_page = myUtil.pageCount(rows, dataCount) ;
-		
-		if(total_page < current_page) current_page = total_page;
-		
-		int offset = (current_page-1) * rows;
-		if(offset < 0) offset = 0;
-        map.put("offset", offset);
-        map.put("rows", rows);
         
 		// 리스트
 		List<Category> categoryList = service.listCategory();
 		
 		List<Travel> list = service.listTravel(map);
-		
-		String listUrl = cp+"/travel/list?group="+group;
-		String paging = myUtil.paging(current_page, total_page, listUrl);
-		
+	
 		model.addAttribute("list",list);
 		model.addAttribute("group",group);
 		model.addAttribute("categoryList", categoryList);
-		model.addAttribute("dataCount", dataCount);
-		model.addAttribute("paging", paging);
 		
 		return "/travel/list2";
 	}
@@ -191,20 +163,11 @@ public class TravelController {
 		// 카테고리
 		List<Category> categoryList = service.listCategory();
 		
-		model.addAttribute("mode","created");
-		model.addAttribute("categoryList",categoryList);
-		
 		// 협력업체
 		List<Partner> partnerList = service.listPartner();
 		
-		model.addAttribute("partnerList",partnerList);
-		
 		// 경로 디테일
 		List<Station> stationList = service.listStation();
-		
-		model.addAttribute("stationList",stationList);
-		model.addAttribute("mode", "created");
-		
 		
 		Random rd = new Random();
 		String pmCode = "p";
@@ -213,6 +176,11 @@ public class TravelController {
 		}
 		
 		model.addAttribute("pmCode", pmCode);
+		model.addAttribute("mode","created");
+		model.addAttribute("categoryList",categoryList);
+		model.addAttribute("partnerList",partnerList);
+		model.addAttribute("stationList",stationList);
+		model.addAttribute("mode", "created");
 		
 		return "travel/created";
 	}
@@ -228,24 +196,11 @@ public class TravelController {
 		String root=session.getServletContext().getRealPath("/");
 		String path=root+"uploads"+File.separator+"travel";
 		
-		
-		// 프로모션 코드 랜덤생성
-		if(dto.getPmCode()==null) {
-			Random rd = new Random();
-			String pmCode = "p";
-			for(int i=0; i<10; i++) {
-				pmCode +=  Integer.toString(rd.nextInt(10));
-			}
-			
-			dto.setPmCode(pmCode);
-		}
-		
 		// 성공여부
 		String state = "true";
 		
 		try {
 			service.insertPromotionDetail(dto, path);
-			service.insertPromotion(dto);
 		} catch (Exception e) {
 			state="false";
 		}
@@ -282,11 +237,11 @@ public class TravelController {
 			
 			photoContentList = service.listPhoto2(pmCode);
 			
+			startList.size();
+		
 		} catch (Exception e) {
 			throw e;
 		}
-		
-		startList.size();
 
 		model.addAttribute("pmCode",dto.getPmCode());
 		model.addAttribute("dto", dto);
@@ -296,6 +251,7 @@ public class TravelController {
 		model.addAttribute("endLength", endList.size());
 		model.addAttribute("photoList", photoList);
 		model.addAttribute("photoContentList", photoContentList);
+		
 		
 		// 캘린더
 		Calendar cal = Calendar.getInstance();
@@ -369,33 +325,24 @@ public class TravelController {
 	
 	
 	// 생성폼
-		@RequestMapping(value="update", method=RequestMethod.GET)
-		public String updateForm(
-				@RequestParam String pmCode,
-				Model model) throws Exception{
+	@RequestMapping(value="update", method=RequestMethod.GET)
+	public String updateForm(
+			@RequestParam String pmCode,
+			Model model) throws Exception{
 			
-			try {
+		try {
 				// 카테고리
-				List<Category> categoryList = service.listCategory();
+			List<Category> categoryList = service.listCategory();
 				
-				model.addAttribute("mode","created");
-				model.addAttribute("categoryList",categoryList);
-				
-				// 협력업체
-				List<Partner> partnerList = service.listPartner();
-				
-				model.addAttribute("partnerList",partnerList);
+			// 협력업체
+			List<Partner> partnerList = service.listPartner();
 				
 				// 경로 디테일
 				List<Station> stationList = service.listStation();
 				
-				model.addAttribute("stationList",stationList);
-				model.addAttribute("mode", "update");
-			
 				//  promotion, promotionfile 선택 가져오기
 				Travel dto = service.readTravel(pmCode);
-				model.addAttribute("dto", dto);
-				
+
 				List<Promotion> startList = null;
 				List<Promotion> endList = null;
 				
@@ -403,18 +350,21 @@ public class TravelController {
 				startList = service.startList(dto);
 				endList = service.endList(dto);
 				
-				model.addAttribute("startList", startList);
-				model.addAttribute("endList", endList);
-				
 				List<Photo> photoList = null;
 				photoList = service.listPhoto(dto.getPmCode());
-				
-				model.addAttribute("photoList", photoList);
 				
 				List<Photo> photoList2 = null;
 				photoList2 = service.listPhoto2(dto.getPmCode());
 				
+				model.addAttribute("mode", "update");
+				model.addAttribute("categoryList",categoryList);
+				model.addAttribute("partnerList",partnerList);
+				model.addAttribute("stationList",stationList);
+				model.addAttribute("startList", startList);
+				model.addAttribute("endList", endList);
+				model.addAttribute("photoList", photoList);
 				model.addAttribute("photoList2", photoList2);
+				model.addAttribute("dto", dto);
 				model.addAttribute("pmCode", pmCode);
 				
 			} catch (Exception e) {
@@ -434,15 +384,12 @@ public class TravelController {
 			SessionInfo info = (SessionInfo) session.getAttribute("crew");
 			String state = "false";
 			
+			String root = session.getServletContext().getRealPath("/");
+			String pathname = root + "uploads" + File.separator + "travel";
+			
 			if(info.getCrewId().equals("a")) {
 				try {
-					String root = session.getServletContext().getRealPath("/");
-					String pathname = root + "uploads" + File.separator + "travel";
-				
-					// 업데이트
-					if(dto.getStartCode()!=null && dto.getEndCode()!=null) {
-						service.updatePromotion(dto);
-					}
+					
 					service.updatePromotionDetail(dto, pathname);
 					
 					// 성공여부
@@ -527,7 +474,6 @@ public class TravelController {
 			Map<String, Object> model = new HashMap<>();
 			
 			try {
-
 				service.deleteTrain(trainCode);
 				
 				model.put("state", "true");
@@ -573,7 +519,5 @@ public class TravelController {
 			
 			return model;
 		}
-		
-		
 		
 }

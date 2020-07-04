@@ -36,7 +36,7 @@ ul.tabs {
 	list-style: none;
 	height: 35px;
 	border-bottom: 1px solid #dddddd;
-	width: 100%;
+	width: 800px;
 }
 
 ul.tabs li {
@@ -179,7 +179,7 @@ $(function(){
 							</c:forEach>
 						</ul>
 					</div>
-					<div id="tab-content" style="clear: both; padding: 20px 0px 0px;">
+					<div id="tab-content" style="width:800px; clear: both; padding: 20px 0px 0px;">
 
 						<table
 							style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse;">

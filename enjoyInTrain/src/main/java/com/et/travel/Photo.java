@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Photo {
-	private String pmCode;
-	private int fileNum;
-	private int fileContentNum;
-	private String saveFileName;
-	private String originalFileName;
-	private long fileSize;
-	private List<MultipartFile> uploads;
+	private String pmCode;		// 프로모션코드
+	private int fileNum;		// 파일고유번호
+	private int fileContentNum;	// 파일내용고유번호
+	private String saveFileName;	// 저장하는이름
+	private String originalFileName;	// 기존이름
+	private long fileSize;				// 파일 크기
+	private List<MultipartFile> uploads;	// upload리스트
 	
 	public String getPmCode() {
 		return pmCode;
