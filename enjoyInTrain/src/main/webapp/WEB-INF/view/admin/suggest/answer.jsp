@@ -28,33 +28,20 @@
     }
 </script>
 
-	<!-- Banner -->
-		<div id="banner">
-			<div class="container">
-			</div>
-		</div>
-	<!-- /Banner -->
+
 
 	<!-- Main -->
-		<div id="page">
-				
+		<div id="adminpage">
+				<div class="trainandtime">
+					<a href="<%=cp%>/admin/notice/list">공지사항</a> <span>|</span> <a href="<%=cp%>/admin/qna/main">QnA</a>
+					<span>|</span> <a href="<%=cp%>/admin/faq/list">FAQ</a> <span>|</span> <a href="<%=cp%>/admin/lostBoard/list">유실물</a>
+					<span>|</span> <a href="<%=cp%>/admin/freeBoard/list">자유게시판</a> <span>|</span> <a href="<%=cp%>/admin/suggest/list">고객의소리</a>
+				</div>
 			<!-- Main -->
 			<div id="main" class="container">
 				<div class="row">
 
-					<div class="3u">
-						<section class="sidebar">
-							<header>
-								<h2>메뉴창1</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="<%=cp%>/admin/notice/list">공지사항</a></li>
-								<li><a href="<%=cp%>/admin/notice/list">이벤트</a></li>
 
-							</ul>
-						</section>
-						
-					</div>
 				
 					<div class="9u skel-cell-important">
 						<section>

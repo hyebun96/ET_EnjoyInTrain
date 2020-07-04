@@ -80,10 +80,9 @@ function send() {
 
 
 	<!-- Main -->
-		<div id="page">
-				
+		<div id="adminpage">
 			<div class="trainandtime">
-				<a href="<%=cp%>/admin/train/list">Train</a> <span>|</span> <a href="<%=cp%>/admin/timetable/main">TimeTable</a>
+				<a href="<%=cp%>/admin/train/list">기차관리</a> <span>|</span> <a href="<%=cp%>/admin/timetable/main">시간표관리</a>
 			</div>
 
 
@@ -152,3 +151,4 @@ function send() {
 		
 		
 	</div>
+	

@@ -833,7 +833,7 @@
 	#adminheader{
 		position: relative;
 		background: #5f1052;
-		height: 1300px;
+		height: 1500px;
 		width: 30%;
 		float: left;
 	}
@@ -1093,6 +1093,13 @@ ul.adminnav li:hover > ul li a:hover {
 		width: 70%;
 		float: left;
 		height: 1300px;
+		padding-left: 25px;
+	}
+	
+	#adminpage > #main.container{
+		margin-left: auto;
+    	margin-right: auto;
+    	width: 100%;
 	}
 
 	#main
@@ -1332,7 +1339,7 @@ ul.adminnav li:hover > ul li a:hover {
 	height: 100px;
 	background: #666666;
 	padding-top: 20px;
-	font-style: italic;
+	font-style: normal;
 	color: white;
 	padding-bottom: 20px;
 	font-size: 12px;
@@ -1378,11 +1385,21 @@ ul.adminnav li:hover > ul li a:hover {
 .trainandtime{
 	width: 100%;
 	font-size: 25px;
-	padding-left: 350px;
 	padding-bottom: 50px;
 	border:none;
 	border-bottom: 1px solid #00a8a8;
+	margin-top: 30px;
 }
+
+.trainandtime a{
+	color: black;
+}
+
+.trainandtime a:hover{
+	text-decoration: none;
+	color: orange;
+}
+
 .trainandtime_train{
 	width: 100%;
 	padding-top: 20px;
