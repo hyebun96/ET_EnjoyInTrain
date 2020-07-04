@@ -108,6 +108,17 @@
 		color: white;
 	}
 
+	.adminloginForm{
+		text-align: center;
+		width:100%;
+		font-weight: bold;
+		color: white;
+		font-size: 13px;
+	}
+	.adminloginForm a{
+		color: white;
+	}
+
 	header
 	{
 		margin-bottom: 2em;
@@ -819,6 +830,13 @@
 			position: relative;
 			
 		}
+	#adminheader{
+		position: relative;
+		background: #5f1052;
+		height: 1300px;
+		width: 30%;
+		float: left;
+	}
 
 /*********************************************************************************/
 /* Logo             
@@ -936,10 +954,8 @@ ul.nav li:hover > ul li a:hover {
 /* 관리자메뉴 adminmenu header                                                                           */
 /*********************************************************************************/
 .adminmenulogo{
-	width: 1519px;
+	width: 100%;
 	text-align: center;
-	padding-top: 50px;
-	padding-left: 300px;
 }
 .adminmenu {
     margin:0px auto;
@@ -956,9 +972,9 @@ ul.adminnav {
   list-style: none;
   display: inline-block;
   margin-top: 10px;
-  background: #f2f2f2;
-  border-bottom: 3px solid #00a8a8;
   padding-bottom: 10px;
+  color: white;
+  width: 100%;
 }
 
 
@@ -970,17 +986,17 @@ ul.adminnav li {
 ul.adminnav li a {
   float: left;
   line-height: 40px;
-  color: #555;
   text-decoration: none;
   margin: 1px 20px 1px 20px;
-  padding: 0 30px;
+  color: white;
+  
   
 }
 
 ul.adminnav .current a, ul.adminnav .adminnavbar:hover > a {
   text-decoration: none;
   border: none;
-  border-bottom: 2px solid #6f047f;  
+  border-bottom: 2px solid #006e9e;  
   position: relative; 
   font-size: 21px;
 }
@@ -1070,6 +1086,13 @@ ul.adminnav li:hover > ul li a:hover {
 		position: relative;
 		background: #f7f6f7;
 		
+	}
+	
+	#adminpage{
+		position: relative;
+		width: 70%;
+		float: left;
+		height: 1300px;
 	}
 
 	#main
@@ -1302,6 +1325,8 @@ ul.adminnav li:hover > ul li a:hover {
 	color: #eeaa43;
 }
 
+
+
 #footer0000{
 	position: relative;
 	height: 100px;
@@ -1311,6 +1336,8 @@ ul.adminnav li:hover > ul li a:hover {
 	color: white;
 	padding-bottom: 20px;
 	font-size: 12px;
+	width: 100%;
+	float: left;
 }
 
 #footer0000 a{
@@ -1344,9 +1371,8 @@ ul.adminnav li:hover > ul li a:hover {
 .adminmain{
 	font-size: 23px;
 	font-weight: 700;
-	width: 100%;
-	text-align: center;
-	padding-top: 50px;
+	width: 70%;
+	position: relative;
 	
 }
 .trainandtime{

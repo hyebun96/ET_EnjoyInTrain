@@ -8,7 +8,7 @@
 
 
 	<!-- Main -->
-		<div id="page">
+		<div id="adminpage">
 			<!-- Main -->
 			<div class="adminmain">
 				ET _ 관리자 Page
