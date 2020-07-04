@@ -85,34 +85,18 @@ function sendOk() {
 </script>
 
 
-<!-- Banner -->
-<div id="banner">
-	<div class="container"></div>
-</div>
-<!-- /Banner -->
 
 <!-- Main -->
-<div id="page">
-
+<div id="adminpage">
+				<div class="trainandtime">
+					<a href="<%=cp%>/admin/notice/list">공지사항</a> <span>|</span> <a href="<%=cp%>/admin/qna/main">QnA</a>
+					<span>|</span> <a href="<%=cp%>/admin/faq/list">FAQ</a> <span>|</span> <a href="<%=cp%>/admin/lostBoard/list">유실물</a>
+					<span>|</span> <a href="<%=cp%>/admin/freeBoard/list">자유게시판</a> <span>|</span> <a href="<%=cp%>/admin/suggest/list">고객의소리</a>
+				</div>
 	<!-- Main -->
 	<div id="main" class="container">
 		<div class="row">
 
-			<div class="3u">
-				<section class="sidebar">
-					<header>
-						<h2>F&nbsp;A&nbsp;Q</h2>
-					</header>
-					<ul class="style1">
-						<li><a href="#">승차권구매</a></li>
-						<li><a href="#">승차권이용</a></li>
-						<li><a href="#">승차권환불</a></li>
-						<li><a href="#">코레일멤버십</a></li>
-						<li><a href="#">결제</a></li>
-						<li><a href="#">기타</a></li>
-					</ul>
-				</section>
-			</div>
 
 			<div class="9u skel-cell-important">
 				<section>

@@ -147,36 +147,16 @@ function updateOk() {
 
 </script>
 
-<!-- Banner -->
-<div id="banner">
-	<div class="container"></div>
-</div>
-<!-- /Banner -->
 
 <!-- Main -->
-<div id="page">
-
+<div id="adminpage">
+				<div class="trainandtime">
+					<a href="<%=cp%>/employee/list">직원관리</a> <span>|</span> <a href="<%=cp%>/admin/crewManage/list">회원관리</a>
+				</div>
 	<!-- Main -->
 	<div id="main" class="container">
 		<div class="row">
 			
-			<!-- 사이드 바 메뉴 -->
-			<div class="3u">
-				<section class="sidebar">
-					<header>
-						<h2>회원리스트</h2>
-					</header>
-					
-					<ul class="style1">
-						<li><a href="#">직원리스트</a></li>
-						<li><a href="#">회원관리</a></li>
-						<li><a href="#">소메뉴3</a></li>
-						<li><a href="#">소메뉴4</a></li>
-						<li><a href="#">소메뉴5</a></li>					
-					</ul>
-				</section>
-			</div>
-			<!-- /사이드바 메뉴 -->
 			
 			<!-- 메인 내용 -->
 			<div class="9u skel-cell-important">
