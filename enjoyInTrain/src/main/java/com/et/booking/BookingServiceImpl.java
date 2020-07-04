@@ -61,6 +61,7 @@ public class BookingServiceImpl implements BookingService{
 			for(Booking dto : list) {
 				if(Integer.parseInt(dto.getTrainCode())%2==0) {
 					dao.deleteData("booking.deleteReservation", map);
+					dao.updateData("booking.updateStock1", dto);
 				} else {
 					dao.deleteData("booking.deleteReservation", map);
 				}
