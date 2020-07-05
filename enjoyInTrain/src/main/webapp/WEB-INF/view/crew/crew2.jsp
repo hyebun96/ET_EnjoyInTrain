@@ -266,9 +266,8 @@ function changeEmail(){
 							      </td>
 							      <td style="padding: 0 0 5px 15px;">
 							        <p style="margin-top: 1px; margin-bottom: 5px;">
-							            <input type="text" name="crewBirth"maxlength="10" style="width: 95%;" placeholder="생년월일">
+							            <input type="text" name="crewBirth" value="${dto.crewBirth}" maxlength="10" style="width: 95%;" placeholder="생년월일" readonly="readonly">
 							        </p>
-							        <p class="help-block">생년월일은 2000-01-01 형식으로 입력 합니다.</p>
 							      </td>
 							  </tr>
 							 
@@ -287,7 +286,7 @@ function changeEmail(){
 											<option value="direct">입력</option>
 							            </select>
 							            <input type="text" name="crewEmail1" value="${dto.crewEmail1}" size="13" maxlength="30" style="width: 30%;">
-							            @ 
+		
 							            <input type="text" name="crewEmail2" value="${dto.crewEmail2}" size="13" maxlength="30" style="width: 40%;" readonly="readonly">
 							        </p>
 							      </td>
@@ -300,14 +299,14 @@ function changeEmail(){
 							      <td style="padding: 0 0 15px 15px;">
 											<select name="crewTel1"  class="selectField">
 												<option value="">선택</option>
-												<option value="010">010</option>
-												<option value="011">011</option>
-												<option value="016">016</option>
+												<option value="010" ${dto.crewTel1=="010" ? "selected='selected'" : ""}>010</option>
+												<option value="016" ${dto.crewTel1=="011" ? "selected='selected'" : ""}>016</option>
+												<option value="017" ${dto.crewTel1=="016" ? "selected='selected'" : ""}>017</option>
 											</select>
 											-
-											<input type="text" name="crewTel2" style="width: 35%;">
+											<input type="text" name="crewTel2" value="${dto.crewTel2}" style="width: 35%;">
 											-
-											<input type="text" name="crewTel3"  style="width: 38%;">
+											<input type="text" name="crewTel3" value="${dto.crewTel3}" style="width: 38%;">
 								  </td>
 							  </tr>
 						 </table>

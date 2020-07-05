@@ -18,6 +18,18 @@ public class CrewServiceImpl implements CrewService{
 		Crew dto=null;
 		try {
 			dto=dao.selectOne("crew.readCrew",crewId);
+			if(dto.getCrewEmail()!=null) {
+				String [] ss= dto.getCrewEmail().split("@");
+				dto.setCrewEmail1(ss[0]);
+				dto.setCrewEmail2(ss[1]);
+			}	
+			
+			if(dto.getCrewTel()!=null) {
+				String [] tt= dto.getCrewTel().split("-");
+				dto.setCrewTel1(tt[0]);
+				dto.setCrewTel2(tt[1]);
+				dto.setCrewTel3(tt[2]);
+			}	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -36,10 +48,7 @@ public class CrewServiceImpl implements CrewService{
 					dto.getCrewTel3()!=null&&dto.getCrewTel3().length()!=0) {
 				dto.setCrewTel(dto.getCrewTel1()+"-"+dto.getCrewTel2()+"-"+dto.getCrewTel3());
 			}
-		
-			
-			
-			
+
 			dao.insertData("crew.insertCrew", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
