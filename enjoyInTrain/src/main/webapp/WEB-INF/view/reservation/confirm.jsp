@@ -125,7 +125,7 @@ function requestPay(){
             msg = '결제에 실패하였습니다.';
             msg += '에러내용 : ' + rsp.error_msg;
             //실패시 이동할 페이지
-            location.href="<%=cp%>/reservation/";
+            history.back();//전상태로 다시 돌아옴
             alert(msg);
         }
     });
@@ -152,6 +152,15 @@ function requestPay(){
 								<input type="hidden" value="${map.trainCode}" name="trainCode">
 								<input type="hidden" value="${map.roomNum}" name="roomNum">
 								<input type="hidden" value="${map.total}" name="total">
+								
+								<input type="hidden" value="${map.trainName}" name="trainName">
+								<input type="hidden" value="${map.totalPay}" name="totalPay">
+								<input type="hidden" value="${map.crewName}" name="crewName">
+								<input type="hidden" value=" ${map.roomGrade}" name="roomGrade">
+								<input type="hidden" value=" ${map.stTime}" name="stTime">
+								<input type="hidden" value=" ${map.endTime}" name="endTime">
+								
+								
 								 	<table style="width:100%;  ">
 								 		<tr style="height:40px; background:#EAEAEA; border-top: 2px solid black;">
 								 			<td><b>승차일자</b></td>
