@@ -35,6 +35,7 @@ $(function(){
 		var roomNum=$(this).val();
 		var query=$("form[name=seatForm]").serialize();
 		query+="&roomNum="+roomNum;
+		query+="&firstPage=false";
 		var selector="#modal-content2";
 		ajaxHTML(url, "post", query, selector);
 	});
@@ -84,8 +85,6 @@ $(function(){
 			}
 			cnt=cnt-1;
 		}
-		
-		
 		return;
 	});
 });

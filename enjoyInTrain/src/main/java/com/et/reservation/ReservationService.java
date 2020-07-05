@@ -13,7 +13,7 @@ public interface ReservationService {
 	public int readsPay(Map<String, String> map);
 	public void reservation(Reservation rv, ReservedSeat seat, Map<String,String> map);
 	public List<String> listReservedSeat(Map<String, String> map);
-	public int spRoomFirst(String tCategory);
+	public String roomFirst(Map<String, String> map);
 	public List<Integer> fullSeat(Map<String, String> map);
 	public List<Integer> fulltrCode(Map<String, String> map);
 }

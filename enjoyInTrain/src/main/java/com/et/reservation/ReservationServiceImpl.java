@@ -249,10 +249,38 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 
 	@Override
-	public int spRoomFirst(String tCategory) {
-		int result=0;
+	public String roomFirst(Map<String, String> map) {
+		String result="";
 		try {
-			result=dao.selectOne("reservation.spRoomFirst", tCategory);
+			//날짜(ex 2020/7/2(목))->2020/7/2 형식으로 바꿔줌
+			String trDate=map.get("day");
+			map.put("trDate", trDate.substring(0,trDate.length()-3));
+			
+			//해당 기차의 출발역과 도착역 각각의 lineOrder를 가져오기
+			Map<String, Object> model=new HashMap<>();
+			model=dao.selectOne("reservation.readStation", map.get("startSt"));
+			map.put("stLineOrder", model.get("LINEORDER").toString());  //출발역 lineOrder
+			model=dao.selectOne("reservation.readStation", map.get("endSt"));
+			map.put("endLineOrder", model.get("LINEORDER").toString());  //도착역 lineOrder
+			
+			//좌석 정원초과인 칸 가져오기
+			List<String> fullList=dao.selectList("reservation.fullSeat", map);
+			//일반실 혹은 특실의 모든 칸 가져오기
+			List<String> roomList=dao.selectList("reservation.readRoom", map);
+			
+			for(String room:roomList) {
+				int i;
+				for(i=0; i<fullList.size(); i++) {
+					if(room.equals(fullList.get(i))) {
+						break;
+					}
+				}
+				//모든 정원초과 칸과 같지 않으면 맵에 저장
+				if(i==fullList.size()) {
+					result=room;
+					return result;
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

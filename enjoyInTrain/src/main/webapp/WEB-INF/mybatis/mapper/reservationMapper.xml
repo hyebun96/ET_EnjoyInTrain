@@ -119,13 +119,7 @@
 		</if>
 	</select>
 	
-	<select id="spRoomFirst" parameterType="map" resultType="Integer">
-		SELECT roomNum FROM trainsetting7
-		WHERE trainCategory=#{tCategory} AND roomGrade='특실' AND ROWNUM=1
-		ORDER BY roomNum
-	</select>
-	
-	<!-- 좌석 정원초과 검색하기 -->
+ 	<!-- 좌석 정원초과 검색하기 -->
 	<select id="fullSeat" parameterType="map" resultType="String">
 		SELECT rs.roomNum FROM(
 		    SELECT rs.roomNum, COUNT(*) cnt
@@ -178,6 +172,12 @@
 		    FROM trainsetting7
 		    WHERE roomGrade=#{roomGrade}
 		)
+	</select>
+
+	<select id="readRoom" parameterType="map" resultType="String">
+		SELECT roomNum fROM TRAINSETTING7
+		WHERE trainCategory=#{tCategory} AND roomGrade=#{roomGrade}
+		ORDER BY roomNum
 	</select>
 	
  </mapper>

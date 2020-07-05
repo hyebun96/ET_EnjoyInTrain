@@ -27,11 +27,11 @@ $(function(){
 		query+="&trainCode="+trainCode+"&trainName="+trainName+"&stTime="+stTime+"&endTime="+endTime;
 		query+="&day=${rsDto.day}";
 		if($(this).val()=='special'){
-			query+="&roomGrade="+"특실&roomNum="+${spRoomFirst};
+			query+="&roomGrade="+"특실";
 		}else{
-			query+="&roomGrade="+"일반실&roomNum=1";
+			query+="&roomGrade="+"일반실";
 		}
-		
+		query+="&firstPage=true";
 		var selector="#modal-content2";
 		ajaxHTML(url, "post", query, selector);
 	});
