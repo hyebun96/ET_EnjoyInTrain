@@ -116,11 +116,10 @@ public class ReservationServiceImpl implements ReservationService{
 
 	//선택한 기차의 총 호실 정보 가져오기
 	@Override
-	public List<Seat> listSeat(String tCategory) {
+	public List<Seat> listSeat(Map<String, String> map) {
 		List<Seat> list=null;
 		try {
-			
-			list=dao.selectList("reservation.listSeat", tCategory);
+			list=dao.selectList("reservation.listSeat", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -207,5 +206,111 @@ public class ReservationServiceImpl implements ReservationService{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	//날짜, 기차코드, 칸번호에 해당하는 예약된 좌석 가져오기
+	@Override
+	public List<String> listReservedSeat(Map<String, String> map) {
+		List<String> rvlist=new ArrayList<>();
+		try {
+			//날짜(ex 2020/7/2(목))->2020/7/2 형식으로 바꿔줌
+			String trDate=map.get("day");
+			map.put("trDate", trDate.substring(0,trDate.length()-3));
+			
+			//해당 기차의 출발역과 도착역 각각의 lineOrder를 가져오기
+			Map<String, Object> model=new HashMap<>();
+			model=dao.selectOne("reservation.readStation", map.get("startSt"));
+			map.put("stLineOrder", model.get("LINEORDER").toString());  //출발역 lineOrder
+			model=dao.selectOne("reservation.readStation", map.get("endSt"));
+			map.put("endLineOrder", model.get("LINEORDER").toString());  //도착역 lineOrder
+			
+			List<String> list=dao.selectList("reservation.listReservedSeat", map);
+			
+			//좌석번호(ex 10B -> 23) 이런식으로 바꿔줌
+			for(String seat:list) {
+				String column=seat.substring(0,seat.length()-1);
+				String row=seat.substring(column.length());
+				int rr=0;
+				int cc=Integer.parseInt(map.get("seatColumn"));
+				switch (row) {
+					case "A": rr=0; break;
+					case "B": rr=1; break;
+					case "C": rr=2; break;
+					case "D": rr=3; break;
+				}
+				int aa=Integer.parseInt(column)+(cc*rr);
+				rvlist.add(Integer.toString(aa));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rvlist;
+	}
+
+	@Override
+	public int spRoomFirst(String tCategory) {
+		int result=0;
+		try {
+			result=dao.selectOne("reservation.spRoomFirst", tCategory);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	//정원초과인 칸 가져오기
+	@Override
+	public List<Integer> fullSeat(Map<String, String> map) {
+		List<Integer> fullSeatlist=null;
+		try {
+			//날짜(ex 2020/7/2(목))->2020/7/2 형식으로 바꿔줌
+			String trDate=map.get("day");
+			map.put("trDate", trDate.substring(0,trDate.length()-3));
+			
+			//해당 기차의 출발역과 도착역 각각의 lineOrder를 가져오기
+			Map<String, Object> model=new HashMap<>();
+			model=dao.selectOne("reservation.readStation", map.get("startSt"));
+			map.put("stLineOrder", model.get("LINEORDER").toString());  //출발역 lineOrder
+			model=dao.selectOne("reservation.readStation", map.get("endSt"));
+			map.put("endLineOrder", model.get("LINEORDER").toString());  //도착역 lineOrder
+			
+			fullSeatlist=dao.selectList("reservation.fullSeat", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return fullSeatlist;
+	}
+
+	//모든 칸이 정원초과인 기차코드 가져오기(일반실, 특실 따로 가져와야함)
+	@Override
+	public List<Integer> fulltrCode(Map<String, String> map) {
+		List<Integer> fulltrCode=null;
+		try {
+			//날짜(ex 2020/7/2(목))->2020/7/2 형식으로 바꿔줌
+			String trDate=map.get("day");
+			map.put("trDate", trDate.substring(0,trDate.length()-3));
+			
+			//하행인지 상행인지 가져오기. 리스트는 하행기준으로 역이름을 가져오므로 
+				//넘겨준 출발역이 리스트의 첫번째역과 같으면 하행, 같지 않으면 상행
+			List<String> route=dao.selectList("reservation.searchRoute", map); //
+			if(route.get(0).equals(map.get("startSt"))) {
+				map.put("route", "1");  //하행
+			}else {
+				map.put("route", "0");	//상행
+			}
+			
+			//해당 기차의 출발역과 도착역 각각의 lineOrder를 가져오기
+			Map<String, Object> model=new HashMap<>();
+			model=dao.selectOne("reservation.readStation", map.get("startSt"));
+			map.put("stLineOrder", model.get("LINEORDER").toString());  //출발역 lineOrder
+			model=dao.selectOne("reservation.readStation", map.get("endSt"));
+			map.put("endLineOrder", model.get("LINEORDER").toString());  //도착역 lineOrder
+			
+			fulltrCode=dao.selectList("reservation.fulltrCode", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return fulltrCode;
 	}
 }

@@ -2,6 +2,7 @@ package com.et.reservation;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -74,13 +75,31 @@ public class ReservationController {
 		
 		List<Train> list=new ArrayList<>();
 		list=service.listTrain(dto);
+		
+		//특실일 경우 특실의 첫번째 칸을 처음에 보여줘야 하므로 특실의 첫번째 칸 번호 가져오기
+		int spRoomFirst=service.spRoomFirst(dto.gettCategory());
+		
 		for(Train train:list) {
 			//소요시간
 			train.setTotalTime(service.totalTime(train));
 		}
 		
+		//전체 칸 매진인 기차코드 가져오기
+		Map<String, String> map=new HashMap<String, String>();
+		map.put("day", dto.getDay());
+		map.put("startSt", dto.getStartSt());
+		map.put("endSt", dto.getEndSt());
+		map.put("roomGrade", "일반실");
+		List<Integer> general=service.fulltrCode(map);
+		map.put("roomGrade", "특실");
+		List<Integer> special=service.fulltrCode(map);
+		
+		
 		model.addAttribute("list",list);
 		model.addAttribute("rsDto",dto);
+		model.addAttribute("spRoomFirst",spRoomFirst);
+		model.addAttribute("general",general);
+		model.addAttribute("special",special);
 		return "reservation/list";
 	}
 	
@@ -101,11 +120,21 @@ public class ReservationController {
 		Seat dto=new Seat();
 		dto.setRoomNum(Integer.parseInt(map.get("roomNum")));
 		dto=service.readSeat(map);
-		List<Seat> list=service.listSeat(map.get("tCategory"));
+		List<Seat> list=service.listSeat(map);
+		
+		//해당 날짜, 기차코드, 칸번호에 해당하는 예약된 좌석 가져와서 넘겨줌. 
+		//(jsp에서는 넘겨준 좌석과 해당 표시하려는 좌석이 같으면 회색좌석으로 뜨게 처리)
+		map.put("seatColumn", Integer.toString(dto.getSeatColumn()));
+		List<String> rvlist=service.listReservedSeat(map);
+		
+		//정원초과인 칸번호 가져오기
+		List<Integer> fullSeatlist=service.fullSeat(map);
 		
 		model.addAttribute("list",list);
 		model.addAttribute("dto",dto);
 		model.addAttribute("map",map);
+		model.addAttribute("rvlist",rvlist);  //이미 예약된 좌석 리스트
+		model.addAttribute("fullSeatlist",fullSeatlist);  //정원초과 칸번호 리스트
 		return "reservation/seat";
 	}
 	

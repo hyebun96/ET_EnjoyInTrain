@@ -6,9 +6,9 @@
 		SELECT DISTINCT sname FROM station6
 	</select>
 	
-	<!-- 역이름 영어, 코드로 가져오기 -->
+	<!-- 역정보 가져오기 -->
 	<select id="readStation" parameterType="Object" resultType="map">
-		SELECT engName, sCode FROM station6
+		SELECT engName, sCode, lineOrder FROM station6
 		WHERE sName=#{station}
 	</select>
 	
@@ -65,9 +65,9 @@
 		WHERE trainCategory=#{tCategory} AND roomNum=#{roomNum}
 	</select>
 	
-	<select id="listSeat" parameterType="String" resultType="com.et.reservation.Seat">
+	<select id="listSeat" parameterType="map" resultType="com.et.reservation.Seat">
 		SELECT roomNum, roomGrade, seatRow, seatColumn FROM trainsetting7
-		WHERE trainCategory=#{tCategory}
+		WHERE trainCategory=#{tCategory} AND roomGrade=#{roomGrade}
 	</select>
 	
 	<!-- 요금 가져오기 -->
@@ -86,6 +86,7 @@
 		SELECT reservedSeat_seq.NEXTVAL FROM dual
 	</select>
 	
+	<!-- 기차(좌석)예약하기 -->
 	<insert id="insertReservation" parameterType="com.et.reservation.Reservation">
 		INSERT INTO trainreservation(trCode, trDate) VALUES(#{trCode},#{trDate})
 	</insert>
@@ -98,5 +99,85 @@
 		INSERT INTO reservedSeat(rsSeatCode, seatNum, trCode, seatType, seatPay, roomNum, trainCode) 
 		VALUES(#{rsSeatCode},#{seatNum},#{trCode},#{seatType},#{seatPay},#{roomNum},#{trainCode})
 	</insert>
+	
+	<!-- 날짜, 기차코드, 칸번호에 해당하는 예약된 좌석 가져오기 -->
+	<select id="listReservedSeat" parameterType="map" resultType="String">
+		SELECT rs.seatNum
+		FROM reservedSeat rs
+		JOIN trainreservation tr ON rs.trCode=tr.trCode
+		JOIN trReservationInfo info ON info.trCode=tr.trCode
+		JOIN station6 st ON st.sCode=info.startCode
+		JOIN station6 st2 ON st2.sCode=info.endCode
+		WHERE tr.trDate=#{trDate} AND rs.trainCode=#{trainCode} AND rs.roomNum=#{roomNum}
+		<if test="trainCode%2==1">
+		    AND ((#{stLineOrder} BETWEEN st.lineOrder AND st2.lineOrder-1) OR (#{endLineOrder} BETWEEN st.lineOrder+1 AND st2.lineOrder)
+		        OR (#{stLineOrder} &lt; st.lineOrder AND #{endLineOrder} &gt; st2.lineOrder))
+		</if>
+		<if test="trainCode%2==0">
+		    AND ((#{stLineOrder} BETWEEN st2.lineOrder+1 AND st.lineOrder) OR (#{endLineOrder} BETWEEN st2.lineOrder AND st.lineOrder-1) 
+        		OR (#{stLineOrder} &gt; st.lineOrder AND #{endLineOrder} &lt; st2.lineOrder))
+		</if>
+	</select>
+	
+	<select id="spRoomFirst" parameterType="map" resultType="Integer">
+		SELECT roomNum FROM trainsetting7
+		WHERE trainCategory=#{tCategory} AND roomGrade='특실' AND ROWNUM=1
+		ORDER BY roomNum
+	</select>
+	
+	<!-- 좌석 정원초과 검색하기 -->
+	<select id="fullSeat" parameterType="map" resultType="String">
+		SELECT rs.roomNum FROM(
+		    SELECT rs.roomNum, COUNT(*) cnt
+		    FROM reservedSeat rs
+		    JOIN trainreservation tr ON rs.trCode=tr.trCode
+		    JOIN trReservationInfo info ON info.trCode=tr.trCode
+		    JOIN station6 st ON st.sCode=info.startCode
+		    JOIN station6 st2 ON st2.sCode=info.endCode
+		    WHERE tr.trDate=#{trDate} AND rs.trainCode=#{trainCode}
+		    <if test="trainCode%2==1">
+		    AND ((#{stLineOrder} BETWEEN st.lineOrder AND st2.lineOrder-1) OR (#{endLineOrder} BETWEEN st.lineOrder+1 AND st2.lineOrder)
+		        OR (#{stLineOrder} &lt; st.lineOrder AND #{endLineOrder} &gt; st2.lineOrder))
+			</if>
+			<if test="trainCode%2==0">
+			    AND ((#{stLineOrder} BETWEEN st2.lineOrder+1 AND st.lineOrder) OR (#{endLineOrder} BETWEEN st2.lineOrder AND st.lineOrder-1) 
+	        		OR (#{stLineOrder} &gt; st.lineOrder AND #{endLineOrder} &lt; st2.lineOrder))
+			</if>
+		    GROUP BY rs.roomNum
+		) rs
+		JOIN trainsetting7 trseat ON rs.roomNum=trseat.roomNum
+		WHERE trseat.traincategory=#{tCategory} AND cnt=trseat.seatRow*trseat.seatColumn
+	</select>
+	
+	<!-- 좌석부족인 기차코드 가져오기 -->
+	<select id="fulltrCode" parameterType="map" resultType="Integer">
+		SELECT trainCode FROM(
+		    SELECT trainCode, COUNT(*) roomCnt  FROM(
+		        SELECT rs.trainCode, rs.roomNum, COUNT(*) cnt
+		        FROM reservedSeat rs
+		        JOIN trainreservation tr ON rs.trCode=tr.trCode
+		        JOIN trReservationInfo info ON info.trCode=tr.trCode
+		        JOIN station6 st ON st.sCode=info.startCode
+		        JOIN station6 st2 ON st2.sCode=info.endCode
+		        WHERE tr.trDate=#{trDate} 
+		        <if test="route==1">
+			    AND ((#{stLineOrder} BETWEEN st.lineOrder AND st2.lineOrder-1) OR (#{endLineOrder} BETWEEN st.lineOrder+1 AND st2.lineOrder)
+			        OR (#{stLineOrder} &lt; st.lineOrder AND #{endLineOrder} &gt; st2.lineOrder))
+				</if>
+				<if test="route==0">
+				    AND ((#{stLineOrder} BETWEEN st2.lineOrder+1 AND st.lineOrder) OR (#{endLineOrder} BETWEEN st2.lineOrder AND st.lineOrder-1) 
+		        		OR (#{stLineOrder} &gt; st.lineOrder AND #{endLineOrder} &lt; st2.lineOrder))
+				</if>
+		        GROUP BY rs.trainCode, rs.roomNum
+		    ) rs
+		    JOIN trainsetting7 trseat ON rs.roomNum=trseat.roomNum
+		    WHERE cnt=trseat.seatRow*trseat.seatColumn AND trseat.roomGrade=#{roomGrade}
+		    GROUP BY trainCode
+		)WHERE roomCnt=(
+		    SELECT COUNT(*) 
+		    FROM trainsetting7
+		    WHERE roomGrade=#{roomGrade}
+		)
+	</select>
 	
  </mapper>

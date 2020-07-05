@@ -23,8 +23,14 @@ $(function(){
 		var endTime=$(this).closest("tr").children().children(".endTime").text();  //도착시간 가져오기
 		var url="<%=cp%>/reservation/seat";
 		var query=$("form[name=reservationForm]").serialize();
-		query+="&roomNum=1&total=${rsDto.total}";
+		query+="&total=${rsDto.total}";
 		query+="&trainCode="+trainCode+"&trainName="+trainName+"&stTime="+stTime+"&endTime="+endTime;
+		query+="&day=${rsDto.day}";
+		if($(this).val()=='special'){
+			query+="&roomGrade="+"특실&roomNum="+${spRoomFirst};
+		}else{
+			query+="&roomGrade="+"일반실&roomNum=1";
+		}
 		
 		var selector="#modal-content2";
 		ajaxHTML(url, "post", query, selector);
@@ -76,12 +82,34 @@ $(function(){
 				<span class="endTime">${dto.arriveTime}</span>
 			</td>
 			<td>
-				<button style="border:none; background: #6f047f; color: white;">예약하기</button><br>
-				<button class="seatBtn" type="button" style="border:none; background: #008299; color: white;">좌석선택</button>
+				<c:set var="sw" value="true"/>
+				<c:forEach items="${special}" var="sp">
+					<c:if test="${sw}">
+						<c:if test="${sp==dto.trainCode}">
+							<button type="button" style="border:none; background: gray; color: white;">좌석부족</button><br>
+							<c:set var="sw" value="false"/>
+						</c:if>
+					</c:if>
+				</c:forEach>
+				<c:if test="${sw}">
+					<button style="border:none; background: #6f047f; color: white;">예약하기</button><br>
+					<button class="seatBtn" value="special" type="button" style="border:none; background: #008299; color: white;">좌석선택</button>
+				</c:if>
 			</td>
 			<td>
-				<button style="border:none; background: #6f047f; color: white;">예약하기</button><br>
-				<button class="seatBtn" type="button" style="border:none; background: #008299; color: white;">좌석선택</button>
+				<c:set var="sw" value="true"/>
+				<c:forEach items="${general}" var="sp">
+					<c:if test="${sw}">
+						<c:if test="${sp==dto.trainCode}">
+							<button type="button" style="border:none; background: gray; color: white;">좌석부족</button><br>
+							<c:set var="sw" value="false"/>
+						</c:if>
+					</c:if>
+				</c:forEach>
+				<c:if test="${sw}">
+					<button style="border:none; background: #6f047f; color: white;">예약하기</button><br>
+					<button class="seatBtn" value="general" type="button" style="border:none; background: #008299; color: white;">좌석선택</button>
+				</c:if>
 			</td>
 			<td>-</td>
 			<td>-</td>
