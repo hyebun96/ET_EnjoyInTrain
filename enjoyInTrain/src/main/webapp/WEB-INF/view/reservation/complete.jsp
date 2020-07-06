@@ -39,12 +39,12 @@
 	margin-top: 50px;
 	width: 1200px;
 	height: 380px;
-	padding:0 120px 0 170px;
+	padding:0 110px 0 110px;
 	border: 1px solid #BDBDBD;
 }
 .ticket2{
 	margin: 10px 100px 10px 60px;
-	width: 850px;
+	width: 860px;
 	height: 360px;
 	border: 1px solid #BDBDBD;
 }
@@ -59,16 +59,19 @@
 }
 
 .ticket4{
-	width: 465px;
+	width: 475px;
 	margin: 10px 10px 10px 0px;
 	float: left;
 	height: 340px;
 	border: 1px solid #BDBDBD;
 }
 
+
+
 .ticket4 tr td{
 	width: 465px;
 	height: 40px;
+	padding-left: 10px;
 }
 
 .back{
@@ -173,27 +176,27 @@ function info_print() {
 								<div class="ticket4">
 									<table>
 										<tr>
-											<td>승차일&nbsp;${map.trDate}</td>
+											<td style="width:100px; ">승차일</td>
+											<td colspan="2" style="font-size: 20px; font-weight: bold; vertical-align: middle">${map.trDate}<br><br></td>
 										</tr>
 										<tr>
-											<td>${map.startCode}&nbsp;▶&nbsp;${map.endCode}</td> 
+											<td colspan="3" style="font-size: 30px;">${map.startCode}&nbsp;▶&nbsp;${map.endCode}<br><br><br></td> 
 										</tr>
 										<tr>
-											<td>${map.stTime}&nbsp;▶&nbsp;${map.endTime}</td>
+											<td colspan="3" style="font-size: 30px;">${map.stTime}&nbsp;▶&nbsp;${map.endTime}<br><br><br></td>
 										</tr>
 										<tr>
-											<td>${map.trainName}</td>
-											<td>${map.trainCode}열차(${map.roomGrade})</td> 
-											<td style="border: 1px soild #cccccc; width: 100px; height: 100px;">${map.roomNum}호차 ${map.seatNum}석</td>
+											<td style="width: 100px;">${map.trainName}</td>
+											<td style="width:270px;">${map.trainCode}열차(${map.roomGrade})</td> 
+											<td style="border: 1px soild #cccccc; width: 100px; font-weight: bold;">${map.roomNum}호차 ${map.seatNum}석</td>
 										</tr>
 										<tr>
-											<td>승객유형</td>
-											<td>${map.seatType}</td>
+											<td colspan="3">승객유형&nbsp;&nbsp;${map.seatType}</td>
 										</tr>
 										<tr class="back">
-											<td>운임요금 &nbsp;${map.seatPay}원</td>
-											<td>할인금액 &nbsp; 0원</td>
-											<td colspan="2">영수금액&nbsp;${map.totalPay}원</td>
+											<td  style="width:300px;">운임요금 &nbsp;${map.totalPay}원</td>
+											<td style="width:270px;">할인금액 &nbsp; 0원</td>
+											<td>영수금액&nbsp;${map.totalPay}원</td>
 										</tr>
 									</table>
 								</div>
