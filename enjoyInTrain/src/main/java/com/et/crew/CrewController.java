@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
-
 @Controller("crew.crewController")
 @RequestMapping("/crew/*")
 public class CrewController {
@@ -164,18 +162,5 @@ public class CrewController {
 		reAttr.addFlashAttribute("message",sb.toString());
 		
 		return "redirect:/crew/complete";
-	}
-
-	@RequestMapping(value="delete")
-	public Map<String, Object> delete(Map<String, Object> dto) throws Exception{
-		Map<String, Object> model = new HashMap<>();
-		
-		try {
-			service.deleteCrew(dto);
-			model.put("state", "true");
-		} catch (Exception e) {
-			model.put("state", "false");
-		}
-		return model;
 	}
 }

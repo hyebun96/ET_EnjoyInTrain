@@ -24,11 +24,7 @@
 						crewEmail = #{crewEmail} ,crewBirth = #{crewBirth}
 		WHERE crewId = #{crewId}
 	</update>
-	
-	<delete id="deleteCrew" parameterType="String">
-		DELTE FROM crew WHERE crewId = #{crewId}
-	</delete>
-	
+
 <!-- 회원관리-->
 	<!-- 검색 -->
 	<sql id="where-list">
@@ -66,11 +62,6 @@
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	
-	<insert id="insertMemberState" parameterType="com.et.crew.Crew">
-		INSERT INTO crew(crewId)
-		VARUES (#{crewId})
-	</insert>
-	
 	<select id="listCrewState" parameterType="String" resultType="com.et.crew.Crew">
 		SELECT crewId,crewName,crewTel,crewEmail,crewBirth,crewchatwarning
 		FROM crew
@@ -82,4 +73,9 @@
 		FROM crew
 		WHERE crewId=#{crewId}
 	</select>
+	
+	<update id="updatecrewState" parameterType="com.et.crew.Crew">
+		UPDATE crew SET crewChatWarning=#{crewChatWarning}
+		WHERE crewId = #{crewId}
+	</update>
 </mapper> 

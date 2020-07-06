@@ -119,13 +119,13 @@ public class CrewManageController {
 	@RequestMapping(value="/admin/crewManage/updateCrewState",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String , Object> updateCrewState(
-			Crew dto
+				Crew dto
 			) throws Exception{
 		
 		String state = "true";
 		
 		try {
-			crewService.insertCrewState(dto);
+			crewService.updatecrewState(dto);
 		} catch (Exception e) {
 			state="false";
 		}

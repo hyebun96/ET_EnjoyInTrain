@@ -46,6 +46,7 @@
 
 
 <script type="text/javascript">
+
 function crewOk() {
 	var f = document.crewForm;
 	var str;
@@ -171,6 +172,8 @@ function changeEmail(){
 	}
 }
 
+
+
 </script>
 
 <!-- Banner -->
@@ -208,7 +211,7 @@ function changeEmail(){
 						<h2><i class="fas fa-user-edit"></i> 회원정보수정</h2>
 					</header>
 					
-					 <form name="crewForm" method="post">
+					 <form id="crewForm" name="crewForm" method="post">
 						<div>
 						  <table style="width: 500px; margin: 20px auto 0px; border-spacing: 0px; float: left;">
 							  <tr>

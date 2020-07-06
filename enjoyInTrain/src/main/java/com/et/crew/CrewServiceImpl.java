@@ -82,38 +82,6 @@ public class CrewServiceImpl implements CrewService{
 		return list;
 	}
 
-	@Override
-	public void insertCrewState(Crew dto) throws Exception {
-		try {
-			dao.updateData("crew.insertCrewState",dto);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-		}
-	}
-
-	@Override
-	public List<Crew> listCrewState(String crewId) {
-		List<Crew> list = null;
-		try {
-			list = dao.selectList("crew.listCrewState",crewId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
-
-	@Override
-	public Crew readCrewState(String crewId) {
-		Crew dto = null;
-		
-		try {
-			dto= dao.selectOne("crew.readCrewState", crewId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return dto;
-	}
 
 	@Override
 	public void updateCrew(Crew dto) throws Exception {
@@ -137,12 +105,36 @@ public class CrewServiceImpl implements CrewService{
 	}
 
 	@Override
-	public void deleteCrew(Map<String, Object> map) throws Exception {
+	public void updatecrewState(Crew dto) throws Exception {
 		try {
-			dao.deleteData("crew.deleteCrew",map);
+			dao.updateData("crew.updatecrewState",dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
+		
+	}
+
+	@Override
+	public List<Crew> listCrewState(String crewId) {
+		List<Crew> list = null;
+		try {
+			list = dao.selectList("crew.listCrewState",crewId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@Override
+	public Crew readCrewState(String crewId) {
+		Crew dto = null;
+		
+		try {
+			dto= dao.selectOne("crew.readCrewState", crewId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
 	}
 }

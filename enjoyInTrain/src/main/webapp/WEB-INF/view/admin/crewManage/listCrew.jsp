@@ -64,6 +64,8 @@ a {
     overflow: inherit;
 }
 
+
+
 </style>
 
 <script type="text/javascript">
@@ -71,7 +73,7 @@ function searchList() {
 	var f=document.searchForm;
 	f.action="<%=cp%>/admin/crewManage/list";
 	f.submit();
-}
+};
 
 function detailedCrew(crewId) {
 	var dlg = $("#crew-dialog").dialog({
@@ -114,7 +116,7 @@ function detailedCrew(crewId) {
 			console.log(jqXHR.responseText);
 		}
 	});
-}
+};
 
 function updateOk() {
 	var f = document.detailedCrewForm;
@@ -131,28 +133,27 @@ function updateOk() {
 			searchList();
 		},
 		beforeSend : function(jqXHR) {
-			jqXHR.setRequertHeader("AJAX",true);
+			jqXHR.setRequestHeader("AJAX",true);
 		},
 		error : function(jqXHR) {
 			if(jqXHR.status == 403){
-				location.href = "<%=cp%>/crew/login";
+				location.href="<%=cp%>/crew/login";
 				return false;
 			}
 			console.log(jqXHR.responseText);
 		}
 	});
 	$('#crew-dialog').dialog("close");	
-}
-
+};
 
 </script>
 
 
 <!-- Main -->
 <div id="adminpage">
-				<div class="trainandtime">
-					<a href="<%=cp%>/employee/list">직원관리</a> <span>|</span> <a href="<%=cp%>/admin/crewManage/list">회원관리</a>
-				</div>
+	<div class="trainandtime">
+		<a href="<%=cp%>/employee/list">직원관리</a> <span>|</span> <a href="<%=cp%>/admin/crewManage/list">회원관리</a>
+	</div>
 	<!-- Main -->
 	<div id="main" class="container">
 		<div class="row">

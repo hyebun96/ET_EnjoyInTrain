@@ -7,12 +7,11 @@ public interface CrewService {
 	public Crew readCrew(String crewId);
 	public void insertCrew(Crew dto) throws Exception;
 	public void updateCrew(Crew dto) throws Exception;
-	public void deleteCrew(Map<String, Object> map) throws Exception;
 	
 	public int dataCount(Map<String, Object> map);
 	public List<Crew> listCrew(Map<String, Object> map);
 	
-	public void insertCrewState(Crew dto) throws Exception;
+	public void updatecrewState(Crew dto)throws Exception;
 	public List<Crew> listCrewState(String crewId);
 	public Crew readCrewState(String crewId);
 }
