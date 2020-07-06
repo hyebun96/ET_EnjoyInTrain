@@ -96,10 +96,36 @@ function searchList() {
 				<section>
 					<header>
 						<h2>자유게시판</h2>
-						<span class="byline" style="margin-top: 20px; font-size: 15px;">Please feel free to write.</span>
+						<span class="byline" style="margin-top: 20px;">Please feel free to write.</span>
 					</header>
 					
 					<div>
+					
+						<table style="width: 100%; margin: 10px auto; border-spacing: 0px;">
+						   <tr height="40">
+						   		<td align="left">
+										<button type="button" class="btn" id="btn" onclick="javascript:location.href='<%=cp%>/admin/freeBoard/list';"
+											style="background: white; width: 100px; height: 29px; border-radius: 10px; border: 1px solid #cccccc;">새로고침</button>
+								</td>
+								
+		      					<td align="left">
+									<form name="searchForm" action="<%=cp%>/admin/freeBoard/list" method="post" style="float: left;">
+										<select name="condition" class="selectField" style="height: 29px;">
+											<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
+											<option value="fbTitle" ${condition=="fbTitle"?"selected='selected'":""}>제목</option>
+											<option value="fbContent" ${condition=="fbContent"?"selected='selected'":""}>내용</option>
+											<option value="crewName" ${condition=="crewName"?"selected='selected'":""}>작성자</option>
+											<option value="fbCreated" ${condition=="fbCreated"?"selected='selected'":""}>등록일</option>
+										</select>
+										<input type="text" name="keyword" value="${keyword}" class="boxTF" width="50">
+										<button type="button" class="btnsearch" id="btnsearch" onclick="searchList()"
+											style="background: white; width: 100px; height: 29px; border-radius: 10px; border: 1px solid #cccccc;">검색</button>
+									</form>
+								</td>
+							</tr>
+						</table>
+					
+					
 						<table style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse;">
 							<tbody class="board-list">
 							<tr height="35" style="border-bottom: 1px solid #cccccc;">
@@ -113,8 +139,10 @@ function searchList() {
 						</table>
 						
 						
+						
+						
 						<table style="width: 100%; margin: 0px auto; border-spacing: 0px; border-collapse: collapse;">
-							<tr class="menu-heght2" height="35" style="border-bottom: 1px solid #cccccc;">
+							<tr class="menu-heght2" height="35" style="border-bottom: 1px solid #cccccc; background-color: #21373F; color: white; font-weight: bold;">
 								<th width="60">번호</th>
 								<th width="200">제목</th>
 								<th width="100">작성자</th>
@@ -123,7 +151,7 @@ function searchList() {
 								<th width="50">파일</th>
 							</tr>
 							<c:forEach var="dto" items="${list}">
-							 	<tr class="listname1" align="center"  height="35" style="border-bottom: 1px solid #cccccc; color: black;"> 
+							 	<tr class="listname1" align="center"  height="35" style="border-bottom: 1px solid #cccccc;"> 
 									<td>${dto.listNum}</td>
 									<td align="left" style="padding-left: 20px; color: black; text-decoration: none;">
 										<a href="${articleUrl}&num=${dto.fbNum}">${dto.fbTitle} [ ${dto.replyCount} ]
@@ -138,7 +166,7 @@ function searchList() {
 									<td>
 										<c:if test="${dto.fileCount !=0}">
 										<!-- 	<a href="<%=cp%>/freeBoard/download?num=${dto.fbNum}">  -->
-											<i class="far fa-file"></i></a>
+											<i class="far fa-file"></i>
 										</c:if>
 									</td>
 								</tr>
@@ -153,27 +181,7 @@ function searchList() {
 						   </tr>
 						</table>
 
-						<table style="width: 100%; margin: 10px auto; border-spacing: 0px;">
-						   <tr height="40">
-						   		<td align="left" width="100">
-										<button type="button" class="btn" id="btn" onclick="javascript:location.href='<%=cp%>/admin/freeBoard/list';">새로고침</button>
-								</td>
-								
-		      					<td align="center">
-									<form name="searchForm" action="<%=cp%>/admin/freeBoard/list" method="post">
-										<select name="condition" class="selectField">
-											<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
-											<option value="fbTitle" ${condition=="fbTitle"?"selected='selected'":""}>제목</option>
-											<option value="fbContent" ${condition=="fbContent"?"selected='selected'":""}>내용</option>
-											<option value="crewName" ${condition=="crewName"?"selected='selected'":""}>작성자</option>
-											<option value="fbCreated" ${condition=="fbCreated"?"selected='selected'":""}>등록일</option>
-										</select>
-										<input type="text" name="keyword" value="${keyword}" class="boxTF" width="50">
-										<button type="button" class="btnsearch" id="btnsearch" onclick="searchList()">검색</button>
-									</form>
-								</td>
-							</tr>
-						</table>
+						
 					</div>
 				</section>
 			</div>

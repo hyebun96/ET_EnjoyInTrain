@@ -55,18 +55,15 @@ function updateNotice() {
 								<span class="byline">Notice | Check news of new services and events</span>
 							</header>
 							<div id="namul">
+					
 					<form name="noticeForm" method="post" enctype="multipart/form-data">
 						<table class="noticearticle">
 							<tr class="noticearticletitle">
-								<td class="noticearticletitle1">제목  </td>
-								<td colspan="3" style="text-align: left;"> ${dto.noticeTitle} </td>
+								<td colspan="3" style="text-align: center;"> ${dto.noticeTitle} </td>
 							</tr>
-							<tr class="noticearticletitle">
-								<td class="noticearticletitle2">등록일</td>
-								<td style="text-align: center;">${dto.nCreated}</td>
-								<td class="noticearticletitle2">조회수</td>
-								<td width="300px" style="text-align: center;">${dto.nHitCount}</td>
-								
+							<tr style="width: 865px;">
+								<td>작성자 : 관리자</td>
+								<td style="clear:both; float: right;">${dto.nCreated}&nbsp;|&nbsp;${dto.nHitCount}</td>
 							</tr>
 							<tr style="padding: 5px 5px;">
 								<td class="notice-content" colspan="4">${dto.noticeContent}</td>
@@ -98,10 +95,8 @@ function updateNotice() {
 			        			</c:if>
 								 
 								</td>
-			       			 	
 							</tr>
-							
-							
+
 							<tr>
 								<td colspan="4">
 								<button type="button" class="articlebtn" onclick="javascript:location.href='<%=cp%>/admin/notice/list?${query}';">리스트</button>

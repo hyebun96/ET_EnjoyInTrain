@@ -69,8 +69,6 @@
 							</header>
 							<div id="namul">
 							
-							<h3>▶ 공지사항 작성</h3>
-							
 					<form name="noticeForm" method="post" enctype="multipart/form-data">
 					<table class="noticearticle1">
 							<tr class="noticearticletitle">
@@ -78,17 +76,13 @@
 								<td colspan="3" style="text-align: left;"> <input type="text" name="noticeTitle" maxlength="100" class="boxTF" style="width: 100%;" value="${dto.noticeTitle}"> </td>
 							</tr>
 							<tr style="padding: 5px 5px;">
-								<td class="notice-content1" colspan="4"> <textarea name="noticeContent" rows="12" style="width: 100%;" >${dto.noticeContent}</textarea></td>
+								<td class="notice-content1" colspan="4"><textarea name="noticeContent" rows="12" style="width: 100%;" >${dto.noticeContent}</textarea></td>
 							</tr>
 							
-							<tr class="articleReadDto1">
-							
-								<td colspan="4">
-									<font style="font-weight: bold;">첨부 파일  ▶</font>
-									<input type="file" name="upload" multiple="multiple" class="boxTF" size="53" style="width: 200px; height: 25px;">
-								</td>
-							
-							
+							<tr class="articleReadDto1" style="border-bottom: 1px solid black; height: 40px">
+								<td style="border-right: 1px solid black; text-align: center;">첨부 파일  ▶</td>
+								<td colspan="3"><input type="file" name="upload" multiple="multiple" class="boxTF" size="53" style="width: 200px; height: 25px; padding-left: 20px;"></td>
+							</tr>
 						</table>
 			        </form>
 					<button type="button" class="articlebtn" onclick="sendOk();">${mode=='update'?'수정완료':'등록하기'}</button>

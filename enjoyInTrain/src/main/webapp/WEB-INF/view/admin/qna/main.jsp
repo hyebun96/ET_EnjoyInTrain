@@ -293,7 +293,7 @@ function sendOk(mode) {
 				
 					<div class="9u skel-cell-important">
 						<section>
-							<header style="margin: 0px; padding: 0px">
+							<header style="margin-bottom: 2em padding: 0px">
 								<h2>Q&#38;A</h2>
 								<span class="byline" style="width: 500px;">Question And Answer</span>
 							</header>

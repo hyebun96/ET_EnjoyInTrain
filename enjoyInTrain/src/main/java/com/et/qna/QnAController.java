@@ -164,16 +164,22 @@ public class QnAController {
 		
 		service.updateHitCount(num);
 		
-		QnA dto = service.readQnA(num);
+		QnA dto = null;
+		
+		try {
+			dto = service.readQnA(num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 		if(dto==null) {
 			return "qna/list?"+query;
 		}
 		
-		
 		if(dto.getQnaContent()!=null) {
 			dto.setQnaContent(dto.getQnaContent().replaceAll("\n", "<br>"));
 		}
-		
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("group", group);
@@ -189,7 +195,7 @@ public class QnAController {
 		model.addAttribute("group", group);
 		model.addAttribute("query", query);
 		
-		return "/qna/article";
+		return "qna/article";
 	}
 	
 	@RequestMapping(value="delete", method=RequestMethod.POST)

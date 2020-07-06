@@ -47,22 +47,18 @@ a:hover, a:active{
 
 #board_subnum{
 	width: 10%;
-	border-right: 1px solid #cccccc;
 }
 
 #board_subtitle{
 	width: 40%;
-	border-right: 1px solid #cccccc;
 }
 
 #board_subwriter{
 	width: 15%;
-	border-right: 1px solid #cccccc;
 }
 
 #board_subcreated{
 	width: 25%;
-	border-right: 1px solid #cccccc;
 }
 
 #board_subcount{

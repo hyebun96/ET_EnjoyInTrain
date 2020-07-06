@@ -110,18 +110,6 @@ public class QnAServiceImp implements QnAService{
 	}
 
 	@Override
-	public void insertCategory(Map<String, Object> map) throws Exception {
-		
-		
-	}
-
-	@Override
-	public void updateCategory(Map<String, Object> map) throws Exception {
-		
-		
-	}
-
-	@Override
 	public List<QnA> listCategory() {
 		List<QnA> listCategory = null;
 		try {
@@ -130,12 +118,6 @@ public class QnAServiceImp implements QnAService{
 			e.printStackTrace();
 		}
 		return listCategory;
-	}
-
-	@Override
-	public void deleteCategory(int categoryNum) throws Exception {
-		
-		
 	}
 
 	@Override

@@ -20,10 +20,7 @@ public interface QnAService {
 	public void updateQnA(QnA dto) throws Exception; // 질문수정
 	public void deleteQnA(Map<String, Object> map) throws Exception;	// 질문삭제
 	
-	public void insertCategory(Map<String, Object> map) throws Exception;
-	public void updateCategory(Map<String, Object> map) throws Exception;
 	public List<QnA> listCategory();
-	public void deleteCategory(int categoryNum) throws Exception;
 	
 	public List<FAQ> readFAQ(int group) throws Exception;
 	
