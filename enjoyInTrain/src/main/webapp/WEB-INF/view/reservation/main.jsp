@@ -191,13 +191,6 @@ function listPage(page) {
 }
 
 </script>
-	<!-- Banner -->
-		<div id="banner">
-			<div class="container">
-			</div>
-		</div>
-	<!-- /Banner -->
-
 	<!-- Main -->
 		<div id="page" >
 				

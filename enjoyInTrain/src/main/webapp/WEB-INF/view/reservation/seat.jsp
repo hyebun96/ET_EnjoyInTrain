@@ -105,6 +105,7 @@ function confirmBtn(){
 		}
 	}
 	query+="&roomNum=${map.roomNum}";
+	query+="&directRv=false";
 	//호실, 좌석, 기차번호, 기차종류는 주소뒤 쿼리로 보내기
 	var f=document.seatForm;
 	f.action="<%=cp%>/reservation/confirm?"+query;

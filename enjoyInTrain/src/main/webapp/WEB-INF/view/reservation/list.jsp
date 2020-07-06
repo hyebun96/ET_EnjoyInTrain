@@ -35,6 +35,26 @@ $(function(){
 		var selector="#modal-content2";
 		ajaxHTML(url, "post", query, selector);
 	});
+	
+	$(".reservationBtn").click(function(){
+		var trainCode=$(this).closest("tr").children(".tCode").text();  //기차코드 가져오기
+		var trainName=$(this).closest("tr").children(".tName").text();  //기차종류 가져오기
+		var stTime=$(this).closest("tr").children().children(".stTime").text();  //출발시간 가져오기
+		var endTime=$(this).closest("tr").children().children(".endTime").text();  //도착시간 가져오기
+		var query="";
+		query+="&total=${rsDto.total}";
+		query+="&trainCode="+trainCode+"&trainName="+trainName+"&stTime="+stTime+"&endTime="+endTime;
+		query+="&day=${rsDto.day}";
+		if($(this).val()=='special'){
+			query+="&roomGrade="+"특실";
+		}else{
+			query+="&roomGrade="+"일반실";
+		}
+		query+="&directRv=true";
+		var f=document.reservationForm;
+		f.action="<%=cp%>/reservation/confirm?"+query;
+		f.submit();
+	});
 });
 
 
@@ -86,13 +106,13 @@ $(function(){
 				<c:forEach items="${special}" var="sp">
 					<c:if test="${sw}">
 						<c:if test="${sp==dto.trainCode}">
-							<button type="button" style="border:none; background: gray; color: white;">좌석부족</button><br>
+							<button type="button" style="border:none; background: gray; color: white;">&nbsp;&nbsp;매&nbsp;&nbsp;진&nbsp;&nbsp;</button><br>
 							<c:set var="sw" value="false"/>
 						</c:if>
 					</c:if>
 				</c:forEach>
 				<c:if test="${sw}">
-					<button style="border:none; background: #6f047f; color: white;">예약하기</button><br>
+					<button class="reservationBtn" value="special" style="border:none; background: #6f047f; color: white;">예약하기</button><br>
 					<button class="seatBtn" value="special" type="button" style="border:none; background: #008299; color: white;">좌석선택</button>
 				</c:if>
 			</td>
@@ -101,13 +121,13 @@ $(function(){
 				<c:forEach items="${general}" var="sp">
 					<c:if test="${sw}">
 						<c:if test="${sp==dto.trainCode}">
-							<button type="button" style="border:none; background: gray; color: white;">좌석부족</button><br>
+							<button type="button" style="border:none; background: gray; color: white;">&nbsp;&nbsp;매&nbsp;&nbsp;진&nbsp;&nbsp;</button><br>
 							<c:set var="sw" value="false"/>
 						</c:if>
 					</c:if>
 				</c:forEach>
 				<c:if test="${sw}">
-					<button style="border:none; background: #6f047f; color: white;">예약하기</button><br>
+					<button class="reservationBtn" value="general" style="border:none; background: #6f047f; color: white;">예약하기</button><br>
 					<button class="seatBtn" value="general" type="button" style="border:none; background: #008299; color: white;">좌석선택</button>
 				</c:if>
 			</td>

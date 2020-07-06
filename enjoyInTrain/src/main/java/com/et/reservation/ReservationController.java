@@ -148,10 +148,31 @@ public class ReservationController {
 			@RequestParam Map<String, String> map,
 			Model model
 			) {
+		if(map.get("directRv").equals("true")) {
+			if(map.get("tCategory").equals("all")) {
+				map.put("tCategory", "KTX");  //수정필요
+			}else if(map.get("tCategory").equals("KTX")) {
+				map.put("tCategory", "KTX");
+			}else if(map.get("tCategory").equals("ITX")) {
+				map.put("tCategory", "ITX");
+			}else if(map.get("tCategory").equals("mugunghwa")) {
+				map.put("tCategory", "mugunghwa");
+			}
+			
+			//기차칸
+			String roomNum=service.roomFirst(map);
+			map.put("roomNum", roomNum);
+			//좌석
+			List<String> seatList=service.unReservedSeat(map);  
+			int i=1;
+			for(String seat:seatList) {
+				map.put("seatNum"+i, seat);
+				i++;
+			}
+		}
+		
 		//좌석을 list에 담아준다.
 		List<ReservedSeat> seatList=new ArrayList<>();
-		
-		
 		int total=Integer.parseInt(map.get("total"));
 		
 		//승객유형

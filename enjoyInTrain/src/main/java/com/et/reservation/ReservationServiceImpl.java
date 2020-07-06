@@ -341,4 +341,72 @@ public class ReservationServiceImpl implements ReservationService{
 		}
 		return fulltrCode;
 	}
+
+	//예약되어있지 않은 좌석을 원하는 개수만큼 가져오기
+	@Override
+	public List<String> unReservedSeat(Map<String, String> map) {
+		List<String> unList=new ArrayList<>();
+		try {
+			int total=Integer.parseInt(map.get("total"));
+			
+			//날짜(ex 2020/7/2(목))->2020/7/2 형식으로 바꿔줌
+			String trDate=map.get("day");
+			map.put("trDate", trDate.substring(0,trDate.length()-3));
+			
+			//해당 기차의 출발역과 도착역 각각의 lineOrder를 가져오기
+			Map<String, Object> model=new HashMap<>();
+			model=dao.selectOne("reservation.readStation", map.get("startSt"));
+			map.put("stLineOrder", model.get("LINEORDER").toString());  //출발역 lineOrder
+			model=dao.selectOne("reservation.readStation", map.get("endSt"));
+			map.put("endLineOrder", model.get("LINEORDER").toString());  //도착역 lineOrder
+			List<String> reSeatList=dao.selectList("reservation.listReservedSeat",map);
+			
+			map.put("tCategory", map.get("trainName"));
+			Seat seat=dao.selectOne("reservation.readseat",map);  ///
+			
+			int row=seat.getSeatRow();
+			int column=seat.getSeatColumn();
+			for(int i=1; i<=row*column; i++) {
+				String seatNum="";
+				if(unList.size()<total) {  //인원수만큼 가져온다
+					//해당 기차종류, 칸의 행 열값 이용해서 A1 이런식으로 좌석표시 바꿔줌
+					if(i%column!=0) {
+						seatNum+=Integer.toString(i%column);
+						switch (i/column) {
+						case 0: seatNum+="A"; break;
+						case 1: seatNum+="B"; break;
+						case 2: seatNum+="C"; break;
+						case 3: seatNum+="D"; break;
+						}
+					}else {
+						seatNum+=Integer.toString(1);
+						switch (i/column) {
+						case 1: seatNum+="A"; break;
+						case 2: seatNum+="B"; break;
+						case 3: seatNum+="C"; break;
+						case 4: seatNum+="D"; break;
+						}
+					}
+					
+					//바꿔준 좌석이 이미 예약된 좌석에 있는지 확인
+					int j=0;
+					for(String reSeat:reSeatList) {
+						if(seatNum.equals(reSeat)) {
+							break;
+						}else {
+							j++;
+						}
+					}
+					
+					if(j==reSeatList.size()) {
+						unList.add(seatNum);
+					}
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return unList;
+	}
 }

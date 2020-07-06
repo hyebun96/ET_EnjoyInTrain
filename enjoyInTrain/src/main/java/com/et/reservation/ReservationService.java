@@ -16,4 +16,5 @@ public interface ReservationService {
 	public String roomFirst(Map<String, String> map);
 	public List<Integer> fullSeat(Map<String, String> map);
 	public List<Integer> fulltrCode(Map<String, String> map);
+	public List<String> unReservedSeat(Map<String, String> map);
 }
