@@ -42,11 +42,14 @@ function suggestList(){
 }
 </script>
 
+	<!-- Banner -->
+		<div id="banner">
+			<div class="container">
+			</div>
+		</div>
+	<!-- /Banner -->
 
-
-	<!-- Main -->
-		<div id="adminpage">
-				
+	
 			<!-- Main -->
 			<div id="main" class="container" style="margin-top: 0; padding-top: 0;">
 				<div class="row">
@@ -119,6 +122,3 @@ function suggestList(){
 				</div>
 			</div>
 			<!-- Main -->
-
-		</div>
-	<!-- /Main -->

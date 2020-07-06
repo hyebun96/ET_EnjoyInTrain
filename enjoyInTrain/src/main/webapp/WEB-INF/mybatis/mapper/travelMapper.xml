@@ -127,6 +127,20 @@
 		FROM readContentFile WHERE fileContentNum = ${fileNum}
 	</select>
 	
+	<select id="randomMain" resultType="com.et.travel.Travel">
+		SELECT pmCode, pmPrice, pmTitle, product, saveFilename FROM(
+		    SELECT pd.pmCode, pmPrice, pmTitle, product, saveFilename FROM promotionDetail pd
+		    JOIN promotionfile f ON pd.pmCode = f.pmCode
+		    ORDER BY DBMS_RANDOM.RANDOM
+		) WHERE rownum &lt; 5
+	</select>
+	
+	<select id="deadLine" resultType="com.et.travel.Travel">
+		SELECT pd.pmCode, pmPrice, pmTitle, product, saveFilename, TO_CHAR(pmendDate-SYSDATE)*(24*60*60) final
+	    FROM promotionDetail pd
+	    JOIN promotionfile f ON pd.pmCode = f.pmCode
+	    ORDER BY final
+	</select>
 	
 	
 	

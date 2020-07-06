@@ -34,7 +34,7 @@
 							</li>
 							<li class="navbar"><a href="<%=cp%>/exam">Board</a>
 								<ul class="navbar2">
-									<li><a href="<%=cp%>/qna/main">Q&#38;A</a></li>
+									<li><a href="<%=cp%>/notice/list">공지사항</a></li>
 									<li><a href="<%=cp%>/faq/list">FAQ</a></li>
 								</ul>
 							</li>
@@ -53,11 +53,9 @@
 								</ul>
 							</li>
 							
-							<li class="navbar"><a href="<%=cp %>/booking/receipt">Board</a>
+							<li class="navbar"><a href="<%=cp %>/booking/receipt">Customer</a>
 								<ul class="navbar4">
 									<li><a href="<%=cp%>/qna/main">Q&#38;A</a></li>
-									<li><a href="<%=cp%>/faq/list">FAQ</a></li>
-									<li><a href="<%=cp%>/notice/list">공지사항</a></li>
 									<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
 									<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
 									<li><a href="<%=cp%>/suggest/list">고객의 소리</a></li>

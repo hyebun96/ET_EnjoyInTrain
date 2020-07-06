@@ -227,8 +227,10 @@ function list(group){
 				<section>
 					<header>
 						<h3 style="font-weight: bold; font-size: 25px;">여행 상품 리스트</h3>
+						<p style="clear:both; float: right; padding-right: 50px;">
+							<a href="<%=cp%>/travel/travel">더 많은 상품 보기<i class="fas fa-plus"></i></a>
+						</p>
 					</header>
-					
 					<div id ="tab-content" style="clear: both; padding: 10px 0px 0px; width: 800px;"></div>
 						
 				</section>
@@ -236,28 +238,18 @@ function list(group){
 					
 					
 			<!-- 세일 -->
-			<div class="3u">
+			<div class="3u" style="padding-left: 100px;">
 				<section class="sidebar">
 					<header>
-						<h2 style="font-weight: bold;">특별 할인 상품</h2>
+						<h2 style="font-weight: bold;">마감 임박 상품</h2>
 					</header>
 					<ul class="style2">
-						<li>
-							<a href="#"><img src="<%=cp%>/resource/images/pics07.jpg" alt=""></a>
-							<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
+					<c:forEach var="vo" items="${deadLineList}" end="2">
+						<li style="width: 200px;">
+							<a href="<%=cp%>/travel/travel?pmCode=${vo.pmCode}"><img src="<%=cp%>/uploads/travel/${vo.saveFileName}" width="200px" height="130px;"></a>
+							<p>${vo.pmTitle}</p>
 						</li>
-						<li>
-							<a href="#"><img src="<%=cp%>/resource/images/pics08.jpg" alt=""></a>
-							<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
-						</li>
-						<li>
-							<a href="#"><img src="<%=cp%>/resource/images/pics09.jpg" alt=""></a>
-							<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
-						</li>
-						<li>
-							<a href="#"><img src="<%=cp%>/resource/images/pics10.jpg" alt=""></a>
-							<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
-						</li>
+					</c:forEach>
 					</ul>						
 				</section>
 			</div>

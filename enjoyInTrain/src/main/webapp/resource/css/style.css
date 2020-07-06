@@ -928,8 +928,8 @@ ul.nav .navbar:hover > ul {
   font-size: 15px;
   
 }
-.navbar2{left: 30%;}
-.navbar3{left: 60%;}
+.navbar2{left: 28%;}
+.navbar3{left: 56%;}
 .navbar4{left: 60%;}
 
 
@@ -1318,7 +1318,6 @@ ul.adminnav li:hover > ul li a:hover {
 }
 
 .mainhot{
-	width : 800px;
 	padding-top : 50px;
 	height : 150px;
 	font-weight: 600;

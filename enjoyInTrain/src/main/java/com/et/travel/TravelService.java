@@ -34,5 +34,8 @@ public interface TravelService {
 	public void deleteTrain(int trainCode) throws Exception;
 	
 	public void insertPromotionAdd(Promotion dto) throws Exception;
+	
+	public List<Travel> randomMain() throws Exception;
+	public List<Travel> deadLine() throws Exception;
 
 }

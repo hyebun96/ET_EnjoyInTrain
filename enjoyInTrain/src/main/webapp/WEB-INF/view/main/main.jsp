@@ -7,10 +7,43 @@
 %>
 <link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+<style>
+.img-box1{
+	width: 100px;
+  	display: inline-block;
+}
 
+.hover-box1{
+  text-align:center;
+  background:orange;
+  color: white; 
+}
+
+p.title1{
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.box1 .hover-box1{
+  position:absolute;
+  opacity:0;
+  top:410px; left:510px;
+  display:flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.img-box1 .box1:hover .hover-box1{
+  opacity:1;
+  transform: translate(10px,10px);
+}
+
+</style>
 <!-- Main -->
 <div id="page1">
-	<a style="display:scroll;position:fixed;bottom:40px;right:40px; font-size: 15px;" href="#" title="맨위로">
+	<a style="display:scroll;position:fixed; bottom:40px;right:40px; font-size: 15px;" href="#" title="맨위로">
 		<img src="<%=cp%>/resource/images/up.png" alt="" width="40px;">
 	</a>
 	
@@ -57,19 +90,19 @@
 								</a>
 							</td>
 							<td class="mainreservationicon1">
-								<a href="#"><img src="<%=cp%>/resource/images/railway.png" alt="" width="50px;">
+								<a href="<%=cp%>/qna/main"><img src="<%=cp%>/resource/images/qna.png" alt="" width="60px;">
 								<br>
-								열차 시간표 조회
+								QnA
 								</a>
 							</td>
 							<td class="mainreservationicon1">
-								<a href="#"><img src="<%=cp%>/resource/images/phone.png" alt="" width="50px;">
+								<a href="<%=cp%>/lostBoard/list"><img src="<%=cp%>/resource/images/freeboard.png" alt="" width="60px;">
 								<br>
-								 고객센터
+								 자유게시판
 								 </a>
 							</td>
 							<td class="mainreservationicon1">
-								<a href="#"><img src="<%=cp%>/resource/images/lost.png" alt="" width="50px;">
+								<a href="<%=cp%>/lostBoard/list"><img src="<%=cp%>/resource/images/lost.png" alt="" width="50px;">
 								<br>
 								 유실물 센터
 								 </a>
@@ -106,7 +139,24 @@
 						<table class="z">
 							<tr>
 								<td class="maintop1_notice1">
-									<img src="<%=cp%>/resource/images/ex7.PNG" alt="" width="312" height="100" style="opacity: 1">
+									<div class="img-box1 box1" >
+										  <img src="<%=cp%>/resource/images/oldman.png" width="100px">
+										  <div class="hover-box1" style="width: 100px; height: 100px;">
+										    <p class="title1">힘내라 노인</p>
+										  </div>
+									</div>								
+									<div class="img-box1 box1">
+										  <img src="<%=cp%>/resource/images/youth.png"  width="100px">
+										  <div class="hover-box1" style="width: 100px;  height: 100px;">
+										    <p class="title1">지금해라 청춘</p>
+										  </div>
+									</div>								
+									<div class="img-box1 box1" >
+										  <img src="<%=cp%>/resource/images/child.PNG" width="100px">
+										  <div class="hover-box1" style="width: 100px;  height: 100px;">
+										    <p class="title1">용기내라 청소년</p>
+										  </div>
+									</div>								
 								</td>
 								<td class="maintop1_notice2">
 									<img src="<%=cp%>/resource/images/call.PNG" alt="" width="312" height="100" style="opacity: 1; background-size: cover;" >
@@ -135,13 +185,27 @@
 		<img src="<%=cp%>/resource/images/ex11.png" alt="" width="250px;" height="40px;" class="main00010" style="margin-left: -100px;">
 	</div>
 
-	<div class="maindesign">   <!-- mainhot --> 
+	<div class="maindesign" style="padding-bottom: 50px;">   <!-- mainhot --> 
 		<div class="mainhot">
 			<h2 style="float: left; font-weight: bold;">ET HOT PROMOTION</h2>
-			<p style="clear:both; float: right;">
+			<p style="clear:both; float: right; padding-right: 50px;">
 				<a href="<%=cp%>/travel/main">더 많은 상품 보기<i class="fas fa-plus"></i></a>
 			</p>
 		</div>
+		
+	
+		<c:forEach var="dto"  items="${travelList}">
+		<div class="3u"  style="display: inline-block; width: 250px; margin-right: 30px;">
+				<p style="width: 250px; height: 50px; font-weight: bold;">${dto.pmTitle}</p>
+				<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto.pmPrice}" pattern="#,###" /></p>
+				<p>
+					<a href="<%=cp%>/travel/travel?pmCode=${dto.pmCode}">
+						<img src="<%=cp%>/uploads/travel/${dto.saveFileName}" style="width: 250px; height: 200px;">
+					</a>
+				</p>
+		</div>
+		</c:forEach>
+		
 	</div>
 </div>
 <!-- /Main -->

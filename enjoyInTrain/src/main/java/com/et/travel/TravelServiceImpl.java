@@ -304,5 +304,27 @@ public class TravelServiceImpl implements TravelService{
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public List<Travel> randomMain() throws Exception {
+		List<Travel> list = null;
+		try {
+			list = dao.selectList("travel.randomMain");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<Travel> deadLine() throws Exception {
+		List<Travel> list = null;
+		try {
+			list = dao.selectList("travel.deadLine");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 }

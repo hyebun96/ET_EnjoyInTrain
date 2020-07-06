@@ -37,8 +37,6 @@ public class TravelController {
 			Model model) throws Exception{
 		
 		List<Category> categoryList = service.listCategory();
-		model.addAttribute("categoryList", categoryList);
-		
 		List<Travel> travelRankList = service.travelRankList();
 		
 		int i=1;
@@ -47,7 +45,12 @@ public class TravelController {
 			i++;
 		}
 		
+		List<Travel> deadLineList = service.deadLine();
+		
+		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("pmCode", pmCode);
+		model.addAttribute("deadLineList", deadLineList);
+		
 		return ".travel.main";
 	}
 	
