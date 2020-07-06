@@ -16,6 +16,7 @@ a:hover, a:active{
 	background: none;
 	border: 1px solid #ccc;
 	cursor: pointer;
+	border-radius: 5px;
 }
 
 
@@ -55,9 +56,11 @@ a:hover, a:active{
 
 .noticebar{
 	width: 100%;
-	height: 10px;
-	border-bottom: 2px solid #cccccc;
+	height: 40px;
 	font-weight: 550;
+	background: #21373F;
+	color: white;
+	text-align: center;
 }
 
 
@@ -175,6 +178,10 @@ a:hover, a:active{
 
 .question2{
 	border-bottom: 1px solid #cccccc;
+}
+
+.board-list{
+	text-align: center;
 }
 
 .board-list :hover {

@@ -2,23 +2,18 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="train">
-	<!-- 시퀀스 추가 -->
-	<select id="seq" resultType="Integer">
-		SELECT trainSetting_seq.NEXTVAL FROM dual
-	</select>
+
 	<!-- 기차 추가(총 칸, 총 좌석 입력) -->
-	<insert id="insertCategory" parameterType="com.et.train.Train">
-		INSERT INTO trainCategory(trainCategory) VALUES (#{trainCategory})
+	<insert id="insertCategory" parameterType="String">
+		INSERT INTO trainCategory(trCategory) VALUES (#{trCategory})
 	</insert>
 	<insert id="insertRoom" parameterType="com.et.train.Train">
-		INSERT INTO trainSetting(trainCategory, roomNum, trainSeq, roomGrade, seatRow, seatColumn) VALUES(#{trainCategory}, #{roomNum}, #{trainNum}, #{roomGrade}, #{seatRow}, #{seatColumn})
+		INSERT INTO trainSetting(trCategory, roomNum, trainSeq,roomGrade, seatRow, seatColumn) VALUES(#{trCategory}, #{roomNum}, trainSetting_seq.NEXTVAL,
+		#{roomGrade}, #{seatRow}, #{seatColumn})
 	</insert>
 
 	<select id="listTrain" parameterType="map" resultType="com.et.train.Train">
-		SELECT trainSeq, trainCategory, COUNT(roomNum) roomNum, SUM(seatRow*seatColumn) trainSeatCount FROM trainSetting group by trainCategory;
+		SELECT trainSeq, trCategory, COUNT(roomNum) trainRoomCount, SUM(seatRow*seatColumn) trainSeatCount FROM trainSetting group by trainSeq,trCategory
 	</select>
 
-	<select id="trainCount" parameterType="map" resultType="Integer">
-		SELECT NVL(COUNT(*), 0) FROM trainCategory 
-	</select>
 </mapper>

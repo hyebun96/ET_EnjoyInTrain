@@ -474,7 +474,7 @@ $(function(){
 		style="width: 100%; margin: 20px auto 0px; border-spacing: 1px; background: #cccccc;">
 		<thead>
 			<tr height="35" bgcolor="#E4E6E4" align="center">
-				<td width="80">시간표등록고유번호</td>
+				<td width="80">시간표 No</td>
 				<td width="100">기차번호</td>
 				<td width="100">기차종류</td>
 				<td width="80">직원</td>

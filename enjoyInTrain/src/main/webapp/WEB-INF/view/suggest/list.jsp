@@ -53,15 +53,13 @@ function suggestList(){
 			<!-- Main -->
 			<div id="main" class="container" style="margin-top: 0; padding-top: 0;">
 				<div class="row">
-					<div class="3u">
+						<div class="3u">
 						<section class="sidebar">
 							<header>
-								<h2>게시판</h2>
+								<h2>Customer</h2>
 							</header>
 							<ul class="style1">
 								<li><a href="<%=cp%>/qna/main">QnA</a></li>
-								<li><a href="<%=cp%>/faq/list">FAQ</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
 								<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
 								<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
 								<li><a href="<%=cp%>/suggest/list">고객의소리</a></li>

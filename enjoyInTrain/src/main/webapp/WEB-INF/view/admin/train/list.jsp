@@ -62,7 +62,7 @@ $(function () {
 function send() {
     var f = document.insertTrainForm;
 
-	var str = f.trainCategory.value;
+	var str = f.trCategory.value;
     if(!str) {
         alert("기차 코드를 입력하세요. ");
         f.trainCode.focus();
@@ -84,34 +84,30 @@ function send() {
 			<div class="trainandtime">
 				<a href="<%=cp%>/admin/train/list">기차관리</a> <span>|</span> <a href="<%=cp%>/admin/timetable/main">시간표관리</a>
 			</div>
-
-
 				
 					<div class="trainandtime_train">
-						<ul>
-							<li id="train_button_reset">
-								<button type="button" onclick="javascript:location.href='<%=cp%>/losttrain/list?page=1';">새로고침</button>
-							</li>
-						</ul>
 						
 						<ul id="train_form1">
-							<li id="train_subnum">번호</li>
-							<li id="train_subwriter">기차종류</li>
-							<li id="train_subcreated">칸갯수</li>
-							<li id="train_subcount">좌석갯수</li>
+							<li class="train_subnum">번호</li>
+							<li class="train_subwriter">기차종류</li>
+							<li class="train_subcreated">칸갯수</li>
+							<li class="train_subcount">좌석갯수</li>
 						</ul>
 						<ul id="train_form2"  >
 							<c:forEach var="dto" items="${list}">
-								<li id="train_subnum_list">${dto.trainNum}</li>
-								<li id="train_subwriter_list">${dto.trainCategory}</li>
+								<li id="train_subnum_list">${dto.trainSeq}</li>
+								<li id="train_subwriter_list">${dto.trCategory}</li>
 								<li id="train_subcreated_list">${dto.trainRoomCount}</li>
 								<li id="train_subcount_list">${dto.trainSeatCount}</li>
 							</c:forEach>
 						</ul>
-						<form name="searchForm" action="<%=cp%>/losttrain/list" method="post">
+						<form name="searchForm" action="<%=cp%>/admin/train/list" method="post">
 							<ul id="train_button">
 								<li id="train_button_send">
 									<button type="button" id="insertTrain">기차추가</button>
+								</li>
+								<li id="train_button_reset">
+								<button type="button" onclick="javascript:location.href='<%=cp%>/admin/train/list?page=1';">새로고침</button>
 								</li>
 							</ul>
 						</form>
@@ -131,7 +127,7 @@ function send() {
 				<table>
 					<tr>
 						<td id="train_question">기차종류</td>
-						<td id="train_answer"><input type="text" name="trainCategory" ></td>
+						<td id="train_answer"><input type="text" name="trCategory" ></td>
 						<td id="train_question">칸수</td>
 						<td id="train_answer">
 							<select name="trainRoomCount">

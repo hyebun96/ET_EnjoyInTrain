@@ -31,9 +31,6 @@
 			<!-- Main -->
 			<div id="main" class="container">
 				<div class="row">
-
-
-					<div id="board_title">유실물 게시판</div>
 				
 					<div class="9u skel-cell-important">
 							<ul>

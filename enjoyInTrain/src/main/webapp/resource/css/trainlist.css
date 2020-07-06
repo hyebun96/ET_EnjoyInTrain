@@ -15,13 +15,15 @@ a:hover, a:active{
 	height: 60px;
 }
 
-#train_main{
-	width : 800px;
-	min-height: 750px;
-}
 
 #train_page{
 	text-align: right;	
+}
+#train_form1{
+	width: 100%;
+}
+#train_form2{
+	width: 100%;
 }
 
 #train_form1 li{
@@ -32,10 +34,11 @@ a:hover, a:active{
 	line-height: 40px;
 	text-align: center;
 	font-weight: bold;
+	background: #cccccc;
 }
 
-#train_subnum{
-	width: 10%;
+.train_subnum{
+	width: 25%;
 	border-right: 1px solid #cccccc;
 }
 
@@ -44,18 +47,18 @@ a:hover, a:active{
 	border-right: 1px solid #cccccc;
 }
 
-#train_subwriter{
-	width: 15%;
-	border-right: 1px solid #cccccc;
-}
-
-#train_subcreated{
+.train_subwriter{
 	width: 25%;
 	border-right: 1px solid #cccccc;
 }
 
-#train_subcount{
-	width: 10%;
+.train_subcreated{
+	width: 25%;
+	border-right: 1px solid #cccccc;
+}
+
+.train_subcount{
+	width: 25%;
 }
 
 #train_form2 li{
@@ -66,7 +69,7 @@ a:hover, a:active{
 #train_subnum_list{
 	clear:both;
 	float: left;
-	width: 10%;
+	width: 25%;
 	height: 30px;
 	text-align: center;
 	border-bottom: 1px solid #cccccc;
@@ -74,18 +77,20 @@ a:hover, a:active{
 
 #train_subtitle_list{
 	float: left;
-	width: 40%;
+	width: 25%;
 	height: 30px;
 	padding-left: 10px;
 	border-bottom: 1px solid #cccccc;
+	
 }
 
 #train_subwriter_list{
 	float: left;
-	width: 15%;
+	width: 25%;
 	height: 30px;
 	padding-left: 10px;
 	border-bottom: 1px solid #cccccc;
+	text-align: center;
 }
 
 #train_subcreated_list{
@@ -98,7 +103,7 @@ a:hover, a:active{
 
 #train_subcount_list{
 	float: left;
-	width: 10%;
+	width: 25%;
 	height: 30px;
 	text-align: center;
 	border-bottom: 1px solid #cccccc;
@@ -110,28 +115,28 @@ a:hover, a:active{
 
 #train_button{
 	text-align: right;
-	width: 650px;
 	height: 40px;
+	margin-top: 100px;
 }
 
 #train_button_reset{
-	float: right;
-	width: 100%;
+	text-align: right;
+	margin-right: 80px;
 }
 
 #train_button_reset button{
 	height: 40px;
+	border-radius: 5px;
 }
 
 
 #train_button_send{
-	width: 100%;
 	float: right;
 }
 
 #train_button_send button{
 	height: 40px;
-	
+	border-radius: 5px;
 }
 
 #train-sample{

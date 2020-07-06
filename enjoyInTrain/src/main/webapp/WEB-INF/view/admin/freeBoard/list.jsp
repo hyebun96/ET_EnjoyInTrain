@@ -60,8 +60,8 @@ tr.over {
 	background: #f5fffa;
 }
 
-a:-webkit-any-link {
-    cursor: pointer;
+.row a{
+	cursor: pointer;
     text-decoration: none;
     color: black;
 }

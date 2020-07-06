@@ -24,15 +24,26 @@ a:hover, a:active{
 	text-align: right;	
 }
 
-#board_form1 li{
-	float: left;
-	border-top: 2px solid #cccccc;
-	border-bottom: 2px solid #cccccc;
-	height: 40px;
-	line-height: 40px;
-	text-align: center;
-	font-weight: bold;
+#board_form1{
+	width: 100%;
+	
 }
+
+#board_form1 li{
+	height: 40px;
+	font-weight: 550;
+	background: #21373F;
+	color: white;
+	text-align: center;
+	float: left;
+	padding-top: 5px;
+}
+
+.board_form1_1{width: 10%;}
+.board_form1_2{width: 40%;}
+.board_form1_3{width: 15%;}
+.board_form1_4{width: 25%;}
+.board_form1_5{width: 10%;}
 
 #board_subnum{
 	width: 10%;
@@ -61,6 +72,7 @@ a:hover, a:active{
 #board_form2 li{
 	height: 40px;
 	line-height: 40px;
+	text-align: center;
 }
 
 #board_subnum_list{
@@ -108,59 +120,12 @@ a:hover, a:active{
 	border-top: 2px solid #cccccc;
 }
 
-#board_button{
-	margin:0 auto;
-	text-align: center;
-	width: 650px;
-}
-
-#board_button_reset{
-	float: left;
-	width: 90px;
-}
-
-#board_button_reset button{
-	height: 30px;
-}
-
-#board_button_option{
-	float: left;
-	width: 90px;
-}
-
-#board_button_option select{
-	width: 80px;
-	height: 30px;
-}
-
-#board_button_word{
-	float: left;
-	width: 250px;
-}
-
-#board_button_word input{
-	width: 250px;
-}
-
-#board_button_search{
-	float: left;
-	width: 70px;
-}
-
-#board_button_search button{
-	width: 55px;
-	height: 30px;
-}
-
-#board_button_send{
-	float: left;
-	width: 70px;
-}
-
-#board_button_send button{
-	height: 30px;
-}
 
 #board-sample{
 	text-align: center;
+}
+
+#board_button > li{
+	float: left;
+	margin-right: 5px;
 }

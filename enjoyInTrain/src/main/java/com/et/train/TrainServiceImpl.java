@@ -17,9 +17,8 @@ public class TrainServiceImpl implements TrainService{
 	@Override
 	public void insertRoom(Train dto) {
 		try {
-			int seq = dao.selectOne("train.seq");
-			dto.setTrainNum(seq);
-			dao.insertData("train.insertCategory", dto);
+
+			dao.insertData("train.insertCategory", dto.getTrCategory());
 			int total=0;
 			if(dto.getRoomNames()!=null) {
 				for(int i=0; i<dto.getRoomNums().size(); i++) {

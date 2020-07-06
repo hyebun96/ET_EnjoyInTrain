@@ -833,9 +833,9 @@
 		}
 	#adminheader{
 		position: relative;
-		background: #5f1052;
+		background: black;
 		height: 1500px;
-		width: 30%;
+		width: 15%;
 		float: left;
 	}
 
@@ -1087,10 +1087,11 @@ ul.adminnav li:hover > ul li a:hover {
 	
 	#adminpage{
 		position: relative;
-		width: 70%;
+		width: 85%;
 		float: left;
 		height: 1300px;
 		padding-left: 25px;
+		padding-right: 30px;
 	}
 	
 	#adminpage > #main.container{
@@ -1391,7 +1392,7 @@ ul.adminnav li:hover > ul li a:hover {
 	font-size: 25px;
 	padding-bottom: 50px;
 	border:none;
-	border-bottom: 1px solid #00a8a8;
+	border-bottom: 1px solid black;
 	margin-top: 30px;
 }
 

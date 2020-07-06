@@ -25,14 +25,14 @@
 				<!-- Nav -->
 				<div class="menu">
 						<ul class="nav">
-							<li class="navbar" style="margin-left: 0px;"><a href="<%=cp%>/temp/left-sidebar.jsp">Reservation</a>
+							<li class="navbar" style="margin-left: 0px;"><a href="#">Reservation</a>
 								<ul class="navbar1">
 									<li><a href="<%=cp%>/reservation/main">예약 하기</a></li>
 									<li><a href="<%=cp%>/faq/list">예약 조회</a></li>
 									
 								</ul>
 							</li>
-							<li class="navbar"><a href="<%=cp%>/exam">Board</a>
+							<li class="navbar"><a href="#">Board</a>
 								<ul class="navbar2">
 									<li><a href="<%=cp%>/notice/list">공지사항</a></li>
 									<li><a href="<%=cp%>/faq/list">FAQ</a></li>
@@ -49,11 +49,11 @@
 							<li class="navbar"><a href="<%=cp%>/travel/main">Promotion&nbsp;&nbsp;</a>
 								<ul class="navbar3">
 									<li><a href="<%=cp%>/travel/travel">프로모션 리스트</a></li>
-									<li><a href="<%=cp%>/faq/list">프로모션 예약 조회</a></li>
+									<li><a href="#">프로모션 예약 조회</a></li>
 								</ul>
 							</li>
 							
-							<li class="navbar"><a href="<%=cp %>/booking/receipt">Customer</a>
+							<li class="navbar"><a href="#">Customer</a>
 								<ul class="navbar4">
 									<li><a href="<%=cp%>/qna/main">Q&#38;A</a></li>
 									<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>

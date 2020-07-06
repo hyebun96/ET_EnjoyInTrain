@@ -90,15 +90,13 @@ function searchList() {
 		<div class="row">
 			
 			<!-- 사이드 바 메뉴 -->
-			<div class="3u">
+				<div class="3u">
 						<section class="sidebar">
 							<header>
-								<h2>게시판</h2>
+								<h2>Customer</h2>
 							</header>
 							<ul class="style1">
 								<li><a href="<%=cp%>/qna/main">QnA</a></li>
-								<li><a href="<%=cp%>/faq/list">FAQ</a></li>
-								<li><a href="<%=cp%>/notice/list">공지사항</a></li>
 								<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
 								<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
 								<li><a href="<%=cp%>/suggest/list">고객의소리</a></li>
@@ -178,15 +176,15 @@ function searchList() {
 								
 		      					<td align="center">
 									<form name="searchForm" action="<%=cp%>/freeBoard/list" method="post">
-										<select name="condition" class="selectField">
+										<select name="condition" class="selectField, noticebtn">
 											<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
 											<option value="fbTitle" ${condition=="fbTitle"?"selected='selected'":""}>제목</option>
 											<option value="fbContent" ${condition=="fbContent"?"selected='selected'":""}>내용</option>
 											<option value="crewName" ${condition=="crewName"?"selected='selected'":""}>작성자</option>
 											<option value="fbCreated" ${condition=="fbCreated"?"selected='selected'":""}>등록일</option>
 										</select>
-										<input type="text" name="keyword" value="${keyword}" class="boxTF" width="50">
-										<button type="button" class="btnsearch" id="btnsearch" onclick="searchList()">검색</button>
+										<input type="text" name="keyword" value="${keyword}" class="noticeinput" width="300px">
+										<button type="button" class="noticebtn" id="btnsearch" onclick="searchList()">검색</button>
 									</form>
 								</td>
 								

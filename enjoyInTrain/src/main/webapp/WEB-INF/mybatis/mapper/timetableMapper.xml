@@ -21,7 +21,7 @@
 	<select id="listTimeTable" parameterType="map" resultType="com.et.timetable.TimeTable">
 		SELECT sl.scode, sl.traincode, trainname, p.ptcategory, HAENGSIN, YONGSAN, GWANGMYEONG, CHEONANASAN, OSONG,
 		 GONGJU, SEODAEJEON, GYERYONG, NONSAN, IKSAN, JEONGEUP, GWANGJUSONGJEONG, NAJU, MOKPO
-         from stationline2 sl 
+         from stationline6 sl 
          join train6 tr on sl.traincode = tr.traincode
          join employee e on e.emcode = tr.emcode
          join position p on e.ptcode = p.ptcode

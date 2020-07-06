@@ -8,8 +8,8 @@
 
 <!-- Header -->
 		<div id="adminheader">
-			<div class="adminmenulogo">
-			<a href="<%=cp%>/admin"><img src="<%=cp%>/resource/images/mainlogo.png" width="135px" height="90px;"></a>
+			<div class="adminmenulogo" style="padding-top: 50px;">
+			<a href="<%=cp%>/admin"><img src="<%=cp%>/resource/images/logotest3.png" width="135px" height="90px;"></a>
 			</div>
 			
 			<div class="adminloginForm">
