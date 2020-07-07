@@ -6,7 +6,7 @@
    String cp = request.getContextPath();
 %>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
-
+<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
 <style type="text/css">
 .homepage #main{
 	margin-top: 0em;
@@ -129,7 +129,7 @@ function searchList() {
 						
 						
 						<table style="width: 100%; margin: 0px auto; border-spacing: 0px; border-collapse: collapse;">
-							<tr class="menu-heght2" height="35" style="border-bottom: 1px solid #cccccc;">
+							<tr class="menu-heght2" height="35" style="border-bottom: 1px solid #cccccc;  background: #21373F; color: white;">
 								<th width="60">번호</th>
 								<th width="200">제목</th>
 								<th width="100">작성자</th>

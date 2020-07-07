@@ -106,7 +106,7 @@ function updateNotice() {
 							</tr>
 							<tr>
 								<td colspan="4">
-									<button type="button" style="float: right; width: 120px;" class="articlebtn" onclick="javascript:location.href='<%=cp%>/admin/notice/list?${query}';">리스트</button>
+									<button type="button" style="float: right; width: 120px;" class="articlebtn" onclick="javascript:location.href='<%=cp%>/notice/list?${query}';">리스트</button>
 								</td>
 							</tr>   
 						</table>

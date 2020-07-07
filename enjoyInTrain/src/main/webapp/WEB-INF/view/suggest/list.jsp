@@ -5,7 +5,8 @@
 <%
    String cp = request.getContextPath();
 %>
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
 <style type="text/css">
 .homepage #main{
    margin-top: 0em;
@@ -70,16 +71,18 @@ function suggestList(){
 					<div class="9u skel-cell-important">
 						<section>
 							<header>
-								<form action="<%=cp%>/suggest/list" name="suggestListForm" method="post">
 								<h2>고객의 소리</h2>
 								<span class="byline">불편/불만사항,칭찬사례,제안 등의 내용을 작성해주세요.</span>
-								<select name="rows" onchange="suggestList();">
+							</header>
+							
+								<form action="<%=cp%>/suggest/list" name="suggestListForm" method="post">
+								<select name="rows" onchange="suggestList();" class="selectField, noticebtn" style="width: 150px;">
 									<option value="5" ${rows==5?"selected='selected' ":"" }>5개씩출력</option>
 									<option value="10" ${rows==10?"selected='selected' ":"" }>10개씩출력</option>
 									<option value="20" ${rows==20?"selected='selected' ":"" }>20개씩출력</option>
 								</select>
-								<table style="width:900px; padding-top:10px; text-align:center;">
-									<tr style="background: white; height:50px; border-bottom:1px solid #cccccc; border-width: 3px;">
+								<table style="width:900px; padding-top:10px; text-align:center; margin-top: 20px;">
+									<tr style="background: #21373F; height:50px; border-bottom:none;  color: white;">
 										<td style="width: 40px;">번호</td>
 										<td style="width: 100px;">카테고리</td>
 										<td>제목</td>
@@ -113,7 +116,7 @@ function suggestList(){
 								${dataCount==0?"등록된 게시물이 없습니다.":paging}
 								<input type="hidden" name="rows" value="${rows}">
 								</form>
-							</header>
+							
 						</section>
 					</div>
 					

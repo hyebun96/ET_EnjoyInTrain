@@ -200,8 +200,21 @@ function listPage(page) {
 	var fn = function (data) {
 		printTimeTable(data)
 	};
+	
 	ajaxJSON(url, "get", query, fn);
 }
+
+function changeNull(data){
+	if(data==null || data.length===0){
+		data = " - ";
+		return data;
+	}else{
+		return data;
+	}
+}
+
+
+
 
 function printTimeTable(data) {
 	$(".timetable-list .rows").remove();
@@ -212,30 +225,30 @@ function printTimeTable(data) {
 	var pageNo=data.pageNo;
 	var paging=data.paging;	
 	
-	if(dataCount!=0) {
 
+	if(dataCount!=0) {
 		$.each(data.list, function(index, value){
 			
-			var scode=value.scode;
-			var traincode=value.traincode;
-			var trainname=value.trainname;
+			var scode=changeNull(value.scode);
+			var traincode=changeNull(value.traincode);
+			var trainname=changeNull(value.trainname);
 			
-			var employee=value.ptcategory;
+			var employee=value.ptcategory;	// 직원카테고리
 			
-			var haengsin=value.haengsin;
-			var yongsan=value.yongsan;
-			var gwangmyeong=value.gwangmyeong;
-			var cheonanasan=value.cheonanasan;
-			var osong=value.osong;
-			var gongju=value.gongju;
-			var seodaejeon=value.seodaejeon;
-			var gyeryong=value.gyeryong;
-			var nonsan=value.nonsan;
-			var iksan=value.iksan;
-			var jeongeup=value.jeongeup;
-			var gwangjusongjeong=value.gwangjusongjeong;
-			var naju=value.naju;
-			var mokpo=value.mokpo;
+			var haengsin=changeNull(value.haengsin);
+			var yongsan=changeNull(value.yongsan);
+			var gwangmyeong=changeNull(value.gwangmyeong);
+			var cheonanasan=changeNull(value.cheonanasan);
+			var osong=changeNull(value.osong);
+			var gongju=changeNull(value.gongju);
+			var seodaejeon=changeNull(value.seodaejeon);
+			var gyeryong=changeNull(value.gyeryong);
+			var nonsan=changeNull(value.nonsan);
+			var iksan=changeNull(value.iksan);
+			var jeongeup=changeNull(value.jeongeup);
+			var gwangjusongjeong=changeNull(value.gwangjusongjeong);
+			var naju=changeNull(value.naju);
+			var mokpo=changeNull(value.mokpo);
 
 			
 			var str="<tr height='26' class='rows' data-scode='"+scode+"' data-pageNo='"+pageNo+"' bgcolor='#ffffff' align='center'></tr>";
@@ -269,6 +282,7 @@ function printTimeTable(data) {
 	    });
 		
 		$(".pagingLayout").html(paging);
+
 	}
 }
 
@@ -405,6 +419,8 @@ $(function(){//수정
 		
 	});
 	
+
+	
 	function check($inputs) {
 		var returnValue=true;
 		
@@ -463,9 +479,6 @@ $(function(){
 
 <div id="adminpage">
 
-
-
-
 	<div class="trainandtime">
 			<a href="<%=cp%>/admin/train/list">기차관리</a> <span>|</span> <a href="<%=cp%>/admin/timetable/main">시간표관리</a>
 	</div>
@@ -510,7 +523,6 @@ $(function(){
 					<option value="4">기술지원부</option>
 					<option value="5">홍보부</option>
 					<option value="6">개발부</option>
-
 				</select>
 				</td>
 				<td><input type="text" id="haengsin"></td>
@@ -534,9 +546,11 @@ $(function(){
 		</tbody>
 
 		<tfoot class="timetable-list"></tfoot>
+		
 	</table>
 
-	<div class="pagingLayout" style="text-align: center; height: 50px;"></div>
+	<div class="pagingLayout" style="text-align: center; height: 50px;">
+	</div>
 	<form name="timeTableForm" method="post">
 		<input type="hidden" name="scode"> 
 		<input type="hidden" name="traincode"> 
@@ -561,3 +575,4 @@ $(function(){
 	</form>
 
 	</div>
+								
