@@ -138,9 +138,7 @@ function searchList() {
 				    			  </td>
 						</table>
 						
-						
-						
-						
+				
 						<table style="width: 100%; margin: 0px auto; border-spacing: 0px; border-collapse: collapse;">
 							<tr class="menu-heght2" height="35" style="border-bottom: 1px solid #cccccc; background-color: #21373F; color: white; font-weight: bold;">
 								<th width="60">번호</th>

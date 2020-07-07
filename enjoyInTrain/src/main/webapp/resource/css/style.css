@@ -838,7 +838,7 @@
 	#adminheader{
 		position: relative;
 		background: black;
-		height: 1500px;
+		height: 2000px;
 		width: 15%;
 		float: left;
 	}
@@ -1093,7 +1093,6 @@ ul.adminnav li:hover > ul li a:hover {
 		position: relative;
 		width: 85%;
 		float: left;
-		height: 1300px;
 		padding-left: 25px;
 		padding-right: 30px;
 	}

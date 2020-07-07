@@ -131,7 +131,7 @@
 		SELECT pmCode, pmPrice, pmTitle, product, saveFilename FROM(
 		    SELECT pd.pmCode, pmPrice, pmTitle, product, saveFilename FROM promotionDetail pd
 		    JOIN promotionfile f ON pd.pmCode = f.pmCode
-		    ORDER BY DBMS_RANDOM.RANDOM
+		   ORDER BY DBMS_RANDOM.RANDOM
 		) WHERE rownum &lt; 5
 	</select>
 	
