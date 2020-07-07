@@ -21,7 +21,7 @@
 				<!-- Nav -->
 				<div class="adminmenu">
 						<ul class="adminnav">
-							<li class="adminnavbar"><a href="#">프로모션관리</a></li>
+							<li class="adminnavbar"><a href="<%=cp%>/admin/travel/travel">프로모션관리</a></li>
 						</ul>
 						<ul class="adminnav">
 							<li class="adminnavbar"><a href="<%=cp%>/admin/sales/list">매출관리</a></li>

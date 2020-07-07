@@ -229,11 +229,10 @@ a:hover, a:active{
 
 .maindesign{
 	margin-top: 20px;
-	width: 100%;
+	width: 1200px;
 	height: 600px;
-	background: linear-gradient(180deg, white, #819FF7) fixed;
-	padding-left: 180px;
-	padding-right: 180px;
+	margin: 2px auto;
+	padding: 0px auto;
 }
 
 .mainfirst{

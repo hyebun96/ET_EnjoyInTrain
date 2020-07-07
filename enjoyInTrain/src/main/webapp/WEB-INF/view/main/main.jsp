@@ -140,26 +140,11 @@ p.title1{
 							<tr>
 								<td class="maintop1_notice1">
 									<div class="img-box1 box1" >
-										  <img src="<%=cp%>/resource/images/oldman.png" width="100px">
-										  <div class="hover-box1" style="width: 100px; height: 100px;">
-										    <p class="title1">힘내라 노인</p>
-										  </div>
-									</div>								
-									<div class="img-box1 box1">
-										  <img src="<%=cp%>/resource/images/youth.png"  width="100px">
-										  <div class="hover-box1" style="width: 100px;  height: 100px;">
-										    <p class="title1">지금해라 청춘</p>
-										  </div>
-									</div>								
-									<div class="img-box1 box1" >
-										  <img src="<%=cp%>/resource/images/child.PNG" width="100px">
-										  <div class="hover-box1" style="width: 100px;  height: 100px;">
-										    <p class="title1">용기내라 청소년</p>
-										  </div>
-									</div>								
+										  <img src="<%=cp%>/resource/images/promotion.jpg" width="300px" height="130px">
+									</div>														
 								</td>
 								<td class="maintop1_notice2">
-									<img src="<%=cp%>/resource/images/call.PNG" alt="" width="312" height="100" style="opacity: 1; background-size: cover;" >
+									<img src="<%=cp%>/resource/images/sound.jpg" alt="" width="312" height="130" style="opacity: 1; background-size: cover;" >
 									
 								</td>
 							</tr>
@@ -193,14 +178,13 @@ p.title1{
 			</p>
 		</div>
 		
-	
 		<c:forEach var="dto"  items="${travelList}">
-		<div class="3u"  style="display: inline-block; width: 250px; margin-right: 30px;">
-				<p style="width: 250px; height: 50px; font-weight: bold;">${dto.pmTitle}</p>
+		<div class="3u"  style="display: inline-block; width: 270px;   margin-left: 13px; margin-right: 13px;">
+				<p style="width: 270px; height: 50px; font-weight: bold; ">${dto.pmTitle}</p>
 				<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto.pmPrice}" pattern="#,###" /></p>
 				<p>
 					<a href="<%=cp%>/travel/travel?pmCode=${dto.pmCode}">
-						<img src="<%=cp%>/uploads/travel/${dto.saveFileName}" style="width: 250px; height: 200px;">
+						<img src="<%=cp%>/uploads/travel/${dto.saveFileName}" style="width: 270px; height: 200px;">
 					</a>
 				</p>
 		</div>

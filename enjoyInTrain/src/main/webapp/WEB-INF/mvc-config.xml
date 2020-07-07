@@ -72,6 +72,7 @@
             <mvc:exclude-mapping path="/faq/list"/>    
             <mvc:exclude-mapping path="/notice/list"/>
             <mvc:exclude-mapping path="/notice/article"/>
+            <mvc:exclude-mapping path="/uploads/travel/"/>
             <bean class="com.et.crew.LoginCheckInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>	 

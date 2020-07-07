@@ -31,6 +31,16 @@ public class MainController {
 			@RequestParam(value="page", defaultValue="1") int current_page,
 			Model model, HttpServletRequest req) {
 		
+		// travel 
+		List<Travel> travelList = null;
+		try {
+			travelList = tService.randomMain();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("travelList",travelList);
+
 		// notice 페이징, list
 		Map<String, Object> map = new HashMap<>();
         map.put("condition", "noticeTitle");
@@ -46,17 +56,6 @@ public class MainController {
 		model.addAttribute("list",list);
 		model.addAttribute("page", current_page);	
 		model.addAttribute("articleUrl", articleUrl);
-		
-		
-		// travel 
-		List<Travel> travelList = null;
-		try {
-			travelList = tService.randomMain();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		model.addAttribute("travelList",travelList);
 		
 		return ".main.main";
 	}
