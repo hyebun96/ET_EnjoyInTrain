@@ -6,7 +6,93 @@
 <%
 	String cp=request.getContextPath();
 %>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+<style>
+
+.tabs li{
+		font-weight:bold;
+		background:#EAEAEA; 
+	}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 400px;
+  height: 500px;
+}
+
+.modal-content2 {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 800px;
+  height: 600px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+</style>
+
 <script type="text/javascript">
+var stateButton="start";
+
+function ajaxHTML(url, type, query, selector) {
+	$.ajax({
+		type:type
+		,url:url
+		,data:query
+		,success:function(data) {
+			if($.trim(data)=="error") {
+				return false;
+			}
+			$(selector).html(data);
+		}
+		,beforeSend:function(jqXHR) {
+	        jqXHR.setRequestHeader("AJAX", true);
+	    }
+	    ,error:function(jqXHR) {
+	    	if(jqXHR.status==403) {
+	    		login();
+	    		return false;
+	    	}
+	    	console.log(jqXHR.responseText);
+	    }
+	});
+}
+
 function reservation() {
 	var f = document.reservationForm;
 	
@@ -43,14 +129,14 @@ $(function(){
 		if(roomGrade=="특실") {
 			$(".addPrice").show();
 		} else {
-			$(".addPrice").hclasse();
+			$(".addPrice").hide();
 		}
 	});
 });
 
 $(function(){
-	var roomGrade = "${roomGrade}";
-	if(roomGrade=="특실") {
+	var roomGrade1 = "${roomGrade1}";
+	if(roomGrade1=="특실") {
 		$(".addPrice1").show();
 	}
 	
@@ -60,7 +146,7 @@ $(function(){
 		if(roomGrade=="특실") {
 			$(".addPrice1").show();
 		} else {
-			$(".addPrice1").hclasse();
+			$(".addPrice1").hide();
 		}
 	});
 });
@@ -125,30 +211,70 @@ $(function(){
 
 $(function(){
 	$(".seatButton").click(function(){
+		stateButton="start";
+		
 		var trainCode=$(this).closest("table").find(".startTrianCode").val();  //기차코드 가져오기
 		var trainName=$(this).closest("table").find(".startTrianCode").attr("data-trainName");	//기차종류 가져오기
-		var stTime=$(this).closest("table").find(".startTime").attr("data-startTime");  //출발시간 가져오기
-		var endTime=$(this).closest("table").find(".endTime").attr("data-endTime"); //도착시간 가져오기
-		var url="<%=cp%>/reservation/seat";
-		var query=$("form[name=reservationForm]").serialize();
-		query+="&roomNum=1&total=${rsDto.total}";
+		var stTime=$(this).closest("table").find(".startTime").val();  //출발시간 가져오기
+		var endTime=$(this).closest("table").find(".endTime").val(); //도착시간 가져오기
+		var roomGrade=$(this).closest("table").find(".roomGrade").val(); //좌석 등급 가져오기
+		var url="<%=cp%>/booking/seat";
+		var query="roomNum=1&total=${prPersonnel}";
 		query+="&trainCode="+trainCode+"&trainName="+trainName+"&stTime="+stTime+"&endTime="+endTime;
+		query+="&day=${pmStartDate2}&tCategory="+trainName;
+		query+="&startSt=${startDto.startStation}";
+		query+="&endSt=${startDto.endStation}";
+		if($(this).val()=='특실'){
+			query+="&roomGrade="+"특실";
+		}else{
+			query+="&roomGrade="+"일반실";
+		}
+		query+="&firstPage=true";
+		query+="&"+$("form[name=reservationForm]").serialize();
+		var selector="#modal-content2";
+		ajaxHTML(url, "post", query, selector);
+	});
+});
+
+$(function(){
+	$(".seatButton1").click(function(){
+		stateButton="end";
 		
+		var trainCode=$(this).closest("table").find(".endTrianCode").val();  //기차코드 가져오기
+		var trainName=$(this).closest("table").find(".endTrianCode").attr("data-trainName");	//기차종류 가져오기
+		var stTime=$(this).closest("table").find(".startTime1").val();  //출발시간 가져오기
+		var endTime=$(this).closest("table").find(".endTime1").val(); //도착시간 가져오기
+		var roomGrade=$(this).closest("table").find(".roomGrade1").val(); //좌석 등급 가져오기
+		var url="<%=cp%>/booking/seat";
+		var query="roomNum=1&total=${prPersonnel}";
+		query+="&trainCode="+trainCode+"&trainName="+trainName+"&stTime="+stTime+"&endTime="+endTime;
+		// query+="&day=${pmStartDate}";
+		query+="&day=${pmStartDate2}&tCategory="+trainName;
+		query+="&startSt=${endDto.startStation}";
+		query+="&endSt=${endDto.endStation}";
+		if($(this).val()=='특실'){
+			query+="&roomGrade="+"특실";
+		}else{
+			query+="&roomGrade="+"일반실";
+		}
+		query+="&firstPage=true";
+		query+="&"+$("form[name=reservationForm]").serialize();
 		var selector="#modal-content2";
 		ajaxHTML(url, "post", query, selector);
 	});
 });
 
 
+
 </script>
 <link rel="stylesheet" href="<%=cp%>/resource/css/reservation.css" type="text/css">
+
 	<!-- Banner -->
 		<div id="banner">
 			<div class="container">
 			</div>
 		</div>
 	<!-- /Banner -->
-
 	<!-- Main -->
 		<div id="page">
 				
@@ -224,16 +350,17 @@ $(function(){
 									<td class="reservation_report_question">상품명</td>
 									<td class="reservation_report_answer">${start.trainName} - ${startDto.trainCode}
 										<input type="hidden" class="startTrianCode" name="trainCode" value="${startDto.trainCode}" data-trainName="${start.trainName}">
+										<input type="hidden" name="trainName" value="${start.trainName}">
 									</td>
 									<td class="reservation_report_question">객실등급</td>
 									<td class="reservation_report_answer">
-										<select name="roomGrade" class="roomGrade">
+										<select name="roomGrade" class="roomGrade" >
 											<option value="일반" ${roomGrade=="일반"?"selected='selected'":""}>일반</option>
 											<option value="특실" ${roomGrade=="특실"?"selected='selected'":""}>특실</option>
 										</select>
 										재고 : 309
-										<span class="addPrice" style="display: none;"> + ${dto.prAddPrice}</span>
-										
+										<span class="addPrice" style="display: none;"> + ${start.prAddPrice}</span>
+										<input type="hidden" name="prAddprice" value="${start.prAddPrice}">
 									</td>
 								</tr>
 								<tr>
@@ -245,11 +372,13 @@ $(function(){
 								<tr>
 									<td class="reservation_report_question">출발역</td>
 									<td class="reservation_report_answer">${startDto.startStation}(${start.startTime})
-										<input type="hidden" class="startTime" name="startStation" value="${startDto.startStation}" data-startTime="${start.startTime}">
+										<input type="hidden"  name="startStation" value="${startDto.startStation}">
+										<input type="hidden" class="startTime" name="startTime" value="${start.startTime }">
 									</td>
 									<td class="reservation_report_question">도착역</td>
 									<td class="reservation_report_answer">${startDto.endStation}(${start.endTime})
-										<input type="hidden" class="endTime" name="endStation"  value="${startDto.endStation}" data-endTime="${start.endTime}">
+										<input type="hidden" name="endStation"  value="${startDto.endStation}">
+										<input type="hidden" class="endTime" name="endTime" value="${start.endTime }">
 									</td>
 								</tr>
 								<tr>
@@ -274,7 +403,13 @@ $(function(){
 								</tr>
 								<tr>
 									<td class="reservation_report_question">좌석선택</td>
-									<td class="reservation_report_answer"><button type="button" class="seatButton">좌석선택</button></td>
+									<td class="reservation_report_answer">
+										<button type="button" class="seatButton">좌석선택</button>  
+										<span id="startSeatInfoView"></span>
+										<input type="hidden" name="prStartRoom" value="">
+										<input type="hidden" name="prStartTrainSeat" value="">
+									</td>
+									
 								</tr>
 								<tr>
 									<td class="reservation_report_num" rowspan="3">2</td>
@@ -305,16 +440,18 @@ $(function(){
 									<td class="reservation_report_group" rowspan="5">오는열차</td>
 									<td class="reservation_report_question">상품명</td>
 									<td class="reservation_report_answer">${end.trainName} - ${endDto.trainCode}
-										<input type="hidden" name="trainCode" class="endTrianCode" value="${endDto.trainCode}">
+										<input type="hidden" name="trainCode1" class="endTrianCode" value="${endDto.trainCode}" data-trainName="${end.trainName}">
+										<input type="hidden" name="trainName1" value="${end.trainName}">
 									</td>
 									<td class="reservation_report_question">객실등급</td>
 									<td class="reservation_report_answer">
-										<select name="roomGrade" class="roomGrade1">
-											<option value="일반" ${roomGrade=="일반"?"selected='selected'":""}>일반</option>
-											<option value="특실" ${roomGrade=="특실"?"selected='selected'":""}>특실</option>
+										<select name="roomGrade1" class="roomGrade1">
+											<option value="일반" ${roomGrade1=="일반"?"selected='selected'":""}>일반</option>
+											<option value="특실" ${roomGrade1=="특실"?"selected='selected'":""}>특실</option>
 										</select>
 										재고 : 309
-										<span class="addPrice1" style="display: none;"> + ${dto.prAddPrice}</span>
+										<span class="addPrice1" style="display: none;"> + ${end.prAddPrice}</span>
+											<input type="hidden" name="prAddPrice1" value="${end.prAddPrice}">
 									</td>
 								</tr>
 								<tr>
@@ -327,11 +464,13 @@ $(function(){
 								<tr>
 									<td class="reservation_report_question">출발역</td>
 									<td class="reservation_report_answer">${endDto.startStation}(${end.startTime})
-										<input type="hidden" name="startStation" value="${endDto.startStation}">
+										<input type="hidden" name="startStation1" value="${endDto.startStation}">
+										<input type="hidden" class="startTime1" name="startTime1" value="${end.startTime}">
 									</td>
 									<td class="reservation_report_question">도착역</td>
 									<td class="reservation_report_answer">${endDto.endStation}(${end.endTime})
-										<input type="hidden" name="endStation" value="${endDto.endStation}">
+										<input type="hidden" name="endStation1" value="${endDto.endStation}">
+										<input type="hidden" class="endTime1" name="endTime1" value="${end.endTime}">
 									</td>
 								</tr>
 								<tr>
@@ -356,7 +495,12 @@ $(function(){
 								</tr>
 								<tr>
 									<td class="reservation_report_question">좌석선택</td>
-									<td class="reservation_report_answer" colspan="3"><button type="button" class="seatButton1">좌석선택</button></td>
+									<td class="reservation_report_answer" colspan="3">
+										<button type="button" class="seatButton1">좌석선택</button> 
+										<span id="endSeatInfoView"></span>
+										<input type="hidden" name="prEndRoom" value="${endDto.prEndRoom}">
+										<input type="hidden" name="prEndTrainSeat" value="${endDto.prEndTrainSeat}">
+									</td>
 								</tr>
 							</table>
 						</div>
@@ -438,7 +582,6 @@ $(function(){
 							<div>
 								<div class="travler_button">
 									<button type="button" onclick="javascript:location.href='<%=cp%>/travel/travel';">취소하기</button>
-									<button type="button" onclick="embracing()">장바구니 담기</button>
 									<button type="button" onclick="reservation()">예약하기</button>
 								</div>
 							</div>
@@ -448,43 +591,11 @@ $(function(){
 			</div>
 		</div>
 			<!-- Main -->
-
-		</div>
-		
-		<div class="startSeat_dialog">
-			<form action="">
-			<table style="margin: 40px auto; wclassth: 750px;">
-				<c:forEach var="rows" begin="1" end="2">
-					<tr style="text-align: center;">
-						<td colspan="2">
-							<c:forEach var="columns" begin="1" end="10">
-									<a href="#"><img alt="" src="<%=cp%>/resource/images/seat.png" style="wclassth: 50px; height: 50px; margin-right: 10px;"></a>
-							</c:forEach>
-						</td>
-					</tr>
-				</c:forEach>
-					<tr style="text-align: center; margin-top: 15px;">
-						<td style="height: 40px;" colspan="2"><td>
-					</tr>
-				<c:forEach var="rows" begin="1" end="2">
-					<tr style="text-align: center; margin-top: 15px;">
-						<td colspan="2">
-							<c:forEach var="columns" begin="1" end="10">
-									<a href="#"><img alt="" src="<%=cp%>/resource/images/seat.png" style="width: 50px; height: 50px; margin-right: 10px;"></a>
-							</c:forEach>
-						</td>
-					</tr>
-				</c:forEach>
-				<tr>
-					<td style="text-align: left; height: 60px; line-height: 60px;"><a href="#">＜＜ 이전 칸 </a></td>
-					<td style="text-align: right; height: 60px; line-height: 60px;"><a href="#">다음 칸  ＞＞ </a></td>
-				</tr>
-			</table>
-			</form>
-		</div>
+	</div>
+	
 <div id="myModal2" class="modal">
-  <!-- Modal content -->
-  <div style="background: #6f047f;" class="modal-content2" id="modal-content2">
-  	
-  </div>
+	<!-- Modal content -->
+	<div style="background: #6f047f;" class="modal-content2" id="modal-content2">
+		
+	</div>
 </div>

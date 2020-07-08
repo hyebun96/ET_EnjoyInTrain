@@ -6,30 +6,25 @@
 	String cp=request.getContextPath();
 %>
 <script type="text/javascript">
+
 $(function(){
-	var modal = document.getElementById("myModal2");
-	var span = document.getElementsByClassName("close")[1];
-	modal.style.display = "block";
-				
-	// When the user clicks on <span> (x), close the modal
-	span.onclick = function() {
-		modal.style.display = "none";
-	}
-				
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-		if (event.target == modal) {
-			modal.style.display = "none";
-		}
-	}
+	$("#myModal2").show();
+	$(".dlgClose").click(function(){
+		$("#myModal2").hide();
+	});
 });
 
 $(function(){
 	$(".roomBtn").click(function(){
-		var url="<%=cp%>/reservation/seat";
+		if($(this).attr('data-select')==1){
+			return;
+		}
+		
+		var url="<%=cp%>/booking/seat";
 		var roomNum=$(this).val();
 		var query=$("form[name=seatForm]").serialize();
 		query+="&roomNum="+roomNum;
+		query+="&firstPage=false";
 		var selector="#modal-content2";
 		ajaxHTML(url, "post", query, selector);
 	});
@@ -57,7 +52,7 @@ $(function(){
 			if(selectSeat.length==0){
 				$("#selectSeat").val(selectSeat+" "+seatNum);
 			}else{
-				$("#selectSeat").val(selectSeat+", "+seatNum);
+				$("#selectSeat").val(selectSeat+","+seatNum);
 			}
 			cnt=cnt+1;
 			
@@ -67,7 +62,7 @@ $(function(){
 		else if($i.attr('data-select')==1){
 			$i.attr('data-select','0');
 			$i.attr("class","far fa-user");
-			$i.css("color","#D5D5D5");
+			$i.css("color","#BDBDBD");
 			var seatNumindex=selectSeat.indexOf(seatNum);
 			var selectSeat1=selectSeat.substring(0,seatNumindex-1);
 			var selectSeat2=selectSeat.substring(seatNumindex+seatNum.length+1);
@@ -79,7 +74,6 @@ $(function(){
 			}
 			cnt=cnt-1;
 		}
-		
 		return;
 	});
 });
@@ -88,27 +82,27 @@ function confirmBtn(){
 	if(seatArray.length!=${map.total}){
 		alert("선택하신 좌석수가 요청하신 승객수 ${map.total}명과 일치하지 않습니다.");
 		return;
+	}	
+	
+	var roomInfo="${map.roomNum} 호실";
+	var seatInfo=$("#selectSeat").val();
+	
+	if(stateButton=="start") {
+		$("#startSeatInfoView").html(roomInfo+","+seatInfo);
+		$("form[name=reservationForm] input[name=prStartRoom]").val("${map.roomNum}");
+		$("form[name=reservationForm] input[name=prStartTrainSeat]").val(seatInfo);
+	} else if(stateButton=="end") {
+		$("#endSeatInfoView").html(roomInfo+","+seatInfo);
+		$("form[name=reservationForm] input[name=prEndRoom]").val("${map.roomNum}");
+		$("form[name=reservationForm] input[name=prEndTrainSeat]").val(seatInfo);
 	}
 	
-	var query="";
-	//seat1=1A&seat2=3B.. 이런식으로 정보가 넘어감
-	for(var i=0; i<${map.total}; i++){
-		if(i==0){
-			query+="seatNum"+(i+1)+"="+seatArray[i];
-		}else{
-			query+="&seatNum"+(i+1)+"="+seatArray[i];
-		}
-	}
-	query+="&roomNum=${map.roomNum}";
-	//호실, 좌석, 기차번호, 기차종류는 주소뒤 쿼리로 보내기
-	var f=document.seatForm;
-	f.action="<%=cp%>/reservation/confirm?"+query;
-	f.submit();
-	
+	$("#myModal2").hide();
 }
+
 </script>
 <div style="text-align:center;  margin-bottom: 10px;">
-    <span  style="line-height:17px; font-size:17px; color: white; font-weight: bold;">노선선택</span><span class="close">&times;</span>
+    <span  style="line-height:17px; font-size:17px; color: white; font-weight: bold;">노선선택</span><span class="close dlgClose">&times;</span>
 </div>
 <div style="font-size:13px; padding:10px; height:90%; background: white; text-align: center;">
 <form method="post" name="seatForm">
@@ -120,9 +114,10 @@ function confirmBtn(){
 <input type="hidden" name="path" value="${map.path}">
 <input type="hidden" name="adult" value="${map.adult}">
 <input type="hidden" name="child" value="${map.child}">
-<input type="hidden" name="senior" value="${map.senior}">
-<input type="hidden" name="disabled1" value="${map.disabled1}">
-<input type="hidden" name="disabled2" value="${map.disabled2}">
+<input type="hidden" name="oldman" value="${map.oldman}">
+<input type="hidden" name="adult1" value="${map.adult1}">
+<input type="hidden" name="child1" value="${map.child1}">
+<input type="hidden" name="oldman1" value="${map.oldman1}">
 <input type="hidden" name="seat" value="${map.seat}">
 <input type="hidden" name="seat2" value="${map.seat2}">
 <input type="hidden" name="total" value="${map.total}">
@@ -134,20 +129,37 @@ function confirmBtn(){
 	<div style="text-align: left; margin-bottom: 10px;">
 		<span>· 요청하신 <b>승객 ${map.total}명</b>의 원하시는 좌석을 선택하여 주십시오.</span><br>
 	    <span>· 발매가 가능한 좌석을 선택하실 수 있습니다.</span><br>
-	    <span>· 원하시는 좌석을 선택 후 [선택좌석 예약하기] 버튼을 클릭하시면 예약이 완료됩니다. (복수선택 가능)</span><br>
+	    <span>· 원하시는 좌석을 선택 후 [선택좌석 선택하기] 버튼을 클릭하시면 선택이 완료됩니다. (복수선택 가능)</span><br>
 	    <span>· 원하지 않는 좌석이 선택된 경우에는 좌석을 한번 더 클릭하시면 취소됩니다.</span><br>
 	</div>
     <div style="width:100%; height:70px; border: 1px solid gray; white-space:nowrap; overflow-x: scroll;" >
 	    <c:forEach items="${list}" var="vo">
-	    	<button type="button" value="${vo.roomNum}" class="roomBtn" style="color:${vo.roomNum==dto.roomNum?'white':'black'}; margin-top:5px; background:${vo.roomNum==dto.roomNum?'#6f047f':'white'}; font-size: 12px;">${vo.roomGrade}<br>${vo.roomNum}호차</button>
+	    	<c:set var="sw" value="true"/>
+		    	<c:forEach items="${fullSeatlist}" var="fullList">
+		    		<c:if test="${sw}">
+			    		<c:if test="${fullList==vo.roomNum}">
+			    			<button type="button" data-select="1" value="${vo.roomNum}" class="roomBtn" 
+					    		style="border-color:#BDBDBD; color:black; margin-top:5px; background:#BDBDBD; font-size: 12px;">
+					    		${vo.roomGrade}<br>${vo.roomNum}호차
+					    	</button>
+					    	<c:set var="sw" value="false"/>
+			    		</c:if>
+		    		</c:if>
+		    	</c:forEach>
+		    <c:if test="${sw}">
+				<button type="button" value="${vo.roomNum}" class="roomBtn" 
+				    style="color:${vo.roomNum==dto.roomNum?'white':'black'}; margin-top:5px; background:${vo.roomNum==dto.roomNum?'#6f047f':'white'}; font-size: 12px;">
+				    ${vo.roomGrade}<br>${vo.roomNum}호차
+				</button>
+		    </c:if>
 	    </c:forEach>
     </div>
     <div style="text-align:right; margin: 10px;">
     	<i style=" color:#6f047f; font-size: 25px;" class="fas fa-user seatClick"></i>
     	<span style="font-size: 13px;">선택좌석</span>
-    	<i style=" color:#D5D5D5; font-size: 25px;" class="fas fa-user seatClick"></i>
+    	<i style=" color:#BDBDBD; font-size: 25px;" class="fas fa-user seatClick"></i>
     	<span style="font-size: 13px;">선택불가</span>
-    	<i style=" color:#D5D5D5; font-size: 25px;" class="far fa-user"></i>
+    	<i style=" color:#BDBDBD; font-size: 25px;" class="far fa-user"></i>
     	<span style="font-size: 13px;">선택가능</span>
     </div>
     <div>
@@ -177,7 +189,18 @@ function confirmBtn(){
 					    </c:when>
 					</c:choose>
 		    	</span>
-		    	<i data-select="0" style=" color:#D5D5D5; font-size: 35px;" class="far fa-user seatCk"></i>
+		    	<c:set var="sw" value="true"/>
+		    	<c:forEach items="${rvlist}" var="rv">
+		    		<c:if test="${sw}">
+			    		<c:if test="${rv==i}">
+					    	<i data-select="2" style=" color:#BDBDBD; font-size: 35px;" class="fas fa-user seatClick"></i>
+					    	<c:set var="sw" value="false"/>
+			    		</c:if>
+		    		</c:if>
+		    	</c:forEach>
+			    <c:if test="${sw}">
+					   <i data-select="0" style=" color:#BDBDBD; font-size: 35px;" class="far fa-user seatCk"></i>
+			    </c:if>
 		    </div>
 			<c:if test="${i%dto.seatColumn==0}">
 				</div>
@@ -198,10 +221,10 @@ function confirmBtn(){
     </div>
     <div style="width: 100%;">
 		<div style="padding-left:20px; width: 50%; text-align: left; float: left;">
-			<b><span style="font-size: 15px;">선택좌석:&nbsp;${map.roomNum}호차&nbsp;<input type="text" id="selectSeat" style="border: none; font-weight: bold;" ></span></b>
+			<b><span style="font-size: 15px;">선택좌석:&nbsp;${map.roomNum}호차&nbsp;<input type="text" readonly="readonly" id="selectSeat" style="border: none; font-weight: bold;" ></span></b>
 		</div>
 		<div style="padding-right:20px; width: 50%;text-align: right; float: left;">
-			<button type="button" onclick="confirmBtn();" style="font-weight:bold; font-size:15px; border-radius:5px; width:150px; height:30px; background: #6f047f; color: white; border: none;">선택좌석 예약하기</button>
+			<button type="button" onclick="confirmBtn();" style="font-weight:bold; font-size:15px; border-radius:5px; width:150px; height:30px; background: #6f047f; color: white; border: none;">선택좌석 선택하기</button>
 		</div>
 	</div>
 </form>

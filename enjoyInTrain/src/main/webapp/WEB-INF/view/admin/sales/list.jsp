@@ -16,6 +16,19 @@
 
 				
 					<div class="9u skel-cell-important">
+					<div style="clear: both;">
+							<ul class="tabs">
+								<li id="tab-1" data-emcheck="1">프로모션</li>
+								<li id="tab-0" data-emcheck="0">기      차</li>
+							</ul>
+						</div>
+						<div>
+							<select name="keyword">
+								<option value="year" ${keyword=="year"?"selected='selected'":""}>년도별</option>
+								<option value="month" ${keyword=="month"?"selected='selected'":""}>월 별</option>
+								<option value="day" ${keyword=="day"?"selected='selected'":""}>일 별</option>
+							</select>
+						</div>
 						<table style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse;">
 							<tr class="noticebar">
 								<td> 번호 </td>
@@ -25,14 +38,16 @@
 								<td> 추가 가격 </td>
 								<td> 구매자 </td>
 							</tr>
-							<tr>
-								<td> 1 </td>
-								<td> 가자ㅏㅏ </td>
-								<td> 등산 </td>
-								<td> 15000 원 </td>
-								<td> 5000 원 </td>
-								<td> 노현호 </td>
-							</tr>
+							<c:forEach var="dto" items="${list}">
+								<tr>
+									<td> 1 </td>
+									<td> 가자ㅏㅏ </td>
+									<td> 등산 </td>
+									<td> 15000 원 </td>
+									<td> 5000 원 </td>
+									<td> 노현호 </td>
+								</tr>
+							</c:forEach>
 						</table>
 							
 					</div>

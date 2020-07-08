@@ -26,24 +26,42 @@
 	<select id="setPrcode" resultType="Integer">
 		SELECT pmreservationseq_seq.NEXTVAL FROM dual
 	</select>
+	<select id="setPrcode1" resultType="Integer">
+		SELECT pmreservation_seq.NEXTVAL FROM dual
+	</select>
 	<insert id="insertReservation" parameterType="com.et.booking.Booking">
 			INSERT INTO 
-			pmReservation(prCode, prSeq, pmCode, pmStartDate, adult, child, oldMan, prPersonnel, product, productUserCount, prAddPrice, crewId, prReservationDate, prPayment, trainCode, roomGrade, reservationNumber)
-			VALUES( pmreservation_seq.NEXTVAL, #{prSeq}, #{pmCode}, #{pmStartDate}, #{adult}, #{child}, #{oldMan}, #{prPersonnel}, #{product}, #{productUserCount}, #{prAddPrice}, #{crewId}, SYSDATE, 0, #{trainCode}, #{roomGrade}, #{reservationNumber})
+			pmReservation(prCode, prSeq, pmCode, pmStartDate, adult, child, oldMan, prPersonnel, product, productUserCount, crewId, prReservationDate, prPayment, trainCode, reservationNumber)
+			VALUES( #{prCode}, #{prSeq}, #{pmCode}, #{pmStartDate}, #{adult}, #{child}, #{oldMan}, #{prPersonnel}, #{product}, #{productUserCount}, #{crewId}, SYSDATE, 0, #{trainCode}, #{reservationNumber})
+	</insert>
+	<insert id="insertReservation1" parameterType="com.et.booking.Booking">
+			INSERT INTO 
+			pmReservation(prCode, prSeq, pmCode, pmStartDate, adult, child, oldMan, prPersonnel, product, productUserCount, crewId, prReservationDate, prPayment, trainCode, reservationNumber)
+			VALUES( #{prCode}, #{prSeq}, #{pmCode}, #{pmStartDate}, #{adult1}, #{child1}, #{oldMan1}, #{prPersonnel}, #{product}, #{productUserCount}, #{crewId}, SYSDATE, 0, #{trainCode1}, #{reservationNumber})
 	</insert>
 	
 	<update id="updatePayDate" parameterType="Integer">
 		UPDATE pmReservation SET prPaymentDate = SYSDATE+3 WHERE prSeq = #{prSeq}
 	</update>
 	
+	<insert id="insertTrain" parameterType="com.et.booking.Booking">
+		INSERT INTO pmReservationTrain( ptCode, prCode, trainCode, prPersonnel, prTrainName, prStartStation, roomGrade, roomNum, prEndStation, prTrainSeat, prAddPrice)
+		VALUES( pmReservationTrain_seq.NEXTVAL, #{prCode}, #{trainCode}, #{prPersonnel}, #{trainName}, #{startStation}, #{roomGrade}, #{prStartRoom}, #{endStation}, #{prStartTrainSeat},  #{prAddPrice})
+	</insert>
+	<insert id="insertTrain1" parameterType="com.et.booking.Booking">
+		INSERT INTO pmReservationTrain( ptCode, prCode, trainCode, prPersonnel, prTrainName, prStartStation, roomGrade, roomNum, prEndStation, prTrainSeat, prAddPrice)
+		VALUES( pmReservationTrain_seq.NEXTVAL, #{prCode}, #{trainCode1}, #{prPersonnel}, #{trainName1}, #{startStation1}, #{roomGrade1}, #{prEndRoom}, #{endStation1}, #{prEndTrainSeat} , #{prAddPrice1})
+	</insert>
+	
 	<!-- 예약 목록 불러오기 -->
 	<select id="readReservation" parameterType="map" resultType="com.et.booking.Booking">
-		SELECT DISTINCT pr.prCode, pr.prSeq, pr.pmCode, TO_CHAR(pr.pmStartDate, 'YYYY-MM-DD') pmStartDate, pr.adult, pr.child, pr.oldMan, pr.prPersonnel, pr.product, pr.productUserCount, pr.prAddPrice, pr.crewId, pr.prReservationDate,pr.prPaymentDate, pr.trainCode,
-			   pr.roomGrade, pr.reservationNumber, pd.pmTitle, pd.pmPrice, pd.productContent, p.startStation, p.endStation, c.crewName, c.crewEmail, c.crewTel, c.crewBirth
+		SELECT DISTINCT pr.prCode, pr.prSeq, pr.pmCode, TO_CHAR(pr.pmStartDate, 'YYYY-MM-DD') pmStartDate, pr.adult, pr.child, pr.oldMan, pr.prPersonnel, pr.product, pr.productUserCount, pr.crewId, pr.prReservationDate,pr.prPaymentDate, pr.trainCode,
+			    pr.prPayment, pr.reservationNumber, pd.pmTitle, pd.pmPrice, pd.productContent, p.startStation, p.endStation, c.crewName, c.crewEmail, c.crewTel, c.crewBirth, pt.roomGrade, pt.roomNum, pt.prAddPrice, pt.prTrainSeat
 		FROM pmReservation pr
 		JOIN promotionDetail pd ON pd.pmCode = pr.pmCode
-		JOIN promotion p ON pr.trainCode = p.trainCode
+		JOIN promotion p ON pr.trainCode = p.trainCode AND pd.pmCode = p.pmCode
 		JOIN crew c ON pr.crewId = c.crewId
+		JOIN pmReservationTrain pt ON pr.prCode = pt.prCode AND pr.trainCode = pt.trainCode
 		WHERE pr.prSeq = #{prSeq} AND pr.crewId = #{crewId}
 	</select>
 	
@@ -60,13 +78,13 @@
 	</select>
 	
 	<!-- 결제 -->
-	<update id="updatePrPaymentDate">
-		UPDATE pmReservation SET prPaymentDate = SYSDATE+3 WHERE prCode = #{prCode}
+	<update id="updatePrPayment" parameterType="Integer">
+		UPDATE pmReservation SET prPayment = 1 WHERE prSeq=#{prSeq}
 	</update>
 	<!-- 예약 취소 -->
 	<select id="readForCancle" parameterType="map" resultType="com.et.booking.Booking">
-		SELECT prCode, prSeq, pmCode, TO_CHAR(pmStartDate, 'YYYY-MM-DD') pmStartDate, adult, child, oldMan, prPersonnel, product, productUserCount, prAddPrice, crewId, prReservationDate, trainCode,
-			   roomGrade, reservationNumber
+		SELECT prCode, prSeq, pmCode, TO_CHAR(pmStartDate, 'YYYY-MM-DD') pmStartDate, adult, child, oldMan, prPersonnel, product, productUserCount, crewId, prReservationDate, trainCode,
+			   reservationNumber
 		FROM pmReservation WHERE prSeq = #{prSeq} AND crewId = #{crewId}
 	</select>
 	
@@ -76,13 +94,13 @@
 	
 	<!-- 예약 리스트 출력 -->
 	<select id="listReservation" parameterType="map" resultType="com.et.booking.Booking">
-		SELECT distinct pr.prCode, pr.prSeq, pr.pmCode, TO_CHAR(pr.pmStartDate, 'YYYY-MM-DD') pmStartDate, pr.adult, pr.child, pr.oldMan, pr.prPersonnel, pr.product, pr.productUserCount, pr.prAddPrice, pr.crewId, pr.prReservationDate, pr.trainCode,
-			   pr.roomGrade, pr.reservationNumber, pd.pmTitle, pd.pmPrice, pd.productContent, p.startStation, p.endStation
+		SELECT DISTINCT pr.prCode, pr.prSeq, pr.pmCode, TO_CHAR(pr.pmStartDate, 'YYYY-MM-DD') pmStartDate, pr.adult, pr.child, pr.oldMan, pr.prPersonnel, pr.product, pr.productUserCount, pr.crewId, pr.prReservationDate,pr.prPaymentDate, pr.trainCode,
+			    pr.prPayment, pr.reservationNumber, pd.pmTitle, pd.pmPrice, pd.productContent, p.startStation, p.endStation, c.crewName, c.crewEmail, c.crewTel, c.crewBirth, pt.roomGrade, pt.roomNum, pt.prAddPrice, pt.prTrainSeat
 		FROM pmReservation pr
 		JOIN promotionDetail pd ON pd.pmCode = pr.pmCode
-		JOIN promotion p ON pr.pmCode = p.pmCode AND pr.trainCode = p.trainCode
-        JOIN crew c ON pr.crewId = c.crewId
-		WHERE pr.prSeq = ${prSeq} AND pr.crewId = ${crewId} AND pr.pmCode = ${pmCode};
+		JOIN promotion p ON pr.trainCode = p.trainCode AND pd.pmCode = p.pmCode
+		JOIN crew c ON pr.crewId = c.crewId
+		JOIN pmReservationTrain pt ON pr.prCode = pt.prCode AND pr.trainCode = pt.trainCode
 	</select>
 
 	<!--  짝수 : 하행선 -->
@@ -136,59 +154,24 @@
 		JOIN STATIONLINE6 t ON p.traincode = t.traincode
 		WHERE pmCode = #{pmCode} AND p.trainCode = #{trainCode}
 	</select>
-	
-	<!-- 좌석 행열 가져오기 -->
-	<select id="readSeat" parameterType="map" resultType="com.et.reservation.Seat">
-		SELECT roomNum, roomGrade, seatRow, seatColumn FROM trainsetting7
-		WHERE trainCategory=#{tCategory} AND roomNum=#{roomNum}
-	</select>
-	
-	<select id="listSeat" parameterType="String" resultType="com.et.reservation.Seat">
-		SELECT roomNum, roomGrade, seatRow, seatColumn FROM trainsetting7
-		WHERE trainCategory=#{tCategory}
-	</select>
-	
-	<!-- 요금 가져오기 -->
-	<select id="readsPay" parameterType="map" resultType="Integer">
-		SELECT ${seatPay} FROM spay6
-		WHERE startCode=#{startCode} AND endCode=#{endCode} AND trainCategory=#{trainCategory}
-	</select>
 
-	<!-- 상행인지 하행인지 계산하기 -->	
-	<select id="searchRoute" parameterType="map" resultType="String">
-		SELECT sname FROM station6 WHERE line=(
-    		SELECT line FROM(
-        		SELECT line, COUNT(*) cnt FROM station6 
-        		WHERE sname=#{startSt} OR sname=#{endSt}
-        		GROUP BY line
-    		) 
-    		WHERE cnt=2
-    	)
- 		AND sname=#{startSt} OR sname=#{endSt}
- 		ORDER BY lineorder
-	</select>
-	<!-- 역이름 영어, 코드로 가져오기 -->
-	<select id="readStation" parameterType="Object" resultType="map">
-		SELECT engName, sCode FROM station6
-		WHERE sName=#{station}
+	<!-- 역 코드로 변환 -->
+	<select id="readStationCode" parameterType="com.et.booking.Booking" resultType="String">
+		SELECT sCode FROM station WHERE engName = #{startStation}
 	</select>
 	
-	<!-- 시간표 가져오기 -->
-	<select id="listTrain" parameterType="com.et.reservation.Condition" resultType="com.et.reservation.Train">
-		SELECT trainCode, trainName, departureTime, arriveTime FROM (
-    		SELECT trainCode, trainName, ${startSt} departureTime, ${endSt} arriveTime
-    		FROM stationline7)
-		WHERE departureTime IS NOT NULL AND arriveTime IS NOT NULL
-			AND SUBSTR(departureTime,1,2)>=#{time}
-			AND TO_DATE(arriveTime,'HH24:MI')-TO_DATE(departureTime,'HH24:MI')>0
-			AND MOD(trainCode,2)=#{route}
-			AND trainName=#{tCategory}
-		ORDER BY departuretime ASC
+	<select id="readStationCode1" parameterType="com.et.booking.Booking" resultType="String">
+		SELECT sCode FROM station WHERE engName = #{endStation}
 	</select>
-	
-	<select id="totalTime" parameterType="com.et.reservation.Train" resultType="Integer">
-		SELECT ROUND((TO_DATE(#{arriveTime},'HH24:MI')-TO_DATE(#{departureTime},'HH24:MI'))*24*60*60/60)
-		FROM dual
+		
+	<!-- 요금 가져오기 -->
+	<select id="readsPay" parameterType="com.et.booking.Booking" resultType="Integer">
+		SELECT (seat2 - seat1) prAddprice FROM spay7
+		WHERE startCode=#{startCode} AND endCode=#{endCode} AND trainCategory=#{trainName}
+	</select>
+	<select id="readsPay1" parameterType="com.et.booking.Booking" resultType="Integer">
+		SELECT (seat2 - seat1) prAddprice FROM spay7
+		WHERE startCode=#{endCode} AND endCode=#{startCode} AND trainCategory=#{trainName}
 	</select>
 	
 	<!-- 최대인원 업데이트 -->
@@ -199,6 +182,5 @@
 	<update id="updateStock1" parameterType="com.et.booking.Booking">
 		UPDATE promotionDetail SET stock = stock-#{prPersonnel} WHERE pmCode = #{pmCode}
 	</update>
-	
 	
 </mapper>

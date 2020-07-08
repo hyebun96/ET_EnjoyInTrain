@@ -162,7 +162,8 @@ function requestPay(){
 									<td class="receipt_report_question">상품명</td>
 									<td class="receipt_report_answer">${start.trainName} - ${startDto.trainCode}</td>
 									<td class="receipt_report_question">객실등급</td>
-									<td class="receipt_report_answer">${startDto.roomGrade}</td>
+									<td class="receipt_report_answer">${startDto.roomGrade} <span style="color: blue;"> + ${startDto.prAddPrice}</span>
+									</td>
 								</tr>
 								<tr>
 									<td class="receipt_report_question">이용기간</td>
@@ -184,7 +185,7 @@ function requestPay(){
 								</tr>
 								<tr>
 									<td class="receipt_report_question">좌석선택</td>
-									<td class="receipt_report_answer">E08</td>
+									<td class="receipt_report_answer">${startDto.roomNum} 호실 / 좌 석 :  ${startDto.prTrainSeat}</td>
 								</tr>
 								<tr>
 									<td class="receipt_report_num" rowspan="3">2</td>
@@ -208,7 +209,7 @@ function requestPay(){
 									<td class="receipt_report_question">상품명</td>
 									<td class="receipt_report_answer">${end.trainName} - ${endDto.trainCode}</td>
 									<td class="receipt_report_question">객실등급</td>
-									<td class="receipt_report_answer">${endDto.roomGrade1}</td>
+									<td class="receipt_report_answer">${endDto.roomGrade} <span style="color: blue;"> + ${endDto.prAddPrice}</span></td>
 								</tr>
 								<tr>
 									<td class="receipt_report_question">이용기간</td>
@@ -230,11 +231,27 @@ function requestPay(){
 								</tr>
 								<tr>
 									<td class="receipt_report_question">좌석선택</td>
-									<td class="receipt_report_answer" colspan="3">E08</td>
+									<td class="receipt_report_answer" colspan="3">${endDto.roomNum} 호실 / 좌 석 :  ${endDto.prTrainSeat}</td>
 								</tr>
 							</table>
 						</div>
-						<div><table class="receipt_cost"><tr><td>총 결제금액 : ${startDto.pmPrice+startDto.prAddPrice + endDto.prAddPrice}원<td></tr></table></div>
+						<div>
+							<table class="receipt_cost">
+								<tr>
+									<td class="receipt_question">프로모션 값 : </td>
+									<td class="receipt_answer"> ${startDto.pmPrice} 원 </td>
+								</tr>
+								<tr>
+									<td class="receipt_question">열차 객실 등급 추가비용 : </td>
+									<td class="receipt_answer">${startDto.prAddPrice + endDto.prAddPrice} 원</td>
+								</tr>
+								<tr>
+									<td class="receipt_question1">총 결제금액 : </td>
+									<td class="receipt_total">${startDto.pmPrice+startDto.prAddPrice + endDto.prAddPrice}원</td>
+								</tr>
+							</table>
+							<table style="border-collapse:collapse; border-top: 1px solid #cccccc; width: 100%"><tr><td></td></tr></table>
+						</div>
 						<div>
 							<div class="traveler_title">■ 예약자 및 여행자 정보입력</div>
 							<table class="travler_info">
@@ -318,7 +335,7 @@ function requestPay(){
 			</tr>
 			<tr>
 				<td rowspan="3" class="statement_report_date2">${startDto.pmStartDate}</td>
-				<td class="statement_report_productName2">${startDto.startTrain}</td>
+				<td class="statement_report_productName2">${start.trainName} - ${startDto.trainCode}</td>
 				<td class="statement_report_productCount2">${startDto.prPersonnel}인</td>
 			</tr>
 			<tr>
@@ -326,14 +343,17 @@ function requestPay(){
 				<td class="statement_report_productCount2">${startDto.productUserCount}인</td>
 			</tr>
 			<tr>
-				<td class="statement_report_productName2">${endDto.endTrain}</td>
+				<td class="statement_report_productName2">${end.trainName} - ${endDto.trainCode}</td>
 				<td class="statement_report_productCount2">${endDto.prPersonnel}인</td>
 			</tr>
 			<tr>
-				<td colspan="3" class="statement_report_cost1">총 결제금액</td>
+				<td colspan="3" class="statement_report_cost1">프로모션 값 : ${startDto.pmPrice} 원 </td>
 			</tr>
 			<tr>
-				<td colspan="3" class="statement_report_cost2">${startDto.pmPrice+startDto.prAddPrice + endDto.prAddPrice}원</td>
+				<td colspan="3" class="statement_report_cost2">열차 객실 등급 추가비용 :${startDto.prAddPrice + endDto.prAddPrice} 원 </td>
+			</tr>
+			<tr>
+				<td colspan="3" class="statement_report_cost3">총 결제금액 : ${startDto.pmPrice+start.prAddPrice + end.prAddPrice}원</td>
 			</tr>
 		</table>
 		<table class="statement_notice">
@@ -342,7 +362,7 @@ function requestPay(){
 			</tr>
 			<tr>
 				<td class="statement_notice_date1">결제기한</td>
-				<td class="statement_notice_date2">2020-06-23 16:52(이후 자동 취소 됩니다.)</td>
+				<td class="statement_notice_date2">${startDto.prPaymentDate} (이후 자동 취소 됩니다.)</td>
 			</tr>
 		</table>
 		<div>● 최소인원 미달, 천재지변 등에 의한 행사 취소 시에는 전액 환불됩니다.</div>

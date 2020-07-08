@@ -21,22 +21,37 @@ public class BookingServiceImpl implements BookingService{
 
 	@Override
 	public int insertReservation(Booking dto) throws Exception {
+		int prCode=0;
 		int seq = 0;
 		String reservationNumber = null;
 		try {
-			seq = dao.selectOne("booking.setPrcode");
+			
 			reservationNumber = dao.selectOne("booking.reservationNumber");
 			dto.setReservationNumber(reservationNumber);
+			
+			seq = dao.selectOne("booking.setPrcode");
 			dto.setPrSeq(seq);
 			dao.updateData("booking.updateStock", dto);
-			String []ss = dto.getTrainCode().split(",");
-			dto.setTrainCode(ss[0]);
+			prCode = dao.selectOne("booking.setPrcode1");
+			dto.setPrCode(prCode);
 			dao.insertData("booking.insertReservation", dto);
 			dao.updateData("booking.updatePayDate", dto.getPrSeq());
-			if(ss.length>0)
-				dto.setTrainCode(ss[1]);
-			dao.insertData("booking.insertReservation", dto);
+			if(dto.getRoomGrade().equals("일반")) {
+				dto.setPrAddPrice(0);
+				dao.insertData("booking.insertTrain", dto);
+			} else {
+				dao.insertData("booking.insertTrain", dto);
+			}
+			prCode = dao.selectOne("booking.setPrcode1");
+			dto.setPrCode(prCode);
+			dao.insertData("booking.insertReservation1", dto);
 			dao.updateData("booking.updatePayDate", dto.getPrSeq());
+			if(dto.getRoomGrade().equals("일반")) {
+				dto.setPrAddPrice(0);
+				dao.insertData("booking.insertTrain1", dto);
+			} else {
+				dao.insertData("booking.insertTrain1", dto);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -75,9 +90,13 @@ public class BookingServiceImpl implements BookingService{
 	}
 
 	@Override
-	public List<Booking> listReservation() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Booking> listReservation(Map<String, Object> map) {
+		List<Booking> list = null;
+		try {
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	@Override
@@ -149,10 +168,25 @@ public class BookingServiceImpl implements BookingService{
 	}
 
 	@Override
-	public int readsPay(Map<String, String> map) {
+	public int readsPay(Booking dto) {
 		int result = 0;
 		try {
-			result = dao.selectOne("booking.readsPay", map);
+			dto.setStartCode(dao.selectOne("booking.readStationCode", dto));
+			dto.setEndCode(dao.selectOne("booking.readStationCode1", dto));
+			result = dao.selectOne("booking.readsPay", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int readsPay1(Booking dto) {
+		int result = 0;
+		try {
+			dto.setStartCode(dao.selectOne("booking.readStationCode", dto));
+			dto.setEndCode(dao.selectOne("booking.readStationCode1", dto));
+			result = dao.selectOne("booking.readsPay1", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -245,4 +279,23 @@ public class BookingServiceImpl implements BookingService{
 		return endStation;
 	}
 
+	@Override
+	public int reservationCount(Map<String, Object> map) {
+		int result = 0;
+		try {
+		} catch (Exception e) {
+		}
+		return result;
+	}
+
+	@Override
+	public void paymentSuccess(int prSeq) {
+		try {
+			dao.updateData("booking.updatePrPayment", prSeq);
+		} catch (Exception e) {
+		}
+	}
+
+
+	
 }

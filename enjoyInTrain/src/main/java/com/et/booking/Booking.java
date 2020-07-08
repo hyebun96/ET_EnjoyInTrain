@@ -2,6 +2,7 @@ package com.et.booking;
 
 public class Booking {
 	// 프로모션 정보
+	private int prCode;
 	private int prSeq;					// 예약코드  
 	private String pmCode;				// 프로모션 상품코드
 	private String pmTitle;				// 프로모션 상품명
@@ -19,21 +20,30 @@ public class Booking {
 	private int prPersonnel; 			// 예약인원 get
 	
 	// 가는 기차 & 오는 기차
-	private String trainName;
-	private String trainCode;
-	private String startTrainName;		// 가는 기차 이름
+	private String trainName;			// 가는 기차명
+	private String trainName1;			// 오는 기차명
+	private String trainCode;			// 가는 기차 코드 (받아오기)
+	private String trainCode1;			// 오는 기차 코드 (받아오기)
+	private String startCode;			// 가는 역 코드
 	private String startTrain; 			// 가는 기차코드	
 	private String startTime;			// 가는 기차 시간
-	private String endTrainName;		// 오는 기차 이름
+	private String endCode;				// 오는 역 코드
 	private String endTrain;			// 오는 기차코드	
 	private String endTime;				// 오는 기차 시간
 	private String startStation;		// 출발하는 역 @	
+	private String startStation1;		// 출발하는 역 @	
 	private String roomGrade;			// 객실등급
+	private int roomNum;
+	private int prStartRoom;			// 가는 기차 칸번호
 	private String prStartTrainSeat;	// 출발역 좌석
-	private String endStation;			// 출발하는 역 @	
+	private String endStation;			// 출발하는 역 @
+	private String endStation1;			// 출발하는 역 @
 	private String prEndTrainSeat;		// 도착역 좌석
+	private String prTrainSeat;
+	private int prEndRoom;				// 오는 기차 칸번호
 	private String roomGrade1;
 	private int prAddPrice;				// 객실등급에 따라 추가금액
+	private int prAddPrice1;				// 객실등급에 따라 추가금액
 
 	// 프로모션 상품
 	private String product;				// 프로모션 상품
@@ -51,11 +61,11 @@ public class Booking {
 	private String reservationNumber;	// 예약번호
 	private String prPaymentDate;		// 결제한 날
 	
-	public String getTrainName() {
-		return trainName;
+	public int getPrCode() {
+		return prCode;
 	}
-	public void setTrainName(String trainName) {
-		this.trainName = trainName;
+	public void setPrCode(int prCode) {
+		this.prCode = prCode;
 	}
 	public int getPrSeq() {
 		return prSeq;
@@ -135,17 +145,35 @@ public class Booking {
 	public void setPrPersonnel(int prPersonnel) {
 		this.prPersonnel = prPersonnel;
 	}
+	public String getTrainName() {
+		return trainName;
+	}
+	public void setTrainName(String trainName) {
+		this.trainName = trainName;
+	}
+	public String getTrainName1() {
+		return trainName1;
+	}
+	public void setTrainName1(String trainName1) {
+		this.trainName1 = trainName1;
+	}
 	public String getTrainCode() {
 		return trainCode;
 	}
 	public void setTrainCode(String trainCode) {
 		this.trainCode = trainCode;
 	}
-	public String getStartTrainName() {
-		return startTrainName;
+	public String getTrainCode1() {
+		return trainCode1;
 	}
-	public void setStartTrainName(String startTrainName) {
-		this.startTrainName = startTrainName;
+	public void setTrainCode1(String trainCode1) {
+		this.trainCode1 = trainCode1;
+	}
+	public String getStartCode() {
+		return startCode;
+	}
+	public void setStartCode(String startCode) {
+		this.startCode = startCode;
 	}
 	public String getStartTrain() {
 		return startTrain;
@@ -159,11 +187,11 @@ public class Booking {
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
-	public String getEndTrainName() {
-		return endTrainName;
+	public String getEndCode() {
+		return endCode;
 	}
-	public void setEndTrainName(String endTrainName) {
-		this.endTrainName = endTrainName;
+	public void setEndCode(String endCode) {
+		this.endCode = endCode;
 	}
 	public String getEndTrain() {
 		return endTrain;
@@ -183,11 +211,29 @@ public class Booking {
 	public void setStartStation(String startStation) {
 		this.startStation = startStation;
 	}
+	public String getStartStation1() {
+		return startStation1;
+	}
+	public void setStartStation1(String startStation1) {
+		this.startStation1 = startStation1;
+	}
 	public String getRoomGrade() {
 		return roomGrade;
 	}
 	public void setRoomGrade(String roomGrade) {
 		this.roomGrade = roomGrade;
+	}
+	public int getRoomNum() {
+		return roomNum;
+	}
+	public void setRoomNum(int roomNum) {
+		this.roomNum = roomNum;
+	}
+	public int getPrStartRoom() {
+		return prStartRoom;
+	}
+	public void setPrStartRoom(int prStartRoom) {
+		this.prStartRoom = prStartRoom;
 	}
 	public String getPrStartTrainSeat() {
 		return prStartTrainSeat;
@@ -201,11 +247,29 @@ public class Booking {
 	public void setEndStation(String endStation) {
 		this.endStation = endStation;
 	}
+	public String getEndStation1() {
+		return endStation1;
+	}
+	public void setEndStation1(String endStation1) {
+		this.endStation1 = endStation1;
+	}
 	public String getPrEndTrainSeat() {
 		return prEndTrainSeat;
 	}
 	public void setPrEndTrainSeat(String prEndTrainSeat) {
 		this.prEndTrainSeat = prEndTrainSeat;
+	}
+	public String getPrTrainSeat() {
+		return prTrainSeat;
+	}
+	public void setPrTrainSeat(String prTrainSeat) {
+		this.prTrainSeat = prTrainSeat;
+	}
+	public int getPrEndRoom() {
+		return prEndRoom;
+	}
+	public void setPrEndRoom(int prEndRoom) {
+		this.prEndRoom = prEndRoom;
 	}
 	public String getRoomGrade1() {
 		return roomGrade1;
@@ -218,6 +282,12 @@ public class Booking {
 	}
 	public void setPrAddPrice(int prAddPrice) {
 		this.prAddPrice = prAddPrice;
+	}
+	public int getPrAddPrice1() {
+		return prAddPrice1;
+	}
+	public void setPrAddPrice1(int prAddPrice1) {
+		this.prAddPrice1 = prAddPrice1;
 	}
 	public String getProduct() {
 		return product;
@@ -291,6 +361,5 @@ public class Booking {
 	public void setPrPaymentDate(String prPaymentDate) {
 		this.prPaymentDate = prPaymentDate;
 	}
-	
 	
 }
