@@ -29,7 +29,7 @@ tr.over {
 }
 
 .boxTF{
-	width: 300px;
+	width: 150px;
 }
 
 
@@ -96,7 +96,7 @@ function searchList() {
 				<section>
 					<header>
 						<h2>자유게시판</h2>
-						<span class="byline" style="margin-top: 20px;">Please feel free to write.</span>
+						<span class="byline" style="margin-top: 20px;">PlEASE FEEL FREE TO WRITE.</span>
 					</header>
 					
 					<div>
@@ -104,8 +104,6 @@ function searchList() {
 						<table style="width: 100%; margin: 10px auto; border-spacing: 0px;">
 						   <tr height="40">
 						   		<td align="left">
-										<button type="button" class="btn" id="btn" onclick="javascript:location.href='<%=cp%>/admin/freeBoard/list';"
-											style="background: white; width: 100px; height: 29px; border-radius: 10px; border: 1px solid #cccccc;">새로고침</button>
 								</td>
 								
 		      					<td align="left">
@@ -117,9 +115,11 @@ function searchList() {
 											<option value="crewName" ${condition=="crewName"?"selected='selected'":""}>작성자</option>
 											<option value="fbCreated" ${condition=="fbCreated"?"selected='selected'":""}>등록일</option>
 										</select>
-										<input type="text" name="keyword" value="${keyword}" class="boxTF" width="50">
+										<input type="text" name="keyword" value="${keyword}" class="boxTF">
 										<button type="button" class="btnsearch" id="btnsearch" onclick="searchList()"
 											style="background: white; width: 100px; height: 29px; border-radius: 10px; border: 1px solid #cccccc;">검색</button>
+										<button type="button" class="btn" id="btn" onclick="javascript:location.href='<%=cp%>/admin/freeBoard/list';"
+											style="background: white; width: 100px; height: 29px; border-radius: 10px; border: 1px solid #cccccc;">새로고침</button>
 									</form>
 								</td>
 							</tr>
@@ -138,7 +138,6 @@ function searchList() {
 				    			  </td>
 						</table>
 						
-				
 						<table style="width: 100%; margin: 0px auto; border-spacing: 0px; border-collapse: collapse;">
 							<tr class="menu-heght2" height="35" style="border-bottom: 1px solid #cccccc; background-color: #21373F; color: white; font-weight: bold;">
 								<th width="60">번호</th>
@@ -178,8 +177,6 @@ function searchList() {
 							</td>
 						   </tr>
 						</table>
-
-						
 					</div>
 				</section>
 			</div>

@@ -5,6 +5,37 @@
 <%
 	String cp=request.getContextPath();
 %>
+<style type="text/css">
+.notcrewbtn{
+	width: 180px;
+	height: 50px;
+	background: white;
+	border-color: #cccccc;
+	border-width: 1px;
+	margin-bottom:10px;
+}
+
+.findbtn{
+	width: 100px;
+	height: 35px;
+	background: white;
+	border-color: #cccccc;
+	border-width: 1px;
+	margin: 10px 10px 15px 10px;
+}
+
+.btn{
+	width: 100px;
+	height: 80px;
+	border-color: #cccccc;
+	border-width: 1px;
+	margin-bottom:10px;
+	background: white;
+	vertical-align: middle;
+}
+
+</style>
+
 <script type="text/javascript">
 function sendLogin(){
 	var f=document.loginForm;
@@ -39,12 +70,12 @@ function sendLogin(){
 			<!-- Main -->
 			<div id="main" class="container" style=" width: 1000px; height:300px;  margin-top: 0; padding-top: 0;" >
 				<form name="loginForm" method="post" action="">
-					<div style="padding:50px 0px; text-align:center; float: left; width:60%; height:250px; border: 1px solid gray;">
+					<div style="padding:50px 0px; text-align:center; float: left; width:60%; height:250px; border: 1px solid gray; border-right: ">
 						<table style="width:450px; height:150px; text-align: center; margin: 0 auto;"  >
 							<tr style="padding: 10px;">
 								<td style="text-align:left; width: 20%; height: 30%;">아&nbsp;이&nbsp;디</td>
 								<td style="width: 50%; height: 30%;"><input name="crewId" id="crewId" type="text" style="width: 100%;"></td>
-								<td  rowspan="2" ><button type="button" onclick="sendLogin();" style="width: 80%; height: 80%;">확인</button></td>
+								<td  rowspan="2" ><button type="button" class="btn" onclick="sendLogin();">확인</button></td>
 							</tr>
 							<tr>
 								<td style=" text-align:left; width: 20%; height: 30%;">비밀번호</td>
@@ -52,20 +83,21 @@ function sendLogin(){
 							</tr>
 							<tr>
 								<td colspan="3">
-									<button style="width: 100px; ">회원번호 찾기</button>
-									<button style="width: 100px; ">비밀번호 찾기</button>
-									<button type="button" onclick="javascript:location.href='<%=cp%>/crew/crew';" style="width: 100px; ">회원가입</button>
+									<button class="findbtn">회원번호 찾기</button>
+									<button class="findbtn">비밀번호 찾기</button>
+									<button class="findbtn" type="button" onclick="javascript:location.href='<%=cp%>/crew/crew';">회원가입</button>
+									<p style="color: red;">${message}</p>
 								</td>
 							</tr>
 						</table>				
 					</div>
-					<div style="text-align:center; padding:50px; width:40%; height:250px; float: left; border: 1px solid gray; margin: 0px auto;">
+					<div style="text-align:center; padding:50px; width:40%; height:250px; float: left; border: 1px solid gray; border-left:none; margin: 0px auto;">
 						<ul>
-							<li><button>미등록고객 예매</button></li>
-							<li><button>환불|재발권|영수증</button></li>
+							<li><p>미등록고객은<br>아래의 버튼을 이용하시기 바랍니다.</p></li>
+							<li><button class="notcrewbtn">미등록고객 예매</button></li>
+							<li><button class="notcrewbtn">환불ㆍ재발권ㆍ영수증</button></li>
 						</ul>
 					</div>
-					<p>${message}</p>
 				</form>
 			</div>
 			<!-- Main -->

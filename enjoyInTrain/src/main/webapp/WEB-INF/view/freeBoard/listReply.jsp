@@ -25,10 +25,10 @@
 	<tbody id='listReplyBody'>
 	<c:forEach var="vo" items="${listReply}">
 	    <tr height='35' style='background: #eeeeee;'>
-	       <td width='50%' style='padding:5px 5px; border:1px solid #cccccc; border-right:none;'>
+	       <td width='50%' style='padding:5px 5px; border-bottom:1px solid #cccccc; border-right:none; background: white; font-weight: bold;'>
 	           <span><b>${vo.crewName}</b></span>
 	        </td>
-	       <td width='50%' style='padding:5px 5px; border:1px solid #cccccc; border-left:none;' align='right'>
+	       	       <td width='50%' style='padding:5px 5px; border-bottom::1px solid #cccccc; border-left:none; background: white; font-weight: bold;' align='right'>
 	           <span>${vo.created}</span> |
 	           <c:if test="${vo.crewId == sessionScope.crew.crewId ||  sessionScope.crew.crewId == 'admin' }">
 	                <span class="deleteReply" style="cursor: pointer;" data-replyNum='${vo.fbReplyNum}' data-pageNo='${pageNo}'>삭제</span>
@@ -45,11 +45,10 @@
 	    </tr>
 	    
 	    <tr>
-	        <td style='padding:7px 5px;'>
-	            <button type='button' class='btn btnReplyAnswerLayout' data-replyNum='${vo.fbReplyNum}'>답글 <span id="answerCount${vo.fbReplyNum}">${vo.answerCount}</span></button>
-	        </td>
+	    	<td></td>
 	        <td style='padding:7px 5px;' align='right'>
-                <button type='button' class='btn btnSendReplyLike' data-replyNum='${vo.fbReplyNum}' data-replyLike='1' title="Like"><i class="far fa-hand-point-up"></i> <span>${vo.likeCount}</span></button>
+	            <button type='button' class='btn btnReplyAnswerLayout' data-replyNum='${vo.fbReplyNum}' style="width: 70px;">답글 <span id="answerCount${vo.fbReplyNum}">${vo.answerCount}</span></button>
+                <button type='button' style="width: 50px;" class='btn btnSendReplyLike' data-replyNum='${vo.fbReplyNum}' data-replyLike='1' title="Like"><i class="far fa-thumbs-up"></i> <span>${vo.likeCount}</span></button>
 	        </td>
 	    </tr>
 	

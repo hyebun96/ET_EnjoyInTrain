@@ -371,13 +371,13 @@ $(function () {
 				<section>
 					<header>
 						<h2>자유게시판</h2>
-							<span class="byline" style="margin-top: 20px; font-size: 15px;">Please feel free to write.</span>
+							<span class="byline" style="margin-top: 20px;">PlEASE FEEL FREE TO WRITE.</span>
 					</header>
 
 					<div>
 						<table
 							style="width: 100%; margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
-							<tr height="35" style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc;">
+							<tr height="35" style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc;  background: #21373F; color: white; font-weight: bold;">
 								<td colspan="2" align="center">${dto.fbTitle}</td>
 							</tr>
 
@@ -397,7 +397,7 @@ $(function () {
 								<td colspan="2" height="40" style="padding-bottom: 15px;"
 									align="center">
 									<button style="width: 50px;" type="button" class="btn btnSendBoardLike" title="좋아요">
-										<i class="fas fa-hand-point-up"></i>&nbsp;&nbsp;<span
+										<i class="far fa-hand-point-up"></i>&nbsp;&nbsp;<span
 											id="boardLikeCount">${dto.fbLikeCount}</span>
 									</button>
 								</td>
@@ -453,8 +453,24 @@ $(function () {
 							</tr>
 						</table>
 					</div>
-
-				
+					<div>
+						<table style='width: 100%; margin: 15px auto 0px; border-spacing: 0px;'>
+							<tr height='30'>
+								<td align='left'><span style='font-weight: bold;'>댓글쓰기</span><span>
+										- 타인을 비방하거나 개인정보를 유출하는 글의 게시를 삼가 주세요.</span></td>
+							</tr>
+							<tr>
+								<td style='padding: 5px 5px 0px;'>
+								<textarea class='boxTA' style='width: 99%; height: 70px;'></textarea></td>
+							</tr>
+							<tr>
+								<td align='right'>
+									<button type='button' class='btn btnSendReply' style=' width: 110px;'>댓글 등록</button>
+								</td>
+							</tr>
+						</table>
+						<div id="listReply"></div>
+					</div>
 				</section>
 			</div>
 			<!-- /메인내용 -->

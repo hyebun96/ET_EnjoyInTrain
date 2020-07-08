@@ -412,7 +412,7 @@ $(function () {
 								<td colspan="2" height="40" style="padding-bottom: 15px;"
 									align="center">
 									<button style="width: 50px;" type="button" class="btn btnSendBoardLike" title="좋아요">
-										<i class="fas fa-hand-point-up"></i>&nbsp;&nbsp;<span
+										<i class="far fa-hand-point-up"></i>&nbsp;&nbsp;<span
 											id="boardLikeCount">${dto.fbLikeCount}</span>
 									</button>
 								</td>

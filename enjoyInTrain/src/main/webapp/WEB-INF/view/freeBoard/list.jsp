@@ -29,7 +29,7 @@ tr.over {
 }
 
 .boxTF{
-	width: 300px;
+	width: 150px;
 }
 
 
@@ -37,11 +37,13 @@ tr.over {
 	width: 80px; 
 	height: 30px; 
 	margin-top: 20px; 
-	background-color: white; 
-	border-color: #cccccc;
-	border-radius: 10px;
+	background: none;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	border-radius: 5px;
 	
 }
+
 
 #btnsearch{
 	width: 50px; 
@@ -111,10 +113,29 @@ function searchList() {
 				<section>
 					<header>
 						<h2>자유게시판</h2>
-						<span class="byline" style="margin-top: 20px; font-size: 15px;">Please feel free to write.</span>
+						<span class="byline" style="margin-top: 20px;">PlEASE FEEL FREE TO WRITE.</span>
 					</header>
 					
 					<div>
+						<table style="width: 100%; margin: 10px auto; border-spacing: 0px;">
+						   <tr height="40">
+		      					<td align="center">
+									<form name="searchForm" action="<%=cp%>/freeBoard/list" method="post" style="float: left;">
+										<select name="condition" class="selectField, noticebtn">
+											<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
+											<option value="fbTitle" ${condition=="fbTitle"?"selected='selected'":""}>제목</option>
+											<option value="fbContent" ${condition=="fbContent"?"selected='selected'":""}>내용</option>
+											<option value="crewName" ${condition=="crewName"?"selected='selected'":""}>작성자</option>
+											<option value="fbCreated" ${condition=="fbCreated"?"selected='selected'":""}>등록일</option>
+										</select>
+										<input type="text" name="keyword" value="${keyword}" class="boxTF">
+										<button type="button" class="noticebtn" id="btnsearch" onclick="searchList()">검색</button>
+										<button type="button" class="btn" id="btn" onclick="javascript:location.href='<%=cp%>/freeBoard/list';">새로고침</button>
+									</form>
+								</td>
+								
+							</tr>
+						</table>
 						<table style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse;">
 							<tbody class="board-list">
 							<tr height="35" style="border-bottom: 1px solid #cccccc;">
@@ -126,7 +147,6 @@ function searchList() {
 				         				 &nbsp;
 				    			  </td>
 						</table>
-						
 						
 						<table style="width: 100%; margin: 0px auto; border-spacing: 0px; border-collapse: collapse;">
 							<tr class="menu-heght2" height="35" style="border-bottom: 1px solid #cccccc;  background: #21373F; color: white;">
@@ -158,41 +178,19 @@ function searchList() {
 									</td>
 								</tr>
 							</c:forEach>
+							<tr>
+							</tr>
 						</table>
 				
 						<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
 						   <tr height="35">
 							<td align="center">
+									<button style="border-radius: 10px; float: right;" type="button" class="btn" id="btn" onclick="javascript:location.href='<%=cp%>/freeBoard/created';">글올리기</button>
 							       ${dataCount==0?"등록된 게시물이 없습니다.":paging}
 							</td>
 						   </tr>
 						</table>
 
-						<table style="width: 100%; margin: 10px auto; border-spacing: 0px;">
-						   <tr height="40">
-						   		<td align="left" width="100">
-										<button type="button" class="btn" id="btn" onclick="javascript:location.href='<%=cp%>/freeBoard/list';">새로고침</button>
-								</td>
-								
-		      					<td align="center">
-									<form name="searchForm" action="<%=cp%>/freeBoard/list" method="post">
-										<select name="condition" class="selectField, noticebtn">
-											<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
-											<option value="fbTitle" ${condition=="fbTitle"?"selected='selected'":""}>제목</option>
-											<option value="fbContent" ${condition=="fbContent"?"selected='selected'":""}>내용</option>
-											<option value="crewName" ${condition=="crewName"?"selected='selected'":""}>작성자</option>
-											<option value="fbCreated" ${condition=="fbCreated"?"selected='selected'":""}>등록일</option>
-										</select>
-										<input type="text" name="keyword" value="${keyword}" class="noticeinput" width="300px">
-										<button type="button" class="noticebtn" id="btnsearch" onclick="searchList()">검색</button>
-									</form>
-								</td>
-								
-								<td align="right" width="100">
-									<button style="border-radius: 10px;" type="button" class="btn" id="btn" onclick="javascript:location.href='<%=cp%>/freeBoard/created';">글올리기</button>
-								</td>
-							</tr>
-						</table>
 					</div>
 				</section>
 			</div>

@@ -279,7 +279,7 @@ function insertAn(){
 						<section>
 							<header>
 								<h2>고객의 소리</h2>
-								<span class="byline">Notice | Check news of new services and events</span>
+								<span class="byline">THANK YOU FOR YOUR VALUABLE OPINION.</span>
 							</header>
 							<div id="namul">
 					<form name="noticeForm" method="post" >
@@ -290,7 +290,7 @@ function insertAn(){
 							</tr>
 							<tr class="noticearticletitle">
 								<td class="noticearticletitle2">등록일</td>
-								<td style="text-align: center;">${dto.sgCreated}</td>
+								<td style="text-align: left;">${dto.sgCreated}</td>
 								<td class="noticearticletitle2">조회수</td>
 								<td width="300px" style="text-align: center;">${dto.sgHitCount}</td>
 								

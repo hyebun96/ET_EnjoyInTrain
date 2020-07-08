@@ -19,13 +19,18 @@ header .byline {
     padding: 0 0 0.5em 0;
     text-transform: uppercase;
     font-size: 1.4em;
-    padding-bottom: 30px;
+    padding-bottom: 60px;
 }
 
 .listLine{
-    height: 40px;
+    height: 35px;
     border-bottom: 1px solid #cccccc;
 }
+
+.listLine a{
+	margin-left: 30px;
+}
+
 
 </style>
 <script type="text/javascript">
@@ -47,21 +52,20 @@ function suggestList(){
 			<!-- Main -->
 			<div id="main" class="container" style="margin-top: 0; padding-top: 0;">
 				<div class="row">
-
 				
 					<div class="9u skel-cell-important">
 						<section>
 							<header>
 								<form action="<%=cp%>/admin/suggest/list" name="suggestListForm" method="post">
 								<h2>고객의 소리</h2>
-								<span class="byline">불편/불만사항,칭찬사례,제안 등의 내용을 작성해주세요.</span>
-								<select name="rows" onchange="suggestList(); ">
+								<span class="byline" >THANK YOU FOR YOUR VALUABLE OPINION.</span>
+								<select name="rows" onchange="suggestList();" style="height: 29px; margin-bottom: 50px;">
 									<option value="5" ${rows==5?"selected='selected' ":"" }>5개씩출력</option>
 									<option value="10" ${rows==10?"selected='selected' ":"" }>10개씩출력</option>
 									<option value="20" ${rows==20?"selected='selected' ":"" }>20개씩출력</option>
 								</select>
 								<table style="width:900px; padding-top:10px; text-align:center;">
-									<tr style="background: #21373F; height:50px; border-bottom:none;  color: white;">
+									<tr style="background: #21373F; height:35px; border-bottom:none;  color: white; font-weight: bold;">
 										<td style="width: 40px;">번호</td>
 										<td style="width: 100px;">카테고리</td>
 										<td>제목</td>
@@ -82,7 +86,7 @@ function suggestList(){
 													<a href="${articleUrl}&sgCode=${dto.sgCode}">${dto.sgTitle}</a>
 												</c:if>
 												<c:if test="${dto.dept!=0}">
-													<a href="${articleUrl}&sgCode=${dto.sgCode}">[re]${dto.sgTitle}</a>
+													<a href="${articleUrl}&sgCode=${dto.sgCode}"></a><a style="margin-left: 0px; color: red;">[re]</a><a style="margin-left: 0px;">${dto.sgTitle}</a>
 												</c:if>
 											</td>
 											<td>${dto.crewName}</td>
@@ -98,7 +102,6 @@ function suggestList(){
 							</header>
 						</section>
 					</div>
-					
 				</div>
 			</div>
 			<!-- Main -->
