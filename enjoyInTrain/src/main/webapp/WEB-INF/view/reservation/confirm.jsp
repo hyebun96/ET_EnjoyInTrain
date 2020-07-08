@@ -152,6 +152,7 @@ function requestPay(){
 								<input type="hidden" value="${map.trainCode}" name="trainCode">
 								<input type="hidden" value="${map.roomNum}" name="roomNum">
 								<input type="hidden" value="${map.total}" name="total">
+								<input type="hidden" value="${map.totalPay}" name="trPrice">
 								
 								<input type="hidden" value="${map.trainName}" name="trainName">
 								<input type="hidden" value="${map.totalPay}" name="totalPay">
@@ -160,6 +161,10 @@ function requestPay(){
 								<input type="hidden" value=" ${map.stTime}" name="stTime">
 								<input type="hidden" value=" ${map.endTime}" name="endTime">
 								
+								<input type="hidden" value=" ${map.name}" name="name">
+								<input type="hidden" value=" ${map.password}" name="password">
+								<input type="hidden" value=" ${map.tel}" name="tel">
+								<input type="hidden" value=" ${map.email}" name="email">
 								
 								 	<table style="width:100%;  ">
 								 		<tr style="height:40px; background:#EAEAEA; border-top: 2px solid black;">
@@ -209,8 +214,8 @@ function requestPay(){
 									 			<td>${num.seatPay}
 									 				<input type="hidden" name="seatPay${i}" value="${num.seatPay}">
 									 			</td>
-									 			<td>0</td>
-									 			<td>${num.seatPay}</td>
+									 			<td>${num.disCount}</td>
+									 			<td>${num.seatPay-num.disCount}</td>
 									 			<td>
 									 				<select>
 									 					<option>1</option>

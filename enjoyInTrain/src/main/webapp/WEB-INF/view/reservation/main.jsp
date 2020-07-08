@@ -252,12 +252,6 @@ function listPage(page) {
 												</td>
 											</tr>
 											<tr>
-												<td colspan="3">
-													<b style="color: #4C4C4C; margin-right: 10px;">· 여정경로</b>  
-													<input type="radio" checked="checked" value="direct" name="path">직통
-													<input type="radio" value="transfer" name="path">환승
-													<input type="radio" value="round" name="path">왕복
-												</td>
 											</tr>
 											<tr>
 												<td colspan="3">
@@ -291,20 +285,6 @@ function listPage(page) {
 												</td>
 											</tr>
 											<tr>
-												<td colspan="3">
-													<b style="color: #4C4C4C;  margin-right: 10px;">· 좌석종류</b>
-													<select name="seat" id="seat1" style="font-size: 13px;">
-														<option value="all">좌석위치</option>
-														<option value="alone">1인석</option>
-														<option value="window">창즉좌석</option>
-														<option value="inside">내즉좌석</option>
-													</select>
-													<select name="seat2" id="seat2" style="font-size: 13px;">
-														<option value="all">좌석속성</option>
-														<option value="normal">일반</option>
-														<option value="bathchair">휠체어</option>
-													</select>
-												</td>
 											</tr>
 											<tr>
 												<td style="border-right:1px solid #D5D5D5; padding-bottom: 10px; font-size: 12px; text-align: right;">

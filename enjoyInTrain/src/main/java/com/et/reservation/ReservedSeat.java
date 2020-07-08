@@ -8,6 +8,13 @@ public class ReservedSeat {
 	private int seatPay;  //좌석 가격
 	private int roomNum;  //칸번호
 	private String trainCode;  //기차코드
+	private int disCount;	//할인금액
+	public int getDisCount() {
+		return disCount;
+	}
+	public void setDisCount(int disCount) {
+		this.disCount = disCount;
+	}
 	public int getRsSeatCode() {
 		return rsSeatCode;
 	}

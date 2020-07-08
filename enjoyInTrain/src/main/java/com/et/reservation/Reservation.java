@@ -15,6 +15,36 @@ public class Reservation {
 	private String endCode;  //도착역*
 	private String trainCode;  //기차코드*
 	
+	//내역
+	private String trCategory;
+	private String stTime;
+	private String endTime;
+	private int count;
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public String getStTime() {
+		return stTime;
+	}
+	public void setStTime(String stTime) {
+		this.stTime = stTime;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+	public String getTrCategory() {
+		return trCategory;
+	}
+	public void setTrCategory(String trCategory) {
+		this.trCategory = trCategory;
+	}
 	public int getTrCode() {
 		return trCode;
 	}

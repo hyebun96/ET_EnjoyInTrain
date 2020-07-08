@@ -7,6 +7,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Session;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.et.crew.SessionInfo;
 
 @Controller("reservation.reservationController")
 @RequestMapping("/reservation/*")
@@ -94,6 +99,8 @@ public class ReservationController {
 		map.put("roomGrade", "특실");
 		List<Integer> special=service.fulltrCode(map);
 		
+		//선택한 사람수(total)보다 적은 좌석개수를 가지고 있는 기차코드를 가져옴
+		//좌석부족 출력해줘야함
 		
 		model.addAttribute("list",list);
 		model.addAttribute("rsDto",dto);
@@ -146,6 +153,7 @@ public class ReservationController {
 	@RequestMapping("confirm")
 	public String confirm(
 			@RequestParam Map<String, String> map,
+			HttpSession session,
 			Model model
 			) {
 		if(map.get("directRv").equals("true")) {
@@ -205,13 +213,28 @@ public class ReservationController {
 			rvSeat.setSeatNum(map.get("seatNum"+i));
 			rvSeat.setSeatType(seatTypelist.get(i-1));
 			rvSeat.setSeatPay(service.readsPay(map));
+			int dc=0;
+			switch (rvSeat.getSeatType()) {
+				case "성인": dc=0; break;
+				case "어린이": dc=(int)(rvSeat.getSeatPay()*0.1); break;
+				case "경로": dc=(int)(rvSeat.getSeatPay()*0.15); break;
+				case "중증장애인": dc=(int)(rvSeat.getSeatPay()*0.2); break;
+				case "경증장애인": dc=(int)(rvSeat.getSeatPay()*0.25); break;
+			}
+			rvSeat.setDisCount(dc);
 			seatList.add(rvSeat);
-			totalPay+=rvSeat.getSeatPay();
+			totalPay+=rvSeat.getSeatPay()-dc;
 		}
 		map.put("totalPay", Integer.toString(totalPay));
 		
+		SessionInfo info=(SessionInfo)session.getAttribute("crew");
+		if(info==null) {
+			map.put("tel", map.get("tel1")+"-"+map.get("tel2")+"-"+map.get("tel3"));
+		}
+		
 		model.addAttribute("map",map);
 		model.addAttribute("seatList",seatList);
+		
 		return ".reservation.confirm";
 	}
 	
@@ -220,9 +243,21 @@ public class ReservationController {
 			Reservation rv,
 			ReservedSeat seat,
 			@RequestParam Map<String,String> map,
+			HttpSession session,
 			final RedirectAttributes reAttr
 			) {
-		service.reservation(rv, seat, map);
+		//회원이면 아이디 저장. (회원아니면 null)
+		SessionInfo info=(SessionInfo)session.getAttribute("crew");
+		UnCrew unCrew=new UnCrew();
+		if(info!=null) {
+			rv.setCrewId(info.getCrewId());
+		}else {
+			unCrew.setName(map.get("name"));
+			unCrew.setPassword(map.get("password"));
+			unCrew.setEmail(map.get("email"));
+			unCrew.setTel(map.get("tel"));
+		}
+		service.reservation(rv, seat, map, unCrew);
 		
 		reAttr.addFlashAttribute("rv",rv);
 		reAttr.addFlashAttribute("seat",seat);
@@ -265,4 +300,27 @@ public class ReservationController {
 		
 		return ".reservation.complete";
 	}
+	
+	@RequestMapping("uncrew")
+	public String uncrew(
+			@RequestParam Map<String, String> map,
+			Model model
+			) {
+		model.addAttribute("map",map);
+		return ".reservation.uncrew";
+	}
+	
+	@RequestMapping("detail")
+	public String detail(
+			HttpSession session,
+			Model model
+			) {
+		SessionInfo info=(SessionInfo)session.getAttribute("crew");
+		List<Reservation> list=service.readDetail(info.getCrewId());
+		
+		model.addAttribute("list",list);
+		return ".reservation.detail";
+	}
+	
+	
 }

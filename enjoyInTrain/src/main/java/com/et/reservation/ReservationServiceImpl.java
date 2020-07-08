@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.et.common.dao.CommonDAO;
+import com.sun.org.apache.bcel.internal.generic.DASTORE;
 
 @Service("reservation.reservationService")
 public class ReservationServiceImpl implements ReservationService{
@@ -161,7 +162,7 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 
 	@Override
-	public void reservation(Reservation rv, ReservedSeat seat, Map<String,String> map) {
+	public void reservation(Reservation rv, ReservedSeat seat, Map<String,String> map, UnCrew unCrew) {
 		try {
 			//날짜(ex 2020/7/2(목))->2020/7/2 형식으로 바꿔줌
 			String trDate=rv.getTrDate();
@@ -180,11 +181,13 @@ public class ReservationServiceImpl implements ReservationService{
 			rv.setTrCode(trCode);
 			
 			//기차예약테이블에 저장
-			dao.insertData("reservation.insertReservation", rv);
+			if(unCrew.getName()==null) {  
+				dao.insertData("reservation.insertReservation", rv);
+			}else {
+				dao.insertData("reservation.insertReservation2", rv);
+			}
 			//기차예약상세테이블에 저장
 			dao.insertData("reservation.insertReservationInfo", rv);
-			
-			
 			
 			//예약된좌석 테이블에 저장
 			int total=Integer.parseInt(map.get("total"));
@@ -202,6 +205,12 @@ public class ReservationServiceImpl implements ReservationService{
 				rvSeat.setRoomNum(Integer.parseInt(map.get("roomNum")));
 				rvSeat.setTrainCode(map.get("trainCode"));
 				dao.insertData("reservation.insertReservedSeat", rvSeat);
+			}
+			
+			//비회원일시 비회원정보테이블에 추가
+			if(unCrew.getName()!=null) {  //비회원일시
+				unCrew.setTrCode(trCode);
+				dao.insertData("reservation.insertUnCrew", unCrew);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -400,13 +409,40 @@ public class ReservationServiceImpl implements ReservationService{
 					
 					if(j==reSeatList.size()) {
 						unList.add(seatNum);
-					}
+					} 
 				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return unList;
+	}
+
+	//해당 아이디의 발권내역 가져오기
+	@Override
+	public List<Reservation> readDetail(String crewId) {
+		List<Reservation> list=null;
+		try {
+			list=dao.selectList("reservation.readDetail", crewId);
+			for(Reservation dto:list) {
+				Map<String, String> map=dao.selectOne("reservation.readStation",dto.getStartCode());
+				String stStation=map.get("ENGNAME");
+				map=dao.selectOne("reservation.readStation",dto.getEndCode());
+				map.put("stStation", stStation);
+				map.put("endStation", map.get("ENGNAME"));
+				map.put("trainCode", dto.getTrainCode());
+				map=dao.selectOne("reservation.readStatinTime", map);
+				dto.setStTime(map.get("STTIME"));
+				dto.setEndTime(map.get("ENDTIME"));
+				
+				//총 예약 인원수 가져오기
+				int cnt=dao.selectOne("reservation.readCount", dto.getTrCode());
+				dto.setCount(cnt);
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return unList;
+		return list;
 	}
 }

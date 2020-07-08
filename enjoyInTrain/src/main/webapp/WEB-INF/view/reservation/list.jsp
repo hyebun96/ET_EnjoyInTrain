@@ -17,6 +17,11 @@
 //좌석모달창
 $(function(){
 	$(".seatBtn").click(function(){
+		if(${sessionScope.crew.crewId==null}){
+			alert("좌석선택은 로그인 후 이용 가능합니다.");
+			return;
+		}
+		
 		var trainCode=$(this).closest("tr").children(".tCode").text();  //기차코드 가져오기
 		var trainName=$(this).closest("tr").children(".tName").text();  //기차종류 가져오기
 		var stTime=$(this).closest("tr").children().children(".stTime").text();  //출발시간 가져오기
@@ -51,9 +56,18 @@ $(function(){
 			query+="&roomGrade="+"일반실";
 		}
 		query+="&directRv=true";
-		var f=document.reservationForm;
-		f.action="<%=cp%>/reservation/confirm?"+query;
-		f.submit();
+		if(${sessionScope.crew.crewId==null}){
+			alert("미등록고객으로 예매를 진행합니다.");
+			var f=document.reservationForm;
+			f.action="<%=cp%>/reservation/uncrew?"+query;
+			f.submit();
+			return;
+		}else{
+			var f=document.reservationForm;
+			f.action="<%=cp%>/reservation/confirm?"+query;
+			f.submit();
+			return;
+		}
 	});
 });
 
@@ -74,18 +88,16 @@ $(function(){
 		<td style="text-align:left; background: #EAEAEA;" colspan="12"><b>· ${rsDto.startSt}->${rsDto.endSt} ${rsDto.day}</b></td>
 	</tr>
 	<tr>
-		<td style="width: 100px;">구분</td>
-		<td style="width: 100px;">열차종류</td>
-		<td style="width: 100px;">열차번호</td>
-		<td style="width: 100px;">출발역</td>
-		<td style="width: 100px;">도착역</td>
-		<td style="width: 100px;">특실</td>
-		<td style="width: 100px;">일반실</td>
-		<td style="width: 100px;">예약대기</td>
-		<td style="width: 100px;">회원할인</td>
-		<td style="width: 100px;">운행시간</td>
-		<td style="width: 100px;">운임요금</td>
-		<td style="width: 100px;">소요시간</td>
+		<td style="width: 120px;">구분</td>
+		<td style="width: 120px;">열차종류</td>
+		<td style="width: 120px;">열차번호</td>
+		<td style="width: 120px;">출발역</td>
+		<td style="width: 120px;">도착역</td>
+		<td style="width: 120px;">특실</td>
+		<td style="width: 120px;">일반실</td>
+		<td style="width: 120px;">운행시간</td>
+		<td style="width: 120px;">운임요금</td>
+		<td style="width: 120px;">소요시간</td>
 	</tr>
 	
 	<c:forEach var="dto" items="${list}">
@@ -131,8 +143,6 @@ $(function(){
 					<button class="seatBtn" value="general" type="button" style="border:none; background: #008299; color: white;">좌석선택</button>
 				</c:if>
 			</td>
-			<td>-</td>
-			<td>-</td>
 			<td>
 				<button>보기</button>
 			</td>

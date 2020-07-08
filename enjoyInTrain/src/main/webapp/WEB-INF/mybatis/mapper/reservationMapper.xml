@@ -88,7 +88,12 @@
 	
 	<!-- 기차(좌석)예약하기 -->
 	<insert id="insertReservation" parameterType="com.et.reservation.Reservation">
-		INSERT INTO trainreservation(trCode, trDate) VALUES(#{trCode},#{trDate})
+		INSERT INTO trainreservation(trCode, trPrice, trDate, crewId) VALUES(#{trCode},#{trPrice} ,#{trDate}, #{crewId})
+	</insert>
+	
+	<!-- 비회원일시 기차예약에 추가 -->
+	<insert id="insertReservation2" parameterType="com.et.reservation.Reservation">
+		INSERT INTO trainreservation(trCode, trPrice, trDate) VALUES(#{trCode},#{trPrice} ,#{trDate})
 	</insert>
 	
 	<insert id="insertReservationInfo" parameterType="com.et.reservation.Reservation">
@@ -98,6 +103,11 @@
 	<insert id="insertReservedSeat" parameterType="com.et.reservation.ReservedSeat">
 		INSERT INTO reservedSeat(rsSeatCode, seatNum, trCode, seatType, seatPay, roomNum, trainCode) 
 		VALUES(#{rsSeatCode},#{seatNum},#{trCode},#{seatType},#{seatPay},#{roomNum},#{trainCode})
+	</insert>
+	
+	<!-- 비회원 예약정보 추가 -->
+	<insert id="insertUnCrew" parameterType="com.et.reservation.UnCrew">
+		INSERT INTO unCrew(name, trCode, password, tel, email) VALUES(#{name}, #{trCode}, #{password}, #{tel}, #{email})
 	</insert>
 	
 	<!-- 날짜, 기차코드, 칸번호에 해당하는 예약된 좌석 가져오기 -->
@@ -180,5 +190,28 @@
 		ORDER BY roomNum
 	</select>
 	
+	<!-- 해당 아이디의 발권내역 가져오기 -->
+	<select id="readDetail" parameterType="String" resultType="com.et.reservation.Reservation">
+		SELECT TO_CHAR(trDate,'YYYY/MM/DD(DY)') trDate, trCategory, tr.trCode, info.trainCode, startSt.sName startCode, endSt.sName endCode, trPrice
+		FROM trainReservation tr
+		JOIN trReservationInfo info ON tr.trCode=info.trCode
+		JOIN train7 train ON info.trainCode=train.trainCode
+		JOIN station6 startSt ON info.startCode=startSt.sCode
+		JOIN station6 endSt ON info.endCode=endSt.sCode
+		WHERE crewId=#{crewId}
+		ORDER BY trDate
+	</select>
 	
+	<!-- 해당 기차코드의 해당 역 출발, 도착시간 -->
+	<select id="readStatinTime" parameterType="map" resultType="map">
+		SELECT ${stStation} stTime, ${endStation} endTime FROM stationLine7
+		WHERE trainCode=#{trainCode}
+	</select>
+	
+	<!-- 해당 예약코드의 총 예약 인원수 가져오기 -->
+	<select id="readCount" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) FROM reservedSeat
+		WHERE trCode=#{trCode}
+		GROUP BY trCode
+	</select>
  </mapper>

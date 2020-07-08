@@ -11,10 +11,11 @@ public interface ReservationService {
 	public Seat readSeat(Map<String, String> map);
 	public List<Seat> listSeat(Map<String, String> map);
 	public int readsPay(Map<String, String> map);
-	public void reservation(Reservation rv, ReservedSeat seat, Map<String,String> map);
+	public void reservation(Reservation rv, ReservedSeat seat, Map<String,String> map, UnCrew unCrew);
 	public List<String> listReservedSeat(Map<String, String> map);
 	public String roomFirst(Map<String, String> map);
 	public List<Integer> fullSeat(Map<String, String> map);
 	public List<Integer> fulltrCode(Map<String, String> map);
 	public List<String> unReservedSeat(Map<String, String> map);
+	public List<Reservation> readDetail(String crewId);
 }
