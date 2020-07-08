@@ -6,6 +6,7 @@
 	String cp = request.getContextPath();
 %>
 <link rel="stylesheet" href="<%=cp%>/resource/css/freeBoard.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
 <style>
 .homepage #main {
 	margin-top: 0em;
@@ -386,30 +387,33 @@ $(function () {
 				<section>
 					<header>
 						<h2>자유게시판</h2>
-							<span class="byline" style="margin-top: 20px; font-size: 15px;">Please feel free to write.</span>
+						<span class="byline">Free | PlEASE FEEL FREE TO WRITE.</span>
 					</header>
 
 					<div>
-						<table
-							style="width: 100%; margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
-							<tr height="35" style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc;">
-								<td colspan="2" align="center">${dto.fbTitle}</td>
+						<table class="noticearticle">
+							
+							<tr class="noticearticletitle">
+								<td class="noticearticletitle1">제목 </td>
+								<td style="text-align: left;">${dto.fbTitle}</td>
+								<td class="noticearticletitle1">조회수 </td>
+								<td align="center" width="300px">${dto.fbHitCount}</td>
 							</tr>
 
-							<tr height="35" style="border-bottom: 1px solid #cccccc;">
-								<td width="50%" align="left" style="padding-left: 5px;">이름
-									: ${dto.crewName}</td>
-								<td width="50%" align="right" style="padding-right: 5px;">
-									${dto.fbCreated} | 조회 ${dto.fbHitCount}</td>
+							<tr class="noticearticletitle">
+								<td class="noticearticletitle2">작성자</td>
+								<td style="text-align: center;">${dto.crewName}</td>
+								<td class="noticearticletitle2">작성일</td>
+								<td width="300px" style="text-align: center;">${dto.fbCreated}</td>
 							</tr>
 
 							<tr>
-								<td colspan="2" align="left" style="padding: 10px 5px;"
+								<td colspan="4" align="left" style="padding: 10px 5px;"
 									valign="top" height="200">${dto.fbContent}</td>
 							</tr>
 
 							<tr style="border-bottom: 1px solid #cccccc;">
-								<td colspan="2" height="40" style="padding-bottom: 15px;"
+								<td colspan="4" height="40" style="padding-bottom: 15px;"
 									align="center">
 									<button style="width: 50px;" type="button" class="btn btnSendBoardLike" title="좋아요">
 										<i class="far fa-hand-point-up"></i>&nbsp;&nbsp;<span
@@ -420,22 +424,23 @@ $(function () {
 
 							<c:forEach var="vo" items="${listFile}">
 							<tr height="35" style="border-bottom: 1px solid #cccccc;">
-								<td colspan="2" align="left" style="padding-left: 5px;">
-									첨&nbsp;&nbsp;부 : 
+								<td colspan="4" align="left" style="padding-left: 5px;">
+									첨&nbsp;&nbsp;부 : 『
 									<a href="<%=cp%>/freeBoard/download?fbFileNum=${vo.fbFileNum}">${vo.originalFileName}</a>
-									(<fmt:formatNumber value="${vo.fileSize/1024}" pattern="0.00"/>kByte)	
+									(<fmt:formatNumber value="${vo.fileSize/1024}" pattern="0.00"/>kByte)
+									 』	
 								</td>
 							</tr>
 							</c:forEach>
 
-							<tr class="articleReadDto" >
-								<td colspan="1" style="text-align: left;">
+							<tr>
+								<td colspan="2" style="text-align: left;" class="articleReadDto">
 									<c:if test="${not empty preReadDto}">
 										<a href="<%=cp%>/freeBoard/article?${query}&num=${preReadDto.fbNum}"> ＜＜이전 글 보기  ＿ ${preReadDto.fbTitle}</a>
 									</c:if>
 								</td>
 
-								<td colspan="1" style="text-align: right;">
+								<td colspan="2" style="text-align: right;" class="articleReadDto">
 									<c:if test="${not empty nextReadDto}">
 										<a href="<%=cp%>/freeBoard/article?${query}&num=${nextReadDto.fbNum}">${nextReadDto.fbTitle} ＿  다음 글 보기 ＞＞ </a>
 									</c:if>

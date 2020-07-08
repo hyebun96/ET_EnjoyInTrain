@@ -61,7 +61,7 @@ function searchList() {
 									<li>
 										<form name="searchForm" action="<%=cp%>/notice/list" method="post">
 		            						<select name="condition" class="selectField, noticebtn">
-		                  						<option value="all" ${condition=="all"?"selected='selected'":""}>모두</option>
+		                  						<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
 		                  						<option value="noticeTitle" ${condition=="noticeTitle"?"selected='selected'":""}>제목</option>
 		                  						<option value="noticeContent" ${condition=="noticeContent"?"selected='selected'":""}>내용</option>
 		                  						<option value="nCreated" ${condition=="nCreated"?"selected='selected'":""}>등록일</option>

@@ -113,43 +113,36 @@ function searchList() {
 				<section>
 					<header>
 						<h2>자유게시판</h2>
-						<span class="byline" style="margin-top: 20px;">PlEASE FEEL FREE TO WRITE.</span>
+						<span class="byline">Free | PlEASE FEEL FREE TO WRITE.</span>
 					</header>
 					
 					<div>
-						<table style="width: 100%; margin: 10px auto; border-spacing: 0px;">
-						   <tr height="40">
-		      					<td align="center">
-									<form name="searchForm" action="<%=cp%>/freeBoard/list" method="post" style="float: left;">
-										<select name="condition" class="selectField, noticebtn">
-											<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
-											<option value="fbTitle" ${condition=="fbTitle"?"selected='selected'":""}>제목</option>
-											<option value="fbContent" ${condition=="fbContent"?"selected='selected'":""}>내용</option>
-											<option value="crewName" ${condition=="crewName"?"selected='selected'":""}>작성자</option>
-											<option value="fbCreated" ${condition=="fbCreated"?"selected='selected'":""}>등록일</option>
-										</select>
-										<input type="text" name="keyword" value="${keyword}" class="boxTF">
-										<button type="button" class="noticebtn" id="btnsearch" onclick="searchList()">검색</button>
-										<button type="button" class="btn" id="btn" onclick="javascript:location.href='<%=cp%>/freeBoard/list';">새로고침</button>
-									</form>
-								</td>
-								
-							</tr>
-						</table>
-						<table style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse;">
-							<tbody class="board-list">
-							<tr height="35" style="border-bottom: 1px solid #cccccc;">
-					
-								<td align="right" width="100%">
-									${dataCount}개(${page}/${total_page} 페이지)
-								</td>
-								  <td align="right">
-				         				 &nbsp;
-				    			  </td>
-						</table>
+						<div style="clear: both;">
+								<ul>
+									
+									<li style="width: 80%; float: left; margin-bottom: 30px; margin-top: -20px;">
+										<form name="searchForm" action="<%=cp%>/freeBoard/list" method="post">
+		            						<select name="condition" class="selectField, noticebtn">
+		                  						<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
+		                  						<option value="fbTitle" ${condition=="noticeTitle"?"selected='selected'":""}>제목</option>
+		                  						<option value="fbContent" ${condition=="noticeContent"?"selected='selected'":""}>내용</option>
+		                  						<option value="crewName" ${condition=="crewName"?"selected='selected'":""}>작성자</option>
+		                  						<option value="fbCreated" ${condition=="nCreated"?"selected='selected'":""}>등록일</option>
+		            						</select>
+		          	  							<input type="text" name="keyword" value="${keyword}" class="noticeinput" width="300px">
+		            							<button type="button" class="noticebtn" id="btnsearch" onclick="searchList()">검색</button>
+												<button type="button" class="noticebtn" id="btn" onclick="javascript:location.href='<%=cp%>/freeBoard/list';">새로고침</button>
+		        						</form>
+		        					</li>
+		        					<li style="width: 20%; float: left;">
+		        					${dataCount}개(${page}/${total_page} 페이지)
+		        					</li>
+								</ul>
+							</div>
 						
-						<table style="width: 100%; margin: 0px auto; border-spacing: 0px; border-collapse: collapse;">
-							<tr class="menu-heght2" height="35" style="border-bottom: 1px solid #cccccc;  background: #21373F; color: white;">
+						
+						<table style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse;">
+							<tr class="noticebar">
 								<th width="60">번호</th>
 								<th width="200">제목</th>
 								<th width="100">작성자</th>
@@ -173,7 +166,7 @@ function searchList() {
 									<td>
 										<c:if test="${dto.fileCount !=0}">
 										<!-- 	<a href="<%=cp%>/freeBoard/download?num=${dto.fbNum}">  -->
-											<i class="far fa-file"></i></a>
+											<i class="far fa-file"></i>
 										</c:if>
 									</td>
 								</tr>

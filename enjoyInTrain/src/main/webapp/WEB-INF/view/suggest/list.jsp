@@ -76,20 +76,20 @@ function suggestList(){
 							</header>
 							
 								<form action="<%=cp%>/suggest/list" name="suggestListForm" method="post">
-								<select name="rows" onchange="suggestList();" class="selectField, noticebtn" style="width: 150px;">
+								<select name="rows" onchange="suggestList();" class="selectField, noticebtn" style="width: 150px; margin-bottom: 20px;">
 									<option value="5" ${rows==5?"selected='selected' ":"" }>5개씩출력</option>
 									<option value="10" ${rows==10?"selected='selected' ":"" }>10개씩출력</option>
 									<option value="20" ${rows==20?"selected='selected' ":"" }>20개씩출력</option>
 								</select>
-								<table style="width:900px; padding-top:10px; text-align:center; margin-top: 20px;">
-									<tr style="background: #21373F; height:50px; border-bottom:none;  color: white;">
-										<td style="width: 40px;">번호</td>
-										<td style="width: 100px;">카테고리</td>
+								<table style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse; text-align: center;">
+									<tr class="noticebar">
+										<td>번호</td>
+										<td>카테고리</td>
 										<td>제목</td>
-										<td style="width: 100px;">작성자</td>
-										<td style="width: 100px;">작성일</td>
-										<td style="width: 100px;">처리단계</td>
-										<td style="width: 50px;">조회수</td>
+										<td>작성자</td>
+										<td>작성일</td>
+										<td>처리단계</td>
+										<td>조회수</td>
 									</tr>
 									<c:forEach var="dto" items="${list}">
 										<tr class="listLine">

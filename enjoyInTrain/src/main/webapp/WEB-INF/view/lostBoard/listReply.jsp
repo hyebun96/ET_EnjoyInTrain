@@ -1,59 +1,82 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true" %>
+<%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-	String cp=request.getContextPath();
+	String cp = request.getContextPath();
 %>
-<style type="text/css">
-.homepage #main{
-   margin-top: 0em;
-    padding-top: 0em;
-}
-</style>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 <link rel="stylesheet" href="<%=cp%>/resource/css/board.css" type="text/css">
-    <div>
-        <div id="reply_list_title_main">
-	        <span id="reply_list_title_content">댓글 ${replyCount}개</span>
-	        <span>&nbsp;&nbsp;[댓글 목록, ${pageNo}/${total_page} 페이지]</span>
-        </div>
-        <div style='float: right; text-align: right;'></div>
-    </div>
-	
+<link rel="stylesheet" href="<%=cp%>/resource/css/lostboardarticle.css" type="text/css">
+
+<table style='width: 100%; margin: 10px auto 30px; border-spacing: 0px;'>
+	<thead id='listReplyHeader'>
+		<tr height='35'>
+		    <td colspan='2'>
+		       <div style='clear: both;'>
+		           <div style='float: left;'>
+		           		<span style='color: #3EA9CD; font-weight: bold;'>댓글 ${replyCount}개</span> 
+		           		<span>[댓글 목록, ${pageNo}/${total_page} 페이지]</span>
+		           </div>
+		           <div style='float: right; text-align: right;'>
+		           </div>
+		       </div>
+		    </td>
+		</tr>
+	</thead>
+
+	<tbody id='listReplyBody'>
 	<c:forEach var="vo" items="${listReply}">
-	    <ul>
-	    	<li id="reply_list_id"><span><b>${vo.crewId}</b></span></li>
-	    	<li id="reply_list_created"><span><b>${vo.created} </b></span>
+	    <tr height='35' style='background: #eeeeee;'>
+	       <td width='50%' style='padding:5px 5px; border:1px solid #cccccc; border-right:none;'>
+	           <span><b>${vo.crewId}</b></span>
+	        </td>
+	       <td width='50%' style='padding:5px 5px; border:1px solid #cccccc; border-left:none;' align='right'>
+	           <span>${vo.created}</span> |
 	           <c:if test="${vo.crewId == sessionScope.crew.crewId ||  sessionScope.crew.crewId == 'admin' }">
-	                <span class="deleteReply" style="cursor: pointer;" data-replyNum='${vo.lostReplyNum}' data-pageNo='${pageNo}'>| 삭제</span>
-	           </c:if>
-	    	</li>
-	    </ul>
-	    <ul>
-	    	<li id="reply_list_content">${vo.content}</li>
-	    </ul>
-	    <ul>
-	    	<li id="reply_list_button"><button type='button' class='btn btnReplyAnswerLayout' data-replyNum='${vo.lostReplyNum}'>답글 <span id="answerCount${vo.lostReplyNum}">${vo.answerCount}</span></button></li>
-	    </ul>
-	<div class='replyAnswer'>
-		<ul>
-			<li id='listReplyAnswer${vo.lostReplyNum}'></li>
-		</ul>
-		<ul id="reply_list_answer">
-			<li id="reply_list_answer_sign">└</li>
-			<li id="reply_list_answer_content">
-				<textarea class='boxTA' style='width:96%; height: 70px; resize: none;'></textarea>
-			</li>
-            <li id="reply_list_answer_button">
-                <button type='button' class='btn btnSendReplyAnswer' data-replyNum='${vo.lostReplyNum}'>답글 등록</button>
-            </li>
-		</ul>
-	</div>
-	</c:forEach>
+	                <span class="deleteReply" style="cursor: pointer;" data-replyNum='${vo.lostReplyNum}' data-pageNo='${pageNo}'>삭제</span>
+	           	</c:if>
+	           <c:if test="${vo.crewId != sessionScope.crew.crewId &&  sessionScope.crew.crewId != 'admin' }">
+	           		<span class="notifyReply">신고</span>
+	           	</c:if>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td colspan='2' valign='top' style='padding:5px 5px;'>
+	              ${vo.content}
+	        </td>
+	    </tr>
+	    
+	    <tr>
+	        <td style='padding:7px 5px;' colspan="2">
+	            <button type='button' class='btn btnReplyAnswerLayout' data-replyNum='${vo.lostReplyNum}'>답글 <span id="answerCount${vo.lostReplyNum}">${vo.answerCount}</span></button>
+	        </td>
+
+	    </tr>
 	
-              
-		<div>
-            <ul>
-            	<li>${paging}</li>
-            </ul>
-		</div>
+	    <tr class='replyAnswer' style='display: none;'>
+	        <td colspan='2'>
+	            <div id='listReplyAnswer${vo.lostReplyNum}' class='answerList' style='border-top: 1px solid #cccccc;'></div>
+	            <div style='clear: both; padding: 10px 10px;'>
+	                <div style='float: left; width: 5%;'>└</div>
+	                <div style='float: left; width:95%'>
+	                    <textarea cols='72' rows='12' class='boxTA' style='width:98%; height: 70px;'></textarea>
+	                 </div>
+	            </div>
+	             <div style='padding: 0px 13px 10px 10px; text-align: right;'>
+	                <button type='button' class='btn btnSendReplyAnswer' data-replyNum='${vo.lostReplyNum}'>답글 등록</button>
+	            </div>
+	        
+	        </td>
+	    </tr>
+	</c:forEach>
+	</tbody>
+	
+	<tfoot id='listReplyFooter'>
+		<tr height='40' align="center">
+            <td colspan='2' >
+              ${paging}
+            </td>
+        </tr>
+	</tfoot>
+</table>

@@ -5,7 +5,7 @@ a{
 }
 
 a:hover, a:active{
-	color: blue;
+
 }
 
 #board_title{
@@ -248,4 +248,19 @@ a:hover, a:active{
 
 #board_list {
 	float: left;
+}
+
+button{
+	color: #333333;
+	font-weight: 500;
+	font-family: "맑은 고딕", 나눔고딕, 돋움, sans-serif;
+	border: 1px solid #cccccc;
+	background-color: #ffffff;
+	text-align: center;
+	cursor: pointer;
+	padding: 3px 10px 5px;
+	border-radius: 7px;
+	margin: 20px 15px;
+	width: 150px;
+	height: 35px;
 }
