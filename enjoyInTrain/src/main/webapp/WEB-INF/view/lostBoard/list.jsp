@@ -52,7 +52,7 @@ function search() {
 						<section>
 							<header>
 								<h2>유실물</h2>
-								<span class="byline">Lost | 유실물 게시판</span>
+								<span class="byline">Lost | Lost property</span>
 							</header>
 							<ul>
 								<li id="board_page">${dataCount}개(${page}/${total_page} 페이지)</li>
