@@ -85,13 +85,25 @@
 	<select id="readForCancle" parameterType="map" resultType="com.et.booking.Booking">
 		SELECT prCode, prSeq, pmCode, TO_CHAR(pmStartDate, 'YYYY-MM-DD') pmStartDate, adult, child, oldMan, prPersonnel, product, productUserCount, crewId, prReservationDate, trainCode,
 			   reservationNumber
-		FROM pmReservation WHERE prSeq = #{prSeq} AND crewId = #{crewId}
+		FROM pmReservation WHERE prSeq = #{prSeq} 
+			AND crewId = #{crewId}
 	</select>
 	
 	<delete id="deleteReservation" parameterType="map">
-		DELETE FROM pmReservation WHERE prSeq = #{prSeq} AND crewId = #{crewId}
+		DELETE FROM pmReservation WHERE prSeq = #{prSeq}
+		<if test="crewId != null and crewId !='a' ">
+			AND crewId = #{crewId}
+		</if>
 	</delete>
-	
+	<!-- 관리자 강제 예약 취소  -->
+	<select id="adminCancle" parameterType="map" resultType="com.et.booking.Booking">
+		SELECT prCode, prSeq, pmCode, TO_CHAR(pmStartDate, 'YYYY-MM-DD') pmStartDate, adult, child, oldMan, prPersonnel, product, productUserCount, crewId, prReservationDate, trainCode,
+			   reservationNumber
+		FROM pmReservation WHERE prSeq = #{prSeq} 
+	</select>
+	<delete id="deleteReservationAdmin" parameterType="map">
+		DELETE FROM pmReservation WHERE prSeq = #{prSeq}
+	</delete>
 	<!-- 예약 리스트 출력 -->
 	<select id="reservationCount" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*), 0) FROM pmReservation 
@@ -189,5 +201,24 @@
 	<update id="updateStock1" parameterType="com.et.booking.Booking">
 		UPDATE promotionDetail SET stock = stock-#{prPersonnel} WHERE pmCode = #{pmCode}
 	</update>
+	
+	<sql id="where-list">
+		<choose>
+			<when test="condition == 'promotionName' ">
+			   ( INSTR(pmtitle, #{keyword}) &gt; 0
+		          OR DBMS_LOB.INSTR(lostContent, #{keyword}) &gt; 0 )
+			</when>
+			<when test="condition == 'reservationDate' ">
+			   ( TO_CHAR(prReservationDate, 'YYYYMMDD') = #{keyword}
+		          OR TO_CHAR(prReservationDate, 'YYYY-MM-DD') = #{keyword} )
+			</when>
+			<when test="condition == 'userName'">
+			    INSTR(crewName, #{keyword}) &gt; 0
+			</when>
+			<otherwise>
+			    INSTR(${condition}, #{keyword}) &gt; 0
+			</otherwise>
+		</choose>
+	</sql>
 	
 </mapper>

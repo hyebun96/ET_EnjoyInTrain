@@ -221,7 +221,7 @@ $(function(){
 		var url="<%=cp%>/booking/seat";
 		var query="roomNum=1&total=${prPersonnel}";
 		query+="&trainCode="+trainCode+"&trainName="+trainName+"&stTime="+stTime+"&endTime="+endTime;
-		query+="&day=${pmStartDate2}&tCategory="+trainName;
+		query+="&day=${pmStartDate}&tCategory="+trainName;
 		query+="&startSt=${startDto.startStation}";
 		query+="&endSt=${startDto.endStation}";
 		if($(this).val()=='특실'){
@@ -249,7 +249,7 @@ $(function(){
 		var query="roomNum=1&total=${prPersonnel}";
 		query+="&trainCode="+trainCode+"&trainName="+trainName+"&stTime="+stTime+"&endTime="+endTime;
 		// query+="&day=${pmStartDate}";
-		query+="&day=${pmStartDate2}&tCategory="+trainName;
+		query+="&day=${pmStartDate}&tCategory="+trainName;
 		query+="&startSt=${endDto.startStation}";
 		query+="&endSt=${endDto.endStation}";
 		if($(this).val()=='특실'){
@@ -267,7 +267,7 @@ $(function(){
 
 
 </script>
-<link rel="stylesheet" href="<%=cp%>/resource/css/reservation.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/booking.css" type="text/css">
 
 	<!-- Banner -->
 		<div id="banner">

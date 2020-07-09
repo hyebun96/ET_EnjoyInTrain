@@ -88,6 +88,23 @@ public class BookingServiceImpl implements BookingService{
 			throw e;
 		}
 	}
+	
+	public void deleteAdmin(int prSeq) throws Exception {
+		try {
+			List<Booking> list = adminCancle(prSeq);
+			for(Booking dto : list) {
+				if(Integer.parseInt(dto.getTrainCode())%2==0) {
+					dao.deleteData("booking.deleteReservationAdmin", prSeq);
+					dao.updateData("booking.updateStock1", dto);
+				} else {
+					dao.deleteData("booking.deleteReservationAdmin", prSeq);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 
 	@Override
 	public List<Booking> listReservation(Map<String, Object> map) {
@@ -254,6 +271,15 @@ public class BookingServiceImpl implements BookingService{
 		List<Booking> list = null;
 		try {
 			list = dao.selectList("booking.readForCancle", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	public List<Booking> adminCancle(int prSeq) {
+		List<Booking> list = null;
+		try {
+			list = dao.selectList("booking.deleteReservationAdmin", prSeq);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

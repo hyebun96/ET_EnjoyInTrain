@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.et.booking.Booking;
 import com.et.booking.BookingService;
 import com.et.common.MyUtil;
+import com.et.crew.SessionInfo;
 
 @Controller("admin.promotion.salesController")
 public class SalesController {
@@ -104,4 +106,20 @@ public class SalesController {
 		
 		return ".admin.sales.list";
 		}
+	
+	@RequestMapping("/admin/sales/delete")
+	public String cancleReservation(@RequestParam int prSeq, 
+				@RequestParam String page,
+			HttpSession session) throws Exception {
+		SessionInfo info = (SessionInfo) session.getAttribute("crew");
+		try {
+			Map<String, Object> map = new HashMap<>();
+			map.put("crewId", info.getCrewId());
+			map.put("prSeq", prSeq);
+			bookingService.deleteAdmin(prSeq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/admin/sales/list?page="+page;
 	}
+}

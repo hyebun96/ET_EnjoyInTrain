@@ -1,0 +1,951 @@
+@charset "UTF-8";
+.homepage #main{
+   margin-top: 0em;
+    padding-top: 0em;
+}
+.reservation_header{
+	width: 100%;
+	height: 200px;
+}
+
+.reservation_state1{
+	width: 70%;
+	height: 40px;
+}
+
+.reservation_logo {
+	width: 30%;
+	background: url(../images/travel.png) no-repeat center;
+	background-size: contain;
+}
+
+.reservation_title{
+	font-weight: bold;
+	font-size: 30px;
+	height: 100px;
+}
+
+.reservation_state2{
+	text-align: right;
+	padding-right: 30px;
+}
+
+.reservation_info{
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+
+.reservation_info_title{
+	font-weight: bold;
+	font-size: 20px;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 3px solid #cccccc;
+}
+
+.reservation_info_question{
+	background: #EAEAEA;
+	width: 16%;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 20px;
+	border-bottom: 1px solid #cccccc;
+	font-weight: bold;
+}
+
+.reservation_info_answer{
+	padding-left: 10px;
+	width: 16%;
+	border-bottom: 1px solid #cccccc;
+}
+
+.reservation_report{
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+
+.reservation_report_num{
+	width: 7%;
+	height: 40px;
+	line-height: 40px;
+	background: #EAEAEA;
+	text-align: center;
+	border-bottom: 1px solid #cccccc;
+	font-weight: bold;
+}
+
+.reservation_report_group{
+	width: 13%;
+	height: 40px;
+	line-height: 40px;
+	background: #EAEAEA;
+	text-align: center;	
+	border-left: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	font-weight: bold;
+}
+
+.reservation_report_info{
+	width: 70%;
+	height: 40px;
+	line-height: 40px;
+	background: #EAEAEA;
+	text-align: center; 
+	border-left: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	font-weight: bold;
+}
+.addPrice{
+	color: red;
+}
+
+.addPrice1{
+	color: red;
+}
+
+.reservation_report_question{
+	width: 15%;
+	background: #EAEAEA;
+	height: 40px;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	padding-left: 10px;
+	font-weight: bold;
+}
+
+.reservation_report_answer{
+	width: 25%;
+	height: 40px;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	padding-left: 10px;
+}
+
+.reservation_report_answer span{
+	color : blue;
+}
+
+.agreement {
+	
+}
+
+.traveler_title{
+	font-weight: bold;
+	font-size: 20px;
+	height: 50px;
+	line-height: 50px;
+	margin-top: 10px;
+}
+
+.traveler_title_sub{
+	font-size: 15px;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 3px solid #cccccc;
+	font-weight: bold;
+}
+
+.travler_info{
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+
+.travler_info_question{
+	width: 13%;
+	background: #EAEAEA;
+	height: 40px;
+	padding-left: 20px;
+	line-height: 40px;
+	border-bottom: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	font-weight: bold;
+}
+
+.travler_info_name{
+	width: 37%;
+	height: 40px;
+	padding-left: 10px;
+	line-height: 40px;
+	border-bottom: 1px solid #cccccc;
+}
+
+.travler_info_name input{
+	width: 200px;
+	height: 25px;
+}
+
+.travler_info_birth{
+	width: 37%;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	border-bottom: 1px solid #cccccc;
+}
+
+.travler_info_birth input{
+	width: 80px;
+	height: 25px;
+}
+
+.travler_info_tel{
+	width: 37%;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	border-bottom: 1px solid #cccccc;
+}
+
+.travler_info_tel input{
+	width: 80px;
+	height: 25px;
+}
+
+.travler_info_email{
+	width: 37%;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	border-bottom: 1px solid #cccccc;
+}
+
+.travler_info_email input{
+	width: 80px;
+	height: 25px;
+}
+
+.travler_button{
+	width: 100%;
+	text-align: right;
+}
+
+.travler_button button{
+	height: 30px;
+	padding: 5px 10px 5px 10px;
+}
+
+.startSeat_dialog{
+	display: none;
+	vertical-align:middle;
+}
+
+.endSeat_dialog{
+	display: none;
+	vertical-align:middle;
+}
+
+.homepage #main{
+   margin-top: 0em;
+    padding-top: 0em;
+}
+.receipt_header{
+	width: 100%;
+	height: 200px;
+}
+
+.receipt_state1{
+	width: 70%;
+	height: 40px;
+}
+
+.receipt_logo {
+	width: 30%;
+	background: url(../images/travel.png) no-repeat center;
+	background-size: contain;
+}
+
+.receipt_title{
+	font-weight: bold;
+	font-size: 30px;
+	height: 100px;
+}
+
+.receipt_state2{
+	text-align: right;
+	padding-right: 30px;
+}
+
+.receipt_info{
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+
+.receipt_info_title{
+	font-weight: bold;
+	font-size: 20px;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 3px solid #cccccc;
+}
+
+.receipt_info_question{
+	background: #EAEAEA;
+	width: 16%;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 20px;
+	border-bottom: 1px solid #cccccc;
+	font-weight: bold;
+}
+
+.receipt_info_answer{
+	padding-left: 10px;
+	width: 16%;
+	border-bottom: 1px solid #cccccc;
+}
+
+.receipt_report{
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+
+.receipt_report_num{
+	width: 7%;
+	height: 40px;
+	line-height: 40px;
+	background: #EAEAEA;
+	text-align: center;
+	border-bottom: 1px solid #cccccc;
+	font-weight: bold;
+}
+
+.receipt_report_group{
+	width: 13%;
+	height: 40px;
+	line-height: 40px;
+	background: #EAEAEA;
+	text-align: center;	
+	border-left: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	font-weight: bold;
+}
+
+.receipt_report_info{
+	width: 70%;
+	height: 40px;
+	line-height: 40px;
+	background: #EAEAEA;
+	text-align: center; 
+	border-left: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	font-weight: bold;
+}
+
+.receipt_report_question{
+	width: 15%;
+	background: #EAEAEA;
+	height: 40px;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	padding-left: 10px;
+	font-weight: bold;
+}
+
+.receipt_report_answer{
+	width: 25%;
+	height: 40px;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	padding-left: 10px;
+	margin-left: 100px;
+}
+
+.receipt_cost{
+	height: 50px;
+	line-height: 50px;
+	text-align: right;
+	margin-left: 400px;
+}
+.receipt_cost tr td {
+	width: 250px;
+	padding-right: 50px;
+}
+
+.receipt_answer{
+	color: red;
+}
+
+.receipt_question{
+	width: 250px;
+}
+
+.receipt_question1{
+	width: 250px;
+	border-top: 1px solid black;
+}
+
+.receipt_total{
+	color: red;
+	border-top: 1px solid black;
+}
+
+
+.traveler_title{
+	font-weight: bold;
+	font-size: 20px;
+	height: 50px;
+	line-height: 50px;
+	margin-top: 10px;
+}
+
+.traveler_title_sub{
+	font-size: 15px;
+	height: 40px;
+	line-height: 40px;
+	font-weight: bold;
+	border-bottom: 3px solid #cccccc;
+}
+
+.travler_info{
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+
+.travler_info_question{
+	width: 13%;
+	background: #EAEAEA;
+	height: 40px;
+	padding-left: 20px;
+	line-height: 40px;
+	border-bottom: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	font-weight: bold;
+}
+
+.travler_info_name{
+	width: 37%;
+	height: 40px;
+	padding-left: 10px;
+	line-height: 40px;
+	border-bottom: 1px solid #cccccc;
+}
+
+.travler_info_birth{
+	width: 37%;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	border-bottom: 1px solid #cccccc;
+}
+
+.travler_info_tel{
+	width: 37%;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	border-bottom: 1px solid #cccccc;
+}
+
+.travler_info_email{
+	width: 37%;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	border-bottom: 1px solid #cccccc;
+}
+
+.resetpayment{
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+
+.travler_button{
+	width: 100%;
+	text-align: right;
+}
+
+.resetpayment_title{
+	font-size: 15px;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 3px solid #cccccc;
+	font-weight: bold;
+}
+
+.resetpayment_question{
+	background: .EAEAEA;
+	height: 40px;
+	width: 13%;
+	padding-left: 10px;
+	border-right: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	font-weight: bold;
+}
+
+.resetpayment_answer{
+	height: 40px;
+	width: 22%;
+	padding-left: 10px;
+	border-right: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+}
+
+.resetpayment_condition{
+	width: 65%;
+	height: 40px;
+	padding-left: 10px;
+	border-bottom: 1px solid #cccccc;
+	font-weight: bold;
+}
+
+
+.travler_button button{
+	height: 30px;
+	margin-right: 5px;
+}
+
+#reservationInfo_dialog{
+	display: none;
+	vertical-align:middle;
+}
+
+.statement_table{
+	width: 100%;
+	margin-top: 20px;
+	border-top: 3px solid #cccccc;
+}
+
+.statement_info_question{
+	text-align:right;
+	padding-right: 10px;
+	height: 40px;
+	line-height: 40px;
+	background: #EAEAEA;
+	width: 20%;
+	border-bottom: 1px solid #cccccc;
+	font-weight: bold;
+}	
+
+.statement_info_question1{
+	text-align:right;
+	padding-right: 10px;
+	height: 80px;
+	line-height: 80px;
+	background: #EAEAEA;
+	width: 20%;
+	border-bottom: 1px solid #cccccc;
+	font-weight: bold;
+}	
+
+
+.statement_info_answer{
+	padding-left: 10px;
+	height: 40px;
+	line-height: 40px;
+	width: 80%;
+	border-bottom: 1px solid #cccccc;
+}
+	
+.statement_report{
+	width: 100%;
+	margin-top: 20px;
+}
+
+.statement_report_title{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.statement_report_date1{
+	background: #EAEAEA;
+	height: 30px;
+	border-top: 3px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	width: 20%;
+	text-align: center;
+	font-weight: bold;
+}
+
+.statement_report_productName1{
+	background: #EAEAEA;
+	height: 30px;
+	border-top: 3px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	width: 65%;
+	text-align: center;
+	font-weight: bold;
+}
+
+.statement_report_productCount1{
+	background: #EAEAEA;
+	height: 30px;
+	border-top: 3px solid #cccccc;
+	width: 15%;
+	text-align: center;
+	font-weight: bold;
+}
+
+.statement_report_date2{
+	border-right: 1px solid #cccccc;
+	border-top: 1px solid #cccccc;
+	text-align: center;
+}
+
+.statement_report_productName2{
+	border-right: 1px solid #cccccc;
+	border-top: 1px solid #cccccc;
+	padding-left: 10px;
+}
+
+.statement_report_productCount2{
+	border-top: 1px solid #cccccc;
+	text-align: center;
+}
+
+.statement_report_cost1{
+	border-top: 1px solid #cccccc;
+	text-align: right;
+}
+
+.statement_report_cost2{
+	text-align: right;
+	margin-top: 15px;
+}
+
+.statement_report_cost3{
+	border-bottom: 1px solid #cccccc;
+	text-align: right;
+	color: red;
+	margin-top: 15px;
+}
+
+.statement_notice{
+	width: 100%;
+	margin-top: 20px;
+}
+
+.statement_notice_title{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.statement_notice_date1{
+	background: #EAEAEA;
+	height: 30px;
+	width: 20%;
+	border-top: 3px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	text-align: center;
+	font-weight: bold;
+}
+
+.statement_notice_date2{
+	height: 30px;
+	width: 80%;
+	border-top: 3px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+}
+
+.homepage #main{
+   margin-top: 0em;
+    padding-top: 0em;
+}
+.payment_header{
+	width: 100%;
+	height: 200px;
+}
+
+.payment_state1{
+	width: 70%;
+	height: 40px;
+}
+
+.payment_logo {
+	width: 30%;
+	background: url(../images/travel.png) no-repeat center;
+	background-size: contain;
+}
+
+.payment_title{
+	font-weight: bold;
+	font-size: 30px;
+	height: 100px;
+}
+
+.payment_state2{
+	text-align: right;
+	padding-right: 30px;
+}
+
+.payment_report{
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+
+.reservationNumber{
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.paymentstate{
+	color: red;
+}
+
+.payment_report_title{
+	font-weight: bold;
+	font-size: 20px;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 3px solid #cccccc;
+}
+
+.payment_report_num1{
+	width: 18%;
+	height: 40px;
+	background: #EAEAEA;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	padding-left: 10px;
+	font-weight: bold;
+}
+
+.payment_report_category1{
+	width: 12%;
+	height: 40px;
+	background: #EAEAEA;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	padding-left: 10px;
+	font-weight: bold;
+}
+
+.payment_report_name1{
+	width: 55%;
+	height: 40px;
+	background: #EAEAEA;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	padding-left: 10px;
+	font-weight: bold;
+}
+
+.payment_report_pay1{
+	width: 15%;
+	height: 40px;
+	background: #EAEAEA;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	padding-left: 10px;
+	font-weight: bold;
+}
+
+.payment_report_num2{
+	width: 18%;
+	height: 50px;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	padding-left: 10px;
+}
+
+.payment_report_category2{
+	width: 12%;
+	height: 50px;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	padding-left: 10px;
+}
+
+.payment_report_name2{
+	width: 55%;
+	height: 50px;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	padding-left: 10px;
+}
+
+.payment_report_pay2{
+	width: 15%;
+	height: 50px;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	padding-left: 10px;
+}
+
+.payment_report_cost1{
+	background: #EAEAEA;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	text-align: right;
+	padding-right: 10px;
+	font-weight: bold;
+	color: blue;
+}
+
+.payment_report_cost2{
+	background: #EAEAEA;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	padding-left: 10px;
+	height: 35px;
+	color: blue;
+	font-weight: bold;
+}
+
+.payment_appear{
+	width: 100%;
+	text-align: center;
+	border-radius: 30px;
+	background: #EAEAEA;
+	height: 60px;
+}
+.payment_info{
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+
+.payment_info_title{
+	font-weight: bold;
+	font-size: 20px;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 3px solid #cccccc;
+}
+
+.payment_info_question{
+	padding-left: 20px;
+	height: 40px;
+	background: .EAEAEA;
+	width: 20%;
+	border-bottom: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	font-weight: bold;
+}
+
+.payment_info_answer{
+	padding-left: 10px;
+	height: 40px;
+	width: 80%;
+	border-bottom: 1px solid #cccccc;
+}
+.payment_info_cardNum{
+	padding-left: 10px;
+	height: 40px;
+	width: 80%;
+	border-bottom: 1px solid #cccccc;
+}
+
+.payment_info_cardNum input{
+	width: 80px;
+	height: 25px;
+}
+
+.payment_info_pwd{
+	padding-left: 10px;
+	height: 40px;
+	width: 80%;
+	border-bottom: 1px solid #cccccc;
+}
+
+.payment_info_pwd input{
+	width: 40px;
+	height: 25px;
+}
+
+.payment_info_num{
+	padding-left: 10px;
+	height: 40px;
+	width: 80%;	
+	border-bottom: 1px solid #cccccc;
+}
+
+.payment_info_num input{
+	width: 100px;
+	height: 25px;
+}
+
+.payment_button{
+	text-align: right;
+	padding-right: 20px;	
+}
+
+.payment_button button {
+	height: 30px;
+}
+#showReservationCancle_dialog {
+	display: none;
+	vertical-align:middle;
+}
+#checkedTicket_dialog{
+	display: none;
+	vertical-align:middle;
+}
+
+#checkedTicket_dialog1{
+	display: none;
+	vertical-align:middle;
+}
+
+.table1{
+	width:100%; 
+	text-align: right;
+}
+
+.tr1{
+	height:45px;
+}
+
+.col{
+	font-weight:10px;
+	width:180px; 
+	text-align: center;
+	border: 1px solid #BDBDBD;
+}
+
+.col2{
+	padding-left: 20px;
+}
+
+.ticket1{
+	margin-top: 50px;
+	width: 1200px;
+	height: 380px;
+	padding:0 110px 0 110px;
+	border: 1px solid #BDBDBD;
+}
+.ticket2{
+	margin: 10px 100px 10px 60px;
+	width: 860px;
+	height: 360px;
+	border: 1px solid #BDBDBD;
+}
+
+.ticket3{
+	width: 347px;
+	margin: 10px 10px 10px 13px;
+	float: left;
+	padding: 10px;
+	height: 340px;
+	border: 1px solid #BDBDBD;
+}
+
+.ticket4{
+	width: 475px;
+	margin: 10px 10px 10px 0px;
+	float: left;
+	height: 340px;
+	border: 1px solid #BDBDBD;
+}
+
+
+
+.ticket4 tr td{
+	width: 465px;
+	height: 40px;
+	padding-left: 10px;
+}
+
+.back{
+	background: #E3CEF6;
+}

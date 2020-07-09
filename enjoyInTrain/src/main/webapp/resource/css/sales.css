@@ -1,5 +1,148 @@
 @charset "UTF-8";
+#main.container{
+	padding: 0;
+	margin: 0;
+}
 
-.noticebar{
-		
+.row{
+	width: 100%;
+}
+
+.salesKeyword{
+	text-align: right;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.salesKeyword select{
+	height: 30px;
+}
+
+.salesTable{
+	width: 100%; 
+	border-spacing: 0px; 
+	margin: 0px auto; 
+	border-collapse: collapse;
+	border-bottom: 1px solid #cccccc;
+}
+
+.salesBar{
+	height: 40px;
+	line-height: 40px;
+	background: #21373F;
+}
+
+.salesBar_num{
+	text-align: center;
+	width: 4%;
+}
+
+.salesBar_reservationNum{
+	text-align: center;
+	width: 8%;
+}
+
+.salesBar_title{
+	text-align: center;
+	width: 32%;
+}
+
+.salesBar_content{
+	text-align: center;
+	width: 23%
+}
+
+.salesBar_price{
+	text-align: center;
+	width: 6%;
+}
+
+.salesBar_addPrice{
+	text-align: center;
+	width: 6%;
+}
+
+.salesBar_userName{
+	text-align: center;
+	width: 6%;
+}
+
+.salesBar_reservationDate{
+	text-align: center;
+	width: 6%;
+}
+
+.salesBar_paymentDate{
+	text-align: center;
+	width: 6%;
+}
+
+.salesBar_button{
+	text-align: center;
+	width: 3%;
+}
+
+.salesList{
+	border-top: 1px solid #cccccc;
+	height: 40px;
+	line-height: 40px;
+}
+
+.salesBar{
+	height: 40px;
+	line-height: 40px;
+}
+
+.salesList_num{
+	width: 4%;
+	text-align: center;
+}
+
+.salesList_reservationNum{
+	width: 8%;
+	text-align: center;
+}
+
+.salesList_title{
+	width: 32%;
+	text-align: center;
+}
+
+.salesList_content{
+	width: 23%;
+	text-align: center;
+}
+
+.salesList_price{
+	width: 6%;
+	text-align: center;
+}
+
+.salesList_addPrice{
+	width: 6%;
+	text-align: center;
+}
+
+.salesList_userName{
+	text-align: center;
+	width: 6%;
+}
+
+.salesList_reservationDate{
+	width: 6%;
+	text-align: center;
+}
+
+.salesList_paymentDate{
+	width: 6%;
+	text-align: center;
+}
+
+.salesList_button{
+	width: 3%;
+	text-align: center;
+}
+.salesPaging{
+	width: 100%;
+	text-align: center;
 }

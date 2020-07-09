@@ -5,7 +5,7 @@
 <%
    String cp = request.getContextPath();
 %>
-<link rel="stylesheet" href="<%=cp%>/resource/css/receipt.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/booking.css" type="text/css">
 
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
@@ -253,7 +253,7 @@ function requestPay(){
 							<table style="border-collapse:collapse; border-top: 1px solid #cccccc; width: 100%"><tr><td></td></tr></table>
 						</div>
 						<div>
-							<div class="traveler_title">■ 예약자 및 여행자 정보입력</div>
+						<div class="traveler_title">■ 예약자 및 여행자 정보입력</div>
 							<table class="travler_info">
 								<tr>
 									<td class="traveler_title_sub" colspan="4">▷ 예약자 정보</td>
@@ -279,7 +279,7 @@ function requestPay(){
 										<td class="resetpayment_answer">${startDto.prReservationDate}</td>
 										<td class="resetpayment_condition">${startDto.prPaymentDate} 까지 결제하지 않으면 자동 취소됩니다.</td>
 									</tr>
-								</table>
+									</table>
 								<div class="travler_button">
 									<button type="button" id="showReservationInfo">예약명세서</button>
 									<button type="button" onclick="javascript:location.href='<%=cp%>/travel/main';">확인</button>
@@ -287,14 +287,13 @@ function requestPay(){
 								</div>
 							</div>
 						</div>	
-					</form>
-				</div>
-					
+						</form>
+					</div>
 				</div>
 			</div>
+			 
 			<!-- Main -->
 
-		</div>
 	<!-- /Main -->
 	<div id="reservationInfo_dialog">
 	<form name="showReservationInfoForm">

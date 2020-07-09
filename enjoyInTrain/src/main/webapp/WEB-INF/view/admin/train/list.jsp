@@ -25,7 +25,7 @@ $(function() {
 			height: 400,
 			width: 600,
 			title: '기차 추가',
-			clos : function (event, ui) {
+			close: function (event, ui) {
 			}
 		})
 		

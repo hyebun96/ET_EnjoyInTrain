@@ -5,7 +5,7 @@
 <%
    String cp = request.getContextPath();
 %>
-<link rel="stylesheet" href="<%=cp%>/resource/css/paymentSuccess.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/booking.css" type="text/css">
 <script type="text/javascript">
 $(function() {
 	$("#showReservationCancle").click(function() {
@@ -18,7 +18,7 @@ $(function() {
 			height: 300,
 			width: 400,
 			title: '여행상품 예약 취소',
-			clos : function (event, ui) {
+			close: function (event, ui) {
 			}
 		})
 		
@@ -39,6 +39,33 @@ alert("예약을 취소할 수  없습니다.");
 </c:if>
 }
 
+function info_print() {
+	var initBody = document.body.innerHTML;
+	
+	window.onbeforeprint = function () {
+	document.body.innerHTML = document.getElementById("test").innerHTML;
+	}
+	
+	window.onafterprint = function () {
+	document.body.innerHTML = initBody;
+	}
+	
+	window.print();
+}
+
+$(function() {
+	$("#checkedTicket").click(function() {
+		$("#checkedTicket_dialog").dialog({
+			modal: true,
+			height: 800,
+			width: 1250,
+			title: '승차권 확인',
+			close: function (event, ui) {
+			}
+		})
+		
+	});
+});
 </script>
 	<!-- Banner -->
 		<div id="banner">
@@ -53,24 +80,7 @@ alert("예약을 취소할 수  없습니다.");
 			<!-- Main -->
 			<div id="main" class="container">
 				<div class="row">
-
-					<div class="3u">
-						<section class="sidebar">
-							<header>
-								<h2>Feugiat Tempus</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Etiam rhoncus volutpat erat</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Nulla luctus eleifend purus</a></li>
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-							</ul>
-						</section>
-					</div>
-				
-					<div class="9u skel-cell-important">
-						<div>
+						<div style="width: 100%">
 							<table class="payment_header">
 								<tr>
 									<td class="payment_state1">홈 > 기차 여행 패키지 > 예약하기 > 예약완료 > 결제 > 결제완료</td>
@@ -92,7 +102,7 @@ alert("예약을 취소할 수  없습니다.");
 								</tr>
 							</table>
 						</div>
-						<div>
+						<div style="width: 100%">
 							<table class="payment_report">
 								<tr><td class="payment_report_title" colspan="6">■ 결제 내역</td></tr>
 								<tr>
@@ -166,12 +176,12 @@ alert("예약을 취소할 수  없습니다.");
 								</tr>
 							</table>
 							<div class="payment_button">
+							<button type="button" id="checkedTicket">승차권 확인</button>
 							<button type="button" id="showReservationCancle">예약취소 ></button>
 							<button type="button" onclick="javascript:location.href='<%=cp%>/travel/main';">확인 ＞</button>
 							</div>
 						</div>
-					</div>
-					
+			
 				</div>
 			</div>
 			<!-- Main -->
@@ -215,3 +225,118 @@ alert("예약을 취소할 수  없습니다.");
 			</table>
 		</form>
 	</div>
+	<div id="checkedTicket_dialog">
+		<div class="ticket1">
+			<div class="ticket2">
+				<div class="ticket3">
+					<table>
+						<tr>
+							<td>
+								&nbsp;&nbsp;이용안내<br>
+								&nbsp;&nbsp;1.&nbsp; 홈티켓(Home-Ticket)은 승차권에 표 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;시된
+								승차자가 이용하여야 하며, 도착역 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;을 벗어날때까지 소지하셔야합니다.
+								&nbsp;&nbsp;2.&nbsp;직원이 본인확인을 요구할 경우 신분증 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;을제시하셔야 합니다.
+								<br><br>
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<img src="<%=cp%>/resource/images/qrCodeReservation.jpg" width="100" height="100">
+								<br>
+							</td>
+						</tr>	
+						<tr>
+							<td style="background: #dddddd; height: 35px;">
+								&nbsp;&nbsp;문의 전화 : 1234-5678
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="ticket4">
+					<table>
+						<tr>
+							<td style="width:100px; ">승차일</td>
+							<td colspan="2" style="font-size: 20px; font-weight: bold; vertical-align: middle">${map.trDate}<br><br></td>
+						</tr>
+						<tr>
+							<td colspan="3" style="font-size: 30px;">${startDto.startStation}&nbsp;▶&nbsp;${startDto.endStation}<br><br><br></td> 
+						</tr>
+						<tr>
+							<td colspan="3" style="font-size: 30px;">${start.startTime}&nbsp;▶&nbsp;${start.endTime}<br><br><br></td>
+						</tr>
+						<tr>
+							<td style="width: 230px;">${start.trainName} - ${startDto.trainCode}열차(${startDto.roomGrade})</td>
+							<td style="border: 1px soild #cccccc; width: 240px; font-weight: bold;">${startDto.roomNum}호차 ${startDto.prTrainSeat}석</td>
+						</tr>
+						<tr>
+							<td colspan="2">승객유형&nbsp;&nbsp;성인 : ${startDto.adult}명 어린이 : ${startDto.child}명 경로 : ${startDto.oldMan}명</td>
+						</tr>
+						<tr class="back">
+							<td  style="width:300px;">운임요금 &nbsp;${startDto.prAddPrice}원</td>
+							<td>영수금액&nbsp;${startDto.prAddPrice}원</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="ticket1">
+			<div class="ticket2">
+				<div class="ticket3">
+					<table>
+						<tr>
+							<td>
+								&nbsp;&nbsp;이용안내<br>
+								&nbsp;&nbsp;1.&nbsp; 홈티켓(Home-Ticket)은 승차권에 표 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;시된
+								승차자가 이용하여야 하며, 도착역 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;을 벗어날때까지 소지하셔야합니다.
+								&nbsp;&nbsp;2.&nbsp;직원이 본인확인을 요구할 경우 신분증 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;을제시하셔야 합니다.
+								<br><br>
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<img src="<%=cp%>/resource/images/qrCodeReservation.jpg" width="100" height="100">
+								<br>
+							</td>
+						</tr>	
+						<tr>
+							<td style="background: #dddddd; height: 35px;">
+								&nbsp;&nbsp;문의 전화 : 1234-5678
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="ticket4">
+					<table>
+						<tr>
+							<td style="width:100px; ">승차일</td>
+							<td colspan="2" style="font-size: 20px; font-weight: bold; vertical-align: middle">${map.trDate}<br><br></td>
+						</tr>
+						<tr>
+							<td colspan="3" style="font-size: 30px;">${endDto.startStation}&nbsp;▶&nbsp;${endDto.endStation}<br><br><br></td> 
+						</tr>
+						<tr>
+							<td colspan="3" style="font-size: 30px;">${end.startTime}&nbsp;▶&nbsp;${end.endTime}<br><br><br></td>
+						</tr>
+						<tr>
+							<td style="width: 230px;">${end.trainName} - ${endDto.trainCode}열차(${endDto.roomGrade})</td>
+							<td style="border: 1px soild #cccccc; width: 240px; font-weight: bold;">${endDto.roomNum}호차 ${endDto.prTrainSeat}석</td>
+						</tr>
+						<tr>
+							<td colspan="2">승객유형&nbsp;&nbsp;성인 : ${endDto.adult}명 어린이 : ${endDto.child}명 경로 : ${endDto.oldMan}명</td>
+						</tr>
+						<tr class="back">
+							<td  style="width:300px;">운임요금 &nbsp;${endDto.prAddPrice}원</td>
+							<td>영수금액&nbsp;${endDto.prAddPrice}원</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<table class="table1">
+		 	<tr class="tr1"><td class="col2">* 승차권 인쇄버튼을 클릭하여 승차권을 인쇄하십시오.<td></tr>
+		</table>
+		<div style="width: 1200px; text-align: right;">
+			<button onclick="info_print()" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #6f047f; color: white; border: none;">승차권 인쇄</button>
+		</div>
+	</div>
+	
