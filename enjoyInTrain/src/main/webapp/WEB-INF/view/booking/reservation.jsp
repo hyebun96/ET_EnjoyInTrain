@@ -221,10 +221,10 @@ $(function(){
 		var url="<%=cp%>/booking/seat";
 		var query="roomNum=1&total=${prPersonnel}";
 		query+="&trainCode="+trainCode+"&trainName="+trainName+"&stTime="+stTime+"&endTime="+endTime;
-		query+="&day=${pmStartDate}&tCategory="+trainName;
+		query+="&day=${pmStartDate2}&tCategory="+trainName;
 		query+="&startSt=${startDto.startStation}";
 		query+="&endSt=${startDto.endStation}";
-		if($(this).val()=='특실'){
+		if(roomGrade=='특실'){
 			query+="&roomGrade="+"특실";
 		}else{
 			query+="&roomGrade="+"일반실";
@@ -252,7 +252,7 @@ $(function(){
 		query+="&day=${pmStartDate}&tCategory="+trainName;
 		query+="&startSt=${endDto.startStation}";
 		query+="&endSt=${endDto.endStation}";
-		if($(this).val()=='특실'){
+		if(roomGrade=='특실'){
 			query+="&roomGrade="+"특실";
 		}else{
 			query+="&roomGrade="+"일반실";
