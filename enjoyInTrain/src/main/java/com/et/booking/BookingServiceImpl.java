@@ -37,17 +37,17 @@ public class BookingServiceImpl implements BookingService{
 			dao.insertData("booking.insertReservation", dto);
 			dao.updateData("booking.updatePayDate", dto.getPrSeq());
 			if(dto.getRoomGrade().equals("일반")) {
-				dto.setPrAddPrice(0);
+				dto.setPrAddPrice1(0);
 				dao.insertData("booking.insertTrain", dto);
-			} else {
+			} else if(dto.getRoomGrade()!=null){
 				dao.insertData("booking.insertTrain", dto);
 			}
 			prCode = dao.selectOne("booking.setPrcode1");
 			dto.setPrCode(prCode);
 			dao.insertData("booking.insertReservation1", dto);
 			dao.updateData("booking.updatePayDate", dto.getPrSeq());
-			if(dto.getRoomGrade().equals("일반")) {
-				dto.setPrAddPrice(0);
+			if(dto.getRoomGrade1().equals("일반")) {
+				dto.setPrAddPrice1(0);
 				dao.insertData("booking.insertTrain1", dto);
 			} else {
 				dao.insertData("booking.insertTrain1", dto);
@@ -93,6 +93,7 @@ public class BookingServiceImpl implements BookingService{
 	public List<Booking> listReservation(Map<String, Object> map) {
 		List<Booking> list = null;
 		try {
+			list = dao.selectList("booking.listReservation",map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -283,6 +284,7 @@ public class BookingServiceImpl implements BookingService{
 	public int reservationCount(Map<String, Object> map) {
 		int result = 0;
 		try {
+			result = dao.selectOne("booking.reservationCount", map);
 		} catch (Exception e) {
 		}
 		return result;

@@ -61,6 +61,9 @@ public class Booking {
 	private String reservationNumber;	// 예약번호
 	private String prPaymentDate;		// 결제한 날
 	
+	// 리스트
+	private int listNum;
+	
 	public int getPrCode() {
 		return prCode;
 	}
@@ -360,6 +363,12 @@ public class Booking {
 	}
 	public void setPrPaymentDate(String prPaymentDate) {
 		this.prPaymentDate = prPaymentDate;
+	}
+	public int getListNum() {
+		return listNum;
+	}
+	public void setListNum(int listNum) {
+		this.listNum = listNum;
 	}
 	
 }

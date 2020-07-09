@@ -46,7 +46,7 @@
 	
 	<insert id="insertTrain" parameterType="com.et.booking.Booking">
 		INSERT INTO pmReservationTrain( ptCode, prCode, trainCode, prPersonnel, prTrainName, prStartStation, roomGrade, roomNum, prEndStation, prTrainSeat, prAddPrice)
-		VALUES( pmReservationTrain_seq.NEXTVAL, #{prCode}, #{trainCode}, #{prPersonnel}, #{trainName}, #{startStation}, #{roomGrade}, #{prStartRoom}, #{endStation}, #{prStartTrainSeat},  #{prAddPrice})
+		VALUES( pmReservationTrain_seq.NEXTVAL, #{prCode}, #{trainCode}, #{prPersonnel}, #{trainName}, #{startStation}, #{roomGrade}, #{prStartRoom}, #{endStation}, #{prStartTrainSeat},  #{prAddPrice1})
 	</insert>
 	<insert id="insertTrain1" parameterType="com.et.booking.Booking">
 		INSERT INTO pmReservationTrain( ptCode, prCode, trainCode, prPersonnel, prTrainName, prStartStation, roomGrade, roomNum, prEndStation, prTrainSeat, prAddPrice)
@@ -93,6 +93,11 @@
 	</delete>
 	
 	<!-- 예약 리스트 출력 -->
+	<select id="reservationCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) FROM pmReservation 
+	</select>
+	
+	
 	<select id="listReservation" parameterType="map" resultType="com.et.booking.Booking">
 		SELECT DISTINCT pr.prCode, pr.prSeq, pr.pmCode, TO_CHAR(pr.pmStartDate, 'YYYY-MM-DD') pmStartDate, pr.adult, pr.child, pr.oldMan, pr.prPersonnel, pr.product, pr.productUserCount, pr.crewId, pr.prReservationDate,pr.prPaymentDate, pr.trainCode,
 			    pr.prPayment, pr.reservationNumber, pd.pmTitle, pd.pmPrice, pd.productContent, p.startStation, p.endStation, c.crewName, c.crewEmail, c.crewTel, c.crewBirth, pt.roomGrade, pt.roomNum, pt.prAddPrice, pt.prTrainSeat
@@ -101,6 +106,8 @@
 		JOIN promotion p ON pr.trainCode = p.trainCode AND pd.pmCode = p.pmCode
 		JOIN crew c ON pr.crewId = c.crewId
 		JOIN pmReservationTrain pt ON pr.prCode = pt.prCode AND pr.trainCode = pt.trainCode
+		ORDER BY pr.prCode DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 
 	<!--  짝수 : 하행선 -->

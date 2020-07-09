@@ -353,7 +353,7 @@ function requestPay(){
 				<td colspan="3" class="statement_report_cost2">열차 객실 등급 추가비용 :${startDto.prAddPrice + endDto.prAddPrice} 원 </td>
 			</tr>
 			<tr>
-				<td colspan="3" class="statement_report_cost3">총 결제금액 : ${startDto.pmPrice+start.prAddPrice + end.prAddPrice}원</td>
+				<td colspan="3" class="statement_report_cost3">총 결제금액 : ${startDto.pmPrice+startDto.prAddPrice + endDto.prAddPrice}원</td>
 			</tr>
 		</table>
 		<table class="statement_notice">

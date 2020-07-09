@@ -40,16 +40,16 @@
 							</tr>
 							<c:forEach var="dto" items="${list}">
 								<tr>
-									<td> 1 </td>
-									<td> 가자ㅏㅏ </td>
-									<td> 등산 </td>
-									<td> 15000 원 </td>
-									<td> 5000 원 </td>
-									<td> 노현호 </td>
+									<td> ${dto.listNum} </td>
+									<td> ${dto.pmTitle}</td>
+									<td> ${dto.product} </td>
+									<td> ${dto.pmPrice} 원 </td>
+									<td> ${dto.prAddPrice} 원 </td>
+									<td> ${dto.crewId} </td>
 								</tr>
 							</c:forEach>
 						</table>
-							
+						<div>${dataCount==0 ? "등록된 게시물이 없습니다.":paging}</div>
 					</div>
 					
 				</div>

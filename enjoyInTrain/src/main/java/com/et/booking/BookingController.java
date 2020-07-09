@@ -145,8 +145,6 @@ public class BookingController {
 			endDto.setStartStation(service.readStartStation(endDto.getStartStation()));
 			endDto.setEndStation(service.readEndStation(endDto.getEndStation()));
 
-			start = service.readtrainlist(start);
-			end = service.readtrainlist(end);
 			model.addAttribute("prSeq", prSeq);
 			model.addAttribute("startDto", startDto);
 			model.addAttribute("endDto", endDto);

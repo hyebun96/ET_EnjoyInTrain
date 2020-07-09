@@ -359,8 +359,8 @@ $(function(){
 											<option value="특실" ${roomGrade=="특실"?"selected='selected'":""}>특실</option>
 										</select>
 										재고 : 309
-										<span class="addPrice" style="display: none;"> + ${start.prAddPrice}</span>
-										<input type="hidden" name="prAddprice" value="${start.prAddPrice}">
+										<span class="addPrice" style="display: none;"> + ${start.prAddPrice * prPersonnel}</span>
+										<input type="hidden" name="prAddprice" value="${start.prAddPrice * prPersonnel}">
 									</td>
 								</tr>
 								<tr>
@@ -450,8 +450,8 @@ $(function(){
 											<option value="특실" ${roomGrade1=="특실"?"selected='selected'":""}>특실</option>
 										</select>
 										재고 : 309
-										<span class="addPrice1" style="display: none;"> + ${end.prAddPrice}</span>
-											<input type="hidden" name="prAddPrice1" value="${end.prAddPrice}">
+										<span class="addPrice1" style="display: none;"> + ${end.prAddPrice * prPersonnel}</span>
+											<input type="hidden" name="prAddPrice1" value="${end.prAddPrice * prPersonnel}">
 									</td>
 								</tr>
 								<tr>
