@@ -348,8 +348,6 @@ public class ReservationController {
 			@RequestParam int trCode,
 			Model model
 			) {
-		
-		
 		model.addAttribute("rsseatCode", rsseatCode);
 		return ".reservation.requestrefund";
 	}
