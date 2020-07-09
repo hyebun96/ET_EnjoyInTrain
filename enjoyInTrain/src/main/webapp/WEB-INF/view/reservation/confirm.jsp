@@ -129,7 +129,21 @@ function requestPay(){
             alert(msg);
         }
     });
-};    
+};   
+
+function reCal(){
+	var point=$("#point").val();
+	var totalPay=$("#totalPay").val();
+	var totalPoint=$("#totalPoint").val();
+	if(point>${totalPoint}){
+		alert("현재 보유한 포인트 내에서만 사용 가능합니다.");
+		return;
+	}
+	$("#totalPay").val(${map.totalPay}-point);
+	$("#totalPoint").val(${totalPoint}-point);
+	
+	
+}
 
 </script>
 
@@ -152,7 +166,6 @@ function requestPay(){
 								<input type="hidden" value="${map.trainCode}" name="trainCode">
 								<input type="hidden" value="${map.roomNum}" name="roomNum">
 								<input type="hidden" value="${map.total}" name="total">
-								<input type="hidden" value="${map.totalPay}" name="trPrice">
 								
 								<input type="hidden" value="${map.trainName}" name="trainName">
 								<input type="hidden" value="${map.totalPay}" name="totalPay">
@@ -179,15 +192,17 @@ function requestPay(){
 								 			<td><b>결제금액</b></td>
 								 		</tr>
 								 		<tr style="height: 40px;">
-								 			<td>${map.day}</td>
-								 			<td>${map.trainName}</td>
-								 			<td>${map.trainCode}</td>
-								 			<td>${map.startSt}</td>
-								 			<td>${map.endSt}</td>
-								 			<td>${map.stTime}</td>
-								 			<td>${map.endTime}</td>
-								 			<td>${map.total}</td>
-								 			<td>${map.totalPay}</td>
+								 			<td style="width: 160px;">${map.day}</td>
+								 			<td style="width: 130px;">${map.trainName}</td>
+								 			<td style="width: 130px;">${map.trainCode}</td>
+								 			<td style="width: 130px;">${map.startSt}</td>
+								 			<td style="width: 130px;">${map.endSt}</td>
+								 			<td style="width: 130px;">${map.stTime}</td>
+								 			<td style="width: 130px;">${map.endTime}</td>
+								 			<td style="width: 100px;">${map.total}</td>
+								 			<td style="width: 160px; text-align: center;">
+								 				<input readonly="readonly" name="trPrice" type="text" id="totalPay" style="text-align:center; border: none;" value="${map.totalPay}">
+								 			</td>
 								 		</tr>
 								 	</table>
 								 	<table style="width: 100%;">
@@ -198,7 +213,6 @@ function requestPay(){
 								 			<td><b>운임요금</b></td>
 								 			<td><b>할인금액</b></td>
 								 			<td><b>영수금액</b></td>
-								 			<td><b>운임추가할인선택</b></td>
 								 		</tr>
 								 		<c:set var="i" value="0"/>
 								 		<c:forEach items="${seatList}" var="num">
@@ -216,17 +230,22 @@ function requestPay(){
 									 			</td>
 									 			<td>${num.disCount}</td>
 									 			<td>${num.seatPay-num.disCount}</td>
-									 			<td>
-									 				<select>
-									 					<option>1</option>
-									 					<option>2</option>
-									 				</select>
-									 			</td>
 									 		</tr>
 								 		</c:forEach>
 								 	</table>
+								 	<c:if test="${not empty sessionScope.crew}">
+									 	<table style="width: 100%;">
+									 		<tr style="height:40px; border-top: 2px solid black;">
+									 			<td style="width:200px; background:#EAEAEA;"><b>포인트</b></td>
+									 			<td style="text-align: left;"><input value="0" name="point" id="point" style="margin-left:10px; " type="text">
+									 				&nbsp;현재포인트:
+									 				<input readonly="readonly" type="text" id="totalPoint" style="text-align:left; border: none;" value="${totalPoint}">
+									 			</td>
+									 		</tr>
+									 	</table>
+								 	</c:if>
 								 	<button type="button" onclick="requestPay()" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #6f047f; color: white; border: none;">결제하기</button>
-									<button type="button" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #6f047f; color: white; border: none;">다시계산</button>
+									<button type="button" onclick="reCal()" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #6f047f; color: white; border: none;">다시계산</button>
 									<button onclick="aa();">좌석예약(테스트)</button>
 								</div>
 								</form>

@@ -21,6 +21,42 @@ public class Reservation {
 	private String endTime;
 	private int count;
 	
+	private String seatType;
+	private int roomNum;
+	private String seatNum;
+	private int rsseatCode;
+	
+	private int point;
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	public int getRsseatCode() {
+		return rsseatCode;
+	}
+	public void setRsseatCode(int rsseatCode) {
+		this.rsseatCode = rsseatCode;
+	}
+	public int getRoomNum() {
+		return roomNum;
+	}
+	public void setRoomNum(int roomNum) {
+		this.roomNum = roomNum;
+	}
+	public String getSeatNum() {
+		return seatNum;
+	}
+	public void setSeatNum(String seatNum) {
+		this.seatNum = seatNum;
+	}
+	public String getSeatType() {
+		return seatType;
+	}
+	public void setSeatType(String seatType) {
+		this.seatType = seatType;
+	}
 	public int getCount() {
 		return count;
 	}

@@ -22,6 +22,13 @@ table tr{
 </style>
 
 <script type="text/javascript">
+$(function(){
+	$(".refundBtn").click(function(){
+		var trCode=$(this).attr("data-code");
+		location.href="<%=cp%>/reservation/refund?trCode="+trCode;
+	});
+});
+
 </script>
 	<!-- Main -->
 		<div id="page" >
@@ -33,15 +40,14 @@ table tr{
 							<header>
 								<form action="<%=cp%>/reservation/confirm"  name="unCrewForm" method="post">
 								<h2>발권/취소</h2>
-								<span class="byline">발권/취소</span>
+								<span class="byline">발권내역/취소</span>
 								<div style="width: 1200px; text-align: center;">
 								 	<table style="width:100%;  ">
-								 		<tr style="font-weight:bold; border-top: 2px solid black; background: #EAEAEA;">
-								 			<td colspan="7">승차권 예약현황</td>
+								 		<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA;">
+								 			<td colspan="6">승차권 예약현황</td>
 								 			<td colspan="3">승차권 구매현황</td>
 								 		</tr>
-								 		<tr style="font-weight:bold; background: #EAEAEA;">
-								 			<td>선택</td>
+								 		<tr style="height:40px; font-weight:bold; background: #EAEAEA;">
 								 			<td>승차일</td>
 								 			<td>열차번호</td>
 								 			<td>출발역</td>
@@ -54,7 +60,6 @@ table tr{
 								 		</tr>
 								 		<c:forEach items="${list}" var="dto">
 									 		<tr>
-									 			<td><input name="ch" type="radio"></td>
 									 			<td>${dto.trDate}</td>
 									 			<td>${dto.trCategory}&nbsp;${dto.trainCode}</td>
 									 			<td>${dto.startCode}<br>${dto.stTime}</td>
@@ -63,10 +68,10 @@ table tr{
 									 			<td>${dto.count}</td>
 									 			<td>결제완료</td>
 									 			<td>발권완료<br>
-									 				<button>인쇄하기</button>
+									 				<button type="button">인쇄하기</button>
 									 			</td>
 									 			<td>
-									 				<button>환불하기</button>
+									 				<button type="button" class="refundBtn" data-code="${dto.trCode}">환불하기</button>
 									 			</td>
 									 		</tr>
 								 		</c:forEach>
@@ -78,7 +83,6 @@ table tr{
 								 	</div>
 								 	<br>
 								</div>
-								
 								</form>
 							</header>
 						</section>

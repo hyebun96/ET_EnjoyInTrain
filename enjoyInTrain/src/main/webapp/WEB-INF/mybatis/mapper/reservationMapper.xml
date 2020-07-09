@@ -6,6 +6,12 @@
 		SELECT DISTINCT sname FROM station6
 	</select>
 	
+	<!-- 할인종류 가져오기 -->
+	<select id="readDisCount" parameterType="String" resultType="Integer">
+		SELECT dcPrice FROM DISCOUNT
+		WHERE dcName=#{dcName}
+	</select>
+	
 	<!-- 역정보 가져오기 -->
 	<select id="readStation" parameterType="Object" resultType="map">
 		SELECT engName, sCode, lineOrder FROM station6
@@ -213,5 +219,52 @@
 		SELECT COUNT(*) FROM reservedSeat
 		WHERE trCode=#{trCode}
 		GROUP BY trCode
+	</select>
+	
+	<!-- 해당 trCode의 자세한 예약내역 가져오기(환불시) -->
+	<select id="readReservationTrain" parameterType="Integer" resultType="com.et.reservation.Reservation">
+		SELECT tr.trDate, trCategory, info.trainCode, startSt.sName , endSt.sName
+		FROM trainReservation tr
+		JOIN trReservationInfo info ON tr.trCode=info.trCode
+		JOIN train7 train ON info.trainCode=train.trainCode
+		JOIN station6 startSt ON info.startCode=startSt.sCode
+		JOIN station6 endSt ON info.endCode=endSt.sCode
+		WHERE tr.trCode=#{trCode}
+	</select>
+	
+	<!-- 해당 trCode의 자세한 좌석 예약내역 가져오기(환불시) -->
+	<select id="readReservationDetail" parameterType="Integer" resultType="com.et.reservation.Reservation">
+		SELECT rsseatCode, TO_CHAR(trDate,'YYYY/MM/DD(DY)') trDate, trCategory, info.trainCode, startSt.sName startCode, endSt.sName endCode, seatType, roomNum, seatNum
+		FROM trainReservation tr
+		JOIN trReservationInfo info ON tr.trCode=info.trCode
+		JOIN reservedSeat seat ON tr.trCode=seat.trCode
+		JOIN train7 train ON info.trainCode=train.trainCode
+		JOIN station6 startSt ON info.startCode=startSt.sCode
+		JOIN station6 endSt ON info.endCode=endSt.sCode
+		WHERE tr.trCode=#{trCode}
+	</select>
+	
+	<!-- 포인트 시퀀스 가져오기 -->
+	<select id="memberShipSeq" resultType="Integer">
+		SELECT memberShip_seq.NEXTVAL FROM dual
+	</select>
+	
+	<!-- 포인트 내역 추가(결제금액의 5%) -->
+	<insert id="memberShip" parameterType="map">
+		INSERT INTO memberShip(pointCode, crewId, trCode, category, point)
+		VALUES(#{memberShipSeq},#{crewId},#{trCode},#{category},#{point})
+	</insert>
+	
+	<!-- 해당 아이디의 총 포인트 조회 -->
+	<select id="totalPoint" parameterType="String" resultType="Integer">
+		SELECT (
+		    SELECT NVL(SUM(point),0) FROM MEMBERSHIP
+		    WHERE crewId=#{crewId}
+		    AND category='적립'
+		)-(
+		    SELECT NVL(SUM(point),0) FROM MEMBERSHIP
+		    WHERE crewId=#{crewId}
+		    AND category='사용'
+		)totalPoint FROM dual
 	</select>
  </mapper>
