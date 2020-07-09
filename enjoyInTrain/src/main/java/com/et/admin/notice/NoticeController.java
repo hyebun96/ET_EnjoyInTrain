@@ -238,7 +238,7 @@ public class NoticeController {
 		return ".admin.notice.created";
 	}
 
-	@RequestMapping(value="/notice/update", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/notice/update", method=RequestMethod.POST)
 	public String updateSubmit(
 			Notice dto,
 			@RequestParam String page,

@@ -13,15 +13,6 @@
     padding-top: 0em;
 }
 
-header .byline {
-    display: block;
-    margin: 0.5em 0 0 0;
-    padding: 0 0 0.5em 0;
-    text-transform: uppercase;
-    font-size: 1.4em;
-    padding-bottom: 60px;
-}
-
 .listLine{
     height: 35px;
     border-bottom: 1px solid #cccccc;
@@ -50,32 +41,38 @@ function suggestList(){
 					<span>|</span> <a href="<%=cp%>/admin/freeBoard/list">자유게시판</a> <span>|</span> <a href="<%=cp%>/admin/suggest/list">고객의소리</a>
 				</div>
 			<!-- Main -->
+			<!-- Main -->
 			<div id="main" class="container" style="margin-top: 0; padding-top: 0;">
 				<div class="row">
 				
 					<div class="9u skel-cell-important">
 						<section>
 							<header>
-								<form action="<%=cp%>/admin/suggest/list" name="suggestListForm" method="post">
 								<h2>고객의 소리</h2>
-								<span class="byline" >THANK YOU FOR YOUR VALUABLE OPINION.</span>
-								<select name="rows" onchange="suggestList();" style="height: 29px; margin-bottom: 50px;">
+								<span class="byline">불편/불만사항,칭찬사례,제안 등의 내용을 작성해주세요.</span>
+							</header>
+							
+								<form action="<%=cp%>/suggest/list" name="suggestListForm" method="post">
+								<select name="rows" onchange="suggestList();" class="selectField, noticebtn" style="width: 150px; margin-bottom: 20px;">
 									<option value="5" ${rows==5?"selected='selected' ":"" }>5개씩출력</option>
 									<option value="10" ${rows==10?"selected='selected' ":"" }>10개씩출력</option>
 									<option value="20" ${rows==20?"selected='selected' ":"" }>20개씩출력</option>
 								</select>
-								<table style="width:900px; padding-top:10px; text-align:center;">
-									<tr style="background: #21373F; height:35px; border-bottom:none;  color: white; font-weight: bold;">
-										<td style="width: 40px;">번호</td>
-										<td style="width: 100px;">카테고리</td>
+								<div id ="tab-content" style="clear: both; padding: 20px 0px 0px;">
+								<table style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse; text-align: center;">
+									<tr class="noticebar">
+										<td>번호</td>
+										<td>카테고리</td>
 										<td>제목</td>
-										<td style="width: 100px;">작성자</td>
-										<td style="width: 100px;">작성일</td>
-										<td style="width: 100px;">처리단계</td>
-										<td style="width: 50px;">조회수</td>
+										<td>작성자</td>
+										<td>작성일</td>
+										<td>처리단계</td>
+										<td>조회수</td>
 									</tr>
+									
+									<tbody class="board-list">	
 									<c:forEach var="dto" items="${list}">
-										<tr class="listLine">
+										<tr class="question" height="35" style="border-bottom: 1px solid #cccccc;">
 											<td>${dto.listNum}</td>
 											<td>${dto.sgCategory}</td>
 											<td style="text-align: left;">
@@ -86,7 +83,7 @@ function suggestList(){
 													<a href="${articleUrl}&sgCode=${dto.sgCode}">${dto.sgTitle}</a>
 												</c:if>
 												<c:if test="${dto.dept!=0}">
-													<a href="${articleUrl}&sgCode=${dto.sgCode}"></a><a style="margin-left: 0px; color: red;">[re]</a><a style="margin-left: 0px;">${dto.sgTitle}</a>
+													<a href="${articleUrl}&sgCode=${dto.sgCode}">ㄴ [re]${dto.sgTitle}</a>
 												</c:if>
 											</td>
 											<td>${dto.crewName}</td>
@@ -95,16 +92,19 @@ function suggestList(){
 											<td>${dto.sgHitCount}</td>
 										</tr>
 									</c:forEach>
+									</tbody>
+									
 								</table>
+								</div>
 								${dataCount==0?"등록된 게시물이 없습니다.":paging}
 								<input type="hidden" name="rows" value="${rows}">
 								</form>
-							</header>
+							
 						</section>
 					</div>
+					
 				</div>
 			</div>
 			<!-- Main -->
-
-		</div>
-	<!-- /Main -->
+			</div>
+			

@@ -87,7 +87,7 @@
 								<td colspan="3"><input type="file" name="upload" multiple="multiple" class="boxTF" size="53" style="width: 200px; height: 25px; padding-left: 20px;"></td>
 							</tr>
 						</table>
-			        </form>
+			    
 			        <div class="notice_createdbutton">
 					<button type="button" class="articlebtn" onclick="sendOk();">${mode=='update'?'수정완료':'등록하기'}</button>
 			        <button type="reset" class="articlebtn">다시입력</button>
@@ -97,6 +97,7 @@
 			        	 <input type="hidden" name="page" value="${page}">
 			        </c:if>
 			        </div>
+			      </form>
 			        </div>
 						</section>
 					</div>

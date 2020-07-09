@@ -130,6 +130,33 @@ public class FreeBoardController {
 		return ".admin.freeBoard.list";
 	}
 	
+	@RequestMapping(value="created", method=RequestMethod.GET)
+	public String createdForm(
+			Model model) throws Exception {
+		
+		model.addAttribute("mode", "created");
+		return ".admin.freeBoard.created";
+	}
+	
+	@RequestMapping(value="created", method=RequestMethod.POST)
+	public String createdSubmit(
+			FreeBoard dto,
+			HttpSession session
+			) throws Exception {
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("crew");
+		
+		String root=session.getServletContext().getRealPath("/");
+		String pathname=root+"uploads"+File.separator+"freeBoard";
+		
+		try {
+			dto.setCrewId(info.getCrewId());
+			service.insertBoard(dto, pathname);
+		} catch (Exception e) {
+		}		
+		return "redirect:/admin/freeBoard/list";
+	}
+	
 	@RequestMapping("/admin/freeBoard/article")
 	public String article(
 			@RequestParam int num,
@@ -210,6 +237,52 @@ public class FreeBoardController {
 		return model;
 
 		
+	}
+	
+	@RequestMapping(value="update",method=RequestMethod.GET)
+	public String updateForm(
+			@RequestParam int num,
+			@RequestParam String page,
+			HttpSession session,
+			Model model
+			) throws Exception{
+			
+		SessionInfo info = (SessionInfo)session.getAttribute("crew");
+		
+		FreeBoard dto = service.readBoard(num);
+		if(dto==null) {
+			return "redirect:/admin/freeBoard/list?page="+page;
+		}
+		if(! info.getCrewId().equals(dto.getCrewId())) {
+			return "redirect:/admin/freeBoard/list?page="+page;
+		}
+		
+		List<FreeBoard> listFile =service.listFile(num);
+		
+		model.addAttribute("dto",dto);
+		model.addAttribute("mode","update");
+		model.addAttribute("page",page);
+		model.addAttribute("listFile",listFile);	
+		
+		return ".admin.freeBoard.created";
+	}
+	
+	@RequestMapping(value="update", method=RequestMethod.POST)
+	public String updateSubmit(
+			FreeBoard dto,
+			@RequestParam String page,
+			HttpSession session
+			) throws Exception{
+		
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root+"uploads"+File.separator+"freeBoard";
+		
+		try {
+			service.updateBoard(dto, pathname);		
+		} catch (Exception e) {
+		}
+		
+		return "redirect:/admin/freeBoard/list?page="+page;
 	}
 	
 	@RequestMapping("/admin/freeBoard/delete")

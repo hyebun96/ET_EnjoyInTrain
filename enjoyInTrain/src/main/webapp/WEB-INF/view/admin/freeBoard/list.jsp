@@ -6,7 +6,7 @@
    String cp = request.getContextPath();
 %>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
-
+<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
 <style>
 .homepage #main{
 	margin-top: 0em;
@@ -96,50 +96,36 @@ function searchList() {
 				<section>
 					<header>
 						<h2>자유게시판</h2>
-						<span class="byline" style="margin-top: 20px;">PlEASE FEEL FREE TO WRITE.</span>
+						<span class="byline">Free | PlEASE FEEL FREE TO WRITE.</span>
 					</header>
 					
 					<div>
-					
-						<table style="width: 100%; margin: 10px auto; border-spacing: 0px;">
-						   <tr height="40">
-						   		<td align="left">
-								</td>
-								
-		      					<td align="left">
-									<form name="searchForm" action="<%=cp%>/admin/freeBoard/list" method="post" style="float: left;">
-										<select name="condition" class="selectField" style="height: 29px;">
-											<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
-											<option value="fbTitle" ${condition=="fbTitle"?"selected='selected'":""}>제목</option>
-											<option value="fbContent" ${condition=="fbContent"?"selected='selected'":""}>내용</option>
-											<option value="crewName" ${condition=="crewName"?"selected='selected'":""}>작성자</option>
-											<option value="fbCreated" ${condition=="fbCreated"?"selected='selected'":""}>등록일</option>
-										</select>
-										<input type="text" name="keyword" value="${keyword}" class="boxTF">
-										<button type="button" class="btnsearch" id="btnsearch" onclick="searchList()"
-											style="background: white; width: 100px; height: 29px; border-radius: 10px; border: 1px solid #cccccc;">검색</button>
-										<button type="button" class="btn" id="btn" onclick="javascript:location.href='<%=cp%>/admin/freeBoard/list';"
-											style="background: white; width: 100px; height: 29px; border-radius: 10px; border: 1px solid #cccccc;">새로고침</button>
-									</form>
-								</td>
-							</tr>
-						</table>
-					
-					
-						<table style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse;">
-							<tbody class="board-list">
-							<tr height="35" style="border-bottom: 1px solid #cccccc;">
-					
-								<td align="right" width="100%">
-									${dataCount}개(${page}/${total_page} 페이지)
-								</td>
-								  <td align="right">
-				         				 &nbsp;
-				    			  </td>
-						</table>
+						<div style="clear: both;">
+								<ul>
+									
+									<li style="width: 80%; float: left; margin-bottom: 30px; margin-top: -20px;">
+										<form name="searchForm" action="<%=cp%>/admin/freeBoard/list" method="post">
+		            						<select name="condition" class="selectField, noticebtn">
+		                  						<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
+		                  						<option value="fbTitle" ${condition=="noticeTitle"?"selected='selected'":""}>제목</option>
+		                  						<option value="fbContent" ${condition=="noticeContent"?"selected='selected'":""}>내용</option>
+		                  						<option value="crewName" ${condition=="crewName"?"selected='selected'":""}>작성자</option>
+		                  						<option value="fbCreated" ${condition=="nCreated"?"selected='selected'":""}>등록일</option>
+		            						</select>
+		          	  							<input type="text" name="keyword" value="${keyword}" class="noticeinput" width="300px">
+		            							<button type="button" class="noticebtn" id="btnsearch" onclick="searchList()">검색</button>
+												<button type="button" class="noticebtn" id="btn" onclick="javascript:location.href='<%=cp%>/admin/freeBoard/list';">새로고침</button>
+		        						</form>
+		        					</li>
+		        					<li style="width: 20%; float: left;">
+		        					${dataCount}개(${page}/${total_page} 페이지)
+		        					</li>
+								</ul>
+							</div>
 						
-						<table style="width: 100%; margin: 0px auto; border-spacing: 0px; border-collapse: collapse;">
-							<tr class="menu-heght2" height="35" style="border-bottom: 1px solid #cccccc; background-color: #21373F; color: white; font-weight: bold;">
+						
+						<table style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse;">
+							<tr class="noticebar">
 								<th width="60">번호</th>
 								<th width="200">제목</th>
 								<th width="100">작성자</th>
@@ -148,7 +134,7 @@ function searchList() {
 								<th width="50">파일</th>
 							</tr>
 							<c:forEach var="dto" items="${list}">
-							 	<tr class="listname1" align="center"  height="35" style="border-bottom: 1px solid #cccccc;"> 
+							 	<tr class="listname1" align="center"  height="35" style="border-bottom: 1px solid #cccccc; color: black;"> 
 									<td>${dto.listNum}</td>
 									<td align="left" style="padding-left: 20px; color: black; text-decoration: none;">
 										<a href="${articleUrl}&num=${dto.fbNum}">${dto.fbTitle} [ ${dto.replyCount} ]
@@ -168,19 +154,22 @@ function searchList() {
 									</td>
 								</tr>
 							</c:forEach>
+							<tr>
+							</tr>
 						</table>
 				
 						<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
 						   <tr height="35">
 							<td align="center">
+									
 							       ${dataCount==0?"등록된 게시물이 없습니다.":paging}
 							</td>
 						   </tr>
 						</table>
+
 					</div>
 				</section>
 			</div>
-			<!-- /메인내용 -->
 		</div>
 	</div>
 	<!-- /Main -->

@@ -317,15 +317,15 @@ function insertAn(){
 							</c:forEach>
 							
 							
-							<tr class="articleReadDto">
-								<td colspan="2" style="text-align: left;">
+							<tr>
+								<td colspan="2" style="text-align: left;" class="articleReadDto">
 								
 								<c:if test="${not empty preReadDto}">
 			           		   		<a href="<%=cp%>/admin/suggest/article?${query}&sgCode=${preReadDto.sgCode}"> ＜＜이전 글 보기  ＿ ${preReadDto.sgTitle}</a>
 			       			 	</c:if>
 			       			 	</td>
 			       			 	
-			       			 	<td colspan="2" style="text-align: right;">
+			       			 	<td colspan="2" style="text-align: right;" class="articleReadDto">
 			        			<c:if test="${not empty nextReadDto}">
 			             			 <a href="<%=cp%>/admin/suggest/article?${query}&sgCode=${nextReadDto.sgCode}">${nextReadDto.sgTitle} ＿  다음 글 보기 ＞＞ </a>
 			        			</c:if>

@@ -6,6 +6,7 @@
 	String cp = request.getContextPath();
 %>
 <link rel="stylesheet" href="<%=cp%>/resource/css/freeBoard.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
 <style>
 .homepage #main {
 	margin-top: 0em;
@@ -20,11 +21,7 @@
 	font-family: "나눔 고딕";
 }
 
-a:-webkit-any-link {
-    cursor: pointer;
-    text-decoration: none;
-    color: black;
-}
+
 
 .btn{
 	width: 100px; 
@@ -337,7 +334,7 @@ $(function () {
 		var fbReplyNum = $(this).attr("data-replyNum");
 		var answer = $(this).attr("data-answer");
 		
-		var url = "<%=cp%>/freeBoard/deleteReply";
+		var url = "<%=cp%>/admin/freeBoard/deleteReply";
 		var query = "fbReplyNum="+fbReplyNum+"&mode=answer";
 		
 		var fn = function (data) {
@@ -375,26 +372,27 @@ $(function () {
 					</header>
 
 					<div>
-						<table
-							style="width: 100%; margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
-							<tr height="35" style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc;  background: #21373F; color: white; font-weight: bold;">
-								<td colspan="2" align="center">${dto.fbTitle}</td>
+						<table class="noticearticle">
+							<tr class="noticearticletitle">
+								<td class="noticearticletitle1">제목  </td>
+								<td style="text-align: center;">${dto.fbTitle}</td>
+								<td class="noticearticletitle1">조회수  </td>
+								<td style="text-align: center;">${dto.fbHitCount}</td>
 							</tr>
 
-							<tr height="35" style="border-bottom: 1px solid #cccccc;">
-								<td width="50%" align="left" style="padding-left: 5px;">이름
-									: ${dto.crewName}</td>
-								<td width="50%" align="right" style="padding-right: 5px;">
-									${dto.fbCreated} | 조회 ${dto.fbHitCount}</td>
+							<tr class="noticearticletitle">
+								<td class="noticearticletitle2">이름</td>
+								<td style="text-align: center;">${dto.crewName}</td>
+								<td class="noticearticletitle2">작성일</td>
+								<td width="300px" style="text-align: center;">${dto.fbCreated}</td>
 							</tr>
 
 							<tr>
-								<td colspan="2" align="left" style="padding: 10px 5px;"
-									valign="top" height="200">${dto.fbContent}</td>
+								<td class="notice-content" colspan="4" >${dto.fbContent}</td>
 							</tr>
 
-							<tr style="border-bottom: 1px solid #cccccc;">
-								<td colspan="2" height="40" style="padding-bottom: 15px;"
+							<tr class="noticearticletitle">
+								<td colspan="4" height="40" style="padding-bottom: 15px;"
 									align="center">
 									<button style="width: 50px;" type="button" class="btn btnSendBoardLike" title="좋아요">
 										<i class="far fa-hand-point-up"></i>&nbsp;&nbsp;<span
@@ -405,7 +403,7 @@ $(function () {
 
 							<c:forEach var="vo" items="${listFile}">
 							<tr height="35" style="border-bottom: 1px solid #cccccc;">
-								<td colspan="2" align="left" style="padding-left: 5px;">
+								<td colspan="4" align="left" style="padding-left: 5px;">
 									첨&nbsp;&nbsp;부 : 
 									<a href="<%=cp%>/admin/freeBoard/download?fbFileNum=${vo.fbFileNum}">${vo.originalFileName}</a>
 									(<fmt:formatNumber value="${vo.fileSize/1024}" pattern="0.00"/>kByte)	
@@ -413,14 +411,14 @@ $(function () {
 							</tr>
 							</c:forEach>
 
-							<tr class="articleReadDto" >
-								<td colspan="1" style="text-align: left;">
+							<tr>
+								<td colspan="2" style="text-align: left;" class="articleReadDto">
 									<c:if test="${not empty preReadDto}">
 										<a href="<%=cp%>/admin/freeBoard/article?${query}&num=${preReadDto.fbNum}"> ＜＜이전 글 보기  ＿ ${preReadDto.fbTitle}</a>
 									</c:if>
 								</td>
 
-								<td colspan="1" style="text-align: right;">
+								<td colspan="2" style="text-align: right;" class="articleReadDto">
 									<c:if test="${not empty nextReadDto}">
 										<a href="<%=cp%>/admin/freeBoard/article?${query}&num=${nextReadDto.fbNum}">${nextReadDto.fbTitle} ＿  다음 글 보기 ＞＞ </a>
 									</c:if>
@@ -436,19 +434,15 @@ $(function () {
 							style="width: 100%; margin: 0px auto 20px; border-spacing: 0px;">
 							<tr height="45">
 								<td width="300" align="left">
-									<c:if
-										test="${sessionScope.crew.crewId==dto.crewId}">
-										<button type="button" class="btn1" onclick="updateBoard();">수정</button>
-									</c:if> 
 									
 									<c:if
 										test="${sessionScope.crew.crewId==dto.crewId || sessionScope.crew.crewId=='a'}">
-										<button type="button" class="btn1" onclick="deleteBoard();">삭제</button>
+										<button type="button" class="articlebtn" onclick="deleteBoard();">삭제</button>
 									</c:if>
 								</td>
 
 								<td align="right">
-									<button type="button" class="btn" onclick="javascript:location.href='<%=cp%>/admin/freeBoard/list?${query}';">리스트</button>
+									<button type="button" class="articlebtn" onclick="javascript:location.href='<%=cp%>/admin/freeBoard/list?${query}';">리스트</button>
 								</td>
 							</tr>
 						</table>

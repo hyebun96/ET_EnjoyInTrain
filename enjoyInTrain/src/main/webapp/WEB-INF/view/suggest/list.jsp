@@ -13,27 +13,6 @@
     padding-top: 0em;
 }
 
-header .byline {
-    display: block;
-    margin: 0.5em 0 0 0;
-    padding: 0 0 0.5em 0;
-    text-transform: uppercase;
-    font-size: 1.4em;
-    padding-bottom: 30px;
-}
-
-.listLine{
-    height: 40px;
-    border-bottom: 1px solid #cccccc;
-}
-
-a {
-    color: black;
-    padding-left: 40px;
-    text-decoration: none;
-}
-
-
 </style>
 
 <script type="text/javascript">
@@ -50,7 +29,7 @@ function suggestList(){
 		</div>
 	<!-- /Banner -->
 
-	
+<div id="page">	
 			<!-- Main -->
 			<div id="main" class="container" style="margin-top: 0; padding-top: 0;">
 				<div class="row">
@@ -81,6 +60,7 @@ function suggestList(){
 									<option value="10" ${rows==10?"selected='selected' ":"" }>10개씩출력</option>
 									<option value="20" ${rows==20?"selected='selected' ":"" }>20개씩출력</option>
 								</select>
+								<div id ="tab-content" style="clear: both; padding: 20px 0px 0px;">
 								<table style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse; text-align: center;">
 									<tr class="noticebar">
 										<td>번호</td>
@@ -91,8 +71,10 @@ function suggestList(){
 										<td>처리단계</td>
 										<td>조회수</td>
 									</tr>
+									
+									<tbody class="board-list">	
 									<c:forEach var="dto" items="${list}">
-										<tr class="listLine">
+										<tr class="question" height="35" style="border-bottom: 1px solid #cccccc;">
 											<td>${dto.listNum}</td>
 											<td>${dto.sgCategory}</td>
 											<td style="text-align: left;">
@@ -112,7 +94,10 @@ function suggestList(){
 											<td>${dto.sgHitCount}</td>
 										</tr>
 									</c:forEach>
+									</tbody>
+									
 								</table>
+								</div>
 								<button type="button" onclick="javascript:location.href='<%=cp%>/suggest/created';" class="noticebtn" style="float: right; margin-top: 20px;">글쓰기</button>
 								${dataCount==0?"등록된 게시물이 없습니다.":paging}
 								<input type="hidden" name="rows" value="${rows}">
@@ -122,5 +107,8 @@ function suggestList(){
 					</div>
 					
 				</div>
+				
 			</div>
+			
 			<!-- Main -->
+</div>
