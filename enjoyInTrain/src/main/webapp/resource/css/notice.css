@@ -107,6 +107,12 @@ a:hover, a:active{
 	border-bottom: 1px solid black;
 }
 
+.notice-content2{
+	padding: 30px 30px 50px 30px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
 .articleReadDto{
 	font-size: 15px;
 	height: 80px;
@@ -253,3 +259,8 @@ a:hover, a:active{
 	
 }
 
+.notice_createdbutton{
+	width: 100%;
+	text-align: center;
+	padding-top: 30px;
+}

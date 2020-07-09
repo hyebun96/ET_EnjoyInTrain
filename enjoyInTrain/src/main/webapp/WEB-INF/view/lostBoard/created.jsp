@@ -6,6 +6,7 @@
    String cp = request.getContextPath();
 %>
 <link rel="stylesheet" href="<%=cp%>/resource/css/lostboardcreated.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
 <style type="text/css">
 .homepage #main{
    margin-top: 0em;
@@ -74,27 +75,41 @@ function deleteFile(num) {
 							</ul>
 						</section>
 					</div>
-				<form action="" name="lostBoardForm" method="post" enctype="multipart/form-data">
-				<div id="article_title">유실물 게시판</div>
 					<div class="9u skel-cell-important">
-						<ul id="article_main">
-							<li id="article_question">제목</li>
-							<li id="article_answer"><input type="text" name="lostTitle" value="${dto.lostTitle}"></li>
-							<li id="article_question">작성자</li>
-							<li id="article_answer">${sessionScope.crew.crewName}</li>
-							<li id="article_content">
-								<textarea id="content" name="lostContent">${dto.lostContent}</textarea>
-							</li>
-							<li id="article_question">첨부파일</li>
-							<li id="article_file"><input type="file" name="upload"></li>
-						</ul>
-					</div>
-					<div>
+						<header>
+								<h2>유실물</h2>
+								<span class="byline">Lost | Lost property
+								<img src="<%=cp%>/resource/images/createdicon.png" alt="" width="40px;" style="float: right;">
+								</span>
+						</header>
+				<form action="" name="lostBoardForm" method="post" enctype="multipart/form-data">
+						
+						<table class="noticearticle">
+							<tr class="noticearticletitle">
+								<td class="noticearticletitle1">제목  </td>
+								<td style="text-align: left;" colspan="3"><input type="text" name="lostTitle" value="${dto.lostTitle}" maxlength="100" class="boxTF" style="width: 100%;"></td>
+							</tr>
+							<tr class="noticearticletitle">
+								<td class="noticearticletitle2">작성자</td>
+								<td colspan="3">${sessionScope.crew.crewName}</td>
+							</tr>
+							<tr id="article_content" class="noticearticletitle" style="width: 95%;">
+								<td class="noticearticletitle1">내용</td>
+								<td class="notice-content" colspan="3"><textarea id="content" name="lostContent">${dto.lostContent}</textarea></td>
+							</tr>
+							<tr class="noticearticletitle" style="border: none;">
+								<td class="noticearticletitle1">첨부파일</td>
+								<td colspan="3"><input type="file" name="upload"></td>
+							</tr>
+						</table>
+
+				</form>
+					<div class="notice_createdbutton">
 						<ul>
-							<li id="article_button">
-								<button type="button" onclick="send()">${mode=='update'?'수정완료':'등록완료'}</button>
-								<button type="reset">다시입력</button>
-								<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/list';">${mode=='update'?'수정취소':'등록취소'}</button>
+							<li>
+								<button type="button" onclick="send()" class="articlebtn">${mode=='update'?'수정완료':'등록완료'}</button>
+								<button type="reset" class="articlebtn">다시입력</button>
+								<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/list';" class="articlebtn">${mode=='update'?'수정취소':'등록취소'}</button>
 								<c:if test="${mode=='update'}">
 									<input type="hidden" name="lostNum" value="${dto.lostNum}">
 									<input type="hidden" name="page" value="${page}">
@@ -104,7 +119,7 @@ function deleteFile(num) {
 							</li>
 						</ul>
 					</div>
-				</form>
+					</div>
 
 					
 				</div>

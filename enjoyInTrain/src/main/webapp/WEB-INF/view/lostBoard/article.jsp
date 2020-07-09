@@ -289,7 +289,7 @@ $(function () {
 							</tr>
 							<tr class="noticearticletitle">
 								<td class="noticearticletitle2">작성자</td>
-								<td style="text-align: center;">${dto.crewId}</td>
+								<td style="text-align: center;">${dto.crewName}</td>
 								<td class="noticearticletitle2">작성일</td>
 								<td width="300px" style="text-align: center;">${dto.lostCreated}</td>
 								

@@ -104,12 +104,14 @@
 					<div class="9u skel-cell-important">
 						<section>
 							<header>
+								
 								<h2>고객의 소리</h2>
+								<span class="byline">THANK YOU FOR YOUR VALUABLE OPINION.
+								<img src="<%=cp%>/resource/images/createdicon.png" alt="" width="40px;" style="float: right;">
+								</span>
 								<span class="byline">${mode=='created'?"글쓰기":"수정하기"}</span>
 							</header>
 							<div id="namul">
-							
-							
 					<form name="suggestForm" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="mode" value="${mode}"> 
 								<c:if test="${mode=='update'}">
@@ -129,20 +131,24 @@
 								<td class="noticearticletitle1">제목  </td>
 								<td colspan="3" style="text-align: left;"> <input type="text" name="sgTitle" maxlength="100" class="boxTF" style="width: 100%;" value="${dto.sgTitle}"> </td>
 							</tr>
-							<td>
-												<select name="sgCategory">
+							<tr class="noticearticletitle">
+								<td class="noticearticletitle1">분류</td>
+								<td colspan="3" style="padding-left: 20px;">
+												<select name="sgCategory" style="border-radius: 5px; width: 100px;">
 													<option value="1">불편/불만</option>
 													<option value="2">제안/건의</option>
 													<option value="3">칭찬</option>
 													<option value="4">기타</option>
 												</select>
-											</td>
-							<tr style="padding: 5px 5px;">
-								<td class="notice-content1" colspan="4"> <textarea name="sgContent" rows="12" class="boxTA" style="width: 100%;">${dto.sgContent}</textarea></td>
+								</td>
+							</tr>
+							<tr class="noticearticletitle">
+								<td class="noticearticletitle1">내용</td>
+								<td class="notice-content1" colspan="3"> <textarea name="sgContent" rows="12" class="boxTA" style="width: 100%; margin-top: 10px; height: 450px;">${dto.sgContent}</textarea></td>
 							</tr>
 							
-							<tr class="articleReadDto1" align="left" height="40" style="border-bottom: 1px solid #cccccc;">
-			      				<td width="100" bgcolor="#eeeeee" style="text-align: center;">첨부 파일  ▷</td>
+							<tr class="noticearticletitle">
+			      				<td class="noticearticletitle1">첨부 파일  </td>
 			      				<td style="padding-left:10px;"> 
 			         				 <input type="file" name="upload" class="boxTF" size="53" style="width: 95%; height: 25px;">
 			      				 </td>
@@ -162,9 +168,11 @@
 							</tbody>
 						</table>
 			        </form>
-					<button type="button" class="articlebtn" onclick="sendSuggest();">${mode=='update'?'수정완료':'등록하기'}</button>
-			        <button type="reset" class="articlebtn">다시입력</button>
-			        <button type="button" class="articlebtn" onclick="javascript:location.href='<%=cp%>/suggest/list';">${mode=='update'?'수정취소':'등록취소'}</button>
+			        <div class="notice_createdbutton">
+						<button type="button" class="articlebtn" onclick="sendSuggest();">${mode=='update'?'수정완료':'등록하기'}</button>
+			        	<button type="reset" class="articlebtn">다시입력</button>
+			        	<button type="button" class="articlebtn" onclick="javascript:location.href='<%=cp%>/suggest/list';">${mode=='update'?'수정취소':'등록취소'}</button>
+			        </div>
 			        </div>
 						</section>
 					</div>
