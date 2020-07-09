@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.et.common.dao.CommonDAO;
-import com.sun.org.apache.bcel.internal.generic.DASTORE;
 
 @Service("reservation.reservationService")
 public class ReservationServiceImpl implements ReservationService{
@@ -212,6 +211,30 @@ public class ReservationServiceImpl implements ReservationService{
 				unCrew.setTrCode(trCode);
 				dao.insertData("reservation.insertUnCrew", unCrew);
 			}
+			
+			//회원일시 포인트 내역 추가
+				//포인트 적립
+			Map<String, Object> memberShip=new HashMap<>();
+			if(unCrew.getName()==null) {
+				//포인트시퀀스 가져오기
+				int memberShipSeq=dao.selectOne("reservation.memberShipSeq");
+				memberShip.put("memberShipSeq", memberShipSeq);
+				memberShip.put("crewId", rv.getCrewId());
+				memberShip.put("trCode", rv.getTrCode());
+				memberShip.put("category", "적립");
+				memberShip.put("point", (int)(rv.getTrPrice()*0.05));
+				dao.insertData("reservation.memberShip", memberShip);
+				
+				//포인트 사용
+				if(rv.getPoint()!=0) {
+					memberShipSeq=dao.selectOne("reservation.memberShipSeq");
+					memberShip.put("memberShipSeq", memberShipSeq);
+					memberShip.put("category", "사용");
+					memberShip.put("point", rv.getPoint());
+					dao.insertData("reservation.memberShip", memberShip);
+				}
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -439,10 +462,65 @@ public class ReservationServiceImpl implements ReservationService{
 				int cnt=dao.selectOne("reservation.readCount", dto.getTrCode());
 				dto.setCount(cnt);
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public List<Reservation> listReservationDetail(int trCode) {
+		List<Reservation> list=null;
+		try {
+			list=dao.selectList("reservation.readReservationDetail", trCode);
+			for(Reservation dto:list) {
+				Map<String, String> map=dao.selectOne("reservation.readStation",dto.getStartCode());
+				String stStation=map.get("ENGNAME");
+				map=dao.selectOne("reservation.readStation",dto.getEndCode());
+				map.put("stStation", stStation);
+				map.put("endStation", map.get("ENGNAME"));
+				map.put("trainCode", dto.getTrainCode());
+				map=dao.selectOne("reservation.readStatinTime", map);
+				dto.setStTime(map.get("STTIME"));
+				dto.setEndTime(map.get("ENDTIME"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<Reservation> readReservationTrain(Map<String, Integer> map) {
+		List<Reservation> list=null;
+		try {
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	//할인종류 가져오기
+	@Override
+	public int readDisCount(String dcName) {
+		int result=0;
+		try {
+			result=dao.selectOne("reservation.readDisCount", dcName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	//해당 아이디의 총 포인트 조회
+	@Override
+	public int totalPoint(String crewId) {
+		int result=0;
+		try {
+			result=dao.selectOne("reservation.totalPoint", crewId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

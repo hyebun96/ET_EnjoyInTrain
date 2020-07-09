@@ -6,6 +6,7 @@
    String cp = request.getContextPath();
 %>
 <link rel="stylesheet" href="<%=cp%>/resource/css/lostboardarticle.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
 <style type="text/css">
 .homepage #main{
    margin-top: 0em;
@@ -256,72 +257,85 @@ $(function () {
 			<div id="main" class="container">
 				<div class="row">
 
-				<form action="" name="lostBoardForm" method="post" enctype="multipart/form-data">
-					<div>
-						<ul id="board_main">
-							<li id="board_question1">제목</li>
-							<li id="board_answer1">${dto.lostTitle}</li>
-							<li id="board_question2">작성자</li>
-							<li id="board_answer2">${dto.crewId}</li>
-							<li id="board_question1">작성일</li>
-							<li id="board_answer1">${dto.lostCreated}</li>
-							<li id="board_question2">조회수</li>
-							<li id="board_answer2">${dto.lostHitCount}</li>
-							<li id="board_content1">
-								${dto.lostContent}
-							</li>
-							<li id="board_content1">
-								<c:if test="${dto.saveFileName!=null}">
-									<img src="<%=cp%>/admin/uploads/lostBoard/${dto.saveFileName}" style="width: 400px; height: 500px;">
-								</c:if>
-							</li>
-				
+				<div class="9u skel-cell-important">
+						<section>
+							<header>
+								<h2>유실물</h2>
+								<span class="byline">Lost | Lost property</span>
+							</header>
+							<div id="namul">
 							
-						</ul>
-						<ul>
-							<li id="board_option_pre">
-								<c:if test="${empty preReadDto}">
-									&nbsp;이전 글이 존재 하지 않습니다.
-								</c:if>
+				<form action="" name="lostBoardForm" method="post" enctype="multipart/form-data">
+					<table class="noticearticle">
+							<tr class="noticearticletitle">
+								<td class="noticearticletitle1">제목  </td>
+								<td style="text-align: left;"> ${dto.lostTitle} </td>
+								<td class="noticearticletitle1">조회수  </td>
+								<td width="300px" style="text-align: center;">${dto.lostHitCount}</td>
+							</tr>
+							<tr class="noticearticletitle">
+								<td class="noticearticletitle2">작성자</td>
+								<td style="text-align: center;">${dto.crewName}</td>
+								<td class="noticearticletitle2">작성일</td>
+								<td width="300px" style="text-align: center;">${dto.lostCreated}</td>
+								
+							</tr>
+							<tr style="padding: 5px 5px;">
+								<td class="notice-content" colspan="2">${dto.lostContent}</td>
+								<td class="notice-content" colspan="2">
+									<c:if test="${dto.saveFileName!=null}">
+										<img src="<%=cp%>/admin/uploads/lostBoard/${dto.saveFileName}" style="width: 400px; height: 500px;">
+									</c:if>
+								</td>
+							</tr>
+							
+							<tr>
+								<td colspan="2" style="text-align: left;" class="articleReadDto">
+								
 								<c:if test="${not empty preReadDto}">
-									<a href="<%=cp%>/admin/lostBoard/article?${query}&lostNum=${preReadDto.lostNum}">＜＜ 이전글 &nbsp;＿${preReadDto.lostTitle}</a>
+			           		   		<a href="<%=cp%>/admin/lostBoard/article?${query}&lostNum=${preReadDto.lostNum}">＜＜ 이전글 &nbsp;＿${preReadDto.lostTitle}</a>
+			       			 	</c:if>
+			       			 	</td>
+			       			 	
+			       			 	<td colspan="2" style="text-align: right;"  class="articleReadDto">
+				        			<c:if test="${not empty nextReadDto}">
+				             			 <a href="<%=cp%>/admin/lostBoard/article?${query}&lostNum=${nextReadDto.lostNum}">${nextReadDto.lostTitle}＿&nbsp;다음글 ＞＞</a>
+				        			</c:if>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="4">
+								<c:if test="${sessionScope.crew.crewId==dto.crewId}">
+									<button type="button" onclick="updateLostBoard();" class="articlebtn" style="float: right;">수정하기</button>
+									<button type="button" onclick="deleteLostBoard();" class="articlebtn" style="float: right;">삭제하기</button>
 								</c:if>
-							</li>
-							<li id="board_option_next">
-								<c:if test="${empty nextReadDto}">
-									&nbsp;다음 글이 존재 하지 않습니다.
-								</c:if> 
-								<c:if test="${not empty nextReadDto}">
-									<a href="<%=cp%>/admin/lostBoard/article?${query}&lostNum=${nextReadDto.lostNum}">${nextReadDto.lostTitle}＿&nbsp;다음글 ＞＞</a>
-								</c:if>
-							</li>
-						</ul>
-					</div>
+									<button type="button" onclick="javascript:location.href='<%=cp%>/admin/lostBoard/list';" class="articlebtn" style="float: right;">목록으로</button>
+								</td>
+							</tr>   
+						</table>
 					<div>
-						<ul>
-							<li id="board_button">
-									<button type="button" onclick="deleteLostBoard();">삭제하기</button>
-								<button type="button" onclick="javascript:location.href='<%=cp%>/admin/lostBoard/list';">목록으로</button>
-							</li>
-						</ul>
-					</div>
-					<div>
-						<ul id="reply_main">
-							 <li id="reply_title">
-							 	댓글쓰기 - 타인을 비방하거나 개인정보를 유출하는 글의 게시를 삼가 주세요.
-							 </li>
-									
-							<li id="reply_content">
-								<textarea style="width: 800px; height: 150px; resize: none"></textarea>
-							</li>
-							<li id="reply_button">
-								<button type="button" class="btnSendReply">댓글등록</button>
-							</li>
-						</ul>
+						<table
+							style='width: 100%; margin: 15px auto 0px; border-spacing: 0px;'>
+							<tr height='30'>
+								<td align='left'><span style='font-weight: bold;'>댓글쓰기</span><span>
+										- 타인을 비방하거나 개인정보를 유출하는 글의 게시를 삼가 주세요.</span></td>
+							</tr>
+							<tr>
+								<td style='padding: 5px 5px 0px;'>
+								<textarea class='boxTA' style='width: 99%; height: 70px;'></textarea></td>
+							</tr>
+							<tr>
+								<td align='right'>
+									<button type='button' class='btnSendReply' style=' width: 110px;'>댓글 등록</button>
+								</td>
+							</tr>
+						</table>
 					</div>
 					<div id="listReply"></div>
 				</form>
-					
+				</div>
+					</section>
+					</div>
 				</div>
 			</div>
 			<!-- Main -->

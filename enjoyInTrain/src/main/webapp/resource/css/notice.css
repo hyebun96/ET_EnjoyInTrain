@@ -11,14 +11,14 @@ a:hover, a:active{
 }
 
 .noticebtn{
-	width: 70px;
+	width: 100px;
 	height: 30px;
-	background: none;
-	border: 1px solid #ccc;
+	background: white;
+	border: 1px solid #cccccc;
 	cursor: pointer;
-	border-radius: 5px;
+	border-radius: 10px;
+	text-align: center;
 }
-
 .noticeinput{
 	width: 250px;
 	border-radius: 5px;
@@ -107,6 +107,12 @@ a:hover, a:active{
 	border-bottom: 1px solid black;
 }
 
+.notice-content2{
+	padding: 30px 30px 50px 30px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
 .articleReadDto{
 	font-size: 15px;
 	height: 80px;
@@ -183,7 +189,7 @@ a:hover, a:active{
 }
 
 .board-list :hover {
-	background: #e7e7e7;
+	background: #f5fffa;
 }
 
 .mainnotice{
@@ -253,3 +259,8 @@ a:hover, a:active{
 	
 }
 
+.notice_createdbutton{
+	width: 100%;
+	text-align: center;
+	padding-top: 30px;
+}

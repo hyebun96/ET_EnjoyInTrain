@@ -98,7 +98,7 @@ function search() {
 							               			 <img src='<%=cp%>/resource/images/new.gif'>
 							           			</c:if>
 											</td>
-											<td>${dto.crewId}</td>
+											<td>${dto.crewName}</td>
 											<td>${dto.lostCreated}</td>
 											<td>${dto.lostHitCount}</td>
 											

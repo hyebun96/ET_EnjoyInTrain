@@ -28,7 +28,7 @@
 							<li class="navbar" style="margin-left: 0px;"><a href="#">Reservation</a>
 								<ul class="navbar1">
 									<li><a href="<%=cp%>/reservation/main">예약 하기</a></li>
-									<li><a href="<%=cp%>/faq/list">예약 조회</a></li>
+									<li><a href="<%=cp%>/reservation/${empty sessionScope.crew?'uncrew2':'detail'}">예약 조회</a></li>
 									
 								</ul>
 							</li>

@@ -6,6 +6,7 @@
    String cp = request.getContextPath();
 %>
 <link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/lostboardarticle.css" type="text/css">
 <style type="text/css">
 .homepage #main{
    margin-top: 0em;
@@ -292,7 +293,7 @@ function insertAn(){
 						<section>
 							<header>
 								<h2>고객의 소리</h2>
-								<span class="byline">Notice | Check news of new services and events</span>
+								<span class="byline">THANK YOU FOR YOUR VALUABLE OPINION.</span>
 							</header>
 							<div id="namul">
 					<form name="noticeForm" method="post" >
@@ -313,7 +314,7 @@ function insertAn(){
 							</tr>
 							<c:if test="${dto.anContent!=''}">
 								<tr>
-									<td class="notice-content" colspan="4">
+									<td class="notice-content2" colspan="4">
 										<p>[답변내용입니다]    ${dto.anCreated }</p>
 										${dto.anContent}
 									</td>
@@ -322,23 +323,24 @@ function insertAn(){
 							
 							<c:forEach var="vo" items="${listFile}">
 								<tr height="35" >
-				  				  <td colspan="2" align="left" style="padding-left: 5px;">
+				  				  <td colspan="2" align="left" style="padding-left: 5px;">『
 				    				  <a href="<%=cp%>/suggest/download?fileNum=${vo.fileNum}">${vo.originalFilename}</a>
 			      					    (<fmt:formatNumber value="${vo.fileSize/1024}" pattern="0.00"/> KByte)
+			      					     』
 								  </td>
 								</tr>
 							</c:forEach>
 							
 							
-							<tr class="articleReadDto">
-								<td colspan="2" style="text-align: left;">
+							<tr>
+								<td colspan="2" style="text-align: left;" class="articleReadDto">
 								
 								<c:if test="${not empty preReadDto}">
 			           		   		<a href="<%=cp%>/suggest/article?${query}&sgCode=${preReadDto.sgCode}"> ＜＜이전 글 보기  ＿ ${preReadDto.sgTitle}</a>
 			       			 	</c:if>
 			       			 	</td>
 			       			 	
-			       			 	<td colspan="2" style="text-align: right;">
+			       			 	<td colspan="2" style="text-align: right;" class="articleReadDto">
 			        			<c:if test="${not empty nextReadDto}">
 			             			 <a href="<%=cp%>/suggest/article?${query}&sgCode=${nextReadDto.sgCode}">${nextReadDto.sgTitle} ＿  다음 글 보기 ＞＞ </a>
 			        			</c:if>
@@ -347,11 +349,11 @@ function insertAn(){
 							<tr>
 								<td colspan="4">
 								<button type="button" class="articlebtn" onclick="javascript:location.href='<%=cp%>/suggest/list?${query}';">리스트</button>
-								<c:if test="${dto.crewId != sessionScope.crew.crewId &&  sessionScope.crew.crewId != 'a' }">
+								<c:if test="${dto.crewId == sessionScope.crew.crewId &&  sessionScope.crew.crewId == 'a' }">
 			          				<button type="button" class="articlebtn" onclick="updateNotice();">수정</button>
 			          				<button type="button" class="articlebtn" onclick="deleteNotice();">삭제</button>
 			          			</c:if>
-			          			<c:if test="${sessionScope.crew.crewId != 'a' }">
+			          			<c:if test="${sessionScope.crew.crewId == 'a' }">
 			          				<button type="button" class="articlebtn" onclick="insertAn();">답변달기</button>
 			          			</c:if>
 			          			</td>

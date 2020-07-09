@@ -31,7 +31,7 @@ function send() {
         return false;
     }
 
-	f.action="<%=cp%>/lostBoard/${mode}";
+	f.action="<%=cp%>/admin/lostBoard/${mode}";
 	
 	f.submit();
 
@@ -40,7 +40,7 @@ function send() {
 
 <c:if test="${mode=='update'}">
 function deleteFile(num) {
-		var url="<%=cp%>/lostBoard/deleteFile";
+		var url="<%=cp%>/admin/lostBoard/deleteFile";
 		$.post(url, {num:num}, function(data){
 			$("#f"+num).remove();
 		}, "json");
@@ -48,33 +48,18 @@ function deleteFile(num) {
 </c:if>
 
 </script>
-	<!-- Banner -->
-		<div id="banner">
-			<div class="container">
-			</div>
-		</div>
-	<!-- /Banner -->
+
 
 	<!-- Main -->
-		<div id="page">
-				
+		<div id="adminpage">
+				<div class="trainandtime">
+					<a href="<%=cp%>/admin/notice/list">공지사항</a> <span>|</span> <a href="<%=cp%>/admin/qna/main">QnA</a>
+					<span>|</span> <a href="<%=cp%>/admin/faq/list">FAQ</a> <span>|</span> <a href="<%=cp%>/admin/lostBoard/list">유실물</a>
+					<span>|</span> <a href="<%=cp%>/admin/freeBoard/list">자유게시판</a> <span>|</span> <a href="<%=cp%>/admin/suggest/list">고객의소리</a>
+				</div>
 			<!-- Main -->
 			<div id="main" class="container">
 				<div class="row">
-
-						<div class="3u">
-						<section class="sidebar">
-							<header>
-								<h2>Customer</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="<%=cp%>/qna/main">QnA</a></li>
-								<li><a href="<%=cp%>/lostBoard/list">유실물</a></li>
-								<li><a href="<%=cp%>/freeBoard/list">자유게시판</a></li>
-								<li><a href="<%=cp%>/suggest/list">고객의소리</a></li>
-							</ul>
-						</section>
-					</div>
 					<div class="9u skel-cell-important">
 						<header>
 								<h2>유실물</h2>
@@ -108,7 +93,7 @@ function deleteFile(num) {
 							<li>
 								<button type="button" onclick="send()" class="articlebtn">${mode=='update'?'수정완료':'등록완료'}</button>
 								<button type="reset" class="articlebtn">다시입력</button>
-								<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/list';" class="articlebtn">${mode=='update'?'수정취소':'등록취소'}</button>
+								<button type="button" onclick="javascript:location.href='<%=cp%>/admin/lostBoard/list';" class="articlebtn">${mode=='update'?'수정취소':'등록취소'}</button>
 								<c:if test="${mode=='update'}">
 									<input type="hidden" name="lostNum" value="${dto.lostNum}">
 									<input type="hidden" name="page" value="${page}">
@@ -120,6 +105,7 @@ function deleteFile(num) {
 					</div>
 				</form>
 					</div>
+
 					
 				</div>
 			</div>

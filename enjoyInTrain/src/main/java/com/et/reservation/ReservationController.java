@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +53,7 @@ public class ReservationController {
 			daylist.add(d);
 			cal.set(Calendar.DATE, cal.get(Calendar.DATE)+1);
 		}
+		
 		
 		model.addAttribute("list",list);
 		model.addAttribute("daylist",daylist);
@@ -213,14 +213,7 @@ public class ReservationController {
 			rvSeat.setSeatNum(map.get("seatNum"+i));
 			rvSeat.setSeatType(seatTypelist.get(i-1));
 			rvSeat.setSeatPay(service.readsPay(map));
-			int dc=0;
-			switch (rvSeat.getSeatType()) {
-				case "성인": dc=0; break;
-				case "어린이": dc=(int)(rvSeat.getSeatPay()*0.1); break;
-				case "경로": dc=(int)(rvSeat.getSeatPay()*0.15); break;
-				case "중증장애인": dc=(int)(rvSeat.getSeatPay()*0.2); break;
-				case "경증장애인": dc=(int)(rvSeat.getSeatPay()*0.25); break;
-			}
+			int dc=(int)(rvSeat.getSeatPay()*service.readDisCount(rvSeat.getSeatType())*0.01);
 			rvSeat.setDisCount(dc);
 			seatList.add(rvSeat);
 			totalPay+=rvSeat.getSeatPay()-dc;
@@ -232,6 +225,13 @@ public class ReservationController {
 			map.put("tel", map.get("tel1")+"-"+map.get("tel2")+"-"+map.get("tel3"));
 		}
 		
+		//해당아이디의 현재 포인트 가져오기
+		int totalPoint=0;
+		if(info!=null) {
+			totalPoint=service.totalPoint(info.getCrewId());
+		}
+		
+		model.addAttribute("totalPoint",totalPoint);
 		model.addAttribute("map",map);
 		model.addAttribute("seatList",seatList);
 		
@@ -315,12 +315,40 @@ public class ReservationController {
 			HttpSession session,
 			Model model
 			) {
+		
 		SessionInfo info=(SessionInfo)session.getAttribute("crew");
+		
 		List<Reservation> list=service.readDetail(info.getCrewId());
 		
 		model.addAttribute("list",list);
 		return ".reservation.detail";
 	}
 	
+	@RequestMapping("uncrew2")
+	public String uncrewdetail(
+			) {
+		return ".reservation.uncrew2";
+	}
 	
+	@RequestMapping("refund")
+	public String refund(
+			@RequestParam int trCode,
+			Model model
+			) {
+		List<Reservation> list=service.listReservationDetail(trCode);
+		
+		model.addAttribute("list",list);
+		model.addAttribute("trCode",trCode);
+		return ".reservation.refund";
+	}
+	
+	@RequestMapping("requestrefund")
+	public String requestRefund(
+			@RequestParam List<String> rsseatCode,
+			@RequestParam int trCode,
+			Model model
+			) {
+		model.addAttribute("rsseatCode", rsseatCode);
+		return ".reservation.requestrefund";
+	}
 }

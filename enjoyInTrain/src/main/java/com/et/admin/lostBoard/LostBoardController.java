@@ -179,6 +179,41 @@ public class LostBoardController {
 		return ".admin.lostBoard.article";				
 	}
 	
+	// 게시글 작성 폼
+	@RequestMapping(value="created", method=RequestMethod.GET)
+	public String insertForm(
+			Model model
+			) throws Exception {
+		
+		model.addAttribute("mode", "created");
+		
+		return ".admin.lostBoard.created";
+	}
+	
+	// 게시글 작성
+	@RequestMapping(value="created", method=RequestMethod.POST)
+	public String insert(
+			LostBoard dto,
+			HttpSession session
+			) throws Exception {
+		
+		SessionInfo info = (SessionInfo)session.getAttribute("crew");
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root+"uploads"+File.separator+"lostBoard";
+		
+		try {
+			dto.setCrewId(info.getCrewId());
+			service.insertLostBoard(dto, pathname);
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/admin/lostBoard/list";
+	}
+	
 	// 파일 삭제
 	@RequestMapping(value="/admin/lostBoard/deleteFile")
 	@ResponseBody
@@ -238,6 +273,54 @@ public class LostBoardController {
 		
 		
 		return "redirect:/admin/lostBoard/list?"+query;
+	}
+	
+	// 게시글 수정폼
+	@RequestMapping(value="update", method=RequestMethod.GET)
+	public String updateForm(
+			@RequestParam int lostNum,
+			@RequestParam String page,
+			HttpSession session,
+			Model model
+			) throws Exception {
+		
+		SessionInfo info = (SessionInfo) session.getAttribute("crew");
+		
+		LostBoard dto = service.readLostBoard(lostNum);
+		if(dto==null) {
+			return "redirect:/admin/lostBoard/list?page="+page;
+		}
+		
+		if(! info.getCrewId().equals(dto.getCrewId())) {
+			return "redirect:/admin/lostBoard/list?page="+page;
+		}
+		
+		model.addAttribute("dto", dto);
+		model.addAttribute("mode", "update");
+		model.addAttribute("page", page);
+		
+		return ".admin.lostBoard.created";
+	}
+	
+	// 게시글 수정
+	@RequestMapping(value="update", method=RequestMethod.POST)
+	public String update(
+			LostBoard dto,
+			@RequestParam String page,
+			HttpSession session
+			) throws Exception {
+		
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root+"uploads"+File.separator+"lostBoard";
+		
+		try {
+			
+			service.updateLostBoard(dto, pathname);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/admin/lostBoard/list?page="+page;
 	}
 	
 	// 댓글 리스트

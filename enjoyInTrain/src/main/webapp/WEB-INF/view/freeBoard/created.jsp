@@ -6,7 +6,7 @@
    String cp = request.getContextPath();
 %>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
-
+<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
 <style>
 .homepage #main{
 	margin-top: 0em;
@@ -138,35 +138,37 @@
 				<section>
 					<header>
 						<h2>자유게시판</h2>
-							<span class="byline" style="margin-top: 20px; font-size: 15px;">Please feel free to write.</span>
+							<span class="byline" style="margin-top: 20px; font-size: 15px;">Please feel free to write.
+							<img src="<%=cp%>/resource/images/createdicon.png" alt="" width="40px;" style="float: right;">
+							</span>
 					</header>
 					
 					<div>
 			<form name="boardForm" method="post" enctype="multipart/form-data" onsubmit="return submitContents(this);">
-			  <table class="menu-height1">
-			  <tr style="border-top: 1px solid #cccccc;"> 
-			      <td>제&nbsp;&nbsp;&nbsp;&nbsp;목</td>
+			  <table class="noticearticle">
+			  <tr class="noticearticletitle"> 
+			      <td class="noticearticletitle1">제&nbsp;&nbsp;&nbsp;&nbsp;목</td>
 			      <td style="padding:10px;"> 
 			        <input type="text" name="fbTitle" maxlength="100" class="boxTF" style="width: 97%;" value="${dto.fbTitle}">
 			      </td>
 			  </tr>
 			
-			  <tr> 
-			      <td>작성자</td>
+			  <tr class="noticearticletitle"> 
+			      <td class="noticearticletitle1">작성자</td>
 			      <td style="text-align: left; padding-left: 22px"> 
 			      	  ${sessionScope.crew.crewName}
 			      </td>
 			  </tr>
 			
-			  <tr> 
-			      <td style="padding-top:5px;" valign="top">내&nbsp;&nbsp;&nbsp;&nbsp;용</td>
+			  <tr class="noticearticletitle"> 
+			      <td class="noticearticletitle1">내&nbsp;&nbsp;&nbsp;&nbsp;용</td>
 			      <td valign="top" style="padding:5px 0px 5px 5px;"> 
-			        <textarea id="content" name="fbContent" rows="12" class="boxTA" style="width: 95%; height: 270px;">${dto.fbContent}</textarea>
+			        <textarea id="content" name="fbContent" rows="12" class="boxTA" style="width: 95%; height: 470px;">${dto.fbContent}</textarea>
 			      </td>
 			  </tr>
 			  
-			  <tr>
-			      <td>첨&nbsp;&nbsp;&nbsp;&nbsp;부</td>
+			  <tr class="noticearticletitle">
+			      <td class="noticearticletitle1">첨&nbsp;&nbsp;&nbsp;&nbsp;부</td>
 			      <td style="padding-left:10px;"> 
 			          <input type="file" name="upload" multiple="multiple" class="boxTF" size="53">
 			       </td>

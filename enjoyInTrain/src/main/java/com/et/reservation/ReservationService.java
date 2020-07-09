@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface ReservationService {
+	public int readDisCount(String dcName);
 	public List<Station> listStation();
 	public List<Train> listTrain(Condition dto);
 	public Map<String, String> defaultSt();
@@ -18,4 +19,7 @@ public interface ReservationService {
 	public List<Integer> fulltrCode(Map<String, String> map);
 	public List<String> unReservedSeat(Map<String, String> map);
 	public List<Reservation> readDetail(String crewId);
+	public List<Reservation> listReservationDetail(int trCode);
+	public List<Reservation> readReservationTrain(Map<String, Integer> map);
+	public int totalPoint(String crewId);
 }

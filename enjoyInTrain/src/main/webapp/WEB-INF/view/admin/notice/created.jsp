@@ -65,7 +65,9 @@
 						<section>
 							<header>
 								<h2>공지사항</h2>
-								<span class="byline">Notice | Check news of new services and events</span>
+								<span class="byline">Notice | Check news of new services and events
+								<img src="<%=cp%>/resource/images/createdicon.png" alt="" width="40px;" style="float: right;">
+								</span>
 							</header>
 							<div id="namul">
 							
@@ -76,15 +78,17 @@
 								<td colspan="3" style="text-align: left;"> <input type="text" name="noticeTitle" maxlength="100" class="boxTF" style="width: 100%;" value="${dto.noticeTitle}"> </td>
 							</tr>
 							<tr style="padding: 5px 5px;">
-								<td class="notice-content1" colspan="4"><textarea name="noticeContent" rows="12" style="width: 100%;" >${dto.noticeContent}</textarea></td>
+								<td class="noticearticletitle1">내용</td>
+								<td class="notice-content1" colspan="3"><textarea name="noticeContent" rows="12" style="width: 100%;" >${dto.noticeContent}</textarea></td>
 							</tr>
 							
 							<tr class="articleReadDto1" style="border-bottom: 1px solid black; height: 40px">
-								<td style="border-right: 1px solid black; text-align: center;">첨부 파일  ▶</td>
+								<td class="noticearticletitle1">첨부 파일 </td>
 								<td colspan="3"><input type="file" name="upload" multiple="multiple" class="boxTF" size="53" style="width: 200px; height: 25px; padding-left: 20px;"></td>
 							</tr>
 						</table>
-			        </form>
+			    
+			        <div class="notice_createdbutton">
 					<button type="button" class="articlebtn" onclick="sendOk();">${mode=='update'?'수정완료':'등록하기'}</button>
 			        <button type="reset" class="articlebtn">다시입력</button>
 			        <button type="button" class="articlebtn" onclick="javascript:location.href='<%=cp%>/admin/notice/list';">${mode=='update'?'수정취소':'등록취소'}</button>
@@ -92,7 +96,8 @@
 			         	 <input type="hidden" name="noticeNum" value="${dto.noticeNum}">
 			        	 <input type="hidden" name="page" value="${page}">
 			        </c:if>
-			        
+			        </div>
+			      </form>
 			        </div>
 						</section>
 					</div>

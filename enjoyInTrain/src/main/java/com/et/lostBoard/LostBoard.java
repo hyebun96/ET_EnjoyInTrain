@@ -16,6 +16,7 @@ public class LostBoard {
 	private int num;
 	private MultipartFile upload;
 	private long gap;
+	private String crewName;
 	
 	public int getLostNum() {
 		return lostNum;
@@ -94,6 +95,18 @@ public class LostBoard {
 	}
 	public void setnum(int num) {
 		this.num = num;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public String getCrewName() {
+		return crewName;
+	}
+	public void setCrewName(String crewName) {
+		this.crewName = crewName;
 	}
 	
 }

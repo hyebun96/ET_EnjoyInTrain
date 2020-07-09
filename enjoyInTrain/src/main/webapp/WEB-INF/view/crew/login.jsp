@@ -68,18 +68,18 @@ function sendLogin(){
 	<!-- Main -->
 		<div id="page">
 			<!-- Main -->
-			<div id="main" class="container" style=" width: 1000px; height:300px;  margin-top: 0; padding-top: 0;" >
+			<div id="main" class="container" style=" width: 1000px; border-top:3px solid #6f047f; height:300px;  margin-top: 0; padding-top: 0;" >
 				<form name="loginForm" method="post" action="">
-					<div style="padding:50px 0px; text-align:center; float: left; width:60%; height:250px; border: 1px solid gray; border-right: ">
+					<div style="padding:50px 0px; text-align:center; float: left; width:60%; height:250px; border: 1px solid gray; ">
 						<table style="width:450px; height:150px; text-align: center; margin: 0 auto;"  >
 							<tr style="padding: 10px;">
-								<td style="text-align:left; width: 20%; height: 30%;">아&nbsp;이&nbsp;디</td>
-								<td style="width: 50%; height: 30%;"><input name="crewId" id="crewId" type="text" style="width: 100%;"></td>
-								<td  rowspan="2" ><button type="button" class="btn" onclick="sendLogin();">확인</button></td>
+								<td style="font-size:17px; font-weight:bold; text-align:left; width: 20%; height: 30%;">아&nbsp;이&nbsp;디</td>
+								<td style="width: 50%; height: 30%;"><input name="crewId" id="crewId" type="text" style="border:1px solid #BDBDBD; width: 100%;"></td>
+								<td style="text-align: right;"  rowspan="2" ><button style="border:none; font-weight:bold; background: #6f047f; color: white;" type="button" class="btn" onclick="sendLogin();">확&nbsp;인</button></td>
 							</tr>
 							<tr>
-								<td style=" text-align:left; width: 20%; height: 30%;">비밀번호</td>
-								<td style="width: 40%; height: 30%;"><input name="crewPwd" id="crewPwd" type="password" style="width: 100%;"></td>
+								<td style="font-size:17px; font-weight:bold; text-align:left; width: 20%; height: 30%;">비밀번호</td>
+								<td style="width: 40%; height: 30%;"><input name="crewPwd" id="crewPwd" type="password" style="border:1px solid #BDBDBD; width: 100%;"></td>
 							</tr>
 							<tr>
 								<td colspan="3">
@@ -91,12 +91,14 @@ function sendLogin(){
 							</tr>
 						</table>				
 					</div>
-					<div style="text-align:center; padding:50px; width:40%; height:250px; float: left; border: 1px solid gray; border-left:none; margin: 0px auto;">
-						<ul>
-							<li><p>미등록고객은<br>아래의 버튼을 이용하시기 바랍니다.</p></li>
-							<li><button class="notcrewbtn">미등록고객 예매</button></li>
-							<li><button class="notcrewbtn">환불ㆍ재발권ㆍ영수증</button></li>
-						</ul>
+					<div style="text-align:center;  width:40%; height:250px; float: left; border: 1px solid gray; border-left:none; margin: 0px auto;">
+						<div style="margin: 30px;">
+							<ul>
+								<li><p>미등록고객은 아래의 버튼을 <br>이용하시기 바랍니다.</p></li>
+								<li><button type="button" style="background: #6f047f; border:none; color: white;" class="notcrewbtn">미등록고객 예매</button></li>
+								<li><button type="button" style="background: #6f047f; border:none; color: white;" class="notcrewbtn">환불ㆍ재발권ㆍ영수증</button></li>
+							</ul>
+						</div>
 					</div>
 				</form>
 			</div>

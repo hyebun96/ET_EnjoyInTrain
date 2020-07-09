@@ -79,6 +79,8 @@
             <mvc:exclude-mapping path="/reservation/confirm"/>
             <mvc:exclude-mapping path="/reservation/reservation"/>
             <mvc:exclude-mapping path="/reservation/complete"/>
+            <mvc:exclude-mapping path="/reservation/detail"/>
+            <mvc:exclude-mapping path="/reservation/uncrew2"/>
             <bean class="com.et.crew.LoginCheckInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>	 

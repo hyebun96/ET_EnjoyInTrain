@@ -44,7 +44,7 @@
 	
 <!-- 글 리스트 -->
 	<select id="listLostBoard" parameterType="map" resultType="com.et.lostBoard.LostBoard">
-		SELECT l.lostNum, l.crewId, lostContent, lostTitle, lostCreated, lostHitCount,
+		SELECT l.lostNum, l.crewId, c.crewName, lostContent, lostTitle, lostCreated, lostHitCount,
 		       NVL(replyCount, 0) replyCount
         FROM lostNotice l 
 		JOIN crew c ON l.crewId=c.crewId
@@ -63,7 +63,7 @@
 	
 <!-- 글 보기 -->
 	<select id="readLostBoard" parameterType="Integer" resultType="com.et.lostBoard.LostBoard">
-		SELECT l.lostNum, l.crewId, lostContent, lostTitle, lostCreated, lostHitCount, saveFileName
+		SELECT l.lostNum, l.crewId, c.crewName,lostContent, lostTitle, lostCreated, lostHitCount, saveFileName
 		FROM lostNotice l 
 		JOIN crew c ON l.crewId = c.crewId
 		LEFT OUTER JOIN (
@@ -129,7 +129,7 @@
 	
 <!-- 댓글 리스트 -->
 	<select id="listReply" parameterType="map" resultType="com.et.lostBoard.Reply">
-		SELECT r.lostReplyNum, r.crewId, content, created, NVL(answerCount, 0) answerCount, lostNum
+		SELECT r.lostReplyNum, r.crewId, c.crewName,content, created, NVL(answerCount, 0) answerCount, lostNum
 		FROM lostReply r
 		JOIN crew c ON r.crewId=c.crewId
 		LEFT OUTER JOIN (
@@ -156,7 +156,7 @@
 
 <!-- 댓글의 답글 리스트 -->
 	<select id="listReplyAnswer" parameterType="Integer" resultType="com.et.lostBoard.Reply">
-		SELECT lostReplyNum, lostNum, r.crewId, content, created, answer FROM lostReply r
+		SELECT lostReplyNum, lostNum, r.crewId, c.crewName,content, created, answer FROM lostReply r
 		JOIN crew c ON r.crewId = c.crewId
 		WHERE answer = #{answer}
 		ORDER BY lostReplyNum DESC
