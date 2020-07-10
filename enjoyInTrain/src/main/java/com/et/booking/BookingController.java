@@ -39,21 +39,21 @@ public class BookingController {
 		Booking startDto = null, endDto = null;
 		Booking start = null, end = null;
 		for (Booking dto : list) {
-			if (Integer.parseInt(dto.getTrainCode()) % 2 == 0) {
+			if (Integer.parseInt(dto.getTrainCode()) % 2 != 0) {
 				startDto = dto;
 			} else {
 				endDto = dto;
 			}
 		}
 		for (Booking vo : list1) {
-			if (Integer.parseInt(vo.getTrainCode()) % 2 == 0) {
+			if (Integer.parseInt(vo.getTrainCode()) % 2 != 0) {
 				start = vo;
 				start = service.readtrainlist(start);
 				start.setPrAddPrice(service.readsPay(start));
 			} else {
 				end = vo;
 				end = service.readtrainlist(end);
-				end.setPrAddPrice(service.readsPay1(end));
+				end.setPrAddPrice1(service.readsPay1(end));
 			}
 		}
 		startDto.setStartStation(service.readStartStation(startDto.getStartStation()));
@@ -122,21 +122,21 @@ public class BookingController {
 			Booking startDto = null, endDto = null;
 			Booking start = null, end = null;
 			for (Booking dto : list) {
-				if (Integer.parseInt(dto.getTrainCode()) % 2 == 0) {
+				if (Integer.parseInt(dto.getTrainCode()) % 2 != 0) {
 					startDto = dto;
 				} else {
 					endDto = dto;
 				}
 			}
 			for (Booking vo : list1) {
-				if (Integer.parseInt(vo.getTrainCode()) % 2 == 0) {
+				if (Integer.parseInt(vo.getTrainCode()) % 2 != 0) {
 					start = vo;
 					start = service.readtrainlist(start);
 					start.setPrAddPrice(service.readsPay(start));
 				} else {
 					end = vo;
 					end = service.readtrainlist(end);
-					end.setPrAddPrice(service.readsPay1(end));
+					end.setPrAddPrice1(service.readsPay1(end));
 				}
 			}
 

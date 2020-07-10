@@ -877,6 +877,46 @@
 	display: none;
 	vertical-align:middle;
 }
+
+.reservationCancle_table{
+	width: 100%;
+	height: 300px;
+}
+
+.reservationCancle_tab{
+	width: 15%;
+	height: 40px;
+	line-height: 40px;
+	background: #EAEAEA;
+	text-align: center;
+	border-bottom: 1px solid #cccccc;
+}
+
+.reservationCancle_content{
+	width: 75%;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+}
+
+.reservationCancle_price{
+	width: 10%;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	border-left: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+}
+
+.reservationCancle_button{
+	height: 40px;
+	line-height: 40px;
+	text-align: right;
+	padding-left: 10px;
+}
+
 #checkedTicket_dialog{
 	display: none;
 	vertical-align:middle;

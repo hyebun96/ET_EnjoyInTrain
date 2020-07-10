@@ -249,7 +249,7 @@ $(function(){
 		var query="roomNum=1&total=${prPersonnel}";
 		query+="&trainCode="+trainCode+"&trainName="+trainName+"&stTime="+stTime+"&endTime="+endTime;
 		// query+="&day=${pmStartDate}";
-		query+="&day=${pmStartDate}&tCategory="+trainName;
+		query+="&day=${pmStartDate2}&tCategory="+trainName;
 		query+="&startSt=${endDto.startStation}";
 		query+="&endSt=${endDto.endStation}";
 		if(roomGrade=='특실'){
@@ -360,7 +360,7 @@ $(function(){
 										</select>
 										재고 : 309
 										<span class="addPrice" style="display: none;"> + ${start.prAddPrice * prPersonnel}</span>
-										<input type="hidden" name="prAddprice" value="${start.prAddPrice * prPersonnel}">
+										<input type="hidden" name="prAddPrice" value="${start.prAddPrice * prPersonnel}">
 									</td>
 								</tr>
 								<tr>
@@ -450,8 +450,8 @@ $(function(){
 											<option value="특실" ${roomGrade1=="특실"?"selected='selected'":""}>특실</option>
 										</select>
 										재고 : 309
-										<span class="addPrice1" style="display: none;"> + ${end.prAddPrice * prPersonnel}</span>
-											<input type="hidden" name="prAddPrice1" value="${end.prAddPrice * prPersonnel}">
+										<span class="addPrice1" style="display: none;"> + ${end.prAddPrice1 * prPersonnel}</span>
+											<input type="hidden" name="prAddPrice1" value="${end.prAddPrice1 * prPersonnel}">
 									</td>
 								</tr>
 								<tr>
