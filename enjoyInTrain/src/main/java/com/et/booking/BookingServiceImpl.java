@@ -34,24 +34,24 @@ public class BookingServiceImpl implements BookingService{
 			dao.updateData("booking.updateStock", dto);
 			prCode = dao.selectOne("booking.setPrcode1");
 			dto.setPrCode(prCode);
-			dao.insertData("booking.insertReservation", dto);
-			dao.updateData("booking.updatePayDate", dto.getPrSeq());
-			if(dto.getRoomGrade().equals("일반")) {
-				dto.setPrAddPrice1(0);
-				dao.insertData("booking.insertTrain", dto);
-			} else if(dto.getRoomGrade()!=null){
-				dao.insertData("booking.insertTrain", dto);
-			}
-			prCode = dao.selectOne("booking.setPrcode1");
-			dto.setPrCode(prCode);
-			dao.insertData("booking.insertReservation1", dto);
-			dao.updateData("booking.updatePayDate", dto.getPrSeq());
-			if(dto.getRoomGrade1().equals("일반")) {
-				dto.setPrAddPrice1(0);
-				dao.insertData("booking.insertTrain1", dto);
-			} else {
-				dao.insertData("booking.insertTrain1", dto);
-			}
+				dao.insertData("booking.insertReservation", dto);
+				dao.updateData("booking.updatePayDate", dto.getPrSeq());
+				if(dto.getRoomGrade().equals("일반")) {
+					dto.setPrAddPrice(0);
+					dao.insertData("booking.insertTrain", dto);
+				} else if(dto.getRoomGrade()!=null){
+					dao.insertData("booking.insertTrain", dto);
+				}
+				prCode = dao.selectOne("booking.setPrcode1");
+				dto.setPrCode(prCode);
+				dao.insertData("booking.insertReservation1", dto);
+				dao.updateData("booking.updatePayDate", dto.getPrSeq());
+				if(dto.getRoomGrade1().equals("일반")) {
+					dto.setPrAddPrice1(0);
+					dao.insertData("booking.insertTrain1", dto);
+				} else {
+					dao.insertData("booking.insertTrain1", dto);
+				}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

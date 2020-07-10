@@ -15,8 +15,8 @@ $(function() {
 		
 		$("#showReservationCancle_dialog").dialog({
 			modal: true,
-			height: 300,
-			width: 400,
+			height: 400,
+			width: 600,
 			title: '여행상품 예약 취소',
 			close: function (event, ui) {
 			}
@@ -133,6 +133,12 @@ $(function() {
 									<tr>
 									<tr>
 										<td class="payment_report_num2"></td>
+										<td class="payment_report_category2">프로모션 포함 상품</td>
+										<td class="payment_report_name2">${startDto.product}(${startDto.productContent})</td>
+										<td class="payment_report_pay2"></td>
+									</tr>
+									<tr>
+										<td class="payment_report_num2"></td>
 										<td class="payment_report_category2">오는 기차</td>
 										<td class="payment_report_name2">
 											${end.trainName} - ${endDto.trainCode}
@@ -191,37 +197,38 @@ $(function() {
 	
 	<div id="showReservationCancle_dialog">
 		<form name="showReservationCancleForm" method="post">
-			<table>
+			<table class="reservationCancle_table">
 				<tr>
-					<td>예약번호</td>
-					<td>${startDto.reservationNumber}</td>
+					<td class="reservationCancle_tab">예약번호</td>
+					<td class="reservationCancle_content">${startDto.reservationNumber}</td>
+					<td class="reservationCancle_price"></td>
 				</tr>
 				<tr>
-					<td>상품분류</td>
-					<td>상품명</td>
-					<td>가격</td>
+					<td class="reservationCancle_tab">상품분류</td>
+					<td class="reservationCancle_content">상품명</td>
+					<td class="reservationCancle_price">가격</td>
 				</tr>
 				<tr>
-					<td>프로모션</td>
-					<td>${startDto.pmTitle}</td>
-					<td>${startDto.pmPrice}</td>
+					<td class="reservationCancle_tab">프로모션</td>
+					<td class="reservationCancle_content">${startDto.pmTitle}</td>
+					<td class="reservationCancle_price">${startDto.pmPrice}</td>
 				</tr>
 				<tr>
-					<td>가는기차</td>
-					<td>${start.trainName}-${startDto.trainCode} (${startDto.roomGrade})</td>
-					<td>${startDto.prAddPrice}</td>
+					<td class="reservationCancle_tab">가는기차</td>
+					<td class="reservationCancle_content">${start.trainName}-${startDto.trainCode} (${startDto.roomGrade})</td>
+					<td class="reservationCancle_price">${startDto.prAddPrice}</td>
 				</tr>
 				<tr>
-					<td>오는기차</td>
-					<td>${end.trainName}-${endDto.trainCode} (${endDto.roomGrade})</td>
-					<td>${endDto.prAddPrice}</td>
+					<td class="reservationCancle_tab">오는기차</td>
+					<td class="reservationCancle_content">${end.trainName}-${endDto.trainCode} (${endDto.roomGrade})</td>
+					<td class="reservationCancle_price">${endDto.prAddPrice}</td>
 				</tr>
-				<tr>
-					<td>
+				<tr class="reservationCancle_button">
+					<td colspan="3">
 						<button type='button' onclick='reservationCancle();'>예약취소</button>
 						<button type="button" onclick="javascript:location.href='<%=cp%>/booking/paymentSuccess?prSeq=7'">뒤로가기</button>
 					</td>
-				<tr>
+				</tr>
 			</table>
 		</form>
 	</div>
@@ -338,5 +345,59 @@ $(function() {
 		<div style="width: 1200px; text-align: right;">
 			<button onclick="info_print()" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #6f047f; color: white; border: none;">승차권 인쇄</button>
 		</div>
+		<div class="ticket1">
+			<div class="ticket2">
+				<div class="ticket3">
+					<table>
+						<tr>
+							<td>
+								&nbsp;&nbsp;이용안내<br>
+								&nbsp;&nbsp;1.&nbsp; 홈티켓(Home-Ticket)은 승차권에 표 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;시된
+								승차자가 이용하여야 하며, 도착역 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;을 벗어날때까지 소지하셔야합니다.
+								&nbsp;&nbsp;2.&nbsp;직원이 본인확인을 요구할 경우 신분증 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;을제시하셔야 합니다.
+								<br><br>
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<img src="<%=cp%>/resource/images/qrCodeReservation.jpg" width="100" height="100">
+								<br>
+							</td>
+						</tr>	
+						<tr>
+							<td style="background: #dddddd; height: 35px;">
+								&nbsp;&nbsp;문의 전화 : 1234-5678
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="ticket4">
+					<table>
+						<tr>
+							<td style="width:100px; ">승차일</td>
+							<td colspan="2" style="font-size: 20px; font-weight: bold; vertical-align: middle">${map.trDate}<br><br></td>
+						</tr>
+						<tr>
+							<td colspan="3" style="font-size: 30px;">${endDto.startStation}&nbsp;▶&nbsp;${endDto.endStation}<br><br><br></td> 
+						</tr>
+						<tr>
+							<td colspan="3" style="font-size: 30px;">${end.startTime}&nbsp;▶&nbsp;${end.endTime}<br><br><br></td>
+						</tr>
+						<tr>
+							<td style="width: 230px;">${end.trainName} - ${endDto.trainCode}열차(${endDto.roomGrade})</td>
+							<td style="border: 1px soild #cccccc; width: 240px; font-weight: bold;">${endDto.roomNum}호차 ${endDto.prTrainSeat}석</td>
+						</tr>
+						<tr>
+							<td colspan="2">승객유형&nbsp;&nbsp;성인 : ${endDto.adult}명 어린이 : ${endDto.child}명 경로 : ${endDto.oldMan}명</td>
+						</tr>
+						<tr class="back">
+							<td  style="width:300px;">운임요금 &nbsp;${endDto.prAddPrice}원</td>
+							<td>영수금액&nbsp;${endDto.prAddPrice}원</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
+		
 	

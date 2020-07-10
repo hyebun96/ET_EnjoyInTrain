@@ -46,7 +46,7 @@
 	
 	<insert id="insertTrain" parameterType="com.et.booking.Booking">
 		INSERT INTO pmReservationTrain( ptCode, prCode, trainCode, prPersonnel, prTrainName, prStartStation, roomGrade, roomNum, prEndStation, prTrainSeat, prAddPrice)
-		VALUES( pmReservationTrain_seq.NEXTVAL, #{prCode}, #{trainCode}, #{prPersonnel}, #{trainName}, #{startStation}, #{roomGrade}, #{prStartRoom}, #{endStation}, #{prStartTrainSeat},  #{prAddPrice1})
+		VALUES( pmReservationTrain_seq.NEXTVAL, #{prCode}, #{trainCode}, #{prPersonnel}, #{trainName}, #{startStation}, #{roomGrade}, #{prStartRoom}, #{endStation}, #{prStartTrainSeat},  #{prAddPrice})
 	</insert>
 	<insert id="insertTrain1" parameterType="com.et.booking.Booking">
 		INSERT INTO pmReservationTrain( ptCode, prCode, trainCode, prPersonnel, prTrainName, prStartStation, roomGrade, roomNum, prEndStation, prTrainSeat, prAddPrice)
@@ -184,11 +184,11 @@
 	</select>
 		
 	<!-- 요금 가져오기 -->
-	<select id="readsPay" parameterType="com.et.booking.Booking" resultType="Integer">
+	<select id="readsPay1" parameterType="com.et.booking.Booking" resultType="Integer">
 		SELECT (seat2 - seat1) prAddprice FROM spay7
 		WHERE startCode=#{startCode} AND endCode=#{endCode} AND trainCategory=#{trainName}
 	</select>
-	<select id="readsPay1" parameterType="com.et.booking.Booking" resultType="Integer">
+	<select id="readsPay" parameterType="com.et.booking.Booking" resultType="Integer">
 		SELECT (seat2 - seat1) prAddprice FROM spay7
 		WHERE startCode=#{endCode} AND endCode=#{startCode} AND trainCategory=#{trainName}
 	</select>
