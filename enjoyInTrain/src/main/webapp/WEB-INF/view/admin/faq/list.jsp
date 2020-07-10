@@ -88,6 +88,11 @@ ul.tabs li.active {
 	border-radius: 10px;
 	margin-right: 5px;
 }
+.content_scroll{
+	overflow: auto;
+	max-width: 1100px;
+	max-height: 900px;
+}
 </style>
 
 <script type="text/javascript">
@@ -169,7 +174,7 @@ $(function(){
 						</ul>
 					</div>
 					<div id="tab-content" style="clear: both; padding: 20px 0px 0px;">
-
+				<div class="content_scroll">
 						<table
 							style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse;">
 							<tbody class="board-list">
@@ -198,7 +203,7 @@ $(function(){
 								</c:forEach>
 							</tbody>
 						</table>
-
+</div>
 						<table style="width: 100%; border-spacing: 0px;">
 							<tr height="35">
 								<td align="right">

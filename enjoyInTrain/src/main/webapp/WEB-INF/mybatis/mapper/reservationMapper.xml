@@ -97,11 +97,6 @@
 		INSERT INTO trainreservation(trCode, trPrice, trDate, crewId) VALUES(#{trCode},#{trPrice} ,#{trDate}, #{crewId})
 	</insert>
 	
-	<!-- 비회원일시 기차예약에 추가 -->
-	<insert id="insertReservation2" parameterType="com.et.reservation.Reservation">
-		INSERT INTO trainreservation(trCode, trPrice, trDate) VALUES(#{trCode},#{trPrice} ,#{trDate})
-	</insert>
-	
 	<insert id="insertReservationInfo" parameterType="com.et.reservation.Reservation">
 		INSERT INTO trReservationInfo(trCode, startCode, endCode, trainCode) VALUES(#{trCode},#{startCode},#{endCode},#{trainCode})
 	</insert>
@@ -109,6 +104,11 @@
 	<insert id="insertReservedSeat" parameterType="com.et.reservation.ReservedSeat">
 		INSERT INTO reservedSeat(rsSeatCode, seatNum, trCode, seatType, seatPay, roomNum, trainCode) 
 		VALUES(#{rsSeatCode},#{seatNum},#{trCode},#{seatType},#{seatPay},#{roomNum},#{trainCode})
+	</insert>
+	
+	<!-- 비회원일시 기차예약에 추가 -->
+	<insert id="insertReservation2" parameterType="com.et.reservation.Reservation">
+		INSERT INTO trainreservation(trCode, trPrice, trDate) VALUES(#{trCode},#{trPrice} ,#{trDate})
 	</insert>
 	
 	<!-- 비회원 예약정보 추가 -->
@@ -204,7 +204,7 @@
 		JOIN train7 train ON info.trainCode=train.trainCode
 		JOIN station6 startSt ON info.startCode=startSt.sCode
 		JOIN station6 endSt ON info.endCode=endSt.sCode
-		WHERE crewId=#{crewId}
+		WHERE crewId=#{crewId} AND TO_DATE(trDate,'YYYY/MM/DD')>=TO_DATE(SYSDATE,'YYYY/MM/DD')
 		ORDER BY trDate
 	</select>
 	
@@ -292,6 +292,13 @@
 	<select id="seatCount" parameterType="Integer" resultType="Integer">
 		SELECT COUNT(*) FROM reservedSeat
 		WHERE trCode=#{trCode} AND refund IS NULL
+	</select>
+	
+	<!-- 미고객 정보 조회 -->
+	<select id="readUnCrew" parameterType="com.et.reservation.UnCrew" resultType="Integer">
+		SELECT trCode FROM uncrew
+		WHERE name=#{name} AND tel=#{tel} 
+		    AND email=#{email} AND password=#{password}
 	</select>
 	
  </mapper>

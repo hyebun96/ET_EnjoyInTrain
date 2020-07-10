@@ -6,6 +6,7 @@
    String cp = request.getContextPath();
 %>
 <link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/lostboardarticle.css" type="text/css">
 <style type="text/css">
 .homepage #main{
    margin-top: 0em;
@@ -295,17 +296,20 @@ function insertAn(){
 								<td width="300px" style="text-align: center;">${dto.sgHitCount}</td>
 								
 							</tr>
+							
 							<tr style="padding: 5px 5px;">
-								<td class="notice-content" colspan="4">${dto.sgContent}</td>
+								<td class="notice-content" colspan="4"><div class="content_scroll"><div class="content_scroll">${dto.sgContent}</div></div></td>
 							</tr>
 							<c:if test="${dto.anContent!=''}">
 								<tr>
 									<td class="notice-content" colspan="4">
-										<p>[답변내용입니다]    ${dto.anCreated }</p>
+										<div class="content_scroll"><p>[답변내용입니다]    ${dto.anCreated }</p>
 										${dto.anContent}
+										</div>
 									</td>
 								</tr>
 							</c:if>
+							
 							
 							<c:forEach var="vo" items="${listFile}">
 								<tr height="35" >
@@ -341,7 +345,6 @@ function insertAn(){
 							</tr>
 						</table>
 						
-						
 						<table
 							style='width: 100%; margin: 15px auto 0px; border-spacing: 0px;'>
 							<tr height='30'>
@@ -358,7 +361,9 @@ function insertAn(){
 								</td>
 							</tr>
 						</table>
+						<div class="content_scroll">
 						<div id="listComment"></div>
+						</div>
 			        </form>
 						
 			         	

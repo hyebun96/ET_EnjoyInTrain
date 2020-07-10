@@ -19,25 +19,27 @@ table tr{
 </style>
 
 <script type="text/javascript">
-function unCrewBtn(){
-	var name=$("#name").val();
-	var tel1=$("#tel1").val();
-	var tel2=$("#tel2").val();
-	var tel3=$("#tel3").val();
-	var email=$("#email").val();
-	var password=$("#password").val();
-	if(name==""||tel1==""||tel2==""||tel3==""||email==""||password==""||password==""){
-		alert("정보를 입력하세요");
-		return;
-	}
-	if(password.length<5||password2.length<5){
-		alert("비밀번호는 5자리 입니다.");
-		return;
-	}
-	
-	var f=document.unCrewForm;
-	f.submit();
-}
+$(function(){
+	$("#unCrew2Btn").click(function(){
+		var name=$("#name").val();
+		var tel1=$("#tel1").val();
+		var tel2=$("#tel2").val();
+		var tel3=$("#tel3").val();
+		var email=$("#email").val();
+		var password=$("#password").val();
+		if(name==""||tel1==""||tel2==""||tel3==""||email==""||password==""||password==""){
+			alert("정보를 입력하세요");
+			return;
+		}
+		if(password.length<5){
+			alert("비밀번호는 5자리 입니다.");
+			return;
+		}
+		
+		var f=document.unCrew2Form;
+		f.submit();
+	});
+});
 
 </script>
 	<!-- Main -->
@@ -48,7 +50,7 @@ function unCrewBtn(){
 					<div class="9u skel-cell-important">
 						<section>
 							<header>
-								<form action="<%=cp%>/reservation/main"  name="unCrewForm" method="post">
+								<form action="<%=cp%>/reservation/unCrewSubmit"  name="unCrew2Form" method="post">
 								<h2>미등록고객 발권내역/취소</h2>
 								<span class="byline">UNCREW RESERVATION</span>
 								<div style="width: 1200px; text-align: center;">
@@ -76,7 +78,7 @@ function unCrewBtn(){
 								 			<td style="text-align: left;"><input id="password" maxlength="5" name="password" style="margin: 5px;" type="password">※ 구입 시 입력한 비밀번호 5자리</td>
 								 		</tr>
 								 	</table>
-								 	<button type="button" onclick="unCrewBtn()" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #6f047f; color: white; border: none;">확인</button>
+								 	<button type="button" id="unCrew2Btn" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #6f047f; color: white; border: none;">확인</button>
 								</div>
 								</form>
 							</header>

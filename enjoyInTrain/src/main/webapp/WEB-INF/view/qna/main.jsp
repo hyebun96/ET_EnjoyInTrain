@@ -84,6 +84,12 @@ ul.tabs li.active{
 	margin-right: 5px;
 }
 
+.content_scroll{
+	overflow: auto;
+	max-width: 1100px;
+	max-height: 900px;
+}
+
 </style>
 
 <script type="text/javascript">

@@ -295,7 +295,7 @@ $(function () {
 								
 							</tr>
 							<tr style="padding: 5px 5px;">
-								<td class="notice-content" colspan="2">${dto.lostContent}</td>
+								<td class="notice-content" colspan="2"><div class="content_scroll">${dto.lostContent}</div></td>
 								<td class="notice-content" colspan="2">
 									<c:if test="${dto.saveFileName!=null}">
 										<img src="<%=cp%>/uploads/lostBoard/${dto.saveFileName}" style="width: 400px; height: 500px;">
@@ -328,7 +328,7 @@ $(function () {
 							</tr>   
 						</table>
 			        </form>
-					<div>
+					<div class="content_scroll">
 						<table
 							style='width: 100%; margin: 15px auto 0px; border-spacing: 0px;'>
 							<tr height='30'>

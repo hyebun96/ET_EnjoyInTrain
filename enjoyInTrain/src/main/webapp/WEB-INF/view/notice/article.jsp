@@ -74,8 +74,13 @@ function updateNotice() {
 								<td width="300px" style="text-align: center;">${dto.nHitCount}</td>
 								
 							</tr>
+							
 							<tr style="padding: 5px 5px;">
-								<td class="notice-content" colspan="4">${dto.noticeContent}</td>
+								<td class="notice-content" colspan="4">
+								<div class="content_scroll">
+								${dto.noticeContent}
+								</div>
+								</td>
 							</tr>
 							
 							<c:forEach var="vo" items="${listFile}">

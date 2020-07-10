@@ -53,7 +53,7 @@ public class MainController {
         map.put("condition", "noticeTitle");
         map.put("keyword", "");
         map.put("offset", 0);
-        map.put("rows", 3);
+        map.put("rows", 4);
         
 		List<Notice> list = service.listNotice(map);
 		

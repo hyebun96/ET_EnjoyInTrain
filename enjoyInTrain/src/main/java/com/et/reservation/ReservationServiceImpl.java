@@ -553,4 +553,17 @@ public class ReservationServiceImpl implements ReservationService{
 			e.printStackTrace();
 		}
 	}
+
+	//미고객 정보 조회
+	@Override
+	public int readUnCrew(UnCrew unCrew) {
+		int result=0;
+		try {
+			unCrew.setTel(unCrew.getTel1()+"-"+unCrew.getTel2()+"-"+unCrew.getTel3());
+			result=dao.selectOne("reservation.readUnCrew", unCrew);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

@@ -80,6 +80,7 @@ function requestPay(){
     var IMP = window.IMP; // 생략가능
     IMP.init('imp72612764'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
     var msg;
+    var totalPay= $("#totalPay").val();
     
     //결제 정보
     IMP.request_pay({
@@ -87,7 +88,7 @@ function requestPay(){
         pay_method : 'card',
         merchant_uid : 'merchant_' + new Date().getTime(),
         name : '기차예매',
-        amount : "${map.totalPay}",
+        amount : totalPay,
         buyer_email : '${dto.crewEmail}',
         buyer_name : '${dto.crewName}',
         buyer_tel : '${dto.crewTel}',
@@ -129,7 +130,7 @@ function requestPay(){
             alert(msg);
         }
     });
-};   
+};  
 
 function reCal(){
 	var point=$("#point").val();
@@ -170,14 +171,14 @@ function reCal(){
 								<input type="hidden" value="${map.trainName}" name="trainName">
 								<input type="hidden" value="${map.totalPay}" name="totalPay">
 								<input type="hidden" value="${map.crewName}" name="crewName">
-								<input type="hidden" value=" ${map.roomGrade}" name="roomGrade">
-								<input type="hidden" value=" ${map.stTime}" name="stTime">
-								<input type="hidden" value=" ${map.endTime}" name="endTime">
+								<input type="hidden" value="${map.roomGrade}" name="roomGrade">
+								<input type="hidden" value="${map.stTime}" name="stTime">
+								<input type="hidden" value="${map.endTime}" name="endTime">
 								
-								<input type="hidden" value=" ${map.name}" name="name">
-								<input type="hidden" value=" ${map.password}" name="password">
-								<input type="hidden" value=" ${map.tel}" name="tel">
-								<input type="hidden" value=" ${map.email}" name="email">
+								<input type="hidden" value="${map.name}" name="name">
+								<input type="hidden" value="${map.password}" name="password">
+								<input type="hidden" value="${map.tel}" name="tel">
+								<input type="hidden" value="${map.email}" name="email">
 								
 								 	<table style="width:100%;  ">
 								 		<tr style="height:40px; background:#EAEAEA; border-top: 2px solid black;">
@@ -228,7 +229,8 @@ function reCal(){
 									 			<td>${num.seatPay}
 									 				<input type="hidden" name="seatPay${i}" value="${num.seatPay}">
 									 			</td>
-									 			<td>${num.disCount}</td>
+									 			<td>${num.disCount}
+									 				<input type="hidden" name="disCount${i}" value="${num.disCount}"></td>
 									 			<td>${num.seatPay-num.disCount}</td>
 									 		</tr>
 								 		</c:forEach>

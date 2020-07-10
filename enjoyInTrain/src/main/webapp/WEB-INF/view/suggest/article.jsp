@@ -310,13 +310,14 @@ function insertAn(){
 								
 							</tr>
 							<tr style="padding: 5px 5px;">
-								<td class="notice-content" colspan="4">${dto.sgContent}</td>
+								<td class="notice-content" colspan="4"><div class="content_scroll">${dto.sgContent}</div></td>
 							</tr>
 							<c:if test="${dto.anContent!=''}">
 								<tr>
 									<td class="notice-content2" colspan="4">
-										<p>[답변내용입니다]    ${dto.anCreated }</p>
+										<div class="content_scroll"><p>[답변내용입니다]    ${dto.anCreated }</p>
 										${dto.anContent}
+										</div>
 									</td>
 								</tr>
 							</c:if>
@@ -360,7 +361,6 @@ function insertAn(){
 							</tr>
 						</table>
 						
-						
 						<table
 							style='width: 100%; margin: 15px auto 0px; border-spacing: 0px;'>
 							<tr height='30'>
@@ -373,11 +373,13 @@ function insertAn(){
 							</tr>
 							<tr>
 								<td align='right'>
-									<button type='button' class='btn btnSendComment' style='padding: 10px 20px;'>댓글 등록</button>
+									<button type='button' class='btn btnSendComment'>댓글 등록</button>
 								</td>
 							</tr>
 						</table>
+						<div class="content_scroll">
 						<div id="listComment"></div>
+						</div>
 			        </form>
 						
 			         	

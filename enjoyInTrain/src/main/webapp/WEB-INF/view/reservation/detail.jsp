@@ -29,6 +29,19 @@ $(function(){
 	});
 });
 
+function info_print() {
+	var initBody = document.body.innerHTML;
+	
+	window.onbeforeprint = function () {
+	document.body.innerHTML = document.getElementById("test").innerHTML;
+	}
+	
+	window.onafterprint = function () {
+	document.body.innerHTML = initBody;
+	}
+	
+	window.print();
+}
 </script>
 	<!-- Main -->
 		<div id="page" >
@@ -68,10 +81,10 @@ $(function(){
 									 			<td>${dto.count}</td>
 									 			<td>결제완료</td>
 									 			<td>발권완료<br>
-									 				<button type="button">인쇄하기</button>
+									 				<button type="button" onclick="info_print()">인쇄하기</button>
 									 			</td>
 									 			<td>
-									 				<button type="button" class="refundBtn" data-code="${dto.trCode}">환불하기</button>
+									 				<button type="button" style="border:none; background: #ED0000; color: white;" class="refundBtn" data-code="${dto.trCode}">환불하기</button>
 									 			</td>
 									 		</tr>
 								 		</c:forEach>
