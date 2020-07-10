@@ -87,7 +87,7 @@ function requestPay(){
         pay_method : 'card',
         merchant_uid : 'merchant_' + new Date().getTime(),
         name : '기차예매',
-        amount : "${map.totalPay}",
+        amount : totalPay,
         buyer_email : '${dto.crewEmail}',
         buyer_name : '${dto.crewName}',
         buyer_tel : '${dto.crewTel}',
@@ -170,14 +170,14 @@ function reCal(){
 								<input type="hidden" value="${map.trainName}" name="trainName">
 								<input type="hidden" value="${map.totalPay}" name="totalPay">
 								<input type="hidden" value="${map.crewName}" name="crewName">
-								<input type="hidden" value=" ${map.roomGrade}" name="roomGrade">
-								<input type="hidden" value=" ${map.stTime}" name="stTime">
-								<input type="hidden" value=" ${map.endTime}" name="endTime">
+								<input type="hidden" value="${map.roomGrade}" name="roomGrade">
+								<input type="hidden" value="${map.stTime}" name="stTime">
+								<input type="hidden" value="${map.endTime}" name="endTime">
 								
-								<input type="hidden" value=" ${map.name}" name="name">
-								<input type="hidden" value=" ${map.password}" name="password">
-								<input type="hidden" value=" ${map.tel}" name="tel">
-								<input type="hidden" value=" ${map.email}" name="email">
+								<input type="hidden" value="${map.name}" name="name">
+								<input type="hidden" value="${map.password}" name="password">
+								<input type="hidden" value="${map.tel}" name="tel">
+								<input type="hidden" value="${map.email}" name="email">
 								
 								 	<table style="width:100%;  ">
 								 		<tr style="height:40px; background:#EAEAEA; border-top: 2px solid black;">

@@ -385,4 +385,18 @@ public class ReservationController {
 	public String refundcomplete() {
 		return ".reservation.refundcomplete";
 	}
+	
+	@RequestMapping("unCrewSubmit")
+	public String unCrewSubmit(
+			UnCrew unCrew,
+			Model model
+			) {
+		int trCode=service.readUnCrew(unCrew);
+		
+		List<Reservation> list=service.listReservationDetail(trCode);
+		
+		model.addAttribute("list",list);
+		model.addAttribute("trCode",trCode);
+		return ".reservation.refund";
+	}
 }

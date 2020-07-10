@@ -23,4 +23,5 @@ public interface ReservationService {
 	public List<Reservation> listSeatDetail(List<Integer> rsseatCode);
 	public void refund(List<Integer> rsseatCode, int trCode);
 	public int totalPoint(String crewId);
+	public int readUnCrew(UnCrew unCrew);
 }
