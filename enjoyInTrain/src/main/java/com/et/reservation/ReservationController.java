@@ -286,7 +286,7 @@ public class ReservationController {
 		String seatType = "";
 		String seatPay = "";
 		String disCount = "";
-		String trPrice = "";
+
 
 		Iterator<String> it=map.keySet().iterator();
 		
@@ -305,16 +305,13 @@ public class ReservationController {
 			if(key.startsWith("disCount")) {
 				disCount+=map.get(key)+" ";
 			}
-			if(key.startsWith("trPrice")) {
-				trPrice+=map.get(key)+" ";
-			}
+
 		}
 		
 		seatNum = seatNum.trim();
 		seatType = seatType.trim();
 		seatPay = seatPay.trim();
 		disCount = disCount.trim();
-		trPrice = trPrice.trim();
 
 		
 		List<Ticket> list = new ArrayList<>();
@@ -333,7 +330,6 @@ public class ReservationController {
 				ticket.setSeatPay(Integer.parseInt(ss3[i]));
 				ticket.setDisCount(Integer.parseInt(ss4[i]));
 
-				
 				list.add(ticket);
 			}
 			
@@ -344,7 +340,6 @@ public class ReservationController {
 		map.put("seatType", seatType);
 		map.put("seatPay", seatPay);
 		map.put("disCount", disCount);
-		map.put("trPrice", trPrice);
 
 		model.addAttribute("map",map);
 		model.addAttribute("list",list);

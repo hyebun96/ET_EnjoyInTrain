@@ -229,7 +229,8 @@ function reCal(){
 									 			<td>${num.seatPay}
 									 				<input type="hidden" name="seatPay${i}" value="${num.seatPay}">
 									 			</td>
-									 			<td>${num.disCount}</td>
+									 			<td>${num.disCount}
+									 				<input type="hidden" name="disCount${i}" value="${num.disCount}"></td>
 									 			<td>${num.seatPay-num.disCount}</td>
 									 		</tr>
 								 		</c:forEach>
