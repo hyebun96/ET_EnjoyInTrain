@@ -274,33 +274,80 @@ public class ReservationController {
 	public String complete(
 			@ModelAttribute("rv") Reservation rv,
 			@ModelAttribute("seat") ReservedSeat seat,
-			@ModelAttribute("map") Map<String,String> map
+			@ModelAttribute("map") Map<String,String> map,
+			Model model
 			) {
-
+		
 		if(map==null) {
 			return "redirect:/reservation/main";
 		}
-		
-		String s = "";
-		String st = "";
-		String sp = "";
+
+		String seatNum = "";
+		String seatType = "";
+		String seatPay = "";
+		String disCount = "";
+		String trPrice = "";
+
 		Iterator<String> it=map.keySet().iterator();
+		
 		while(it.hasNext()) {
+	
 			String key=it.next();
 			if(key.startsWith("seatNum")) {
-				s+=map.get(key)+" ";
+				seatNum+=map.get(key)+" ";
 			}
 			if(key.startsWith("seatType")) {
-				st+=map.get(key)+" ";
+				seatType+=map.get(key)+" ";
 			}
 			if(key.startsWith("seatPay")) {
-				sp+=map.get(key)+" ";
+				seatPay+=map.get(key)+" ";
+			}
+			if(key.startsWith("disCount")) {
+				disCount+=map.get(key)+" ";
+			}
+			if(key.startsWith("trPrice")) {
+				trPrice+=map.get(key)+" ";
 			}
 		}
 		
-		map.put("seatNum", s);
-		map.put("seatType", st);
-		map.put("seatPay", sp);
+		seatNum = seatNum.trim();
+		seatType = seatType.trim();
+		seatPay = seatPay.trim();
+		disCount = disCount.trim();
+		trPrice = trPrice.trim();
+
+		
+		List<Ticket> list = new ArrayList<>();
+		
+		try {
+			String[]ss1=seatNum.split(" ");
+			String[]ss2=seatType.split(" ");
+			String[]ss3=seatPay.split(" ");
+			String[]ss4=disCount.split(" ");
+			
+			for(int i=0; i<ss1.length; i++) {
+				Ticket ticket = new Ticket();
+				
+				ticket.setSeatNum(ss1[i]);
+				ticket.setSeatType(ss2[i]);
+				ticket.setSeatPay(Integer.parseInt(ss3[i]));
+				ticket.setDisCount(Integer.parseInt(ss4[i]));
+
+				
+				list.add(ticket);
+			}
+			
+		} catch (Exception e) {
+		}
+		
+		map.put("seatNum", seatNum);
+		map.put("seatType", seatType);
+		map.put("seatPay", seatPay);
+		map.put("disCount", disCount);
+		map.put("trPrice", trPrice);
+
+		model.addAttribute("map",map);
+		model.addAttribute("list",list);
 		
 		return ".reservation.complete";
 	}

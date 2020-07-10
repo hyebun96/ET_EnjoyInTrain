@@ -80,6 +80,7 @@ function requestPay(){
     var IMP = window.IMP; // 생략가능
     IMP.init('imp72612764'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
     var msg;
+    var totalPay= $("#totalPay").val();
     
     //결제 정보
     IMP.request_pay({
@@ -129,7 +130,7 @@ function requestPay(){
             alert(msg);
         }
     });
-};   
+};  
 
 function reCal(){
 	var point=$("#point").val();

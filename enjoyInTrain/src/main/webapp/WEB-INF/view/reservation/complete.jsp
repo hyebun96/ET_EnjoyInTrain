@@ -5,6 +5,7 @@
 <%
    String cp = request.getContextPath();
 %>
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 <style>
 
@@ -41,37 +42,37 @@
 	height: 380px;
 	padding:0 110px 0 110px;
 	border: 1px solid #BDBDBD;
+	overflow-y:scroll;
 }
 .ticket2{
-	margin: 10px 100px 10px 60px;
-	width: 860px;
-	height: 360px;
-	border: 1px solid #BDBDBD;
+	margin: 15px 100px 10px 60px;
+	width: 846px;
+	height: 345px;
+	border: 3px solid #6f047f;
 }
 
 .ticket3{
 	width: 347px;
-	margin: 10px 10px 10px 13px;
+	margin: 3px;
 	float: left;
 	padding: 10px;
-	height: 340px;
-	border: 1px solid #BDBDBD;
+	height: 333px;
+	border: 1px solid black;
 }
 
 .ticket4{
-	width: 475px;
-	margin: 10px 10px 10px 0px;
+	width: 482px;
+	margin: 3px 5px 0px 0px;
 	float: left;
-	height: 340px;
-	border: 1px solid #BDBDBD;
+	height: 333px;
+	border: 1px solid black;
 }
-
-
 
 .ticket4 tr td{
 	width: 465px;
 	height: 40px;
 	padding-left: 10px;
+	border-color: black;
 }
 
 .back{
@@ -115,7 +116,7 @@ function info_print() {
 						 	<table class="table1">
 						 		<tr class="tr1" style="border-top: 2px solid #BDBDBD;">
 						 			<td class="col"><b>결제금액</b></td>
-						 			<td class="col2">${map.totalPay} 원</td>
+						 			<td class="col2">${map.trPrice}원 [ ${map.point} 포인트 사용 ]</td>
 						 		</tr>
 						 	</table>
 						 	
@@ -147,7 +148,9 @@ function info_print() {
 							<button onclick="javascript:location.href='<%=cp%>/main';" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #6f047f; color: white; border: none;">발권조회</button>
 							<button onclick="info_print()" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #6f047f; color: white; border: none;">승차권 인쇄</button>
 						</div>
+						
 						<div class="ticket1">
+						  <c:forEach items="${list}" var="ticket">
 							<div class="ticket2">
 								<div class="ticket3">
 									<table>
@@ -167,40 +170,44 @@ function info_print() {
 											</td>
 										</tr>	
 										<tr>
-											<td style="background: #dddddd; height: 35px;">
+											<td style="background: #dddddd; height: 30px; margin-top: 10px;">
 												&nbsp;&nbsp;문의 전화 : 1234-5678
 											</td>
 										</tr>
 									</table>
 								</div>
 								<div class="ticket4">
-									<table>
+									<table style="margin-bottom: 0px;">
 										<tr>
 											<td style="width:100px; ">승차일</td>
-											<td colspan="2" style="font-size: 20px; font-weight: bold; vertical-align: middle">${map.trDate}<br><br></td>
+											<td colspan="2" style="font-size: 20px; font-weight: bold; line-height: 1px;">${map.trDate}<br><br></td>
 										</tr>
 										<tr>
 											<td colspan="3" style="font-size: 30px;">${map.startCode}&nbsp;▶&nbsp;${map.endCode}<br><br><br></td> 
 										</tr>
 										<tr>
-											<td colspan="3" style="font-size: 30px;">${map.stTime}&nbsp;▶&nbsp;${map.endTime}<br><br><br></td>
+											<td colspan="3" style="font-size: 30px;">${map.stTime}&nbsp;▶&nbsp;${map.endTime}<br><br></td>
 										</tr>
 										<tr>
 											<td style="width: 100px;">${map.trainName}</td>
 											<td style="width:270px;">${map.trainCode}열차(${map.roomGrade})</td> 
-											<td style="border: 1px soild #cccccc; width: 100px; font-weight: bold;">${map.roomNum}호차 ${map.seatNum}석</td>
+											<td style="border: 1px soild #cccccc; width: 100px; font-weight: bold;">${map.roomNum}호차 ${ticket.seatNum}석</td>
 										</tr>
 										<tr>
-											<td colspan="3">승객유형&nbsp;&nbsp;${map.seatType}</td>
+											<td colspan="3">승객유형&nbsp;&nbsp;${ticket.seatType}</td>
 										</tr>
 										<tr class="back">
-											<td  style="width:300px;">운임요금 &nbsp;${map.totalPay}원</td>
-											<td style="width:270px;">할인금액 &nbsp; 0원</td>
-											<td>영수금액&nbsp;${map.totalPay}원</td>
+											<td  style="width:300px;">운임요금 &nbsp;${ticket.seatPay}원</td>
+											<td style="width:290px;">할인금액 &nbsp; ${ticket.disCount}원</td>
+											<td>영수금액&nbsp;${ticket.seatPay-ticket.disCount}원</td>
+										</tr>
+										<tr>
+											<td colspan="3" style="font-weight: bold; padding-top: 5px;">※ 타는 곳 번호와 열차번호를 확인한 후 승차하시기 바랍니다.</td>
 										</tr>
 									</table>
 								</div>
 							</div>
+						  </c:forEach>
 						</div>
 					</div>
 				</div>
