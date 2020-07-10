@@ -89,6 +89,12 @@ ul.tabs li.active{
 	background: #f5fffa;
 }
 
+.content_scroll{
+	overflow: auto;
+	max-width: 1100px;
+	max-height: 900px;
+}
+
 </style>
 	
 		<table style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse;">

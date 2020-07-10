@@ -409,7 +409,7 @@ $(function () {
 
 							<tr>
 								<td colspan="4" align="left" style="padding: 10px 5px;"
-									valign="top" height="200">${dto.fbContent}</td>
+									valign="top" height="200"><div class="content_scroll">${dto.fbContent}</div></td>
 							</tr>
 
 							<tr style="border-bottom: 1px solid #cccccc;">
@@ -474,7 +474,7 @@ $(function () {
 						</table>
 					</div>
 
-					<div>
+					<div class="content_scroll">
 						<table
 							style='width: 100%; margin: 15px auto 0px; border-spacing: 0px;'>
 							<tr height='30'>

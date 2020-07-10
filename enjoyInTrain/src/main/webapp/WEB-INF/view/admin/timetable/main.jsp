@@ -26,8 +26,7 @@ a {
 }
 
 a:active, a:hover {
-	text-decoration: underline;
-	color: tomato;
+	text-decoration: none;
 }
 
 .title {

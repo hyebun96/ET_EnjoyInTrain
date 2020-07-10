@@ -388,7 +388,7 @@ $(function () {
 							</tr>
 
 							<tr>
-								<td class="notice-content" colspan="4" >${dto.fbContent}</td>
+								<td class="notice-content" colspan="4" ><div class="content_scroll">${dto.fbContent}</div></td>
 							</tr>
 
 							<tr class="noticearticletitle">
@@ -447,7 +447,7 @@ $(function () {
 							</tr>
 						</table>
 					</div>
-					<div>
+					<div class="content_scroll">
 						<table style='width: 100%; margin: 15px auto 0px; border-spacing: 0px;'>
 							<tr height='30'>
 								<td align='left'><span style='font-weight: bold;'>댓글쓰기</span><span>
