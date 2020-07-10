@@ -2,6 +2,8 @@ package com.et.booking;
 
 public class Booking {
 	// 프로모션 정보
+	private int rsSeatCode;				// 예약 좌석 시퀀스
+	private int trCode; 				// 기차시퀀스 코드 
 	private int prCode;
 	private int prSeq;					// 예약코드  
 	private String pmCode;				// 프로모션 상품코드
@@ -64,6 +66,18 @@ public class Booking {
 	// 리스트
 	private int listNum;
 	
+	public int getRsSeatCode() {
+		return rsSeatCode;
+	}
+	public void setRsSeatCode(int rsSeatCode) {
+		this.rsSeatCode = rsSeatCode;
+	}
+	public int getTrCode() {
+		return trCode;
+	}
+	public void setTrCode(int trCode) {
+		this.trCode = trCode;
+	}
 	public int getPrCode() {
 		return prCode;
 	}

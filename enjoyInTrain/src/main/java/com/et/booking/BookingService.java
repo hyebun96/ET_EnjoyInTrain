@@ -29,4 +29,6 @@ public interface BookingService {
 	public String readEndStation(String Station);
 	public int reservationCount(Map<String, Object> map);
 	public void paymentSuccess(int prSeq);
+	public void reservationTrain(Booking dto) throws Exception;
+	public void reservationTrain1(Booking dto) throws Exception;
 }

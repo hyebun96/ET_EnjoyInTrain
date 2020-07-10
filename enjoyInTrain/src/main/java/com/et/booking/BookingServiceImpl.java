@@ -38,7 +38,7 @@ public class BookingServiceImpl implements BookingService{
 				dao.updateData("booking.updatePayDate", dto.getPrSeq());
 				if(dto.getRoomGrade().equals("일반")) {
 					dto.setPrAddPrice(0);
-					dao.insertData("booking.insertTrain", dto);
+					dao.insertData("booking.insertTrain", dto);	
 				} else if(dto.getRoomGrade()!=null){
 					dao.insertData("booking.insertTrain", dto);
 				}
@@ -154,8 +154,6 @@ public class BookingServiceImpl implements BookingService{
 	public Booking readtrainlist(Booking dto) {
 		Booking start = null;
 		try {
-//			dto.setStartStation(dao.selectOne("booking.getEngStart", dto.getStartStation()));
-//			dto.setEndStation(dao.selectOne("booking.getEngEnd", dto.getEndStation()));
 			start = dao.selectOne("booking.trainRead", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -189,8 +187,8 @@ public class BookingServiceImpl implements BookingService{
 	public int readsPay(Booking dto) {
 		int result = 0;
 		try {
-			dto.setStartCode(dao.selectOne("booking.readStationCode", dto));
-			dto.setEndCode(dao.selectOne("booking.readStationCode1", dto));
+			dto.setEndCode(dao.selectOne("booking.readStationCode", dto));
+			dto.setStartCode(dao.selectOne("booking.readStationCode1", dto));
 			result = dao.selectOne("booking.readsPay", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -324,6 +322,39 @@ public class BookingServiceImpl implements BookingService{
 		}
 	}
 
+	@Override
+	public void reservationTrain(Booking dto) throws Exception {
+		int trCode = 0;
+		try {
+			trCode=dao.selectOne("booking.trainreservationSeq");
+			dto.setTrCode(trCode);
+			dto.setStartStation(dao.selectOne("booking.getEngStart", dto.getStartStation()));
+			dto.setEndStation(dao.selectOne("booking.getEngEnd", dto.getEndStation()));
+			dto.setStartCode(dao.selectOne("booking.readStationCode", dto));
+			dto.setEndCode(dao.selectOne("booking.readStationCode1", dto));
+			dao.insertData("booking.reservationTrain", dto);
+			dao.insertData("booking.insertReservationInfo", dto);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	public void reservationTrain1(Booking dto) throws Exception{
+		int trCode = 0;
+		try {
+			trCode=dao.selectOne("booking.trainreservationSeq");
+			dto.setTrCode(trCode);
+			dto.setStartStation(dao.selectOne("booking.getEngStart1", dto.getStartStation()));
+			dto.setEndStation(dao.selectOne("booking.getEngEnd1", dto.getEndStation()));
+			dto.setStartCode(dao.selectOne("booking.readStationCode", dto));
+			dto.setEndCode(dao.selectOne("booking.readStationCode1", dto));
+			dao.insertData("booking.reservationTrain1", dto);
+			dao.insertData("booking.insertReservationInfo1", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	
 }

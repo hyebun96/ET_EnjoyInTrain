@@ -53,6 +53,43 @@
 		VALUES( pmReservationTrain_seq.NEXTVAL, #{prCode}, #{trainCode1}, #{prPersonnel}, #{trainName1}, #{startStation1}, #{roomGrade1}, #{prEndRoom}, #{endStation1}, #{prEndTrainSeat} , #{prAddPrice1})
 	</insert>
 	
+	<!-- trainreservation 시퀀스 가져오기 -->
+	<select id="trainreservationSeq" resultType="Integer">
+		SELECT trainreservation_seq.NEXTVAL FROM dual
+	</select>
+	
+	<!-- reservedSeat 시퀀스 가져오기 -->
+	<select id="reservedSeatSeq" resultType="Integer">
+		SELECT reservedSeat_seq.NEXTVAL FROM dual
+	</select>
+	
+	<!-- 기차(좌석)예약하기 -->
+	<insert id="reservationTrain" parameterType="com.et.booking.Booking">
+		INSERT INTO trainreservation(trCode, trPrice, trDate, crewId) VALUES(#{trCode},#{prAddPrice} ,#{pmStartDate}, #{crewId})
+	</insert>
+	
+	<insert id="reservationTrain1" parameterType="com.et.booking.Booking">
+		INSERT INTO trainreservation(trCode, trPrice, trDate, crewId) VALUES(#{trCode},#{prAddPrice1} ,#{pmStartDate}, #{crewId})
+	</insert>
+	
+	<insert id="insertReservationInfo" parameterType="com.et.booking.Booking">
+		INSERT INTO trReservationInfo(trCode, startCode, endCode, trainCode) VALUES(#{trCode},#{startCode},#{endCode},#{trainCode})
+	</insert>
+	
+	<insert id="insertReservationInfo1" parameterType="com.et.booking.Booking">
+		INSERT INTO trReservationInfo(trCode, startCode, endCode, trainCode) VALUES(#{trCode},#{endCode},#{startCode},#{trainCode1})
+	</insert>
+	
+	<insert id="insertReservedSeat" parameterType="com.et.booking.Booking">
+		INSERT INTO reservedSeat(rsSeatCode, seatNum, trCode, seatType, seatPay, roomNum, trainCode) 
+		VALUES(#{rsSeatCode},#{seatNum},#{trCode},#{seatType},#{prAddPrice},#{roomNum},#{trainCode})
+	</insert>
+	
+	<insert id="insertReservedSeat1" parameterType="com.et.booking.Booking">
+		INSERT INTO reservedSeat(rsSeatCode, seatNum, trCode, seatType, seatPay, roomNum, trainCode) 
+		VALUES(#{rsSeatCode},#{seatNum},#{trCode},#{seatType},#{prAddPrice1},#{roomNum},#{trainCode})
+	</insert>
+	
 	<!-- 예약 목록 불러오기 -->
 	<select id="readReservation" parameterType="map" resultType="com.et.booking.Booking">
 		SELECT DISTINCT pr.prCode, pr.prSeq, pr.pmCode, TO_CHAR(pr.pmStartDate, 'YYYY-MM-DD') pmStartDate, pr.adult, pr.child, pr.oldMan, pr.prPersonnel, pr.product, pr.productUserCount, pr.crewId, pr.prReservationDate,pr.prPaymentDate, pr.trainCode,
@@ -167,6 +204,21 @@
 		SELECT sName FROM station WHERE engName = #{endStation}
 	</select>
 	
+	<select id="getEngStart" parameterType="String" resultType="String">
+		SELECT engName FROM station WHERE sName = #{startStation}
+	</select>
+	<select id="getEngStart1" parameterType="String" resultType="String">
+		SELECT engName FROM station WHERE sName = #{startStation1}
+	</select>
+	
+	<select id="getEngEnd" parameterType="String" resultType="String">
+		SELECT engName FROM station WHERE sName = #{endStation}
+	</select>
+	
+	<select id="getEngEnd1" parameterType="String" resultType="String">
+		SELECT engName FROM station WHERE sName = #{endStation1}
+	</select>
+	
 	<select id="trainRead" parameterType="map" resultType="com.et.booking.Booking">
 		SELECT pmCode, p.trainCode, trainName, startStation, endStation, ${startStation} startTime , ${endStation} endTime
 		FROM promotion p
@@ -182,15 +234,22 @@
 	<select id="readStationCode1" parameterType="com.et.booking.Booking" resultType="String">
 		SELECT sCode FROM station WHERE engName = #{endStation}
 	</select>
+	<select id="readStationCode2" parameterType="com.et.booking.Booking" resultType="String">
+		SELECT sCode FROM station WHERE engName = #{startStation1}
+	</select>
+	
+	<select id="readStationCode3" parameterType="com.et.booking.Booking" resultType="String">
+		SELECT sCode FROM station WHERE engName = #{endStation1}
+	</select>
 		
 	<!-- 요금 가져오기 -->
-	<select id="readsPay1" parameterType="com.et.booking.Booking" resultType="Integer">
+	<select id="readsPay" parameterType="com.et.booking.Booking" resultType="Integer">
 		SELECT (seat2 - seat1) prAddprice FROM spay7
 		WHERE startCode=#{startCode} AND endCode=#{endCode} AND trainCategory=#{trainName}
 	</select>
-	<select id="readsPay" parameterType="com.et.booking.Booking" resultType="Integer">
+	<select id="readsPay1" parameterType="com.et.booking.Booking" resultType="Integer">
 		SELECT (seat2 - seat1) prAddprice FROM spay7
-		WHERE startCode=#{endCode} AND endCode=#{startCode} AND trainCategory=#{trainName}
+		WHERE startCode=#{startCode} AND endCode=#{endCode} AND trainCategory=#{trainName}
 	</select>
 	
 	<!-- 최대인원 업데이트 -->

@@ -102,6 +102,8 @@ public class BookingController {
 		try {
 			dto.setCrewId(info.getCrewId());
 			prSeq = service.insertReservation(dto);
+			service.reservationTrain(dto);
+			service.reservationTrain1(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

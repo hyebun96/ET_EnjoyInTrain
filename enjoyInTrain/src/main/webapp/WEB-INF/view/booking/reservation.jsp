@@ -96,7 +96,23 @@ function ajaxHTML(url, type, query, selector) {
 function reservation() {
 	var f = document.reservationForm;
 	
+	if(!f.prStartRoom.value){
+		alert("가는 열차 좌석을 선택하여주세요");
+		return;
+	}
+	
+	if(!f.prEndRoom.value){
+		alert("오는 열차 좌석을 선택하여주세요");
+		return;
+	}
+	
+//	if(!f.agreed.checked){
+//		$("#agreed").css("color", "blue");
+//		$("#agreed").css("font-weight", "bold");
+//		return;
+//	}
 	f.action="<%=cp%>/booking/${mode}";
+	
 	
 	f.submit();
 }
@@ -264,11 +280,23 @@ $(function(){
 	});
 });
 
-
+$(function(){
+	$("ul.tabs li").click(function() {
+		var tab = $(this).attr("data-tab");
+		if(tab=="0") {
+			$(".memberAgreement1").show();
+			$(".memberAgreement2").hide();
+		} else if(tab=="1") {
+			$(".memberAgreement1").hide();
+			$(".memberAgreement2").show();
+		}
+		
+	});
+});
 
 </script>
 <link rel="stylesheet" href="<%=cp%>/resource/css/booking.css" type="text/css">
-
+<link rel="stylesheet" href="<%=cp%>/resource/css/tabs.css" type="text/css">
 	<!-- Banner -->
 		<div id="banner">
 			<div class="container">
@@ -358,7 +386,6 @@ $(function(){
 											<option value="일반" ${roomGrade=="일반"?"selected='selected'":""}>일반</option>
 											<option value="특실" ${roomGrade=="특실"?"selected='selected'":""}>특실</option>
 										</select>
-										재고 : 309
 										<span class="addPrice" style="display: none;"> + ${start.prAddPrice * prPersonnel}</span>
 										<input type="hidden" name="prAddPrice" value="${start.prAddPrice * prPersonnel}">
 									</td>
@@ -449,7 +476,6 @@ $(function(){
 											<option value="일반" ${roomGrade1=="일반"?"selected='selected'":""}>일반</option>
 											<option value="특실" ${roomGrade1=="특실"?"selected='selected'":""}>특실</option>
 										</select>
-										재고 : 309
 										<span class="addPrice1" style="display: none;"> + ${end.prAddPrice1 * prPersonnel}</span>
 											<input type="hidden" name="prAddPrice1" value="${end.prAddPrice1 * prPersonnel}">
 									</td>
@@ -498,29 +524,75 @@ $(function(){
 									<td class="reservation_report_answer" colspan="3">
 										<button type="button" class="seatButton1">좌석선택</button> 
 										<span id="endSeatInfoView"></span>
-										<input type="hidden" name="prEndRoom" value="${endDto.prEndRoom}">
-										<input type="hidden" name="prEndTrainSeat" value="${endDto.prEndTrainSeat}">
+										<input type="hidden" name="prEndRoom" value="">
+										<input type="hidden" name="prEndTrainSeat" value="">
 									</td>
 								</tr>
 							</table>
 						</div>
 					
 							<div class="agreement">
-								<div>약관동의</div>
-								<table>
-									<tr>
-										<td>개인정보 수집 및 이용에 대한 안내</td>
-										<td></td>
-									</tr>
+								<div class="agreement_title">■ 약관동의</div>
+								<div>
+								<ul class="tabs">
+									<li id="tab-0" data-tab="0">개인정보 수집 및 이용에 대한 안내</li>
+									<li id="tab-1" data-tab="1">개인정보의 제 3자 제공 동의</li>
+								</ul>
+								</div>
+								<div class="agreement_table">
+									<table>
+										<tr class="memberAgreement1">
+											<td>
+												[수집하는 개인정보의 항목]<br>
+												가. 우리 공사는 승차권 구입, 원활한 고객상담, 각종 여행 상품 예약서비스를 제공하기 위해 아래와 같은 최소한의 개인<br>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정보를 수집,이용합니다.
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 수집정보 : 성명, 연락처, 생년월일, 이메일, 성별<br>
+												나. 서비스 이용과정에서 아래와 같은 정보들이 자동으로 생성되어 수집될 수 있습니다.<br>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- IP주소, 쿠키, 서비스 이용기록, 방문기록 등<br>
+												다. 전자상거래 등에서의 소비자 보호에 관한 법률에 의해 예약 서비스 이용과정에서 아래와 같은 거래정보들이 수집될 수 있습니다.<br>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 결제 카드번호, 결제 승인번호<br><br>
+												
+												[개인정보 수집 및 이용 목적]<br>
+												가. 서비스 제공에 관한 계약 이행 : 여행상품 구입<br>
+												나. 불만처리 등 민원처리, 고지사항 전달, 분쟁조정을 위한 기록보전<br><br>
+												
+												[개인정보의 보유 및 이용기간]<br>
+												가. 운영근거 : 정보주체동의<br>
+												나. 보유기간 : 5년<br><br>
+												
+												[개인정보 수집, 이용에 동의하지 않으실 수 있습니다. 동의 거부시에는 예약서비스는 제한됩니다.]<br><br>
+												
+												개인정보 처리에 관한 자세한 사항은 EnjoyTrain 홈페이지 (http://localhost:9090/enjoyInTrain/)에 공개하고 있는 <br>
+												"개인정보처리 방침" 을 참고하시기 바랍니다.
+											</td>
+										</tr>
+										<tr class="memberAgreement2" style="display: none;">
+											<td>
+												○ 개인정보의 제 3자 제공<br>
+												* EnjoyTrain은 정보주체의 개인정보를 제1조(개인정보의 처리 목적)에서 명시한 범위 내에서만 처리하며, 정보주체의 동의, 법률의<br>
+												특별한 규정 등 『개인정보 보호법』 제 17조 및 제 18조에 해당하는 경우에만 개인정보를 제3자에게 제공합니다.<br>
+												* EnjoyTrain은 다음과 같이 개인정보를 제 3자에게 제공하고 있습니다.<br>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. 철도회원 정보, 예약자 및 여행자 정보<br>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 제공받는 자 : 상품운영여행사<br>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 제공목적 : 예약 당해 상품 제공<br>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 제공근거 : 정보주체의 동의<br>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 제공항목 : 이름, 성별, 휴대전화, 생년월일, 이메일<br>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 제공받는 자의 이용기간 : 정보주체의 당해 상품 이용 종료 시점까지<br>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 수집 동의 거부 및 불이익 : 개인정보의 제 3자 제공에 동의하지 않을 권리가 있으나 거부 시 당해 상품 이용이 제한됩니다.<br>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<table class="agreement_check">
 									<tr>
 										<td>
-											<input type="checkbox"> 약관에 동의합니다.
+											<input type="checkbox" name="agreed"><span id="agreed" > 약관에 동의합니다.</span>
 										</td>
 										<td>
-											<input type="checkbox"> 개인정보 수집 및 이용에 동의합니다.
+											<input type="checkbox" name="agreed"> 개인정보 수집 및 이용에 동의합니다.
 										</td>
 										<td>
-											<input type="checkbox"> 개인정보의 제 3자 제공에 동의합니다.
+											<input type="checkbox" name=""> 개인정보의 제 3자 제공에 동의합니다.
 										</td>
 									</tr>
 								</table>

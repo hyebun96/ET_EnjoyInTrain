@@ -209,7 +209,7 @@ function requestPay(){
 									<td class="receipt_report_question">상품명</td>
 									<td class="receipt_report_answer">${end.trainName} - ${endDto.trainCode}</td>
 									<td class="receipt_report_question">객실등급</td>
-									<td class="receipt_report_answer">${endDto.roomGrade} <span style="color: blue;"> + ${endDto.prAddPrice1}</span></td>
+									<td class="receipt_report_answer">${endDto.roomGrade} <span style="color: blue;"> + ${endDto.prAddPrice}</span></td>
 								</tr>
 								<tr>
 									<td class="receipt_report_question">이용기간</td>
@@ -243,11 +243,11 @@ function requestPay(){
 								</tr>
 								<tr>
 									<td class="receipt_question">열차 객실 등급 추가비용 : </td>
-									<td class="receipt_answer">${startDto.prAddPrice + endDto.prAddPrice1} 원</td>
+									<td class="receipt_answer">${startDto.prAddPrice + endDto.prAddPrice} 원</td>
 								</tr>
 								<tr>
 									<td class="receipt_question1">총 결제금액 : </td>
-									<td class="receipt_total">${startDto.pmPrice+startDto.prAddPrice + endDto.prAddPrice1}원</td>
+									<td class="receipt_total">${startDto.pmPrice+startDto.prAddPrice + endDto.prAddPrice}원</td>
 								</tr>
 							</table>
 							<table style="border-collapse:collapse; border-top: 1px solid #cccccc; width: 100%"><tr><td></td></tr></table>
@@ -349,10 +349,10 @@ function requestPay(){
 				<td colspan="3" class="statement_report_cost1">프로모션 값 : ${startDto.pmPrice} 원 </td>
 			</tr>
 			<tr>
-				<td colspan="3" class="statement_report_cost2">열차 객실 등급 추가비용 :${startDto.prAddPrice + endDto.prAddPrice1} 원 </td>
+				<td colspan="3" class="statement_report_cost2">열차 객실 등급 추가비용 :${startDto.prAddPrice + endDto.prAddPrice} 원 </td>
 			</tr>
 			<tr>
-				<td colspan="3" class="statement_report_cost3">총 결제금액 : ${startDto.pmPrice+startDto.prAddPrice + endDto.prAddPrice1}원</td>
+				<td colspan="3" class="statement_report_cost3">총 결제금액 : ${startDto.pmPrice+startDto.prAddPrice + endDto.prAddPrice}원</td>
 			</tr>
 		</table>
 		<table class="statement_notice">

@@ -263,7 +263,7 @@ $(function() {
 					<table>
 						<tr>
 							<td style="width:100px; ">승차일</td>
-							<td colspan="2" style="font-size: 20px; font-weight: bold; vertical-align: middle">${map.trDate}<br><br></td>
+							<td colspan="2" style="font-size: 20px; font-weight: bold; vertical-align: middle">${startDto.pmStartDate}<br><br></td>
 						</tr>
 						<tr>
 							<td colspan="3" style="font-size: 30px;">${startDto.startStation}&nbsp;▶&nbsp;${startDto.endStation}<br><br><br></td> 
@@ -316,7 +316,7 @@ $(function() {
 					<table>
 						<tr>
 							<td style="width:100px; ">승차일</td>
-							<td colspan="2" style="font-size: 20px; font-weight: bold; vertical-align: middle">${map.trDate}<br><br></td>
+							<td colspan="2" style="font-size: 20px; font-weight: bold; vertical-align: middle">${endDto.pmStartDate}<br><br></td>
 						</tr>
 						<tr>
 							<td colspan="3" style="font-size: 30px;">${endDto.startStation}&nbsp;▶&nbsp;${endDto.endStation}<br><br><br></td> 
@@ -375,24 +375,20 @@ $(function() {
 					<table>
 						<tr>
 							<td style="width:100px; ">승차일</td>
-							<td colspan="2" style="font-size: 20px; font-weight: bold; vertical-align: middle">${map.trDate}<br><br></td>
+							<td colspan="2" style="font-size: 20px; font-weight: bold; vertical-align: middle">${startDto.pmStartDate}<br><br></td>
 						</tr>
 						<tr>
-							<td colspan="3" style="font-size: 30px;">${endDto.startStation}&nbsp;▶&nbsp;${endDto.endStation}<br><br><br></td> 
+							<td colspan="3" style="font-size: 30px; height: 45px; line-height: 45px;">${startDto.product}<br><br><br></td> 
 						</tr>
 						<tr>
-							<td colspan="3" style="font-size: 30px;">${end.startTime}&nbsp;▶&nbsp;${end.endTime}<br><br><br></td>
+							<td colspan="3" style="font-size: 30px; height: 45px; line-height: 45px;">${startDto.productContent}<br><br><br></td>
 						</tr>
 						<tr>
-							<td style="width: 230px;">${end.trainName} - ${endDto.trainCode}열차(${endDto.roomGrade})</td>
-							<td style="border: 1px soild #cccccc; width: 240px; font-weight: bold;">${endDto.roomNum}호차 ${endDto.prTrainSeat}석</td>
-						</tr>
-						<tr>
-							<td colspan="2">승객유형&nbsp;&nbsp;성인 : ${endDto.adult}명 어린이 : ${endDto.child}명 경로 : ${endDto.oldMan}명</td>
+							<td colspan="2">이용인원&nbsp;&nbsp; ${startDto.productUserCount} 명</td>
 						</tr>
 						<tr class="back">
-							<td  style="width:300px;">운임요금 &nbsp;${endDto.prAddPrice}원</td>
-							<td>영수금액&nbsp;${endDto.prAddPrice}원</td>
+							<td  style="width:300px;"></td>
+							<td></td>
 						</tr>
 					</table>
 				</div>
