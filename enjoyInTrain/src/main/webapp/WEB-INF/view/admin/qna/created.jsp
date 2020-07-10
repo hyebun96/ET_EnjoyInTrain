@@ -115,39 +115,6 @@ function ajaxHTML(url, type, query, selector) {
 	});
 }
 
-
-$(function(){
-	$("form select[name=categoryNum]").change(function(){
-		var categoryNum = $(this).val();
-		var faq = $("form select[name=categoryNum]").closest("tr").next().find("td").next();
-
-		faq.remove().end();
-		if(!categoryNum){
-			return false;
-		}
-		
-		var url = "<%=cp%>/admin/qna/faqList";
-		var query = "group="+categoryNum;
-		
-		var fn = function(data){
-			var s = "<td style='padding-left:10px;' class='faq'>"
-			$.each(data.faqList, function(index, item){
-				var group = item.faqCategory;
-				var category = item.faqTitle;
-				s += "<p><a href='<%=cp%>/admin/faq/list?group="+group+"'>"+category+"</p>";
-				
-			});
-			s += "</td>";
-			$("form select[name=categoryNum]").closest("tr").next().append(s);
-		};
-		
-		ajaxJSON(url, "get", query, fn);
-		
-		
-	});
-});
-
-
 </script>
 
 
@@ -171,16 +138,7 @@ $(function(){
 							</c:if>			        
 					</td>
 				</tr>
-						  
-				<tr align="left" height="40" style="border-bottom: 1px solid #cccccc; "> 
-					<td class="title" style="text-align: center;" >FAQ</td>
-					<td style="padding-left:10px;" class="faq"> 
-						<c:forEach var="dto" items="${faqList}">
-						    <p><a href="<%=cp%>/admin/faq/list?group=${dto.faqCategory}">&nbsp;${dto.faqTitle}</a></p>
-						</c:forEach>
-					</td>
-				</tr>
-						  
+  
 				<tr align="left" height="40" style="border-bottom: 1px solid #cccccc; border-top: 1px solid #cccccc;"> 
 					<td class="title" style="text-align: center;">질&nbsp;&nbsp;&nbsp;&nbsp;문</td>
 					<td style="padding-left:10px;"> 
@@ -218,7 +176,12 @@ $(function(){
 					<td align="center" >
 						<button type="button" class="btn" onclick="sendOk('${mode}');">답변완료</button>
 						<button type="reset" class="btn">다시입력</button>
-						<button type="button" class="btn" onclick="list(1);">답변취소</button>
+						<button type="button" class="btn" onclick="list(0);">답변취소</button>
+						<c:if test="${mode=='update'}">
+						   <input type="hidden" name="qnaNum" value="${dto.qnaNum}">
+						    <input type="hidden" name="group" value="${group}">
+						</c:if>
+						
 					</td>
 				</tr>
 			</table>

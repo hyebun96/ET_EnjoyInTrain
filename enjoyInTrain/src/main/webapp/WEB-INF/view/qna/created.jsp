@@ -130,6 +130,8 @@ $(function(){
 		var query = "group="+categoryNum;
 		
 		var fn = function(data){
+			$("#faq").show();
+			
 			var s = "<td style='padding-left:10px;' class='faq'>"
 			$.each(data.faqList, function(index, item){
 				var group = item.faqCategory;
@@ -152,7 +154,7 @@ $(function(){
 
 
 						  
-	<div style=" width: 750px;">   
+	<div style=" width: 100%;">   
 								
 		<form name="QnAForm" method="post"  enctype="multipart/form-data">
 			<table style="width: 100%; margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
@@ -172,7 +174,7 @@ $(function(){
 					</td>
 				</tr>
 						  
-				<tr align="left" height="40" style="border-bottom: 1px solid #cccccc; "> 
+				<tr align="left" height="40" id="faq" style="border-bottom: 1px solid #cccccc; display: none;"> 
 					<td class="title" style="text-align: center;" >FAQ</td>
 					<td style="padding-left:10px;" class="faq"> 
 						<c:forEach var="dto" items="${faqList}">
@@ -192,6 +194,7 @@ $(function(){
 					<td class="title" style="text-align: center;">작성자</td>
 					<td style="padding-left:10px;"> 
 						${dto.crewName}
+						${crewName}
 					</td>
 				</tr>
 					  

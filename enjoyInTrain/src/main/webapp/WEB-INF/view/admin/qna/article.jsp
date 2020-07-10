@@ -58,13 +58,13 @@ a {
 </style>
 
 
-<div style="width: 750px;">
+<div style="width: 100%;">
 
 	<table
 		style="width: 100%; margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
 
 		<tr height="35" 
-			style="border-top: 1px solid #cccccc; background: #8BD1BD; border-bottom: 1px solid #cccccc; color: white; font-weight: bold;">
+			style="border-top: 1px solid #cccccc; background: #867AC5; border-bottom: 1px solid #cccccc; color: white; font-weight: bold;">
 			<td colspan="2" align="left" style="padding-left: 5px;"><i
 				class="fas fa-question-circle"></i>&nbsp;질문 : ${dto.qnaTitle}</td>
 		</tr>

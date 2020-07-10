@@ -176,7 +176,7 @@ $(function(){
 							</c:forEach>
 						</ul>
 					</div>
-					<div id="tab-content" style="width:800px; clear: both; padding: 20px 0px 0px;">
+					<div id="tab-content" style="width:880px; clear: both; padding: 20px 0px 0px;">
 
 						<table
 							style="width: 100%; border-spacing: 0px; margin: 0px auto; border-collapse: collapse;">

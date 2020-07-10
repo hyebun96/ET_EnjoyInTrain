@@ -324,7 +324,7 @@ function sendOk(mode) {
 							</div>
 							
 							
-							<div id ="tab-content" style="clear: both; padding: 10px 0px 0px; width: 800px;"></div>
+							<div id ="tab-content" style="clear: both; padding: 10px 0px 0px; width: 880px;"></div>
 							
 							</section>
 					</div>

@@ -103,5 +103,20 @@
 		FETCH FIRST 1 ROWS ONLY
 	</select>
 	
+	<select id="listAdminQnA" parameterType="map" resultType="com.et.qna.QnA">
+		SELECT qnaNum, q.crewId,crewName, categoryNum, category, qnaTitle, qnaContent, qnaCreated, qnaHitCount, qnaSecret
+		FROM qna q
+		JOIN faqCategory fc ON q.qnacategory = fc.categoryNum
+		JOIN crew c ON q.crewId = c.crewId
+		<where>
+			<if test="group==1">
+				qnaContent IS NULL
+			</if>
+			<if test="group==2">
+				qnaContent IS NOT NULL
+			</if>
+		</where>
+		ORDER BY qnaNum DESC 
+	</select>
 	
 </mapper>

@@ -47,16 +47,10 @@ public class QnAController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("group", group);
 		
-		List<QnA> groupList = service.listCategory();
-		
-		List<QnA> list = service.listQnA(map);
-		
-		System.out.println(group+"-------------");
+		List<QnA> list = service.listAdminQnA(map);
 		
 		model.addAttribute("list",list);
 		model.addAttribute("group", group);
-		model.addAttribute("groupList", groupList);	
-		
 		
 		return "/admin/qna/list";
 	}
@@ -64,7 +58,10 @@ public class QnAController {
 	@RequestMapping(value="/admin/qna/created", method = RequestMethod.GET)
 	public String createdForm(
 			@RequestParam(defaultValue="0") int group,
-			Model model) throws Exception{
+			Model model,
+			HttpSession session) throws Exception{
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("crew");
 		
 		List<QnA> groupList = service.listCategory();
 		
@@ -74,7 +71,8 @@ public class QnAController {
 		List<FAQ> faqList = service.readFAQ(group);
 		
 		model.addAttribute("faqList", faqList);
-		model.addAttribute("group",group);
+		model.addAttribute("crewName",info.getClass());
+		// model.addAttribute("group",group);
 		
 		return "/admin/qna/created";
 	}
@@ -181,7 +179,6 @@ public class QnAController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("group", group);
-	
 		map.put("num", num);
 		
 		QnA preReadDto = service.preReadQnA(map);
