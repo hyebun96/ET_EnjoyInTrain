@@ -201,7 +201,7 @@ function reCal(){
 								 			<td style="width: 130px;">${map.endTime}</td>
 								 			<td style="width: 100px;">${map.total}</td>
 								 			<td style="width: 160px; text-align: center;">
-								 				<input readonly="readonly" name="trPrice" type="text" id="totalPay" style="text-align:center; border: none;" value="${map.totalPay}">
+								 				<input readonly="readonly" name="trPrice" type="text" id="totalPay" style="color:red; text-align:center; border: none;" value="${map.totalPay}">
 								 			</td>
 								 		</tr>
 								 	</table>

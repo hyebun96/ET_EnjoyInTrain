@@ -99,6 +99,12 @@ table td{
 
 
 <script type="text/javascript">
+$(function(){
+	if(${directRv}==true){
+		listPage(1);
+	}
+});
+
 function ajaxJSON(url, type, query, fn) {
 	$.ajax({
 		type:type
@@ -184,11 +190,24 @@ function stationch(){
 }
 
 function listPage(page) {
+	var adult=$("#adult").val();
+	var child=$("#child").val();
+	var senior=$("#senior").val();
+	var disabled1=$("#disabled1").val();
+	var disabled2=$("#disabled2").val();
+	var cnt=adult+child+senior+disabled1+disabled2;
+	if(cnt==0){
+		alert("승객 인원을 1명 이상 선택하십시오.");
+		return;
+	}
+	
 	var url="<%=cp%>/reservation/list";
 	var query=$("form[name=reservationForm]").serialize();
 	var selector = "#listcontent";
 	ajaxHTML(url, "post", query, selector);
 }
+
+
 
 </script>
 	<!-- Main -->
@@ -213,7 +232,7 @@ function listPage(page) {
 												<td colspan="3" >
 													<div>
 														<div style="float: left;">
-															<input style="font-size: 13px;" type="text" value="${firstSt}" name="startSt" id="startSt">
+															<input style="font-size: 13px;" type="text" value="${directRv==true?dto.startSt:firstSt}" name="startSt" id="startSt">
 															<button type="button" style="border:none; background: #6f047f;" class="myBtn" >
 																<i class="fas fa-map-marker-alt" style="margin:4px; font-size: 17px; color: white;"></i>
 															</button>
@@ -221,24 +240,24 @@ function listPage(page) {
 														</div>
 														<i onclick="stationch();" style="color:gray; margin-left:10px; margin-right:10px; float: left; font-size: 25px;" class="fas fa-exchange-alt"></i>
 														<div style="float: left; margin-right: 10px;" >
-															<input style="font-size: 13px;" type="text" value="${lastSt}" name="endSt" id="endSt">
+															<input style="font-size: 13px;" type="text" value="${directRv==true?dto.endSt:lastSt}" name="endSt" id="endSt">
 															<button type="button" class="myBtn" style="border:none; background: #6f047f;" >
 																<i class="fas fa-map-marker-alt" style="margin:4px; font-size: 17px; color: white;"></i>
 															</button>
 														</div>
+														
 														<select name="day" id="day" style="height: 28px;">
 															<c:forEach var="day" items="${daylist}">
-																<option value="${day}">${day}</option>
+																<option ${day==dto.day?'selected="selected"':''} value="${day}">${day}</option>
 															</c:forEach>
 														</select>
 																						
 														<select name="time" id="time" style="height: 28px;">
 															<c:forEach var="n" begin="0" end="22" step="2">
-																<option>${n<10?"0":""}${n}</option>
+																<option ${n==dto.time?'selected="selected"':''}>${n<10?"0":""}${n}</option>
 															</c:forEach>
 														</select>
 															시
-													<i style="margin-left:5px; color:#5D5D5D; font-size: 25px;" class="far fa-calendar-alt"></i>
 													</div>
 												</td>
 											</tr>
@@ -257,9 +276,8 @@ function listPage(page) {
 												<td colspan="3">
 													<b style=" margin-right: 10px; color: #4C4C4C">· 인원정보</b> 
 													<select name="adult" id="adult" style="font-size: 13px;">
-														<option value="1" selected="selected">어른(만 13세 이상)1명</option>
-														<c:forEach var="i" begin="1" end="9" step="1">
-															<option value="${i}">어른(만 13세 이상)${i}명</option>
+														<c:forEach var="i" begin="0" end="9" step="1">
+															<option ${i==1?'selected="selected"':''} value="${i}">어른(만 13세 이상)${i}명</option>
 														</c:forEach>
 													</select>
 													<select name="child" id="child" style="font-size: 13px;">
@@ -307,6 +325,5 @@ function listPage(page) {
 				</div>
 			</div>
 			<!-- Main -->
-
 		</div>
 	<!-- /Main -->

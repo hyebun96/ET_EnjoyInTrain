@@ -124,7 +124,7 @@
 		JOIN trReservationInfo info ON info.trCode=tr.trCode
 		JOIN station6 st ON st.sCode=info.startCode
 		JOIN station6 st2 ON st2.sCode=info.endCode
-		WHERE tr.trDate=#{trDate} AND rs.trainCode=#{trainCode} AND rs.roomNum=#{roomNum}
+		WHERE tr.trDate=#{trDate} AND rs.trainCode=#{trainCode} AND rs.roomNum=#{roomNum} AND refund IS NULL
 		<if test="trainCode%2==1">
 		    AND ((#{stLineOrder} BETWEEN st.lineOrder AND st2.lineOrder-1) OR (#{endLineOrder} BETWEEN st.lineOrder+1 AND st2.lineOrder)
 		        OR (#{stLineOrder} &lt; st.lineOrder AND #{endLineOrder} &gt; st2.lineOrder))
@@ -144,7 +144,7 @@
 		    JOIN trReservationInfo info ON info.trCode=tr.trCode
 		    JOIN station6 st ON st.sCode=info.startCode
 		    JOIN station6 st2 ON st2.sCode=info.endCode
-		    WHERE tr.trDate=#{trDate} AND rs.trainCode=#{trainCode}
+		    WHERE tr.trDate=#{trDate} AND rs.trainCode=#{trainCode} AND refund IS NULL
 		    <if test="trainCode%2==1">
 		    AND ((#{stLineOrder} BETWEEN st.lineOrder AND st2.lineOrder-1) OR (#{endLineOrder} BETWEEN st.lineOrder+1 AND st2.lineOrder)
 		        OR (#{stLineOrder} &lt; st.lineOrder AND #{endLineOrder} &gt; st2.lineOrder))
@@ -169,7 +169,7 @@
 		        JOIN trReservationInfo info ON info.trCode=tr.trCode
 		        JOIN station6 st ON st.sCode=info.startCode
 		        JOIN station6 st2 ON st2.sCode=info.endCode
-		        WHERE tr.trDate=#{trDate} 
+		        WHERE tr.trDate=#{trDate} AND refund IS NULL
 		        <if test="route==1">
 			    AND ((#{stLineOrder} BETWEEN st.lineOrder AND st2.lineOrder-1) OR (#{endLineOrder} BETWEEN st.lineOrder+1 AND st2.lineOrder)
 			        OR (#{stLineOrder} &lt; st.lineOrder AND #{endLineOrder} &gt; st2.lineOrder))
@@ -216,8 +216,8 @@
 	
 	<!-- 해당 예약코드의 총 예약 인원수 가져오기 -->
 	<select id="readCount" parameterType="Integer" resultType="Integer">
-		SELECT COUNT(*) FROM reservedSeat
-		WHERE trCode=#{trCode}
+		SELECT NVL(SUM(COUNT(*)),0) cnt FROM reservedSeat
+		WHERE trCode=#{trCode} AND refund IS NULL
 		GROUP BY trCode
 	</select>
 	
@@ -241,9 +241,29 @@
 		JOIN train7 train ON info.trainCode=train.trainCode
 		JOIN station6 startSt ON info.startCode=startSt.sCode
 		JOIN station6 endSt ON info.endCode=endSt.sCode
-		WHERE tr.trCode=#{trCode}
+		WHERE tr.trCode=#{trCode} AND refund IS NULL
 	</select>
 	
+	<!-- 환불할 좌석의 자세한 내역 -->
+	<select id="listSeatDetail" parameterType="Integer" resultType="com.et.reservation.Reservation">
+		SELECT rsSeatCode,trCategory,roomGrade, TO_CHAR(trDate,'YYYY/MM/DD(DY)') trDate, seatNum, rsSeat.trCode, 
+		    seatType, trPrice, seatPay, rsSeat.roomNum, rsSeat.trainCode, startSt.sName startCode, endSt.sName endCode
+		FROM reservedSeat rsSeat
+		JOIN trainReservation tr ON rsSeat.trCode=tr.trCode
+		JOIN trReservationinfo info ON rsSeat.trCode=info.trCode
+		JOIN station6 startSt ON info.startCode=startSt.sCode
+		JOIN station6 endSt ON info.endCode=endSt.sCode
+		JOIN train7 train ON rsSeat.trainCode=train.trainCode
+		JOIN trainsetting7 trseat ON train.trcategory=trseat.traincategory 
+		    AND rsSeat.roomNum=trseat.roomNum
+		WHERE rsSeatCode=#{rsSeatCode} AND refund IS NULL
+	</select>
+	
+	<!-- 기차표 환불-->
+	<update id="refund" parameterType="Integer">
+		UPDATE reservedSeat SET refund=1 WHERE rsSeatCode=#{rsSeatCode}
+	</update>
+		
 	<!-- 포인트 시퀀스 가져오기 -->
 	<select id="memberShipSeq" resultType="Integer">
 		SELECT memberShip_seq.NEXTVAL FROM dual
@@ -267,4 +287,11 @@
 		    AND category='사용'
 		)totalPoint FROM dual
 	</select>
+	
+	<!-- 예약된 좌석중 trCode에 해당하는 좌석 개수 -->
+	<select id="seatCount" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) FROM reservedSeat
+		WHERE trCode=#{trCode} AND refund IS NULL
+	</select>
+	
  </mapper>

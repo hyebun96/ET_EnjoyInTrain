@@ -1,5 +1,6 @@
 package com.et.reservation;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -26,7 +27,10 @@ public class ReservationController {
 	private ReservationService service;
 	
 	@RequestMapping("main")
-	public String main(Model model) {
+	public String main(
+			Condition dto,
+			@RequestParam(defaultValue="false") String directRv,
+			Model model) {
 		//기본으로 text박스에 출력해줄 역 가져오기
 		Map<String, String> map=service.defaultSt();
 		
@@ -36,25 +40,24 @@ public class ReservationController {
 		//날짜(오늘날짜부터 10일후까지)
 		List<String> daylist=new ArrayList<String>();
 		Calendar cal=Calendar.getInstance();  //오늘
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd(E)");
 		String d="";
-		for(int i=0; i<10; i++) {
-			d=cal.get(Calendar.YEAR)+"/"+(cal.get(Calendar.MONTH)+1)+"/"+cal.get(Calendar.DATE)+"(";
-			//요일(일~토)(1~7)
-			switch(cal.get(Calendar.DAY_OF_WEEK)) {
-				case 1: d+="일"; break;
-				case 2: d+="월"; break;
-				case 3: d+="화"; break;
-				case 4: d+="수"; break;
-				case 5: d+="목"; break;
-				case 6: d+="금"; break;
-				case 7: d+="토"; break;
-			}
-			d+=")";
+		for(int i=0; i<=10; i++) {
+			d=sdf.format(cal.getTime());
 			daylist.add(d);
 			cal.set(Calendar.DATE, cal.get(Calendar.DATE)+1);
 		}
 		
-		
+		if(directRv.equals("true")) {  //바로예약일시
+			String day[]=dto.getDay().split("-");
+			cal.set(Calendar.YEAR, Integer.parseInt(day[0]));
+			cal.set(Calendar.MONTH, Integer.parseInt(day[1])-1);
+			cal.set(Calendar.DATE, Integer.parseInt(day[2]));
+			d=sdf.format(cal.getTime());
+			dto.setDay(d);
+		}
+		model.addAttribute("directRv",directRv);  //바로예약일시
+		model.addAttribute("dto",dto);  //바로예약일시
 		model.addAttribute("list",list);
 		model.addAttribute("daylist",daylist);
 		model.addAttribute("stationCount",14);
@@ -215,6 +218,7 @@ public class ReservationController {
 			rvSeat.setSeatPay(service.readsPay(map));
 			int dc=(int)(rvSeat.getSeatPay()*service.readDisCount(rvSeat.getSeatType())*0.01);
 			rvSeat.setDisCount(dc);
+			rvSeat.setSeatPay(rvSeat.getSeatPay()-rvSeat.getDisCount());
 			seatList.add(rvSeat);
 			totalPay+=rvSeat.getSeatPay()-dc;
 		}
@@ -330,8 +334,8 @@ public class ReservationController {
 		return ".reservation.uncrew2";
 	}
 	
-	@RequestMapping("refund")
-	public String refund(
+	@RequestMapping("refundForm")
+	public String refundForm(
 			@RequestParam int trCode,
 			Model model
 			) {
@@ -344,11 +348,41 @@ public class ReservationController {
 	
 	@RequestMapping("requestrefund")
 	public String requestRefund(
-			@RequestParam List<String> rsseatCode,
+			@RequestParam List<Integer> rsseatCode,
 			@RequestParam int trCode,
 			Model model
 			) {
-		model.addAttribute("rsseatCode", rsseatCode);
+		List<Reservation> list=service.listSeatDetail(rsseatCode);
+		
+		Reservation rv=new Reservation();
+		for(Reservation dto:list) {
+			rv.setTrDate(dto.getTrDate());
+			rv.setTrCategory(dto.getTrCategory());
+			rv.setTrainCode(dto.getTrainCode());
+			rv.setStartCode(dto.getStartCode());
+			rv.setEndCode(dto.getEndCode());
+			rv.setStTime(dto.getStTime());
+			rv.setEndTime(dto.getEndTime());
+			rv.setTrPrice(dto.getTrPrice());
+		}
+		
+		model.addAttribute("trCode",trCode);
+		model.addAttribute("rv",rv);
+		model.addAttribute("list",list);
 		return ".reservation.requestrefund";
+	}
+	
+	@RequestMapping("refund")
+	public String refund(
+			@RequestParam List<Integer> rsseatCode,
+			@RequestParam int trCode
+			) {
+		service.refund(rsseatCode, trCode);
+		return "redirect:/reservation/refundcomplete";
+	}
+	
+	@RequestMapping("refundcomplete")
+	public String refundcomplete() {
+		return ".reservation.refundcomplete";
 	}
 }

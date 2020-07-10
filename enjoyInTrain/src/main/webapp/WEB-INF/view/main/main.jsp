@@ -7,6 +7,68 @@
 %>
 <link rel="stylesheet" href="<%=cp%>/resource/css/notice.css" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+<script type="text/javascript">
+function ajaxJSON(url, type, query, fn) {
+	$.ajax({
+		type:type
+		,url:url
+		,data:query
+		,dataType:"json"
+		,success:function(data) {
+			fn(data);
+		}
+		,beforeSend:function(jqXHR) {
+	        jqXHR.setRequestHeader("AJAX", true);
+	    }
+	    ,error:function(jqXHR) {
+	    	if(jqXHR.status==403) {
+	    		login();
+	    		return false;
+	    	}
+	    	console.log(jqXHR.responseText);
+	    }
+	});
+}
+
+
+$(function(){
+	var st="";
+	var modal = document.getElementById("myModal");
+	$(".myBtn").click(function(){
+		var span = document.getElementsByClassName("close")[0];
+		modal.style.display = "block";
+		st=$(this).closest("div").children("input");
+		
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+		  modal.style.display = "none";
+		}
+		
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+		  if (event.target == modal) {
+		    modal.style.display = "none";
+		  }
+		}
+	});
+	
+	$(".stationBtn").click(function(){
+		var sName=$(this).val();
+		$(st).val(sName);
+		modal.style.display = "none";
+	});
+});
+
+$(function(){
+	$("#directReservation").click(function(){
+		//열차종류=all, 인원정보=어른1
+		var f=document.mainRvForm;
+		f.submit();
+	});
+});
+
+</script>
+
 <style>
 .img-box1{
 	width: 100px;
@@ -40,7 +102,83 @@ p.title1{
   transform: translate(10px,10px);
 }
 
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 400px;
+  height: 500px;
+}
+
+.modal-content2 {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 800px;
+  height: 600px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 </style>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div style="background: #6f047f;" class="modal-content">
+  	<div style="text-align:center;  margin-bottom: 10px;">
+    <span  style="line-height:17px; font-size:17px; color: white; font-weight: bold;">노선선택</span><span class="close">&times;</span>
+    </div>
+	    <div style="padding:10px; height:90%; background: white;">
+	    	<c:set var="i" value="0"/>
+		    <table style="height:250px; width: 100%;">
+		    	<tr>
+		    		<c:forEach var="dto" items="${stationList}">
+		    			<td style=" height:35px; padding:5px; width: 30%;">
+		    				<button type="button" value="${dto.sName}" class="stationBtn" style="border:1px solid #D5D5D5;  height:100%; width: 100%;">${dto.sName}</button></td>
+		    			<c:set var="i" value="${i+1}"/>
+		    			<c:if test="${i%3==0}">
+		    				</tr>
+		    				<tr>
+		    			</c:if>
+		    		</c:forEach>
+		    	</tr>
+		    </table>
+	    </div>
+  </div>
+</div>
+
 <!-- Main -->
 <div id="page1">
 	<a style="display:scroll;position:fixed; bottom:40px;right:40px; font-size: 15px;" href="#" title="맨위로">
@@ -52,35 +190,46 @@ p.title1{
 		<div class="row">
 			<div class="3uET">
 				<section>
-					<table class="mainreservation">
-						<tr>
-							<td>
-								<select name="condition" class="selectmainreservation">
-                 					<option value="all">출발역</option>
-	           					</select>
-	           				</td>
-	           				<td>
-								<select name="condition" class="selectmainreservation">
-	                 					<option value="all">도착역</option>
-	           					</select>
-	           				</td>
-						</tr>
-						<tr>
-							<td style="padding: 20px; padding-top: 15px;" >
-								<input type="text" name="startDate" onfocus="(this.type='date')" placeholder="예약날짜" style="width: 200px;">
-							</td>
-							<td>
-								<select name="condition" class="selectmainreservation" style="margin: 0px 20px 0 20px;">
-	                 				<option value="all">시간</option>
-	           					</select>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<button type="button"  onclick=""  class="mainreservationbuttontd"><i class="fas fa-search"></i>&nbsp;&nbsp;간편조회하기 </button>
-							</td>
-						</tr>
-					</table>
+					<form name="mainRvForm" method="post" action="<%=cp%>/reservation/main">
+						<input type="hidden" name="directRv" value="true">
+						<table class="mainreservation">
+							<tr>
+								<td>
+									<div class="selectmainreservation">
+										<input style="width: 81%;" type="text" name="startSt" value="${firstSt}" id="startSt">
+										<button type="button" style="border:none; background: #6f047f;" class="myBtn">
+											<i class="fas fa-map-marker-alt" style="padding:2.5px; padding-right:5px; padding-left:5px; margin:4px; font-size: 17px; color: white;"></i>
+										</button>
+									</div>
+								</td>
+								<td>
+									<div class="selectmainreservation">
+										<input style="width: 81%;" type="text" name="endSt" value="${lastSt}" id="endSt">
+										<button type="button" style="border:none; background: #6f047f;" class="myBtn">
+											<i class="fas fa-map-marker-alt" style="padding:2.5px; padding-right:5px; padding-left:5px; margin:4px; font-size: 17px; color: white;"></i>
+										</button>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding: 20px; padding-top: 15px;" >
+									<input type="text" min="${day}" max="${maxday}" name="day" onfocus="(this.type='date')" value="${day}" placeholder="예약날짜" style="width: 200px;">
+								</td>
+								<td>
+		           					<select  name="time" id="time" style="margin: 0px 20px 0 20px; height: 30px;" class="selectmainreservation">
+										<c:forEach var="n" begin="0" end="22" step="2">
+											<option>${n<10?"0":""}${n}</option>
+										</c:forEach>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<button type="button" id="directReservation" onclick=""  class="mainreservationbuttontd"><i class="fas fa-search"></i>&nbsp;&nbsp;간편조회하기 </button>
+								</td>
+							</tr>
+						</table>
+					</form>
 					<table class="mainreservationicon">
 						<tr>
 							<td class="mainreservationicon1">

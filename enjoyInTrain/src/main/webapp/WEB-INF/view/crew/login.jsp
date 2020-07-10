@@ -59,10 +59,6 @@ function sendLogin(){
 </script>
 
 <!-- Banner -->
-		<div id="banner">
-			<div class="container">
-			</div>
-		</div>
 	<!-- /Banner -->
 
 	<!-- Main -->
@@ -83,9 +79,9 @@ function sendLogin(){
 							</tr>
 							<tr>
 								<td colspan="3">
-									<button class="findbtn">회원번호 찾기</button>
-									<button class="findbtn">비밀번호 찾기</button>
-									<button class="findbtn" type="button" onclick="javascript:location.href='<%=cp%>/crew/crew';">회원가입</button>
+									<button class="findbtn" style="border:1px solid #BDBDBD;  background: #EAEAEA;">아이디 찾기</button>
+									<button class="findbtn" style="border:1px solid #BDBDBD; background: #EAEAEA;">비밀번호 찾기</button>
+									<button class="findbtn" style="border:1px solid #BDBDBD; background: #EAEAEA;" type="button" onclick="javascript:location.href='<%=cp%>/crew/crew';">회원가입</button>
 									<p style="color: red;">${message}</p>
 								</td>
 							</tr>
@@ -95,7 +91,7 @@ function sendLogin(){
 						<div style="margin: 30px;">
 							<ul>
 								<li><p>미등록고객은 아래의 버튼을 <br>이용하시기 바랍니다.</p></li>
-								<li><button type="button" style="background: #6f047f; border:none; color: white;" class="notcrewbtn">미등록고객 예매</button></li>
+								<li><button type="button" onclick="javascript:location.href='<%=cp%>/reservation/main';" style="background: #6f047f; border:none; color: white;" class="notcrewbtn">미등록고객 예매</button></li>
 								<li><button type="button" style="background: #6f047f; border:none; color: white;" class="notcrewbtn">환불ㆍ재발권ㆍ영수증</button></li>
 							</ul>
 						</div>

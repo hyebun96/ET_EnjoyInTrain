@@ -444,28 +444,31 @@ public class ReservationServiceImpl implements ReservationService{
 	//해당 아이디의 발권내역 가져오기
 	@Override
 	public List<Reservation> readDetail(String crewId) {
-		List<Reservation> list=null;
+		List<Reservation> rsList=new ArrayList<>();
 		try {
-			list=dao.selectList("reservation.readDetail", crewId);
+			List<Reservation> list=dao.selectList("reservation.readDetail", crewId);
 			for(Reservation dto:list) {
-				Map<String, String> map=dao.selectOne("reservation.readStation",dto.getStartCode());
-				String stStation=map.get("ENGNAME");
-				map=dao.selectOne("reservation.readStation",dto.getEndCode());
-				map.put("stStation", stStation);
-				map.put("endStation", map.get("ENGNAME"));
-				map.put("trainCode", dto.getTrainCode());
-				map=dao.selectOne("reservation.readStatinTime", map);
-				dto.setStTime(map.get("STTIME"));
-				dto.setEndTime(map.get("ENDTIME"));
-				
 				//총 예약 인원수 가져오기
 				int cnt=dao.selectOne("reservation.readCount", dto.getTrCode());
-				dto.setCount(cnt);
+				if(cnt==0) {
+				}else {
+					dto.setCount(cnt);
+					Map<String, String> map=dao.selectOne("reservation.readStation",dto.getStartCode());
+					String stStation=map.get("ENGNAME");
+					map=dao.selectOne("reservation.readStation",dto.getEndCode());
+					map.put("stStation", stStation);
+					map.put("endStation", map.get("ENGNAME"));
+					map.put("trainCode", dto.getTrainCode());
+					map=dao.selectOne("reservation.readStatinTime", map);
+					dto.setStTime(map.get("STTIME"));
+					dto.setEndTime(map.get("ENDTIME"));
+					rsList.add(dto);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return list;
+		return rsList;
 	}
 
 	@Override
@@ -484,16 +487,6 @@ public class ReservationServiceImpl implements ReservationService{
 				dto.setStTime(map.get("STTIME"));
 				dto.setEndTime(map.get("ENDTIME"));
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
-
-	@Override
-	public List<Reservation> readReservationTrain(Map<String, Integer> map) {
-		List<Reservation> list=null;
-		try {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -522,5 +515,42 @@ public class ReservationServiceImpl implements ReservationService{
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public List<Reservation> listSeatDetail(List<Integer> rsseatCode) {
+		List<Reservation> list=new ArrayList<>();
+		try {
+			for(int code:rsseatCode) {
+				Reservation dto=dao.selectOne("reservation.listSeatDetail", code);
+				Map<String, String> map=dao.selectOne("reservation.readStation",dto.getStartCode());
+				String stStation=map.get("ENGNAME");
+				map=dao.selectOne("reservation.readStation",dto.getEndCode());
+				map.put("stStation", stStation);
+				map.put("endStation", map.get("ENGNAME"));
+				map.put("trainCode", dto.getTrainCode());
+				map=dao.selectOne("reservation.readStatinTime", map);
+				dto.setStTime(map.get("STTIME"));
+				dto.setEndTime(map.get("ENDTIME"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	//기차표 환불
+	@Override
+	public void refund(List<Integer> rsseatCode, int trCode) {
+		try {
+			for(int code:rsseatCode) {
+				dao.updateData("reservation.refund", code);
+			}
+			
+			//포인트도 다시 적립되어야함
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

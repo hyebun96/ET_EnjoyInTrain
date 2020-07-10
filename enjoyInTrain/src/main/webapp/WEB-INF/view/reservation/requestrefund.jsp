@@ -21,6 +21,16 @@ table tr{
 </style>
 
 <script type="text/javascript">
+function refundBtn(){
+	if(confirm("선택하신 승차권을 환불하시겠습니까?")==true){
+		var f=document.refundForm;
+		f.submit();
+		return;
+	}else{
+		return;
+	}
+}
+
 </script>
 	<!-- Main -->
 		<div id="page" >
@@ -33,6 +43,8 @@ table tr{
 								<h2>환불</h2>
 								<span class="byline">REFUND</span>
 								<div style="width: 1200px; text-align: center;">
+								<form action="<%=cp%>/reservation/refund" method="post" name="refundForm">
+								 	<input type="hidden" value="${trCode}" name="trCode">
 								 	<table style="width:100%;">
 								 		<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA;">
 								 			<td>승차일</td>
@@ -45,14 +57,14 @@ table tr{
 								 			<td>결제금액</td>
 								 		</tr>
 									 		<tr style="height:40px; border-bottom: 1px solid #BDBDBD">
-									 			<td>7월11일</td>
-									 			<td>KTX</td>
-									 			<td>653</td>
-									 			<td>익산</td>
-									 			<td>정읍</td>
-									 			<td>07:57</td>
-									 			<td>08:11</td>
-									 			<td>14000</td>
+									 			<td>${rv.trDate}</td>
+									 			<td>${rv.trCategory}</td>
+									 			<td>${rv.trainCode}</td>
+									 			<td>${rv.startCode}</td>
+									 			<td>${rv.endCode}</td>
+									 			<td>${rv.stTime}</td>
+									 			<td>${rv.endTime}</td>
+									 			<td>${rv.trPrice}</td>
 									 		</tr>
 								 	</table>
 								 	<table style="width:100%;  ">
@@ -63,17 +75,22 @@ table tr{
 								 			<td>승객유형</td>
 								 			<td>환불금액</td>
 								 		</tr>
+								 		<c:forEach items="${list}" var="dto">
 									 		<tr style="height:40px; border-bottom: 1px solid #BDBDBD">
-									 			<td>505</td>
-									 			<td>일반실</td>
-									 			<td>2호차 9C</td>
-									 			<td>어른</td>
-									 			<td>7500</td>
+									 			<td>${dto.trainCode}</td>
+									 			<td>${dto.roomGrade}</td>
+									 			<td>${dto.roomNum}호차 ${dto.seatNum}</td>
+									 			<td>${dto.seatType}</td>
+									 			<td>${dto.seatPay}
+									 				<input type="hidden" value="${dto.rsseatCode}" name="rsseatCode">
+									 			</td>
 									 		</tr>
+								 		</c:forEach>
 								 	</table>
 								 	<br>
-								 	<button type="button" style="font-weight:bold; font-size:15px; border-radius:5px; width:200px; height:30px; background: #6f047f; color: white; border: none;">환불 최종 완료하기</button>
+								 	<button type="button" onclick="refundBtn()" style="font-weight:bold; font-size:15px; border-radius:5px; width:200px; height:30px; background: #6f047f; color: white; border: none;">환불 최종 완료하기</button>
 								 	<br>
+								</form>
 								</div>
 							</header>
 						</section>

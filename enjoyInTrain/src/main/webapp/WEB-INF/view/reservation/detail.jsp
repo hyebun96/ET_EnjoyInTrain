@@ -25,7 +25,7 @@ table tr{
 $(function(){
 	$(".refundBtn").click(function(){
 		var trCode=$(this).attr("data-code");
-		location.href="<%=cp%>/reservation/refund?trCode="+trCode;
+		location.href="<%=cp%>/reservation/refundForm?trCode="+trCode;
 	});
 });
 

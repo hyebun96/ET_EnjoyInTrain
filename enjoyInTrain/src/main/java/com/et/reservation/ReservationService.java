@@ -20,6 +20,7 @@ public interface ReservationService {
 	public List<String> unReservedSeat(Map<String, String> map);
 	public List<Reservation> readDetail(String crewId);
 	public List<Reservation> listReservationDetail(int trCode);
-	public List<Reservation> readReservationTrain(Map<String, Integer> map);
+	public List<Reservation> listSeatDetail(List<Integer> rsseatCode);
+	public void refund(List<Integer> rsseatCode, int trCode);
 	public int totalPoint(String crewId);
 }
