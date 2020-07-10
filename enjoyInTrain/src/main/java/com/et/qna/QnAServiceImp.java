@@ -130,5 +130,16 @@ public class QnAServiceImp implements QnAService{
 		}
 		return list;
 	}
+
+	@Override
+	public List<QnA> listAdminQnA(Map<String, Object> map) {
+		List<QnA> list= null;
+		try {
+			list = dao.selectList("qna.listAdminQnA", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return list;
+	}
 	
 }

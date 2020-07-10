@@ -58,7 +58,7 @@ a {
 </style>
 
 
-<div style="width: 750px;">
+<div style="width: 100%;">
 
 	<table
 		style="width: 100%; margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">

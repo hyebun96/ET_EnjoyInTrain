@@ -291,7 +291,7 @@ function sendOk(mode) {
 				<div class="row">
 
 				
-					<div class="9u skel-cell-important">
+					<div class="9u skel-cell-important" >
 						<section>
 							<header style="margin-bottom: 2em padding: 0px">
 								<h2>Q&#38;A</h2>
@@ -301,14 +301,12 @@ function sendOk(mode) {
 							<div style="clear: both;">
 								<ul class="tabs">
 									<li id="tab-0" data-tab="0">전체</li>
-									<c:forEach var="vo" items="${groupList}">
-										<li  id="tab-${vo.categoryNum}" data-tab="${vo.categoryNum}">${vo.category}</li>
-									</c:forEach> 
+									<li  id="tab-1" data-tab="1">미답변</li>
+									<li  id="tab-2" data-tab="2">답변완료</li>
 								</ul>
 							</div>
-							
-							
-							<div id ="tab-content" style="clear: both; padding: 10px 0px 0px; width: 800px;"></div>
+	
+							<div id ="tab-content" style="clear: both; width: 100%;"></div>
 							
 							</section>
 					</div>
