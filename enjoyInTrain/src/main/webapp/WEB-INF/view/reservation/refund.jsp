@@ -46,16 +46,16 @@ $(function(){
 								<input type="hidden" value="${trCode}" name="trCode">
 								 	<table style="width:100%;  ">
 								 		<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA;">
-								 			<td><input type="checkbox"></td>
-								 			<td>승차일</td>
-								 			<td>열차종류</td>
-								 			<td>열차번호</td>
-								 			<td>출발역</td>
-								 			<td>도착역</td>
-								 			<td>출발시간</td>
-								 			<td>도착시간</td>
-								 			<td>승객유형</td>
-								 			<td>좌석정보</td>
+								 			<td style="background: #CEE3F6;"><input type="checkbox"></td>
+								 			<td style="background: #CEE3F6;">승차일</td>
+								 			<td style="background: #CEE3F6;">열차종류</td>
+								 			<td style="background: #CEE3F6;">열차번호</td>
+								 			<td style="background: #CEE3F6;">출발역</td>
+								 			<td style="background: #CEE3F6;">도착역</td>
+								 			<td style="background: #CEE3F6;">출발시간</td>
+								 			<td style="background: #CEE3F6;">도착시간</td>
+								 			<td style="background: #CEE3F6;">승객유형</td>
+								 			<td style="background: #CEE3F6;">좌석정보</td>
 								 		</tr>
 								 		<c:forEach items="${list}" var="dto">
 									 		<tr style="height:40px; border-bottom: 1px solid #BDBDBD">
@@ -78,7 +78,7 @@ $(function(){
 										<span>· 환불하시면 위약금이 발생할 수 있으며 위약금을 공제한 잔액을 환불하여 드립니다.</span><br>
 								 	</div>
 								 	<br>
-								 	<button type="button" id="reqrefundBtn" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #6f047f; color: white; border: none;">환불요청</button>
+								 	<button type="button" id="reqrefundBtn" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #08298A; color: white; border: none;">환불요청</button>
 								 	<br>
 								</form>
 								</div>

@@ -74,7 +74,7 @@ table td{
 <!-- The Modal -->
 <div id="myModal" class="modal">
   <!-- Modal content -->
-  <div style="background: #6f047f;" class="modal-content">
+  <div style="background: #08298A;" class="modal-content">
   	<div style="text-align:center;  margin-bottom: 10px;">
     <span  style="line-height:17px; font-size:17px; color: white; font-weight: bold;">노선선택</span><span class="close">&times;</span>
     </div>
@@ -196,8 +196,16 @@ function listPage(page) {
 	var disabled1=$("#disabled1").val();
 	var disabled2=$("#disabled2").val();
 	var cnt=adult+child+senior+disabled1+disabled2;
+	var startSt=$("#startSt").val();
+	var endSt=$("#endSt").val();
+	
 	if(cnt==0){
 		alert("승객 인원을 1명 이상 선택하십시오.");
+		return;
+	}
+	
+	if(startSt==endSt){
+		alert("출발역과 도착역이 같습니다	");
 		return;
 	}
 	
@@ -225,7 +233,7 @@ function listPage(page) {
 								<div style="width: 1200px; ">
 									<div style="width: 100%; ">
 										<ul class="tabs" style="font-size:17px; text-align:center; width: 100%; border:1px solid #D5D5D5;">
-											<li style="background:#6f047f; color:white; border-right: 1px solid #D5D5D5; line-height:40px; height:40px; width:100%; float: left">승차권 조회</li>
+											<li style="background:#08298A; color:white; border-right: 1px solid #D5D5D5; line-height:40px; height:40px; width:100%; float: left">승차권 조회</li>
 										</ul>
 										<table style="font-size:13px; width:100%; border: 1px solid #D5D5D5;">
 											<tr>
@@ -233,7 +241,7 @@ function listPage(page) {
 													<div>
 														<div style="float: left;">
 															<input style="font-size: 13px;" type="text" value="${directRv==true?dto.startSt:firstSt}" name="startSt" id="startSt">
-															<button type="button" style="border:none; background: #6f047f;" class="myBtn" >
+															<button type="button" style="border:none; background: #08298A;" class="myBtn" >
 																<i class="fas fa-map-marker-alt" style="margin:4px; font-size: 17px; color: white;"></i>
 															</button>
 															
@@ -241,7 +249,7 @@ function listPage(page) {
 														<i onclick="stationch();" style="color:gray; margin-left:10px; margin-right:10px; float: left; font-size: 25px;" class="fas fa-exchange-alt"></i>
 														<div style="float: left; margin-right: 10px;" >
 															<input style="font-size: 13px;" type="text" value="${directRv==true?dto.endSt:lastSt}" name="endSt" id="endSt">
-															<button type="button" class="myBtn" style="border:none; background: #6f047f;" >
+															<button type="button" class="myBtn" style="border:none; background: #08298A;" >
 																<i class="fas fa-map-marker-alt" style="margin:4px; font-size: 17px; color: white;"></i>
 															</button>
 														</div>
@@ -313,7 +321,7 @@ function listPage(page) {
 										</table>
 									</div>
 									<div style="text-align: center; ">
-										<button type="button" onclick="listPage(1);" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #6f047f; color: white; border: none;">조회하기</button>
+										<button type="button" onclick="listPage(1);" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #08298A; color: white; border: none;">조회하기</button>
 									</div>
 									<div style="margin-top:20px; width: 100%;" id="listcontent"></div>
 								</div>

@@ -23,7 +23,7 @@
 						<section>
 							<header>
 								<div style="width:1200px; text-align:center; height:150px; line-height:150px; border: 1px solid #BDBDBD">
-									<p style="font-weight:bold; font-size: 20px;"><i class="fas fa-check-circle" style=" color: #6f047f;"></i>&nbsp;승차권 환불이 완료되었습니다.</p>
+									<p style="font-weight:bold; font-size: 20px;"><i class="fas fa-check-circle" style=" color: #08298A;"></i>&nbsp;승차권 환불이 완료되었습니다.</p>
 								</div>
 							</header>
 						</section>
