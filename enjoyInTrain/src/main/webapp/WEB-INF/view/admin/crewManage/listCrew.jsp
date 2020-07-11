@@ -45,12 +45,17 @@ a {
 .ui-widget-header {
 	background: none;
 	border: none;
-	height:35px;
-	line-height:35px;
+	height:40px;
 	border-bottom: 1px solid #cccccc;
 	border-radius: 0px;
-	width : 800px;
+
 }
+
+.ui-widget .ui-widget {
+    background: white;
+    font-size: 1em;
+}
+
 .hover-tr:hover {
 	cursor: pointer;
 	background: #fffdfd;
@@ -63,8 +68,6 @@ a {
     background: none;
     overflow: inherit;
 }
-
-
 
 </style>
 
@@ -176,7 +179,7 @@ function updateOk() {
 						</tr>
 					</table>	
 						<table style="width: 100%; margin: 0px auto; border-spacing: 0px; border-collapse: collapse;">
-			               <tr align="center" bgcolor="#eeeeee" height="35" style="border-top: 2px solid #cccccc; border-bottom: 1px solid #cccccc;"> 
+			               <tr align="center" height="35" style="border-top: 2px solid #cccccc; border-bottom: 1px solid #cccccc; color: black; "> 
 						      <th style="width: 60px; color: #787878;">번호</th>
 						      <th style="width: 100px; color: #787878;">아이디</th>
 						      <th style="width: 100px; color: #787878;">이름</th>
