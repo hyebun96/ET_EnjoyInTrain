@@ -328,7 +328,7 @@ $(function () {
 							</tr>   
 						</table>
 			        </form>
-					<div class="content_scroll">
+					
 						<table
 							style='width: 100%; margin: 15px auto 0px; border-spacing: 0px;'>
 							<tr height='30'>
@@ -346,7 +346,7 @@ $(function () {
 							</tr>
 						</table>
 						<div id="listReply"></div>
-					</div>
+					
 			        </div>
 						</section>
 					</div>

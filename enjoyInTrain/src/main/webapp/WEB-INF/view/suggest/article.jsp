@@ -377,9 +377,9 @@ function insertAn(){
 								</td>
 							</tr>
 						</table>
-						<div class="content_scroll">
+						
 						<div id="listComment"></div>
-						</div>
+						
 			        </form>
 						
 			         	

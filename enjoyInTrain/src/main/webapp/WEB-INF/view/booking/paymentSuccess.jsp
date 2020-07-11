@@ -378,18 +378,15 @@ $(function() {
 							<td colspan="2" style="font-size: 20px; font-weight: bold; vertical-align: middle">${startDto.pmStartDate}<br><br></td>
 						</tr>
 						<tr>
-							<td colspan="3" style="font-size: 30px; height: 45px; line-height: 45px;">${startDto.product}<br><br><br></td> 
+							<td colspan="3" style="font-size: 30px; height: 40px; line-height: 40px;">${startDto.product}<br><br><br></td> 
 						</tr>
 						<tr>
-							<td colspan="3" style="font-size: 30px; height: 45px; line-height: 45px;">${startDto.productContent}<br><br><br></td>
-						</tr>
-						<tr>
-							<td colspan="2">이용인원&nbsp;&nbsp; ${startDto.productUserCount} 명</td>
+							<td colspan="3" style="font-size: 30px; height: 40px; line-height: 40px;">${startDto.productContent}<br><br><br></td>
 						</tr>
 						<tr class="back">
-							<td  style="width:300px;"></td>
-							<td></td>
+							<td colspan="2">이용인원&nbsp;&nbsp; ${startDto.productUserCount} 명</td>
 						</tr>
+						
 					</table>
 				</div>
 			</div>

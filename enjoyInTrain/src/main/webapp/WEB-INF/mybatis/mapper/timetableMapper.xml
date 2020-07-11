@@ -10,7 +10,7 @@
 	</insert>
 	
 	<insert id="insertTrain" parameterType="com.et.timetable.TimeTable">
-		INSERT INTO train6(traincode, trcategory, emcode)
+		INSERT INTO train7(traincode, trcategory, emcode)
 		VALUES (#{traincode}, #{trainname}, #{employee})
 	</insert>
 	

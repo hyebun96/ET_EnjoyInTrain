@@ -443,7 +443,7 @@ $(function(){//수정
 				$(this).text(arr[index]);
 			} else {
 				$(this).empty();
-				$(this).append("<span class='spanUpdate'>수정</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span class='spanDelete' >삭제</span>");
+				$(this).append("<span class='spanUpdate'>수정</span>|<span class='spanDelete' >삭제</span>");
 			}
 		});
 	});
@@ -486,7 +486,7 @@ $(function(){
 		style="width: 100%; margin: 20px auto 0px; border-spacing: 1px; background: #cccccc;">
 		<thead>
 			<tr height="35" bgcolor="#E4E6E4" align="center">
-				<td width="80">시간표 No</td>
+				<td width="80">No</td>
 				<td width="100">기차번호</td>
 				<td width="100">기차종류</td>
 				<td width="80">직원</td>
@@ -504,7 +504,7 @@ $(function(){
 				<td width="80">광주송정</td>
 				<td width="80">나주</td>
 				<td width="80">목포</td>
-				<td width="80">변경</td>
+				<td width="100">변경</td>
 			</tr>
 		</thead>
 		
@@ -539,7 +539,7 @@ $(function(){
 				<td><input type="text" id="naju"></td>
 				<td><input type="text" id="mokpo"></td>
 				<td>
-					<button type="button" id="btnAdd">등록하기</button>
+					<button type="button" id="btnAdd">등록</button>
 				</td>
 			</tr>
 		</tbody>
