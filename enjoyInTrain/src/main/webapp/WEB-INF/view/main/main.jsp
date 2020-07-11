@@ -61,6 +61,12 @@ $(function(){
 
 $(function(){
 	$("#directReservation").click(function(){
+		var time=$("#time").val()
+		if(time=="시간"){
+			alert("시간을 선택해 주십시오.");
+			return;
+		}
+		
 		//열차종류=all, 인원정보=어른1
 		var f=document.mainRvForm;
 		f.submit();
@@ -217,6 +223,7 @@ p.title1{
 								</td>
 								<td>
 		           					<select  name="time" id="time" style="margin: 0px 20px 0 20px; height: 30px;" class="selectmainreservation">
+										<option value="시간">시간</option>
 										<c:forEach var="n" begin="0" end="22" step="2">
 											<option>${n<10?"0":""}${n}</option>
 										</c:forEach>
@@ -233,25 +240,25 @@ p.title1{
 					<table class="mainreservationicon">
 						<tr>
 							<td class="mainreservationicon1">
-								<a href="#"><img src="<%=cp%>/resource/images/card.png" alt="" width="50px;">
+								<a href="#" style="font-size: 13px;"><img src="<%=cp%>/resource/images/card.png" alt="" width="75px;">
 								<br>
 								예매 조회
 								</a>
 							</td>
 							<td class="mainreservationicon1">
-								<a href="<%=cp%>/qna/main"><img src="<%=cp%>/resource/images/qna.png" alt="" width="60px;">
+								<a href="<%=cp%>/qna/main" style="font-size: 13px;"><img src="<%=cp%>/resource/images/qna.png" alt="" width="80px;">
 								<br>
 								QnA
 								</a>
 							</td>
 							<td class="mainreservationicon1">
-								<a href="<%=cp%>/lostBoard/list"><img src="<%=cp%>/resource/images/freeboard.png" alt="" width="60px;">
+								<a href="<%=cp%>/lostBoard/list" style="font-size: 13px;"><img src="<%=cp%>/resource/images/freeboard.png" alt="" width="80px;">
 								<br>
 								 자유게시판
 								 </a>
 							</td>
 							<td class="mainreservationicon1">
-								<a href="<%=cp%>/lostBoard/list"><img src="<%=cp%>/resource/images/lost.png" alt="" width="50px;">
+								<a href="<%=cp%>/lostBoard/list" style="font-size: 13px;"><img src="<%=cp%>/resource/images/lost.png" alt="" width="70px;">
 								<br>
 								 유실물 센터
 								 </a>

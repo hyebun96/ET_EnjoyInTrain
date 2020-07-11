@@ -57,19 +57,19 @@ function info_print() {
 								<div style="width: 1200px; text-align: center;">
 								 	<table style="width:100%;  ">
 								 		<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA;">
-								 			<td style="background: #08298A; color: white;" colspan="6">승차권 예약현황</td>
-								 			<td style="background: #08298A; color: white;" colspan="3">승차권 구매현황</td>
+								 			<td style="background: #353866; color: white;" colspan="6">승차권 예약현황</td>
+								 			<td style="background: #353866; color: white;" colspan="3">승차권 구매현황</td>
 								 		</tr>
 								 		<tr style="height:40px; font-weight:bold; background: #EAEAEA;">
-								 			<td style="background: #CEE3F6">승차일</td>
-								 			<td style="background: #CEE3F6">열차번호</td>
-								 			<td style="background: #CEE3F6">출발역</td>
-								 			<td style="background: #CEE3F6">도착역</td>
-								 			<td style="background: #CEE3F6">금액</td>
-								 			<td style="background: #CEE3F6">인원</td>
-								 			<td style="background: #CEE3F6">결제</td>
-								 			<td style="background: #CEE3F6">발권</td>
-								 			<td style="background: #CEE3F6">취소/환불</td>
+								 			<td style="background: #C1D8F3">승차일</td>
+								 			<td style="background: #C1D8F3">열차번호</td>
+								 			<td style="background: #C1D8F3">출발역</td>
+								 			<td style="background: #C1D8F3">도착역</td>
+								 			<td style="background: #C1D8F3">금액</td>
+								 			<td style="background: #C1D8F3">인원</td>
+								 			<td style="background: #C1D8F3">결제</td>
+								 			<td style="background: #C1D8F3">발권</td>
+								 			<td style="background: #C1D8F3">취소/환불</td>
 								 		</tr>
 								 		<c:forEach items="${list}" var="dto">
 									 		<tr>

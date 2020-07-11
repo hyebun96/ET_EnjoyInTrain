@@ -218,7 +218,6 @@ public class ReservationController {
 			rvSeat.setSeatPay(service.readsPay(map));
 			int dc=(int)(rvSeat.getSeatPay()*service.readDisCount(rvSeat.getSeatType())*0.01);
 			rvSeat.setDisCount(dc);
-			rvSeat.setSeatPay(rvSeat.getSeatPay()-rvSeat.getDisCount());
 			seatList.add(rvSeat);
 			totalPay+=rvSeat.getSeatPay()-dc;
 		}

@@ -199,7 +199,7 @@ function info_print() {
 										<tr class="back">
 											<td  style="width:300px;">운임요금 &nbsp;${ticket.seatPay}원</td>
 											<td style="width:290px;">할인금액 &nbsp; ${ticket.disCount}원</td>
-											<td>영수금액&nbsp;${ticket.seatPay-ticket.disCount}원</td>
+											<td>영수금액&nbsp;${ticket.seatPay}원</td>
 										</tr>
 										<tr>
 											<td colspan="3" style="font-weight: bold; padding-top: 5px;">※ 타는 곳 번호와 열차번호를 확인한 후 승차하시기 바랍니다.</td>

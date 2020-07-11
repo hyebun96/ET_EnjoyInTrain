@@ -76,7 +76,7 @@ $(function(){
 </script>
 <div id="myModal2" class="modal">
   <!-- Modal content -->
-  <div style="background: #08298A;" class="modal-content2" id="modal-content2">
+  <div style="background: #353866;" class="modal-content2" id="modal-content2">
   	
   </div>
 </div>
@@ -85,7 +85,7 @@ $(function(){
 <button style=" margin-bottom:10px; font-size: 13px;">KTX 편의시설정보 보기</button>
 <table class="timetb" style="text-align:center; border:1px solid #D5D5D5; font-size: 13px;">
 	<tr>
-		<td style="text-align:left; background: #EAEAEA;" colspan="12"><b>· ${rsDto.startSt}->${rsDto.endSt} ${rsDto.day}</b></td>
+		<td style="text-align:left; background: #C1D8F3;" colspan="12"><b>· ${rsDto.startSt}->${rsDto.endSt} ${rsDto.day}</b></td>
 	</tr>
 	<tr>
 		<td style="width: 120px;">구분</td>
@@ -124,8 +124,8 @@ $(function(){
 					</c:if>
 				</c:forEach>
 				<c:if test="${sw}">
-					<button class="reservationBtn" value="special" style="border:none; background: #08298A; color: white;">예약하기</button><br>
-					<button class="seatBtn" value="special" type="button" style="border:none; background: #CEE3F6; color:black;">좌석선택</button>
+					<button class="reservationBtn" value="special" style="border:none; background: #353866; color: white;">예약하기</button><br>
+					<button class="seatBtn" value="special" type="button" style="border:none; background: #C1D8F3; color:black;">좌석선택</button>
 				</c:if>
 			</td>
 			<td>
@@ -139,8 +139,8 @@ $(function(){
 					</c:if>
 				</c:forEach>
 				<c:if test="${sw}">
-					<button class="reservationBtn" value="general" style="border:none; background: #08298A; color: white;">예약하기</button><br>
-					<button class="seatBtn" value="general" type="button" style="border:none; background: #CEE3F6; color:black;">좌석선택</button>
+					<button class="reservationBtn" value="general" style="border:none; background: #353866; color: white;">예약하기</button><br>
+					<button class="seatBtn" value="general" type="button" style="border:none; background: #C1D8F3; color:black;">좌석선택</button>
 				</c:if>
 			</td>
 			<td>
