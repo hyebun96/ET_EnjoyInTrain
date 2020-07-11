@@ -13,65 +13,90 @@
     padding-top: 0em;
 }
 
-.alert-info {
-    border: 1px solid #9acfea;
-    border-radius: 4px;
-    background-color: #d9edf7;
-    color: #31708f;
-    padding: 15px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-tr.over {
-	background: #f5fffa;
-	cursor: pointer;
-}
-
-.boxTF{
-	width: 150px;
-}
-
-
-#btn{
-	width: 80px; 
-	height: 30px; 
-	margin-top: 20px; 
-	background-color: white; 
-	border-color: #cccccc;
-	border-radius: 10px;
-	
-}
-
-#btnsearch{
-	width: 50px; 
-	height: 30px; 
-	margin-top: 20px; 
-	background-color: white; 
-	border-color: #cccccc;
-}
-
-
-.listname1 td{
-	color: black;
-}
-
-.listname1:hover{
-	background: #f5fffa;
-}
-
-.row a{
-	cursor: pointer;
-    text-decoration: none;
-    color: black;
-}
-
 </style>
+
+<script type="text/javascript">
+
+$(function() {
+	var url = "<%=cp%>/admin/trainsales/month";
+	
+	$.getJSON(url, function(data) {  //java에 데이터 저장해놓은거 가져옴,
+	//	console.log(data);
+	Highcharts.chart('container', {
+	    chart: {
+	        renderTo: 'container',
+	        type: 'column'
+	    },
+	    title: {
+	        text: '월별 통계'
+	    },
+	    tooltip: {
+	        shared: true
+	    },
+	    xAxis: {
+	        categories: [
+	            '1월',
+	            '2월',
+	            '3월',
+	            '4월',
+	            '5월',
+	            '6월',
+	            '7월',
+	            '8월',
+	            '9월',
+	            '10월',
+	            '11월',
+	            '12월'
+	        ],
+	        crosshair: true
+	    },
+	    yAxis: [{
+	        title: {
+	            text: ''
+	        }
+	    }, {
+	        title: {
+	            text: ''
+	        },
+	        minPadding: 0,
+	        maxPadding: 0,
+	        max: 100,
+	        min: 0,
+	        opposite: true,
+	        labels: {
+	            format: "{value}%"
+	        }
+	    }],
+	    series: [{
+	        type: 'count',
+	        name: 'count',
+	        yAxis: 1,
+	        zIndex: 10,
+	        baseSeries: 1,
+	        tooltip: {
+	            valueDecimals: 2,
+	            valueSuffix: '건'
+	        }
+	    }, {
+	        name: 'totalPrice',
+	        type: 'column',
+	        zIndex: 2,
+	        data: [755, 222, 151, 86, 72, 51, 36, 10]
+	    }]
+	});
+	
+	
+)};
+
+)};            
+
+</script>
+
 
 <!-- Main -->
 <div id="adminpage">
 	<div class="trainandtime">
-		<a href="<%=cp%>/admin/trainsales/list">기차매출</a><span>|</span> <a href="<%=cp%>/admin/trainsales/list">프로모션매출</a>
+		<a href="<%=cp%>/admin/trainsales/list">기차 매출</a><span>|</span> <a href="<%=cp%>/admin/trainsales/list">프로모션 매출</a>
 	</div>
 	
 	<!-- Main -->

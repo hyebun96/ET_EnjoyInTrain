@@ -23,7 +23,7 @@
 	border-width: 1px;
 	margin: 10px 10px 15px 10px;
 }
-
+ 
 .btn{
 	width: 100px;
 	height: 80px;

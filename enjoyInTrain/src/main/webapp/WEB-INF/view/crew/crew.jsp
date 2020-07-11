@@ -20,7 +20,7 @@
 }
 .help-block1{
 	font-size: 12px;
-
+ 
 }
 .btn{
 	width: 80px; 

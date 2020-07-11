@@ -22,7 +22,7 @@
     margin-top: 10px;
     margin-bottom: 20px;
 }
-
+ 
 .boxTF{
 	width: 300px;
 }
