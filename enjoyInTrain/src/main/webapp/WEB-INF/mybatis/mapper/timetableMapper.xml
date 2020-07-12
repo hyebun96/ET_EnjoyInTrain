@@ -5,7 +5,7 @@
 	<insert id="insertTimeTable" parameterType="com.et.timetable.TimeTable">
 		INSERT INTO stationline2(scode, traincode, trainname, HAENGSIN, YONGSAN, GWANGMYEONG, CHEONANASAN, OSONG,
 		 GONGJU, SEODAEJEON, GYERYONG, NONSAN, IKSAN, JEONGEUP, GWANGJUSONGJEONG, NAJU, MOKPO)
-			VALUES (stationline2_seq.NEXTVAL, #{traincode}, #{trainname}, #{haengsin}, #{yongsan}, #{gwangmyeong}, #{cheonanasan}, #{osong},
+			VALUES (stationline2_seq.NEXTVAL, #{traincode}, UPPER(#{trainname}), #{haengsin}, #{yongsan}, #{gwangmyeong}, #{cheonanasan}, #{osong},
 			#{gongju},#{seodaejeon}, #{gyeryong}, #{nonsan}, #{iksan}, #{jeongeup}, #{gwangjusongjeong}, #{naju}, #{mokpo})
 	</insert>
 	

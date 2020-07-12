@@ -65,7 +65,7 @@ function updateNotice() {
 						<table class="noticearticle">
 							<tr class="noticearticletitle">
 								<td class="noticearticletitle1">제목  </td>
-								<td colspan="3" style="text-align: left;"> ${dto.noticeTitle} </td>
+								<td colspan="3" style="text-align: center;"> ${dto.noticeTitle} </td>
 							</tr>
 							<tr class="noticearticletitle">
 								<td class="noticearticletitle2">등록일</td>
