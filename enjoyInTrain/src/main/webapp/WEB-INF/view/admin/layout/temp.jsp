@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String cp=request.getContextPath();
-%>
+%> 
 <!-- Banner -->
 		<div id="banner">
 			<div class="container">
