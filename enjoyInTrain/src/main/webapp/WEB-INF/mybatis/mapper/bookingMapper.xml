@@ -166,6 +166,17 @@
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 
+	<select id="listReservation2" parameterType="String" resultType="com.et.booking.Booking">
+		SELECT DISTINCT pr.prCode, pr.prSeq, pr.pmCode, TO_CHAR(pr.pmStartDate, 'YYYY-MM-DD') pmStartDate, pr.adult, pr.child, pr.oldMan, pr.prPersonnel, pr.product, pr.productUserCount, pr.crewId, pr.prReservationDate,pr.prPaymentDate, pr.trainCode,
+			    pr.prPayment, pr.reservationNumber, pd.pmTitle, pd.pmPrice, pd.productContent, p.startStation, p.endStation, c.crewName, c.crewEmail, c.crewTel, c.crewBirth, pt.roomGrade, pt.roomNum, pt.prAddPrice, pt.prTrainSeat
+		FROM pmReservation pr
+		JOIN promotionDetail pd ON pd.pmCode = pr.pmCode
+		JOIN promotion p ON pr.trainCode = p.trainCode AND pd.pmCode = p.pmCode
+		JOIN crew c ON pr.crewId = c.crewId
+		JOIN pmReservationTrain pt ON pr.prCode = pt.prCode AND pr.trainCode = pt.trainCode
+		where c.crewId = #{crewId}
+		ORDER BY pr.prCode DESC
+	</select>
 	<!--  짝수 : 하행선 -->
 	<select id="startlist1" parameterType="map" resultType="com.et.booking.Booking">
 		SELECT pmCode, startStation, endStation

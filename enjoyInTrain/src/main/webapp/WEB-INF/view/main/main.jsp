@@ -252,7 +252,7 @@ p.title1{
 								</a>
 							</td>
 							<td class="mainreservationicon1">
-								<a href="<%=cp%>/lostBoard/list" style="font-size: 13px;"><img src="<%=cp%>/resource/images/freeboard.png" alt="" width="80px;">
+								<a href="<%=cp%>/freeBoard/list" style="font-size: 13px;"><img src="<%=cp%>/resource/images/freeboard.png" alt="" width="80px;">
 								<br>
 								 자유게시판
 								 </a>

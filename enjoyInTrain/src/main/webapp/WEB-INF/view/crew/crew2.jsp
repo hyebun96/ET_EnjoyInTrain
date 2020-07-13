@@ -198,7 +198,6 @@ function changeEmail(){
 						
 						<ul class="style1">
 							<li><a href="<%=cp%>/crew/mypage">MyPage</a></li>
-							<li><a href="<%=cp%>/crew/update">정보수정</a></li>
 							<li><a href="#">구매내역</a></li>
 						</ul>
 					</section>

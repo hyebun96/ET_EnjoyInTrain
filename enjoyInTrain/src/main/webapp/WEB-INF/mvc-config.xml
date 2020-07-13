@@ -67,6 +67,8 @@
             <mvc:exclude-mapping path="/crew/crewIdCheck"/>
             <mvc:exclude-mapping path="/crew/complete"/>
             <mvc:exclude-mapping path="/crew/idfind"/>
+            <mvc:exclude-mapping path="/crew/idfind2"/>
+            <mvc:exclude-mapping path="/crew/emailfind"/>
             <mvc:exclude-mapping path="/qna/main"/>
             <mvc:exclude-mapping path="/qna/list"/>
             <mvc:exclude-mapping path="/qna/article"/>

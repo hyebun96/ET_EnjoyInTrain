@@ -13,6 +13,7 @@ public class Crew {
 	private String crewEmail2;
 	private String crewBirth;
 	private int crewChatWarning;
+	private int enabled;
 	
 	private int listNum; // 리스트 번호
 	 
@@ -95,5 +96,12 @@ public class Crew {
 	public void setListNum(int listNum) {
 		this.listNum = listNum;
 	}
+	public int getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+	
 	
 }

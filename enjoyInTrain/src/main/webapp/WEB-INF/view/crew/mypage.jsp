@@ -76,7 +76,6 @@
 						
 						<ul class="style1">
 							<li><a href="<%=cp%>/crew/mypage">MyPage</a></li>
-							<li><a href="<%=cp%>/crew/update">정보수정</a></li>
 							<li><a href="#">구매내역</a></li>
 										
 						</ul>
@@ -91,16 +90,82 @@
 					</header>
 					
 					<img src="<%=cp%>/resource/images/user0000.png" alt="" width="80px;" height="80" style="float: left;">
-					<div class="mypage">
-							크루 이름 : ${dto.crewName} <br>
-							크루 생년월일 : ${dto.crewBirth}<br>
-							크루 전화번호 : ${dto.crewTel}<br>
-							크루 이메일 : ${dto.crewEmail}<br>
-							채팅 경고 : ${dto.crewChatWarning} 회<br>
-			        </div>
 					
-					
-					
+				<div class="mypage">
+					<table>
+						<tr>
+							<td>크루 이름 : ${dto.crewName}</td>
+						</tr>
+						<tr>
+							<td>크루 생년월일 : ${dto.crewBirth}</td>
+						</tr>
+						<tr>
+							<td>크루 전화번호 : ${dto.crewTel}</td>
+						</tr>
+						<tr>
+							<td>크루 이메일 : ${dto.crewEmail}</td>
+						</tr>
+						<tr>
+							<td>채팅 경고 : ${dto.crewChatWarning} 회</td>
+						</tr>
+					</table>
+							
+			     </div>
+			     	
+					<a href="<%=cp%>/crew/update">회원정보 수정</a>
+				
+				<div class="crewreservation">
+					<table style="width:50%; margin-top: 50px; float: left;">
+							 		<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA; text-align: center;">
+							 			<td style="background: #353866; color: white;" colspan="7">승차권 예약현황</td>
+							 		</tr>
+							 		<tr style="height:40px; font-weight:bold; background: #EAEAEA; text-align: center;">
+							 			<td style="background: #C1D8F3">승차일</td>
+							 			<td style="background: #C1D8F3">열차번호</td>
+							 			<td style="background: #C1D8F3">출발역</td>
+							 			<td style="background: #C1D8F3">도착역</td>
+							 			<td style="background: #C1D8F3">금액</td>
+							 			<td style="background: #C1D8F3">인원</td>
+							 			<td style="background: #C1D8F3">결제</td>
+							 		</tr>
+							 		<c:forEach items="${list}" var="dto">
+								 		<tr>
+								 			<td>${dto.trDate}</td>
+								 			<td>${dto.trCategory}&nbsp;${dto.trainCode}</td>
+								 			<td>${dto.startCode}<br>${dto.stTime}</td>
+								 			<td>${dto.endCode}<br>${dto.endTime}</td>
+								 			<td>${dto.trPrice}</td>
+								 			<td>${dto.count}</td>
+								 			<td>결제완료</td>
+								 		</tr>
+							 		</c:forEach>
+					</table>
+				</div>
+					<table  style="width:50%; margin-top: 50px;">
+							<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA; text-align: center;">
+							 	<td style="background: #353866; color: white;" colspan="4">프로모션 예약현황</td>
+							 </tr>
+							<tr style="height:40px; font-weight:bold; background: #C1D8F3; text-align: center;">
+								<td>예약번호</td>
+								<td>프로모션 제목 </td>
+								<td>구매자 </td>
+								<td>예약날짜</td>
+								
+								
+							</tr>
+							<c:forEach var="dto" items="${list2}" varStatus="status">
+									<tr>
+										
+										<td> ${dto.reservationNumber} </td>
+										<td> ${dto.pmTitle} </td>
+										<td> ${dto.crewName} </td>
+										<td> ${dto.prReservationDate.substring(0, 10)} </td>
+										
+										
+										
+									</tr>
+							</c:forEach> 
+						</table>
 					
 					
 				</div>

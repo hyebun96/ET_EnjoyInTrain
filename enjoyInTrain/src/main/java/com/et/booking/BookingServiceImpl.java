@@ -462,5 +462,18 @@ public class BookingServiceImpl implements BookingService{
 		}
 	}
 
+	@Override
+	public List<Booking> readDetail2(String crewId) {
+		List<Booking> list2 = null;
+		
+		try {
+			list2 = dao.selectList("booking.listReservation2", crewId);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list2;
+	}
+
 	
 }

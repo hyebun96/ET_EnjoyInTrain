@@ -19,6 +19,12 @@
 		WHERE crewId=#{crewId}
 	</select>
 	
+	<select id="readCrewName2" parameterType="com.et.crew.Crew" resultType="String">
+		SELECT crewId 
+		FROM crew
+		WHERE crewName=#{crewName} and crewTel = #{crewTel}
+	</select>
+	
 	<update id="updateCrew" parameterType="com.et.crew.Crew">
 		UPDATE crew SET crewPwd = #{crewPwd},crewTel = #{crewTel},
 						crewEmail = #{crewEmail} ,crewBirth = #{crewBirth}
@@ -63,7 +69,7 @@
 	</select>
 	
 	<select id="listCrewState" parameterType="String" resultType="com.et.crew.Crew">
-		SELECT crewId,crewName,crewTel,crewEmail,crewBirth,crewchatwarning
+		SELECT crewId,crewName,crewTel,crewEmail,crewBirth,crewChatwarning
 		FROM crew
 		ORDER BY crewName ASC
 	</select>

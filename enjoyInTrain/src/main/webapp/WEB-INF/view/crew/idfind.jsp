@@ -70,60 +70,101 @@ input{
 	border-radius: 4px;
 }
 
+.idinput{
+  color: blue;
+  font-style: italic;
+}
 
 
 </style>
 <script type="text/javascript">
-$(function(){
-	var crewId = "${sessionScope.crew.crewId}";
-	var crewName = "${sessionScope.crew.crewName}";
-	var isVisible = $(".idsolution").is(':visible');
-	var isVisible1 = $(".pwdsolution").is(':visible');
+
+function ajaxJSON(url, type, query, fn) {
+	$.ajax({
+		type:type
+		,url:url
+		,data:query
+		,dataType:"json"
+		,success:function(data) {
+			fn(data);
+		}
+		,beforeSend:function(jqXHR) {
+	        jqXHR.setRequestHeader("AJAX", true);
+	    }
+	    ,error:function(jqXHR) {
+	    	if(jqXHR.status==403) {
+	    		login();
+	    		return false;
+	    	}
+	    	console.log(jqXHR.responseText);
+	    }
+	});
+}
+
+function ajaxHTML(url, type, query, selector) {
+	$.ajax({
+		type:type
+		,url:url
+		,data:query
+		,success:function(data) {
+			if($.trim(data)=="error") {
+				listPage(1);
+				return false;
+			}	
+			$(selector).html(data);
+		}
+		,beforeSend:function(jqXHR) {
+	        jqXHR.setRequestHeader("AJAX", true);
+	    }
+	    ,error:function(jqXHR) {
+	    	if(jqXHR.status==403) {
+	    		login();
+	    		return false;
+	    	}
+	    	console.log(jqXHR.responseText);
+	    }
+	});
+}
+
+function crewidfind(){
+	var f=document.crewForm;
+	var url = "<%=cp%>/crew/idfind2";
+	var query = "crewName=" + f.crewName.value + "&crewTel=" + f.crewTel.value;
+	var selector = "#idfind000";
 	
 	
-	$(".btn00").click(function() {
+	ajaxHTML(url, "get", query, selector);
+}
+
+	
+function emailfind(){
+		var f=document.pwdfindForm;
 		
-		if (! isVisible && crewName===crewName) {
-			$(".idsolution").show();
-			
-		}
-	});
-	
-	$(".btn01").click(function() {
-		if (! isVisible && crewId===crewId) {
-			$(".pwdsolution").show();
-			
-		}
-	});
-	
-});
-
-
-function crewfind(){
-		var f=document.crewForm;
-		var str;
-		str=f.crewName.value;
-		str=str.trim();
-		if(!str){
-			alert("이름를 입력하세요.");
-			f.crewName.focus();
-			return;
-		}
-		f.submit();
-}
-	
-function crewpwdfind(){
-		var f=document.crewForm;
-		var str;
-		str=f.crewId.value;
-		str=str.trim();
-		if(!str){
+		var pwdId=f.pwdId.value;
+		pwdId=pwdId.trim();
+		
+		var pwdTel=f.pwdTel.value;
+		pwdTel=pwdTel.trim();
+		
+		
+		if(pwdId == ""){
 			alert("아이디를 입력하세요.");
-			f.crewId.focus();
+			f.pwdId.focus();
 			return;
 		}
-		f.submit();
+		
+		if(pwdTel == ""){
+			alert("전화번호를 입력하세요.");
+			f.pwdTel.focus();
+			return;
+		}
+
+
+		f.submit(); 
 }
+
+
+
 
 </script>
 <!-- Banner -->
@@ -138,7 +179,7 @@ function crewpwdfind(){
 			<!-- Main -->
 			<div id="main" class="container" style="width: 700px; margin-top: 0; padding-top: 0;" >
 				<header>
-						<h2 align="center"><i class="fas fa-user-plus"></i> 아이디 찾기 <br><br><br></h2>
+						<h2 align="center" style="margin-top: 20px"><i class="fas fa-key"></i> 아이디 찾기 <br><br><br></h2>
 				</header>
 				
 				<form action="" name="crewForm" method="post">
@@ -150,20 +191,22 @@ function crewpwdfind(){
 			      			</td>
 			      			<td style="padding: 0 0 20px 15px;">
 			      				<p style="margin-top: 1px; margin-bottom: 5px;">
-								<input name="crewName" type="text"  style="width: 100%;" placeholder="이름">
+								<input name="crewName" type="text"  style="width: 100%;" placeholder="이름을 입력해주세요.">
+							</td>
+							</tr>
+						<tr>
+							<td width="100" valign="top" style="text-align: right; padding-top: 5px;">
+			            		<label style="font-weight: 900;">전화번호</label>
+			            	</td>
+							<td style="padding: 0 0 20px 15px;">
+			      				<p style="margin-top: 1px; margin-bottom: 5px;">
+								<input name="crewTel" type="text"  style="width: 100%;" placeholder="전화번호를 입력해주세요.">
 							</td>
 						</tr>
 					
-						<tr style="display: none;" class="idsolution">
-							<td width="100" valign="top" style="text-align: right; padding-top: 5px;">
-			            		<label style="font-weight: 900;">아이디 ${dto.crewName}</label>
+						<tbody id="idfind000">
 							
-			      			</td>
-			      			<td style="padding: 0 0 10px 15px;">
-								<p style="margin-top: 1px; margin-bottom: 5px;"><input name="crewId" type="text"  style="width: 100%;" placeholder="${dto.crewId}">${dto.crewId}</p>
-								<p class="help-block1">아이디를 성공적으로 찾았습니다.</p>
-							</td>
-						</tr>
+						</tbody>
 					
 					</table>
 						
@@ -177,34 +220,36 @@ function crewpwdfind(){
 			
 			<div id="main" class="container" style="width: 700px; margin-top: 50px; padding-top: 0;" >
 				<header>
-						<h2 align="center"><i class="fas fa-user-plus"></i> 비밀번호 찾기 <br><br><br></h2>
+						<h2 align="center"><i class="fas fa-lock"></i> 비밀번호 찾기 <br><br><br></h2>
 				</header>
-				<form action="" name="crewForm" method="post">
+				<form action="<%=cp%>/crew/emailfind" name="pwdfindForm" method="post">
 					<table style="width: 85%; margin: 20px auto 0px;">
 						
 						<tr>
 							<td width="100" valign="top" style="text-align: right; padding-top: 5px;">
-			            		<label style="font-weight: 900;">아이디</label>
+			            		<label style="font-weight: 900;">아이디 : </label>
 			      			</td>
 			      			<td style="padding: 0 0 20px 15px;">
 			      				<p style="margin-top: 1px; margin-bottom: 5px;">
-								<input name="crewId" type="text"  style="width: 100%;" placeholder="id">
+								<input name="pwdId" type="text"  style="width: 100%;" placeholder="id">
 							</td>
 						</tr>
-						<tr style="display: none;" class="pwdsolution">
+						<tr>
 							<td width="100" valign="top" style="text-align: right; padding-top: 5px;">
-			            		<label style="font-weight: 900;">비밀번호</label>
-							
-			      			</td>
-			      			<td style="padding: 0 0 10px 15px;">
-								<p style="margin-top: 1px; margin-bottom: 5px;"><input name="crewPwd" type="text"  style="width: 100%;" placeholder="${dto.crewPwd}">${dto.crewPwd}</p>
-								<p class="help-block1">비밀번호를 성공적으로 찾았습니다.</p>
+			            		<label style="font-weight: 900;">전화번호</label>
+			            	</td>
+							<td style="padding: 0 0 20px 15px;">
+			      				<p style="margin-top: 1px; margin-bottom: 5px;">
+								<input name="pwdTel" type="text"  style="width: 100%;" placeholder="전화번호를 입력해주세요.">
 							</td>
 						</tr>
-						
-						
+						<tr class="pwdsolution">
+							<td valign="top" style="text-align: center; padding-top: 5px;" colspan="2">
+			            		${message}
+			      			</td>
+						</tr>
 					</table>
-					<button class="btn01" name="sendButton" type="button" onclick="crewpwdfind();">비밀번호찾기</button>
+					<button class="btn01" name="sendButton" type="button" onclick="emailfind();">비밀번호찾기</button>
 					<button class="btn" type="button" onclick="javascript:location.href='<%=cp%>/';">돌아가기</button>
 				</form>
 			</div>

@@ -32,4 +32,5 @@ public interface BookingService {
 	public void paymentSuccess(int prSeq);
 	public void reservationTrain(Booking dto) throws Exception;
 	public void reservationTrain1(Booking dto) throws Exception;
+	public List<Booking> readDetail2(String crewId);
 }

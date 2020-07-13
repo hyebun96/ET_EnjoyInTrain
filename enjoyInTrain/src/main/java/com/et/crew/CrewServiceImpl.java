@@ -8,11 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.et.common.dao.CommonDAO;
+import com.et.mail.Mail;
+import com.et.mail.MailSender;
 
 @Service("crew.crewService")
 public class CrewServiceImpl implements CrewService{
 	@Autowired
 	private CommonDAO dao;
+	
+	@Autowired
+	private MailSender mailSender;
 	
 	@Override
 	public Crew readCrew(String crewId) {
@@ -146,31 +151,58 @@ public class CrewServiceImpl implements CrewService{
 		Random rd = new Random();
 		
 		String s = "!@#$%^&*ABCDEFGHIJKLNMOPQRSTUVWYZqweasdzxcrtyfghvbnuiojklmp1234567890";
+		
 		for(int i=0; i<10; i++) {
 			int n = rd.nextInt(s.length());
 			sb.append(s.subSequence(n, n+1));
 		}
 		
-		String ss = dto.getCrewId()+"님의 새로 발급된 임시 패스워드는 <b>";
-		ss += sb.toString() + "<b> 입니다. <br>";
+		String ss = dto.getCrewId()+"님의 새로 발급된 임시 패스워드는 <b><span style='color:red;'>";
+		ss += sb.toString() + "</span></b> 입니다. <br>";
 		ss += "로그인 후 반드시 패스워드를 변경 하시기 바랍니다.";
 		
-//		Mail mail = new Mail();
-//		mail.setReceiverEmail(dto.getEmail());
-//		
-//		mail.setSenderEmail("rkqkdskei@gmail.com");
-//		mail.setSenderName("관리자");
-//		mail.setSubject("임시비밀번호 발급");
-//		mail.setContent(ss);
-//		
-//		boolean b = mailSender.mailSend(mail);
-//		
-//		if(b) {
-//			dto.setUserPwd(sb.toString());
-//			updateMember(dto);
-//		}else {
-//			throw new Exception("이메일 전송중 오류가 발생했습니다.");
-//		}
+		Mail mail = new Mail();
+		mail.setReceiverEmail(dto.getCrewEmail());
 		
+		mail.setSenderEmail("rkqkdskei@gmail.com");
+		mail.setSenderName("관리자");
+		mail.setSubject("임시비밀번호 발급");
+		mail.setContent(ss);
+		
+		boolean b = mailSender.mailSend(mail);
+		
+		if(b) {
+			dto.setCrewPwd(sb.toString());
+			updateCrew(dto);
+		}else {
+			throw new Exception("이메일 전송중 오류가 발생했습니다.");
+		}
+		
+	}
+	
+	@Override
+	public void updatePwd(Crew dto) throws Exception {
+		
+		try {
+			dao.updateData("crew.updatePwd", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	@Override
+	public String readCrew2(Crew dto) {
+		
+		String crewId = "";
+		
+		try {
+			crewId= dao.selectOne("crew.readCrewName2", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return crewId;
 	}
 }

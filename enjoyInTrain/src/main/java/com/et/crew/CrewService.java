@@ -16,4 +16,7 @@ public interface CrewService {
 	public Crew readCrewState(String crewId);
 	
 	public void generatePwd(Crew dto) throws Exception;
+	public void updatePwd(Crew dto) throws Exception;
+	
+	public String readCrew2(Crew dto);
 }
