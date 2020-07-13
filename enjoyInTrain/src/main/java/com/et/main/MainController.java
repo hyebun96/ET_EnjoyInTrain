@@ -24,7 +24,7 @@ import com.et.travel.TravelService;
 @Controller("mainController")
 public class MainController {
 	
-	@Autowired
+	@Autowired    
 	private NoticeService service;
 	
 	@Autowired
