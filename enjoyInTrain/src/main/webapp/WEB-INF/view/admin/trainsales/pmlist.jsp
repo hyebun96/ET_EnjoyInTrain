@@ -126,6 +126,31 @@ $(function(){
 });
 
 
+function person() {
+	var url="<%=cp%>/admin/trainsales/person";
+		
+		$.getJSON(url, function(data) {
+		Highcharts.chart('container', {
+		    chart: {
+		        type: 'variablepie'
+		    },
+		    title: {
+		        text: 'Countries compared by population density and total area.'
+		    },
+		    tooltip: {
+		        headerFormat: '',
+		        pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+		            'Area (square km): <b>{point.y}</b><br/>' +
+		            'Population density (people per square km): <b>{point.z}</b><br/>'
+		    },
+		    series: data
+		});
+	});
+	              
+}
+
+
+
 </script>
 
 </head>
@@ -151,6 +176,9 @@ $(function(){
 					<div style="clear: both;">
 						<div id="semiContainer" style="width: 600px; height: 500px; float: left; margin: 10px;"></div>	
 						<div id="semi2Container" style="width: 600px; height: 500px; float: left; margin: 10px;"></div>	
+						<div id="containerChat">
+							    		
+							    	</div>
 					</div>
 				</section>
 			</div>
@@ -159,6 +187,8 @@ $(function(){
 	<!-- /Main -->
 </div>
 <!-- /Main -->
+
+
 
 
 </body>

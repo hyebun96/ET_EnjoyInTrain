@@ -8,5 +8,6 @@ public interface TrainSalesService {
 	public List<TrainSales> listMonth(Map<String, Object> map);	//월별
 	public List<TrainSales> listYear(Map<String, Object> map);	//년별
 	
+	public TrainpersonType listType(); //승객
 	
 }

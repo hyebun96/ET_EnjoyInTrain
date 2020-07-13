@@ -49,4 +49,18 @@ public class TrainSalesServiceImpl implements TrainSalesService{
 		}
 		return listY;
 	}
+
+	@Override
+	public TrainpersonType listType() {
+		TrainpersonType dto = null;
+		
+		try {
+			dto = dao.selectOne("trainsales.listpersonType");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return dto;
+	}
 }
