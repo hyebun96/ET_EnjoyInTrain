@@ -24,7 +24,7 @@ import com.et.reservation.Seat;
 @Controller("booking.bookingController")
 @RequestMapping("/booking/*")
 public class BookingController {
-
+	
 	@Autowired
 	private BookingService service;
 
@@ -102,8 +102,6 @@ public class BookingController {
 		try {
 			dto.setCrewId(info.getCrewId());
 			prSeq = service.insertReservation(dto);
-			service.reservationTrain(dto);
-			service.reservationTrain1(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -318,5 +316,4 @@ public class BookingController {
 		model.addAttribute("seatList", seatList);
 		return "/booking/reservation";
 	}
-
 }

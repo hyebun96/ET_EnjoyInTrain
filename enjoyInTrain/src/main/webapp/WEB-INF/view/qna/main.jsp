@@ -45,7 +45,6 @@ ul.tabs li {
 	line-height: 35px;
 	overflow: hidden;
 	position: relative;
-	background: #ffffff;
 }
 ul.tabs li:hover {
 	background: #e7e7e7;
@@ -54,6 +53,7 @@ ul.tabs li.active{
 	font-weight: 700;
 	border: 1px solid #dddddd;
 	border-bottom-color:  transparent;
+	background: #ffffff;
 }
 
 #btn{

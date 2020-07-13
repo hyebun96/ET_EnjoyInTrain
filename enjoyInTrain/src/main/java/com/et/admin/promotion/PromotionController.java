@@ -1,4 +1,4 @@
-package com.et.admin.sales;
+package com.et.admin.promotion;
 
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -20,8 +20,8 @@ import com.et.booking.BookingService;
 import com.et.common.MyUtil;
 import com.et.crew.SessionInfo;
 
-@Controller("admin.promotion.salesController")
-public class SalesController {
+@Controller("admin.promotion.promotionController")
+public class PromotionController {
 	
 	@Autowired
 	private BookingService bookingService;
@@ -29,7 +29,7 @@ public class SalesController {
 	@Autowired
 	private MyUtil myutil;
 	
-	@RequestMapping("/admin/sales/list")
+	@RequestMapping("/admin/promotion/list")
 	public String list(@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(defaultValue="all")String condition,
 			@RequestParam(defaultValue="")String keyword,
@@ -104,10 +104,10 @@ public class SalesController {
 		model.addAttribute("keyword", keyword);
 		
 		
-		return ".admin.sales.list";
+		return ".admin.promotion.list";
 		}
 	
-	@RequestMapping("/admin/sales/delete")
+	@RequestMapping("/admin/promotion/delete")
 	public String cancleReservation(@RequestParam int prSeq, 
 				@RequestParam String page,
 			HttpSession session) throws Exception {
@@ -120,6 +120,6 @@ public class SalesController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/admin/sales/list?page="+page;
+		return "redirect:/admin/promotion/list?page="+page;
 	}
 }

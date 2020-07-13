@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.et.common.MyUtil;
-import com.et.freeBoard.FreeBoard;
 
 @Controller("crew.crewController")
 @RequestMapping("/crew/*")
@@ -247,15 +246,15 @@ public class CrewController {
 		return ".crew.idfind";
 	}
 	
-	@RequestMapping(value="/crew/mypage")
+	@RequestMapping(value="mypage", method=RequestMethod.GET)
 	public String mypage(
-			@RequestParam String crewId,
+			HttpSession session,
 			Model model
 			)throws Exception{
 		
+		SessionInfo info = (SessionInfo)session.getAttribute("crew");
 		
-		
-		Crew dto = service.readCrew(crewId);
+		Crew dto = service.readCrew(info.getCrewId());
 		
 		
 		

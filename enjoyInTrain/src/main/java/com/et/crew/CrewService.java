@@ -14,4 +14,6 @@ public interface CrewService {
 	public void updatecrewState(Crew dto)throws Exception;
 	public List<Crew> listCrewState(String crewId);
 	public Crew readCrewState(String crewId);
+	
+	public void generatePwd(Crew dto) throws Exception;
 }

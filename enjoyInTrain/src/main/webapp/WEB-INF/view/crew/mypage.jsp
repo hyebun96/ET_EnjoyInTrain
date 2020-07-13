@@ -42,6 +42,9 @@
 .help-block{
 	font-size: 12px;
 }
+.mypage{
+	margin-left: 100px;
+}
 </style>
 
 
@@ -84,17 +87,22 @@
 				<!-- 메인 내용 -->
 				<div class="9u skel-cell-important">
 					<header>
-						<h2><i class="fas fa-user-edit"></i> MyPage </h2>
+						<h2><i class="fas fa-id-card-alt"></i> MyPage </h2>
 					</header>
-					<form action="" method="post" name="mypageForm">
-					<table>
-						<tr>
-							<td>
-					 			${dto.crewId}
-							</td>
-						</tr>
-					</table>
-					</form>
+					
+					<img src="<%=cp%>/resource/images/user0000.png" alt="" width="80px;" height="80" style="float: left;">
+					<div class="mypage">
+							크루 이름 : ${dto.crewName} <br>
+							크루 생년월일 : ${dto.crewBirth}<br>
+							크루 전화번호 : ${dto.crewTel}<br>
+							크루 이메일 : ${dto.crewEmail}<br>
+							채팅 경고 : ${dto.crewChatWarning} 회<br>
+			        </div>
+					
+					
+					
+					
+					
 				</div>
 				<!-- /메인내용 -->
 				</div>

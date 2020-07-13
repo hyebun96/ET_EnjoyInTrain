@@ -178,7 +178,9 @@ function searchList() {
 						<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
 						   <tr height="35">
 							<td align="center">
+								<c:if test="${sessionScope.crew.crewId != null}">
 									<button style="border-radius: 10px; float: right;" type="button" class="btn" id="btn" onclick="javascript:location.href='<%=cp%>/freeBoard/created';">글올리기</button>
+							     </c:if>  
 							       ${dataCount==0?"등록된 게시물이 없습니다.":paging}
 							</td>
 						   </tr>

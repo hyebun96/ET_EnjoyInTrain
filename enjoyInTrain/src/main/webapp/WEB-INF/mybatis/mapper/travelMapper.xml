@@ -64,34 +64,34 @@
 		WHERE pmCode= #{trainCode};
 	</select>
 	
-	<!--  짝수 : 하행선 -->
+	<!--  짝수 : 상행선 -->
 	<select id="startlist1" parameterType="map" resultType="com.et.travel.Promotion">
 		SELECT pmCode, startStation, endStation
 		FROM promotion p
 		JOIN STATIONLINE6 t ON p.traincode = t.traincode
-		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 0
+		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 1
 	</select>
 	
 	<select id="startlist2" parameterType="com.et.travel.Promotion" resultType="com.et.travel.Promotion">
 		SELECT pmCode, p.trainCode, trainName, startStation, endStation, ${startStation} startTime, ${endStation} endTime
 		FROM promotion p
 		JOIN STATIONLINE6 t ON p.traincode = t.traincode
-		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 0
+		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 1
 	</select>
 	
-	<!-- 홀수 : 상행선 -->
+	<!-- 홀수 : 하행선 -->
 	<select id="endlist1" parameterType="map" resultType="com.et.travel.Promotion">
 		SELECT pmCode, startStation, endStation
 		FROM promotion p
 		JOIN STATIONLINE6 t ON p.traincode = t.traincode
-		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 1
+		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 0
 	</select>
 	
 	<select id="endlist2" parameterType="com.et.travel.Promotion" resultType="com.et.travel.Promotion">
-		SELECT pmCode, p.trainCode, trainName, startStation, endStation, ${startStation} endTime, ${endStation} startTime
+		SELECT pmCode, p.trainCode, trainName, startStation, endStation, ${startStation} startTime, ${endStation} endTime
 		FROM promotion p
 		JOIN STATIONLINE6 t ON p.traincode = t.traincode
-		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 1
+		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 0
 	</select>
 	
 	<select id="listPhoto" parameterType="String" resultType="com.et.travel.Photo">
@@ -140,6 +140,36 @@
 	    FROM promotionDetail pd
 	    JOIN promotionfile f ON pd.pmCode = f.pmCode
 	    ORDER BY final
+	</select>
+	
+	<!-- 가격 -->
+	<select id="priceGet" parameterType="map" resultType="Integer">
+		SELECT seat1 FROM spay7
+		WHERE startCode=#{s1}
+		AND endCode=#{s2}
+	</select>
+	
+	<select id="TrainGet" parameterType="com.et.travel.Promotion" resultType="String">
+		SELECT sCode FROM STATION6
+		WHERE EngName=#{startStation} OR EngName=#{endStation}
+	</select>
+	
+	<select id="pmCount" parameterType="com.et.travel.Promotion" resultType="INTEGER">
+		SELECT tb2.trinseatCount-tb1.reservationCount count FROM (
+		    SELECT COUNT(*) reservationCount FROM trainReservation tr
+		    JOIN trReservationInfo info ON tr.trCode = info.trCode
+		    JOIN reservedseat rd ON tr.trCode = rd.trCode
+		    WHERE startCode = (SELECT scode FROM station6 WHERE engname=#{startStation})
+		    AND ENDcode= (SELECT scode FROM station6 WHERE engname=#{endStation})
+		    AND info.TrainCode = ${trainCode}
+		    AND NOT REGEXP_LIKE(roomNum, 2||3||4)
+		    AND refund IS NULL
+		)tb1, (
+		    SELECT SUM(seatRow * seatcolumn) trinseatCount 
+		    FROM TRAINSETTING7 
+		    WHERE roomGrade = '일반실' 
+		    AND trainCategory ='KTX'
+		) tb2
 	</select>
 	
 	
@@ -199,9 +229,38 @@
 	</delete>
 	
 	<delete id="deletePromotionDetail" parameterType="String">
-		DELETE FROM promtionDetail WHERE pmCode = #{pmCode}
+		DELETE FROM promotiondetail WHERE pmCode = #{pmCode}
 	</delete>
 	
+	<delete id="deletePromotion" parameterType="String">
+		DELETE FROM promotion WHERE pmCode= #{pmCode}
+	</delete>
 
+
+<!-- 통계 -->
+	<!-- 지역별 -->
+	<select id="areaChart" resultType="com.et.travel.Chart">
+		SELECT categoryNum, ROUND(RATIO_TO_REPORT(SUM(cnt)) OVER()*100, 1) AS count 
+		FROM(
+			SELECT categoryNum , COUNT(*) cnt
+			FROM pmreservation pm 
+			JOIN promotiondetail pd ON pm.pmCode = pd.pmCode
+			GROUP BY categoryNum
+		)sb
+		GROUP BY categoryNum
+		ORDER BY categoryNum ASC
+	</select>
+	
+	<!-- 프로모션별 -->
+	<select id="promotionChart" resultType="com.et.travel.Chart">
+		SELECT pmCode, product, ROUND(RATIO_TO_REPORT(SUM(cnt)) OVER()*100, 1) AS count
+		FROM(
+			SELECT pm.pmCode pmCode, pm.product, COUNT(*) cnt
+			FROM pmreservation pr
+            JOIN promotiondetail pm ON pr.pmCode = pm.pmCode
+			GROUP BY pm.pmcode, pm.product
+		)sb
+		GROUP BY pmcode, product
+	</select>
 
 </mapper>

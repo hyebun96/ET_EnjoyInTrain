@@ -95,22 +95,97 @@ function ajaxHTML(url, type, query, selector) {
 
 function reservation() {
 	var f = document.reservationForm;
-	
-	if(!f.prStartRoom.value){
-		alert("가는 열차 좌석을 선택하여주세요");
-		return;
-	}
-	
-	if(!f.prEndRoom.value){
-		alert("오는 열차 좌석을 선택하여주세요");
-		return;
-	}
-	
-//	if(!f.agreed.checked){
-//		$("#agreed").css("color", "blue");
-//		$("#agreed").css("font-weight", "bold");
+	var adult = f.adult.value;
+	var child = f.child.value;
+	var oldMan = f.oldMan.value;
+	var adult1 = f.adult1.value;
+	var child1 = f.child1.value;
+	var oldMan1 = f.oldMan1.value;
+	var prPersonnel = f.prPersonnel.value;
+
+//	if((adult+child+oldMan)!=prPersonnel){
+//		alert("가는 열차 이용인원을 제대로 선택하여 주세요");
 //		return;
 //	}
+	
+	if(!f.prStartRoom.value){
+		alert("가는 열차 좌석을 선택하여주세요.");
+		return;
+	}
+	
+//	if((adult1+child1+oldMan1)!=prPersonnel){
+//		alert("오는 열차 이용인원을 제대로 선택하여 주세요");
+//		return;
+//	}
+	
+	if(!f.prEndRoom.value){
+		alert("오는 열차 좌석을 선택하여주세요.");
+		return;
+	}
+	
+	if(!f.agreed1.checked){
+		$("#agreed1").css("color", "blue");
+		$("#agreed1").css("font-weight", "bold");
+		return;
+	}
+	
+	if(!f.agreed2.checked){
+		$("#agreed2").css("color", "blue");
+		$("#agreed2").css("font-weight", "bold");
+		return;
+	}
+	
+	if(!f.agreed3.checked){
+		$("#agreed3").css("color", "blue");
+		$("#agreed3").css("font-weight", "bold");
+		return;
+	}
+	
+	if(!f.traveler.value){
+		f.traveler.focus();
+		return;
+	}
+	
+	if(!f.year.value){
+		f.year.focus();
+		return;
+	}
+	
+	if(!f.month.value){
+		f.month.focus();
+		return;
+	}
+	
+	if(!f.day.value){
+		f.day.focus();
+		return;
+	}
+	
+	if(!f.email1.value){
+		f.email1.focus();
+		return;
+	}	
+	
+	if(!f.email2.value){
+		f.email2.focus();
+		return;
+	}
+	
+	if(!f.tel1.value){
+		f.tel1.focus();
+		return;
+	}
+	
+	if(!f.tel2.value){
+		f.tel2.focus();
+		return;
+	}
+	
+	if(!f.tel3.value){
+		f.tel3.focus();
+		return;
+	}
+
 	f.action="<%=cp%>/booking/${mode}";
 	
 	
@@ -297,35 +372,12 @@ $(function(){
 </script>
 <link rel="stylesheet" href="<%=cp%>/resource/css/booking.css" type="text/css">
 <link rel="stylesheet" href="<%=cp%>/resource/css/tabs.css" type="text/css">
-	<!-- Banner -->
-		<div id="banner">
-			<div class="container">
-			</div>
-		</div>
-	<!-- /Banner -->
 	<!-- Main -->
 		<div id="page">
 				
 			<!-- Main -->
 			<div id="main" class="container">
 				<div class="row">
-
-					<div class="3u">
-						<section class="sclassebar">
-							<header>
-								<h2>Feugiat Tempus</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Etiam rhoncus volutpat erat</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Nulla luctus eleifend purus</a></li>
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-							</ul>
-						</section>
-					</div>
-				
-				<div class="9u skel-cell-important">
 					<form name="reservationForm" method="post">
 						<div>
 							<table class="reservation_header">
@@ -586,13 +638,13 @@ $(function(){
 								<table class="agreement_check">
 									<tr>
 										<td>
-											<input type="checkbox" name="agreed"><span id="agreed" > 약관에 동의합니다.</span>
+											<input type="checkbox" name="agreed1"><span id="agreed1" > 약관에 동의합니다.</span>
 										</td>
 										<td>
-											<input type="checkbox" name="agreed"> 개인정보 수집 및 이용에 동의합니다.
+											<input type="checkbox" name="agreed2"><span id="agreed2"> 개인정보 수집 및 이용에 동의합니다.</span>
 										</td>
 										<td>
-											<input type="checkbox" name=""> 개인정보의 제 3자 제공에 동의합니다.
+											<input type="checkbox" name="agreed3"><span id="agreed3"> 개인정보의 제 3자 제공에 동의합니다.</span>
 										</td>
 									</tr>
 								</table>
@@ -620,6 +672,7 @@ $(function(){
 									<td class="travler_info_question">휴대전화</td>
 									<td class="travler_info_tel" colspan="3">
 										<select name="tel1">
+											<option value="">선택</option>
 											<option value="010" ${tel1=="010"?"selected='selected'":""}>010</option>
 											<option value="011" ${tel1=="011"?"selected='selected'":""}>011</option>
 											<option value="016" ${tel1=="016"?"selected='selected'":""}>016</option>
@@ -659,7 +712,6 @@ $(function(){
 							</div>
 						</div>	
 					</form>
-				</div>
 			</div>
 		</div>
 			<!-- Main -->

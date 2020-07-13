@@ -45,12 +45,12 @@
 	</update>
 	
 	<insert id="insertTrain" parameterType="com.et.booking.Booking">
-		INSERT INTO pmReservationTrain( ptCode, prCode, trainCode, prPersonnel, prTrainName, prStartStation, roomGrade, roomNum, prEndStation, prTrainSeat, prAddPrice)
-		VALUES( pmReservationTrain_seq.NEXTVAL, #{prCode}, #{trainCode}, #{prPersonnel}, #{trainName}, #{startStation}, #{roomGrade}, #{prStartRoom}, #{endStation}, #{prStartTrainSeat},  #{prAddPrice})
+		INSERT INTO pmReservationTrain( ptCode, prCode, trCode, trainCode, prPersonnel, prTrainName, prStartStation, roomGrade, roomNum, prEndStation, prTrainSeat, prAddPrice)
+		VALUES( pmReservationTrain_seq.NEXTVAL, #{prCode}, #{trCode}, #{trainCode}, #{prPersonnel}, #{trainName}, #{startStation}, #{roomGrade}, #{prStartRoom}, #{endStation}, #{prStartTrainSeat},  #{prAddPrice})
 	</insert>
 	<insert id="insertTrain1" parameterType="com.et.booking.Booking">
-		INSERT INTO pmReservationTrain( ptCode, prCode, trainCode, prPersonnel, prTrainName, prStartStation, roomGrade, roomNum, prEndStation, prTrainSeat, prAddPrice)
-		VALUES( pmReservationTrain_seq.NEXTVAL, #{prCode}, #{trainCode1}, #{prPersonnel}, #{trainName1}, #{startStation1}, #{roomGrade1}, #{prEndRoom}, #{endStation1}, #{prEndTrainSeat} , #{prAddPrice1})
+		INSERT INTO pmReservationTrain( ptCode, prCode, trCode, trainCode, prPersonnel, prTrainName, prStartStation, roomGrade, roomNum, prEndStation, prTrainSeat, prAddPrice)
+		VALUES( pmReservationTrain_seq.NEXTVAL, #{prCode}, #{trCode}, #{trainCode1}, #{prPersonnel}, #{trainName1}, #{startStation1}, #{roomGrade1}, #{prEndRoom}, #{endStation1}, #{prEndTrainSeat} , #{prAddPrice1})
 	</insert>
 	
 	<!-- trainreservation 시퀀스 가져오기 -->
@@ -82,12 +82,12 @@
 	
 	<insert id="insertReservedSeat" parameterType="com.et.booking.Booking">
 		INSERT INTO reservedSeat(rsSeatCode, seatNum, trCode, seatType, seatPay, roomNum, trainCode) 
-		VALUES(#{rsSeatCode},#{seatNum},#{trCode},#{seatType},#{prAddPrice},#{roomNum},#{trainCode})
+		VALUES(#{rsSeatCode},#{seatNum},#{trCode},#{seatType},#{prAddPrice},#{prStartRoom},#{trainCode})
 	</insert>
 	
 	<insert id="insertReservedSeat1" parameterType="com.et.booking.Booking">
 		INSERT INTO reservedSeat(rsSeatCode, seatNum, trCode, seatType, seatPay, roomNum, trainCode) 
-		VALUES(#{rsSeatCode},#{seatNum},#{trCode},#{seatType},#{prAddPrice1},#{roomNum},#{trainCode})
+		VALUES(#{rsSeatCode},#{seatNum},#{trCode},#{seatType},#{prAddPrice1},#{prEndRoom},#{trainCode1})
 	</insert>
 	
 	<!-- 예약 목록 불러오기 -->
@@ -120,18 +120,25 @@
 	</update>
 	<!-- 예약 취소 -->
 	<select id="readForCancle" parameterType="map" resultType="com.et.booking.Booking">
-		SELECT prCode, prSeq, pmCode, TO_CHAR(pmStartDate, 'YYYY-MM-DD') pmStartDate, adult, child, oldMan, prPersonnel, product, productUserCount, crewId, prReservationDate, trainCode,
-			   reservationNumber
-		FROM pmReservation WHERE prSeq = #{prSeq} 
-			AND crewId = #{crewId}
+		SELECT pr.prCode, pr.prSeq, pr.pmCode, TO_CHAR(pr.pmStartDate, 'YYYY-MM-DD') pmStartDate, pr.adult, pr.child, pr.oldMan, pr.prPersonnel, product, productUserCount, pr.crewId, pr.prReservationDate, pr.trainCode,
+			   reservationNumber, pt.trCode
+		FROM pmReservation pr 
+		JOIN pmReservationTrain pt ON pr.prCode = pt.prCode
+		WHERE prSeq = #{prSeq} AND crewId = #{crewId}
 	</select>
 	
-	<delete id="deleteReservation" parameterType="map">
+	<delete id="deleteReservation" parameterType="com.et.booking.Booking">
 		DELETE FROM pmReservation WHERE prSeq = #{prSeq}
-		<if test="crewId != null and crewId !='a' ">
 			AND crewId = #{crewId}
-		</if>
 	</delete>
+	<delete id="deleteTrain" parameterType="Integer">
+		DELETE FROM pmReservationTrain WHERE prCode = #{prCode}
+	</delete>
+	<update id="reFundUpdate" parameterType="Integer">
+		UPDATE reservedSeat SET reFund = 1 WHERE trCode = #{trCode}
+	</update>
+	<select id=""></select>
+	
 	<!-- 관리자 강제 예약 취소  -->
 	<select id="adminCancle" parameterType="map" resultType="com.et.booking.Booking">
 		SELECT prCode, prSeq, pmCode, TO_CHAR(pmStartDate, 'YYYY-MM-DD') pmStartDate, adult, child, oldMan, prPersonnel, product, productUserCount, crewId, prReservationDate, trainCode,

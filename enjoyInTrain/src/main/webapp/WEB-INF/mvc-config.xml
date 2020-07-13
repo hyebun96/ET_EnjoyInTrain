@@ -66,6 +66,7 @@
             <mvc:exclude-mapping path="/crew/crew"/>
             <mvc:exclude-mapping path="/crew/crewIdCheck"/>
             <mvc:exclude-mapping path="/crew/complete"/>
+            <mvc:exclude-mapping path="/crew/idfind"/>
             <mvc:exclude-mapping path="/qna/main"/>
             <mvc:exclude-mapping path="/qna/list"/>
             <mvc:exclude-mapping path="/qna/article"/>
@@ -86,6 +87,20 @@
             <mvc:exclude-mapping path="/reservation/refund"/>
             <mvc:exclude-mapping path="/reservation/unCrewSubmit"/>
             <mvc:exclude-mapping path="/reservation/refundcomplete"/>
+            <mvc:exclude-mapping path="/travel/**"/>
+            <mvc:exclude-mapping path="/lostBoard/list"/>
+            <mvc:exclude-mapping path="/lostBoard/article"/>
+            <mvc:exclude-mapping path="/lostBoard/listReply"/>
+            <mvc:exclude-mapping path="/lostBoard/listReplyAnswer"/>
+            <mvc:exclude-mapping path="/freeBoard/list"/>
+            <mvc:exclude-mapping path="/freeBoard/article"/>
+            <mvc:exclude-mapping path="/freeBoard/listReply"/>
+            <mvc:exclude-mapping path="/freeBoard/listReplyAnswer"/>
+            <mvc:exclude-mapping path="/suggest/list"/>
+			
+            
+            
+            
             <bean class="com.et.crew.LoginCheckInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>	 
