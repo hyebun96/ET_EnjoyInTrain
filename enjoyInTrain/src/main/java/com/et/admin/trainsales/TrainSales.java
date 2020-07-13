@@ -10,6 +10,7 @@ public class TrainSales {
 	private int seatPay; //좌석금액(할인금액적용됨)
 	private int seatType;
 	private String roomGrade;
+	
 
 	
 	public String getTrDate() {

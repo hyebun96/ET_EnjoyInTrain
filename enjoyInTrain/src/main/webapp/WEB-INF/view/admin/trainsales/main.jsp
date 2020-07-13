@@ -220,8 +220,30 @@ function chatYear() {
 		    		data : data.series
 		    	}]
 		});
-	
 	});			
+}
+
+function person() {
+	var url="<%=cp%>/admin/trainsales/person";
+		
+		$.getJSON(url, function(data) {
+		Highcharts.chart('container', {
+		    chart: {
+		        type: 'variablepie'
+		    },
+		    title: {
+		        text: 'Countries compared by population density and total area.'
+		    },
+		    tooltip: {
+		        headerFormat: '',
+		        pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+		            'Area (square km): <b>{point.y}</b><br/>' +
+		            'Population density (people per square km): <b>{point.z}</b><br/>'
+		    },
+		    series: data
+		});
+	});
+	              
 }
 
 
@@ -248,6 +270,7 @@ function chatYear() {
 									<li id="tab-listDay" data-tab="listDay">일별</li>
 									<li id="tab-listMonth" data-tab="listMonth">월별</li>
 									<li id="tab-listYear" data-tab="listYear">년별</li>
+									<li id="tab-listYear" data-tab="listYear">년별</li>
 								</ul>							
 							</div>
 							
@@ -273,11 +296,17 @@ function chatYear() {
 							    	</div>
 							    	<div class="containerList-body" style="margin-top: 20px;">
 							    	</div>
+							    	
 							    </div>
+							    
 						    </div>
 						    
 						</div>
 				</section>
+				<div id="containerChat">
+							    		
+				</div>
+				
 			</div>
 		</div>
 	</div>

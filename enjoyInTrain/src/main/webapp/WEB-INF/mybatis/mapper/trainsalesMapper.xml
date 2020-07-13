@@ -99,4 +99,16 @@
 		GROUP BY TO_CHAR(trPaydate,'YYYY')
 		ORDER BY trPaydate DESC
 	</select>
+	
+	<select id="listpersonType" resultType="com.et.admin.trainsales.TrainpersonType">
+	SELECT COUNT(CASE WHEN rs.seattype='성인' THEN 1 END)as adult,
+		COUNT(CASE WHEN rs.seattype='어린이' THEN 1 END)as child,
+		COUNT(CASE WHEN rs.seattype='경로' THEN 1 END)as old,
+		COUNT(CASE WHEN rs.seattype='중증장애인' THEN 1 END)as sd,
+		COUNT(CASE WHEN rs.seattype='경증장애인' THEN 1 END)as md
+		FROM reservedSeat rs
+		JOIN trainreservation tr ON tr.trCode = rs.trCode
+		WHERE rs.refund IS NULL
+	</select>
+	
 </mapper>

@@ -9,12 +9,16 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.et.travel.Chart;
 
 @Controller("admin.trainsales.trainSalesController")
 @RequestMapping("/admin/trainsales/*")
@@ -220,5 +224,39 @@ public class TrainSalesController {
 	    model.put("series", list2);
 	    
 		return model;
+	}		
+	
+	@RequestMapping("person")
+	@ResponseBody
+	public String person(
+			) throws Exception{
+		
+		
+		TrainpersonType dto = null;
+		
+JSONArray arr = new JSONArray();
+		
+		JSONObject job = new JSONObject();
+		job.put("minPointSize", "10");
+		job.put("innerSize", "20%");
+		job.put("zMin", "0");
+		job.put("name", "countries");
+		
+		dto = service.listType();
+		
+		int sum = 100/(dto.getAdult()+dto.getChild()+dto.getOld()+dto.getMd()+dto.getSd());
+
+		JSONArray ja = new JSONArray();
+		ja.put(new JSONArray("['성인',"+ dto.getAdult() + sum*dto.getAdult() +"]"));
+		ja.put(new JSONArray("['어린이',"+ dto.getChild() + sum*dto.getChild() +"]"));
+		ja.put(new JSONArray("['노인',"+ dto.getOld() +sum*dto.getOld() +"]"));
+		ja.put(new JSONArray("['중증장애인',"+ dto.getMd() + sum*dto.getMd() +"]"));
+		ja.put(new JSONArray("['경증장애인',"+ dto.getSd() + sum*dto.getSd() +"]"));
+		
+		job.put("data",ja);
+		
+		arr.put(job);
+		
+		return arr.toString();
 	}			
 }
