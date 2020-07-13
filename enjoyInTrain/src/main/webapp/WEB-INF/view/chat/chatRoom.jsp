@@ -57,7 +57,7 @@
 
 }
 </style>
-<script src="http://localhost:3001/socket.io/socket.io.js"></script>
+<script src="http://211.238.142.65:3001/socket.io/socket.io.js"></script>
 <script type="text/javascript">
 function convertStringToDate(str) {
 	// yyyy-mm-dd hh:mi:ss

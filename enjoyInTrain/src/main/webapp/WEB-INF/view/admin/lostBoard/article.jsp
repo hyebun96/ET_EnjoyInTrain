@@ -268,14 +268,11 @@ $(function () {
 				<form action="" name="lostBoardForm" method="post" enctype="multipart/form-data">
 					<table class="noticearticle">
 							<tr class="noticearticletitle">
-								<td class="noticearticletitle1">제목  </td>
-								<td style="text-align: center;" colspan="3"> ${dto.lostTitle} </td>
+								<td style="text-align: center; background: #21373F; color: white;" colspan="4"> ${dto.lostTitle} </td>
 							</tr>
 							<tr class="noticearticletitle">
-								<td class="noticearticletitle2">작성자</td>
-								<td style="text-align: center;" width="200px">${dto.crewName}</td>
-								<td class="noticearticletitle2">작성일 / 조회수</td>
-								<td width="200px" style="text-align: center;">${dto.lostCreated} | ${dto.lostHitCount}</td>
+								<td style="text-align: left;" colspan="2"> 작성자 : ${dto.crewName}</td>
+								<td style="text-align: right; colspan="2">${dto.lostCreated} | 조회수 : ${dto.lostHitCount}</td>
 								
 							</tr>
 							<tr style="padding: 5px 5px;">

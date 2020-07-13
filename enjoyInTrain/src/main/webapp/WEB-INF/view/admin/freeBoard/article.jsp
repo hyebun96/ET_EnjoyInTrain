@@ -374,15 +374,12 @@ $(function () {
 					<div>
 						<table class="noticearticle">
 							<tr class="noticearticletitle">
-								<td class="noticearticletitle1">제목  </td>
-								<td style="text-align: center;" colspan="3">${dto.fbTitle}</td>
+								<td style="text-align: center; background: #21373F; color: white;" colspan="4">${dto.fbTitle}</td>
 							</tr>
 
 							<tr class="noticearticletitle">
-								<td class="noticearticletitle2">이름</td>
-								<td style="text-align: center;" width="200px">${dto.crewName}</td>
-								<td class="noticearticletitle2">작성일 / 조회수</td>
-								<td width="200px" style="text-align: center;">${dto.fbCreated} | ${dto.fbHitCount}</td>
+								<td style="text-align: left;" colspan="2"> 작성자 : ${dto.crewName}</td>
+								<td style="text-align: right;" colspan="2">${dto.fbCreated} | 조회수 : ${dto.fbHitCount}</td>
 							</tr>
 
 							<tr>
