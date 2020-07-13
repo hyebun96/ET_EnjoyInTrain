@@ -119,8 +119,8 @@ function ajaxHTML(url, type, query, selector) {
 
 
 						  
-	<div style=" width: 750px;">   
-								
+	<div>   
+		<img src="<%=cp%>/resource/images/createdicon.png" alt="" width="40px;" style="float: right;">						
 		<form name="QnAForm" method="post"  enctype="multipart/form-data">
 			<table style="width: 100%; margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
 				<tr align="left" height="40" style="border-top: 1px solid #cccccc;  border-bottom:1px solid #cccccc;"> 
@@ -135,7 +135,8 @@ function ajaxHTML(url, type, query, selector) {
 			
 							<c:if test="${sessionScope.member.userId=='admin'}">
 								<button type="button" class="btn" id="btnCategoryUpdate"> 변경 </button>
-							</c:if>			        
+							</c:if>	
+								        
 					</td>
 				</tr>
   
@@ -162,9 +163,9 @@ function ajaxHTML(url, type, query, selector) {
 				
 	
 				<tr align="left" style="border-bottom: 1px solid #cccccc; display: ${mode=='update' && sessionScope.crew.crewId=='a' ? '' : 'none;' } "> 
-					<td class="title" style="text-align: center; padding-top:5px;">답&nbsp;&nbsp;&nbsp;&nbsp;변</td>
-					<td valign="top" style="padding:5px 0px 5px 10px;"> 
-						<textarea name="qnaContent" class="boxTA" style="width: 95%; height: 200px;">${dto.qnaContent}</textarea>
+					<td class="title" style="text-align: center; padding-top:5px; height: 300px;">답&nbsp;&nbsp;&nbsp;&nbsp;변</td>
+					<td valign="top" style="padding:5px 0px 5px 10px; height: 300px;"> 
+						<textarea name="qnaContent" class="boxTA" style="height: 300px;">${dto.qnaContent}</textarea>
 					</td>
 				</tr>
 		

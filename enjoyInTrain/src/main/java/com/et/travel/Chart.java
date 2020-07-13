@@ -5,6 +5,8 @@ public class Chart {
 	private float count;
 	private String pmCode;
 	private String product;
+	private int pmPrice;
+	private int pmPercent;
 	
 	public int getCategoryNum() {
 		return categoryNum;
@@ -29,6 +31,18 @@ public class Chart {
 	}
 	public void setProduct(String product) {
 		this.product = product;
+	}
+	public int getPmPrice() {
+		return pmPrice;
+	}
+	public void setPmPrice(int pmPrice) {
+		this.pmPrice = pmPrice;
+	}
+	public int getPmPercent() {
+		return pmPercent;
+	}
+	public void setPmPercent(int pmPercent) {
+		this.pmPercent = pmPercent;
 	}
 	
 	

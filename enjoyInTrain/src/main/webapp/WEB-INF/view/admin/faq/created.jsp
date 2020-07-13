@@ -103,9 +103,10 @@ function sendOk() {
 					<header>
 						<h2>자주 묻는 질문</h2>
 						<span class="byline">Frequently Asked Questions</span>
+						<img src="<%=cp%>/resource/images/createdicon.png" alt="" width="40px;" style="float: right; padding-bottom: 20px;">
 					</header>
 					<div>
-
+						
 						<form name="boardForm" method="post">
 							<table
 								style="width: 100%; margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">

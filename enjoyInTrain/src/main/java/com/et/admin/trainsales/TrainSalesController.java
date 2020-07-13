@@ -226,7 +226,7 @@ public class TrainSalesController {
 		return model;
 	}		
 	
-	@RequestMapping("person")
+	@RequestMapping(value="person" , produces="application/json;charset=utf-8")
 	@ResponseBody
 	public String person(
 			) throws Exception{
@@ -247,11 +247,11 @@ JSONArray arr = new JSONArray();
 		int sum = 100/(dto.getAdult()+dto.getChild()+dto.getOld()+dto.getMd()+dto.getSd());
 
 		JSONArray ja = new JSONArray();
-		ja.put(new JSONArray("['성인',"+ dto.getAdult() + sum*dto.getAdult() +"]"));
-		ja.put(new JSONArray("['어린이',"+ dto.getChild() + sum*dto.getChild() +"]"));
-		ja.put(new JSONArray("['노인',"+ dto.getOld() +sum*dto.getOld() +"]"));
-		ja.put(new JSONArray("['중증장애인',"+ dto.getMd() + sum*dto.getMd() +"]"));
-		ja.put(new JSONArray("['경증장애인',"+ dto.getSd() + sum*dto.getSd() +"]"));
+		ja.put(new JSONArray("['성인',"+ dto.getAdult() +","+ sum*dto.getAdult() +"]"));
+		ja.put(new JSONArray("['어린이',"+ dto.getChild() +","+ sum*dto.getChild() +"]"));
+		ja.put(new JSONArray("['노인',"+ dto.getOld() +","+sum*dto.getOld() +"]"));
+		ja.put(new JSONArray("['중증장애인',"+ dto.getMd() +","+ sum*dto.getMd() +"]"));
+		ja.put(new JSONArray("['경증장애인',"+ dto.getSd() +","+ sum*dto.getSd() +"]"));
 		
 		job.put("data",ja);
 		

@@ -326,19 +326,21 @@ $(function() {
 			</td>
 			<td valign="top" style="padding: 5px 0px 5px 10px;">
 				<c:if test="${mode=='created'}">
-					<input type="file" name="upload" class="boxTF" size="53" style="width: 95%; height: 25px;" >
+					<input type="file" name="upload" class="boxTF" value="${photoList[0].fileNum}" size="53" style="width: 95%; height: 25px;" >
 				</c:if>
 				<c:if test="${mode=='update'}">
 					<input type="file" name="upload" class="boxTF" value="${photoList[0].fileNum}" size="53" 
 						style="width: 95%; height: 25px; display: none;" >
 				</c:if>
 				<p class="comment" id="commentImg">메인사진은 한장만 업로드 가능합니다</p>
-				<c:if test="${mode=='update' && photoList!=null}">
-				<c:forEach var="pdto" items="${photoList}">
-				<p id="f${pdto.fileNum}" ><a href="javascript:deleteFile('${pdto.fileNum}');" id="mainfile"><i class="fas fa-trash-alt"></i></a>
-							&nbsp;&nbsp;${pdto.originalFileName}</p>
-				</c:forEach>
-			</c:if>	
+				<span id="promotionMainImage" >
+					<c:if test="${mode=='update' && photoList!=null}">
+					<c:forEach var="pdto" items="${photoList}">
+					<p id="f${pdto.fileNum}" ><a href="javascript:deleteFile('${pdto.fileNum}');" id="mainfile"><i class="fas fa-trash-alt"></i></a>
+								&nbsp;&nbsp;${pdto.originalFileName}</p>
+					</c:forEach>
+					</c:if>	
+				</span>
 			</td>
 
 			
@@ -604,7 +606,7 @@ $(function() {
 				<p style="text-align: right;">상품가격</p>
 			</td>
 			<td valign="top" style="padding: 5px 0px 5px 10px;" colspan="3">
-				<input type="text" id="pmPrice" value="${dto.pmPrice}"
+				<input type="text" id="pmPrice" value="${dto.price}"
 					style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">&nbsp;원
 				<p class="comment" id="commentpmPrice" >상품가격(단, 숫자)을 입력하면 기차와 포함된 총 가격이 계산됩니다.</p>
 			</td>
@@ -735,11 +737,11 @@ $(function() {
 			<td class="title" width="100"
 				style="padding:20px 0px;" ><p style="float: right;">총 가격</p></td>
 			<td valign="top" style=" padding: 30px 10px;" colspan="3">
-				<input class="comment" id="stPrice" value="0" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">
+				<input class="comment" id="stPrice" value="${dto.stPrice}" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">
 					<i class="fas fa-plus"></i>
-				<input class="comment" id="Price" value="0" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">
+				<input class="comment" id="Price" value="${dto.price}" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">
 					<i class="fas fa-plus"></i>
-				<input class="comment" id="edPrice" value="0" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">
+				<input class="comment" id="edPrice" value="${dto.edPrice}" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">
 					<i class="fas fa-equals"></i>
 				<input type="text" name="pmPrice" value="${dto.pmPrice}" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">&nbsp;원
 			</td>

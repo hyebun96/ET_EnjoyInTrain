@@ -251,7 +251,7 @@
 		ORDER BY categoryNum ASC
 	</select>
 	
-	<!-- 프로모션별 -->
+	<!-- 프로모션별
 	<select id="promotionChart" resultType="com.et.travel.Chart">
 		SELECT pmCode, product, ROUND(RATIO_TO_REPORT(SUM(cnt)) OVER()*100, 1) AS count
 		FROM(
@@ -261,6 +261,14 @@
 			GROUP BY pm.pmcode, pm.product
 		)sb
 		GROUP BY pmcode, product
+	</select>
+	 -->
+	
+	<select id="promotionChart" resultType="com.et.travel.Chart">
+		SELECT pm.pmCode pmCode, pm.product, COUNT(*) count, pmPrice, pmPercent
+		FROM pmreservation pr
+		JOIN promotiondetail pm ON pr.pmCode = pm.pmCode
+		GROUP BY pm.pmcode, pm.product, pmPrice, pmPercent
 	</select>
 
 </mapper>

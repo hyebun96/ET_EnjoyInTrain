@@ -42,6 +42,10 @@ public class Travel {
 	
 	private List<MultipartFile> uploadContent;
 	
+	private int stPrice;
+	private int price;
+	private int edPrice;
+	
 	public int getCategoryNum() {
 		return categoryNum;
 	}
@@ -186,6 +190,25 @@ public class Travel {
 	public void setUploadContent(List<MultipartFile> uploadContent) {
 		this.uploadContent = uploadContent;
 	}
-
+	public int getStPrice() {
+		return stPrice;
+	}
+	public void setStPrice(int stPrice) {
+		this.stPrice = stPrice;
+	}
+	
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getEdPrice() {
+		return edPrice;
+	}
+	public void setEdPrice(int edPrice) {
+		this.edPrice = edPrice;
+	}
+	
 	
 }

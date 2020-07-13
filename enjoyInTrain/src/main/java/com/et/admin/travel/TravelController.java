@@ -220,6 +220,20 @@ public class TravelController {
 
 				dto.setSaveFileName(photoList.get(0).getSaveFileName());
 				
+				Map<String, Object> map = new HashMap<>();
+				map.put("startStation", startList.get(0).getStartStation());
+				map.put("endStation", startList.get(0).getEndStation());
+				
+				dto.setStPrice(service.priceGet(map));
+				
+				map = new HashMap<>();
+				map.put("startStation", endList.get(0).getStartStation());
+				map.put("endStation", endList.get(0).getEndStation());
+				
+				dto.setEdPrice(dto.getStPrice());
+				dto.setPrice(dto.getPmPrice()-dto.getStPrice()-dto.getEdPrice());
+				
+				
 				model.addAttribute("mode", "update");
 				model.addAttribute("categoryList",categoryList);
 				model.addAttribute("partnerList",partnerList);

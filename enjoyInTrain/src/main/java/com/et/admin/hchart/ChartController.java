@@ -65,8 +65,13 @@ public class ChartController {
 
 		JSONArray ja = new JSONArray();
 		
+		float sum = 0;
+		float pay = 0;
+		
 		for(Chart vo:list) {
-			ja.put(new JSONArray("['"+ vo.getPmCode() +"',"+ vo.getCount() + ",'" + vo.getProduct() + "']"));
+			sum = vo.getPmPrice()*vo.getCount();
+			pay = sum - (sum*vo.getPmPercent()/100);
+			ja.put(new JSONArray("['"+ vo.getProduct() +"',"+ pay + ",'" + vo.getProduct() + "']"));
 		}
 	
 		job.put("data",ja);

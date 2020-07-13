@@ -155,7 +155,7 @@ $(function(){
 
 						  
 	<div style=" width: 100%;">   
-								
+		<img src="<%=cp%>/resource/images/createdicon.png" alt="" width="40px;" style="float: right;">		
 		<form name="QnAForm" method="post"  enctype="multipart/form-data">
 			<table style="width: 100%; margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
 				<tr align="left" height="40" style="border-top: 1px solid #cccccc;  border-bottom:1px solid #cccccc;"> 

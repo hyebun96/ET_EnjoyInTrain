@@ -326,6 +326,7 @@ function sendOk(mode) {
 									<c:forEach var="vo" items="${groupList}">
 										<li  id="tab-${vo.categoryNum}" data-tab="${vo.categoryNum}">${vo.category}</li>
 									</c:forEach> 
+								
 								</ul>
 							</div>
 							

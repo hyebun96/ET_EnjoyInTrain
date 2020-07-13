@@ -126,10 +126,12 @@ $(function(){
 });
 
 
-function person() {
+$(function(){
 	var url="<%=cp%>/admin/trainsales/person";
 		
 		$.getJSON(url, function(data) {
+			console.log(data);
+			
 		Highcharts.chart('container', {
 		    chart: {
 		        type: 'variablepie'
@@ -147,7 +149,7 @@ function person() {
 		});
 	});
 	              
-}
+});
 
 
 
