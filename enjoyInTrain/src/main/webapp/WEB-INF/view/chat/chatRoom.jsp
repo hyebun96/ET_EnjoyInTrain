@@ -61,7 +61,6 @@
 <script type="text/javascript">
 function convertStringToDate(str) {
 	// yyyy-mm-dd hh:mi:ss
-    
     return new Date(str.substr(0,4), str.substr(5,2)-1, str.substr(8,2), str.substr(11,2), str.substr(14,2), str.substr(17,2));
 }
 
@@ -128,10 +127,7 @@ function compareToDate(date1, date2) {
 	
 	return d1.getTime() - d2.getTime();	//최근꺼 띄울려는 것
 }	
-
 // =========================================================================
-	
-	
 	
 $(function(){
 		var uid = "${sessionScope.crew.crewId}";
@@ -148,9 +144,7 @@ $(function(){
 		// 채팅 서버에 접속
 		var sock = io('http://localhost:3001/chat');
 		
-		
 		// 채팅방 입장
-		
 		var isVisible = $("#myChatMsg").is(':visible');
 		var isVisible2 = $("#myChatMsg").is(':hidden');
 
@@ -171,7 +165,6 @@ $(function(){
 			$(".chatting-content-list").empty();
 			$(".chatting-room-name").html("[" + roomName + "]");
 
-
 			// 오늘 날짜의 룸 채팅 문자열 리스트 요청
 			sock.emit("chat-msg-list", {
 				room : room,
@@ -190,6 +183,7 @@ $(function(){
 				$("#chatRomInfo").show();
 			}
 		});
+		
 		// 채팅 메시지 보내기
 		$("#chatMsg").on("keydown", function(event) {
 			// 엔터키가 눌린 경우, 서버로 메시지를 전송한다.
@@ -214,10 +208,6 @@ $(function(){
 				$("#chatMsg").focus();
 			}
 		});
-
-
-	
-		
 		
 		// 더보기 보내기
 		$(".chatting-msg-more").click(function() {
@@ -358,10 +348,10 @@ $(function(){
 									
 									<div class="chat_btn">
 										<button type="button" class="chatbtn"
-											style="margin-right: 40px;" data-room="java">수도권 방</button>
+											style="margin-right: 40px;" data-room="room1">수도권 방</button>
 										<button type="button" class="chatbtn"
-											style="margin-right: 40px;" data-room="spring">강원권 방</button>
-										<button type="button" class="chatbtn" data-room="servlet">충청권 방</button>
+											style="margin-right: 40px;" data-room="room2">강원권 방</button>
+										<button type="button" class="chatbtn" data-room="room3">충청권 방</button>
 									</div>
 								</div>
 								<div class="chat_room">
@@ -381,10 +371,10 @@ $(function(){
 									
 									<div class="chat_btn">
 										<button type="button" class="chatbtn"
-											style="margin-right: 40px;" data-room="oracle">경상권 방</button>
+											style="margin-right: 40px;" data-room="room4">경상권 방</button>
 										<button type="button" class="chatbtn"
-											style="margin-right: 40px;" data-room="web">전라권 방</button>
-										<button type="button" class="chatbtn" data-room="other">충청권 방</button>
+											style="margin-right: 40px;" data-room="room5">전라권 방</button>
+										<button type="button" class="chatbtn" data-room="room6">자유채팅방</button>
 									</div>
 								</div>
 							</div>
