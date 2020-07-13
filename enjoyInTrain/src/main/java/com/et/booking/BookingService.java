@@ -1,11 +1,12 @@
 package com.et.booking;
-
+    
 import java.util.List;
 import java.util.Map;
 
 import com.et.reservation.Condition;
 import com.et.reservation.Seat;
 import com.et.reservation.Train;
+
 
 public interface BookingService {
 	public int insertReservation(Booking dto) throws Exception;					// 예약 하기

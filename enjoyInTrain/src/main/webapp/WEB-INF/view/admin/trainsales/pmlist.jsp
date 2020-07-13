@@ -103,7 +103,7 @@ $(function(){
 		    },
 		    yAxis: {
 		        title: {
-		            text: 'Total percent market share'
+		            text: '백분율'
 		        }
 
 		    },
