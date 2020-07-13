@@ -98,7 +98,9 @@ function suggestList(){
 									
 								</table>
 								</div>
-								<button type="button" onclick="javascript:location.href='<%=cp%>/suggest/created';" class="noticebtn" style="float: right; margin-top: 20px;">글쓰기</button>
+								<c:if test="${sessionScope.crew.crewId != null}">
+									<button type="button" onclick="javascript:location.href='<%=cp%>/suggest/created';" class="noticebtn" style="float: right; margin-top: 20px;">글쓰기</button>
+								</c:if>
 								${dataCount==0?"등록된 게시물이 없습니다.":paging}
 								<input type="hidden" name="rows" value="${rows}">
 								</form>

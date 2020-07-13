@@ -28,35 +28,6 @@ tr.over {
 	cursor: pointer;
 }
 
-ul.tabs {
-	margin: 5px 0px;
-	padding: 0;
-	float: left;
-	list-style: none;
-	height: 35px;
-	border-bottom: 1px solid #dddddd;
-	width: 100%;
-}
-ul.tabs li {
-	float: left;
-	margin: 0;
-	cursor: pointer;
-	padding: 0px 21px ;
-	height: 35px;
-	line-height: 35px;
-	overflow: hidden;
-	position: relative;
-	background: #ffffff;
-}
-ul.tabs li:hover {
-	background: #e7e7e7;
-}	
-ul.tabs li.active{
-	font-weight: 700;
-	border: 1px solid #dddddd;
-	border-bottom-color:  transparent;
-}
-
 #btn{
 	width: 100px; 
 	height: 30px; 

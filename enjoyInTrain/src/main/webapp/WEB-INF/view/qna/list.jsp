@@ -28,35 +28,6 @@ tr.over {
 	cursor: pointer;
 }
 
-ul.tabs {
-	margin: 5px 0px;
-	padding: 0;
-	float: left;
-	list-style: none;
-	height: 35px;
-	border-bottom: 1px solid #dddddd;
-	width: 800px;
-}
-ul.tabs li {
-	float: left;
-	margin: 0;
-	cursor: pointer;
-	padding: 0px 21px ;
-	height: 35px;
-	line-height: 35px;
-	overflow: hidden;
-	position: relative;
-	background: #ffffff;
-}
-ul.tabs li:hover {
-	background: #e7e7e7;
-}	
-ul.tabs li.active{
-	font-weight: 700;
-	border: 1px solid #dddddd;
-	border-bottom-color:  transparent;
-}
-
 #btn{
 	width: 100px; 
 	height: 30px; 
@@ -125,7 +96,7 @@ ul.tabs li.active{
 			<tr height="35">
 				<td align="right">
 					<c:if test="${sessionScope.crew.crewId != null}">
-						<button style="border-radius: 10px;" type="button" id="btn" class="btn" onclick="insertForm();">qna올리기</button>
+						<button style="border-radius: 10px;" type="button" id="btn" class="btn" onclick="insertForm();">질문 올리기</button>
 					</c:if>
 				</td>
 			 </tr>

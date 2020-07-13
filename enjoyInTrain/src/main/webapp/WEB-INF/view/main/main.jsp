@@ -307,11 +307,11 @@ p.title1{
 							<tr>
 								<td class="maintop1_notice1">
 									ET 만의 특별한 할인 제도
-									<a href="<%=cp%>/notice/list" class="button1"> + 자세히 보기 </a>
+									<a href="#" class="button1"> + 자세히 보기 </a>
 								</td>
 								<td class="maintop1_notice2">
 									&nbsp; 고객의 소리
-									<a href="<%=cp%>/notice/list" class="button1"> + 문의하기 </a>
+									<a href="<%=cp%>/suggest/list" class="button1"> + 문의하기 </a>
 								</td>
 							</tr>
 						</table>

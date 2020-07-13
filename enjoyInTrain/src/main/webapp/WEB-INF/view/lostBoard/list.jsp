@@ -54,15 +54,10 @@ function search() {
 								<h2>유실물</h2>
 								<span class="byline">Lost | Lost property</span>
 							</header>
-							<ul>
-								<li id="board_page">${dataCount}개(${page}/${total_page} 페이지)</li>
-							</ul>
-							
-							
 							<div style="clear: both;">
 								<ul>
 									
-									<li>
+									<li style="display: inline-block;">
 										<form name="searchForm" action="<%=cp%>/lostBoard/list" method="post">
 		            						<select name="condition" class="selectField, noticebtn">
 		                  						<option value="all" ${condition=="all"?"selected='selected'":""}>전체</option>
@@ -74,6 +69,7 @@ function search() {
 		            							<button type="button" class="noticebtn" onclick="search()">검색</button>
 		        					</form>
 		        					</li>
+			        				<li id="board_page"  style="display: inline-block; float: right;">${dataCount}개(${page}/${total_page} 페이지)</li>
 								</ul>
 							</div>
 							
@@ -109,7 +105,11 @@ function search() {
 										
 								</tbody>
 							</table>
-							<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/created';" class="noticebtn" style="float: right; margin-top: 20px;">글쓰기</button>
+							
+							<c:if test="${sessionScope.crew.crewId != null}">
+								<button type="button" onclick="javascript:location.href='<%=cp%>/lostBoard/created';" class="noticebtn" style="float: right; margin-top: 20px;">글쓰기</button>
+							</c:if>
+							
 							${dataCount==0 ? "등록된 게시물이 없습니다.":paging}
 							
 							</div>

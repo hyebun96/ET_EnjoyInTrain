@@ -36,7 +36,7 @@ ul.tabs {
 	list-style: none;
 	height: 35px;
 	border-bottom: 1px solid #dddddd;
-	width: 800px;
+	width: 100%;
 }
 
 ul.tabs li {
@@ -48,7 +48,6 @@ ul.tabs li {
 	line-height: 35px;
 	overflow: hidden;
 	position: relative;
-	background: #ffffff;
 }
 
 ul.tabs li:hover {
@@ -59,6 +58,7 @@ ul.tabs li.active {
 	font-weight: 700;
 	border: 1px solid #dddddd;
 	border-bottom-color: transparent;
+	background: #ffffff;
 }
 
 #btn {
