@@ -36,16 +36,18 @@ public class BookingServiceImpl implements BookingService{
 			dto.setPrCode(prCode);
 				dao.insertData("booking.insertReservation", dto);
 				dao.updateData("booking.updatePayDate", dto.getPrSeq());
+				reservationTrain(dto);
 				if(dto.getRoomGrade().equals("일반")) {
 					dto.setPrAddPrice(0);
 					dao.insertData("booking.insertTrain", dto);	
-				} else if(dto.getRoomGrade()!=null){
+				} else {
 					dao.insertData("booking.insertTrain", dto);
 				}
 				prCode = dao.selectOne("booking.setPrcode1");
 				dto.setPrCode(prCode);
 				dao.insertData("booking.insertReservation1", dto);
 				dao.updateData("booking.updatePayDate", dto.getPrSeq());
+				reservationTrain1(dto);
 				if(dto.getRoomGrade1().equals("일반")) {
 					dto.setPrAddPrice1(0);
 					dao.insertData("booking.insertTrain1", dto);
@@ -77,11 +79,15 @@ public class BookingServiceImpl implements BookingService{
 			List<Booking> list = readForCancle(map);
 			for(Booking dto : list) {
 				if(Integer.parseInt(dto.getTrainCode())%2==0) {
-					dao.deleteData("booking.deleteReservation", map);
+					dao.deleteData("booking.deleteReservation", dto);
 					dao.updateData("booking.updateStock1", dto);
+					dao.deleteData("booking.deleteTrain", dto.getPrCode());
 				} else {
-					dao.deleteData("booking.deleteReservation", map);
+					dao.deleteData("booking.deleteReservation", dto);
+					dao.deleteData("booking.deleteTrain", dto.getPrCode());
 				}
+				dao.deleteData("booking.deleteTrain", dto.getPrCode());
+				dao.updateData("booking.reFundUpdate", dto.getTrCode());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -332,8 +338,58 @@ public class BookingServiceImpl implements BookingService{
 			dto.setEndStation(dao.selectOne("booking.getEngEnd", dto.getEndStation()));
 			dto.setStartCode(dao.selectOne("booking.readStationCode", dto));
 			dto.setEndCode(dao.selectOne("booking.readStationCode1", dto));
-			dao.insertData("booking.reservationTrain", dto);
+			if(dto.getRoomGrade().equals("일반")) {
+				dto.setPrAddPrice(0);
+				dao.insertData("booking.reservationTrain", dto);
+			} else {
+				dao.insertData("booking.reservationTrain", dto);
+			}
 			dao.insertData("booking.insertReservationInfo", dto);
+			
+			int rsSeatCode = 0;
+			if(!dto.getPrStartTrainSeat().contains(",")) {
+				dto.setSeatNum(dto.getPrStartTrainSeat());
+				rsSeatCode = dao.selectOne("booking.reservedSeatSeq");
+				dto.setRsSeatCode(rsSeatCode);
+				int seatType[] = {dto.getAdult(), dto.getChild(), dto.getOldMan()};
+				for(int a=0;a<seatType.length;a++) {
+					for(int b=0;b<seatType[a];b++) {
+						String name="";
+						switch (a) {
+							case 0: name="성인"; break;
+							case 1: name="어린이"; break;
+							case 2: name="경로"; break;
+						}
+						dto.setSeatType(name);
+						dao.insertData("booking.insertReservedSeat", dto);
+					}
+				}
+			} else {
+				String[] seatNum = dto.getPrStartTrainSeat().split(",");
+				int price = dto.getPrAddPrice();
+				for(int i=0;i<seatNum.length;i++) {
+					int seatType[] = {dto.getAdult(), dto.getChild(), dto.getOldMan()};
+						String name = "";
+						String type = "";
+						for(int a=0;a<seatType.length;a++) {
+							for(int b=0;b<seatType[a];b++) {
+								switch (a) {
+									case 0: name="성인"; break;
+									case 1: name="어린이"; break;
+									case 2: name="경로"; break;
+								}
+								type +=","+name;
+							}
+						}
+						String seat[] = type.split(",");
+						dto.setSeatNum(seatNum[i]);
+						dto.setSeatType(seat[i+1]);
+						rsSeatCode = dao.selectOne("booking.reservedSeatSeq");
+						dto.setRsSeatCode(rsSeatCode);
+						dto.setPrAddPrice(price/dto.getPrPersonnel());
+						dao.insertData("booking.insertReservedSeat", dto);
+				}
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -345,12 +401,62 @@ public class BookingServiceImpl implements BookingService{
 		try {
 			trCode=dao.selectOne("booking.trainreservationSeq");
 			dto.setTrCode(trCode);
-			dto.setStartStation(dao.selectOne("booking.getEngStart1", dto.getStartStation()));
-			dto.setEndStation(dao.selectOne("booking.getEngEnd1", dto.getEndStation()));
+			dto.setStartStation1(dao.selectOne("booking.getEngStart1", dto.getStartStation1()));
+			dto.setEndStation1(dao.selectOne("booking.getEngEnd1", dto.getEndStation1()));
 			dto.setStartCode(dao.selectOne("booking.readStationCode", dto));
 			dto.setEndCode(dao.selectOne("booking.readStationCode1", dto));
-			dao.insertData("booking.reservationTrain1", dto);
+			if(dto.getRoomGrade1().equals("일반")) {
+				dto.setPrAddPrice1(0);
+				dao.insertData("booking.reservationTrain1", dto);
+			} else {
+				dao.insertData("booking.reservationTrain1", dto);
+			}
 			dao.insertData("booking.insertReservationInfo1", dto);
+			
+			int rsSeatCode = 0;
+			if(!dto.getPrEndTrainSeat().contains(",")) {
+				dto.setSeatNum(dto.getPrEndTrainSeat());
+				rsSeatCode = dao.selectOne("booking.reservedSeatSeq");
+				dto.setRsSeatCode(rsSeatCode);
+				int seatType[] = {dto.getAdult1(), dto.getChild1(), dto.getOldMan1()};
+				for(int a=0;a<seatType.length;a++) {
+					for(int b=0;b<seatType[a];b++) {
+						String name="";
+						switch (a) {
+							case 0: name="성인"; break;
+							case 1: name="어린이"; break;
+							case 2: name="경로"; break;
+						}
+						dto.setSeatType(name);
+						dao.insertData("booking.insertReservedSeat1", dto);
+					}
+				}
+			} else {
+				String[] seatNum = dto.getPrStartTrainSeat().split(",");
+				int price = dto.getPrAddPrice1();
+				for(int i=0;i<seatNum.length;i++) {
+					int seatType[] = {dto.getAdult1(), dto.getChild1(), dto.getOldMan1()};
+						String name="";
+						String type = "";
+						for(int a=0;a<seatType.length;a++) {
+							for(int b=0;b<seatType[a];b++) {
+								switch (a) {
+									case 0: name="성인"; break;
+									case 1: name="어린이"; break;
+									case 2: name="경로"; break;
+								}
+								type+=","+name;
+							}
+						}
+						String seat[] = type.split(",");
+						dto.setSeatNum(seatNum[i]);
+						dto.setSeatType(seat[i+1]);
+						rsSeatCode = dao.selectOne("booking.reservedSeatSeq");
+						dto.setRsSeatCode(rsSeatCode);
+						dto.setPrAddPrice1(price/dto.getPrPersonnel());
+						dao.insertData("booking.insertReservedSeat1", dto);
+					}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
