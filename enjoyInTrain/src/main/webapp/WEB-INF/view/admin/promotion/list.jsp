@@ -5,7 +5,7 @@
 <%
    String cp = request.getContextPath();
 %>
-<link rel="stylesheet" href="<%=cp%>/resource/css/sales.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/promotion.css" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 
 <script type="text/javascript">

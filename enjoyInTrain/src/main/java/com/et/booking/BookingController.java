@@ -24,7 +24,7 @@ import com.et.reservation.Seat;
 @Controller("booking.bookingController")
 @RequestMapping("/booking/*")
 public class BookingController {
-
+	
 	@Autowired
 	private BookingService service;
 
@@ -316,5 +316,4 @@ public class BookingController {
 		model.addAttribute("seatList", seatList);
 		return "/booking/reservation";
 	}
-
 }

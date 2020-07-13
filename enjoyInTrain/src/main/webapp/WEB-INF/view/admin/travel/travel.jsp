@@ -496,7 +496,7 @@ function deleteTrain2(trainCode){
 <div id="adminpage">
 	
 	<div class="trainandtime">
-		<a href="<%=cp%>/admin/travel/travel">프로모션 관리</a> <span>|</span> <a href="<%=cp%>/admin/sales/list">프로모션 예약 관리</a>
+		<a href="<%=cp%>/admin/travel/travel">프로모션 관리</a> <span>|</span> <a href="<%=cp%>/admin/promotion/list">프로모션 예약 관리</a>
 	</div>
 
 	<!-- Main -->
