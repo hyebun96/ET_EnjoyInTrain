@@ -287,7 +287,7 @@ function insertAn(){
 						<table class="noticearticle">
 							<tr class="noticearticletitle">
 								<td class="noticearticletitle1">제목  </td>
-								<td colspan="3" style="text-align: left;"> ${dto.sgTitle} </td>
+								<td colspan="3" style="text-align: center;"> ${dto.sgTitle} </td>
 							</tr>
 							<tr class="noticearticletitle">
 								<td class="noticearticletitle2">등록일</td>

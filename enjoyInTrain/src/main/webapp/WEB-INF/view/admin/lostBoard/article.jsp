@@ -269,15 +269,13 @@ $(function () {
 					<table class="noticearticle">
 							<tr class="noticearticletitle">
 								<td class="noticearticletitle1">제목  </td>
-								<td style="text-align: left;"> ${dto.lostTitle} </td>
-								<td class="noticearticletitle1">조회수  </td>
-								<td width="300px" style="text-align: center;">${dto.lostHitCount}</td>
+								<td style="text-align: center;" colspan="3"> ${dto.lostTitle} </td>
 							</tr>
 							<tr class="noticearticletitle">
 								<td class="noticearticletitle2">작성자</td>
-								<td style="text-align: center;">${dto.crewName}</td>
-								<td class="noticearticletitle2">작성일</td>
-								<td width="300px" style="text-align: center;">${dto.lostCreated}</td>
+								<td style="text-align: center;" width="200px">${dto.crewName}</td>
+								<td class="noticearticletitle2">작성일 / 조회수</td>
+								<td width="200px" style="text-align: center;">${dto.lostCreated} | ${dto.lostHitCount}</td>
 								
 							</tr>
 							<tr style="padding: 5px 5px;">

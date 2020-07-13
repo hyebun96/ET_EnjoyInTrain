@@ -70,17 +70,17 @@ function sendLogin(){
 						<table style="width:450px; height:150px; text-align: center; margin: 0 auto;"  >
 							<tr style="padding: 10px;">
 								<td style="font-size:17px; font-weight:bold; text-align:left; width: 20%; height: 30%;">아&nbsp;이&nbsp;디</td>
-								<td style="width: 50%; height: 30%;"><input name="crewId" id="crewId" type="text" style="border:1px solid #BDBDBD; width: 100%;"></td>
+								<td style="width: 50%; height: 30%;"><input name="crewId" id="crewId" type="text" style="border:1px solid #BDBDBD; width: 100%;" autocomplete="off"></td>
 								<td style="text-align: right;"  rowspan="2" ><button style="border:none; font-weight:bold; background: #6f047f; color: white;" type="button" class="btn" onclick="sendLogin();">확&nbsp;인</button></td>
 							</tr>
 							<tr>
 								<td style="font-size:17px; font-weight:bold; text-align:left; width: 20%; height: 30%;">비밀번호</td>
-								<td style="width: 40%; height: 30%;"><input name="crewPwd" id="crewPwd" type="password" style="border:1px solid #BDBDBD; width: 100%;"></td>
+								<td style="width: 40%; height: 30%;"><input name="crewPwd" id="crewPwd" type="password" style="border:1px solid #BDBDBD; width: 100%;" autocomplete="off"></td>
 							</tr>
 							<tr>
 								<td colspan="3">
-									<button class="findbtn" style="border:1px solid #BDBDBD;  background: #EAEAEA;">아이디 찾기</button>
-									<button class="findbtn" style="border:1px solid #BDBDBD; background: #EAEAEA;">비밀번호 찾기</button>
+									<button class="findbtn" style="border:1px solid #BDBDBD;  background: #EAEAEA;" type="button" onclick="javascript:location.href='<%=cp%>/crew/idfind';">아이디 찾기</button>
+									<button class="findbtn" style="border:1px solid #BDBDBD; background: #EAEAEA;" type="button" onclick="javascript:location.href='<%=cp%>/crew/idfind';">비밀번호 찾기</button>
 									<button class="findbtn" style="border:1px solid #BDBDBD; background: #EAEAEA;" type="button" onclick="javascript:location.href='<%=cp%>/crew/crew';">회원가입</button>
 									<p style="color: red;">${message}</p>
 								</td>
