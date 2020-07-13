@@ -10,7 +10,7 @@
 
 <script type="text/javascript">
 function deleteReservation(prSeq) {
-	var url = "<%=cp%>/admin/sales/delete?prSeq="+prSeq+"&page=${page}";
+	var url = "<%=cp%>/admin/promotion/delete?prSeq="+prSeq+"&page=${page}";
 	if(confirm("삭제하시겠습니까?")){
 		location.href = url;
 	}
