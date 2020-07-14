@@ -13,6 +13,7 @@
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
 
 <style>
@@ -235,19 +236,19 @@ function person() {
 		$.getJSON(url, function(data) {
 		Highcharts.chart('containerChatBody', {
 		    chart: {
-		        type: 'variablepie'
+		        type: 'variablepie',
+		      
 		    },
 		    tooltip: {
 		        headerFormat: '',
-		        pointFormat: '<span style="size:30px; color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+		        pointFormat: '<span style=" color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
 		          '건 수: <b>{point.y}건</b><br/>' +
 		          '비 율: <b>{point.z:.2f}%</b><br/>'
 		    },
 		    title: {
-		        text: '[ 손님 유형별 비율 ]'
+		        text: '[ 승객 유형별 비율 ]'
 		    },
 		    series: data
-		    	
 		});
 	});
 	              
@@ -277,11 +278,11 @@ function person() {
 									<li id="tab-listDay" data-tab="listDay">일별</li>
 									<li id="tab-listMonth" data-tab="listMonth">월별</li>
 									<li id="tab-listYear" data-tab="listYear">년별</li>
-									<li id="tab-person" data-tab="person">손님 유형별</li>
+									<li id="tab-person" data-tab="person">승객 유형별</li>
 								</ul>							
 							</div>
 							
-							<div class="containerChat" style="clear: both; margin-top: 5px;">
+							<div class="containerChat" style="clear: both; margin-top: 15px;">
 						    	<div id="containerChatBody"></div>
 						    </div>
 							<div>

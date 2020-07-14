@@ -90,8 +90,8 @@ function detailedCrew(crewId) {
 	    	    $(this).dialog("close");
 	       }
 		},
-		height:520,
-		width: 800,
+		height:280,
+		width: 580,
 		title:"회원상세정보",
 		close:function(event,ui){
 		}

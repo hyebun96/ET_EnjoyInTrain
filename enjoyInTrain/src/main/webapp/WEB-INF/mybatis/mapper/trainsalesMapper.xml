@@ -9,6 +9,7 @@
 		FROM reservedSeat rs
 		JOIN trainreservation tr ON tr.trCode = rs.trCode
 		WHERE rs.refund IS NULL AND
+			  tr.promotion = 0 AND
 		      TO_CHAR(trPaydate, 'YYYYMM') = #{keyword}
 		GROUP BY TO_CHAR(trPaydate,'YYYY/MM/DD')
 		ORDER BY trPaydate ASC
@@ -20,72 +21,84 @@
 		FROM reservedSeat rs
 		JOIN trainreservation tr ON tr.trCode = rs.trCode
 		WHERE rs.refund IS NULL AND
+			  tr.promotion = 0 AND
 			  TO_CHAR(trPaydate, 'YYYY') = #{keyword} AND TO_CHAR(trPaydate,'MM')='01'	
 	    UNION ALL
 		SELECT '02' trPayDate,COUNT(tr.trCode) count, NVL(SUM(rs.seatpay), 0) seatPay
 		FROM reservedSeat rs
 		JOIN trainreservation tr ON tr.trCode = rs.trCode
 		WHERE rs.refund IS NULL AND
+			  tr.promotion = 0 AND
 			  TO_CHAR(trPaydate, 'YYYY') = #{keyword} AND TO_CHAR(trPaydate,'MM')='02'		    
 	    UNION ALL
 		SELECT '03' trPayDate,COUNT(tr.trCode) count, NVL(SUM(rs.seatpay), 0) seatPay
 		FROM reservedSeat rs
 		JOIN trainreservation tr ON tr.trCode = rs.trCode
 		WHERE rs.refund IS NULL AND
+			  tr.promotion = 0 AND
 			  TO_CHAR(trPaydate, 'YYYY') = #{keyword} AND TO_CHAR(trPaydate,'MM')='03'			
 	    UNION ALL
 		SELECT '04' trPayDate,COUNT(tr.trCode) count, NVL(SUM(rs.seatpay), 0) seatPay
 		FROM reservedSeat rs
 		JOIN trainreservation tr ON tr.trCode = rs.trCode
 		WHERE rs.refund IS NULL AND
+			  tr.promotion = 0 AND
 			  TO_CHAR(trPaydate, 'YYYY') = #{keyword} AND TO_CHAR(trPaydate,'MM')='04'			
 	    UNION ALL
 		SELECT '05' trPayDate,COUNT(tr.trCode) count, NVL(SUM(rs.seatpay), 0) seatPay
 		FROM reservedSeat rs
 		JOIN trainreservation tr ON tr.trCode = rs.trCode
 		WHERE rs.refund IS NULL AND
+			  tr.promotion = 0 AND
 			  TO_CHAR(trPaydate, 'YYYY') = #{keyword} AND TO_CHAR(trPaydate,'MM')='05'			
 	    UNION ALL
 		SELECT '06' trPayDate,COUNT(tr.trCode) count, NVL(SUM(rs.seatpay), 0) seatPay
 		FROM reservedSeat rs
 		JOIN trainreservation tr ON tr.trCode = rs.trCode
 		WHERE rs.refund IS NULL AND
+			  tr.promotion = 0 AND
 			  TO_CHAR(trPaydate, 'YYYY') = #{keyword} AND TO_CHAR(trPaydate,'MM')='06'	
 	    UNION ALL
 		SELECT '07' trPayDate,COUNT(tr.trCode) count, NVL(SUM(rs.seatpay), 0) seatPay
 		FROM reservedSeat rs
 		JOIN trainreservation tr ON tr.trCode = rs.trCode
 		WHERE rs.refund IS NULL AND
+			  tr.promotion = 0 AND
 			  TO_CHAR(trPaydate, 'YYYY') = #{keyword} AND TO_CHAR(trPaydate,'MM')='07'
 	    UNION ALL
 		SELECT '08' trPayDate,COUNT(tr.trCode) count, NVL(SUM(rs.seatpay), 0) seatPay
 		FROM reservedSeat rs
 		JOIN trainreservation tr ON tr.trCode = rs.trCode
 		WHERE rs.refund IS NULL AND
+			  tr.promotion = 0 AND
 			  TO_CHAR(trPaydate, 'YYYY') = #{keyword} AND TO_CHAR(trPaydate,'MM')='08'			
 	    UNION ALL
 		SELECT '09' trPayDate,COUNT(tr.trCode) count, NVL(SUM(rs.seatpay), 0) seatPay
 		FROM reservedSeat rs
 		JOIN trainreservation tr ON tr.trCode = rs.trCode
 		WHERE rs.refund IS NULL AND
+			  tr.promotion = 0 AND
 			  TO_CHAR(trPaydate, 'YYYY') = #{keyword} AND TO_CHAR(trPaydate,'MM')='09'			
 	    UNION ALL
 		SELECT '10' trPayDate,COUNT(tr.trCode) count, NVL(SUM(rs.seatpay), 0) seatPay
 		FROM reservedSeat rs
 		JOIN trainreservation tr ON tr.trCode = rs.trCode
 		WHERE rs.refund IS NULL AND
+			  tr.promotion = 0 AND
 			  TO_CHAR(trPaydate, 'YYYY') = 2020 AND TO_CHAR(trPaydate,'MM')='10'			
 	    UNION ALL
 		SELECT '11' trPayDate,COUNT(tr.trCode) count, NVL(SUM(rs.seatpay), 0) seatPay
 		FROM reservedSeat rs
 		JOIN trainreservation tr ON tr.trCode = rs.trCode
 		WHERE rs.refund IS NULL AND
+			  tr.promotion = 0 AND
 			  TO_CHAR(trPaydate, 'YYYY') = #{keyword} AND TO_CHAR(trPaydate,'MM')='11'			
 	    UNION ALL
 		SELECT '12' trPayDate,COUNT(tr.trCode) count, NVL(SUM(rs.seatpay), 0) seatPay
 		FROM reservedSeat rs
 		JOIN trainreservation tr ON tr.trCode = rs.trCode
 		WHERE rs.refund IS NULL AND
+			  tr.promotion = 0 AND
 			  TO_CHAR(trPaydate, 'YYYY') = #{keyword} AND TO_CHAR(trPaydate,'MM')='12'			
 		ORDER BY trPayDate ASC
 	</select>
@@ -95,7 +108,9 @@
 		SELECT TO_CHAR(trPaydate,'YYYY')as trPayDate,COUNT(tr.trCode) count, SUM(rs.seatpay) seatPay
 		FROM reservedSeat rs
 		JOIN trainreservation tr ON tr.trCode = rs.trCode
-		WHERE rs.refund IS NULL AND (TO_CHAR(trPaydate,'YYYY') >= (TO_CHAR(SYSDATE, 'YYYY') - 4 ) )
+		WHERE rs.refund IS NULL AND
+			  tr.promotion = 0 AND
+		 	 (TO_CHAR(trPaydate,'YYYY') >= (TO_CHAR(SYSDATE, 'YYYY') - 4 ) )
 		GROUP BY TO_CHAR(trPaydate,'YYYY')
 		ORDER BY trPaydate DESC
 	</select>
@@ -108,7 +123,7 @@
 		COUNT(CASE WHEN rs.seattype='경증장애인' THEN 1 END)as md
 		FROM reservedSeat rs
 		JOIN trainreservation tr ON tr.trCode = rs.trCode
-		WHERE rs.refund IS NULL
+		WHERE rs.refund IS NULL AND tr.promotion = 0
 	</select>
 	
 </mapper>

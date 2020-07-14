@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.et.travel.Chart;
-
 @Controller("admin.trainsales.trainSalesController")
 @RequestMapping("/admin/trainsales/*")
 public class TrainSalesController {
@@ -152,9 +150,7 @@ public class TrainSalesController {
 	    	}
 	    	
 	    	model.put("categories", categories);
-	 //   	model.put("categories1", categories1);
 	    	model.put("series", data);
-	 //   	model.put("series1", data1);
 	    }
 	    			
 		return model;
@@ -237,24 +233,48 @@ public class TrainSalesController {
 		JSONArray arr = new JSONArray();
 		
 		JSONObject job = new JSONObject();
-		job.put("minPointSize", "10");
-		job.put("innerSize", "20%");
-		job.put("zMin", "0");
-		job.put("name", "손님 유형별 비율");
+		job.put("minPointSize", 10);
+		job.put("innerSize", "30%");
+		job.put("zMin", 0);
+		job.put("name", "countries");
 		
+		JSONArray ja = new JSONArray();
 		dto = service.listType();
 		
 		float sum = 100/(dto.getAdult()+dto.getChild()+dto.getOld()+dto.getMd()+dto.getSd());
 
-		JSONArray ja = new JSONArray();
-		ja.put(new JSONArray("['성인',"+ dto.getAdult() +",'"+ sum * dto.getAdult() +"']"));
-		ja.put(new JSONArray("['어린이',"+ dto.getChild() +",'"+ sum * dto.getChild() +"']"));
-		ja.put(new JSONArray("['노인',"+ dto.getOld() +",'"+ sum * dto.getOld() +"']"));
-		ja.put(new JSONArray("['중증장애인',"+ dto.getMd() +",'"+ sum * dto.getMd() +"']"));
-		ja.put(new JSONArray("['경증장애인',"+ dto.getSd() +",'"+ sum * dto.getSd() +"']"));
+		JSONObject oo;
+		oo=new JSONObject();
+		oo.put("name", "성인");
+		oo.put("y", dto.getAdult());
+		oo.put("z", dto.getAdult() * sum);
+		ja.put(oo);
 		
+		oo=new JSONObject();
+		oo.put("name", "어린이");
+		oo.put("y", dto.getChild());
+		oo.put("z", dto.getChild() * sum);
+		ja.put(oo);
+		
+		oo=new JSONObject();
+		oo.put("name", "노인");
+		oo.put("y", dto.getOld());
+		oo.put("z", dto.getOld() * sum);
+		ja.put(oo);
+		
+		oo=new JSONObject();
+		oo.put("name", "중증장애인");
+		oo.put("y", dto.getMd());
+		oo.put("z", dto.getMd() * sum);
+		ja.put(oo);
+		
+		oo=new JSONObject();
+		oo.put("name", "경증장애인");
+		oo.put("y", dto.getSd());
+		oo.put("z", dto.getSd() * sum);
+		ja.put(oo);
+				
 		job.put("data",ja);
-	//	job.put("series", ja);
 		
 		arr.put(job);
 		
