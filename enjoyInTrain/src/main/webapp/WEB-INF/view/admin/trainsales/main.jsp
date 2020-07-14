@@ -13,6 +13,7 @@
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/variable-pie.js"></script>
 
 <style>
 .homepage #main{
@@ -29,13 +30,15 @@
 	border: 1px solid #ccc;
 	cursor: pointer;
 	border-radius: 5px;
-	
+
 }
 
 
 </style>
 
 <script type="text/javascript">
+
+
 $(function(){
 	var tab = "${tab}";
 	var year="${year}";
@@ -61,24 +64,27 @@ $(function(){
 		
 		if(tab=="listDay") {
 			$(".container-searchBody").show();
-			$("select[name=searchMonth]").show();
-			
+			$("select[name=searchMonth]").show();		
 			chatDay();
+			
 		} else if(tab=="listMonth") {
 			$(".container-searchBody").show();
-			$("select[name=searchMonth]").hide();
-			
-			 chatMonth()
+			$("select[name=searchMonth]").hide();		
+			 chatMonth();
 			
 		} else if(tab=="listYear"){
-			$(".container-searchBody").hide();
-			
+			$(".container-searchBody").hide();			
 			chatYear();
+			
+		}else if(tab=="person"){
+			$(".container-searchBody").hide();			
+			$(".containerList-body").hide();			
+			person();
 		}
 		
 		var url="<%=cp%>/admin/trainsales/"+tab;
-		$(".containerList-body").load(url);
 
+		$(".containerList-body").load(url);
 	});
 });
 
@@ -108,7 +114,7 @@ function searchList() {
 		
 		chatYear();
 
-	}	
+	}
 }
 </script>
 
@@ -225,22 +231,23 @@ function chatYear() {
 
 function person() {
 	var url="<%=cp%>/admin/trainsales/person";
-		
+		console.date;
 		$.getJSON(url, function(data) {
-		Highcharts.chart('container', {
+		Highcharts.chart('containerChatBody', {
 		    chart: {
 		        type: 'variablepie'
 		    },
-		    title: {
-		        text: 'Countries compared by population density and total area.'
-		    },
 		    tooltip: {
 		        headerFormat: '',
-		        pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
-		            'Area (square km): <b>{point.y}</b><br/>' +
-		            'Population density (people per square km): <b>{point.z}</b><br/>'
+		        pointFormat: '<span style="size:30px; color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+		          '건 수: <b>{point.y}건</b><br/>' +
+		          '비 율: <b>{point.z:.2f}%</b><br/>'
+		    },
+		    title: {
+		        text: '[ 손님 유형별 비율 ]'
 		    },
 		    series: data
+		    	
 		});
 	});
 	              
@@ -270,7 +277,7 @@ function person() {
 									<li id="tab-listDay" data-tab="listDay">일별</li>
 									<li id="tab-listMonth" data-tab="listMonth">월별</li>
 									<li id="tab-listYear" data-tab="listYear">년별</li>
-									<li id="tab-listYear" data-tab="listYear">년별</li>
+									<li id="tab-person" data-tab="person">손님 유형별</li>
 								</ul>							
 							</div>
 							
@@ -278,7 +285,7 @@ function person() {
 						    	<div id="containerChatBody"></div>
 						    </div>
 							<div>
-							    <div class="containerList" style="clear:both; padding-top: 15px;">
+							    <div class="containerList" style="clear:both; padding-top: 15px;" align="center">
 							    	<div class="containerList-search"style="height: 50px; line-height: 50px;">
 							    	    <div class="container-searchBody">
 								    		<select name="searchYear"  style="height: 30px; border-radius: 5px; width: 80px;">
@@ -303,9 +310,6 @@ function person() {
 						    
 						</div>
 				</section>
-				<div id="containerChat">
-							    		
-				</div>
 				
 			</div>
 		</div>

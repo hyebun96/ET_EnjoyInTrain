@@ -234,26 +234,27 @@ public class TrainSalesController {
 		
 		TrainpersonType dto = null;
 		
-JSONArray arr = new JSONArray();
+		JSONArray arr = new JSONArray();
 		
 		JSONObject job = new JSONObject();
 		job.put("minPointSize", "10");
 		job.put("innerSize", "20%");
 		job.put("zMin", "0");
-		job.put("name", "countries");
+		job.put("name", "손님 유형별 비율");
 		
 		dto = service.listType();
 		
-		int sum = 100/(dto.getAdult()+dto.getChild()+dto.getOld()+dto.getMd()+dto.getSd());
+		float sum = 100/(dto.getAdult()+dto.getChild()+dto.getOld()+dto.getMd()+dto.getSd());
 
 		JSONArray ja = new JSONArray();
-		ja.put(new JSONArray("['성인',"+ dto.getAdult() +","+ sum*dto.getAdult() +"]"));
-		ja.put(new JSONArray("['어린이',"+ dto.getChild() +","+ sum*dto.getChild() +"]"));
-		ja.put(new JSONArray("['노인',"+ dto.getOld() +","+sum*dto.getOld() +"]"));
-		ja.put(new JSONArray("['중증장애인',"+ dto.getMd() +","+ sum*dto.getMd() +"]"));
-		ja.put(new JSONArray("['경증장애인',"+ dto.getSd() +","+ sum*dto.getSd() +"]"));
+		ja.put(new JSONArray("['성인',"+ dto.getAdult() +",'"+ sum * dto.getAdult() +"']"));
+		ja.put(new JSONArray("['어린이',"+ dto.getChild() +",'"+ sum * dto.getChild() +"']"));
+		ja.put(new JSONArray("['노인',"+ dto.getOld() +",'"+ sum * dto.getOld() +"']"));
+		ja.put(new JSONArray("['중증장애인',"+ dto.getMd() +",'"+ sum * dto.getMd() +"']"));
+		ja.put(new JSONArray("['경증장애인',"+ dto.getSd() +",'"+ sum * dto.getSd() +"']"));
 		
 		job.put("data",ja);
+	//	job.put("series", ja);
 		
 		arr.put(job);
 		

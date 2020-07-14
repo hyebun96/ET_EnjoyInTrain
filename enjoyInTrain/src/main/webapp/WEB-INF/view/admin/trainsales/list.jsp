@@ -18,7 +18,7 @@ td{
 </style>
 
 
-<div>
+<div align="center">
    	<table style="border: 1px soild #cccccc">
    		<tr style="border: 1px soild #cccccc">
    			<td width="120">일자</td>

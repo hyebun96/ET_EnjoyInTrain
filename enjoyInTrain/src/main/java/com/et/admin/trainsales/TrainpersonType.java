@@ -2,43 +2,40 @@ package com.et.admin.trainsales;
 
 public class TrainpersonType {
 	
-	private int adult;
-	private int child;
-	private int old;
-	private int sd;
-	private int md;
-	public int getAdult() {
+	private float adult;
+	private float child;
+	private float old;
+	private float sd;
+	private float md;
+	
+	public float getAdult() {
 		return adult;
 	}
-	public void setAdult(int adult) {
+	public void setAdult(float adult) {
 		this.adult = adult;
 	}
-	public int getChild() {
+	public float getChild() {
 		return child;
 	}
-	public void setChild(int child) {
+	public void setChild(float child) {
 		this.child = child;
 	}
-	public int getOld() {
+	public float getOld() {
 		return old;
 	}
-	public void setOld(int old) {
+	public void setOld(float old) {
 		this.old = old;
 	}
-	public int getSd() {
+	public float getSd() {
 		return sd;
 	}
-	public void setSd(int sd) {
+	public void setSd(float sd) {
 		this.sd = sd;
 	}
-	public int getMd() {
+	public float getMd() {
 		return md;
 	}
-	public void setMd(int md) {
+	public void setMd(float md) {
 		this.md = md;
 	}
-	
-
-	
-	
 }
