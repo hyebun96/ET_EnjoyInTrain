@@ -89,6 +89,8 @@
             <mvc:exclude-mapping path="/reservation/refund"/>
             <mvc:exclude-mapping path="/reservation/unCrewSubmit"/>
             <mvc:exclude-mapping path="/reservation/refundcomplete"/>
+            <mvc:exclude-mapping path="/reservation/trainTime"/>
+            <mvc:exclude-mapping path="/reservation/trainPay"/>
             <mvc:exclude-mapping path="/travel/**"/>
             <mvc:exclude-mapping path="/lostBoard/list"/>
             <mvc:exclude-mapping path="/lostBoard/article"/>

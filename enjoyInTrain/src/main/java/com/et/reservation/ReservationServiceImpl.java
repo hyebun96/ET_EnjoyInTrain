@@ -1,7 +1,10 @@
 package com.et.reservation;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +60,10 @@ public class ReservationServiceImpl implements ReservationService{
 			
 			dto.setStartSt(startSt);
 			dto.setEndSt(endSt);
+			
+//			Calendar cal=Calendar.getInstance();
+//			SimpleDateFormat sdf=new SimpleDateFormat("YYYY/MM/DD");
+//			sdf.format(arg0)
 			list=dao.selectList("reservation.listTrain", dto);
 			for(Train tr:list) {
 				tr.setDepartureSt(originalnameSt);
@@ -180,9 +187,9 @@ public class ReservationServiceImpl implements ReservationService{
 			rv.setTrCode(trCode);
 			
 			//기차예약테이블에 저장
-			if(unCrew.getName()==null) {  
+			if(unCrew.getName()==null) {  //회원일때
 				dao.insertData("reservation.insertReservation", rv);
-			}else {
+			}else {  //비회원일때
 				dao.insertData("reservation.insertReservation2", rv);
 			}
 			//기차예약상세테이블에 저장
@@ -542,13 +549,48 @@ public class ReservationServiceImpl implements ReservationService{
 
 	//기차표 환불
 	@Override
-	public void refund(List<Integer> rsseatCode, int trCode) {
+	public void refund(List<Integer> rsseatCode, int trCode, String crewId) {
 		try {
+			//총금액 가져오기
+			int trPrice=dao.selectOne("reservation.readTotalPrice", trCode);
+			
+			//기차예약에 사용한 포인트금액 가져오기
+			int trPointPrice=dao.selectOne("reservation.readTrPointPrice", trCode);
+			int point=trPointPrice;
+			
+			//취소한좌석 금액 가져와서 총금액에서 빼기
+			for(int code:rsseatCode) {
+				int seatPay=dao.selectOne("reservation.readSeatPrice", code);
+				
+				if(trPrice-seatPay<0) {
+					trPointPrice=trPointPrice-(seatPay-trPrice);
+					trPrice=0;
+				}else {
+					trPrice=trPrice-seatPay;
+				}
+			}
+			
+			//계산된 총 금액, 사용포인트금액 수정해주기
+			Map<String, Object> map=new HashMap<>();
+			map.put("trPrice", trPrice);
+			map.put("trCode", trCode);
+			map.put("trPointPrice", trPointPrice);
+			dao.updateData("reservation.updateTrPrice", map);
+			
 			for(int code:rsseatCode) {
 				dao.updateData("reservation.refund", code);
 			}
 			
-			//포인트도 다시 적립되어야함
+			//포인트 다시 환불
+			if(point-trPointPrice!=0) {
+				point=point-trPointPrice;
+				int memberShipSeq=dao.selectOne("reservation.memberShipSeq");
+				map.put("memberShipSeq", memberShipSeq);
+				map.put("crewId", crewId);
+				map.put("category", "환불");
+				map.put("point", point);
+				dao.insertData("reservation.memberShip", map);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -566,4 +608,107 @@ public class ReservationServiceImpl implements ReservationService{
 		}
 		return result;
 	}
+
+
+	@Override
+	public List<TrainTime> trainTime(String trainCode) {
+		List<TrainTime> list=new ArrayList<>();
+		try {
+			Map<String, String> map=dao.selectOne("reservation.trainTime", trainCode);
+			Iterator<String> keys=map.keySet().iterator();
+			while(keys.hasNext()) {
+				String key=keys.next();
+				if(map.get(key)!=null) {
+					TrainTime dto=new TrainTime();
+					String station=key;
+					station=dao.selectOne("reservation.readStationKR", station);
+					dto.setStation(station);
+					
+					//도착시간구하기(출발시간에서 -2분)
+					String deTime[]=map.get(key).split(":");
+					Calendar cal=Calendar.getInstance();
+					cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(deTime[0]));
+					cal.set(Calendar.MINUTE, Integer.parseInt(deTime[1]));
+					cal.add(Calendar.MINUTE, -2);
+					SimpleDateFormat sdf=new SimpleDateFormat("HH:mm");
+					dto.setArriveTime(sdf.format(cal.getTime()));
+
+					dto.setDepartureTime(map.get(key));
+					list.add(dto);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<TrainPay> trainPay(Map<String, String> map) {
+		List<TrainPay> list=new ArrayList<>();
+		try {
+			Map<String, String> st=null;
+			String station=map.get("startCode");
+			st=dao.selectOne("reservation.readStation", station);
+			map.put("startCode", st.get("SCODE"));
+			station=map.get("endCode");
+			st=dao.selectOne("reservation.readStation", station);
+			map.put("endCode", st.get("SCODE"));
+			
+			int seatPay=0;
+			map.put("seatPay", "SEAT1");  //일반실
+			seatPay=dao.selectOne("reservation.readsPay", map);
+			TrainPay dto=dao.selectOne("reservation.trainPay", seatPay);
+			dto.setRoomGrade("일반실");
+			list.add(dto);
+			
+			map.put("seatPay", "SEAT2");  //특실
+			seatPay=dao.selectOne("reservation.readsPay", map);
+			dto=dao.selectOne("reservation.trainPay", seatPay);
+			dto.setRoomGrade("특실");
+			list.add(dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	//admin페이지
+	@Override
+	public List<Reservation> listAll(Map<String, Object> map) {
+		List<Reservation> list=null;
+		try {
+			list=dao.selectList("reservation.listAll",map);
+			for(Reservation dto:list) {
+				int count=dao.selectOne("reservation.seatCount",dto.getTrCode());
+				dto.setCount(count);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<Reservation> listAllSeat() {
+		List<Reservation> seatList=null;
+		try {
+			seatList=dao.selectList("reservation.listAllSeat");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return seatList;
+	}
+
+	@Override
+	public int dataCount() {
+		int result=0;
+		try {
+			result=dao.selectOne("reservation.dataCount");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 }

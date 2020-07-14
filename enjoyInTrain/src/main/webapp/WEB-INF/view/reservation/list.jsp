@@ -12,6 +12,7 @@
 	padding: 5px;
 }
 
+
 </style>
 <script type="text/javascript">
 //좌석모달창
@@ -71,21 +72,55 @@ $(function(){
 	});
 });
 
+$(function(){
+	$(".timeBtn").click(function(){
+		var url="<%=cp%>/reservation/trainTime";
+		var trainCode=$(this).attr("data-trainCode");
+		var query="trainCode="+trainCode;
+		var selector="#modal-content3";
+		ajaxHTML(url, "post", query, selector);
+	});
+});
 
+$(function(){
+	$(".payBtn").click(function(){
+		var url="<%=cp%>/reservation/trainPay";
+		var trainCategory=$(this).attr("data-trainCategory");
+		var startCode=$(this).attr("data-startCode");
+		var endCode=$(this).attr("data-endCode");
+		var trainCode=$(this).attr("data-trainCode");
+		var query="trainCategory="+trainCategory+"&startCode="+startCode+"&endCode="+endCode+"&trainCode="+trainCode;
+		var selector="#modal-content4";
+		ajaxHTML(url, "post", query, selector);
+	});
+});
 
 </script>
 <div id="myModal2" class="modal">
   <!-- Modal content -->
-  <div style="background: #353866;" class="modal-content2" id="modal-content2">
+  <div style="background: #0f0f69e8;" class="modal-content2" id="modal-content2">
+  	
+  </div>
+</div>
+
+<div id="myModal3" class="modal">
+  <!-- Modal content -->
+  <div style="background: #0f0f69e8;" class="modal-content3" id="modal-content3">
+  	
+  </div>
+</div>
+
+<div id="myModal4" class="modal">
+  <!-- Modal content -->
+  <div style="background: #0f0f69e8;" class="modal-content4" id="modal-content4">
   	
   </div>
 </div>
 
 <label style="font-size: 13px;">직통승차권 예약을 원하시는 고객은 예약하기 버튼을 클릭하여 주시기 바랍니다.</label>
-<button style=" margin-bottom:10px; font-size: 13px;">KTX 편의시설정보 보기</button>
 <table class="timetb" style="text-align:center; border:1px solid #D5D5D5; font-size: 13px;">
 	<tr>
-		<td style="text-align:left; background: #C1D8F3;" colspan="12"><b>· ${rsDto.startSt}->${rsDto.endSt} ${rsDto.day}</b></td>
+		<td style="text-align:left; background: #b2c5e1;" colspan="12"><b>· ${rsDto.startSt}->${rsDto.endSt} ${rsDto.day}</b></td>
 	</tr>
 	<tr>
 		<td style="width: 120px;">구분</td>
@@ -124,8 +159,8 @@ $(function(){
 					</c:if>
 				</c:forEach>
 				<c:if test="${sw}">
-					<button class="reservationBtn" value="special" style="border:none; background: #353866; color: white;">예약하기</button><br>
-					<button class="seatBtn" value="special" type="button" style="border:none; background: #C1D8F3; color:black;">좌석선택</button>
+					<button class="reservationBtn" value="special" style="border:none; background: #0f0f69e8; color: white;">예약하기</button><br>
+					<button class="seatBtn" value="special" type="button" style="border:none; background: #3bacaa; color:white;">좌석선택</button>
 				</c:if>
 			</td>
 			<td>
@@ -139,15 +174,15 @@ $(function(){
 					</c:if>
 				</c:forEach>
 				<c:if test="${sw}">
-					<button class="reservationBtn" value="general" style="border:none; background: #353866; color: white;">예약하기</button><br>
-					<button class="seatBtn" value="general" type="button" style="border:none; background: #C1D8F3; color:black;">좌석선택</button>
+					<button class="reservationBtn" value="general" style="border:none; background: #0f0f69e8; color: white;">예약하기</button><br>
+					<button class="seatBtn" value="general" type="button" style="border:none; background: #3bacaa; color:white;">좌석선택</button>
 				</c:if>
 			</td>
 			<td>
-				<button>보기</button>
+				<button data-trainCode="${dto.trainCode}" type="button" style="border:1px solid #D5D5D5;  background: white;" class="timeBtn">보기</button>
 			</td>
 			<td>
-				<button>보기</button>
+				<button style="border:1px solid #D5D5D5; background: white;" data-trainCategory="${dto.trainName}" data-startCode="${dto.departureSt}" data-endCode="${dto.arriveSt}" data-trainCode="${dto.trainCode}" type="button" class="payBtn">보기</button>
 			</td>
 			<td>
 				${dto.totalTime}

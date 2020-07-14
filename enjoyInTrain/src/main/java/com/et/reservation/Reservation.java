@@ -27,7 +27,22 @@ public class Reservation {
 	private int rsseatCode;
 	private String roomGrade;
 	private int seatPay;
+	private int point;
+	private int refund;
+	private int promotion;
 	
+	public int getPromotion() {
+		return promotion;
+	}
+	public void setPromotion(int promotion) {
+		this.promotion = promotion;
+	}
+	public int getRefund() {
+		return refund;
+	}
+	public void setRefund(int refund) {
+		this.refund = refund;
+	}
 	public int getSeatPay() {
 		return seatPay;
 	}
@@ -40,7 +55,6 @@ public class Reservation {
 	public void setRoomGrade(String roomGrade) {
 		this.roomGrade = roomGrade;
 	}
-	private int point;
 	public int getPoint() {
 		return point;
 	}

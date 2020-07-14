@@ -59,7 +59,7 @@ $(function(){
 			}
 			$i.attr('data-select','1');
 			$i.attr("class","fas fa-user seatClick");
-			$i.css("color","#353866");
+			$i.css("color","#0f0f69e8");
 			if(selectSeat.length==0){
 				$("#selectSeat").val(selectSeat+" "+seatNum);
 			}else{
@@ -159,14 +159,14 @@ function confirmBtn(){
 		    	</c:forEach>
 		    <c:if test="${sw}">
 				<button type="button" value="${vo.roomNum}" class="roomBtn" 
-				    style="color:${vo.roomNum==dto.roomNum?'white':'black'}; margin-top:5px; background:${vo.roomNum==dto.roomNum?'#353866':'white'}; font-size: 12px;">
+				    style="color:${vo.roomNum==dto.roomNum?'white':'black'}; margin-top:5px; background:${vo.roomNum==dto.roomNum?'#0f0f69e8':'white'}; font-size: 12px;">
 				    ${vo.roomGrade}<br>${vo.roomNum}호차
 				</button>
 		    </c:if>
 	    </c:forEach>
     </div>
     <div style="text-align:right; margin: 10px;">
-    	<i style=" color:#353866; font-size: 25px;" class="fas fa-user seatClick"></i>
+    	<i style=" color:#0f0f69e8; font-size: 25px;" class="fas fa-user seatClick"></i>
     	<span style="font-size: 13px;">선택좌석</span>
     	<i style=" color:#BDBDBD; font-size: 25px;" class="fas fa-user seatClick"></i>
     	<span style="font-size: 13px;">선택불가</span>
@@ -232,10 +232,10 @@ function confirmBtn(){
     </div>
     <div style="width: 100%;">
 		<div style="padding-left:20px; width: 50%; text-align: left; float: left;">
-			<b><span style="font-size: 15px;">선택좌석:&nbsp;${map.roomNum}호차&nbsp;<input type="text" readonly="readonly" id="selectSeat" style="border: none; font-weight: bold;" ></span></b>
+			<b><span style="font-size: 15px;">선택좌석:&nbsp;${map.roomNum}호차&nbsp;<input type="text" readonly="readonly" id="selectSeat" style="width:500px; border: none; font-weight: bold;" ></span></b>
 		</div>
 		<div style="padding-right:20px; width: 50%;text-align: right; float: left;">
-			<button type="button" onclick="confirmBtn();" style="font-weight:bold; font-size:15px; border-radius:5px; width:150px; height:30px; background: #353866; color: white; border: none;">선택좌석 예약하기</button>
+			<button type="button" onclick="confirmBtn();" style="font-weight:bold; font-size:15px; border-radius:5px; width:150px; height:30px; background: #0f0f69e8; color: white; border: none;">선택좌석 예약하기</button>
 		</div>
 	</div>
 </form>

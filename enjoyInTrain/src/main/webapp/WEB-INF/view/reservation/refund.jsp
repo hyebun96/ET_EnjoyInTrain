@@ -29,6 +29,16 @@ $(function(){
 	});
 });
 
+$(function(){
+    $("#allCheck").click(function(){
+        if($("#allCheck").is(":checked")){
+            alert("체크박스 체크했음!");
+        }else{
+            alert("체크박스 체크 해제!");
+        }
+    });
+});
+
 
 </script>
 	<!-- Main -->
@@ -43,7 +53,7 @@ $(function(){
 								<span class="byline">REFUND</span>
 								<div style="width: 1200px; text-align: center;">
 								<form action="<%=cp%>/reservation/requestrefund" name="refundForm" method="post">
-								<input type="hidden" value="${trCode}" name="trCode">
+								<input type="hidden" value="${trCode}" id="allCheck" name="trCode">
 								 	<table style="width:100%;  ">
 								 		<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA;">
 								 			<td style="background: #353866;"><input type="checkbox"></td>
@@ -59,7 +69,7 @@ $(function(){
 								 		</tr>
 								 		<c:forEach items="${list}" var="dto">
 									 		<tr style="height:40px; border-bottom: 1px solid #BDBDBD">
-									 			<td><input type="checkbox" name="rsseatCode" value="${dto.rsseatCode}"></td>
+									 			<td><input class="seatCheck" type="checkbox" name="rsseatCode" value="${dto.rsseatCode}"></td>
 									 			<td>${dto.trDate}</td>
 									 			<td>${dto.trCategory}</td>
 									 			<td>${dto.trainCode}</td>

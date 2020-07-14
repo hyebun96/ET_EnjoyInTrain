@@ -21,7 +21,15 @@ public interface ReservationService {
 	public List<Reservation> readDetail(String crewId);
 	public List<Reservation> listReservationDetail(int trCode);
 	public List<Reservation> listSeatDetail(List<Integer> rsseatCode);
-	public void refund(List<Integer> rsseatCode, int trCode);
+	public void refund(List<Integer> rsseatCode, int trCode, String crewId);
 	public int totalPoint(String crewId);
 	public int readUnCrew(UnCrew unCrew);
+	public List<TrainTime> trainTime(String trainCode);
+	public List<TrainPay> trainPay(Map<String, String> map);
+	//admin페이지
+	public List<Reservation> listAll(Map<String, Object> map);
+	public List<Reservation> listAllSeat();
+	
+	//페이징
+	public int dataCount();
 }

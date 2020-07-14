@@ -56,6 +56,7 @@ public class ReservationController {
 			d=sdf.format(cal.getTime());
 			dto.setDay(d);
 		}
+		
 		model.addAttribute("directRv",directRv);  //바로예약일시
 		model.addAttribute("dto",dto);  //바로예약일시
 		model.addAttribute("list",list);
@@ -416,11 +417,19 @@ public class ReservationController {
 	@RequestMapping("refund")
 	public String refund(
 			@RequestParam List<Integer> rsseatCode,
-			@RequestParam int trCode
+			@RequestParam int trCode,
+			HttpSession session
 			) {
-		service.refund(rsseatCode, trCode);
+		SessionInfo info=(SessionInfo)session.getAttribute("crew");
+		String crewId="";
+		if(info!=null) {
+			crewId=info.getCrewId();
+		}
+		service.refund(rsseatCode, trCode, crewId);
 		return "redirect:/reservation/refundcomplete";
 	}
+	
+	
 	
 	@RequestMapping("refundcomplete")
 	public String refundcomplete() {
@@ -439,5 +448,24 @@ public class ReservationController {
 		model.addAttribute("list",list);
 		model.addAttribute("trCode",trCode);
 		return ".reservation.refund";
+	}
+	
+	@RequestMapping("trainTime")
+	public String trainTime(
+			String trainCode,
+			Model model) {
+		List<TrainTime> list=service.trainTime(trainCode);
+		model.addAttribute("list",list);
+		return "reservation/traintime";
+	}
+	
+	@RequestMapping("trainPay")
+	public String trainPay(
+			@RequestParam Map<String, String> map,
+			Model model
+			) {
+		List<TrainPay> list=service.trainPay(map);
+		model.addAttribute("list",list);
+		return "reservation/trainpay";
 	}
 }

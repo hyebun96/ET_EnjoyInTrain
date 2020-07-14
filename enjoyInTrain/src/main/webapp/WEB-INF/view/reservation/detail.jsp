@@ -57,34 +57,31 @@ function info_print() {
 								<div style="width: 1200px; text-align: center;">
 								 	<table style="width:100%;  ">
 								 		<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA;">
-								 			<td style="background: #353866; color: white;" colspan="6">승차권 예약현황</td>
-								 			<td style="background: #353866; color: white;" colspan="3">승차권 구매현황</td>
+								 			<td style="background: #0f0f69e8; color: white;" colspan="9">승차권 예약현황</td>
 								 		</tr>
 								 		<tr style="height:40px; font-weight:bold; background: #EAEAEA;">
-								 			<td style="background: #C1D8F3">승차일</td>
-								 			<td style="background: #C1D8F3">열차번호</td>
-								 			<td style="background: #C1D8F3">출발역</td>
-								 			<td style="background: #C1D8F3">도착역</td>
-								 			<td style="background: #C1D8F3">금액</td>
-								 			<td style="background: #C1D8F3">인원</td>
-								 			<td style="background: #C1D8F3">결제</td>
-								 			<td style="background: #C1D8F3">발권</td>
-								 			<td style="background: #C1D8F3">취소/환불</td>
+								 			<td style="background: #d7e4f3a8">승차일</td>
+								 			<td style="background: #d7e4f3a8">열차번호</td>
+								 			<td style="background: #d7e4f3a8">출발역</td>
+								 			<td style="background: #d7e4f3a8">도착역</td>
+								 			<td style="background: #d7e4f3a8">출발시간</td>
+								 			<td style="background: #d7e4f3a8">도착시간</td>
+								 			<td style="background: #d7e4f3a8">금액</td>
+								 			<td style="background: #d7e4f3a8">인원</td>
+								 			<td style="background: #d7e4f3a8">취소/환불</td>
 								 		</tr>
 								 		<c:forEach items="${list}" var="dto">
-									 		<tr>
+									 		<tr style="height: 40px;">
 									 			<td>${dto.trDate}</td>
 									 			<td>${dto.trCategory}&nbsp;${dto.trainCode}</td>
-									 			<td>${dto.startCode}<br>${dto.stTime}</td>
-									 			<td>${dto.endCode}<br>${dto.endTime}</td>
+									 			<td>${dto.startCode}</td>
+									 			<td>${dto.endCode}</td>
+									 			<td>${dto.stTime}</td>
+									 			<td>${dto.endTime}</td>
 									 			<td>${dto.trPrice}</td>
 									 			<td>${dto.count}</td>
-									 			<td>결제완료</td>
-									 			<td>발권완료<br>
-									 				<button type="button" onclick="info_print()">인쇄하기</button>
-									 			</td>
 									 			<td>
-									 				<button type="button" style="border:none; background: #ED0000; color: white;" class="refundBtn" data-code="${dto.trCode}">환불하기</button>
+									 				<button type="button" style="border:none; background: #232375c2; color: white;" class="refundBtn" data-code="${dto.trCode}">환불하기</button>
 									 			</td>
 									 		</tr>
 								 		</c:forEach>

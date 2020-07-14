@@ -94,7 +94,7 @@
 	
 	<!-- 기차(좌석)예약하기 -->
 	<insert id="insertReservation" parameterType="com.et.reservation.Reservation">
-		INSERT INTO trainreservation(trCode, trPrice, trDate, crewId) VALUES(#{trCode},#{trPrice} ,#{trDate}, #{crewId})
+		INSERT INTO trainreservation(trCode, trPrice, trDate, crewId, trPointPrice) VALUES(#{trCode},#{trPrice} ,#{trDate}, #{crewId}, #{point})
 	</insert>
 	
 	<insert id="insertReservationInfo" parameterType="com.et.reservation.Reservation">
@@ -241,7 +241,7 @@
 		JOIN train7 train ON info.trainCode=train.trainCode
 		JOIN station6 startSt ON info.startCode=startSt.sCode
 		JOIN station6 endSt ON info.endCode=endSt.sCode
-		WHERE tr.trCode=#{trCode} AND refund IS NULL
+		WHERE tr.trCode=#{trCode} AND refund IS NULL AND TO_DATE(trDate,'YYYY/MM/DD')>=TO_DATE(SYSDATE,'YYYY/MM/DD')
 	</select>
 	
 	<!-- 환불할 좌석의 자세한 내역 -->
@@ -259,9 +259,29 @@
 		WHERE rsSeatCode=#{rsSeatCode} AND refund IS NULL
 	</select>
 	
+	<!-- trCode에 해당하는 예약의 총 금액 가져오기 -->
+	<select id="readTotalPrice" parameterType="Integer" resultType="Integer"> 
+		SELECT trPrice FROM trainReservation WHERE trCode=#{trCode}
+	</select>
+	
+	<!-- trCode에 해당하는 예약의 사용한 포인트금액 가져오기 -->
+	<select id="readTrPointPrice" parameterType="Integer" resultType="Integer"> 
+		SELECT trPointPrice FROM trainReservation WHERE trCode=#{trCode}
+	</select>
+	
+	<!-- 해당 좌석의 좌석금액 가져오기 -->
+	<select id="readSeatPrice" parameterType="Integer" resultType="Integer">
+		SELECT seatPay FROM reservedSeat WHERE rsSeatCode=#{rsseatCode}
+	</select>
+	
+	<!-- 총금액, 사용포인트금액 수정하기 -->
+	<update id="updateTrPrice" parameterType="map">
+		UPDATE trainReservation SET trPrice=#{trPrice},trPointPrice=#{trPointPrice} WHERE trCode=#{trCode}
+	</update>
+	
 	<!-- 기차표 환불-->
 	<update id="refund" parameterType="Integer">
-		UPDATE reservedSeat SET refund=1 WHERE rsSeatCode=#{rsSeatCode}
+		UPDATE reservedSeat SET refund=1, seatPay=0 WHERE rsSeatCode=#{rsSeatCode}
 	</update>
 		
 	<!-- 포인트 시퀀스 가져오기 -->
@@ -280,7 +300,7 @@
 		SELECT (
 		    SELECT NVL(SUM(point),0) FROM MEMBERSHIP
 		    WHERE crewId=#{crewId}
-		    AND category='적립'
+		    AND (category='적립' OR category='환불')
 		)-(
 		    SELECT NVL(SUM(point),0) FROM MEMBERSHIP
 		    WHERE crewId=#{crewId}
@@ -301,4 +321,51 @@
 		    AND email=#{email} AND password=#{password}
 	</select>
 	
+	<!-- 해당 기차코드의 운행시간 조회 -->
+	<select id="trainTime" parameterType="String" resultType="map">
+		SELECT HAENGSIN, YONGSAN, GWANGMYEONG, CHEONANASAN, OSONG, GONGJU, SEODAEJEON, 
+		    GYERYONG, NONSAN, IKSAN, JEONGEUP, GWANGJUSONGJEONG, NAJU, MOKPO 
+		FROM STATIONLINE7
+		WHERE trainCode=#{trainCode}
+	</select>
+	
+	<!-- 한글기차역 조회 -->
+	<select id="readStationKR" parameterType="String" resultType="String">
+		SELECT sName FROM station6
+		WHERE engName LIKE LOWER(#{station})
+	</select>
+	
+	<!-- 기차요금조회 -->
+	<select id="trainPay" parameterType="Integer" resultType="com.et.reservation.TrainPay">
+		SELECT ${seatPay}-${seatPay}*(SELECT dcPrice FROM disCount WHERE dcName='어린이')*0.01 child,
+		    ${seatPay}-${seatPay}*(SELECT dcPrice FROM disCount WHERE dcName='경로')*0.01 senior,
+		    ${seatPay}-${seatPay}*(SELECT dcPrice FROM disCount WHERE dcName='경증장애인')*0.01 disabled1,
+		    ${seatPay}-${seatPay}*(SELECT dcPrice FROM disCount WHERE dcName='중증장애인')*0.01 disabled2,
+		    ${seatPay}-${seatPay}*(SELECT dcPrice FROM disCount WHERE dcName='성인')*0.01 adult
+		FROM dual
+	</select>
+	
+	<!-- admin페이지 -->
+	<!-- 모든 예약리스트 가져오기 -->
+	<select id="listAll" parameterType="map" resultType="com.et.reservation.Reservation">
+		SELECT tr.trCode, TO_CHAR(trDate,'YYYY/MM/DD') trDate, trCategory, info.trainCode, 
+		    startSt.sName startCode, endSt.sName endCode, crewId, TO_CHAR(trPayDate,'YYYY/MM/DD') trPayDate, trPrice, trPointPrice, promotion
+		FROM trainReservation tr
+		JOIN trReservationInfo info ON tr.trCode=info.trCode
+		JOIN train7 train ON info.trainCode=train.trainCode
+		JOIN station6 startSt ON info.startCode=startSt.sCode
+		JOIN station6 endSt ON info.endCode=endSt.sCode
+		ORDER BY trDate
+		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
+	</select>
+	
+	<!-- 모든 예약리스트의 좌석리스트 가져오기 -->
+	<select id="listAllSeat" resultType="com.et.reservation.Reservation">
+		SELECT rsSeatCode, trCode, seatNum, seatType, roomNum, seatPay, refund FROM reservedSeat
+	</select>
+	
+	<!-- 페이징 -->
+	<select id="dataCount" resultType="Integer">
+		SELECT NVL(COUNT(*),0) FROM trainReservation
+	</select>
  </mapper>
