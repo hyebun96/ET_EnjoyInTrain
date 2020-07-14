@@ -44,11 +44,39 @@
 }
 .mypage{
 	margin-left: 100px;
+	width: 80%;
 }
 </style>
 
 
 <script type="text/javascript">
+$(function(){
+	
+	var isVisible = $("#crewreservation").is(':hidden');
+	var isVisible2 = $("#crewreservation2").is(':hidden');
+	
+
+	$("#buy").click(function() {
+		if (isVisible) {
+			$("#crewreservation").show();
+			$("#crewreservation2").hide();
+		} else {
+			$("#crewreservation").hide();
+		}
+	});
+	
+	
+
+	$("#buy2").click(function() {
+		if (isVisible2) {
+			$("#crewreservation2").show();
+			$("#crewreservation").hide();
+		} else {
+			$("#crewreservation2").hide();
+		}
+	});
+});
+
 
 
 
@@ -66,44 +94,29 @@
 	<div id="page">
 			<!-- Main -->
 			<div id="main" class="container">
-			 <div class="row">
-				<!-- 사이드 바 메뉴 -->
-				<div class="3u">
-					<section class="sidebar">
-						<header>
-							<h2>MyPage</h2>
-						</header>
-						
-						<ul class="style1">
-							<li><a href="<%=cp%>/crew/mypage">MyPage</a></li>
-							<li><a href="#">구매내역</a></li>
-										
-						</ul>
-					</section>
-				</div>
-				<!-- /사이드바 메뉴 -->
+			 <div class="row">	
 			
 				<!-- 메인 내용 -->
-				<div class="9u skel-cell-important">
-					<header>
+				
+					<header style="width: 100%;">
 						<h2><i class="fas fa-id-card-alt"></i> MyPage </h2>
 					</header>
 					
-					<img src="<%=cp%>/resource/images/user0000.png" alt="" width="80px;" height="80" style="float: left;">
+					<img src="<%=cp%>/resource/images/user0000.png" alt="" width="125px;" height="80" style="float: left;">
 					
 				<div class="mypage">
 					<table>
 						<tr>
-							<td>크루 이름 : ${dto.crewName}</td>
+							<td>크루 이름 : ${dto.crewName} <br></td>
 						</tr>
 						<tr>
-							<td>크루 생년월일 : ${dto.crewBirth}</td>
+							<td>크루 생년월일 : ${dto.crewBirth}<br></td>
 						</tr>
 						<tr>
-							<td>크루 전화번호 : ${dto.crewTel}</td>
+							<td>크루 전화번호 : ${dto.crewTel}<br></td>
 						</tr>
 						<tr>
-							<td>크루 이메일 : ${dto.crewEmail}</td>
+							<td>크루 이메일 : ${dto.crewEmail}<br></td>
 						</tr>
 						<tr>
 							<td>채팅 경고 : ${dto.crewChatWarning} 회</td>
@@ -111,11 +124,11 @@
 					</table>
 							
 			     </div>
-			     	
-					<a href="<%=cp%>/crew/update">회원정보 수정</a>
-				
-				<div class="crewreservation">
-					<table style="width:50%; margin-top: 50px; float: left;">
+			     	<div style="width: 100%;">
+					<a href="<%=cp%>/crew/update" style="float: left; margin-right: 15px;">회원정보 수정</a> <div id="buy" style="cursor: pointer;float: left;margin-right: 15px;">승차권구매내역</div><div id="buy2" style="cursor: pointer; float: left;">프로모션구매내역</div>
+					</div>
+				<div id="crewreservation" style="display: none; width: 100%;">
+					<table style="width:100%; margin-top: 50px; float: left;">
 							 		<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA; text-align: center;">
 							 			<td style="background: #353866; color: white;" colspan="7">승차권 예약현황</td>
 							 		</tr>
@@ -129,19 +142,20 @@
 							 			<td style="background: #C1D8F3">결제</td>
 							 		</tr>
 							 		<c:forEach items="${list}" var="dto">
-								 		<tr>
+								 		<tr style="text-align: center;">
 								 			<td>${dto.trDate}</td>
 								 			<td>${dto.trCategory}&nbsp;${dto.trainCode}</td>
-								 			<td>${dto.startCode}<br>${dto.stTime}</td>
-								 			<td>${dto.endCode}<br>${dto.endTime}</td>
+								 			<td>${dto.startCode}</td>
+								 			<td>${dto.endCode}</td>
 								 			<td>${dto.trPrice}</td>
 								 			<td>${dto.count}</td>
 								 			<td>결제완료</td>
 								 		</tr>
 							 		</c:forEach>
 					</table>
-				</div>
-					<table  style="width:50%; margin-top: 50px;">
+					</div>
+					<div id="crewreservation2" style="display: none; width: 100%;">
+					<table  style="width:100%; margin-top: 50px;">
 							<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA; text-align: center;">
 							 	<td style="background: #353866; color: white;" colspan="4">프로모션 예약현황</td>
 							 </tr>
@@ -154,7 +168,7 @@
 								
 							</tr>
 							<c:forEach var="dto" items="${list2}" varStatus="status">
-									<tr>
+									<tr style="text-align: center;">
 										
 										<td> ${dto.reservationNumber} </td>
 										<td> ${dto.pmTitle} </td>
@@ -166,6 +180,7 @@
 									</tr>
 							</c:forEach> 
 						</table>
+				</div>
 					
 					
 				</div>
@@ -173,5 +188,5 @@
 				</div>
 			</div>
 			<!-- Main -->
-		</div>
+		
 	<!-- /Main -->

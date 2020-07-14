@@ -42,6 +42,10 @@
 .help-block{
 	font-size: 12px;
 }
+.row2{
+	margin-left: 300px;
+	width: 100%;
+}
 </style>
 
 
@@ -189,24 +193,11 @@ function changeEmail(){
 			<!-- Main -->
 			<div id="main" class="container">
 			 <div class="row">
-				<!-- 사이드 바 메뉴 -->
-				<div class="3u">
-					<section class="sidebar">
-						<header>
-							<h2>MyPage</h2>
-						</header>
-						
-						<ul class="style1">
-							<li><a href="<%=cp%>/crew/mypage">MyPage</a></li>
-							<li><a href="#">구매내역</a></li>
-						</ul>
-					</section>
-				</div>
-				<!-- /사이드바 메뉴 -->
+				<div class="row2">
 			
 				<!-- 메인 내용 -->
-				<div class="9u skel-cell-important">
-					<header>
+				
+					<header style="padding-left: 120px;">
 						<h2><i class="fas fa-user-edit"></i> 회원정보수정</h2>
 					</header>
 					
@@ -318,7 +309,7 @@ function changeEmail(){
 						     	<td align="left" style="padding-left: 150px;">
 						        <button type="button" name="sendButton" class="btn" onclick="crewOk();">수정완료</button>
 						        <button type="reset" class="btn">다시입력</button>
-						        <button type="button" class="btn" onclick="javascript:location.href='<%=cp%>/';">수정취소</button>
+						        <button type="button" class="btn" onclick="javascript:location.href='<%=cp%>/crew/mypage';">수정취소</button>
 						    	 </td>
 						  	 </tr>
 						    <tr height="30">
@@ -327,10 +318,11 @@ function changeEmail(){
 						  </table>
 						  </div>
 					</form>
+					</div>
 				</div>
 				<!-- /메인내용 -->
 				</div>
 			</div>
 			<!-- Main -->
-		</div>
+		
 	<!-- /Main -->

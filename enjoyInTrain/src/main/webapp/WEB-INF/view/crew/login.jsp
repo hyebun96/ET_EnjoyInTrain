@@ -22,7 +22,10 @@
 	border-color: #cccccc;
 	border-width: 1px;
 	margin: 10px 10px 15px 10px;
+	border-radius: 5px;
+	cursor: pointer;
 }
+
  
 .btn{
 	width: 100px;
@@ -64,7 +67,7 @@ function sendLogin(){
 	<!-- Main -->
 		<div id="page">
 			<!-- Main -->
-			<div id="main" class="container" style=" width: 1000px; border-top:3px solid #6f047f; height:300px;  margin-top: 0; padding-top: 0;" >
+			<div id="main" class="container" style=" width: 1000px; border-top:3px solid #6f047f; height:400px;  margin-top: 50px; padding-top: 0;" >
 				<form name="loginForm" method="post" action="">
 					<div style="padding:50px 0px; text-align:center; float: left; width:60%; height:250px; border: 1px solid gray; ">
 						<table style="width:450px; height:150px; text-align: center; margin: 0 auto;"  >
@@ -79,9 +82,9 @@ function sendLogin(){
 							</tr>
 							<tr>
 								<td colspan="3">
-									<button class="findbtn" style="border:1px solid #BDBDBD;  background: #EAEAEA;" type="button" onclick="javascript:location.href='<%=cp%>/crew/idfind';">아이디 찾기</button>
-									<button class="findbtn" style="border:1px solid #BDBDBD; background: #EAEAEA;" type="button" onclick="javascript:location.href='<%=cp%>/crew/idfind';">비밀번호 찾기</button>
-									<button class="findbtn" style="border:1px solid #BDBDBD; background: #EAEAEA;" type="button" onclick="javascript:location.href='<%=cp%>/crew/crew';">회원가입</button>
+									<button class="findbtn"  type="button" onclick="javascript:location.href='<%=cp%>/crew/idfind';">아이디 찾기</button>
+									<button class="findbtn"  type="button" onclick="javascript:location.href='<%=cp%>/crew/idfind';">비밀번호 찾기</button>
+									<button class="findbtn"  type="button" onclick="javascript:location.href='<%=cp%>/crew/crew';">회원가입</button>
 									<p style="color: red;">${message}</p>
 								</td>
 							</tr>

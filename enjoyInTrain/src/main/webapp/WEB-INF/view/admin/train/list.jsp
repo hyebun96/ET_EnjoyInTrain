@@ -62,7 +62,7 @@ $(function () {
 function send() {
     var f = document.insertTrainForm;
 
-	var str = f.trCategory.value;
+	var str = f.trainCategory.value;
     if(!str) {
         alert("기차 코드를 입력하세요. ");
         f.trainCode.focus();
@@ -91,17 +91,17 @@ function send() {
 					<div class="trainandtime_train">
 						
 						<ul id="train_form1">
-							<li class="train_subnum">번호</li>
 							<li class="train_subwriter">기차종류</li>
 							<li class="train_subcreated">칸갯수</li>
 							<li class="train_subcount">좌석갯수</li>
+							
 						</ul>
 						<ul id="train_form2"  >
 							<c:forEach var="dto" items="${list}">
-								<li id="train_subnum_list">${dto.trainSeq}</li>
-								<li id="train_subwriter_list">${dto.trCategory}</li>
+								<li id="train_subwriter_list">${dto.trainCategory}</li>
 								<li id="train_subcreated_list">${dto.trainRoomCount}</li>
 								<li id="train_subcount_list">${dto.trainSeatCount}</li>
+								
 							</c:forEach>
 						</ul>
 						<form name="searchForm" action="<%=cp%>/admin/train/list" method="post">
@@ -130,7 +130,7 @@ function send() {
 				<table>
 					<tr>
 						<td id="train_question">기차종류</td>
-						<td id="train_answer"><input type="text" name="trCategory" ></td>
+						<td id="train_answer"><input type="text" name="trainCategory" ></td>
 						<td id="train_question">칸수</td>
 						<td id="train_answer">
 							<select name="trainRoomCount">

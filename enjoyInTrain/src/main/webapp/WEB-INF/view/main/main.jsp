@@ -187,8 +187,8 @@ p.title1{
 
 <!-- Main -->
 <div id="page1">
-	<a style="display:scroll;position:fixed; bottom:40px;right:40px; font-size: 15px;" href="#" title="맨위로">
-		<img src="<%=cp%>/resource/images/up.png" alt="" width="40px;">
+	<a style="display:scroll;position:fixed; bottom:40px;right:40px; font-size: 35px;" href="#" title="맨위로">
+		▲
 	</a>
 	
 	<!-- Extra -->

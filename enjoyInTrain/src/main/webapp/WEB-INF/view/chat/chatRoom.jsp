@@ -142,7 +142,7 @@ $(function(){
 		var room = null;
 
 		// 채팅 서버에 접속
-		var sock = io('http://localhost:3001/chat');
+		var sock = io('http://211.238.142.65:3001/chat');
 		
 		// 채팅방 입장
 		var isVisible = $("#myChatMsg").is(':visible');

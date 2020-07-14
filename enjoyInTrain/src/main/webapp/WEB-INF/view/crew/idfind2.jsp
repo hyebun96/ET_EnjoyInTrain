@@ -13,8 +13,8 @@
     			</td>
     			<td style="padding: 0 0 10px 15px;">
 			<p style="margin-top: 1px; margin-bottom: 5px;"><input name="crewId" type="text"  
-			style="width: 100%;" placeholder="${crewId}" class="idinput" onchange="crewIdCheck();"></p>
-			<p class="help-block1">아이디를 성공적으로 찾았습니다.</p>
+			style="width: 100%;" placeholder="${crewId}" class="idinput" readonly="readonly"></p>
+			<p class="help-block1">입력하신 정보에 일치하는 회원님의 아이디가 보입니다.</p>
 		</td>
 	</tr>
 

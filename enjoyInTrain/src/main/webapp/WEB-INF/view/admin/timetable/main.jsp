@@ -485,7 +485,7 @@ $(function(){
 	<table class="time-table"
 		style="width: 100%; margin: 20px auto 0px; border-spacing: 1px; background: #cccccc;">
 		<thead>
-			<tr height="35" bgcolor="#E4E6E4" align="center">
+			<tr height="35" bgcolor="#21373F" align="center" style="color: white;">
 				<td width="80">No</td>
 				<td width="100">기차번호</td>
 				<td width="100">기차종류</td>

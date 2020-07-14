@@ -199,13 +199,19 @@ public class CrewController {
 		dto.setCrewName(crewName);
 		dto.setCrewTel(crewTel);
 		
-		
 		String crewId = service.readCrew2(dto);
 		
+		if(crewId==null) {
+			crewId="등록된 자료가 아닙니다.";
+		} else {
+			if(crewId.length()>3) {
+				crewId=crewId.substring(0, 3);
+			}
+			crewId = crewId+"*****";
+		}
 		
    	    model.addAttribute("dto", dto);
    	    model.addAttribute("crewId", crewId);
-		
         
 		return "/crew/idfind2";
 	}

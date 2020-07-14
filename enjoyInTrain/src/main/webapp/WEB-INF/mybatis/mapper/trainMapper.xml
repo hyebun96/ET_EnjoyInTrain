@@ -5,15 +5,15 @@
 
 	<!-- 기차 추가(총 칸, 총 좌석 입력) -->
 	<insert id="insertCategory" parameterType="String">
-		INSERT INTO trainCategory(trCategory) VALUES (#{trCategory})
+		INSERT INTO trainCategory(trainCategory) VALUES (#{trainCategory})
 	</insert>
 	<insert id="insertRoom" parameterType="com.et.train.Train">
-		INSERT INTO trainSetting(trCategory, roomNum, trainSeq,roomGrade, seatRow, seatColumn) VALUES(#{trCategory}, #{roomNum}, trainSetting_seq.NEXTVAL,
+		INSERT INTO trainSetting7(trainCategory, roomNum, roomGrade, seatRow, seatColumn) VALUES(#{trainCategory}, #{roomNum},
 		#{roomGrade}, #{seatRow}, #{seatColumn})
 	</insert>
 
 	<select id="listTrain" parameterType="map" resultType="com.et.train.Train">
-		SELECT trainSeq, trCategory, COUNT(roomNum) trainRoomCount, SUM(seatRow*seatColumn) trainSeatCount FROM trainSetting group by trainSeq,trCategory
+		SELECT trainCategory, COUNT(roomNum) trainRoomCount, SUM(seatRow*seatColumn) trainSeatCount FROM trainSetting7 group by trainCategory
 	</select>
 
 </mapper>

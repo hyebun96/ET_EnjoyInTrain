@@ -18,7 +18,7 @@ public class TrainServiceImpl implements TrainService{
 	public void insertRoom(Train dto) {
 		try {
 
-			dao.insertData("train.insertCategory", dto.getTrCategory());
+			dao.insertData("train.insertCategory", dto.gettrainCategory());
 			int total=0;
 			if(dto.getRoomNames()!=null) {
 				for(int i=0; i<dto.getRoomNums().size(); i++) {

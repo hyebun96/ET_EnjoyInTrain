@@ -3,7 +3,7 @@ package com.et.train;
 import java.util.List;
 
 public class Train {
-	private String trCategory;				// 기차코드
+	private String trainCategory;				// 기차코드
 	
 	private List<Integer> roomNums;				// 칸 번호 리스트
 	private int roomNum;						// 칸 번호
@@ -21,11 +21,11 @@ public class Train {
 	private int trainNum;
 	
 	
-	public String getTrCategory() {
-		return trCategory;
+	public String gettrainCategory() {
+		return trainCategory;
 	}
-	public void setTrCategory(String trCategory) {
-		this.trCategory = trCategory;
+	public void settrainCategory(String trainCategory) {
+		this.trainCategory = trainCategory;
 	}
 	public List<Integer> getRoomNums() {
 		return roomNums;
