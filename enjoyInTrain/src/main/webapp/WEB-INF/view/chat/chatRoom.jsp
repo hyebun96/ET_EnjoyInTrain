@@ -5,10 +5,9 @@
 <%
 	String cp = request.getContextPath();
 %>
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
-<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css"
-	type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/notice.css"  type="text/css">
+
 <style type="text/css">
 .homepage #main {
 	margin-top: 0em;
@@ -46,17 +45,14 @@
 	box-sizing: border-box;
 }
 
-
 .chatting-content-list hr {
 	border-bottom: 1px solid #4c4c4c;
 	position: relative;
 	top: 5px;
 	margin: 0px 3px;
 }
-
-
-}
 </style>
+
 <script src="http://211.238.142.65:3001/socket.io/socket.io.js"></script>
 <script type="text/javascript">
 function convertStringToDate(str) {
@@ -271,7 +267,7 @@ $(function(){
 				out = "<div class='chatting-content' style='clear: both; margin: 3px 5px;'>";
 				out += " <div style='font-size: 16px; margin-bottom: 3px; font-family: 맑은고딕;'>"
 						+ nickName + "</div>"
-				out += " <div style='display:inline-block; background: #ffffff; cursor: pointer; padding:5px 5px;' >"
+				out += " <div style='display:inline-block; background: #ffffff; padding:5px 5px; margin-left:5px;' >"
 						+ message + "</div>";
 				out += " <div style='font-size: 11px; display:inline-block;'>"
 						+ dispTime + "</div>";
@@ -383,24 +379,17 @@ $(function(){
 						<div id="myChatMsg" style="display: none;">
 								<div class="chatting-msg-out" style="float: right; cursor: pointer; font-size: 16px;"> | 퇴장하기</div>
 							<div class="chatting-header">
-							
 								<div style="float: left;">
 									<span class="chatting-room-name"></span>
 								</div>
 								<div class="chatting-msg-more" style="float: right; cursor: pointer;"> 더보기 </div>
-								
 							</div>
 							
-							
-							<div class="chatting-content-list" style="background: #9bbbd4;"></div>
-							
+							<div class="chatting-content-list" style="width: 100%; height: 420px; box-sizing: border-box; overflow: auto; clear: both; background: #9bbbd4;"></div>
 							
 							<div style="clear: both; padding-top: 5px;">
 								<input type="text" id="chatMsg" class="boxTF" style="width: 100%; box-sizing: border-box;" placeholder="채팅 메시지를 입력 하세요...">
 							</div>
-							
-							
-							
 						</div>
 						
 					</div>
