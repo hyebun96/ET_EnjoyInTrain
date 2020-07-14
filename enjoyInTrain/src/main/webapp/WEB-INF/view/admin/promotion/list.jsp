@@ -27,8 +27,8 @@ function deleteReservation(prSeq) {
 				<div class="row">
 				<div class="Keyword">
 					</div>
-						<table class="salesTable">
-							<tr class="salesBar">
+						<table class="salesTable" >
+							<tr class="salesBar" style="color: white; font-weight: bold;">
 								<td class="salesBar_num"> 번호 </td>
 								<td class="salesBar_reservationNum">예약번호</td>
 								<td class="salesBar_title"> 프로모션 제목 </td>
@@ -56,7 +56,7 @@ function deleteReservation(prSeq) {
 											</c:if> 
 										</td>
 										<td>
-											<button type="button" onclick="deleteReservation('${dto.prSeq}');">
+											<button type="button" onclick="deleteReservation('${dto.prSeq}');" style="height:25px; background: white; border: 2px solid black; border-radius: 5px; ">
 												<i class="fas fa-trash-alt"></i>
 											</button>
 										</td>

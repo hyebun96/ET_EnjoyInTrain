@@ -111,7 +111,7 @@ $(function(){
 													<td style="background: #21373f40;">칸번호</td>
 													<td style="background: #21373f40;">좌석가격</td>
 													<td style="background: #21373f40;">구매현황</td>
-													<td style="background: #21373f40;">환불</td>
+													<td style="background: #21373f40;">${dto.promotion==0?'환불':''}</td>
 													<td style="background: #21373f40;"></td>
 												</tr>
 												<c:forEach items="${seatList}" var="seat">
@@ -124,7 +124,9 @@ $(function(){
 															<td style="width: 12%">${dto.promotion==1?'-':seat.seatPay}</td>
 															<td style="color: ${seat.refund==1?'red':'black'}; width: 12%">${seat.refund==1?'환불완료':'결제완료'}</td>
 															<td style="width: 10%;">
-																<button class="refundSeatBtn" type="button" data-rsSeatCode="${seat.rsseatCode}" data-trCode="${dto.trCode}">환불</button>
+																<c:if test="${dto.promotion==0}">
+																	<button class="refundSeatBtn" type="button" data-rsSeatCode="${seat.rsseatCode}" data-trCode="${dto.trCode}">환불</button>
+																</c:if>
 															</td>
 															<td style="width: 15%;"></td>
 														</tr>

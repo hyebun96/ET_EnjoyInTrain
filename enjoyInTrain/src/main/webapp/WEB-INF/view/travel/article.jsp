@@ -159,7 +159,7 @@ $(function(){
 </script>
 
 <form name="travelArticleForm" method="get" enctype="multipart/form-data">
-	<table id="travelTable" style="border-spacing: 0px; border-collapse: collapse;">
+	<table id="travelTable" style="border-spacing: 0px; border-collapse: collapse; width: 100%;">
 		
 		<tr align="left" height="40" >
 			<td  class="title" style="float: left;" colspan="8" >
@@ -169,7 +169,7 @@ $(function(){
 		
 		<tr align="left" height="40"
 			style="border-bottom: 1px solid #cccccc; border-top: 3px solid #cccccc;">
-			<td class="title" style="padding-left: 10px; text-align: center;" colspan="5" width="100%">${dto.pmTitle}</td>
+			<td class="title" style="padding-left: 10px; text-align: left; background: #4e0c6f; color:white;" colspan="5" width="100%;">${dto.pmTitle}</td>
 		</tr>
 
 
@@ -261,19 +261,19 @@ $(function(){
 	
 		<tr class="reservationForm" align="center" height="40"
 			style="border-bottom: 1px solid #cccccc; border-top: 3px solid #cccccc; display: none;" >
-			<td class="title" style="width: 200px;">상품 그룹</td>
-			<td class="title">선택</td>
-			<td class="title" style="width: 200px;">상품명</td>
-			<td class="title">열차번호</td>
-			<td class="title">출발시간</td>
-			<td class="title">도착시간</td>
-			<td class="title">해당 기차 재고</td>
+			<td class="title" style="width: 200px; background: #4e0c6f; color: white;">상품 그룹</td>
+			<td class="title" style="background: #4e0c6f; color: white;">선택</td>
+			<td class="title" style="width: 200px;background: #4e0c6f; color: white;">상품명</td>
+			<td class="title" style="background: #4e0c6f; color: white;">열차번호</td>
+			<td class="title" style="background: #4e0c6f; color: white;">출발시간</td>
+			<td class="title" style="background: #4e0c6f; color: white;">도착시간</td>
+			<td class="title" style=" background: #4e0c6f; color: white;">해당 기차 재고</td>
 		</tr>
 		
 		<c:forEach var="vo" items="${startList}">
 			<tr class="reservationForm" align="center" style="border-bottom: 1px solid #cccccc; border-bottom: 1px solid #cccccc; display: none;">
 				<c:if test="${vo == startList.get(0)}">
-					<td rowspan="${startLength}" style="width: 200px; font-weight: bold;">가는 열차</td>
+					<td rowspan="${startLength}" style="width: 200px; font-weight: bold; ">가는 열차</td>
 				</c:if>
 				<td class="title"><input type="radio" name="startTrain"  value="${vo.trainCode}"  ${startList[0] == vo? "checked='checked'" : ""}></td>
 				<td class="title">${vo.trainName}</td>
@@ -286,7 +286,7 @@ $(function(){
 		
 		<tr class="reservationForm" align="left" 
 			style="border-bottom: 1px solid #cccccc; border-bottom: 1px solid #cccccc;  display: none;">
-			<td class="title">${dto.product}</td>
+			<td class="title" >${dto.product}</td>
 			<td class="title"><input type="radio" checked="checked"></td>
 			<td class="title" colspan="5" style="text-align: left; padding-left: 70px;">${dto.productContent}</td>
 		</tr>
@@ -315,7 +315,7 @@ $(function(){
 		<table style=" margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse; width: 1200px;">
 			<tr align="center" height="40"
 				style="border-bottom: 1px solid #cccccc; border-top: 3px solid #cccccc; ">
-				<td colspan="8">상품 상세 설명</td>
+				<td colspan="8" style=" background: #4e0c6f; color: white;">상품 상세 설명</td>
 			</tr>
 			<tr align="center" style="clear:both; width: 100%; border-bottom: 1px solid #cccccc; margin-top: 200px;">
 				<td colspan="6" style="width: 100%">

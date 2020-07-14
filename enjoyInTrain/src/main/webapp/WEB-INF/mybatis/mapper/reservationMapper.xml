@@ -92,10 +92,18 @@
 		SELECT reservedSeat_seq.NEXTVAL FROM dual
 	</select>
 	
-	<!-- 기차(좌석)예약하기 -->
+<!-- 	
 	<insert id="insertReservation" parameterType="com.et.reservation.Reservation">
 		INSERT INTO trainreservation(trCode, trPrice, trDate, crewId, trPointPrice) VALUES(#{trCode},#{trPrice} ,#{trDate}, #{crewId}, #{point})
 	</insert>
+	
+ -->	
+ 
+	<!-- 기차(좌석)예약하기 -->
+	<insert id="insertReservation" parameterType="com.et.reservation.Reservation">
+		INSERT INTO trainreservation(trCode, trPrice, trDate, crewId, trPointPrice, trPayDate) VALUES(#{trCode},#{trPrice} ,#{trDate}, #{crewId}, #{point},#{trDate})
+	</insert>
+	
 	
 	<insert id="insertReservationInfo" parameterType="com.et.reservation.Reservation">
 		INSERT INTO trReservationInfo(trCode, startCode, endCode, trainCode) VALUES(#{trCode},#{startCode},#{endCode},#{trainCode})

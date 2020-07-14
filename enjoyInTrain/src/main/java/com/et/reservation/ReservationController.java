@@ -64,6 +64,8 @@ public class ReservationController {
 		model.addAttribute("stationCount",14);
 		model.addAttribute("firstSt",map.get("firstSt"));
 		model.addAttribute("lastSt",map.get("lastSt"));
+		
+		model.addAttribute("day",dto.getDay()); ///삭제필요
 		return ".reservation.main";
 	}
 	

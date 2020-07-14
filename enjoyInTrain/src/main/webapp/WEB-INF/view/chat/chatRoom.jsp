@@ -256,7 +256,7 @@ $(function(){
 			// 메시지 출력
 			if (uid == crewId) {
 				out = "<div class='chatting-content' style='clear: both; margin: 3px 5px;'>";
-				out += " <div style='float: right; background: #fef01b; cursor: pointer; padding:5px 5px; ' >"
+				out += " <div style='float: right; background: #fef01b; cursor: pointer; padding:5px 5px; margin-right:8px; font-family: sans-serif;' >"
 						+ message + "</div>";
 				out += " <div style='float: right; font-size: 11px; margin-right: 3px;'>"
 						+ dispTime + "</div>";
@@ -265,9 +265,9 @@ $(function(){
 
 			} else {
 				out = "<div class='chatting-content' style='clear: both; margin: 3px 5px;'>";
-				out += " <div style='font-size: 16px; margin-bottom: 3px; font-family: 맑은고딕;'>"
+				out += " <div style='font-size: 14px; margin-bottom: 3px;  margin-left: 5px;'>"
 						+ nickName + "</div>"
-				out += " <div style='display:inline-block; background: #ffffff; padding:5px 5px; margin-left:5px;' >"
+				out += " <div style='display:inline-block; background: #ffffff; padding:5px 5px; margin-left:8px; font-family: sans-serif;' >"
 						+ message + "</div>";
 				out += " <div style='font-size: 11px; display:inline-block;'>"
 						+ dispTime + "</div>";

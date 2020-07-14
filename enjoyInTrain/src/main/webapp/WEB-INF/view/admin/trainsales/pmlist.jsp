@@ -22,9 +22,6 @@
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 <script type="text/javascript">
 
@@ -115,7 +112,7 @@ $(function(){
 		            borderWidth: 0,
 		            dataLabels: {
 		                enabled: true,
-		                format: '{point.y:.1f}%'
+		                format: '{point.y:.0f}%'
 		            }
 		        }
 		    },
@@ -148,8 +145,8 @@ $(function(){
 					</header>
 
 					<div style="clear: both;">
-						<div id="semiContainer" style="width: 600px; height: 500px; float: left; margin: 10px;"></div>	
-						<div id="semi2Container" style="width: 600px; height: 500px; float: left; margin: 10px;"></div>	
+						<div id="semiContainer" style="width: 650px; height: 600px; float: left; margin: 10px;"></div>	
+						<div id="semi2Container" style="width: 700px; height: 600px; float: left; margin: 10px; margin-left: 50px;"></div>	
 					</div>
 				</section>
 			</div>

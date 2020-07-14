@@ -43,13 +43,13 @@
 }
 
 .salesBar_title{
-	text-align: center;
-	width: 32%;
+	text-align: left;
+	width: 25%;
 }
 
 .salesBar_content{
-	text-align: center;
-	width: 23%
+	text-align: left;
+	width: 13%;
 }
 
 .salesBar_price{
@@ -104,13 +104,13 @@
 }
 
 .salesList_title{
-	width: 32%;
-	text-align: center;
+	width: 25%;
+	text-align: left;
 }
 
 .salesList_content{
-	width: 23%;
-	text-align: center;
+	width: 13%;
+	text-align: left;
 }
 
 .salesList_price{

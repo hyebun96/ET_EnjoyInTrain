@@ -48,7 +48,7 @@
 	margin: 15px 100px 10px 60px;
 	width: 846px;
 	height: 345px;
-	border: 3px solid #6f047f;
+	border: 3px solid #0f0f69e8;
 }
 
 .ticket3{
@@ -76,7 +76,7 @@
 }
 
 .back{
-	background: #E3CEF6;
+	background: #b2c5e1;
 }
 
 </style>
@@ -106,7 +106,7 @@ function info_print() {
 						<section>
 							<header>
 								<div style="width:1200px; text-align:center; height:150px; line-height:150px; border: 1px solid #BDBDBD">
-									<p style="font-weight:bold; font-size: 20px;"><i class="fas fa-check-circle" style=" color: #6f047f;"></i>&nbsp;승차권 발급이 완료되었습니다.</p>
+									<p style="font-weight:bold; font-size: 20px;"><i class="fas fa-check-circle" style=" color: #0f0f69e8;"></i>&nbsp;승차권 발급이 완료되었습니다.</p>
 								</div>
 							</header>
 						</section>
@@ -144,9 +144,9 @@ function info_print() {
 						</div>
 						
 						<div style="width: 1200px; text-align: center;">
-							<button onclick="javascript:location.href='<%=cp%>/main';" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #6f047f; color: white; border: none;">메인으로 가기</button>
-							<button onclick="javascript:location.href='<%=cp%>/main';" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #6f047f; color: white; border: none;">발권조회</button>
-							<button onclick="info_print()" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #6f047f; color: white; border: none;">승차권 인쇄</button>
+							<button onclick="javascript:location.href='<%=cp%>/main';" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #0f0f69e8; color: white; border: none;">메인으로 가기</button>
+							<button onclick="javascript:location.href='<%=cp%>/reservation/${empty sessionScope.crew?'uncrew2':'detail'}';" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #0f0f69e8; color: white; border: none;">발권조회</button>
+							<button onclick="info_print()" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #0f0f69e8; color: white; border: none;">승차권 인쇄</button>
 						</div>
 						
 						<div class="ticket1">
