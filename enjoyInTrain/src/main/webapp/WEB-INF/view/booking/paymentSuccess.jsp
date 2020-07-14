@@ -346,7 +346,7 @@ $(function() {
 					<table>
 						<tr>
 							<td>
-								<img src="<%=cp%>/uploads/travel/${saveFileName}">
+								<img src="<%=cp%>/uploads/travel/${saveFileName}" style="width: 320px; height: 280px;">
 							</td>
 						</tr>
 						<tr>
