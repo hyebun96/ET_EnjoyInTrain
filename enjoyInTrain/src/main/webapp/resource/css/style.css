@@ -7,7 +7,7 @@
 @charset 'UTF-8';
 
 @font-face{font-family:'FontAwesome';src:url('font/fontawesome-webfont.eot?v=4.0.1');src:url('font/fontawesome-webfont.eot?#iefix&v=4.0.1') format('embedded-opentype'),url('font/fontawesome-webfont.woff?v=4.0.1') format('woff'),url('font/fontawesome-webfont.ttf?v=4.0.1') format('truetype'),url('font/fontawesome-webfont.svg?v=4.0.1#fontawesomeregular') format('svg');font-weight:normal;font-style:normal}
-
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR&family=Noto+Serif+KR:wght@200;300;400;500&display=swap');
 /*********************************************************************************/
 /* Basic                                                                         */
 /*********************************************************************************/
@@ -16,11 +16,12 @@
 	{
 		background: none;
 		
+		font-family: 'Nanum Brush Script', cursive;
 	}
 
 	body,input,textarea,select
 	{
-		font-family: 'Roboto Condensed', sans-serif;
+		font-family: 'Noto Sans KR', sans-serif;
 		font-weight: 300;
 		font-size: 11pt;
 		line-height: 1.75em;

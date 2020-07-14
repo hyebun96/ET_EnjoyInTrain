@@ -394,7 +394,7 @@ $(function () {
 						<table class="noticearticle">
 							
 							<tr class="noticearticletitle">
-								<td style="text-align: center; background: #21373F; color: white;" colspan="4">${dto.fbTitle}</td>
+								<td style="text-align: center; background: #21373F; color: white; font-weight: bold;" colspan="4">${dto.fbTitle}</td>
 								
 							</tr>
 

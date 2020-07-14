@@ -282,7 +282,7 @@ $(function () {
 					<form action="" name="lostBoardForm" method="post" enctype="multipart/form-data">
 						<table class="noticearticle">
 							<tr class="noticearticletitle">
-								<td style="text-align: center; background: #21373F; color: white;" colspan="4"> ${dto.lostTitle} </td>
+								<td style="text-align: center; background: #21373F; color: white; font-weight: bold;" colspan="4"> ${dto.lostTitle} </td>
 							</tr>
 							<tr class="noticearticletitle">
 								<td style="text-align: left;" colspan="2"> 작성자 : ${dto.crewName}</td>
