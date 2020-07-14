@@ -25,13 +25,8 @@ function deleteReservation(prSeq) {
 			<!-- Main -->
 			<div id="main" class="container">
 				<div class="row">
-						<div class="	Keyword">
-							<select name="keyword">
-								<option value="promotionName" ${keyword=="promotionName"?"selected='selected'":""}>년도별</option>
-								<option value="reservationDate" ${keyword=="reservationDate"?"selected='selected'":""}>월 별</option>
-								<option value="userName" ${keyword=="userName"?"selected='selected'":""}>일 별</option>
-							</select>
-						</div>
+				<div class="Keyword">
+					</div>
 						<table class="salesTable">
 							<tr class="salesBar">
 								<td class="salesBar_num"> 번호 </td>

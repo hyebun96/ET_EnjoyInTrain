@@ -269,4 +269,96 @@ public class CrewController {
 		return "redirect:/crew/complete";
 	}
 	
+	@RequestMapping(value = "receipt") // 영수증
+	public String receipt(@RequestParam int prSeq, HttpSession session, Model model) {
+		SessionInfo info = (SessionInfo) session.getAttribute("crew");
+		Map<String, Object> map = new HashMap<>();
+		map.put("prSeq", prSeq);
+		map.put("crewId", info.getCrewId());
+		try {
+
+			List<Booking> list = bookingService.readReservation(map);
+			List<Booking> list1 = bookingService.readReservation(map);
+			Booking startDto = null, endDto = null;
+			Booking start = null, end = null;
+			for (Booking dto : list) {
+				if (Integer.parseInt(dto.getTrainCode()) % 2 != 0) {
+					startDto = dto;
+				} else {
+					endDto = dto;
+				}
+			}
+			for (Booking vo : list1) {
+				if (Integer.parseInt(vo.getTrainCode()) % 2 != 0) {
+					start = vo;
+					start = bookingService.readtrainlist(start);
+					start.setPrAddPrice(bookingService.readsPay(start));
+				} else {
+					end = vo;
+					end = bookingService.readtrainlist(end);
+					end.setPrAddPrice1(bookingService.readsPay1(end));
+				}
+			}
+
+			startDto.setStartStation(bookingService.readStartStation(startDto.getStartStation()));
+			startDto.setEndStation(bookingService.readEndStation(startDto.getEndStation()));
+			endDto.setStartStation(bookingService.readStartStation(endDto.getStartStation()));
+			endDto.setEndStation(bookingService.readEndStation(endDto.getEndStation()));
+
+			model.addAttribute("prSeq", prSeq);
+			model.addAttribute("startDto", startDto);
+			model.addAttribute("endDto", endDto);
+			model.addAttribute("start", start);
+			model.addAttribute("end", end);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ".booking.receipt";
+	}
+
+	@RequestMapping(value = "paymentSuccess") // 결제폼
+	public String paymentForm(@RequestParam int prSeq, HttpSession session, Model model) {
+		SessionInfo info = (SessionInfo) session.getAttribute("crew");
+		Map<String, Object> map = new HashMap<>();
+		map.put("prSeq", prSeq);
+		map.put("crewId", info.getCrewId());
+		try {
+			List<Booking> list = bookingService.readReservation(map);
+			List<Booking> list1 = bookingService.readReservation(map);
+			Booking startDto = null, endDto = null;
+			Booking start = null, end = null;
+			for (Booking dto : list) {
+				if (Integer.parseInt(dto.getTrainCode()) % 2 != 0) {
+					startDto = dto;
+				} else {
+					endDto = dto;
+				}
+			}
+			startDto.setStartStation(bookingService.readStartStation(startDto.getStartStation()));
+			startDto.setEndStation(bookingService.readEndStation(startDto.getEndStation()));
+			endDto.setStartStation(bookingService.readStartStation(endDto.getStartStation()));
+			endDto.setEndStation(bookingService.readEndStation(endDto.getEndStation()));
+
+			for (Booking vo : list1) {
+				if (Integer.parseInt(vo.getTrainCode()) % 2 != 0) {
+					start = vo;
+					start = bookingService.readtrainlist(start);
+				} else {
+					end = vo;
+					end = bookingService.readtrainlist(end);
+				}
+			}
+			
+			bookingService.paymentSuccess(prSeq);
+
+			model.addAttribute("startDto", startDto);
+			model.addAttribute("endDto", endDto);
+			model.addAttribute("start", start);
+			model.addAttribute("end", end);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ".booking.paymentSuccess";
+	}
 }
