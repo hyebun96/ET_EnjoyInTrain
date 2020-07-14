@@ -14,13 +14,20 @@
 }
 
 .listAll:hover{
-	background: black;
+	background: #f5fffa;
 }
 
 table td{
 	//border-bottom: 1px solid #D5D5D5;
 }
-
+.refundSeatBtn{
+	width: 60px;
+	height: 20px;
+	line-height: 15px;
+	border-radius: 8px;
+	background: white;
+	
+}
 </style>
 
 <script type="text/javascript">
@@ -67,23 +74,23 @@ $(function(){
 					</header>
 					
 					<div>
-						<table style="margin:0 auto; text-align:center; width:1200px; border: 1px solid #D5D5D5;">
-							<tr style="height: 30px;">
-								<td style="background: #21373f; color: white;">승차일</td>
-								<td style="background: #21373f; color: white;">열차종류</td>
-								<td style="background: #21373f; color: white;">열차번호</td>
-								<td style="background: #21373f; color: white;">출발역</td>
-								<td style="background: #21373f; color: white;">도착역</td>
-								<td style="background: #21373f; color: white;">아이디</td>
-								<td style="background: #21373f; color: white;">결제날짜</td>
-								<td style="background: #21373f; color: white;">금액</td>
-								<td style="background: #21373f; color: white;">포인트사용금액</td>
-								<td style="background: #21373f; color: white;">인원</td>
-								<td style="background: #21373f; color: white;">구매현황</td>
-								<td style="background: #21373f; color: white;">비고</td>
+						<table style="margin:0 auto; text-align:center; width:1200px; border: 1px solid #D5D5D5; ">
+							<tr style="height: 40px; background: #21373f; color: white;">
+								<td>승차일</td>
+								<td>열차종류</td>
+								<td>열차번호</td>
+								<td>출발역</td>
+								<td>도착역</td>
+								<td>아이디</td>
+								<td>결제날짜</td>
+								<td>금액</td>
+								<td>포인트사용금액</td>
+								<td>인원</td>
+								<td>구매현황</td>
+								<td>비고</td>
 							</tr>
 							<c:forEach items="${list}" var="dto">
-								<tr class="listAll" style="height:30px; background: #F6F6F6">
+								<tr class="listAll" style="height:40px;">
 									<td class="trCode trDate">
 										<input type="hidden" value="${dto.trCode}" name="trCode">
 										${dto.trDate}
@@ -105,14 +112,14 @@ $(function(){
 										<div class="seatList${dto.trCode}" style="display:none;">
 											<table style="width: 100%;">
 												<tr style="height: 30px;">
-													<td style="background: #21373f40;"></td>
-													<td style="background: #21373f40;">좌석번호</td>
-													<td style="background: #21373f40;">좌석타입</td>
-													<td style="background: #21373f40;">칸번호</td>
-													<td style="background: #21373f40;">좌석가격</td>
-													<td style="background: #21373f40;">구매현황</td>
-													<td style="background: #21373f40;">${dto.promotion==0?'환불':''}</td>
-													<td style="background: #21373f40;"></td>
+													<td style="background: #325966;"></td>
+													<td style="background: #325966;">좌석번호</td>
+													<td style="background: #325966;">좌석타입</td>
+													<td style="background: #325966;">칸번호</td>
+													<td style="background: #325966;">좌석가격</td>
+													<td style="background: #325966;">구매현황</td>
+													<td style="background: #325966;">${dto.promotion==0?'환불':''}</td>
+													<td style="background: #325966;"></td>
 												</tr>
 												<c:forEach items="${seatList}" var="seat">
 													<c:if test="${seat.trCode==dto.trCode}">
