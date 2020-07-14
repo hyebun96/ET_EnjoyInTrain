@@ -76,6 +76,11 @@ public class CrewController {
 		session.invalidate();
 		return "redirect:/";
 	}
+
+	@RequestMapping(value="noAuth")
+	public String noAuth(HttpSession session) {
+		return ".crew.noAuth";
+	}
 	
 	@RequestMapping(value="crew", method=RequestMethod.GET)
 	public String crewForm(Model model) {

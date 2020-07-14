@@ -42,7 +42,15 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 					
 					resp.sendRedirect(cp+"/crew/login");
 				}
+			} else {
+				if(uri.indexOf(cp+"/admin")==0) {
+					if(! info.getCrewId().equals("a")) {
+						resp.sendRedirect(cp+"/crew/noAuth");
+					}
+				}
 			}
+			
+			
 		} catch (Exception e) {
 			logger.info("pre: "+e.toString());
 		}
