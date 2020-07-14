@@ -157,14 +157,14 @@ $(function(){
 					<div id="crewreservation2" style="display: none; width: 100%;">
 					<table  style="width:100%; margin-top: 50px;">
 							<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA; text-align: center;">
-							 	<td style="background: #353866; color: white;" colspan="4">프로모션 예약현황</td>
+							 	<td style="background: #353866; color: white;" colspan="5">프로모션 예약현황</td>
 							 </tr>
 							<tr style="height:40px; font-weight:bold; background: #C1D8F3; text-align: center;">
 								<td>예약번호</td>
 								<td>프로모션 제목 </td>
 								<td>구매자 </td>
 								<td>예약날짜</td>
-								
+								<td>결제여부</td>
 								
 							</tr>
 							<c:forEach var="dto" items="${list2}" varStatus="status">
@@ -174,7 +174,11 @@ $(function(){
 										<td> ${dto.pmTitle} </td>
 										<td> ${dto.crewName} </td>
 										<td> ${dto.prReservationDate.substring(0, 10)} </td>
-										
+										<td> 
+											<c:if test="${dto.prpayment==1}">
+												결제완료
+											</c:if> 
+										</td>
 										
 										
 									</tr>
