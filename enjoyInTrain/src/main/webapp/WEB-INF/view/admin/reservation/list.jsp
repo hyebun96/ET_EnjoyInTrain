@@ -94,14 +94,14 @@ $(function(){
 									<td>${dto.endCode}</td>
 									<td>${dto.crewId}</td>
 									<td>${dto.trPayDate}</td>
-									<td>${dto.trPrice}</td>
+									<td>${dto.promotion==1?'-':dto.trPrice}</td>
 									<td>${dto.trPointprice}</td>
 									<td>${dto.count}</td>
 									<td style="color: ${dto.refund==1?'red':'black'}">${dto.refund==1?'환불완료':'결제완료'}</td>
 									<td>${dto.promotion==0?'':'프로모션'}</td>
 								</tr>
 								<tr>
-									<td colspan="11">
+									<td colspan="12">
 										<div class="seatList${dto.trCode}" style="display:none;">
 											<table style="width: 100%;">
 												<tr style="height: 30px;">
@@ -121,7 +121,7 @@ $(function(){
 															<td style="width: 12%">${seat.seatNum}</td>
 															<td style="width: 12%">${seat.seatType}</td>
 															<td style="width: 12%">${seat.roomNum}</td>
-															<td style="width: 12%">${seat.seatPay}</td>
+															<td style="width: 12%">${dto.promotion==1?'-':seat.seatPay}</td>
 															<td style="color: ${seat.refund==1?'red':'black'}; width: 12%">${seat.refund==1?'환불완료':'결제완료'}</td>
 															<td style="width: 10%;">
 																<button class="refundSeatBtn" type="button" data-rsSeatCode="${seat.rsseatCode}" data-trCode="${dto.trCode}">환불</button>

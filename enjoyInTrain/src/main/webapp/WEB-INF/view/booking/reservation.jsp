@@ -490,7 +490,7 @@ $(function(){
 								<tr>
 									<td class="reservation_report_question">좌석선택</td>
 									<td class="reservation_report_answer">
-										<button type="button" class="seatButton">좌석선택</button>  
+										<button type="button" class="seatButton" style="background: #4e0c6f; color: white;">좌석선택</button>  
 										<span id="startSeatInfoView"></span>
 										<input type="hidden" name="prStartRoom" value="">
 										<input type="hidden" name="prStartTrainSeat" value="">
@@ -582,7 +582,7 @@ $(function(){
 								<tr>
 									<td class="reservation_report_question">좌석선택</td>
 									<td class="reservation_report_answer" colspan="3">
-										<button type="button" class="seatButton1">좌석선택</button> 
+										<button type="button" class="seatButton1"  style="background: #4e0c6f; color: white;">좌석선택</button> 
 										<span id="endSeatInfoView"></span>
 										<input type="hidden" name="prEndRoom" value="">
 										<input type="hidden" name="prEndTrainSeat" value="">
@@ -713,8 +713,8 @@ $(function(){
 
 							<div>
 								<div class="travler_button">
-									<button type="button" onclick="javascript:location.href='<%=cp%>/travel/travel';">취소하기</button>
-									<button type="button" onclick="reservation()">예약하기</button>
+									<button type="button" onclick="javascript:location.href='<%=cp%>/travel/travel';"  style="background: #4e0c6f; color: white;">취소하기</button>
+									<button type="button" onclick="reservation()" style="background: #4e0c6f; color: white;">예약하기</button>
 								</div>
 							</div>
 						</div>	

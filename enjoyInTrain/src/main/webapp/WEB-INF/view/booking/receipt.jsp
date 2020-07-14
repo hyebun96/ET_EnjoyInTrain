@@ -257,9 +257,9 @@ function requestPay(){
 									</tr>
 									</table>
 								<div class="travler_button">
-									<button type="button" id="showReservationInfo">예약명세서</button>
-									<button type="button" onclick="javascript:location.href='<%=cp%>/travel/main';">확인</button>
-									<button type="button" onclick="requestPay()">결제하기</button>
+									<button type="button" id="showReservationInfo" style="background: #4e0c6f; color: white;">예약명세서</button>
+									<button type="button" onclick="javascript:location.href='<%=cp%>/travel/main';" style="background: #4e0c6f; color: white;">확인</button>
+									<button type="button" onclick="requestPay()" style="background: #4e0c6f; color: white;">결제하기</button>
 								</div>
 							</div>
 						</div>	

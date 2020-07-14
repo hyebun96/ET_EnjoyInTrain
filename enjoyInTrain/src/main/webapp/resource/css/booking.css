@@ -54,7 +54,8 @@
 }
 
 .reservation_info_question{
-	background: #EAEAEA;
+	background: #4e0c6f;
+    color: white;
 	width: 16%;
 	height: 40px;
 	line-height: 40px;
@@ -79,7 +80,8 @@
 	width: 7%;
 	height: 40px;
 	line-height: 40px;
-	background: #EAEAEA;
+	background: #4e0c6f;
+    color: white;
 	text-align: center;
 	border-bottom: 1px solid #cccccc;
 	font-weight: bold;
@@ -89,7 +91,8 @@
 	width: 13%;
 	height: 40px;
 	line-height: 40px;
-	background: #EAEAEA;
+	background: #4e0c6f;
+    color: white;
 	text-align: center;	
 	border-left: 1px solid #cccccc;
 	border-bottom: 1px solid #cccccc;
@@ -100,7 +103,8 @@
 	width: 70%;
 	height: 40px;
 	line-height: 40px;
-	background: #EAEAEA;
+	background: #4e0c6f;
+    color: white;
 	text-align: center; 
 	border-left: 1px solid #cccccc;
 	border-bottom: 1px solid #cccccc;
@@ -116,7 +120,7 @@
 
 .reservation_report_question{
 	width: 15%;
-	background: #EAEAEA;
+	background: ghostwhite;
 	height: 40px;
 	border-bottom: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
@@ -165,11 +169,15 @@ ul.tabs li {
 	line-height: 35px;
 	overflow: hidden;
 	position: relative;
+	background: #4e0c6f;
+    color: white;
 }
 ul.tabs li:hover {
 	background: white;
+	color : #4e0c6f;
 	border: 1px solid #dddddd;
 	border-bottom: none;
+	
 }	
 ul.tabs li.active{
 	font-weight: 700;
@@ -365,7 +373,8 @@ ul.tabs li.active{
 }
 
 .receipt_info_question{
-	background: #EAEAEA;
+	background: #4e0c6f;
+    color: white;
 	width: 16%;
 	height: 40px;
 	line-height: 40px;
@@ -390,7 +399,8 @@ ul.tabs li.active{
 	width: 7%;
 	height: 40px;
 	line-height: 40px;
-	background: #EAEAEA;
+	background: #4e0c6f;
+    color: white;
 	text-align: center;
 	border-bottom: 1px solid #cccccc;
 	font-weight: bold;
@@ -400,7 +410,8 @@ ul.tabs li.active{
 	width: 13%;
 	height: 40px;
 	line-height: 40px;
-	background: #EAEAEA;
+	background: #4e0c6f;
+    color: white;
 	text-align: center;	
 	border-left: 1px solid #cccccc;
 	border-bottom: 1px solid #cccccc;
@@ -411,7 +422,8 @@ ul.tabs li.active{
 	width: 70%;
 	height: 40px;
 	line-height: 40px;
-	background: #EAEAEA;
+	background: #4e0c6f;
+    color: white;
 	text-align: center; 
 	border-left: 1px solid #cccccc;
 	border-bottom: 1px solid #cccccc;
@@ -420,7 +432,7 @@ ul.tabs li.active{
 
 .receipt_report_question{
 	width: 15%;
-	background: #EAEAEA;
+	background: ghostwhite;
 	height: 40px;
 	border-bottom: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
@@ -491,7 +503,8 @@ ul.tabs li.active{
 
 .travler_info_question{
 	width: 13%;
-	background: #EAEAEA;
+	background: #4e0c6f;
+    color: white;
 	height: 40px;
 	padding-left: 20px;
 	line-height: 40px;
@@ -552,7 +565,8 @@ ul.tabs li.active{
 }
 
 .resetpayment_question{
-	background: .EAEAEA;
+	background: #4e0c6f;
+	color : white;
 	height: 40px;
 	width: 13%;
 	padding-left: 10px;
@@ -579,6 +593,8 @@ ul.tabs li.active{
 
 
 .travler_button button{
+	background: #4e0c6f;
+    color: white;
 	height: 30px;
 	margin-right: 5px;
 }
@@ -586,6 +602,11 @@ ul.tabs li.active{
 #reservationInfo_dialog{
 	display: none;
 	vertical-align:middle;
+}
+
+.ui-dialog-titlebar {
+    background: #4e0c6f;
+    color: white;
 }
 
 .statement_table{
@@ -599,7 +620,8 @@ ul.tabs li.active{
 	padding-right: 10px;
 	height: 40px;
 	line-height: 40px;
-	background: #EAEAEA;
+	background: #4e0c6f;
+    color: white;
 	width: 20%;
 	border-bottom: 1px solid #cccccc;
 	font-weight: bold;
@@ -610,7 +632,8 @@ ul.tabs li.active{
 	padding-right: 10px;
 	height: 80px;
 	line-height: 80px;
-	background: #EAEAEA;
+	background: #4e0c6f;
+    color: white;
 	width: 20%;
 	border-bottom: 1px solid #cccccc;
 	font-weight: bold;
@@ -636,7 +659,8 @@ ul.tabs li.active{
 }
 
 .statement_report_date1{
-	background: #EAEAEA;
+	background: #4e0c6f;
+    color: white;
 	height: 30px;
 	border-top: 3px solid #cccccc;
 	border-right: 1px solid #cccccc;
@@ -646,7 +670,8 @@ ul.tabs li.active{
 }
 
 .statement_report_productName1{
-	background: #EAEAEA;
+	background: #4e0c6f;
+    color: white;
 	height: 30px;
 	border-top: 3px solid #cccccc;
 	border-right: 1px solid #cccccc;
@@ -656,7 +681,8 @@ ul.tabs li.active{
 }
 
 .statement_report_productCount1{
-	background: #EAEAEA;
+	background: #4e0c6f;
+    color: white;
 	height: 30px;
 	border-top: 3px solid #cccccc;
 	width: 15%;
@@ -709,7 +735,8 @@ ul.tabs li.active{
 }
 
 .statement_notice_date1{
-	background: #EAEAEA;
+	background: #4e0c6f;
+    color: white;
 	height: 30px;
 	width: 20%;
 	border-top: 3px solid #cccccc;
@@ -793,7 +820,8 @@ ul.tabs li.active{
 .payment_report_num1{
 	width: 18%;
 	height: 40px;
-	background: #EAEAEA;
+	background:  #4e0c6f;
+	color: white;
 	border-bottom: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
 	padding-left: 10px;
@@ -803,7 +831,8 @@ ul.tabs li.active{
 .payment_report_category1{
 	width: 12%;
 	height: 40px;
-	background: #EAEAEA;
+	background:  #4e0c6f;
+	color: white;
 	border-bottom: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
 	padding-left: 10px;
@@ -813,7 +842,8 @@ ul.tabs li.active{
 .payment_report_name1{
 	width: 55%;
 	height: 40px;
-	background: #EAEAEA;
+	background:  #4e0c6f;
+	color: white;
 	border-bottom: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
 	padding-left: 10px;
@@ -823,7 +853,8 @@ ul.tabs li.active{
 .payment_report_pay1{
 	width: 15%;
 	height: 40px;
-	background: #EAEAEA;
+	background:  #4e0c6f;
+	color: white;
 	border-bottom: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
 	border-right: 1px solid #cccccc;
@@ -865,7 +896,8 @@ ul.tabs li.active{
 }
 
 .payment_report_cost1{
-	background: #EAEAEA;
+	background:  ghostwhite;
+	color: black;
 	border-bottom: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
 	text-align: right;
@@ -875,7 +907,8 @@ ul.tabs li.active{
 }
 
 .payment_report_cost2{
-	background: #EAEAEA;
+	background:  ghostwhite;
+	color: black;
 	border-bottom: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
 	border-right: 1px solid #cccccc;
@@ -889,7 +922,8 @@ ul.tabs li.active{
 	width: 100%;
 	text-align: center;
 	border-radius: 30px;
-	background: #EAEAEA;
+	background:  #4e0c6f; 
+	color: white;
 	height: 60px;
 }
 .payment_info{
@@ -909,7 +943,8 @@ ul.tabs li.active{
 .payment_info_question{
 	padding-left: 20px;
 	height: 40px;
-	background: .EAEAEA;
+	background:   #4e0c6f;
+	color: white;
 	width: 20%;
 	border-bottom: 1px solid #cccccc;
 	border-right: 1px solid #cccccc;
@@ -964,6 +999,8 @@ ul.tabs li.active{
 }
 
 .payment_button button {
+	background:   #4e0c6f;
+	color: white;
 	height: 30px;
 }
 #showReservationCancle_dialog {
@@ -980,7 +1017,8 @@ ul.tabs li.active{
 	width: 15%;
 	height: 40px;
 	line-height: 40px;
-	background: #EAEAEA;
+	background:   #4e0c6f;
+	color: white;
 	text-align: center;
 	border-bottom: 1px solid #cccccc;
 }

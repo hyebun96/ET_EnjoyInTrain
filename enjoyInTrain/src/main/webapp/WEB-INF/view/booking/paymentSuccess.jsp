@@ -220,8 +220,8 @@ $(function() {
 				</tr>
 				<tr class="reservationCancle_button">
 					<td colspan="3">
-						<button type='button' onclick='reservationCancle();'>예약취소</button>
-						<button type="button" onclick="javascript:location.href='<%=cp%>/booking/paymentSuccess?prSeq=7'">뒤로가기</button>
+						<button type='button' style="background:   #4e0c6f; color: white;" onclick='reservationCancle();'>예약취소</button>
+						<button type="button" style="background:   #4e0c6f; color: white;" onclick="javascript:location.href='<%=cp%>/booking/paymentSuccess?prSeq=7'">뒤로가기</button>
 					</td>
 				</tr>
 			</table>
