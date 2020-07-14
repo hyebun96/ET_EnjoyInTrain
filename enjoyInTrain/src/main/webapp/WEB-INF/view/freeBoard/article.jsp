@@ -63,7 +63,7 @@ function updateBoard(){
 }
 
 function deleteBoard() {
-<c:if test="${sessionScope.crew.crewId=='admin' || sessionScope.crew.crewId==dto.crewId}">
+<c:if test="${sessionScope.crew.crewId=='a' || sessionScope.crew.crewId==dto.crewId}">
 	var q = "num=${dto.fbNum}&${query}";
 	var url = "<%=cp%>/freeBoard/delete?" + q;
 	
@@ -73,7 +73,7 @@ function deleteBoard() {
 
 </c:if>
 
-<c:if test="${sessionScope.crew.crewId != 'admin' && sessionScope.crew.crewId != dto.crewId}">
+<c:if test="${sessionScope.crew.crewId != 'a' && sessionScope.crew.crewId != dto.crewId}">
 	alert("게시물을 삭제할 수 없습니다.");
 </c:if>
 

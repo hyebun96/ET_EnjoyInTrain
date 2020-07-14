@@ -39,7 +39,7 @@ public class PromotionController {
 		
 		String cp = req.getContextPath();
 		
-		int rows = 10;
+		int rows = 15;
 		int total_page = 0;
 		int dataCount = 0;
 		

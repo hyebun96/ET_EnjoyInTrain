@@ -102,9 +102,7 @@
             <mvc:exclude-mapping path="/freeBoard/listReplyAnswer"/>
             <mvc:exclude-mapping path="/suggest/list"/>
 			
-            
-            
-            
+           
             <bean class="com.et.crew.LoginCheckInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>	 
