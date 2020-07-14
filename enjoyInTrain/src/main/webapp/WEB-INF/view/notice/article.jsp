@@ -64,7 +64,7 @@ function updateNotice() {
 					<form name="noticeForm" method="post" enctype="multipart/form-data">
 						<table class="noticearticle">
 							<tr class="noticearticletitle">
-								<td style="text-align: center; background: #21373F; color: white;" colspan="4"> ${dto.noticeTitle} </td>
+								<td style="text-align: center; background: #21373F; color: white; font-weight: bold;" colspan="4"> ${dto.noticeTitle} </td>
 							</tr>
 							<tr class="noticearticletitle" style="text-align: right;">
 

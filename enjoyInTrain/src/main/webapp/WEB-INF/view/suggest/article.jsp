@@ -299,7 +299,7 @@ function insertAn(){
 					<form name="noticeForm" method="post" >
 						<table class="noticearticle">
 							<tr class="noticearticletitle">
-								<td colspan="4" style="text-align: center; background: #21373F; color: white;"> ${dto.sgTitle} </td>
+								<td colspan="4" style="text-align: center; background: #21373F; color: white; font-weight: bold;"> ${dto.sgTitle} </td>
 							</tr>
 							<tr class="noticearticletitle">
 								<td style="text-align: left;" colspan="2"> 작성자 : ${dto.crewName}</td>
