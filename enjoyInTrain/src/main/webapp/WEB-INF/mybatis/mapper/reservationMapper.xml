@@ -198,7 +198,7 @@
 	
 	<!-- 해당 아이디의 발권내역 가져오기 -->
 	<select id="readDetail" parameterType="String" resultType="com.et.reservation.Reservation">
-		SELECT TO_CHAR(trDate,'YYYY/MM/DD(DY)') trDate, trCategory, tr.trCode, info.trainCode, startSt.sName startCode, endSt.sName endCode, trPrice
+		SELECT promotion, TO_CHAR(trDate,'YYYY/MM/DD(DY)') trDate, trCategory, tr.trCode, info.trainCode, startSt.sName startCode, endSt.sName endCode, trPrice
 		FROM trainReservation tr
 		JOIN trReservationInfo info ON tr.trCode=info.trCode
 		JOIN train7 train ON info.trainCode=train.trainCode
