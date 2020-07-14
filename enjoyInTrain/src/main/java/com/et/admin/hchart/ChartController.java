@@ -38,6 +38,7 @@ public class ChartController {
 		List<Chart> list = service.areaChart();
 
 		JSONArray ja = new JSONArray();
+		
 		ja.put(new JSONArray("['수도권',"+ list.get(0).getCount() +"]"));
 		ja.put(new JSONArray("['강원권',"+ list.get(1).getCount() +"]"));
 		ja.put(new JSONArray("['충청권',"+ list.get(2).getCount() +"]"));
