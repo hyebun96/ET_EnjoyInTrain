@@ -158,18 +158,14 @@ $(function(){
 
 </script>
 
+<button type="button" id="btn" class="btn" onclick="javascript:location.href='<%=cp%>/travel/travel';"><i class="fas fa-hand-point-left"></i></button>
+
 <form name="travelArticleForm" method="get" enctype="multipart/form-data">
 	<table id="travelTable" style="border-spacing: 0px; border-collapse: collapse; width: 100%;">
 		
-		<tr align="left" height="40" >
-			<td  class="title" style="float: left;" colspan="8" >
-				<button type="button" id="btn" class="btn" onclick="javascript:location.href='<%=cp%>/travel/travel';"><i class="fas fa-hand-point-left"></i></button>
-			</td>
-		</tr>
-		
 		<tr align="left" height="40"
 			style="border-bottom: 1px solid #cccccc; border-top: 3px solid #cccccc;">
-			<td class="title" style="padding-left: 10px; text-align: left; background: #4e0c6f; color:white;" colspan="5" width="100%;">${dto.pmTitle}</td>
+			<td class="title" style="padding-left: 10px; text-align: center; background: #4e0c6f; color: white; height: 50px;font-size: 18px;" colspan="5" width="100%;">${dto.pmTitle}</td>
 		</tr>
 
 
