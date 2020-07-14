@@ -240,10 +240,18 @@ p.title1{
 					<table class="mainreservationicon">
 						<tr>
 							<td class="mainreservationicon1">
-								<a href="#" style="font-size: 13px;"><img src="<%=cp%>/resource/images/card.png" alt="" width="75px;">
+								<c:if test="${not empty sessionScope.crew}">
+								<a href="<%=cp%>/reservation/detail" style="font-size: 13px;"><img src="<%=cp%>/resource/images/card.png" alt="" width="75px;">
 								<br>
 								예매 조회
 								</a>
+								</c:if>
+								<c:if test="${empty sessionScope.crew}">
+								<a href="<%=cp%>/reservation/uncrew2" style="font-size: 13px;"><img src="<%=cp%>/resource/images/card.png" alt="" width="75px;">
+								<br>
+								예매 조회
+								</a>
+								</c:if>
 							</td>
 							<td class="mainreservationicon1">
 								<a href="<%=cp%>/qna/main" style="font-size: 13px;"><img src="<%=cp%>/resource/images/qna.png" alt="" width="80px;">
@@ -307,7 +315,7 @@ p.title1{
 							<tr>
 								<td class="maintop1_notice1">
 									ET 만의 특별한 할인 제도
-									<a href="#" class="button1"> + 자세히 보기 </a>
+									<a href="<%=cp%>/notice/article?page=1&noticeNum=11" class="button1"> + 자세히 보기 </a>
 								</td>
 								<td class="maintop1_notice2">
 									&nbsp; 고객의 소리
