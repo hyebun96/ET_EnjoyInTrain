@@ -15,6 +15,13 @@ public class Condition {
 	private String seat2;
 	private String tCategory;
 	private int total;
+	private String today;
+	public String getToday() {
+		return today;
+	}
+	public void setToday(String today) {
+		this.today = today;
+	}
 	public int getTotal() {
 		return total;
 	}

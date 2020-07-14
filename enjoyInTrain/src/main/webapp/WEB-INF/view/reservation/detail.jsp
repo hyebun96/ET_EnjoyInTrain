@@ -42,6 +42,8 @@ function info_print() {
 	
 	window.print();
 }
+
+
 </script>
 	<!-- Main -->
 		<div id="page" >

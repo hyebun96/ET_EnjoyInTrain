@@ -62,8 +62,8 @@ public class ReservationServiceImpl implements ReservationService{
 			dto.setEndSt(endSt);
 			
 //			Calendar cal=Calendar.getInstance();
-//			SimpleDateFormat sdf=new SimpleDateFormat("YYYY/MM/DD");
-//			sdf.format(arg0)
+//			SimpleDateFormat sdf=new SimpleDateFormat("YYYY/MM/DD(EE)");
+//			dto.setToday(sdf.format(cal.getTime()));
 			list=dao.selectList("reservation.listTrain", dto);
 			for(Train tr:list) {
 				tr.setDepartureSt(originalnameSt);

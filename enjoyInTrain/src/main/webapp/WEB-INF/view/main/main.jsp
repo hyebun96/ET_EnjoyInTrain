@@ -219,7 +219,10 @@ p.title1{
 							</tr>
 							<tr>
 								<td style="padding: 20px; padding-top: 15px;" >
+								<%-- 
 									<input type="text" min="${day}" max="${maxday}" name="day" onfocus="(this.type='date')" value="${day}" placeholder="예약날짜" style="width: 200px;">
+								 --%>
+								 	<input type="text" min="2020-01-01" max="${maxday}" name="day" onfocus="(this.type='date')" value="${day}" placeholder="예약날짜" style="width: 200px;">
 								</td>
 								<td>
 		           					<select  name="time" id="time" style="margin: 0px 20px 0 20px; height: 30px;" class="selectmainreservation">

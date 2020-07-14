@@ -31,6 +31,7 @@ public class Reservation {
 	private int refund;
 	private int promotion;
 	
+	
 	public int getPromotion() {
 		return promotion;
 	}

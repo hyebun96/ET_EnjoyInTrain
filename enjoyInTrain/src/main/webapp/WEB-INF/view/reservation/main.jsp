@@ -274,11 +274,14 @@ function listPage(page) {
 															</button>
 														</div>
 														
+														<%-- 
 														<select name="day" id="day" style="height: 28px;">
 															<c:forEach var="day" items="${daylist}">
 																<option ${day==dto.day?'selected="selected"':''} value="${day}">${day}</option>
 															</c:forEach>
 														</select>
+														 --%>
+														<input type="text" readonly="readonly" value="${day}" name="day" id="day">
 																						
 														<select name="time" id="time" style="height: 28px;">
 															<c:forEach var="n" begin="0" end="22" step="2">
