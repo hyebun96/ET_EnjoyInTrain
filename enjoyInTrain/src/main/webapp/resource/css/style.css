@@ -835,9 +835,9 @@
 	#adminheader{
 		position: relative;
 		background: black;
-		height: 2020px;
 		width: 15%;
 		float: left;
+		height: 2020px;
 	}
 
 /*********************************************************************************/
@@ -1092,6 +1092,8 @@ ul.adminnav li:hover > ul li a:hover {
 		float: left;
 		padding-left: 25px;
 		padding-right: 30px;
+		height: 1900px;
+		overflow: auto;
 	}
 	
 	#adminpage > #main.container{

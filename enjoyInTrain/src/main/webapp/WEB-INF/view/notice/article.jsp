@@ -64,14 +64,11 @@ function updateNotice() {
 					<form name="noticeForm" method="post" enctype="multipart/form-data">
 						<table class="noticearticle">
 							<tr class="noticearticletitle">
-								<td class="noticearticletitle1">제목  </td>
-								<td colspan="3" style="text-align: center;"> ${dto.noticeTitle} </td>
+								<td style="text-align: center; background: #21373F; color: white;" colspan="4"> ${dto.noticeTitle} </td>
 							</tr>
-							<tr class="noticearticletitle">
-								<td class="noticearticletitle2">등록일</td>
-								<td style="text-align: center;">${dto.nCreated}</td>
-								<td class="noticearticletitle2">조회수</td>
-								<td width="300px" style="text-align: center;">${dto.nHitCount}</td>
+							<tr class="noticearticletitle" style="text-align: right;">
+
+								<td colspan="4">${dto.nCreated} | 조회 : ${dto.nHitCount}</td>
 								
 							</tr>
 							

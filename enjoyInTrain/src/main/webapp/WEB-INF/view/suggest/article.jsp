@@ -299,14 +299,11 @@ function insertAn(){
 					<form name="noticeForm" method="post" >
 						<table class="noticearticle">
 							<tr class="noticearticletitle">
-								<td class="noticearticletitle1">제목  </td>
-								<td colspan="3" style="text-align: center;"> ${dto.sgTitle} </td>
+								<td colspan="4" style="text-align: center; background: #21373F; color: white;"> ${dto.sgTitle} </td>
 							</tr>
 							<tr class="noticearticletitle">
-								<td class="noticearticletitle2">작성자</td>
-								<td style="text-align: center;" width="200px;">${dto.crewName}</td>
-								<td class="noticearticletitle2" width="300px;">작성일 / 조회수</td>
-								<td width="300px;" style="text-align: center;">${dto.sgCreated} | ${dto.sgHitCount}</td>
+								<td style="text-align: left;" colspan="2"> 작성자 : ${dto.crewName}</td>
+								<td style="text-align: right;" colspan="2">${dto.sgCreated} | 조회수 : ${dto.sgHitCount}</td>
 								
 							</tr>
 							<tr style="padding: 5px 5px;">

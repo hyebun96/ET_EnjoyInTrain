@@ -50,7 +50,7 @@ $(function(){
 			$i.attr("class","fas fa-user seatClick");
 			$i.css("color","#6f047f");
 			if(selectSeat.length==0){
-				$("#selectSeat").val(selectSeat+" "+seatNum);
+				$("#selectSeat").val(selectSeat+seatNum);
 			}else{
 				$("#selectSeat").val(selectSeat+","+seatNum);
 			}

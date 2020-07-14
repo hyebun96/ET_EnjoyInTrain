@@ -89,7 +89,7 @@ function search() {
 									<c:forEach var="dto" items="${list}">
 										<tr class="question" data-num="${dto.listNum}" height="35" style="border-bottom: 1px solid #cccccc;">
 											<td>${dto.listNum}</td>
-											<td style="padding: 5px 0px;"><a href="${articleUrl}&lostNum=${dto.lostNum}">${dto.lostTitle}</a>
+											<td style="padding: 5px 0px; text-align: left;"><a href="${articleUrl}&lostNum=${dto.lostNum}">${dto.lostTitle}</a>
 												<c:if test="${dto.gap < 1}">
 							               			 <img src='<%=cp%>/resource/images/new.gif'>
 							           			</c:if>

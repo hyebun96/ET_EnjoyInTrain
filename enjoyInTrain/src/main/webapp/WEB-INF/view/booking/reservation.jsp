@@ -185,6 +185,12 @@ function reservation() {
 		f.tel3.focus();
 		return;
 	}
+	
+	if(!f.Agreement.checked){
+		$("#Agreement").css("color", "blue");
+		$("#Agreement").css("font-weight", "bold");
+		return;
+	}
 
 	f.action="<%=cp%>/booking/${mode}";
 	
@@ -371,7 +377,6 @@ $(function(){
 
 </script>
 <link rel="stylesheet" href="<%=cp%>/resource/css/booking.css" type="text/css">
-<link rel="stylesheet" href="<%=cp%>/resource/css/tabs.css" type="text/css">
 	<!-- Main -->
 		<div id="page">
 				

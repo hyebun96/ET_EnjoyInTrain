@@ -82,6 +82,7 @@ a:hover, a:active{
 }
 .noticearticletitle{
 	border-top: 1px solid black;
+	height: 40px;
 }
 
 .noticearticletitle td{
@@ -193,6 +194,10 @@ a:hover, a:active{
 
 .question2{
 	border-bottom: 1px solid #cccccc;
+}
+
+.question td{
+	
 }
 
 .board-list{

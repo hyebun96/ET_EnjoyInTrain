@@ -41,6 +41,7 @@ public class BookingServiceImpl implements BookingService{
 					dto.setPrAddPrice(0);
 					dao.insertData("booking.insertTrain", dto);	
 				} else {
+					dto.setPrAddPrice(dto.getPrAddPrice()*dto.getPrPersonnel());
 					dao.insertData("booking.insertTrain", dto);
 				}
 				prCode = dao.selectOne("booking.setPrcode1");
@@ -52,6 +53,7 @@ public class BookingServiceImpl implements BookingService{
 					dto.setPrAddPrice1(0);
 					dao.insertData("booking.insertTrain1", dto);
 				} else {
+					dto.setPrAddPrice1(dto.getPrAddPrice1()*dto.getPrPersonnel());
 					dao.insertData("booking.insertTrain1", dto);
 				}
 		} catch (Exception e) {
