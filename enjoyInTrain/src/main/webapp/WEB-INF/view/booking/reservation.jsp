@@ -260,6 +260,12 @@ $(function(){
 		for(var i=0; i<=n; i++) {
 				$select.append("<option value='"+i+"'>어린이 "+i+"명</option>");
 		}
+		
+		$select=$(".oldMan");
+		$select.empty();
+		for(var i=0; i<=n; i++) {
+			$select.append("<option value='"+i+"'>경로 "+i+"명</option>");
+		}
 	});
 	
 	$(".child").change(function(){
@@ -288,6 +294,12 @@ $(function(){
 		$select.empty();
 		for(var i=0; i<=n; i++) {
 				$select.append("<option value='"+i+"'>어린이 "+i+"명</option>");
+		}
+		
+		$select=$(".oldMan1");
+		$select.empty();
+		for(var i=0; i<=n; i++) {
+			$select.append("<option value='"+i+"'>경로 "+i+"명</option>");
 		}
 	});
 	
