@@ -20,12 +20,12 @@ function deleteReservation(prSeq) {
 <!-- Main -->
 	<div id="adminpage">
 		<div class="trainandtime">
-			<a href="<%=cp%>/admin/travel/travel">프로모션 관리</a> <span>|</span> <a href="<%=cp%>/admin/sales/list">프로모션 예약 관리</a>
+			<a href="<%=cp%>/admin/travel/travel">프로모션 관리</a> <span>|</span> <a href="<%=cp%>/admin/promotion/list">프로모션 예약 관리</a>
 		</div>
 			<!-- Main -->
 			<div id="main" class="container">
 				<div class="row">
-						<div class="salesKeyword">
+						<div class="	Keyword">
 							<select name="keyword">
 								<option value="promotionName" ${keyword=="promotionName"?"selected='selected'":""}>년도별</option>
 								<option value="reservationDate" ${keyword=="reservationDate"?"selected='selected'":""}>월 별</option>

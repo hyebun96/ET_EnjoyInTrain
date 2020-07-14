@@ -95,28 +95,28 @@ function ajaxHTML(url, type, query, selector) {
 
 function reservation() {
 	var f = document.reservationForm;
-	var adult = f.adult.value;
-	var child = f.child.value;
-	var oldMan = f.oldMan.value;
-	var adult1 = f.adult1.value;
-	var child1 = f.child1.value;
-	var oldMan1 = f.oldMan1.value;
-	var prPersonnel = f.prPersonnel.value;
+	var adult = parseInt(f.adult.value);
+	var child = parseInt(f.child.value);
+	var oldMan = parseInt(f.oldMan.value);
+	var adult1 = parseInt(f.adult1.value);
+	var child1 = parseInt(f.child1.value);
+	var oldMan1 = parseInt(f.oldMan1.value);
+	var prPersonnel = parseInt(f.prPersonnel.value);
 
-//	if((adult+child+oldMan)!=prPersonnel){
-//		alert("가는 열차 이용인원을 제대로 선택하여 주세요");
-//		return;
-//	}
+	if((adult+child+oldMan)!=prPersonnel){
+		alert("가는 열차 이용인원을 제대로 선택하여 주세요");
+		return;
+	}
 	
 	if(!f.prStartRoom.value){
 		alert("가는 열차 좌석을 선택하여주세요.");
 		return;
 	}
 	
-//	if((adult1+child1+oldMan1)!=prPersonnel){
-//		alert("오는 열차 이용인원을 제대로 선택하여 주세요");
-//		return;
-//	}
+	if((adult1+child1+oldMan1)!=prPersonnel){
+		alert("오는 열차 이용인원을 제대로 선택하여 주세요");
+		return;
+	}
 	
 	if(!f.prEndRoom.value){
 		alert("오는 열차 좌석을 선택하여주세요.");
@@ -318,7 +318,7 @@ $(function(){
 		var url="<%=cp%>/booking/seat";
 		var query="roomNum=1&total=${prPersonnel}";
 		query+="&trainCode="+trainCode+"&trainName="+trainName+"&stTime="+stTime+"&endTime="+endTime;
-		query+="&day=${pmStartDate2}&tCategory="+trainName;
+		query+="&day=${pmStartDate1}&tCategory="+trainName;
 		query+="&startSt=${startDto.startStation}";
 		query+="&endSt=${startDto.endStation}";
 		if(roomGrade=='특실'){
@@ -375,6 +375,7 @@ $(function(){
 	});
 });
 
+
 </script>
 <link rel="stylesheet" href="<%=cp%>/resource/css/booking.css" type="text/css">
 	<!-- Main -->
@@ -382,7 +383,8 @@ $(function(){
 				
 			<!-- Main -->
 			<div id="main" class="container">
-				<div class="row">
+			<div class="reservation_top">
+				<div class="reservation_main">
 					<form name="reservationForm" method="post">
 						<div>
 							<table class="reservation_header">
@@ -539,7 +541,8 @@ $(function(){
 								</tr>
 								<tr>
 									<td class="reservation_report_question">이용기간</td>
-									<td class="reservation_report_answer" colspan="3">${pmStartDate}
+									<td class="reservation_report_answer" colspan="3">${pmEndDate}
+									<input type="hidden" name="pmEndDate" value="${pmEndDate}">
 									</td>
 
 								</tr>
@@ -596,7 +599,7 @@ $(function(){
 									<li id="tab-1" data-tab="1">개인정보의 제 3자 제공 동의</li>
 								</ul>
 								</div>
-								<div class="agreement_table">
+								<div class="agreement_form">
 									<table>
 										<tr class="memberAgreement1">
 											<td>
@@ -677,7 +680,6 @@ $(function(){
 									<td class="travler_info_question">휴대전화</td>
 									<td class="travler_info_tel" colspan="3">
 										<select name="tel1">
-											<option value="">선택</option>
 											<option value="010" ${tel1=="010"?"selected='selected'":""}>010</option>
 											<option value="011" ${tel1=="011"?"selected='selected'":""}>011</option>
 											<option value="016" ${tel1=="016"?"selected='selected'":""}>016</option>
@@ -717,6 +719,7 @@ $(function(){
 							</div>
 						</div>	
 					</form>
+				</div>
 			</div>
 		</div>
 			<!-- Main -->

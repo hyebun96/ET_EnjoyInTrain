@@ -1,4 +1,13 @@
 @charset "UTF-8";
+
+.reservation_top{
+	margin: 0 auto;
+}
+
+.reservation_main{
+	margin: 0 auto;
+	width: 1000px;
+}
 .homepage #main{
    margin-top: 0em;
     padding-top: 0em;
@@ -139,12 +148,44 @@
 	margin-top: 10px;
 }
 
-.agreement_table{
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 35px;
+	width: 100%;
+}
+ul.tabs li {
+	float: left;
+	margin: 0;
+	cursor: pointer;
+	padding: 0px 21px ;
+	height: 35px;
+	line-height: 35px;
+	overflow: hidden;
+	position: relative;
+}
+ul.tabs li:hover {
+	background: white;
+	border: 1px solid #dddddd;
+	border-bottom: none;
+}	
+ul.tabs li.active{
+	font-weight: 700;
+	border: 1px solid #dddddd;
+	border-bottom-color: transparent;
+	background: #fff;
+}
+
+.agreement_form{
 	width:100%;
 	height: 220px;
 	overflow:auto;
 	border-collapse: collapse;
 	border-spacing: 0;
+	border-top: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
 }
 
 .memberAgreement1 td {
@@ -157,7 +198,7 @@
 }
 
 .agreement_check{
-	border-top: 2px solid #cccccc;
+	border-top: 1px solid #cccccc;
 	height: 40px;
 	line-height:40px;
 	width: 100%;
@@ -272,6 +313,16 @@
    margin-top: 0em;
     padding-top: 0em;
 }
+
+.reservation_top{
+	margin: 0 auto;
+}
+
+.receipt_main{
+	margin: 0 auto;
+	width: 1000px;
+}
+
 .receipt_header{
 	width: 100%;
 	height: 200px;
@@ -679,6 +730,16 @@
    margin-top: 0em;
     padding-top: 0em;
 }
+
+.payment_top{
+	margin: 0 auto;
+}
+
+.payment_main{
+	margin: 0 auto;
+	width: 1000px;
+}
+
 .payment_header{
 	width: 100%;
 	height: 200px;

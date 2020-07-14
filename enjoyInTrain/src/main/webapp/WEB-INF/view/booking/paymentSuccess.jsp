@@ -72,7 +72,8 @@ $(function() {
 				
 			<!-- Main -->
 			<div id="main" class="container">
-				<div class="row">
+			<div id="payment_top">
+				<div class="payment_main">
 						<div style="width: 100%">
 							<table class="payment_header">
 								<tr>
@@ -181,6 +182,7 @@ $(function() {
 							</div>
 						</div>
 			
+					</div>
 				</div>
 			</div>
 			<!-- Main -->

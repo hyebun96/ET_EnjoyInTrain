@@ -91,7 +91,8 @@ function requestPay(){
 		<div id="page">
 			<!-- Main -->
 			<div id="main" class="container">
-				<div class="row">
+			<div class="receipt_top">
+				<div class="receipt_main">
 					<form action="" name="reservationForm" >
 						<div>
 							<table class="receipt_header">
@@ -263,6 +264,7 @@ function requestPay(){
 							</div>
 						</div>	
 						</form>
+					</div>
 					</div>
 				</div>
 			</div>

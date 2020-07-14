@@ -31,6 +31,7 @@ public class BookingController {
 	@Autowired
 	private ReservationService service1;
 
+	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "reservation", method = RequestMethod.GET)
 	public String reservation(Model model, @RequestParam Map<String, Object> paramMap, HttpSession session) {
 
@@ -68,13 +69,19 @@ public class BookingController {
 		Booking dto = service.readCrew(map);
 
 		String s = (String) paramMap.get("pmStartDate");
-		String sDate = "";
+		String sDate = "", pmEndDate="";
+		String eDate = "";
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/M/d(E)");
 
 			Date date = sdf.parse(s);
 			sDate = sdf2.format(date);
+			
+			date.setDate(date.getDate()+1);
+			
+			pmEndDate = sdf.format(date);
+			eDate = sdf2.format(date);
 		} catch (Exception e) {
 		}
 		
@@ -82,8 +89,10 @@ public class BookingController {
 		model.addAttribute("mode", "reservation");
 		model.addAttribute("startDto", startDto);
 		model.addAttribute("endDto", endDto);
+		model.addAttribute("pmEndDate", pmEndDate);
 		model.addAttribute("pmStartDate", paramMap.get("pmStartDate"));
-		model.addAttribute("pmStartDate2", sDate);
+		model.addAttribute("pmStartDate1", sDate);
+		model.addAttribute("pmStartDate2", eDate);
 		model.addAttribute("prPersonnel", paramMap.get("prPersonnel"));
 		model.addAttribute("dto", dto);
 		model.addAttribute("start", start);

@@ -37,7 +37,7 @@
 	<insert id="insertReservation1" parameterType="com.et.booking.Booking">
 			INSERT INTO 
 			pmReservation(prCode, prSeq, pmCode, pmStartDate, adult, child, oldMan, prPersonnel, product, productUserCount, crewId, prReservationDate, prPayment, trainCode, reservationNumber)
-			VALUES( #{prCode}, #{prSeq}, #{pmCode}, #{pmStartDate}, #{adult1}, #{child1}, #{oldMan1}, #{prPersonnel}, #{product}, #{productUserCount}, #{crewId}, SYSDATE, 0, #{trainCode1}, #{reservationNumber})
+			VALUES( #{prCode}, #{prSeq}, #{pmCode}, #{pmEndDate}, #{adult1}, #{child1}, #{oldMan1}, #{prPersonnel}, #{product}, #{productUserCount}, #{crewId}, SYSDATE, 0, #{trainCode1}, #{reservationNumber})
 	</insert>
 	
 	<update id="updatePayDate" parameterType="Integer">
@@ -65,11 +65,11 @@
 	
 	<!-- 기차(좌석)예약하기 -->
 	<insert id="reservationTrain" parameterType="com.et.booking.Booking">
-		INSERT INTO trainreservation(trCode, trPrice, trDate, crewId) VALUES(#{trCode},#{prAddPrice} ,#{pmStartDate}, #{crewId})
+		INSERT INTO trainreservation(trCode, trPrice, trDate, crewId, promotion) VALUES(#{trCode},#{prAddPrice} ,#{pmStartDate}, #{crewId}, 1)
 	</insert>
 	
 	<insert id="reservationTrain1" parameterType="com.et.booking.Booking">
-		INSERT INTO trainreservation(trCode, trPrice, trDate, crewId) VALUES(#{trCode},#{prAddPrice1} ,#{pmStartDate}, #{crewId})
+		INSERT INTO trainreservation(trCode, trPrice, trDate, crewId, promotion) VALUES(#{trCode},#{prAddPrice1} ,#{pmEndDate}, #{crewId}, 1)
 	</insert>
 	
 	<insert id="insertReservationInfo" parameterType="com.et.booking.Booking">
@@ -150,7 +150,12 @@
 	</delete>
 	<!-- 예약 리스트 출력 -->
 	<select id="reservationCount" parameterType="map" resultType="Integer">
-		SELECT NVL(COUNT(*), 0) FROM pmReservation 
+		SELECT NVL(COUNT(*), 0)
+		FROM pmReservation pr
+		JOIN promotionDetail pd ON pd.pmCode = pr.pmCode
+		JOIN promotion p ON pr.trainCode = p.trainCode AND pd.pmCode = p.pmCode
+		JOIN crew c ON pr.crewId = c.crewId
+		JOIN pmReservationTrain pt ON pr.prCode = pt.prCode AND pr.trainCode = pt.trainCode
 	</select>
 	
 	

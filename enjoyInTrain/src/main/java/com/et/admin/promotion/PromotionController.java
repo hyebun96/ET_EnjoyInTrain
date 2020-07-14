@@ -80,15 +80,15 @@ public class PromotionController {
 		}
 		
 		String query = "";
-		String listUrl = cp+"/admin/sales/list";
-		String articleUrl = cp+"/sales/article?page="+page;
+		String listUrl = cp+"/admin/promotion/list";
+		String articleUrl = cp+"/promotion/article?page="+page;
 		if(keyword.length()!=0) {
 			query = "condition="+condition+"&keyword="+URLEncoder.encode(keyword, "utf-8");
 		}
 		
 		if(query.length()!=0) {
-			listUrl = cp+"/admin/sales/list?"+query;
-			articleUrl = cp+"/admin/sales/article?page="+page+"&"+query;
+			listUrl = cp+"/admin/promotion/list?"+query;
+			articleUrl = cp+"/admin/promotion/article?page="+page+"&"+query;
 		}
 		
 		String paging = myutil.paging(page, total_page, listUrl);
