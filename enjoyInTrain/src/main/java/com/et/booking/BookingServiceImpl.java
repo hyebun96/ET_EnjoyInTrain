@@ -135,6 +135,17 @@ public class BookingServiceImpl implements BookingService{
 		}
 		return list;
 	}
+	
+	@Override
+	public String readPromotionImage(int prSeq) {
+		String saveFileName = "";
+			try {
+				saveFileName = dao.selectOne("booking.readPromotionImage", prSeq);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		return saveFileName;
+	}
 
 	@Override
 	public Booking readCrew(Map<String, Object> map) {

@@ -172,8 +172,11 @@ public class BookingController {
 		Map<String, Object> map = new HashMap<>();
 		map.put("prSeq", prSeq);
 		map.put("crewId", info.getCrewId());
+		String saveFileName = "";
+		saveFileName=service.readPromotionImage(prSeq);
+		
 		try {
-			List<Booking> list = service.readReservation(map);
+			List<Booking> list = service.readReservation(map); 
 			List<Booking> list1 = service.readReservation(map);
 			Booking startDto = null, endDto = null;
 			Booking start = null, end = null;
@@ -201,6 +204,7 @@ public class BookingController {
 			
 			service.paymentSuccess(prSeq);
 
+			model.addAttribute("saveFileName", saveFileName);
 			model.addAttribute("startDto", startDto);
 			model.addAttribute("endDto", endDto);
 			model.addAttribute("start", start);
@@ -208,6 +212,7 @@ public class BookingController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		return ".booking.paymentSuccess";
 	}
 

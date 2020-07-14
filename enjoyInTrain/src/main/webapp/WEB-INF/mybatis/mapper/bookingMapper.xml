@@ -101,6 +101,9 @@
 		JOIN pmReservationTrain pt ON pr.prCode = pt.prCode AND pr.trainCode = pt.trainCode
 		WHERE pr.prSeq = #{prSeq} AND pr.crewId = #{crewId}
 	</select>
+	<select id="readPromotionImage" parameterType="Integer" resultType="String">
+		SELECT DISTINCT saveFileName FROM pmReservation pr JOIN promotionFile pf ON pf.pmCode = pr.pmCode WHERE prSeq = #{prSeq};
+	</select>
 	
 	<select id="listStation" resultType="com.et.travel.Station">
 		SELECT sCode, sName, line, lineOrder, engName

@@ -258,24 +258,24 @@ $(function() {
 					<table>
 						<tr>
 							<td style="width:100px; ">승차일</td>
-							<td colspan="2" style="font-size: 20px; font-weight: bold; vertical-align: middle">${endDto.pmStartDate}<br><br></td>
+							<td colspan="2" style="font-size: 20px; font-weight: bold; vertical-align: middle">${startDto.pmStartDate}<br><br></td>
 						</tr>
 						<tr>
-							<td colspan="3" style="font-size: 30px;">${endDto.startStation}&nbsp;▶&nbsp;${endDto.endStation}<br><br><br></td> 
+							<td colspan="3" style="font-size: 30px;">${startDto.startStation}&nbsp;▶&nbsp;${startDto.endStation}<br><br><br></td> 
 						</tr>
 						<tr>
-							<td colspan="3" style="font-size: 30px;">${end.startTime}&nbsp;▶&nbsp;${end.endTime}<br><br><br></td>
+							<td colspan="3" style="font-size: 30px;">${start.startTime}&nbsp;▶&nbsp;${start.endTime}<br><br><br></td>
 						</tr>
 						<tr>
-							<td style="width: 230px;">${end.trainName} - ${endDto.trainCode}열차(${endDto.roomGrade})</td>
-							<td style="border: 1px soild #cccccc; width: 240px; font-weight: bold;">${endDto.roomNum}호차 ${endDto.prTrainSeat}석</td>
+							<td style="width: 230px;">${start.trainName} - ${startDto.trainCode}열차(${startDto.roomGrade})</td>
+							<td style="border: 1px soild #cccccc; width: 240px; font-weight: bold;">${startDto.roomNum}호차 ${startDto.prTrainSeat}석</td>
 						</tr>
 						<tr>
-							<td colspan="2">승객유형&nbsp;&nbsp;성인 : ${endDto.adult}명 어린이 : ${endDto.child}명 경로 : ${endDto.oldMan}명</td>
+							<td colspan="2">승객유형&nbsp;&nbsp;성인 : ${startDto.adult}명 어린이 : ${startDto.child}명 경로 : ${startDto.oldMan}명</td>
 						</tr>
 						<tr class="back">
-							<td  style="width:300px;">운임요금 &nbsp;${endDto.prAddPrice}원</td>
-							<td>영수금액&nbsp;${endDto.prAddPrice}원</td>
+							<td  style="width:300px;">운임요금 &nbsp;${startDto.prAddPrice}원</td>
+							<td>영수금액&nbsp;${startDto.prAddPrice}원</td>
 						</tr>
 					</table>
 				</div>
@@ -346,19 +346,9 @@ $(function() {
 					<table>
 						<tr>
 							<td>
-								&nbsp;&nbsp;이용안내<br>
-								&nbsp;&nbsp;1.&nbsp; 홈티켓(Home-Ticket)은 승차권에 표 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;시된
-								승차자가 이용하여야 하며, 도착역 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;을 벗어날때까지 소지하셔야합니다.
-								&nbsp;&nbsp;2.&nbsp;직원이 본인확인을 요구할 경우 신분증 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;을제시하셔야 합니다.
-								<br><br>
+								<img src="<%=cp%>/uploads/travel/${saveFileName}">
 							</td>
 						</tr>
-						<tr>
-							<td align="center">
-								<img src="<%=cp%>/resource/images/qrCodeReservation.jpg" width="100" height="100">
-								<br>
-							</td>
-						</tr>	
 						<tr>
 							<td style="background: #dddddd; height: 35px;">
 								&nbsp;&nbsp;문의 전화 : 1234-5678
@@ -369,7 +359,7 @@ $(function() {
 				<div class="ticket4">
 					<table>
 						<tr>
-							<td style="width:100px; ">승차일</td>
+							<td style="width:100px; ">이용일</td>
 							<td colspan="2" style="font-size: 20px; font-weight: bold; vertical-align: middle">${startDto.pmStartDate}<br><br></td>
 						</tr>
 						<tr>
