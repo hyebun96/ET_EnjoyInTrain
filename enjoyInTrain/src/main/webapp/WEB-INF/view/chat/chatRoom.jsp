@@ -333,13 +333,13 @@ $(function(){
 									<div class="chat_room_list2">강원권</div>
 									<div class="chat_room_list3">충청권</div>
 									<div class="chat_image">
-										<img src="<%=cp%>/resource/images/chat05.jpg" width="80%"	height="200px;" style="padding: 10px;"> 
+										<img src="<%=cp%>/resource/images/chat0003.png" width="80%"	height="200px;" style="padding: 10px;"> 
 									</div>
 									<div class="chat_image">
-										<img src="<%=cp%>/resource/images/chat03.jpg" width="80%"	height="200px;" style="padding: 10px;">
+										<img src="<%=cp%>/resource/images/chat0001.png" width="80%"	height="200px;" style="padding: 10px;">
 									</div>
 									<div class="chat_image"> 
-										<img src="<%=cp%>/resource/images/chat02.jpg" width="80%" height="200px;" style="padding: 10px;">
+										<img src="<%=cp%>/resource/images/chat0005.png" width="80%" height="200px;" style="padding: 10px;">
 									</div>
 									
 									<div class="chat_btn">
@@ -356,10 +356,10 @@ $(function(){
 									<div class="chat_room_list6">자유채팅방</div>
 									
 									<div class="chat_image">
-										<img src="<%=cp%>/resource/images/chat04.jpg" width="80%"	height="200px;" style="padding: 10px;">
+										<img src="<%=cp%>/resource/images/chat0002.png" width="80%"	height="200px;" style="padding: 10px;">
 									</div>
 									<div class="chat_image"> 
-										<img src="<%=cp%>/resource/images/chat01.jpg" width="80%"	height="200px;" style="padding: 10px;">
+										<img src="<%=cp%>/resource/images/chat0004.png" width="80%"	height="200px;" style="padding: 10px;">
 									</div>
 									<div class="chat_image"> 
 										<img src="<%=cp%>/resource/images/ex4.PNG" width="80%"	height="200px;" style="padding: 10px;">

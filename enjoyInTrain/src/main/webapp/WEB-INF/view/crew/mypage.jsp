@@ -46,39 +46,41 @@
 .mypage{
 	width: 80%;
 	border: 1px solid #cccccc;
-
+	height: 200px;
 }
-
-.mypage table{
-	margin: 10px;
-}
-
-.mypage tr{
-	height: 40px;
-	border-radius: 20px;
-}
-
-.my{
-	width: 100px;
-	border-radius: 20px;
-	text-align: center;
-	margin: 10px;
-	height: 40px;
-	background: #ccc;
-}
-
-.my2{
-	width: 250px;
-	padding-left: 10px;
-}
-
 
 .listtt td{
     padding-top: 5px;
 }
 
-.mypagetable{
-	height: 150px;
+.mypagemy{
+	width: 15%;
+	border: 1px solid black;
+	border-radius: 10px;
+	float: left;
+	text-align: center;
+	margin-bottom: 10px;
+	margin-top: 20px;
+}
+.mypagemy2{
+	border: none;
+	width: 35%;
+	float: left;
+	margin-bottom: 10px;
+	margin-top: 20px;
+	padding-left: 15px;
+}
+
+.mypagemain{width: 100%; float: left;}
+.mypagemain2{width: 100%; float: left;}
+.mypagemain3{width: 100%; float: left;}
+
+.crewreservation3 :hover {
+	background: #f5fffa;
+}
+
+.crewreservation4 :hover {
+	background: #f5fffa;
 }
 </style>
 
@@ -134,29 +136,22 @@ $(function(){
 					<img src="<%=cp%>/resource/images/user0000.png" alt="" width="125px;" height="80" style="float: left;">
 					
 				<div class="mypage">
-					<table class="mypagetable">
-						<tr >
-							<td class="my" style="background: blue;">이름 </td>
-							<td class="my2">${dto.crewName} <br></td>
-							<td class="my">내 포인트  </td>
-							<td class="my2">${dto.point}점</td>
-						</tr>
+					<div class="mypagemain">
+					<div class="mypagemy">이름</div> <div class="mypagemy2">${dto.crewName}</div>
+					<div class="mypagemy">내 포인트 </div> <div class="mypagemy2">${dto.point}점</div>
+					</div>
+					<div class="mypagemain2">
+					<div class="mypagemy">생년월일</div> <div class="mypagemy2">${dto.crewBirth}</div>
+					<div class="mypagemy">전화번호  </div> <div class="mypagemy2">${dto.crewTel}</div>
+					</div>
+					<div class="mypagemain3">
+					<div class="mypagemy">이메일</div> <div class="mypagemy2">${dto.crewEmail}</div>
+					<div class="mypagemy">채팅 경고   </div> <div class="mypagemy2">${dto.crewChatWarning} 회</div>
+					</div>
 					
-						<tr>
-							<td class="my">생년월일  </td>
-							<td class="my2">${dto.crewBirth}<br></td>
-							<td class="my">전화번호  </td>
-							<td class="my2">${dto.crewTel}<br></td>
-						</tr>
-					
-						<tr>
-							<td class="my">이메일  </td>
-							<td class="my2">${dto.crewEmail}<br></td>
-							<td class="my">채팅 경고  </td>
-							<td class="my2">${dto.crewChatWarning} 회</td>
-						</tr>
-					</table>
 			     </div>
+			     
+			     
 			     
 		     	<div style="width: 100%; padding-top: 50px; clear: both;">
 					<ul class="tabs">
@@ -167,7 +162,7 @@ $(function(){
 				</div>
 				
 				<div id="crewreservation" style="display: none; width: 100%;">
-					<table style="width:100%; margin-top: 50px; float: left;">
+					<table style="width:100%; margin-top: 50px; float: left;" >
 				 		<tr style="height:40px; font-weight:bold; border-top: 2px solid #44565B; background: #EAEAEA; text-align: center;">
 				 			<td style="background: #44565B; color: white;" colspan="7">승차권 예약현황</td>
 				 		</tr>
@@ -180,6 +175,7 @@ $(function(){
 				 			<td>인원</td>
 				 			<td>결제</td>
 				 		</tr>
+						<tbody class="crewreservation3">
 				 		<c:forEach items="${list}" var="dto">
 					 		<tr class="listtt" style="text-align: center;" >
 					 			<td>${dto.trDate}</td>
@@ -191,6 +187,7 @@ $(function(){
 					 			<td>결제완료</td>
 					 		</tr>
 				 		</c:forEach>
+				 		</tbody>
 					</table>
 				</div>
 				<div id="crewreservation2" style="display: none; width: 100%;">
@@ -205,6 +202,7 @@ $(function(){
 							<td>예약날짜</td>
 							<td>결제여부</td>
 						</tr>
+						<tbody class="crewreservation3">
 						<c:forEach var="dto" items="${list2}" varStatus="status">
 							<tr style="text-align: center; height: 40px;">
 								<td> ${dto.reservationNumber} </td>
@@ -226,6 +224,7 @@ $(function(){
 								</td>
 							</tr>
 						</c:forEach> 
+						</tbody>
 					</table>
 				</div>
 			</div>
