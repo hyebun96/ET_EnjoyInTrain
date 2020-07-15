@@ -55,22 +55,22 @@ function info_print() {
 							<header>
 								<form action="<%=cp%>/reservation/confirm"  name="unCrewForm" method="post">
 								<h2>발권/취소</h2>
-								<span class="byline">발권내역/취소</span>
+								<span class="byline">TICKET DETAILS</span>
 								<div style="width: 1200px; text-align: center;">
 								 	<table style="width:100%;  ">
 								 		<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA;">
-								 			<td style="background: #0f0f69e8; color: white;" colspan="9">승차권 예약현황</td>
+								 			<td style="background: #44565B; color: white;" colspan="9">승차권 예약현황</td>
 								 		</tr>
 								 		<tr style="height:40px; font-weight:bold; background: #EAEAEA;">
-								 			<td style="background: #b2c5e1">승차일</td>
-								 			<td style="background: #b2c5e1">열차번호</td>
-								 			<td style="background: #b2c5e1">출발역</td>
-								 			<td style="background: #b2c5e1">도착역</td>
-								 			<td style="background: #b2c5e1">출발시간</td>
-								 			<td style="background: #b2c5e1">도착시간</td>
-								 			<td style="background: #b2c5e1">금액</td>
-								 			<td style="background: #b2c5e1">인원</td>
-								 			<td style="background: #b2c5e1">취소/환불</td>
+								 			<td style="background: #E1E8E7">승차일</td>
+								 			<td style="background: #E1E8E7">열차번호</td>
+								 			<td style="background: #E1E8E7">출발역</td>
+								 			<td style="background: #E1E8E7">도착역</td>
+								 			<td style="background: #E1E8E7">출발시간</td>
+								 			<td style="background: #E1E8E7">도착시간</td>
+								 			<td style="background: #E1E8E7">금액</td>
+								 			<td style="background: #E1E8E7">인원</td>
+								 			<td style="background: #E1E8E7">취소/환불</td>
 								 		</tr>
 								 		<c:forEach items="${list}" var="dto">
 									 		<tr style="height: 40px;">
@@ -83,7 +83,7 @@ function info_print() {
 									 			<td>${dto.trPrice}</td>
 									 			<td>${dto.count}</td>
 									 			<td>
-										 			<button type="button" style="border:none; background: #232375c2; color: white;" class="refundBtn" data-code="${dto.trCode}">환불하기</button>
+										 			<button type="button" style="border:none; background: #44565B; color: white;" class="refundBtn" data-code="${dto.trCode}">환불하기</button>
 									 			</td>
 									 		</tr>
 								 		</c:forEach>

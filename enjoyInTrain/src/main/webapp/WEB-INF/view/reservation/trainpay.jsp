@@ -35,14 +35,14 @@ $(function(){
     <span  style="line-height:17px; font-size:17px; color: white; font-weight: bold;">운행시간</span><span class="close">&times;</span>
     </div>
 	    <div style="padding:10px; height:90%; background: white;">
-		    <table class="trainpay" style="width:100%; border:1px solid #EAEAEA; text-align:center; height:200px; width: 100%;">
+		    <table class="trainpay" style="width:100%; border:1px solid #e1e8e76e; text-align:center; height:200px; width: 100%;">
 		    	<tr>
-		    		<td style="width:15%; padding: 5px; background: #EAEAEA;">구분</td>
-		    		<td style="width:17%; padding: 5px; background: #EAEAEA;">어른</td>
-		    		<td style="width:17%; padding: 5px; background: #EAEAEA;">어린이</td>
-		    		<td style="width:17%; padding: 5px; background: #EAEAEA;">경로</td>
-		    		<td style="width:17%; padding: 5px; background: #EAEAEA;">경증장애인</td>
-		    		<td style="width:17%; padding: 5px; background: #EAEAEA;">중증장애인</td>
+		    		<td style="width:15%; padding: 5px; background: #e1e8e76e;">구분</td>
+		    		<td style="width:17%; padding: 5px; background: #e1e8e76e;">어른</td>
+		    		<td style="width:17%; padding: 5px; background: #e1e8e76e;">어린이</td>
+		    		<td style="width:17%; padding: 5px; background: #e1e8e76e;">경로</td>
+		    		<td style="width:17%; padding: 5px; background: #e1e8e76e;">경증장애인</td>
+		    		<td style="width:17%; padding: 5px; background: #e1e8e76e;">중증장애인</td>
 		    	</tr>
 		    	<c:forEach items="${list}" var="dto">
 			    	<tr>

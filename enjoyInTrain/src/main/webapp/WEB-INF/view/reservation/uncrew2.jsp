@@ -60,25 +60,25 @@ $(function(){
 									</div>
 								 	<table style="width:100%;  ">
 								 		<tr style="height:40px;  border-top: 2px solid black;">
-								 			<td style="width:200px; background:#0f0f69e8; color: white;"><b style="color: white;">성명</b></td>
+								 			<td style="width:200px; background:#44565B; color: white;"><b style="color: white;">성명</b></td>
 								 			<td style="text-align: left;"><input id="name" name="name" style="margin: 7px;" type="text"></td>
 								 		</tr>
 								 		<tr style="height:40px;">
-								 			<td style="background:#0f0f69e8; color: white;"><b style="color: white;">전화번호</b></td>
+								 			<td style="background:#44565B; color: white;"><b style="color: white;">전화번호</b></td>
 								 			<td style="text-align: left;">
 								 				<input id="tel1" name="tel1" style="margin: 7px;" type="text">-<input id="tel2" name="tel2" style="margin: 7px;" type="text">-<input id="tel3" name="tel3" style="margin: 7px;" type="text">
 								 			</td>
 								 		</tr>
 								 		<tr style="height:40px;">
-								 			<td style="background:#0f0f69e8;"><b style="color: white;">이메일</b></td>
+								 			<td style="background:#44565B;"><b style="color: white;">이메일</b></td>
 								 			<td style="text-align: left;"><input id="email" name="email" type="text" style="width:300px; margin: 7px;"></td>
 								 		</tr>
 								 		<tr style="height:40px;">
-								 			<td style="background:#0f0f69e8;"><b style="color: white;">비밀번호</b></td>
+								 			<td style="background:#44565B;"><b style="color: white;">비밀번호</b></td>
 								 			<td style="text-align: left;"><input id="password" maxlength="5" name="password" style="margin: 7px;" type="password">※ 구입 시 입력한 비밀번호 5자리</td>
 								 		</tr>
 								 	</table>
-								 	<button type="button" id="unCrew2Btn" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #0f0f69e8; color: white; border: none;">확인</button>
+								 	<button type="button" id="unCrew2Btn" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #44565B; color: white; border: none;">확인</button>
 								</div>
 								</form>
 							</header>

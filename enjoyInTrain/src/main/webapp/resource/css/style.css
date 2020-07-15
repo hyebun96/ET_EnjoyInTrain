@@ -1235,7 +1235,7 @@ ul.adminnav li:hover > ul li a:hover {
 /* ET main                                                                     */
 /*********************************************************************************/
 .mainreservation{
-	background: #a299b3;
+	background: #89A3A0;
 }
 
 
@@ -1247,7 +1247,7 @@ ul.adminnav li:hover > ul li a:hover {
 	border-radius: 5px;
 	margin-bottom: 0px;
 	font-weight: bold;
-	color: purple;
+	color: #44565B;
 }
 
 .mainreservationbutton{
@@ -1267,8 +1267,8 @@ ul.adminnav li:hover > ul li a:hover {
 	margin-left: 20px;
 	margin-bottom: 15px;
 	border-radius: 10px;
-	border: 1px solid purple;
-	background: purple;
+	border: 1px solid #44565B;
+	background: #44565B;
 	color: white;
 	font-weight: bold;
 }

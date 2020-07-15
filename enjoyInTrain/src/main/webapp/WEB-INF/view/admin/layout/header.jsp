@@ -21,13 +21,13 @@
 				<!-- Nav -->
 				<div class="adminmenu">
 						<ul class="adminnav">
+							<li class="adminnavbar"><a href="<%=cp%>/admin/trainsales/list">매출관리</a></li>
+						</ul>
+						<ul class="adminnav">
 							<li class="adminnavbar"><a href="<%=cp%>/admin/reservation/list">기차예약관리</a></li>
 						</ul>
 						<ul class="adminnav">
 							<li class="adminnavbar"><a href="<%=cp%>/admin/travel/travel">프로모션관리</a></li>
-						</ul>
-						<ul class="adminnav">
-							<li class="adminnavbar"><a href="<%=cp%>/admin/trainsales/list">매출관리</a></li>
 						</ul>
 						<ul class="adminnav">
 							<li class="adminnavbar"><a href="<%=cp%>/employee/list">직원/회원관리</a></li>

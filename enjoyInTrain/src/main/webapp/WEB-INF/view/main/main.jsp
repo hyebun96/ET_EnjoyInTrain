@@ -125,7 +125,7 @@ p.title1{
 
 /* Modal Content */
 .modal-content {
-  background-color: #fefefe;
+  background-color: #44565B;
   margin: auto;
   padding: 10px;
   border: 1px solid #888;
@@ -134,7 +134,7 @@ p.title1{
 }
 
 .modal-content2 {
-  background-color: #fefefe;
+  background-color: #44565B;
   margin: auto;
   padding: 10px;
   border: 1px solid #888;
@@ -162,7 +162,7 @@ p.title1{
 <!-- The Modal -->
 <div id="myModal" class="modal">
   <!-- Modal content -->
-  <div style="background: #6f047f;" class="modal-content">
+  <div style="background: #44565B;" class="modal-content">
   	<div style="text-align:center;  margin-bottom: 10px;">
     <span  style="line-height:17px; font-size:17px; color: white; font-weight: bold;">노선선택</span><span class="close">&times;</span>
     </div>
@@ -172,7 +172,7 @@ p.title1{
 		    	<tr>
 		    		<c:forEach var="dto" items="${stationList}">
 		    			<td style=" height:35px; padding:5px; width: 30%;">
-		    				<button type="button" value="${dto.sName}" class="stationBtn" style="border:1px solid #D5D5D5;  height:100%; width: 100%;">${dto.sName}</button></td>
+		    				<button type="button" value="${dto.sName}" class="stationBtn" style="background:#e1e8e76e; border:1px solid #D5D5D5;  height:100%; width: 100%;">${dto.sName}</button></td>
 		    			<c:set var="i" value="${i+1}"/>
 		    			<c:if test="${i%3==0}">
 		    				</tr>
@@ -203,7 +203,7 @@ p.title1{
 								<td>
 									<div class="selectmainreservation">
 										<input style="width: 81%;" type="text" name="startSt" value="${firstSt}" id="startSt">
-										<button type="button" style="border:none; background: #6f047f;" class="myBtn">
+										<button type="button" style="border:none; background: #44565B;" class="myBtn">
 											<i class="fas fa-map-marker-alt" style="padding:2.5px; padding-right:5px; padding-left:5px; margin:4px; font-size: 17px; color: white;"></i>
 										</button>
 									</div>
@@ -211,7 +211,7 @@ p.title1{
 								<td>
 									<div class="selectmainreservation">
 										<input style="width: 81%;" type="text" name="endSt" value="${lastSt}" id="endSt">
-										<button type="button" style="border:none; background: #6f047f;" class="myBtn">
+										<button type="button" style="border:none; background: #44565B;" class="myBtn">
 											<i class="fas fa-map-marker-alt" style="padding:2.5px; padding-right:5px; padding-left:5px; margin:4px; font-size: 17px; color: white;"></i>
 										</button>
 									</div>

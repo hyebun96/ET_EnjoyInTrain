@@ -104,21 +104,21 @@ $(function(){
 </script>
 <div id="myModal2" class="modal">
   <!-- Modal content -->
-  <div style="background: #0f0f69e8;" class="modal-content2" id="modal-content2">
+  <div style="background: #44565B;" class="modal-content2" id="modal-content2">
   	
   </div>
 </div>
 
 <div id="myModal3" class="modal">
   <!-- Modal content -->
-  <div style="background: #0f0f69e8;" class="modal-content3" id="modal-content3">
+  <div style="background: #44565B;" class="modal-content3" id="modal-content3">
   	
   </div>
 </div>
 
 <div id="myModal4" class="modal">
   <!-- Modal content -->
-  <div style="background: #0f0f69e8;" class="modal-content4" id="modal-content4">
+  <div style="background: #44565B;" class="modal-content4" id="modal-content4">
   	
   </div>
 </div>
@@ -126,7 +126,7 @@ $(function(){
 <label style="font-size: 13px;">직통승차권 예약을 원하시는 고객은 예약하기 버튼을 클릭하여 주시기 바랍니다.</label>
 <table class="timetb" style="text-align:center; border:1px solid #D5D5D5; font-size: 13px;">
 	<tr>
-		<td style="text-align:left; background: #b2c5e1;" colspan="12"><b>· ${rsDto.startSt}->${rsDto.endSt} ${rsDto.day}</b></td>
+		<td style="text-align:left; background: #BDD0CB;" colspan="12"><b>· ${rsDto.startSt}->${rsDto.endSt} ${rsDto.day}</b></td>
 	</tr>
 	<tr>
 		<td style="width: 120px;">구분</td>
@@ -165,8 +165,8 @@ $(function(){
 					</c:if>
 				</c:forEach>
 				<c:if test="${sw}">
-					<button class="reservationBtn" value="special" style="border:none; background: #0f0f69e8; color: white;">예약하기</button><br>
-					<button class="seatBtn" value="special" type="button" style="border:none; background: #3bacaa; color:white;">좌석선택</button>
+					<button class="reservationBtn" value="special" style="border:none; background: #5B7777; color: white;">예약하기</button><br>
+					<button class="seatBtn" value="special" type="button" style="border:none; background: #D1D1D1; color:black;">좌석선택</button>
 				</c:if>
 			</td>
 			<td>
@@ -180,8 +180,8 @@ $(function(){
 					</c:if>
 				</c:forEach>
 				<c:if test="${sw}">
-					<button class="reservationBtn" value="general" style="border:none; background: #0f0f69e8; color: white;">예약하기</button><br>
-					<button class="seatBtn" value="general" type="button" style="border:none; background: #3bacaa; color:white;">좌석선택</button>
+					<button class="reservationBtn" value="general" style="border:none; background: #5B7777; color: white;">예약하기</button><br>
+					<button class="seatBtn" value="general" type="button" style="border:none; background: #D1D1D1; color:black;">좌석선택</button>
 				</c:if>
 			</td>
 			<td>
