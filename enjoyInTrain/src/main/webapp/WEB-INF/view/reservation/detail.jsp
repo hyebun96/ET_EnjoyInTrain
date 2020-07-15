@@ -80,15 +80,10 @@ function info_print() {
 									 			<td>${dto.endCode}</td>
 									 			<td>${dto.stTime}</td>
 									 			<td>${dto.endTime}</td>
-									 			<td>${dto.promotion==1?'-':dto.trPrice}</td>
+									 			<td>${dto.trPrice}</td>
 									 			<td>${dto.count}</td>
 									 			<td>
-									 				<c:if test="${dto.promotion==0}">
-										 				<button type="button" style="border:none; background: #232375c2; color: white;" class="refundBtn" data-code="${dto.trCode}">환불하기</button>
-									 				</c:if>
-									 				<c:if test="${dto.promotion==1}">
-									 					<button type="button" style="border:none; background: #aaa; color: white;">프로모션</button>
-									 				</c:if>
+										 			<button type="button" style="border:none; background: #232375c2; color: white;" class="refundBtn" data-code="${dto.trCode}">환불하기</button>
 									 			</td>
 									 		</tr>
 								 		</c:forEach>

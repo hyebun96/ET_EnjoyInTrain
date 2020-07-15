@@ -112,14 +112,14 @@ $(function(){
 										<div class="seatList${dto.trCode}" style="display:none;">
 											<table style="width: 100%;">
 												<tr style="height: 30px;">
-													<td style="background: #325966;"></td>
-													<td style="background: #325966;">좌석번호</td>
-													<td style="background: #325966;">좌석타입</td>
-													<td style="background: #325966;">칸번호</td>
-													<td style="background: #325966;">좌석가격</td>
-													<td style="background: #325966;">구매현황</td>
-													<td style="background: #325966;">${dto.promotion==0?'환불':''}</td>
-													<td style="background: #325966;"></td>
+													<td style="background: #325966; color: white;"></td>
+													<td style="background: #325966; color: white;">좌석번호</td>
+													<td style="background: #325966; color: white;">좌석타입</td>
+													<td style="background: #325966; color: white;">칸번호</td>
+													<td style="background: #325966; color: white;">좌석가격</td>
+													<td style="background: #325966; color: white;">구매현황</td>
+													<td style="background: #325966; color: white;">${dto.promotion==0?'환불':''}</td>
+													<td style="background: #325966; color: white;"></td>
 												</tr>
 												<c:forEach items="${seatList}" var="seat">
 													<c:if test="${seat.trCode==dto.trCode}">

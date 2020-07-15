@@ -206,7 +206,7 @@
 		JOIN train7 train ON info.trainCode=train.trainCode
 		JOIN station6 startSt ON info.startCode=startSt.sCode
 		JOIN station6 endSt ON info.endCode=endSt.sCode
-		WHERE crewId=#{crewId} AND TO_DATE(trDate,'YYYY/MM/DD')>=TO_DATE(SYSDATE,'YYYY/MM/DD')
+		WHERE crewId=#{crewId} AND TO_DATE(trDate,'YYYY/MM/DD')>=TO_DATE(SYSDATE,'YYYY/MM/DD') AND promotion=0
 		ORDER BY trDate
 	</select>
 	
