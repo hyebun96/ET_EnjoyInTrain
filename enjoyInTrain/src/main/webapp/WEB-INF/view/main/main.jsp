@@ -162,7 +162,7 @@ p.title1{
 <!-- The Modal -->
 <div id="myModal" class="modal">
   <!-- Modal content -->
-  <div style="background: #44565B;" class="modal-content">
+  <div style="background: #273267;" class="modal-content">
   	<div style="text-align:center;  margin-bottom: 10px;">
     <span  style="line-height:17px; font-size:17px; color: white; font-weight: bold;">노선선택</span><span class="close">&times;</span>
     </div>

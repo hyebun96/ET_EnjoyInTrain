@@ -17,7 +17,7 @@
 				<a href="<%=cp%>/crew/mypage"><i class="fas fa-user-shield"></i>&nbsp;MyPage</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<%=cp%>/crew/logout"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
 			</c:if>
 		 	<c:if test="${sessionScope.crew.crewId=='a'}">
-                <a href="<%=cp%>/admin"><i class="fas fa-user-cog"></i>&nbsp;AdminPage</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<%=cp%>/crew/logout"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
+				<a href="<%=cp%>/admin/trainsales/list"><i class="fas fa-user-cog"></i>&nbsp;AdminPage</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<%=cp%>/crew/logout"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
             </c:if>
 		</div>
 				
