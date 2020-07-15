@@ -88,11 +88,13 @@ a {
 		</tr>
 
 		<c:if test="${dto.qnaContent != null}">
-		<tr height="35" style="border-bottom: 1px solid #cccccc;">
+		<tr style="border-bottom: 1px solid #cccccc; height: 300px;">
 			<td align="left" colspan="2" style="padding: 10px 5px;" valign="top"
 				height="200"><c:if test="${dto.qnaContent != null }">
 					<br>
 					<br> ${dto.qnaContent}
+					<br>
+					<br>
 			</c:if></td>
 		</tr>
 		</c:if>

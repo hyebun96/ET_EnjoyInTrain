@@ -74,7 +74,7 @@ table td {
 }
 
 .comment{
-	color: purple;
+	color: saddlebrown;
 	font-size: 13px;
 	font-weight: bold;
 }
@@ -102,7 +102,7 @@ $(function(){
 				return;
 			}
 			
-			var s="<tr><td>선택</td><td>기차번호</td><td>기차이름</td><td>출발시간</td><td>도착시간</td></tr>";
+			var s="<tr><td style='background: #FDFEF0; font-weight: bold;'>선택</td><td style='background: #FDFEF0; font-weight: bold;'>기차번호</td><td style='background: #FDFEF0; font-weight: bold;'>기차이름</td><td style='background: #FDFEF0; font-weight: bold;'>출발시간</td><td style='background: #FDFEF0; font-weight: bold;'>도착시간</td></tr>";
 			$.each(data.stationLineList, function(index, item){
 				s += "<tr id='f"+ item.trainCode +"2'>"
 				s += "<td><a href='javascript:createdTrain("+item.trainCode+");'><i class='fas fa-plus'></i></a></td>";
@@ -125,6 +125,11 @@ $(function(){
 			
 			var price= parseInt($("#stPrice").val()) + parseInt($("#edPrice").val()) + parseInt($("#Price").val());
 			$("input[name=pmPrice]").val(price);
+			
+			console.log($("#stPrice").val());
+			console.log($("#edPrice").val());
+			console.log($("#Price").val());
+			
 			console.log($("input[name=pmPrice]").val());
 		};
 		
@@ -149,7 +154,7 @@ $(function(){
 				return;
 			}
 			
-			var s ="<tr><td>선택</td><td>기차번호</td><td>기차이름</td><td>출발시간</td><td>도착시간</td></tr>";
+			var s="<tr><td style='background: #FDFEF0; font-weight: bold;'>선택</td><td style='background: #FDFEF0; font-weight: bold;'>기차번호</td><td style='background: #FDFEF0; font-weight: bold;'>기차이름</td><td style='background: #FDFEF0; font-weight: bold;'>출발시간</td><td style='background: #FDFEF0; font-weight: bold;'>도착시간</td></tr>";
 			$.each(data.stationLineList, function(index, item){
 				s += "<tr id='f"+ item.trainCode +"3'>"
 				s += "<td><a href='javascript:createdTrain2("+item.trainCode+");'><i class='fas fa-plus'></i></a></td>";
@@ -181,46 +186,6 @@ $(function(){
 });
 
 
-// 파일처리
-$(function() {
-	$("body").on("change","form input[name=uploadContent]",
-		function() {
-			if (!$(this).val()) {
-				return;
-			}
-
-	var b = false;
-	$("form input[name=uploadContent]").each(function() {
-		if (!$(this).val()) {
-			b = true;
-			return false;
-		}
-	});
-
-	if (b) return;
-
-	var $tr, $td, $input;
-
-	$tr = $("<tr>", {height : 35});
-
-	$td = $("<td colspan='2'>", {
-		width : 100,
-		align : "center",
-		html : "파일업로드"
-	})
-	
-	$tr.append($td);
-	$td = $("<td colspan='4' style='border-bottom:1px solid #cccccc; margin:5px;'>", { width : 400, style : "padding-left:10px;"})
-	$input = $("<input>", {type : "file",name : "uploadContent"});
-							
-	$td.append($input);
-	$tr.append($td);
-
-	$("#travelTable").append($tr);
-	
-	});
-});
-
 $(function(){
 	$(document).on("keyup","#pmPrice",function(evt){
 		var price = $(this).val().trim();
@@ -242,11 +207,11 @@ $(function() {
 		if ($(".st-Trains").is(":visible")) {
 			$(".st-Trains").hide();
 			$("#st-train-id").empty();
-			$("#st-train-id").append("<i class='fas fa-arrow-circle-down'></i>가는열차<i class='fas fa-arrow-circle-down'></i>");
+			$("#st-train-id").append("<i class='fas fa-angle-double-down'></i>&nbsp;&nbsp;가&nbsp;는&nbsp;열&nbsp;차&nbsp;&nbsp;<i class='fas fa-angle-double-down'></i>");
 		}else{
 			$(".st-Trains").show("200");
 			$("#st-train-id").empty();
-			$("#st-train-id").append("<i class='fas fa-arrow-circle-up'></i>가는열차<i class='fas fa-arrow-circle-up'></i>");
+			$("#st-train-id").append("<i class='fas fa-angle-double-up'></i>&nbsp;&nbsp;가&nbsp;는&nbsp;열&nbsp;차&nbsp;&nbsp;<i class='fas fa-angle-double-up'></i>");
 		}
 	});
 });
@@ -257,11 +222,11 @@ $(function() {
 		if ($(".product").is(":visible")) {
 			$(".product").hide();
 			$("#product-id").empty();
-			$("#product-id").append("<i class='fas fa-arrow-circle-down'></i>프로모션 상품<i class='fas fa-arrow-circle-down'></i>");
+			$("#product-id").append("<i class='fas fa-angle-double-down'></i>&nbsp;프로모션 상품&nbsp;<i class='fas fa-angle-double-down'></i>");
 		}else{
 			$(".product").show("200");
 			$("#product-id").empty();
-			$("#product-id").append("<i class='fas fa-arrow-circle-up'></i>프로모션 상품<i class='fas fa-arrow-circle-up'></i>");
+			$("#product-id").append("<i class='fas fa-angle-double-up'></i>&nbsp;프로모션 상품&nbsp;<i class='fas fa-angle-double-up'></i>");
 		}
 	});
 });
@@ -272,11 +237,11 @@ $(function() {
 		if ($(".ed-Trains").is(":visible")) {
 			$(".ed-Trains").hide();
 			$("#ed-train-id").empty();
-			$("#ed-train-id").append("<i class='fas fa-arrow-circle-down'></i>오는열차<i class='fas fa-arrow-circle-down'></i>");
+			$("#ed-train-id").append("<i class='fas fa-angle-double-down'></i></i>&nbsp;&nbsp;오&nbsp;는&nbsp;열&nbsp;차&nbsp;&nbsp;<i class='fas fa-angle-double-down'></i></i>");
 		}else{
 			$(".ed-Trains").show("200");
 			$("#ed-train-id").empty();
-			$("#ed-train-id").append("<i class='fas fa-arrow-circle-up'></i>오는열차<i class='fas fa-arrow-circle-up'></i>");
+			$("#ed-train-id").append("<i class='fas fa-angle-double-up'></i>&nbsp;&nbsp;오&nbsp;는&nbsp;열&nbsp;차&nbsp;<i class='fas fa-angle-double-up'></i>");
 		}
 	});
 });
@@ -288,9 +253,9 @@ $(function() {
 		style="width: 100%; margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
 	
 		<tr align="left" height="40" 
-			style=" border-top: 3px solid #21373F; background: #21373F; color: white;">
+			style=" border-top: 3px solid #716B6E; background: #716B6E; color: white;">
 			<td class="title" colspan="5"
-				style=" width: 100px; border-bottom: 3px solid #21373F; text-align: center;">
+				style=" width: 100px; border-bottom: 3px solid #716B6E; text-align: center;">
 				<p>
 					&nbsp;프로모션&nbsp;
 				</p>
@@ -326,10 +291,10 @@ $(function() {
 			</td>
 			<td valign="top" style="padding: 5px 0px 5px 10px;">
 				<c:if test="${mode=='created'}">
-					<input type="file" name="upload" class="boxTF" value="${photoList[0].fileNum}" size="53" style="width: 95%; height: 25px;" >
+					<input type="file" name="upload" class="boxTF" size="53" style="width: 95%; height: 25px;" >
 				</c:if>
 				<c:if test="${mode=='update'}">
-					<input type="file" name="upload" class="boxTF" value="${photoList[0].fileNum}" size="53" 
+					<input type="file" name="upload" class="boxTF"  size="53" 
 						style="width: 95%; height: 25px; display: none;" >
 				</c:if>
 				<p class="comment" id="commentImg">메인사진은 한장만 업로드 가능합니다</p>
@@ -347,16 +312,16 @@ $(function() {
 		</tr>
 		
 		<tr align="left" height="40" 
-			style=" border-top: 3px solid #21373F; background: #21373F; color: white;">
+			style=" border-top: 3px solid #716B6E; background: #716B6E; color: white;">
 			<td class="title" colspan="5"
-				style=" width: 100px; border-bottom: 3px solid #21373F; text-align: center;">
+				style=" width: 100px; border-bottom: 3px solid #716B6E; text-align: center;">
 				<p>
 					&nbsp;프로모션 상세&nbsp;
 				</p>
 			</td>
 		</tr>	
 
-		<tr align="left" height="40" style=" border-top: 3px solid #21373F; ">
+		<tr align="left" height="40" style=" border-top: 3px solid #716B6E; ">
 			<td class="title" style="padding: 30px 0px;" >
 				<p style="text-align: right;">프로모션 제목</p>
 			</td>
@@ -439,9 +404,9 @@ $(function() {
 		
 		
 		<tr align="left" height="40" 
-			style=" border-top: 3px solid #21373F; background: #21373F; color: white;">
+			style=" border-top: 3px solid #716B6E; background: #716B6E; color: white;">
 			<td class="title" colspan="5"
-				style=" width: 100px; border-bottom: 3px solid #21373F; text-align: center;">
+				style=" width: 100px; border-bottom: 3px solid #716B6E; text-align: center;">
 				<p>
 					&nbsp;프로모션 내용 첨부&nbsp;
 				</p>
@@ -449,7 +414,7 @@ $(function() {
 		</tr>	
 		
 		
-		<tr align="left" style=" border-top: 3px solid #21373F;">
+		<tr align="left" style=" border-top: 3px solid #716B6E;">
 			<td class="title" width="100"
 				style="padding:20px 0px;" ><p style="float: right;">여행 내용</p></td>
 			<td valign="top" style=" padding: 30px 10px;" colspan="3">
@@ -475,11 +440,11 @@ $(function() {
 		
 		<!-- 가는 열차 -->
 		<tr align="left" height="40" id="st-Trains-Tr"
-			style=" border-top: 3px solid #21373F; background: #21373F; color: white;">
+			style=" border-top: 3px solid #716B6E; background: #716B6E; color: white;">
 			<td class="title" colspan="5"
 				style=" width: 100px; border-bottom: 3px solid white; text-align: center; margin-top: 50px;">
 				<p id="st-train-id">
-					<i class="fas fa-arrow-circle-down"></i>&nbsp;가는열차&nbsp;<i class="fas fa-arrow-circle-down"></i>
+					<i class="fas fa-angle-double-down"></i>&nbsp;&nbsp;가&nbsp;는&nbsp;열&nbsp;차&nbsp;&nbsp;<i class="fas fa-angle-double-down"></i>
 				</p>
 			</td>
 		</tr>	
@@ -545,11 +510,11 @@ $(function() {
 				<table id="train" style="margin-top: 10px;">
 					<tbody id="tbodyAdd" style="display: none;">
 						<tr align="left" height="40" style="border: 1px solid #cccccc;">
-							<td>선택</td>
-							<td>기차번호</td>
-							<td>열차번호</td>
-							<td>출발시간</td>
-							<td>도착시간</td>
+							<td style="background: #FDFEF0; font-weight: bold;">선택</td>
+							<td style="background: #FDFEF0; font-weight: bold;">기차번호</td>
+							<td style="background: #FDFEF0; font-weight: bold;">열차번호</td>
+							<td style="background: #FDFEF0; font-weight: bold;">출발시간</td>
+							<td style="background: #FDFEF0; font-weight: bold;">도착시간</td>
 						</tr>
 
 					</tbody>
@@ -557,11 +522,11 @@ $(function() {
 					<c:forEach var="vo" items="${startList}">
 						<c:if test="${startList[0]==vo}">						
 							<tr align="left" height="40" style="border: 1px solid #cccccc;">
-								<td>선택</td>
-								<td>기차번호</td>
-								<td>열차번호</td>
-								<td>출발시간</td>
-								<td>도착시간</td>
+								<td style="background: #FDFEF0; font-weight: bold;">선택</td>
+								<td style="background: #FDFEF0; font-weight: bold;">기차번호</td>
+								<td style="background: #FDFEF0; font-weight: bold;">열차번호</td>
+								<td style="background: #FDFEF0; font-weight: bold;">출발시간</td>
+								<td style="background: #FDFEF0; font-weight: bold;">도착시간</td>
 							</tr>
 						</c:if>
 						<tr id="f${vo.trainCode}"  align="left" style="border: 1px solid #cccccc;">
@@ -579,11 +544,11 @@ $(function() {
 	
 		<!-- 상품 -->	
 		<tr align="left" height="40" id="Trains-Product"
-			style=" border-top: 3px solid #21373F; background: #21373F; color: white;">
+			style=" border-top: 3px solid #716B6E; background: #716B6E; color: white;">
 			<td class="title" colspan="5"
 				style=" width: 100px; border-bottom: 3px solid white; text-align: center;">
 				<p id="product-id">
-					<i class="fas fa-arrow-circle-down"></i>&nbsp;프로모션 상품&nbsp;<i class="fas fa-arrow-circle-down"></i>
+					<i class="fas fa-angle-double-down"></i>&nbsp;프로모션 상품&nbsp;<i class="fas fa-angle-double-down"></i>
 				</p>
 			</td>
 		</tr>	
@@ -626,11 +591,11 @@ $(function() {
 
 		<!-- 오는 기차 : 출발역, 도착역, 시간  -->
 		<tr align="left" height="40" id="ed-Trains-Tr"
-			style=" border-top: 3px solid #21373F; background: #21373F; color: white;">
+			style=" border-top: 3px solid #716B6E; background: #716B6E; color: white;">
 			<td class="title" colspan="5"
 				style=" width: 100px; border-bottom: 3px solid white; text-align: center;">
 				<p id="ed-train-id">
-					<i class="fas fa-arrow-circle-down"></i>&nbsp;오는열차&nbsp;<i class="fas fa-arrow-circle-down"></i>
+					<i class="fas fa-angle-double-down"></i>&nbsp;&nbsp;오&nbsp;는&nbsp;열&nbsp;차&nbsp;&nbsp;<i class="fas fa-angle-double-down"></i>
 				</p>
 			</td>
 		</tr>	
@@ -692,11 +657,11 @@ $(function() {
 				<table id="train" style="margin-top: 10px;">
 					<tbody id="tbodyAdd2" style="display: none;">
 						<tr align="left" height="40" style="border: 1px solid #cccccc;">
-							<td>선택</td>
-							<td>기차번호</td>
-							<td>열차번호</td>
-							<td>출발시간</td>
-							<td>도착시간</td>
+							<td style="background: #FDFEF0; font-weight: bold;">선택</td>
+							<td style="background: #FDFEF0; font-weight: bold;">기차번호</td>
+							<td style="background: #FDFEF0; font-weight: bold;">열차번호</td>
+							<td style="background: #FDFEF0; font-weight: bold;">출발시간</td>
+							<td style="background: #FDFEF0; font-weight: bold;">도착시간</td>
 						</tr>
 
 					</tbody>
@@ -704,11 +669,11 @@ $(function() {
 					<c:forEach var="vo" items="${endList}">
 						<c:if test="${endList[0]==vo}">						
 							<tr align="left" height="40" style="border: 1px solid #cccccc;">
-								<td>선택</td>
-								<td>기차번호</td>
-								<td>열차번호</td>
-								<td>출발시간</td>
-								<td>도착시간</td>
+								<td style="background: #FDFEF0; font-weight: bold;">선택</td>
+								<td style="background: #FDFEF0; font-weight: bold;">기차번호</td>
+								<td style="background: #FDFEF0; font-weight: bold;">열차번호</td>
+								<td style="background: #FDFEF0; font-weight: bold;">출발시간</td>
+								<td style="background: #FDFEF0; font-weight: bold;">도착시간</td>
 							</tr>
 						</c:if>
 						<tr id="f${vo.trainCode}"  align="left" style="border: 1px solid #cccccc;">
@@ -724,7 +689,7 @@ $(function() {
 			</td>
 		</tr>
 		
-		<tr align="left" height="40" style=" border-top: 3px solid #21373F; background: #21373F; color: white;">
+		<tr align="left" height="40" style=" border-top: 3px solid #716B6E; background: #716B6E; color: white;">
 			<td class="title" colspan="5"
 				style=" width: 100px; border-bottom: 3px solid white; text-align: center;">
 				<p id="product-id">
@@ -733,17 +698,30 @@ $(function() {
 			</td>
 		</tr>	
 	
-		<tr align="left" style=" border-top: 3px solid #21373F;">
+		<tr align="left" style=" border-top: 3px solid #716B6E;">
 			<td class="title" width="100"
 				style="padding:20px 0px;" ><p style="float: right;">총 가격</p></td>
 			<td valign="top" style=" padding: 30px 10px;" colspan="3">
-				<input class="comment" id="stPrice" value="${dto.stPrice}" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">
-					<i class="fas fa-plus"></i>
-				<input class="comment" id="Price" value="${dto.price}" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">
-					<i class="fas fa-plus"></i>
-				<input class="comment" id="edPrice" value="${dto.edPrice}" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">
-					<i class="fas fa-equals"></i>
-				<input type="text" name="pmPrice" value="${dto.pmPrice}" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">&nbsp;원
+			
+				<c:if test="${mode=='created'}">
+					<input class="comment" id="stPrice" value="0" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">
+						<i class="fas fa-plus"></i>
+					<input class="comment" id="Price" value="0" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">
+						<i class="fas fa-plus"></i>
+					<input class="comment" id="edPrice" value="0" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">
+						<i class="fas fa-equals"></i>
+					<input type="text" name="pmPrice" value="0" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">&nbsp;원
+				</c:if>		
+				
+				<c:if test="${mode=='update'}">
+					<input class="comment" id="stPrice" value="${dto.stPrice}" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">
+						<i class="fas fa-plus"></i>
+					<input class="comment" id="Price" value="${dto.price}" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">
+						<i class="fas fa-plus"></i>
+					<input class="comment" id="edPrice" value="${dto.edPrice}" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">
+						<i class="fas fa-equals"></i>
+					<input type="text" name="pmPrice" value="${dto.pmPrice}" style="width: 19%; border-radius: 10px; border: 1px solid #cccccc">&nbsp;원
+				</c:if>			
 			</td>
 		</tr>
 	</table>

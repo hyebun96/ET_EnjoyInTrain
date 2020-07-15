@@ -92,11 +92,12 @@ a:hover, a:active{
 
 .btn {
 	width: 100px;
-	height: 30px;
-	background-color: white;
-	border-color: #cccccc;
-	border-radius: 10px;
 	margin: 20px 10px;
+	background: #82909D;
+	color: white; b
+	border: none; 
+	font-weight: bold; 
+	height: 30px;"
 }
 
 table td {
@@ -158,14 +159,14 @@ $(function(){
 
 </script>
 
-<button type="button" id="btn" class="btn" onclick="javascript:location.href='<%=cp%>/travel/travel';"><i class="fas fa-hand-point-left"></i></button>
+<button type="button" id="btn" class="btn" onclick="javascript:location.href='<%=cp%>/travel/travel';" style="	background: #82909D;"><i class="fas fa-hand-point-left"></i></button>
 
 <form name="travelArticleForm" method="get" enctype="multipart/form-data">
 	<table id="travelTable" style="border-spacing: 0px; border-collapse: collapse; width: 100%;">
 		
 		<tr align="left" height="40"
-			style="border-bottom: 1px solid #cccccc; border-top: 3px solid #cccccc;">
-			<td class="title" style="padding-left: 10px; text-align: center; background: #4e0c6f; color: white; height: 50px;font-size: 18px;" colspan="5" width="100%;">${dto.pmTitle}</td>
+			style="border-bottom: 1px solid #716B6E; border-top: 3px solid #716B6E;">
+			<td class="title" style="padding-left: 10px; text-align: center; background: #716B6E; color: white; font-size: 18px;" colspan="5" width="100%;">${dto.pmTitle}</td>
 		</tr>
 
 
@@ -178,12 +179,12 @@ $(function(){
 				</c:forEach>
 				
 			</td>
-			<td class="title" style="text-align: center;">상품번호</td>
+			<td class="title" style="text-align: center; background: #F7E8E4;">상품번호</td>
 			<td style="padding-left: 10px; width: 200px;">${dto.pmCode}
 				<input type="hidden" name="pmCode" value="${dto.pmCode}">
 			</td>
 			<td class="title" style="text-align: center; padding-top: 5px;" rowspan="7">
-				<table style='width: 250px; margin-left: 30px;' class='calendar'>
+				<table style='width: 250px; margin-left: 30px; margin-right: 30px;' class='calendar'>
 					<tr style='border-bottom: 2px solid #cccccc;'>
 						<td colspan="8" style="text-align: center; color: black; width: 50px;">
 							<button type="button" onclick="calendar( ${preYear}, ${preMonth} , '${dto.getPmCode()}');"
@@ -205,22 +206,22 @@ $(function(){
  
 		<tr align="left" height="40"
 			style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc;">
-			<td class="title"   style="text-align: center;">상품가격</td>
+			<td class="title"   style="text-align: center; background: #F7E8E4;">상품가격</td>
 			<td style="padding-left: 10px; width: 343px;">${dto.pmPrice}~</td>
 		</tr>
 
 		<tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
-		<td class="title"   style="text-align: center;">판매자</td>
+		<td class="title"   style="text-align: center; background: #F7E8E4;">판매자</td>
 			<td style="padding-left: 10px; width: 343px;">${dto.partnerName}</td>
 		</tr>
 		
 		<tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
-		<td class="title"   style="text-align: center;">문의전화</td>
+		<td class="title"   style="text-align: center; background: #F7E8E4;">문의전화</td>
 			<td style="padding-left: 10px; width: 343px;">${dto.partnerTel}</td>
 		</tr>
 
 		<tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
-		<td class="title"   style="text-align: center;">예약 인원</td>
+		<td class="title"   style="text-align: center; background: #F7E8E4;">예약 인원</td>
 			<td style="padding-left: 10px; width: 343px;">
 				<select name="prPersonnel">
 					<option value="1">1명</option>
@@ -238,14 +239,14 @@ $(function(){
 		</tr>
 
 		<tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
-			<td class="title"   style="text-align: center;">예약 최소 인원</td>
+			<td class="title"   style="text-align: center; background: #F7E8E4;">예약 최소 인원</td>
 			<td style="padding-left: 10px; width: 343px;">
 				1명
 			</td>
 		</tr>
 
 		 <tr align="left" height="40" style="border-bottom: 1px solid #cccccc;">
-	      <td class="title"   style="text-align: center;">출발일자</td>
+	      <td class="title"   style="text-align: center; background: #F7E8E4;">출발일자</td>
 	         <td style="padding-left: 10px; width: 343px;">
 	            <span id="selectDate"></span>
 	            <input type="hidden" name="pmStartDate" id="pmStartDate">
@@ -256,20 +257,20 @@ $(function(){
 	<table style=" margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
 	
 		<tr class="reservationForm" align="center" height="40"
-			style="border-bottom: 1px solid #cccccc; border-top: 3px solid #cccccc; display: none;" >
-			<td class="title" style="width: 200px; background: #4e0c6f; color: white;">상품 그룹</td>
-			<td class="title" style="background: #4e0c6f; color: white;">선택</td>
-			<td class="title" style="width: 200px;background: #4e0c6f; color: white;">상품명</td>
-			<td class="title" style="background: #4e0c6f; color: white;">열차번호</td>
-			<td class="title" style="background: #4e0c6f; color: white;">출발시간</td>
-			<td class="title" style="background: #4e0c6f; color: white;">도착시간</td>
-			<td class="title" style=" background: #4e0c6f; color: white;">해당 기차 재고</td>
+			style="border-bottom: 1px solid #716B6E; border-top: 3px solid #716B6E; display: none;" >
+			<td class="title" style="width: 200px; background: #716B6E; color: white;">상품 그룹</td>
+			<td class="title" style="background: #716B6E; color: white;">선택</td>
+			<td class="title" style="width: 200px;background: #716B6E; color: white;">상품명</td>
+			<td class="title" style="background: #716B6E; color: white;">열차번호</td>
+			<td class="title" style="background: #716B6E; color: white;">출발시간</td>
+			<td class="title" style="background: #716B6E; color: white;">도착시간</td>
+			<td class="title" style=" background: #716B6E; color: white;">해당 기차 재고</td>
 		</tr>
 		
 		<c:forEach var="vo" items="${startList}">
 			<tr class="reservationForm" align="center" style="border-bottom: 1px solid #cccccc; border-bottom: 1px solid #cccccc; display: none;">
 				<c:if test="${vo == startList.get(0)}">
-					<td rowspan="${startLength}" style="width: 200px; font-weight: bold; ">가는 열차</td>
+					<td rowspan="${startLength}" style="width: 200px; font-weight: bold; background: #F7E8E4;">가는 열차</td>
 				</c:if>
 				<td class="title"><input type="radio" name="startTrain"  value="${vo.trainCode}"  ${startList[0] == vo? "checked='checked'" : ""}></td>
 				<td class="title">${vo.trainName}</td>
@@ -282,7 +283,7 @@ $(function(){
 		
 		<tr class="reservationForm" align="left" 
 			style="border-bottom: 1px solid #cccccc; border-bottom: 1px solid #cccccc;  display: none;">
-			<td class="title" >${dto.product}</td>
+			<td class="title" style="background: #F7E8E4;">${dto.product}</td>
 			<td class="title"><input type="radio" checked="checked"></td>
 			<td class="title" colspan="5" style="text-align: left; padding-left: 70px;">${dto.productContent}</td>
 		</tr>
@@ -290,7 +291,7 @@ $(function(){
 		<c:forEach var="vo" items="${endList}">
 			<tr class="reservationForm" align="left" style="border-bottom: 1px solid #cccccc; display: none;">
 				<c:if test="${vo == endList.get(0)}">
-					<td class="title"  rowspan="${endLength}">오는 열차</td>
+					<td class="title"  rowspan="${endLength}" style="background: #F7E8E4;">오는 열차</td>
 				</c:if>
 				<td class="title"><input type="radio" name="endTrain" value="${vo.trainCode}" ${endList[0] == vo? "checked='checked'" : ""}></td>
 				<td class="title">${vo.trainName}</td>
@@ -303,15 +304,15 @@ $(function(){
 		
 		<tr class="reservationForm" align="left" height="40" style=" display: none;">
 			<td class="title" colspan="6" ></td>
-			<td><button type="button" id="btn" class="btn" onclick="reservation();">예약하기</button></td>
+			<td><button type="button" id="btn" class="btn" onclick="reservation();"style="	background: #82909D;">예약하기</button></td>
 		</tr>
 	</table>
 		
 	<c:if test="${photoContentList!=null}">
 		<table style=" margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse; width: 1200px;">
 			<tr align="center" height="40"
-				style="border-bottom: 1px solid #cccccc; border-top: 3px solid #cccccc; ">
-				<td colspan="8" style=" background: #4e0c6f; color: white;">상품 상세 설명</td>
+				style="border-bottom: 1px solid #F7E8E4; border-top: 3px solid #F7E8E4; ">
+				<td colspan="8" style=" background: #716B6E; font-size: 15px; font-weight: bold; color: white;">상품 상세 설명</td>
 			</tr>
 			<tr align="center" style="clear:both; width: 100%; border-bottom: 1px solid #cccccc; margin-top: 200px;">
 				<td colspan="6" style="width: 100%">

@@ -90,7 +90,7 @@ $(function() {
 							<table class="payment_appear">
 								<tr>
 									<td> 예약번호 
-										<span class="reservationNumber">${startDto.reservationNumber}</span>
+										<span class="reservationNumber" style="color: blanchedalmond">${startDto.reservationNumber}</span>
 										<span class="paymentstate">결제내역</span> 입니다.
 									</td>
 								</tr>
@@ -338,7 +338,7 @@ $(function() {
 		 	<tr class="tr1"><td class="col2">* 승차권 인쇄버튼을 클릭하여 승차권을 인쇄하십시오.<td></tr>
 		</table>
 		<div style="width: 1200px; text-align: right;">
-			<button onclick="info_print()" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #6f047f; color: white; border: none;">승차권 인쇄</button>
+			<button onclick="info_print()" style="background: #82909D; color: white; border: none; font-weight: bold; height: 30px;">승차권 인쇄</button>
 		</div>
 		<div class="ticket1">
 			<div class="ticket2">

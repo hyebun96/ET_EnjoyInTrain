@@ -224,7 +224,7 @@ function sendOk(mode) {
 
 	var url = "<%=cp%>/admin/travel/"+ mode;
 	
-	if(f.upload.value=="" && $("#mainfile")==undefined ){
+	if(f.upload.value=="" && mode=="created"){
 		$("#commentImg").empty();
 		$("#commentImg").append("메인이미지를 선택해주세요 ↑");
 		$("#commentImg").css("color","#ED6D84");

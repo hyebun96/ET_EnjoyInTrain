@@ -46,6 +46,8 @@ public class Travel {
 	private int price;
 	private int edPrice;
 	
+	private int stock;
+	
 	public int getCategoryNum() {
 		return categoryNum;
 	}
@@ -208,6 +210,12 @@ public class Travel {
 	}
 	public void setEdPrice(int edPrice) {
 		this.edPrice = edPrice;
+	}
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 	
 	

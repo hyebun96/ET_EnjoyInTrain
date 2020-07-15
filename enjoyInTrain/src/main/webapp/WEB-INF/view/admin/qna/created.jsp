@@ -165,7 +165,7 @@ function ajaxHTML(url, type, query, selector) {
 				<tr align="left" style="border-bottom: 1px solid #cccccc; display: ${mode=='update' && sessionScope.crew.crewId=='a' ? '' : 'none;' } "> 
 					<td class="title" style="text-align: center; padding-top:5px; height: 300px;">답&nbsp;&nbsp;&nbsp;&nbsp;변</td>
 					<td valign="top" style="padding:5px 0px 5px 10px; height: 300px;"> 
-						<textarea name="qnaContent" class="boxTA" style="height: 300px;">${dto.qnaContent}</textarea>
+						<textarea name="qnaContent" class="boxTA" style="height: 300px;  width: 95%; padding-bottom: 10px;">${dto.qnaContent}</textarea>
 					</td>
 				</tr>
 		

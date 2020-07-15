@@ -87,7 +87,7 @@ ul.tabs li.active{
 	width: 100px; 
 	height: 30px; 
 	margin-top: 20px; 
-	background-color: white; 
+	background: white; 
 	border-color: #cccccc;
 }
 

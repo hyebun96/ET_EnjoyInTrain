@@ -161,7 +161,7 @@ function list(group){
 					<header>
 						<h3><img src="<%=cp%>/resource/images/one.png" style="width: 50px;"></h3>
 					</header>
-					<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto1.pmTitle}</p>
+					<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto1.pmTitle}&nbsp;<c:if test="${dto1.stock >= 50}"><img src="<%=cp%>/resource/images/order_ runaway.gif" width="50px;" height="20px;"> </c:if></p>
 					<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto1.pmPrice}" pattern="#,###" /></p>
 	
 					<p>
@@ -177,7 +177,7 @@ function list(group){
 					<header>
 						<h2><img src="<%=cp%>/resource/images/two.png" style="width: 50px;"></h2>
 					</header>
-					<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto2.pmTitle}</p>
+					<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto2.pmTitle}&nbsp;<c:if test="${dto2.stock >= 50}"><img src="<%=cp%>/resource/images/order_ runaway.gif" width="50px;" height="20px;"> </c:if></p>
 					<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto2.pmPrice}" pattern="#,###" /></p>
 					<p>
 						<a href="<%=cp%>/travel/travel?pmCode=${dto2.pmCode}">
@@ -192,7 +192,7 @@ function list(group){
 					<header>
 						<h2><img src="<%=cp%>/resource/images/three.png" style="width: 50px;"></h2>
 					</header>
-					<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto3.pmTitle}</p>
+					<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto3.pmTitle}&nbsp;<c:if test="${dto3.stock >= 50}"><img src="<%=cp%>/resource/images/order_ runaway.gif" width="50px;" height="20px;"> </c:if></p>
 					<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto3.pmPrice}" pattern="#,###" /></p>
 					<p>
 						<a href="<%=cp%>/travel/travel?pmCode=${dto3.pmCode}">
@@ -207,7 +207,7 @@ function list(group){
 					<header>
 						<h2><img src="<%=cp%>/resource/images/recommend.png" style="width: 50px;"></h2>
 					</header>
-					<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto4.pmTitle}</p>
+					<p class="subtitle" style="width: 282px; height: 50px; font-weight: bold;">${dto4.pmTitle}&nbsp;<c:if test="${dto4.stock >= 50}"><img src="<%=cp%>/resource/images/order_ runaway.gif" width="50px;" height="20px;"> </c:if></p>
 					<p style="color: orange; font-weight: bold;"><fmt:formatNumber value="${dto4.pmPrice}" pattern="#,###" /></p>
 					<p>
 						<a href="<%=cp%>/travel/travel?pmCode=${dto4.pmCode}">
@@ -247,7 +247,7 @@ function list(group){
 					<c:forEach var="vo" items="${deadLineList}" end="2">
 						<li style="width: 200px;">
 							<a href="<%=cp%>/travel/travel?pmCode=${vo.pmCode}"><img src="<%=cp%>/uploads/travel/${vo.saveFileName}" width="200px" height="130px;"></a>
-							<p>${vo.pmTitle}</p>
+							<p style="display: inline-block;">${vo.pmTitle}  &nbsp;&nbsp;&nbsp;<c:if test="${vo.stock >= 50}"><img src="<%=cp%>/resource/images/order_ runaway.gif" width="50px;" height="20px;"> </c:if></p>
 						</li>
 					</c:forEach>
 					</ul>						

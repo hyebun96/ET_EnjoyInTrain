@@ -9,6 +9,7 @@
 <style type="text/css">
 #btn{
 	border-radius: 10px;
+	height: 30px;
 }
 #btn:hover{
 	background: #21373F;

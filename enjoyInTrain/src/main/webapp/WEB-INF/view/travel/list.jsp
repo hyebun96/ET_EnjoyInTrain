@@ -32,10 +32,11 @@
 				<td style="width: 300px;">
 					<img src="<%=cp%>/uploads/travel/${dto.saveFileName}" width="254px" height="150px" style="margin: 15px 15px;">
 				</td>
-				<td style="width: 720px; font-weight: bold; ">${dto.pmTitle}<br>  
+				<td style="width: 720px; font-weight: bold; ">${dto.pmTitle}&nbsp;<c:if test="${dto.stock >= 50}"><img src="<%=cp%>/resource/images/order_ runaway.gif" width="50px;" height="20px;"> </c:if>
+				<br>  
 					<p style="color:orange;"><fmt:formatNumber value="${dto.pmPrice}" pattern="#,###" />&#126;</p>
 				</td>
-				<td><button id="btn"><i class="far fa-paper-plane" style="font-size: 25px;"></i><br><br>예약하기</button></td>
+				<td><button id="btn" style="outline: none;"><i class="far fa-paper-plane" style="font-size: 25px;"></i><br><br>예약하기</button></td>
 			</tr>
 		</c:forEach>
 		

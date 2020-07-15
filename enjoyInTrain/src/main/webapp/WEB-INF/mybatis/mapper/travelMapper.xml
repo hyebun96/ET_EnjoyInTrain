@@ -38,7 +38,7 @@
 	<select id="listTravel" parameterType="map" resultType="com.et.travel.Travel">
 		SELECT pd.pmCode, TO_CHAR(pmStartDate,'YYYY/MM/DD') pmStartDate, 
 			TO_CHAR(pmEndDate,'YYYY/MM/DD') pmEndDate, 
-			pmTitle, pmPrice, pmMaxCount, pmPercent, pd.categoryNum, saveFileName
+			pmTitle, pmPrice, pmMaxCount, pmPercent, pd.categoryNum, saveFileName, stock
 		FROM promotiondetail pd
 		JOIN promotionCategory pc ON pd.categoryNum = pc.categoryNum
 		JOIN promotionFile pf ON pd.pmCode = pf.pmCode
@@ -107,9 +107,9 @@
 	</select>
 	
 	<select id="travelRank" resultType="com.et.travel.Travel">
-		SELECT pmCode, pmTitle, saveFileName, pmPrice FROM (
-		    SELECT ROWNUM rnum, tb.pmCode pmCode, tb.pmTitle pmTitle, tb.saveFileName saveFileName, pmPrice FROM(
-		        SELECT  pd.pmCode, pmTitle , saveFileName, pmPrice
+		SELECT pmCode, pmTitle, saveFileName, pmPrice, stock FROM (
+		    SELECT ROWNUM rnum, tb.pmCode pmCode, tb.pmTitle pmTitle, tb.saveFileName saveFileName, pmPrice, stock FROM(
+		        SELECT  pd.pmCode, pmTitle , saveFileName, pmPrice, stock
 		        FROM promotionDetail pd
 		        JOIN promotionFile pf ON pd.pmCode = pf.pmCode
 		        ORDER BY stock DESC 
@@ -128,15 +128,16 @@
 	</select>
 	
 	<select id="randomMain" resultType="com.et.travel.Travel">
-		SELECT pmCode, pmPrice, pmTitle, product, saveFilename FROM(
-		    SELECT pd.pmCode, pmPrice, pmTitle, product, saveFilename FROM promotionDetail pd
+		SELECT pmCode, pmPrice, pmTitle, product, saveFilename, stock FROM(
+		    SELECT pd.pmCode, pmPrice, pmTitle, product, saveFilename , stock
+		    FROM promotionDetail pd
 		    JOIN promotionfile f ON pd.pmCode = f.pmCode
 		   ORDER BY DBMS_RANDOM.RANDOM
 		) WHERE rownum &lt; 5
 	</select>
 	
 	<select id="deadLine" resultType="com.et.travel.Travel">
-		SELECT pd.pmCode, pmPrice, pmTitle, product, saveFilename, TO_CHAR(pmendDate-SYSDATE)*(24*60*60) final
+		SELECT pd.pmCode, pmPrice, pmTitle, product, saveFilename, TO_CHAR(pmendDate-SYSDATE)*(24*60*60) final, stock
 	    FROM promotionDetail pd
 	    JOIN promotionfile f ON pd.pmCode = f.pmCode
 	    ORDER BY final
