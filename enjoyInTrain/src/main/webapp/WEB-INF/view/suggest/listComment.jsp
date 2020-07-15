@@ -25,12 +25,12 @@
 
 	<tbody id='listReplyBody'>
 	<c:forEach var="dto" items="${listComment}">
-	    <tr height='35' style='background: #eeeeee;'>
-	       <td width='50%' style='padding:5px 5px; border:1px solid #cccccc; border-right:none;'>
+	    <tr height='35'>
+	       <td width='50%' style='padding:5px 5px; border-bottom:1px solid #cccccc; border-right:none;'>
 	           <span><b>${dto.crewName}</b></span>
 	        </td>
-	       <td width='50%' style='padding:5px 5px; border:1px solid #cccccc; border-left:none;' align='right'>
-	           <span>${dto.created}</span>
+	       <td width='50%' style='padding:5px 5px; border-bottom:1px solid #cccccc; border-left:none;' align='right'>
+	           <span><b>${dto.created}</b></span>
 	           <c:if test="${dto.crewId == sessionScope.crew.crewId}">
 	                <span class="deleteComment" style="cursor: pointer;" data-replyNum='${dto.num}' data-pageNo='${pageNo}'>삭제</span>
 	           	</c:if>

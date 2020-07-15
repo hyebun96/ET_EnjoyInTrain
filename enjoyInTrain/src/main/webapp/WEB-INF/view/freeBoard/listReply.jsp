@@ -29,13 +29,11 @@
 	           <span><b>${vo.crewName}</b></span>
 	        </td>
 	       	       <td width='50%' style='padding:5px 5px; border-bottom::1px solid #cccccc; border-left:none; background: white; font-weight: bold;' align='right'>
-	           <span>${vo.created}</span> |
+	           <span>${vo.created}</span>
 	           <c:if test="${vo.crewId == sessionScope.crew.crewId ||  sessionScope.crew.crewId == 'admin' }">
 	                <span class="deleteReply" style="cursor: pointer;" data-replyNum='${vo.fbReplyNum}' data-pageNo='${pageNo}'>삭제</span>
 	           	</c:if>
-	           <c:if test="${vo.crewId != sessionScope.crew.crewId &&  sessionScope.crew.crewId != 'admin' }">
-	           		<span class="notifyReply">신고</span>
-	           	</c:if>
+	           
 	        </td>
 	    </tr>
 	    <tr>

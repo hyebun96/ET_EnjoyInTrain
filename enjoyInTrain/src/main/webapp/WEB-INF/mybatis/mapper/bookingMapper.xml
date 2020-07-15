@@ -107,7 +107,7 @@
 	
 	<select id="listStation" resultType="com.et.travel.Station">
 		SELECT sCode, sName, line, lineOrder, engName
-		FROM station
+		FROM station6
 		ORDER BY sCode DESC
 	</select>
 
@@ -221,26 +221,26 @@
 		WHERE pmCode = #{pmCode} AND p.trainCode = #{trainCode}
 	</select>
 	<select id="getKoreaStart" parameterType="String" resultType="String">
-		SELECT sName FROM station WHERE engName = #{startStation}
+		SELECT sName FROM station6 WHERE engName = #{startStation}
 	</select>
 	
 	<select id="getKoreaEnd" parameterType="String" resultType="String">
-		SELECT sName FROM station WHERE engName = #{endStation}
+		SELECT sName FROM station6 WHERE engName = #{endStation}
 	</select>
 	
 	<select id="getEngStart" parameterType="String" resultType="String">
-		SELECT engName FROM station WHERE sName = #{startStation}
+		SELECT engName FROM station6 WHERE sName = #{startStation}
 	</select>
 	<select id="getEngStart1" parameterType="String" resultType="String">
-		SELECT engName FROM station WHERE sName = #{startStation1}
+		SELECT engName FROM station6 WHERE sName = #{startStation1}
 	</select>
 	
 	<select id="getEngEnd" parameterType="String" resultType="String">
-		SELECT engName FROM station WHERE sName = #{endStation}
+		SELECT engName FROM station6 WHERE sName = #{endStation}
 	</select>
 	
 	<select id="getEngEnd1" parameterType="String" resultType="String">
-		SELECT engName FROM station WHERE sName = #{endStation1}
+		SELECT engName FROM station6 WHERE sName = #{endStation1}
 	</select>
 	
 	<select id="trainRead" parameterType="map" resultType="com.et.booking.Booking">
@@ -252,18 +252,18 @@
 
 	<!-- 역 코드로 변환 -->
 	<select id="readStationCode" parameterType="com.et.booking.Booking" resultType="String">
-		SELECT sCode FROM station WHERE engName = #{startStation}
+		SELECT sCode FROM station6 WHERE engName = #{startStation}
 	</select>
 	
 	<select id="readStationCode1" parameterType="com.et.booking.Booking" resultType="String">
-		SELECT sCode FROM station WHERE engName = #{endStation}
+		SELECT sCode FROM station6 WHERE engName = #{endStation}
 	</select>
 	<select id="readStationCode2" parameterType="com.et.booking.Booking" resultType="String">
-		SELECT sCode FROM station WHERE engName = #{startStation1}
+		SELECT sCode FROM station6 WHERE engName = #{startStation1}
 	</select>
 	
 	<select id="readStationCode3" parameterType="com.et.booking.Booking" resultType="String">
-		SELECT sCode FROM station WHERE engName = #{endStation1}
+		SELECT sCode FROM station6 WHERE engName = #{endStation1}
 	</select>
 		
 	<!-- 요금 가져오기 -->
