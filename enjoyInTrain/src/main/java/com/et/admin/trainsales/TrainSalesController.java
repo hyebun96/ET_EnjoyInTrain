@@ -136,17 +136,10 @@ public class TrainSalesController {
 	    if(list.size()>=1) {
 	    	String [] categories=new String[list.size()];
 	    	double[] data = new double[list.size()];
-	    	String [] categories1=new String[list.size()];
-	    	double[] data1 = new double[list.size()];
 	    	
 	    	for(int i=0; i<list.size(); i++) {
 	    		categories[i]=list.get(i).getTrPayDate();
 	    		data[i]=list.get(i).getSeatPay();
-	    	}
-	    	
-	    	for(int i=0; i<list.size(); i++) {
-	    		categories1[i]=list.get(i).getTrPayDate();
-	    		data1[i]=list.get(i).getCount();
 	    	}
 	    	
 	    	model.put("categories", categories);

@@ -142,6 +142,7 @@ function chatDay() {
 					categories : data.categories
 			    },
 
+
 			    yAxis: {  // y축
 			        title:{
 			        	text:'판매금액'
@@ -254,7 +255,6 @@ function person() {
 	              
 }
 
-
 </script>
 
 <!-- Main -->
@@ -270,7 +270,7 @@ function person() {
 			<div class="9u skel-cell-important">
 				<section>
 					<header>
-						<h2>매출통계<br><br></h2>
+						<h2>기차 매출통계<br><br></h2>
 					</header>
 						<div style="clear: both;">
 							<div>
