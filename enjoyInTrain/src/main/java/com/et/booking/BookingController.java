@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class BookingController {
 
 	@Autowired
 	private ReservationService service1;
-
+	
 	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "reservation", method = RequestMethod.GET)
 	public String reservation(Model model, @RequestParam Map<String, Object> paramMap, HttpSession session) {
@@ -297,7 +298,6 @@ public class BookingController {
 
 		// 좌석을 list에 담아준다.
 		List<ReservedSeat> seatList = new ArrayList<>();
-		int total = Integer.parseInt(map.get("total"));
 
 		// 승객유형
 		int adult = Integer.parseInt(map.get("adult"));
@@ -329,5 +329,27 @@ public class BookingController {
 		model.addAttribute("map", map);
 		model.addAttribute("seatList", seatList);
 		return "/booking/reservation";
+	}
+	
+	@RequestMapping("detail")
+	public String detail(
+			HttpSession session,
+			HttpServletRequest req,
+			Model model) {
+	SessionInfo info = (SessionInfo) session.getAttribute("crew");
+	try {
+		
+		// 글리스트
+		List<Booking> list = service.listmyPromotionList(info.getCrewId());
+		for(Booking dto : list) {
+		    dto.setPrReservationDate(dto.getPrReservationDate().substring(0, 10));
+		}
+		model.addAttribute("list",list);
+	} catch (Exception e) {
+		// TODO: handle exception
+	}
+	
+		
+	return ".booking.detail";
 	}
 }

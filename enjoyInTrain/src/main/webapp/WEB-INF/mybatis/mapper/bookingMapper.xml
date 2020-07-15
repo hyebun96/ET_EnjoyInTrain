@@ -161,7 +161,6 @@
 		JOIN pmReservationTrain pt ON pr.prCode = pt.prCode AND pr.trainCode = pt.trainCode
 	</select>
 	
-	
 	<select id="listReservation" parameterType="map" resultType="com.et.booking.Booking">
 		SELECT DISTINCT pr.prCode, pr.prSeq, pr.pmCode, TO_CHAR(pr.pmStartDate, 'YYYY-MM-DD') pmStartDate, pr.adult, pr.child, pr.oldMan, pr.prPersonnel, pr.product, pr.productUserCount, pr.crewId, pr.prReservationDate,pr.prPaymentDate, pr.trainCode,
 			    pr.prPayment, pr.reservationNumber, pd.pmTitle, pd.pmPrice, pd.productContent, p.startStation, p.endStation, c.crewName, c.crewEmail, c.crewTel, c.crewBirth, pt.roomGrade, pt.roomNum, pt.prAddPrice, pt.prTrainSeat
@@ -183,18 +182,30 @@
 		where c.crewId = #{crewId}
 		ORDER BY pr.prSeq DESC
 	</select>
+	
+	<select id="myPromotionList" parameterType="map" resultType="com.et.booking.Booking">
+	SELECT DISTINCT pr.prCode, pr.prSeq, pr.pmCode, TO_CHAR(pr.pmStartDate, 'YYYY-MM-DD') pmStartDate, pr.adult, pr.child, pr.oldMan, pr.prPersonnel, pr.product, pr.productUserCount, pr.crewId, pr.prReservationDate,pr.prPaymentDate, pr.trainCode,
+		   pr.prPayment, pr.reservationNumber, pd.pmTitle, pd.pmPrice, p.startStation, p.endStation, c.crewName, pt.praddPrice
+	FROM pmReservation pr
+	JOIN promotionDetail pd ON pd.pmCode = pr.pmCode
+	JOIN promotion p ON pr.trainCode = p.trainCode AND pd.pmCode = p.pmCode
+	JOIN crew c ON pr.crewId = c.crewId
+	JOIN pmReservationTrain pt ON pr.prCode = pt.prCode AND pr.trainCode = pt.trainCode
+	WHERE pr.crewId = #{crewId}
+	ORDER BY pr.prCode DESC
+	</select>
 	<!--  짝수 : 하행선 -->
 	<select id="startlist1" parameterType="map" resultType="com.et.booking.Booking">
 		SELECT pmCode, startStation, endStation
 		FROM promotion p
-		JOIN STATIONLINE6 t ON p.traincode = t.traincode
+		JOIN stationline7 t ON p.traincode = t.traincode
 		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 0
 	</select>
 	
 	<select id="startlist2" parameterType="map" resultType="com.et.booking.Booking">
 		SELECT pmCode, p.trainCode, trainName, startStation, endStation, ${startStation} startTime, ${endStation} endTime
 		FROM promotion p
-		JOIN STATIONLINE6 t ON p.traincode = t.traincode
+		JOIN stationline7 t ON p.traincode = t.traincode
 		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 0
 	</select>
 	
@@ -202,14 +213,14 @@
 	<select id="endlist1" parameterType="map" resultType="com.et.booking.Booking">
 		SELECT pmCode, startStation, endStation
 		FROM promotion p
-		JOIN STATIONLINE6 t ON p.traincode = t.traincode
+		JOIN stationline7 t ON p.traincode = t.traincode
 		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 1
 	</select>
 	
 	<select id="endlist2" parameterType="map" resultType="com.et.booking.Booking">
 		SELECT pmCode, p.trainCode, trainName, startStation, endStation, ${endStation} endTime, ${startStation} startTime
 		FROM promotion p
-		JOIN STATIONLINE6 t ON p.traincode = t.traincode
+		JOIN stationline7 t ON p.traincode = t.traincode
 		WHERE pmCode = #{pmCode} AND MOD(p.trainCode,2) = 1
 	</select>
 	
@@ -217,7 +228,7 @@
 	<select id="getTrain">
 		SELECT pmCode, p.trainCode, startStation, endStation
 		FROM promotion p
-		JOIN STATIONLINE6 t ON p.traincode = t.traincode
+		JOIN stationline7 t ON p.traincode = t.traincode
 		WHERE pmCode = #{pmCode} AND p.trainCode = #{trainCode}
 	</select>
 	<select id="getKoreaStart" parameterType="String" resultType="String">
@@ -246,7 +257,7 @@
 	<select id="trainRead" parameterType="map" resultType="com.et.booking.Booking">
 		SELECT pmCode, p.trainCode, trainName, startStation, endStation, ${startStation} startTime , ${endStation} endTime
 		FROM promotion p
-		JOIN STATIONLINE6 t ON p.traincode = t.traincode
+		JOIN stationline7 t ON p.traincode = t.traincode
 		WHERE pmCode = #{pmCode} AND p.trainCode = #{trainCode}
 	</select>
 
@@ -284,24 +295,5 @@
 	<update id="updateStock1" parameterType="com.et.booking.Booking">
 		UPDATE promotionDetail SET stock = stock-#{prPersonnel} WHERE pmCode = #{pmCode}
 	</update>
-	
-	<sql id="where-list">
-		<choose>
-			<when test="condition == 'promotionName' ">
-			   ( INSTR(pmtitle, #{keyword}) &gt; 0
-		          OR DBMS_LOB.INSTR(lostContent, #{keyword}) &gt; 0 )
-			</when>
-			<when test="condition == 'reservationDate' ">
-			   ( TO_CHAR(prReservationDate, 'YYYYMMDD') = #{keyword}
-		          OR TO_CHAR(prReservationDate, 'YYYY-MM-DD') = #{keyword} )
-			</when>
-			<when test="condition == 'userName'">
-			    INSTR(crewName, #{keyword}) &gt; 0
-			</when>
-			<otherwise>
-			    INSTR(${condition}, #{keyword}) &gt; 0
-			</otherwise>
-		</choose>
-	</sql>
 	
 </mapper>

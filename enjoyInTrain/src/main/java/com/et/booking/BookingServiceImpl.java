@@ -206,8 +206,8 @@ public class BookingServiceImpl implements BookingService{
 	public int readsPay(Booking dto) {
 		int result = 0;
 		try {
-			dto.setEndCode(dao.selectOne("booking.readStationCode", dto));
-			dto.setStartCode(dao.selectOne("booking.readStationCode1", dto));
+			dto.setStartCode(dao.selectOne("booking.readStationCode", dto));
+			dto.setEndCode(dao.selectOne("booking.readStationCode1", dto));
 			result = dao.selectOne("booking.readsPay", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -219,8 +219,8 @@ public class BookingServiceImpl implements BookingService{
 	public int readsPay1(Booking dto) {
 		int result = 0;
 		try {
-			dto.setStartCode(dao.selectOne("booking.readStationCode", dto));
-			dto.setEndCode(dao.selectOne("booking.readStationCode1", dto));
+			dto.setEndCode(dao.selectOne("booking.readStationCode", dto));
+			dto.setStartCode(dao.selectOne("booking.readStationCode1", dto));
 			result = dao.selectOne("booking.readsPay1", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -486,6 +486,17 @@ public class BookingServiceImpl implements BookingService{
 			e.printStackTrace();
 		}
 		return list2;
+	}
+
+	@Override
+	public List<Booking> listmyPromotionList(String crewId) {
+		List<Booking> list = null;
+		try {
+			list = dao.selectList("booking.myPromotionList", crewId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	

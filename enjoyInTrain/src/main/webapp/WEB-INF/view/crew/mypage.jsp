@@ -168,14 +168,14 @@ $(function(){
 								
 							</tr>
 							<c:forEach var="dto" items="${list2}" varStatus="status">
-									<tr style="text-align: center;">
+									<tr style="text-align: center; height: 40px;">
 										
 										<td> ${dto.reservationNumber} </td>
 										<c:if test="${dto.prpayment==1}">
-											<td> <a href="<%=cp%>/crew/paymentSuccess?prSeq=${dto.prSeq}&prCode=${dto.prCode}">${dto.pmTitle}</a></td>
+											<td> <a href="<%=cp%>/crew/paymentSuccess?prSeq=${dto.prSeq}">${dto.pmTitle}</a></td>
 										</c:if>
 										<c:if test="${dto.prpayment!=1}">
-											<td> <a href="<%=cp%>/crew/receipt?prSeq=${dto.prSeq}&prCode=${dto.prCode}">${dto.pmTitle}</a></td>
+											<td> <a href="<%=cp%>/crew/receipt?prSeq=${dto.prSeq}">${dto.pmTitle}</a></td>
 										</c:if>
 										<td> ${dto.crewName} </td>
 										<td> ${dto.prReservationDate.substring(0, 10)} </td>

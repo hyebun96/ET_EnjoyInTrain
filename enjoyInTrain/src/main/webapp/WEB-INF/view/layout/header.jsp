@@ -49,7 +49,7 @@
 							<li class="navbar"><a href="<%=cp%>/travel/main">Promotion&nbsp;&nbsp;</a>
 								<ul class="navbar3">
 									<li><a href="<%=cp%>/travel/travel">프로모션 리스트</a></li>
-									<li><a href="#">프로모션 예약 조회</a></li>
+									<li><a href="<%=cp%>/booking/detail">프로모션 예약 조회</a></li>
 								</ul>
 							</li>
 							
