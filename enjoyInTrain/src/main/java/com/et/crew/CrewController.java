@@ -234,6 +234,10 @@ public class CrewController {
 		List<Reservation> list = service2.readDetail(info.getCrewId());
 		List<Booking> list2 = bookingService.readDetail2(info.getCrewId());
 		
+		//포인트 내역
+		int point= service2.totalPoint(info.getCrewId());
+		dto.setPoint(point);
+		
 		model.addAttribute("dto",dto);
 		model.addAttribute("list",list);
 		model.addAttribute("list2",list2);
