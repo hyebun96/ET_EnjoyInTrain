@@ -44,28 +44,41 @@
 	font-size: 12px;
 }
 .mypage{
-	margin-left: 100px;
 	width: 80%;
-	
+	border: 1px solid #cccccc;
+
+}
+
+.mypage table{
+	margin: 10px;
 }
 
 .mypage tr{
-	border: 1px solid #cccccc;
-	margin: 20px;
 	height: 40px;
-	width: 200px;
+	border-radius: 20px;
 }
-.mypage tr td{
 
+.my{
+	width: 100px;
+	border-radius: 20px;
+	text-align: center;
+	margin: 10px;
+	height: 40px;
+	background: #ccc;
+}
+
+.my2{
 	width: 250px;
+	padding-left: 10px;
 }
 
-.mypage tr td :first-child{
-	width: 150px;
-}
 
 .listtt td{
     padding-top: 5px;
+}
+
+.mypagetable{
+	height: 150px;
 }
 </style>
 
@@ -121,30 +134,26 @@ $(function(){
 					<img src="<%=cp%>/resource/images/user0000.png" alt="" width="125px;" height="80" style="float: left;">
 					
 				<div class="mypage">
-					<table>
-						<tr>
-							<td>이름 </td>
-							<td> ${dto.crewName} <br></td>
+					<table class="mypagetable">
+						<tr >
+							<td class="my" style="background: blue;">이름 </td>
+							<td class="my2">${dto.crewName} <br></td>
+							<td class="my">내 포인트  </td>
+							<td class="my2">${dto.point}점</td>
 						</tr>
+					
 						<tr>
-							<td>생년월일  </td>
-							<td> ${dto.crewBirth}<br></td>
+							<td class="my">생년월일  </td>
+							<td class="my2">${dto.crewBirth}<br></td>
+							<td class="my">전화번호  </td>
+							<td class="my2">${dto.crewTel}<br></td>
 						</tr>
+					
 						<tr>
-							<td>전화번호  </td>
-							<td> ${dto.crewTel}<br></td>
-						</tr>
-						<tr>
-							<td>이메일  </td>
-							<td> ${dto.crewEmail}<br></td>
-						</tr>
-						<tr>
-							<td>채팅 경고  </td>
-							<td> ${dto.crewChatWarning} 회</td>
-						</tr>
-						<tr>
-							<td>내 포인트  </td>
-							<td> ${dto.point}점</td>
+							<td class="my">이메일  </td>
+							<td class="my2">${dto.crewEmail}<br></td>
+							<td class="my">채팅 경고  </td>
+							<td class="my2">${dto.crewChatWarning} 회</td>
 						</tr>
 					</table>
 			     </div>
