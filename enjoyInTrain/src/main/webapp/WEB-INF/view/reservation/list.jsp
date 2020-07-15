@@ -27,6 +27,12 @@ $(function(){
 		var trainName=$(this).closest("tr").children(".tName").text();  //기차종류 가져오기
 		var stTime=$(this).closest("tr").children().children(".stTime").text();  //출발시간 가져오기
 		var endTime=$(this).closest("tr").children().children(".endTime").text();  //도착시간 가져오기
+		
+		if(${rsDto.today==day}&&"${rsDto.now}">stTime){
+			alert("현재시각 이후 열차만 예약 가능합니다.");
+			return;
+		}
+		
 		var url="<%=cp%>/reservation/seat";
 		var query=$("form[name=reservationForm]").serialize();
 		query+="&total=${rsDto.total}";

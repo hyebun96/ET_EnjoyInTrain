@@ -32,9 +32,9 @@ $(function(){
 $(function(){
     $("#allCheck").click(function(){
         if($("#allCheck").is(":checked")){
-            alert("체크박스 체크했음!");
+        	$(".seatCheck").attr("checked","checked");
         }else{
-            alert("체크박스 체크 해제!");
+        	
         }
     });
 });
@@ -53,19 +53,19 @@ $(function(){
 								<span class="byline">REFUND</span>
 								<div style="width: 1200px; text-align: center;">
 								<form action="<%=cp%>/reservation/requestrefund" name="refundForm" method="post">
-								<input type="hidden" value="${trCode}" id="allCheck" name="trCode">
+								<input type="hidden" value="${trCode}"  name="trCode">
 								 	<table style="width:100%;  ">
 								 		<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA;">
-								 			<td style="background: #353866;"><input type="checkbox"></td>
-								 			<td style="background: #353866; color: white;">승차일</td>
-								 			<td style="background: #353866; color: white;">열차종류</td>
-								 			<td style="background: #353866; color: white;">열차번호</td>
-								 			<td style="background: #353866; color: white;">출발역</td>
-								 			<td style="background: #353866; color: white;">도착역</td>
-								 			<td style="background: #353866; color: white;">출발시간</td>
-								 			<td style="background: #353866; color: white;">도착시간</td>
-								 			<td style="background: #353866; color: white;">승객유형</td>
-								 			<td style="background: #353866; color: white;">좌석정보</td>
+								 			<td style="background: #0f0f69e8;"><input id="allCheck" type="checkbox"></td>
+								 			<td style="background: #0f0f69e8; color: white;">승차일</td>
+								 			<td style="background: #0f0f69e8; color: white;">열차종류</td>
+								 			<td style="background: #0f0f69e8; color: white;">열차번호</td>
+								 			<td style="background: #0f0f69e8; color: white;">출발역</td>
+								 			<td style="background: #0f0f69e8; color: white;">도착역</td>
+								 			<td style="background: #0f0f69e8; color: white;">출발시간</td>
+								 			<td style="background: #0f0f69e8; color: white;">도착시간</td>
+								 			<td style="background: #0f0f69e8; color: white;">승객유형</td>
+								 			<td style="background: #0f0f69e8; color: white;">좌석정보</td>
 								 		</tr>
 								 		<c:forEach items="${list}" var="dto">
 									 		<tr style="height:40px; border-bottom: 1px solid #BDBDBD">
@@ -88,7 +88,7 @@ $(function(){
 										<span>· 환불하시면 위약금이 발생할 수 있으며 위약금을 공제한 잔액을 환불하여 드립니다.</span><br>
 								 	</div>
 								 	<br>
-								 	<button type="button" id="reqrefundBtn" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #353866; color: white; border: none;">환불요청</button>
+								 	<button type="button" id="reqrefundBtn" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #0f0f69e8; color: white; border: none;">환불요청</button>
 								 	<br>
 								</form>
 								</div>

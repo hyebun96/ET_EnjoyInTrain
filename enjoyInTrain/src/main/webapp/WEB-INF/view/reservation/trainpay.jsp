@@ -6,8 +6,8 @@
 	String cp=request.getContextPath();
 %>
 <style>
-table td{
-	border: 1px solid #EAEAEA;
+.trainpay td{
+	border: 1px solid #D5D5D5;
 }
 </style>
 <script type="text/javascript">
@@ -35,23 +35,23 @@ $(function(){
     <span  style="line-height:17px; font-size:17px; color: white; font-weight: bold;">운행시간</span><span class="close">&times;</span>
     </div>
 	    <div style="padding:10px; height:90%; background: white;">
-		    <table style="border:1px solid #EAEAEA; text-align:center; height:200px; width: 100%;">
+		    <table class="trainpay" style="width:100%; border:1px solid #EAEAEA; text-align:center; height:200px; width: 100%;">
 		    	<tr>
-		    		<td>구분</td>
-		    		<td>어른</td>
-		    		<td>어린이</td>
-		    		<td>경로</td>
-		    		<td>경증장애인</td>
-		    		<td>중증장애인</td>
+		    		<td style="width:15%; padding: 5px; background: #EAEAEA;">구분</td>
+		    		<td style="width:17%; padding: 5px; background: #EAEAEA;">어른</td>
+		    		<td style="width:17%; padding: 5px; background: #EAEAEA;">어린이</td>
+		    		<td style="width:17%; padding: 5px; background: #EAEAEA;">경로</td>
+		    		<td style="width:17%; padding: 5px; background: #EAEAEA;">경증장애인</td>
+		    		<td style="width:17%; padding: 5px; background: #EAEAEA;">중증장애인</td>
 		    	</tr>
 		    	<c:forEach items="${list}" var="dto">
 			    	<tr>
-			    		<td>${dto.roomGrade}</td>
-			    		<td>${dto.adult}</td>
-			    		<td>${dto.child}</td>
-			    		<td>${dto.senior}</td>
-			    		<td>${dto.disabled1}</td>
-			    		<td>${dto.disabled2}</td>
+			    		<td style="padding: 5px;">${dto.roomGrade}</td>
+			    		<td style="padding: 5px;">${dto.adult}</td>
+			    		<td style="padding: 5px;">${dto.child}</td>
+			    		<td style="padding: 5px;">${dto.senior}</td>
+			    		<td style="padding: 5px;">${dto.disabled1}</td>
+			    		<td style="padding: 5px;">${dto.disabled2}</td>
 			    	</tr>
 		    	</c:forEach>
 		    </table>

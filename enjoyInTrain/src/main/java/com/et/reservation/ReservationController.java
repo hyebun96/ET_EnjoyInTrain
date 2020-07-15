@@ -65,7 +65,6 @@ public class ReservationController {
 		model.addAttribute("firstSt",map.get("firstSt"));
 		model.addAttribute("lastSt",map.get("lastSt"));
 		
-		model.addAttribute("day",dto.getDay()); ///삭제필요
 		return ".reservation.main";
 	}
 	
@@ -107,6 +106,14 @@ public class ReservationController {
 		
 		//선택한 사람수(total)보다 적은 좌석개수를 가지고 있는 기차코드를 가져옴
 		//좌석부족 출력해줘야함
+		
+		//오늘날짜 가져옴
+		Calendar cal=Calendar.getInstance();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd(EE)");
+		dto.setToday(sdf.format(cal.getTime()));
+		
+		sdf=new SimpleDateFormat("HH:mm");
+		dto.setNow(sdf.format(cal.getTime()));
 		
 		model.addAttribute("list",list);
 		model.addAttribute("rsDto",dto);

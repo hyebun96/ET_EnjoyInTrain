@@ -16,6 +16,13 @@ public class Condition {
 	private String tCategory;
 	private int total;
 	private String today;
+	private String now;
+	public String getNow() {
+		return now;
+	}
+	public void setNow(String now) {
+		this.now = now;
+	}
 	public String getToday() {
 		return today;
 	}

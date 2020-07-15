@@ -30,7 +30,6 @@ function refundBtn(){
 		return;
 	}
 }
-
 </script>
 	<!-- Main -->
 		<div id="page" >
@@ -47,14 +46,14 @@ function refundBtn(){
 								 	<input type="hidden" value="${trCode}" name="trCode">
 								 	<table style="width:100%;">
 								 		<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA;">
-								 			<td style="background: #353866; color: white;">승차일</td>
-								 			<td style="background: #353866; color: white;">열차종류</td>
-								 			<td style="background: #353866; color: white;">열차번호</td>
-								 			<td style="background: #353866; color: white;">출발역</td>
-								 			<td style="background: #353866; color: white;">도착역</td>
-								 			<td style="background: #353866; color: white;">출발시간</td>
-								 			<td style="background: #353866; color: white;">도착시간</td>
-								 			<td style="background: #353866; color: white;">결제금액</td>
+								 			<td style="background: #0f0f69e8; color: white;">승차일</td>
+								 			<td style="background: #0f0f69e8; color: white;">열차종류</td>
+								 			<td style="background: #0f0f69e8; color: white;">열차번호</td>
+								 			<td style="background: #0f0f69e8; color: white;">출발역</td>
+								 			<td style="background: #0f0f69e8; color: white;">도착역</td>
+								 			<td style="background: #0f0f69e8; color: white;">출발시간</td>
+								 			<td style="background: #0f0f69e8; color: white;">도착시간</td>
+								 			<td style="background: #0f0f69e8; color: white;">결제금액</td>
 								 		</tr>
 									 		<tr style="height:40px; border-bottom: 1px solid #BDBDBD">
 									 			<td>${rv.trDate}</td>
@@ -69,11 +68,11 @@ function refundBtn(){
 								 	</table>
 								 	<table style="width:100%;  ">
 								 		<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA;">
-								 			<td style="background: #353866; color: white;">열차번호</td>
-								 			<td style="background: #353866; color: white;">객실등급</td>
-								 			<td style="background: #353866; color: white;">좌석정보</td>
-								 			<td style="background: #353866; color: white;">승객유형</td>
-								 			<td style="background: #353866; color: white;">환불금액</td>
+								 			<td style="background: #0f0f69e8; color: white;">열차번호</td>
+								 			<td style="background: #0f0f69e8; color: white;">객실등급</td>
+								 			<td style="background: #0f0f69e8; color: white;">좌석정보</td>
+								 			<td style="background: #0f0f69e8; color: white;">승객유형</td>
+								 			<td style="background: #0f0f69e8; color: white;">환불금액</td>
 								 		</tr>
 								 		<c:forEach items="${list}" var="dto">
 									 		<tr style="height:40px; border-bottom: 1px solid #BDBDBD">
@@ -88,7 +87,7 @@ function refundBtn(){
 								 		</c:forEach>
 								 	</table>
 								 	<br>
-								 	<button type="button" onclick="refundBtn()" style="font-weight:bold; font-size:15px; border-radius:5px; width:200px; height:30px; background: #353866; color: white; border: none;">환불 최종 완료하기</button>
+								 	<button type="button" onclick="refundBtn()" style="font-weight:bold; font-size:15px; border-radius:5px; width:200px; height:30px; background: #0f0f69e8; color: white; border: none;">환불 최종 완료하기</button>
 								 	<br>
 								</form>
 								</div>

@@ -6,8 +6,8 @@
 	String cp=request.getContextPath();
 %>
 <style>
-table td{
-	border: 1px solid #EAEAEA;
+.traintime td{
+	border: 1px solid #D5D5D5;
 }
 </style>
 
@@ -36,17 +36,17 @@ $(function(){
     <span  style="line-height:17px; font-size:17px; color: white; font-weight: bold;">운행시간</span><span class="close">&times;</span>
     </div>
 	    <div style="padding:10px; height:90%; background: white;">
-		    <table style="border:1px solid #EAEAEA; text-align:center; height:250px; width: 100%;">
+		    <table class="traintime" style="border:1px solid #EAEAEA; text-align:center; height:250px; width: 100%;">
 		    	<tr>
-		    		<td>역명</td>
-		    		<td>도착시각</td>
-		    		<td>출발시각</td>
+		    		<td style="background:#EAEAEA; padding:7px;">역명</td>
+		    		<td style="background:#EAEAEA; padding:7px;">도착시각</td>
+		    		<td style="background:#EAEAEA; padding:7px;">출발시각</td>
 		    	</tr>
 		    	<c:forEach items="${list}" var="dto">
 			    	<tr>
-			    		<td>${dto.station}</td>
-			    		<td>${dto.arriveTime}</td>
-			    		<td>${dto.departureTime}</td>
+			    		<td style="padding:7px;">${dto.station}</td>
+			    		<td style="padding:7px;">${dto.arriveTime}</td>
+			    		<td style="padding:7px;">${dto.departureTime}</td>
 			    	</tr>
 		    	</c:forEach>
 		    </table>

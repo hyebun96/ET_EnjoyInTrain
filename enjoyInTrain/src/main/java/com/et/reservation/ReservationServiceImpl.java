@@ -3,6 +3,7 @@ package com.et.reservation;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -61,9 +62,9 @@ public class ReservationServiceImpl implements ReservationService{
 			dto.setStartSt(startSt);
 			dto.setEndSt(endSt);
 			
-//			Calendar cal=Calendar.getInstance();
-//			SimpleDateFormat sdf=new SimpleDateFormat("YYYY/MM/DD(EE)");
-//			dto.setToday(sdf.format(cal.getTime()));
+			Calendar cal=Calendar.getInstance();
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd(EE)");
+			dto.setToday(sdf.format(cal.getTime()));
 			list=dao.selectList("reservation.listTrain", dto);
 			for(Train tr:list) {
 				tr.setDepartureSt(originalnameSt);
@@ -453,6 +454,10 @@ public class ReservationServiceImpl implements ReservationService{
 	public List<Reservation> readDetail(String crewId) {
 		List<Reservation> rsList=new ArrayList<>();
 		try {
+			//오늘날짜 가져옴
+			Calendar cal=Calendar.getInstance();
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd(EE)");
+			
 			List<Reservation> list=dao.selectList("reservation.readDetail", crewId);
 			for(Reservation dto:list) {
 				//총 예약 인원수 가져오기
@@ -469,7 +474,26 @@ public class ReservationServiceImpl implements ReservationService{
 					map=dao.selectOne("reservation.readStatinTime", map);
 					dto.setStTime(map.get("STTIME"));
 					dto.setEndTime(map.get("ENDTIME"));
-					rsList.add(dto);
+					
+					
+					//오늘날짜인 예약이면 지금시각 이후의 예약만 가져오기
+					if(dto.getTrDate().equals(sdf.format(cal.getTime()))) {
+						//시간비교하기
+						SimpleDateFormat fm=new SimpleDateFormat("HH:mm");
+						Date now=new Date();  //대입할 지금 시간
+						Date date=null;
+						
+						Date today=fm.parse(fm.format(now));  //지금시간
+						date=fm.parse(dto.getStTime());  //비교할시간
+						
+						int compare=today.compareTo(date);
+						if(compare<=0) {
+							rsList.add(dto);
+						}else {
+						}
+					}else {
+						rsList.add(dto);
+					}
 				}
 			}
 		} catch (Exception e) {

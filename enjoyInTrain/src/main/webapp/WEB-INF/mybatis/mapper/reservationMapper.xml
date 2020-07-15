@@ -28,6 +28,9 @@
 			AND TO_DATE(arriveTime,'HH24:MI')-TO_DATE(departureTime,'HH24:MI')>0
 			AND MOD(trainCode,2)=#{route}
 			AND trainName=#{tCategory}
+		<if test="#{today}==#{day}">
+			AND departureTime>=TO_CHAR(SYSDATE,'HH24:MI')
+		</if>
 		ORDER BY departuretime ASC
 	</select>
 	
@@ -92,18 +95,9 @@
 		SELECT reservedSeat_seq.NEXTVAL FROM dual
 	</select>
 	
-<!-- 	
 	<insert id="insertReservation" parameterType="com.et.reservation.Reservation">
 		INSERT INTO trainreservation(trCode, trPrice, trDate, crewId, trPointPrice) VALUES(#{trCode},#{trPrice} ,#{trDate}, #{crewId}, #{point})
 	</insert>
-	
- -->	
- 
-	<!-- 기차(좌석)예약하기 -->
-	<insert id="insertReservation" parameterType="com.et.reservation.Reservation">
-		INSERT INTO trainreservation(trCode, trPrice, trDate, crewId, trPointPrice, trPayDate) VALUES(#{trCode},#{trPrice} ,#{trDate}, #{crewId}, #{point},#{trDate})
-	</insert>
-	
 	
 	<insert id="insertReservationInfo" parameterType="com.et.reservation.Reservation">
 		INSERT INTO trReservationInfo(trCode, startCode, endCode, trainCode) VALUES(#{trCode},#{startCode},#{endCode},#{trainCode})

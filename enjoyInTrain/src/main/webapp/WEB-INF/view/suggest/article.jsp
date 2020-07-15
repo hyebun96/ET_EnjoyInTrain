@@ -309,7 +309,7 @@ function insertAn(){
 							<tr style="padding: 5px 5px;">
 								<td class="notice-content" colspan="4"><div class="content_scroll">${dto.sgContent}</div></td>
 							</tr>
-							<c:if test="${dto.anContent!=''}">
+							<c:if test="${dto.anContent!=null}">
 								<tr>
 									<td class="notice-content2" colspan="4">
 										<div class="content_scroll"><p>[답변내용입니다]    ${dto.anCreated }</p>
