@@ -203,7 +203,7 @@ p.title1{
 								<td>
 									<div class="selectmainreservation">
 										<input style="width: 81%;" type="text" name="startSt" value="${firstSt}" id="startSt">
-										<button type="button" style="border:none; background: #44565B;" class="myBtn">
+										<button type="button" style="border:none; background: #273267;" class="myBtn">
 											<i class="fas fa-map-marker-alt" style="padding:2.5px; padding-right:5px; padding-left:5px; margin:4px; font-size: 17px; color: white;"></i>
 										</button>
 									</div>
@@ -211,7 +211,7 @@ p.title1{
 								<td>
 									<div class="selectmainreservation">
 										<input style="width: 81%;" type="text" name="endSt" value="${lastSt}" id="endSt">
-										<button type="button" style="border:none; background: #44565B;" class="myBtn">
+										<button type="button" style="border:none; background: #273267;" class="myBtn">
 											<i class="fas fa-map-marker-alt" style="padding:2.5px; padding-right:5px; padding-left:5px; margin:4px; font-size: 17px; color: white;"></i>
 										</button>
 									</div>
