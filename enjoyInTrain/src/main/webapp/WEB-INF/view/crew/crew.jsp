@@ -14,6 +14,10 @@
     padding-top: 0em;
 } 
 
+#page {
+    padding: 5em 0em 15em 0em;
+}
+
 .help-block{
 	font-size: 12px;
 	margin-top: -10px;
