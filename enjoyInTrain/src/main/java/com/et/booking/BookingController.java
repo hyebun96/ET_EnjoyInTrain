@@ -337,19 +337,21 @@ public class BookingController {
 			HttpServletRequest req,
 			Model model) {
 	SessionInfo info = (SessionInfo) session.getAttribute("crew");
-	try {
-		
-		// 글리스트
-		List<Booking> list = service.listmyPromotionList(info.getCrewId());
-		for(Booking dto : list) {
-		    dto.setPrReservationDate(dto.getPrReservationDate().substring(0, 10));
+		try {
+			
+			// 글리스트
+			List<Booking> list = service.listmyPromotionList(info.getCrewId());
+			for(Booking dto : list) {
+			    dto.setPrReservationDate(dto.getPrReservationDate().substring(0, 10));
+			    dto.setStartStation(service.readStartStation(dto.getStartStation()));
+			    dto.setEndStation(service.readEndStation(dto.getEndStation()));
+			}
+			model.addAttribute("list",list);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		model.addAttribute("list",list);
-	} catch (Exception e) {
-		// TODO: handle exception
-	}
-	
 		
 	return ".booking.detail";
+	
 	}
 }
