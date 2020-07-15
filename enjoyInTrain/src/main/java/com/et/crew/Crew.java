@@ -14,8 +14,15 @@ public class Crew {
 	private String crewBirth;
 	private int crewChatWarning;
 	private int enabled;
-	
+	private int point;
 	private int listNum; // 리스트 번호
+	
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
 	 
 	public int getCrewChatWarning() {
 		return crewChatWarning;
