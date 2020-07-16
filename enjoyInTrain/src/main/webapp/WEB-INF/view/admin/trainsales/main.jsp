@@ -131,12 +131,13 @@ function chatDay() {
 	$.getJSON(url, function(data) {
 			Highcharts.chart('containerChatBody', {
 				chart: {
-			        type: 'spline'
+			        type: 'spline',
 			    },				
 			    
 			    title: {
 			        text: '[ 일자별 판매현황 ]'
 			    },
+			    
 
 			    xAxis: {  // x축
 					categories : data.categories

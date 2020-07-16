@@ -43,10 +43,39 @@
 .help-block{
 	font-size: 12px;
 }
-.mypage{
-	width: 80%;
-	border: 1px solid #cccccc;
-	height: 200px;
+
+
+.mypage {
+	position: relative;
+    width: 50%;
+    border: 1px solid #cccccc;
+    height: 180px;
+    margin-left: 100px;
+    border-radius: 10px;
+    padding-left: 70px;
+}
+.mypage:after, .arrow_box:before {
+	right: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.mypage:after {
+	border-color: rgba(163, 219, 255, 0);
+	border-right-color: #EAEAEA;
+	border-width: 30px;
+	margin-top: -30px;
+}
+.mypage:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-right-color: #EAEAEA;
+	border-width: 40px;
+	margin-top: -40px;
 }
 
 .listtt td{
@@ -54,13 +83,16 @@
 }
 
 .mypagemy{
-	width: 15%;
-	border: 1px solid black;
-	border-radius: 10px;
-	float: left;
-	text-align: center;
-	margin-bottom: 10px;
-	margin-top: 20px;
+    width: 14%;
+    border: 1px solid white;
+    border-radius: 5px;
+    float: left;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 18px;
+    background: #fefefe;;
+    height: 30px;
+    font-weight:bold;
 }
 .mypagemy2{
 	border: none;
@@ -88,6 +120,7 @@
 <script type="text/javascript">
 
 $(function(){
+	
 	$("ul.tabs li").click(function() {
 		var tab = $(this).attr("data-tab");
 
@@ -96,7 +129,9 @@ $(function(){
 			});
 			$("#tab-"+tab).addClass("active");
 		
-		
+		if(tab==""){
+			tab="1";
+		}
 		
 		if(tab=="0") {
 			$("#crewreservation").hide();
@@ -130,15 +165,15 @@ $(function(){
 				<!-- 메인 내용 -->
 				
 					<header style="width: 100%;">
-						<h2><i class="fas fa-id-card-alt"></i> MyPage </h2>
+						<h2><i class="fas fa-id-card-alt"></i> MyPage<br><br></h2>
 					</header>
 					
-					<img src="<%=cp%>/resource/images/user0000.png" alt="" width="125px;" height="80" style="float: left;">
+					<img src="<%=cp%>/resource/images/user1.PNG" alt="" width="125px;" height="150px" style="float: left;  margin: 20px 0px 10px 40px;">
 					
 				<div class="mypage">
 					<div class="mypagemain">
 					<div class="mypagemy">이름</div> <div class="mypagemy2">${dto.crewName}</div>
-					<div class="mypagemy">내 포인트 </div> <div class="mypagemy2">${dto.point}점</div>
+					<div class="mypagemy">MY포인트 </div> <div class="mypagemy2">${dto.point} 점</div>
 					</div>
 					<div class="mypagemain2">
 					<div class="mypagemy">생년월일</div> <div class="mypagemy2">${dto.crewBirth}</div>
@@ -155,18 +190,18 @@ $(function(){
 			     
 		     	<div style="width: 100%; padding-top: 50px; clear: both;">
 					<ul class="tabs">
-						<li id="tab-0" data-tab="0"><a href="<%=cp%>/crew/update">회원정보 수정</a></li>
 						<li id="tab-1" data-tab="1">승차권구매내역</li>
 						<li id="tab-2" data-tab="2">프로모션구매내역</li>
+						<li id="tab-0" data-tab="0"><a href="<%=cp%>/crew/update">회원정보 수정</a></li>
 					</ul>
 				</div>
 				
 				<div id="crewreservation" style="display: none; width: 100%;">
 					<table style="width:100%; margin-top: 50px; float: left;" >
-				 		<tr style="height:40px; font-weight:bold; border-top: 2px solid #44565B; background: #EAEAEA; text-align: center;">
-				 			<td style="background: #44565B; color: white;" colspan="7">승차권 예약현황</td>
+				 		<tr style="height:40px; font-weight:bold; border-top: 2px solid #EAEAEA; background: #EAEAEA; text-align: center;">
+				 			<td style="background: #0f0f69e8; color: white;" colspan="7">승차권 예약현황</td>
 				 		</tr>
-				 		<tr style="height:40px; font-weight:bold; background: #E1E8E7; text-align: center;">
+				 		<tr style="height:40px; font-weight:bold; background: #EAEAEA; text-align: center;">
 				 			<td>승차일</td>
 				 			<td>열차번호</td>
 				 			<td>출발역</td>
@@ -193,9 +228,9 @@ $(function(){
 				<div id="crewreservation2" style="display: none; width: 100%;">
 					<table  style="width:100%; margin-top: 50px;">
 						<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA; text-align: center;">
-						 	<td style="background: #44565B; color: white;" colspan="5">프로모션 예약현황</td>
+						 	<td style="background: #0f0f69e8; color: white;" colspan="5">프로모션 예약현황</td>
 						</tr>
-						<tr style="height:40px; font-weight:bold; background: #E1E8E7; text-align: center;">
+						<tr style="height:40px; font-weight:bold; background: #EAEAEA; text-align: center;">
 							<td>예약번호</td>
 							<td>프로모션 제목 </td>
 							<td>구매자 </td>
@@ -204,7 +239,7 @@ $(function(){
 						</tr>
 						<tbody class="crewreservation3">
 						<c:forEach var="dto" items="${list2}" varStatus="status">
-							<tr style="text-align: center; height: 40px;">
+							<tr style="text-align: center; height: 40px; color: black;">
 								<td> ${dto.reservationNumber} </td>
 								
 								<c:if test="${dto.prpayment==1}">
