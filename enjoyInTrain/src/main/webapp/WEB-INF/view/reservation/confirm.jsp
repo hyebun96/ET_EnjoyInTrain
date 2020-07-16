@@ -182,15 +182,15 @@ function reCal(){
 								
 								 	<table style="width:100%;  ">
 								 		<tr style="height:40px; background:#EAEAEA; border-top: 2px solid black;">
-								 			<td style="background: #44565B;"><b style="color: white;">승차일자</b></td>
-								 			<td style="background: #44565B;"><b style="color: white;">열차종류</b></td>
-								 			<td style="background: #44565B;"><b style="color: white;">열차번호</b></td>
-								 			<td style="background: #44565B;"><b style="color: white;">출발역</b></td>
-								 			<td style="background: #44565B;"><b style="color: white;">도착역</b></td>
-								 			<td style="background: #44565B;"><b style="color: white;">출발시각</b></td>
-								 			<td style="background: #44565B;"><b style="color: white;">도착시각</b></td>
-								 			<td style="background: #44565B;"><b style="color: white;">인원</b></td>
-								 			<td style="background: #44565B;"><b style="color: white;">결제금액</b></td>
+								 			<td style="background: #273267;"><b style="color: white;">승차일자</b></td>
+								 			<td style="background: #273267;"><b style="color: white;">열차종류</b></td>
+								 			<td style="background: #273267;"><b style="color: white;">열차번호</b></td>
+								 			<td style="background: #273267;"><b style="color: white;">출발역</b></td>
+								 			<td style="background: #273267;"><b style="color: white;">도착역</b></td>
+								 			<td style="background: #273267;"><b style="color: white;">출발시각</b></td>
+								 			<td style="background: #273267;"><b style="color: white;">도착시각</b></td>
+								 			<td style="background: #273267;"><b style="color: white;">인원</b></td>
+								 			<td style="background: #273267;"><b style="color: white;">결제금액</b></td>
 								 		</tr>
 								 		<tr style="height: 40px;">
 								 			<td style="width: 160px;">${map.day}</td>
@@ -208,12 +208,12 @@ function reCal(){
 								 	</table>
 								 	<table style="width: 100%;">
 								 		<tr style="height:40px; background:#EAEAEA; border-top: 2px solid black;">
-								 			<td style="background: #44565B;"><b style="color: white;">객실등급</b></td>
-								 			<td style="background: #44565B;"><b style="color: white;">좌석정보</b></td>
-								 			<td style="background: #44565B;"><b style="color: white;">승객유형</b></td>
-								 			<td style="background: #44565B;"><b style="color: white;">운임요금</b></td>
-								 			<td style="background: #44565B;"><b style="color: white;">할인금액</b></td>
-								 			<td style="background: #44565B;"><b style="color: white;">영수금액</b></td>
+								 			<td style="background: #273267;"><b style="color: white;">객실등급</b></td>
+								 			<td style="background: #273267;"><b style="color: white;">좌석정보</b></td>
+								 			<td style="background: #273267;"><b style="color: white;">승객유형</b></td>
+								 			<td style="background: #273267;"><b style="color: white;">운임요금</b></td>
+								 			<td style="background: #273267;"><b style="color: white;">할인금액</b></td>
+								 			<td style="background: #273267;"><b style="color: white;">영수금액</b></td>
 								 		</tr>
 								 		<c:set var="i" value="0"/>
 								 		<c:forEach items="${seatList}" var="num">
@@ -226,11 +226,11 @@ function reCal(){
 									 			<td>${num.seatType}
 									 				<input type="hidden" name="seatType${i}" value="${num.seatType}">
 									 			</td>
-									 			<td>${num.seatPay}
+									 			<td><fmt:formatNumber value="${num.seatPay}" pattern="#,###"/>
 									 			</td>
-									 			<td>${num.disCount}
+									 			<td><fmt:formatNumber value="${num.disCount}" pattern="#,###"/>
 									 				<input type="hidden" name="disCount${i}" value="${num.disCount}"></td>
-									 			<td>${num.seatPay-num.disCount}
+									 			<td><fmt:formatNumber value="${num.seatPay-num.disCount}" pattern="#,###"/>
 									 				<input type="hidden" name="seatPay${i}" value="${num.seatPay-num.disCount}"></td>
 									 		</tr>
 								 		</c:forEach>
@@ -238,7 +238,7 @@ function reCal(){
 								 	<c:if test="${not empty sessionScope.crew}">
 									 	<table style="width: 100%;">
 									 		<tr style="height:40px; border-top: 2px solid black;">
-									 			<td style="width:200px; background:#44565B;"><b style="color: white;">포인트</b></td>
+									 			<td style="width:200px; background:#273267;"><b style="color: white;">포인트</b></td>
 									 			<td style="text-align: left;"><input value="0" name="point" id="point" style="margin-left:10px; " type="text">
 									 				&nbsp;현재포인트:
 									 				<input readonly="readonly" type="text" id="totalPoint" style="text-align:left; border: none;" value="${totalPoint}">
@@ -246,8 +246,8 @@ function reCal(){
 									 		</tr>
 									 	</table>
 								 	</c:if>
-								 	<button type="button" onclick="requestPay()" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #44565B; color: white; border: none;">결제하기</button>
-									<button type="button" onclick="reCal()" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #89A3A0; color: white; border: none;">다시계산</button>
+								 	<button type="button" onclick="requestPay()" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #273267; color: white; border: none;">결제하기</button>
+									<button type="button" onclick="reCal()" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #ddd; color: black; border: none;">다시계산</button>
 									<button onclick="aa();">좌석예약(테스트)</button>
 								</div>
 								</form>

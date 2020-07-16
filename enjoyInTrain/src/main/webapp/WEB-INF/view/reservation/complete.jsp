@@ -48,7 +48,7 @@
 	margin: 15px 100px 10px 60px;
 	width: 846px;
 	height: 345px;
-	border: 3px solid #44565B;
+	border: 3px solid #273267;
 }
 
 .ticket3{
@@ -76,7 +76,7 @@
 }
 
 .back{
-	background: #BDD0CB;
+	background: #ddd;
 }
 
 </style>
@@ -106,7 +106,7 @@ function info_print() {
 						<section>
 							<header>
 								<div style="width:1200px; text-align:center; height:150px; line-height:150px; border: 1px solid #BDBDBD">
-									<p style="font-weight:bold; font-size: 20px;"><i class="fas fa-check-circle" style=" color: #44565B;"></i>&nbsp;승차권 발급이 완료되었습니다.</p>
+									<p style="font-weight:bold; font-size: 20px;"><i class="fas fa-check-circle" style=" color: #273267;"></i>&nbsp;승차권 발급이 완료되었습니다.</p>
 								</div>
 							</header>
 						</section>
@@ -115,26 +115,26 @@ function info_print() {
 
 						 	<table class="table1">
 						 		<tr class="tr1" style="border-top: 2px solid #BDBDBD;">
-						 			<td class="col" style="background: #44565B"><b style="color: white;">결제금액</b></td>
-						 			<td class="col2">${map.trPrice}원 [ ${map.point} 포인트 사용 ]</td>
+						 			<td class="col" style="background: #273267"><b style="color: white;">결제금액</b></td>
+						 			<td class="col2"><fmt:formatNumber value="${map.trPrice}" pattern="#,###"/>원 [ <fmt:formatNumber value="${map.point}" pattern="#,###"/> 포인트 사용 ]</td>
 						 		</tr>
 						 	</table>
 						 	
 						 	<table class="table1">
 						 		<tr class="tr1" style="border-top: 2px solid #BDBDBD;">
-						 			<td class="col" style="background: #44565B; color: white;"><b style="color: white;">승차일자</b></td>
+						 			<td class="col" style="background: #273267; color: white;"><b style="color: white;">승차일자</b></td>
 						 			<td class="col2">${map.trDate}</td>
 						 		</tr>
 						 		<tr class="tr1">
-						 			<td class="col" style="background: #44565B; color: white;"><b style="color: white;">열차종류</b></td>
+						 			<td class="col" style="background: #273267; color: white;"><b style="color: white;">열차종류</b></td>
 						 			<td class="col2">${map.trainName}</td>
 						 		</tr>
 						 		<tr class="tr1">
-						 			<td class="col" style="background: #44565B;  color: white;"><b style="color: white;">열차번호</b></td>
+						 			<td class="col" style="background: #273267;  color: white;"><b style="color: white;">열차번호</b></td>
 						 			<td class="col2">${map.trainCode}</td>
 						 		</tr>
 						 		<tr class="tr1">
-						 			<td class="col" style="background: #44565B; color: white;"><b style="color: white;">인원</b></td>
+						 			<td class="col" style="background: #273267; color: white;"><b style="color: white;">인원</b></td>
 						 			<td class="col2">${map.total} 명</td>
 						 		</tr>
 						 	</table>
@@ -144,9 +144,9 @@ function info_print() {
 						</div>
 						
 						<div style="width: 1200px; text-align: center;">
-							<button onclick="javascript:location.href='<%=cp%>/main';" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #44565B; color: white; border: none;">메인으로 가기</button>
-							<button onclick="javascript:location.href='<%=cp%>/reservation/${empty sessionScope.crew?'uncrew2':'detail'}';" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #44565B; color: white; border: none;">발권조회</button>
-							<button onclick="info_print()" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #44565B; color: white; border: none;">승차권 인쇄</button>
+							<button onclick="javascript:location.href='<%=cp%>/main';" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #273267; color: white; border: none;">메인으로 가기</button>
+							<button onclick="javascript:location.href='<%=cp%>/reservation/${empty sessionScope.crew?'uncrew2':'detail'}';" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #273267; color: white; border: none;">발권조회</button>
+							<button onclick="info_print()" style="margin:20px; width:160px; font-weight:bold; font-size:15px; border-radius:5px; height:40px; background: #273267; color: white; border: none;">승차권 인쇄</button>
 						</div>
 						
 						<div class="ticket1">
@@ -197,9 +197,9 @@ function info_print() {
 											<td colspan="3">승객유형&nbsp;&nbsp;${ticket.seatType}</td>
 										</tr>
 										<tr class="back">
-											<td  style="width:300px;">운임요금 &nbsp;${ticket.seatPay}원</td>
-											<td style="width:290px;">할인금액 &nbsp; ${ticket.disCount}원</td>
-											<td>영수금액&nbsp;${ticket.seatPay}원</td>
+											<td  style="width:300px;">운임요금 &nbsp;<fmt:formatNumber value="${ticket.seatPay}" pattern="#,###"/>원</td>
+											<td style="width:290px;">할인금액 &nbsp; <fmt:formatNumber value="${ticket.disCount}" pattern="#,###"/>원</td>
+											<td>영수금액&nbsp;<fmt:formatNumber value="${ticket.seatPay}" pattern="#,###"/>원</td>
 										</tr>
 										<tr>
 											<td colspan="3" style="font-weight: bold; padding-top: 5px;">※ 타는 곳 번호와 열차번호를 확인한 후 승차하시기 바랍니다.</td>

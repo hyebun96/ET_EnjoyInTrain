@@ -357,7 +357,7 @@
 		JOIN train7 train ON info.trainCode=train.trainCode
 		JOIN station6 startSt ON info.startCode=startSt.sCode
 		JOIN station6 endSt ON info.endCode=endSt.sCode
-		ORDER BY trDate
+		ORDER BY trDate DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{rows} ROWS ONLY
 	</select>
 	
