@@ -112,7 +112,11 @@
 }
 
 .crewreservation4 :hover {
-	background: #f5fffa;
+	
+}
+
+a{
+	color: black;
 }
 </style>
 
