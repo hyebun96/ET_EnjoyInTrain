@@ -11,7 +11,7 @@
 td{
 	border: 1px solid #cccccc;
 	text-align: center;
-	height: 30px;
+	height: 40px;
 }
 
 
@@ -20,7 +20,7 @@ td{
 
 <div align="center">
    	<table style="border: 1px soild #cccccc">
-   		<tr style="border: 1px soild #cccccc">
+   		<tr style="border: 1px soild #cccccc; background: #21373f; color: white;">
    			<td width="120">일자</td>
    			<td width="100">예약 건수</td>
    			<td width="200">결제 금액</td>
