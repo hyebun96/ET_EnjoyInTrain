@@ -354,7 +354,7 @@ function insertReply(){
 							<tr>
 								<td colspan="4">
 								<button type="button" class="articlebtn" onclick="javascript:location.href='<%=cp%>/suggest/list?${query}';">리스트</button>
-								<c:if test="${dto.crewId == sessionScope.crew.crewId &&  sessionScope.crew.crewId == 'a' }">
+								<c:if test="${dto.crewId == sessionScope.crew.crewId || sessionScope.crew.crewId == 'a' }">
 			          				<button type="button" class="articlebtn" onclick="updateNotice();">수정</button>
 			          				<button type="button" class="articlebtn" onclick="deleteNotice();">삭제</button>
 			          			</c:if>

@@ -362,7 +362,7 @@ $(function(){
 										<img src="<%=cp%>/resource/images/chat0004.png" width="80%"	height="200px;" style="padding: 10px;">
 									</div>
 									<div class="chat_image"> 
-										<img src="<%=cp%>/resource/images/ex4.PNG" width="80%"	height="200px;" style="padding: 10px;">
+										<img src="<%=cp%>/resource/images/chat0006.jpg" width="80%"	height="200px;" style="padding: 10px;">
 									</div>
 									
 									<div class="chat_btn">
