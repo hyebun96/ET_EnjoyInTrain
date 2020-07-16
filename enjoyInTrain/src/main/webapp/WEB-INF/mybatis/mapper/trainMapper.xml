@@ -5,7 +5,7 @@
 
 	<!-- 기차 추가(총 칸, 총 좌석 입력) -->
 	<insert id="insertCategory" parameterType="String">
-		INSERT INTO trainCategory(trainCategory) VALUES (#{trainCategory})
+		INSERT INTO trainCategory7(trainCategory) VALUES (#{trainCategory})
 	</insert>
 	<insert id="insertRoom" parameterType="com.et.train.Train">
 		INSERT INTO trainSetting7(trainCategory, roomNum, roomGrade, seatRow, seatColumn) VALUES(#{trainCategory}, #{roomNum},
@@ -15,5 +15,14 @@
 	<select id="listTrain" parameterType="map" resultType="com.et.train.Train">
 		SELECT trainCategory, COUNT(roomNum) trainRoomCount, SUM(seatRow*seatColumn) trainSeatCount FROM trainSetting7 group by trainCategory
 	</select>
-
+	
+	<delete id="deleteTrain" parameterType="String">
+		DELETE FROM trainSetting7 WHERE trainCategory = #{trainCategory}
+	</delete>
+	
+	<delete id="deleteTrainCategory" parameterType="String">
+		DELETE FROM trainCategory7 WHERE trainCategory = #{trainCategory}
+	</delete>
+	
+	
 </mapper>

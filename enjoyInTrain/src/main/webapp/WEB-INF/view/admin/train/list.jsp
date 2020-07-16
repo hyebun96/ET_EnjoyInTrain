@@ -76,9 +76,19 @@ function send() {
 	f.submit();
 
 }
+function deleteTrain(trainCategory) {
+	<c:if test="${sessionScope.crew.crewId=='a'}">
+		var url = "<%=cp%>/admin/train/delete?trainCategory="+trainCategory;
+		if(confirm("기차를 삭제 하시겠습니까?")){
+			location.href=url;
+		}
+	</c:if>
+	<c:if test="${sessionScope.crew.crewId!='a'}">
+		alert("예약을 취소할 수  없습니다.");
+	</c:if>
+}
 
-
-
+	
 </script>
 
 
@@ -90,32 +100,34 @@ function send() {
 				
 					<div class="trainandtime_train">
 						
-						<ul id="train_form1">
+						<ul class="train_form1">
 							<li class="train_subwriter">기차종류</li>
 							<li class="train_subcreated">칸갯수</li>
 							<li class="train_subcount">좌석갯수</li>
+							<li class="train_delete"></li>
 							
 						</ul>
-						<ul id="train_form2"  >
+						<ul class="train_form2"  >
 							<c:forEach var="dto" items="${list}">
-								<li id="train_subwriter_list">${dto.trainCategory}</li>
-								<li id="train_subcreated_list">${dto.trainRoomCount}</li>
-								<li id="train_subcount_list">${dto.trainSeatCount}</li>
+								<li class="train_subwriter_list">${dto.trainCategory}</li>
+								<li class="train_subcreated_list">${dto.trainRoomCount}</li>
+								<li class="train_subcount_list">${dto.trainSeatCount}</li>
+								<li class="train_delete_list"><button type="button" onclick="deleteTrain('${dto.trainCategory}');">삭제</button></li>
 								
 							</c:forEach>
 						</ul>
 						<form name="searchForm" action="<%=cp%>/admin/train/list" method="post">
-							<ul id="train_button">
-								<li id="train_button_send">
+							<ul class="train_button">
+								<li class="train_button_send">
 									<button type="button" id="insertTrain">기차추가</button>
 								</li>
-								<li id="train_button_reset">
+								<li class="train_button_reset">
 								<button type="button" onclick="javascript:location.href='<%=cp%>/admin/train/list?page=1';">새로고침</button>
 								</li>
 							</ul>
 						</form>
 						<ul>
-							<li style="clear: both;" id="train-sample"> ${trainCount==0 ? "등록된 게시물이 없습니다.":paging}</li>
+							<li style="clear: both;" class="train_sample"> ${trainCount==0 ? "등록된 게시물이 없습니다.":paging}</li>
 						</ul>
 						
 					</div>
@@ -129,10 +141,10 @@ function send() {
 			<div>
 				<table>
 					<tr>
-						<td id="train_question">기차종류</td>
-						<td id="train_answer"><input type="text" name="trainCategory" ></td>
-						<td id="train_question">칸수</td>
-						<td id="train_answer">
+						<td class="train_question">기차종류</td>
+						<td class="train_answer"><input type="text" name="trainCategory" ></td>
+						<td class="train_question">칸수</td>
+						<td class="train_answer">
 							<select name="trainRoomCount">
 								<c:forEach var="n" begin="0" end="20">
 									<option value="${n}">${n}칸</option><

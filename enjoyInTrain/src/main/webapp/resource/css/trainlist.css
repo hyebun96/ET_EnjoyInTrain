@@ -18,14 +18,14 @@ a:hover, a:active{
 #train_page{
 	text-align: right;	
 }
-#train_form1{
+.train_form1{
 	width: 100%;
 }
-#train_form2{
+.train_form2{
 	width: 100%;
 }
 
-#train_form1 li{
+.train_form1 li{
 	float: left;
 	border-top: 2px solid #cccccc;
 	border-bottom: 2px solid #cccccc;
@@ -37,109 +37,90 @@ a:hover, a:active{
 	color: white;
 }
 
-.train_subnum{
-	width: 25%;
-	border-right: 1px solid #cccccc;
-}
-
-#train_subtitle{
-	width: 40%;
-	border-right: 1px solid #cccccc;
-}
-
 .train_subwriter{
-	width: 33%;
+	width: 32%;
 	border-right: 1px solid #cccccc;
 }
 
 .train_subcreated{
-	width: 33%;
+	width: 32%;
 	border-right: 1px solid #cccccc;
 }
 
 .train_subcount{
-	width: 33%;
+	width: 32%;
 }
 
-#train_form2 li{
+.train_delete{
+	width: 4%;
+}
+
+
+.train_form2 li{
 	height: 40px;
 	line-height: 40px;
 }
 
-#train_subnum_list{
-	clear:both;
+.train_subwriter_list{
 	float: left;
-	width: 33%;
-	height: 30px;
-	text-align: center;
-	border-bottom: 1px solid #cccccc;
-}
-
-#train_subtitle_list{
-	float: left;
-	width: 33%;
-	height: 30px;
-	padding-left: 10px;
-	border-bottom: 1px solid #cccccc;
-	
-}
-
-#train_subwriter_list{
-	float: left;
-	width: 33%;
+	width: 32%;
 	height: 30px;
 	padding-left: 10px;
 	border-bottom: 1px solid #cccccc;
 	text-align: center;
 }
 
-#train_subcreated_list{
+.train_subcreated_list{
 	float: left;
-	width: 33%;
+	width: 32%;
 	height: 30px;
 	text-align: center;
 	border-bottom: 1px solid #cccccc;
 }
 
-#train_subcount_list{
+.train_subcount_list{
 	float: left;
-	width: 33%;
+	width: 32%;
 	height: 30px;
 	text-align: center;
 	border-bottom: 1px solid #cccccc;
 }
 
-#train_pagecount{
-	border-top: 2px solid #cccccc;
+.train_delete_list{
+	float: left;
+	width: 4%;
+	height: 30px;
+	text-align: center;
+	border-bottom: 1px solid #cccccc;
 }
 
-#train_button{
+.train_button{
 	text-align: right;
 	height: 40px;
 	margin-top: 100px;
 }
 
-#train_button_reset{
+.train_button_reset{
 	text-align: right;
 	margin-right: 80px;
 }
 
-#train_button_reset button{
+.train_button_reset button{
 	height: 40px;
 	border-radius: 5px;
 }
 
 
-#train_button_send{
+.train_button_send{
 	float: right;
 }
 
-#train_button_send button{
+.train_button_send button{
 	height: 40px;
 	border-radius: 5px;
 }
 
-#train-sample{
+.train_sample{
 	text-align: center;
 }
 
@@ -148,15 +129,15 @@ a:hover, a:active{
 	vertical-align:middle;
 }
 
-#train_question{
+.train_question{
 	width: 120px;
 }
 
-#train_answer{
+.train_answer{
 	width: 120px;
 }
 
-#train_answer input{
+.train_answer input{
 	width: 100px;
 }
 

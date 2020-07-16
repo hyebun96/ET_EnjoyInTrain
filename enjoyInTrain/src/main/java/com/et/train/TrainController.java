@@ -9,15 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.et.common.MyUtil;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller("train.trainController")
 @RequestMapping("/admin/train/*")
 public class TrainController {
-	
-	@Autowired
-	private MyUtil myutil;
 	
 	@Autowired
 	private TrainService service;
@@ -44,7 +40,21 @@ public class TrainController {
 			) throws Exception {
 		
 		try {
+			service.insertTrain(dto);
 			service.insertRoom(dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/admin/train/list";
+	}
+	
+	@RequestMapping(value="delete")
+	public String delete(
+			@RequestParam String trainCategory
+			) {
+		try {
+			service.deleteTrain(trainCategory);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

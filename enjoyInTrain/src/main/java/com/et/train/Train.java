@@ -18,7 +18,6 @@ public class Train {
 	private int trainRoomCount;					// 칸 갯수
 	private int trainCount;
 	private int trainSeq;
-	private int trainNum;
 	
 	
 	public String gettrainCategory() {

@@ -14,11 +14,19 @@ public class TrainServiceImpl implements TrainService{
 	@Autowired
 	private CommonDAO dao;
 
+
+	@Override
+	public void insertTrain(Train dto) {
+		try {
+			dao.insertData("train.insertCategory", dto.gettrainCategory());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	@Override
 	public void insertRoom(Train dto) {
 		try {
-
-			dao.insertData("train.insertCategory", dto.gettrainCategory());
 			int total=0;
 			if(dto.getRoomNames()!=null) {
 				for(int i=0; i<dto.getRoomNums().size(); i++) {
@@ -73,5 +81,17 @@ public class TrainServiceImpl implements TrainService{
 		}
 		
 	}
+
+	@Override
+	public void deleteTrain(String trainCategory) {
+		try {
+			dao.deleteData("train.deleteTrain", trainCategory);
+			dao.deleteData("train.deleteTrainCategory", trainCategory);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+
 
 }
