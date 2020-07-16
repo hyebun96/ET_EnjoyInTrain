@@ -741,7 +741,7 @@ $(function(){
 	
 <div id="myModal2" class="modal">
 	<!-- Modal content -->
-	<div style="background: #6f047f;" class="modal-content2" id="modal-content2">
+	<div style="background: #716B6E;" class="modal-content2" id="modal-content2">
 		
 	</div>
 </div>

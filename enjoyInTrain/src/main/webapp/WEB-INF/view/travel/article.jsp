@@ -93,9 +93,7 @@ a:hover, a:active{
 .btn {
 	width: 100px;
 	margin: 20px 10px;
-	background: #82909D;
-	color: white; b
-	border: none; 
+	background: white; 
 	font-weight: bold; 
 	height: 30px;"
 }
@@ -159,14 +157,14 @@ $(function(){
 
 </script>
 
-<button type="button" id="btn" class="btn" onclick="javascript:location.href='<%=cp%>/travel/travel';" style="	background: #82909D;"><i class="fas fa-hand-point-left"></i></button>
+<button type="button" id="btn" class="btn" onclick="javascript:location.href='<%=cp%>/travel/travel';" style="	background: white;"><i class="fas fa-hand-point-left"></i></button>
 
 <form name="travelArticleForm" method="get" enctype="multipart/form-data">
 	<table id="travelTable" style="border-spacing: 0px; border-collapse: collapse; width: 100%;">
 		
 		<tr align="left" height="40"
-			style="border-bottom: 1px solid #716B6E; border-top: 3px solid #716B6E;">
-			<td class="title" style="padding-left: 10px; text-align: center; background: #716B6E; color: white; font-size: 18px;" colspan="5" width="100%;">${dto.pmTitle}</td>
+			style="border-bottom: 1px solid #382a31; border-top: 3px solid #382a31;">
+			<td class="title" style="padding-left: 10px; text-align: center; background: #382a31; color: white; font-size: 18px;" colspan="5" width="100%;">${dto.pmTitle}</td>
 		</tr>
 
 
@@ -257,14 +255,14 @@ $(function(){
 	<table style=" margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
 	
 		<tr class="reservationForm" align="center" height="40"
-			style="border-bottom: 1px solid #716B6E; border-top: 3px solid #716B6E; display: none;" >
-			<td class="title" style="width: 200px; background: #716B6E; color: white;">상품 그룹</td>
-			<td class="title" style="background: #716B6E; color: white;">선택</td>
-			<td class="title" style="width: 200px;background: #716B6E; color: white;">상품명</td>
-			<td class="title" style="background: #716B6E; color: white;">열차번호</td>
-			<td class="title" style="background: #716B6E; color: white;">출발시간</td>
-			<td class="title" style="background: #716B6E; color: white;">도착시간</td>
-			<td class="title" style=" background: #716B6E; color: white;">해당 기차 재고</td>
+			style="border-bottom: 1px solid #382a31; border-top: 3px solid #382a31; display: none;" >
+			<td class="title" style="width: 200px; background: #382a31; color: white;">상품 그룹</td>
+			<td class="title" style="background: #382a31; color: white;">선택</td>
+			<td class="title" style="width: 200px;background: #382a31; color: white;">상품명</td>
+			<td class="title" style="background: #382a31; color: white;">열차번호</td>
+			<td class="title" style="background: #382a31; color: white;">출발시간</td>
+			<td class="title" style="background: #382a31; color: white;">도착시간</td>
+			<td class="title" style=" background: #382a31; color: white;">해당 기차 재고</td>
 		</tr>
 		
 		<c:forEach var="vo" items="${startList}">
@@ -304,7 +302,7 @@ $(function(){
 		
 		<tr class="reservationForm" align="left" height="40" style=" display: none;">
 			<td class="title" colspan="6" ></td>
-			<td><button type="button" id="btn" class="btn" onclick="reservation();"style="	background: #82909D;">예약하기</button></td>
+			<td><button type="button" id="btn" class="btn" onclick="reservation();"style="	background: white;">예약하기</button></td>
 		</tr>
 	</table>
 		
@@ -312,7 +310,7 @@ $(function(){
 		<table style=" margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse; width: 1200px;">
 			<tr align="center" height="40"
 				style="border-bottom: 1px solid #F7E8E4; border-top: 3px solid #F7E8E4; ">
-				<td colspan="8" style=" background: #716B6E; font-size: 15px; font-weight: bold; color: white;">상품 상세 설명</td>
+				<td colspan="8" style=" background: #382a31; font-size: 15px; font-weight: bold; color: white;">상품 상세 설명</td>
 			</tr>
 			<tr align="center" style="clear:both; width: 100%; border-bottom: 1px solid #cccccc; margin-top: 200px;">
 				<td colspan="6" style="width: 100%">

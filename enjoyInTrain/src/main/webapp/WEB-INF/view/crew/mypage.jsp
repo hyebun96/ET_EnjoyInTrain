@@ -233,7 +233,7 @@ $(function(){
 				<div id="crewreservation2" style="display: none; width: 100%;">
 					<table  style="width:100%; margin-top: 50px;">
 						<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA; text-align: center;">
-						 	<td style="background: #0f0f69e8; color: white;" colspan="5">프로모션 예약현황</td>
+						 	<td style="background: #382a31; color: white;" colspan="5">프로모션 예약현황</td>
 						</tr>
 						<tr style="height:40px; font-weight:bold; background: #EAEAEA; text-align: center;">
 							<td>예약번호</td>

@@ -250,12 +250,12 @@ $(function() {
 
 <form name="travelForm" method="post" enctype="multipart/form-data">
 	<table id="travelTable"
-		style="width: 100%; margin: 20px auto 0px; border-spacing: 0px; border-collapse: collapse;">
+		style="width: 100%; margin: 20px auto 0px; border-spacing: 0px;">
 	
 		<tr align="left" height="40" 
-			style=" border-top: 3px solid #716B6E; background: #716B6E; color: white;">
+			style=" background: #382a31; color: white; ">
 			<td class="title" colspan="5"
-				style=" width: 100px; border-bottom: 3px solid #716B6E; text-align: center;">
+				style=" width: 100px; border-radius: 15px; text-align: center; ">
 				<p>
 					&nbsp;프로모션&nbsp;
 				</p>
@@ -312,16 +312,16 @@ $(function() {
 		</tr>
 		
 		<tr align="left" height="40" 
-			style=" border-top: 3px solid #716B6E; background: #716B6E; color: white;">
+			style="  background: #382a31; color: white; border-radius: 15px;">
 			<td class="title" colspan="5"
-				style=" width: 100px; border-bottom: 3px solid #716B6E; text-align: center;">
+				style=" width: 100px;  text-align: center; border-radius: 15px;">
 				<p>
 					&nbsp;프로모션 상세&nbsp;
 				</p>
 			</td>
 		</tr>	
 
-		<tr align="left" height="40" style=" border-top: 3px solid #716B6E; ">
+		<tr align="left" height="40" >
 			<td class="title" style="padding: 30px 0px;" >
 				<p style="text-align: right;">프로모션 제목</p>
 			</td>
@@ -404,9 +404,9 @@ $(function() {
 		
 		
 		<tr align="left" height="40" 
-			style=" border-top: 3px solid #716B6E; background: #716B6E; color: white;">
+			style="border: 1px solid #382a31;  background: #382a31; color: white;">
 			<td class="title" colspan="5"
-				style=" width: 100px; border-bottom: 3px solid #716B6E; text-align: center;">
+				style=" width: 100px; text-align: center;  border-radius: 15px;">
 				<p>
 					&nbsp;프로모션 내용 첨부&nbsp;
 				</p>
@@ -414,7 +414,7 @@ $(function() {
 		</tr>	
 		
 		
-		<tr align="left" style=" border-top: 3px solid #716B6E;">
+		<tr align="left">
 			<td class="title" width="100"
 				style="padding:20px 0px;" ><p style="float: right;">여행 내용</p></td>
 			<td valign="top" style=" padding: 30px 10px;" colspan="3">
@@ -440,9 +440,9 @@ $(function() {
 		
 		<!-- 가는 열차 -->
 		<tr align="left" height="40" id="st-Trains-Tr"
-			style=" border-top: 3px solid #716B6E; background: #716B6E; color: white;">
+			style="  background: #382a31; color: white;">
 			<td class="title" colspan="5"
-				style=" width: 100px; border-bottom: 3px solid white; text-align: center; margin-top: 50px;">
+				style=" width: 100px; border-bottom: 3px solid white; text-align: center; margin-top: 50px;  border-radius: 15px;">
 				<p id="st-train-id">
 					<i class="fas fa-angle-double-down"></i>&nbsp;&nbsp;가&nbsp;는&nbsp;열&nbsp;차&nbsp;&nbsp;<i class="fas fa-angle-double-down"></i>
 				</p>
@@ -544,9 +544,9 @@ $(function() {
 	
 		<!-- 상품 -->	
 		<tr align="left" height="40" id="Trains-Product"
-			style=" border-top: 3px solid #716B6E; background: #716B6E; color: white;">
+			style="  background: #382a31; color: white;">
 			<td class="title" colspan="5"
-				style=" width: 100px; border-bottom: 3px solid white; text-align: center;">
+				style=" width: 100px; border-bottom: 3px solid white; text-align: center;  border-radius: 15px;">
 				<p id="product-id">
 					<i class="fas fa-angle-double-down"></i>&nbsp;프로모션 상품&nbsp;<i class="fas fa-angle-double-down"></i>
 				</p>
@@ -554,7 +554,7 @@ $(function() {
 		</tr>	
 	
 		<tr align="left" class="product"
-			style=" display: none;">
+			style=" display: none; ">
 			<td class="title" style="padding: 30px 0px;">
 				<p style="text-align: right;">상품명</p>
 			</td>
@@ -566,8 +566,8 @@ $(function() {
 		</tr>
 		
 		<tr align="left" class="product"
-			style=" display: none;">
-			<td class="title" style="padding-bottom: 30px;">
+			style=" display: none; ">
+			<td class="title" style="padding-bottom: 30px; ">
 				<p style="text-align: right;">상품가격</p>
 			</td>
 			<td valign="top" style="padding: 5px 0px 5px 10px;" colspan="3">
@@ -591,9 +591,9 @@ $(function() {
 
 		<!-- 오는 기차 : 출발역, 도착역, 시간  -->
 		<tr align="left" height="40" id="ed-Trains-Tr"
-			style=" border-top: 3px solid #716B6E; background: #716B6E; color: white;">
+			style="  background: #382a31; color: white;">
 			<td class="title" colspan="5"
-				style=" width: 100px; border-bottom: 3px solid white; text-align: center;">
+				style=" width: 100px; border-bottom: 3px solid white; text-align: center;  border-radius: 15px;">
 				<p id="ed-train-id">
 					<i class="fas fa-angle-double-down"></i>&nbsp;&nbsp;오&nbsp;는&nbsp;열&nbsp;차&nbsp;&nbsp;<i class="fas fa-angle-double-down"></i>
 				</p>
@@ -689,16 +689,16 @@ $(function() {
 			</td>
 		</tr>
 		
-		<tr align="left" height="40" style=" border-top: 3px solid #716B6E; background: #716B6E; color: white;">
+		<tr align="left" height="40" style="  background: #382a31; color: white;">
 			<td class="title" colspan="5"
-				style=" width: 100px; border-bottom: 3px solid white; text-align: center;">
+				style=" width: 100px; text-align: center;  border-radius: 15px;">
 				<p id="product-id">
 					&nbsp;프로모션 총 가격&nbsp;
 				</p>
 			</td>
 		</tr>	
 	
-		<tr align="left" style=" border-top: 3px solid #716B6E;">
+		<tr align="left" >
 			<td class="title" width="100"
 				style="padding:20px 0px;" ><p style="float: right;">총 가격</p></td>
 			<td valign="top" style=" padding: 30px 10px;" colspan="3">

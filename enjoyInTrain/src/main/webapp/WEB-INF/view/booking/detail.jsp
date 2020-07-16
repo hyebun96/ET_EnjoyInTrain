@@ -40,21 +40,21 @@ function send() {
 								<h2>프로모션 예약조회</h2>
 								<span class="byline">프로모션 예약조회 및 상세정보</span>
 								<div style="text-align: right; margin-bottom: 15px; "> 
-									<button type="button" onclick="send();" style="height: 30px;"> 자세히 > ></button>
+									<button type="button" onclick="send();" style="background: #82909D; color: white; border: none; font-weight: bold; height: 30px;"> 자세히 > ></button>
 								</div>
 								<div style="width: 1200px; text-align: center;">
 								 	<table style="width:100%;  ">
 								 		<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA;">
-								 			<td style="background: #0f0f69e8; color: white;" colspan="7">프로모션 예약현황</td>
+								 			<td style="background: #382a31; color: white;" colspan="7">프로모션 예약현황</td>
 								 		</tr>
-								 		<tr style="height:40px; font-weight:bold; background: #EAEAEA;">
-								 			<td style="background: #d7e4f3a8">예약번호</td>
-								 			<td style="background: #d7e4f3a8">프로모션명</td>
-								 			<td style="background: #d7e4f3a8">이용기차</td>
-								 			<td style="background: #d7e4f3a8">출발역</td>
-								 			<td style="background: #d7e4f3a8">도착역</td>
-								 			<td style="background: #d7e4f3a8">예약일</td>
-								 			<td style="background: #d7e4f3a8">인원</td>
+								 		<tr style="height:40px; font-weight:bold; background: #F7E8E4;">
+								 			<td style="background: #F7E8E4">예약번호</td>
+								 			<td style="background: #F7E8E4">프로모션명</td>
+								 			<td style="background: #F7E8E4">이용기차</td>
+								 			<td style="background: #F7E8E4">출발역</td>
+								 			<td style="background: #F7E8E4">도착역</td>
+								 			<td style="background: #F7E8E4">예약일</td>
+								 			<td style="background: #F7E8E4">인원</td>
 								 		</tr>
 								 		<c:forEach items="${list}" var="dto">
 									 		<tr style="height: 40px;">
