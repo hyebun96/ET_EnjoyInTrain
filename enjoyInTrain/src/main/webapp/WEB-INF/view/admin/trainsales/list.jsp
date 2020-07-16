@@ -29,7 +29,7 @@ td{
 	  		<tr>
 	  			<td>${dto.trPayDate}</td>
 	  			<td>${dto.count}</td>
-	  			<td>${dto.seatPay}</td>
+	  			<td><fmt:formatNumber value="${dto.seatPay}" pattern="#,###"/></td>
 	  		</tr>
 		</c:forEach>
    	</table>

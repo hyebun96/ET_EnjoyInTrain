@@ -177,7 +177,8 @@ $(function(){
 				<div class="mypage">
 					<div class="mypagemain">
 					<div class="mypagemy">이름</div> <div class="mypagemy2">${dto.crewName}</div>
-					<div class="mypagemy">MY포인트 </div> <div class="mypagemy2">${dto.point} 점</div>
+					<div class="mypagemy">MY포인트 </div> <div class="mypagemy2"><fmt:formatNumber value="${dto.point}" pattern="#,###"/>점</div>
+					
 					</div>
 					<div class="mypagemain2">
 					<div class="mypagemy">생년월일</div> <div class="mypagemy2">${dto.crewBirth}</div>
@@ -221,7 +222,7 @@ $(function(){
 					 			<td>${dto.trCategory}&nbsp;${dto.trainCode}</td>
 					 			<td>${dto.startCode}</td>
 					 			<td>${dto.endCode}</td>
-					 			<td>${dto.trPrice}</td>
+					 			<td><fmt:formatNumber value="${dto.trPrice}" pattern="#,###"/></td>
 					 			<td>${dto.count}</td>
 					 			<td>결제완료</td>
 					 		</tr>
