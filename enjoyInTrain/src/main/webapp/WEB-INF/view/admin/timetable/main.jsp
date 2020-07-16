@@ -122,6 +122,12 @@ tr.over {
 	font-weight: 500;
 	color: #4374d9;
 }
+.score-input{
+	border-bottom: 1px solid #cccccc;
+}
+.inputtag11{
+	border-right: 1px solid #cccccc;
+}
 </style>
 <script type="text/javascript">
 
@@ -510,10 +516,10 @@ $(function(){
 		
 		<tbody class="score-input">
 			<tr bgcolor="#ffffff" align="center">
-				<td><input type="text" id="scode" readonly="readonly"></td>
-				<td><input type="text" id="traincode"></td>
-				<td><input type="text" id="trainname"></td>
-				<td>
+				<td class="inputtag11"><input type="text" id="scode" readonly="readonly"></td>
+				<td class="inputtag11"><input type="text" id="traincode"></td>
+				<td class="inputtag11"><input type="text" id="trainname"></td>
+				<td class="inputtag11">
 				<select id="employee" name="employee">
 					<option value="all">선택</option>
 					<option value="1">기관사</option>
@@ -524,20 +530,20 @@ $(function(){
 					<option value="6">개발부</option>
 				</select>
 				</td>
-				<td><input type="text" id="haengsin"></td>
-				<td><input type="text" id="yongsan"></td>
-				<td><input type="text" id="gwangmyeong"></td>
-				<td><input type="text" id="cheonanasan"></td>
-				<td><input type="text" id="osong"></td>
-				<td><input type="text" id="gongju"></td>
-				<td><input type="text" id="seodaejeon"></td>
-				<td><input type="text" id="gyeryong"></td>
-				<td><input type="text" id="nonsan"></td>
-				<td><input type="text" id="iksan"></td>
-				<td><input type="text" id="jeongeup"></td>
-				<td><input type="text" id="gwangjusongjeong"></td>
-				<td><input type="text" id="naju"></td>
-				<td><input type="text" id="mokpo"></td>
+				<td class="inputtag11"><input type="text" id="haengsin"></td>
+				<td class="inputtag11"><input type="text" id="yongsan"></td>
+				<td class="inputtag11"><input type="text" id="gwangmyeong"></td>
+				<td class="inputtag11"><input type="text" id="cheonanasan"></td>
+				<td class="inputtag11"><input type="text" id="osong"></td>
+				<td class="inputtag11"><input type="text" id="gongju"></td>
+				<td class="inputtag11"><input type="text" id="seodaejeon"></td>
+				<td class="inputtag11"><input type="text" id="gyeryong"></td>
+				<td class="inputtag11"><input type="text" id="nonsan"></td>
+				<td class="inputtag11"><input type="text" id="iksan"></td>
+				<td class="inputtag11"><input type="text" id="jeongeup"></td>
+				<td class="inputtag11"><input type="text" id="gwangjusongjeong"></td>
+				<td class="inputtag11"><input type="text" id="naju"></td>
+				<td class="inputtag11"><input type="text" id="mokpo"></td>
 				<td>
 					<button type="button" id="btnAdd">등록</button>
 				</td>
