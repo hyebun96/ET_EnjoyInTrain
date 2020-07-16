@@ -318,8 +318,8 @@ function insertReply(){
 							</tr>
 							<c:if test="${dto.anContent!=null}">
 								<tr>
-									<td class="notice-content2" colspan="4">
-										<div class="content_scroll"><p>[답변내용입니다]    ${dto.anCreated }</p>
+									<td class="notice-content2" colspan="4" style="background: #F6F6F6;">
+										<div class="content_scroll"><p style="font-weight: bold;">[답변내용입니다]    ${dto.anCreated }</p>
 										${dto.anContent}
 										</div>
 									</td>

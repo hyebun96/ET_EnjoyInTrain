@@ -55,7 +55,7 @@ function info_print() {
 							<header>
 								<form action="<%=cp%>/reservation/confirm"  name="unCrewForm" method="post">
 								<h2>발권내역/취소</h2>
-								<span class="byline">TICKET DETAILS</span>
+								<span class="byline">TICKET DETAILS/DETAIL</span>
 								<div style="width: 1200px; text-align: center;">
 								 	<table style="width:100%;  ">
 								 		<tr style="height:40px; font-weight:bold; border-top: 2px solid black; background: #EAEAEA;">

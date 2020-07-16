@@ -10,7 +10,7 @@
 	font-size: 15px; 
 	border:none;
 	color:#ffffff;
-	background:#6f047f;
+	background:#273267;
 	width: 360px;
 	height: 50px;
 	line-height: 50px;
@@ -24,7 +24,7 @@
 	<!-- Main -->
 		<div id="page">
 			<!-- Main -->
-			<div id="main" class="container" style=" width: 1000px; border-top:3px solid #6f047f; height:400px;  margin-top: 50px; padding-top: 0;" >
+			<div id="main" class="container" style=" width: 1000px; border-top:3px solid #273267; height:400px;  margin-top: 50px; padding-top: 0;" >
 			    <div style="margin: 0px auto; padding-top:90px; width:420px;">
 			    	<div style="text-align: center;">
 			        	<span style="font-weight: bold; font-size:27px; color: #424951;"><strong>경고 !</strong></span>

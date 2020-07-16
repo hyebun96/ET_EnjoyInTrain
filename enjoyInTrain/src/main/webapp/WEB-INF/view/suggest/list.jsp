@@ -76,7 +76,7 @@ function suggestList(){
 									<c:forEach var="dto" items="${list}">
 										<tr class="question" height="35" style="border-bottom: 1px solid #cccccc;">
 											<td>${dto.listNum}</td>
-											<td>${dto.sgCategory}</td>
+											<td>${dto.dept==0?dto.sgCategory:''}</td>
 											<td style="text-align: left;">
 												<c:forEach var="n" begin="1" end="${dto.dept}" >
 													&nbsp;&nbsp;&nbsp;

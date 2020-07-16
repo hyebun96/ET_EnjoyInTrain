@@ -49,8 +49,8 @@ $(function(){
 					<div class="9u skel-cell-important">
 						<section>
 							<header>
-								<h2>환불</h2>
-								<span class="byline">REFUND</span>
+								<h2>발권내역/취소</h2>
+								<span class="byline">TICKET DETAILS/DETAIL</span>
 								<div style="width: 1200px; text-align: center;">
 								<form action="<%=cp%>/reservation/requestrefund" name="refundForm" method="post">
 								<input type="hidden" value="${trCode}"  name="trCode">

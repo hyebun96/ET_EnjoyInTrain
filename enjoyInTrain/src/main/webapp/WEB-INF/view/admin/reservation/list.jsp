@@ -34,6 +34,10 @@ table td{
 
 $(function(){
 	$(".listAll").click(function(){
+		if($(this).attr("data-refund")==1){
+			return;
+		}
+		
 		var trCode=$(this).children(".trCode").children("input").val();
 		var display=$(".seatList"+trCode).css("display");
 		if(display=="none"){
@@ -90,7 +94,7 @@ $(function(){
 								<td>비고</td>
 							</tr>
 							<c:forEach items="${list}" var="dto">
-								<tr class="listAll" style="height:40px;">
+								<tr class="listAll" style="height:40px;" data-refund="${dto.refund}">
 									<td class="trCode trDate">
 										<input type="hidden" value="${dto.trCode}" name="trCode">
 										${dto.trDate}
@@ -102,7 +106,7 @@ $(function(){
 									<td>${dto.crewId}</td>
 									<td>${dto.trPayDate}</td>
 									<td>${dto.promotion==1?'-':dto.trPrice}</td>
-									<td>${dto.trPointprice}</td>
+									<td>${dto.promotion==1?'-':dto.trPointprice}</td>
 									<td>${dto.count}</td>
 									<td style="color: ${dto.refund==1?'red':'black'}">${dto.refund==1?'환불완료':'결제완료'}</td>
 									<td>${dto.promotion==0?'':'프로모션'}</td>
@@ -133,7 +137,7 @@ $(function(){
 															<td style="width: 10%;">
 																<c:if test="${dto.promotion==0}">
 																	<c:if test="${seat.refund!=1}">
-																		<button class="refundSeatBtn" type="button" data-rsSeatCode="${seat.rsseatCode}" data-trCode="${dto.trCode}">환불</button>
+																		<button class="refundSeatBtn" type="button"  data-rsSeatCode="${seat.rsseatCode}" data-trCode="${dto.trCode}">환불</button>
 																	</c:if>
 																</c:if>
 															</td>
