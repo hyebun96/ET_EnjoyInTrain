@@ -34,7 +34,7 @@ public class TimeTableController {
 		
 		Map<String, Object> model=new HashMap<>();
 		
-		int rows=10;
+		int rows=20;
 		int dataCount;
 		int total_page;
 		
