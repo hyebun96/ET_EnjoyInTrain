@@ -132,7 +132,9 @@ $(function(){
 															<td style="color: ${seat.refund==1?'red':'black'}; width: 12%">${seat.refund==1?'환불완료':'결제완료'}</td>
 															<td style="width: 10%;">
 																<c:if test="${dto.promotion==0}">
-																	<button class="refundSeatBtn" type="button" data-rsSeatCode="${seat.rsseatCode}" data-trCode="${dto.trCode}">환불</button>
+																	<c:if test="${seat.refund!=1}">
+																		<button class="refundSeatBtn" type="button" data-rsSeatCode="${seat.rsseatCode}" data-trCode="${dto.trCode}">환불</button>
+																	</c:if>
 																</c:if>
 															</td>
 															<td style="width: 15%;"></td>

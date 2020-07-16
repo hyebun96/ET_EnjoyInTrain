@@ -255,6 +255,13 @@ function insertAn(){
 	  location.href=url;
 }
 
+function insertReply(){
+	var q = "sgCode=${dto.sgCode}";
+	var url = "<%=cp%>/suggest/reply?" + q;
+
+	location.href=url;
+}
+
 </script>
 
 <script type="text/javascript">
@@ -351,9 +358,10 @@ function insertAn(){
 			          				<button type="button" class="articlebtn" onclick="updateNotice();">수정</button>
 			          				<button type="button" class="articlebtn" onclick="deleteNotice();">삭제</button>
 			          			</c:if>
-			          			<c:if test="${sessionScope.crew.crewId == 'a' }">
+			          			<c:if test="${sessionScope.crew.crewId == 'a' && dto.anContent==''}">
 			          				<button type="button" class="articlebtn" onclick="insertAn();">답변달기</button>
 			          			</c:if>
+			          			<button type="button" class="articlebtn" onclick="insertReply();">답글달기</button>
 			          			</td>
 							</tr>
 						</table>

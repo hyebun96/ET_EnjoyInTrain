@@ -85,12 +85,12 @@ function suggestList(){
 													<a href="${articleUrl}&sgCode=${dto.sgCode}">${dto.sgTitle}</a>
 												</c:if>
 												<c:if test="${dto.dept!=0}">
-													<a href="${articleUrl}&sgCode=${dto.sgCode}">ㄴ [re]${dto.sgTitle}</a>
+													<a href="${articleUrl}&sgCode=${dto.sgCode}">ㄴ ${dto.sgTitle}</a>
 												</c:if>
 											</td>
 											<td>${dto.crewName}</td>
 											<td>${dto.sgCreated}</td>
-											<td>${dto.anContent==null?"작성완료":"답변완료"}</td>
+											<td>${dto.anContent==null?dto.dept==0?"작성완료":" ":"답변완료"}</td>
 											<td>${dto.sgHitCount}</td>
 										</tr>
 									</c:forEach>

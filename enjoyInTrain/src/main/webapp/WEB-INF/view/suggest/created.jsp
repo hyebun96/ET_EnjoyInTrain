@@ -129,7 +129,7 @@
 					<tbody id="tb">
 							<tr class="noticearticletitle">
 								<td class="noticearticletitle1">제목  </td>
-								<td colspan="3" style="text-align: left;"> <input type="text" name="sgTitle" maxlength="100" class="boxTF" style="width: 100%;" value="${dto.sgTitle}"> </td>
+								<td colspan="3" style="text-align: left;"> <input type="text" name="sgTitle" maxlength="100" class="boxTF" style="width: 100%;" value="${mode=='reply'?'[re]':''}${dto.sgTitle}"> </td>
 							</tr>
 							<tr class="noticearticletitle">
 								<td class="noticearticletitle1">분류</td>
@@ -144,7 +144,7 @@
 							</tr>
 							<tr class="noticearticletitle">
 								<td class="noticearticletitle1">내용</td>
-								<td class="notice-content1" colspan="3"> <textarea name="sgContent" rows="12" class="boxTA" style="width: 100%; margin-top: 10px; height: 450px;">${dto.sgContent}</textarea></td>
+								<td class="notice-content1" colspan="3"> <textarea name="sgContent" rows="12" class="boxTA" style="width: 100%; margin-top: 10px; height: 450px;">${mode=='reply'?'':dto.sgContent}</textarea></td>
 							</tr>
 							
 							<tr class="noticearticletitle">

@@ -248,7 +248,7 @@ function reCal(){
 								 	</c:if>
 								 	<button type="button" onclick="requestPay()" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #273267; color: white; border: none;">결제하기</button>
 									<button type="button" onclick="reCal()" style="font-weight:bold; font-size:15px; border-radius:5px; width:100px; height:30px; background: #ddd; color: black; border: none;">다시계산</button>
-									<button onclick="aa();">좌석예약(테스트)</button>
+									<button onclick="aa();" style="display: none;">좌석예약(테스트)</button>
 								</div>
 								</form>
 							</header>

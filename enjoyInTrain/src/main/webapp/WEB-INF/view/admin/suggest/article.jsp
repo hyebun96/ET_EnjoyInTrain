@@ -273,9 +273,6 @@ function insertAn(){
 			<!-- Main -->
 			<div id="main" class="container">
 				<div class="row">
-
-
-				
 					<div class="9u skel-cell-important">
 						<section>
 							<header>
@@ -335,7 +332,9 @@ function insertAn(){
 								<button type="button" class="articlebtn" onclick="javascript:location.href='<%=cp%>/admin/suggest/list?${query}';">리스트</button>
 			          				
 			          				<button type="button" class="articlebtn" onclick="deleteNotice();">삭제</button>
-			          				<button type="button" class="articlebtn" onclick="insertAn();">답변달기</button>
+			          				<c:if test="${dto.anContent==''}">
+				          				<button type="button" class="articlebtn" onclick="insertAn();">답변달기</button>
+			          				</c:if>
 			          			</td>
 							</tr>
 						</table>

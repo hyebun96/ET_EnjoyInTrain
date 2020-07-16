@@ -197,7 +197,7 @@ function info_print() {
 											<td colspan="3">승객유형&nbsp;&nbsp;${ticket.seatType}</td>
 										</tr>
 										<tr class="back">
-											<td  style="width:300px;">운임요금 &nbsp;<fmt:formatNumber value="${ticket.seatPay}" pattern="#,###"/>원</td>
+											<td  style="width:350px;">운임요금 &nbsp;<fmt:formatNumber value="${ticket.seatPay}" pattern="#,###"/>원</td>
 											<td style="width:290px;">할인금액 &nbsp; <fmt:formatNumber value="${ticket.disCount}" pattern="#,###"/>원</td>
 											<td>영수금액&nbsp;<fmt:formatNumber value="${ticket.seatPay}" pattern="#,###"/>원</td>
 										</tr>
