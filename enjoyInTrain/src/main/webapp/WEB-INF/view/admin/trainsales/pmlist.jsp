@@ -88,7 +88,7 @@ $(function(){
 		    },
 		    tooltip: {
 		        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-		        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+		        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} 원</b> of total<br/>'
 		    },
 		    accessibility: {
 		        announceNewData: {
@@ -100,7 +100,7 @@ $(function(){
 		    },
 		    yAxis: {
 		        title: {
-		            text: '백분율'
+		            text: '금액'
 		        }
 
 		    },
@@ -112,7 +112,7 @@ $(function(){
 		            borderWidth: 0,
 		            dataLabels: {
 		                enabled: true,
-		                format: '{point.y:.0f}%'
+		                format: '{point.y:.0f} 원'
 		            }
 		        }
 		    },
