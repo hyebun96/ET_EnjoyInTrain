@@ -15,6 +15,7 @@
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
 
 <style>
 .homepage #main{
@@ -138,6 +139,16 @@ function chatDay() {
 			        text: '[ 일자별 판매현황 ]'
 			    },
 			    
+			    plotOptions: {
+			        spline: {
+			            marker: {
+			                radius: 4,
+			                lineColor: 'red',
+			                lineWidth: 1
+			            }
+			        }
+			    },
+			    
 
 			    xAxis: {  // x축
 					categories : data.categories
@@ -152,9 +163,15 @@ function chatDay() {
 			    },
 			    series: [
 			    	{
-		    		  marker: {
-		    	            symbol: 'square'
+			    		marker: {
+		    	            symbol: 'diamond',
+		    	            radius: 4,
+		    	            lineColor: 'black',
+			                lineWidth: 1
+		    	            
 		    	        },
+		    	        color: 'orange',
+		    	        lineWidth: 5,
 			    		name : '일자',
 			    		data : data.series
 			    		
