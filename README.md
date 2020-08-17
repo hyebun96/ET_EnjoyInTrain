@@ -1,4 +1,4 @@
-# :monorail: EnjoyInTrain_ET
+# :train2: EnjoyInTrain_ET
 
 기차 예매 웹페이지
 - 모든 연령의 사용자가 이용하기 편리하게 구성한 예매 시스템
