@@ -31,18 +31,42 @@
 <br/>
 
 ### << 여행 프로모션 >>
+
+![image](https://user-images.githubusercontent.com/58923654/91991611-11db6d80-ed6e-11ea-8bf6-d7bbf22d3a33.png)
+![image](https://user-images.githubusercontent.com/58923654/91991614-13a53100-ed6e-11ea-9899-c7249f08fe45.png)
+
+
+
 1.	여행 프로모션 리스트
     - 	여행 프로모션 상품 리스트 지역별 조회   
+
+![image](https://user-images.githubusercontent.com/58923654/91991669-23bd1080-ed6e-11ea-8336-1dba1722e932.png)
+![image](https://user-images.githubusercontent.com/58923654/91991672-24ee3d80-ed6e-11ea-84a8-45e66a6dc851.png)
+
+
 2.	여행 프로모션 상세
     -	기차를 시간대별로 선택 가능 
     -	달력을 통해 여행 날짜 선택 가능
+
+![image](https://user-images.githubusercontent.com/58923654/91991679-27e92e00-ed6e-11ea-8c8e-aa3881ecb6c2.png)
+![image](https://user-images.githubusercontent.com/58923654/91991684-29b2f180-ed6e-11ea-9ac3-77eeab0022a1.png)
+
+    
 3.	여행 프로모션 예약
     -	여행 프로모션 기차 좌석 선택
     -	이용인원 분류선택
     -	여행 프로모션 간단 조회 및 예약 가능
+    
+![image](https://user-images.githubusercontent.com/58923654/91991755-418a7580-ed6e-11ea-940a-db8768070215.png)
+
+    
 4.	여행 프로모션 예약 완료 및 결제
     -	3일안에 미결제시 예약 내역 삭제 
     -	오픈 API 카카오페이 결제
+    
+![image](https://user-images.githubusercontent.com/58923654/91991781-4c450a80-ed6e-11ea-99f0-c877099af502.png) 
+
+    
 5.	여행 프로모션 예약 및 결제 리스트 조회 
     -	회원 여행 프로모션 예약 리스트 조회 가능
     -	여행 프로모션 미결제시 리스트를 통해 결제 가능
@@ -50,6 +74,10 @@
 
 
 ### << 매출통계 >>
+
+![image](https://user-images.githubusercontent.com/58923654/91992014-98904a80-ed6e-11ea-8609-d601fda8686f.png)
+
+
 1.	프로모션 통계
     -	지역별, 프로모션별에 따른 프로모션 매출 통계
     -	지역별은 발급건수에 대한 비율 통계
@@ -98,7 +126,7 @@
 - Back-end : Oracle, Java<br/>
 - Tiles 3<br/>
 - version : Spring 4.3.27, Oracle 18c
-- Tools :  Sql Developer, STS 3.9<br/><br/>
+- Tools :  Sql Developer, STS 3.9<br/>
 - Mybatis 3<br/>
 - DB 모델링 : eXERD<br/>
 - Git & Github<br/>
