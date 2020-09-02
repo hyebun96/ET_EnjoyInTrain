@@ -20,6 +20,7 @@
 
 ### << 여행 프로모션 메인>>
 
+<br>
 ### (1)	프로모션 리스트
 
 ![image](https://user-images.githubusercontent.com/58923654/91658024-dd16ae80-eb00-11ea-8863-c422de08c7c2.png)
