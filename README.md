@@ -93,14 +93,14 @@
 - 카카오페이, 카카오 맵을 이용하여 Open API를 사용
 
 ## 3. 사용 기술
-HTML5, CSS3, JS
-jQuery (DOM 관리, Ajax)
-Tiles 3
-Spring 4.3.27
-Mybatis 3
-Oracle 18c
-Java
-Git & Github
-eXERD (DB 모델링)
-Sql Developer (powered by Oracle)
-STS 3.9
+HTML5, CSS3, JS<br/>
+jQuery (DOM 관리, Ajax)<br/><br/>
+Tiles 3<br/>
+Spring 4.3.27<br/>
+Mybatis 3<br/>
+Oracle 18c<br/>
+Java<br/>
+Git & Github<br/>
+eXERD (DB 모델링)<br/>
+Sql Developer (powered by Oracle)<br/>
+STS 3.9<br/>
